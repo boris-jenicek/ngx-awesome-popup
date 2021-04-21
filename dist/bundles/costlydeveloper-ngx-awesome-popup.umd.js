@@ -391,6 +391,34 @@
             return ButtonMaker;
         }());
         GlobalClass.ButtonMaker = ButtonMaker;
+        var GlobalUserConfig = /** @class */ (function () {
+            function GlobalUserConfig(_GlobalUserConfig) {
+                this.ColorList = new GlobalClass.ColorTypes();
+                if (_GlobalUserConfig) {
+                    var dataControl = new GlobalClass.DataControl();
+                    dataControl.copyValuesFrom(_GlobalUserConfig, this);
+                    var colorList = new GlobalClass.ColorTypes();
+                    this.ColorList = dataControl.copyValuesFrom(this.ColorList, colorList);
+                }
+                console.log(this);
+            }
+            return GlobalUserConfig;
+        }());
+        GlobalClass.GlobalUserConfig = GlobalUserConfig;
+        var ColorTypes = /** @class */ (function () {
+            function ColorTypes() {
+                this.Primary = null;
+                this.Secondary = null;
+                this.Success = null;
+                this.Info = null;
+                this.Warning = null;
+                this.Danger = null;
+                this.Light = null;
+                this.Dark = null;
+            }
+            return ColorTypes;
+        }());
+        GlobalClass.ColorTypes = ColorTypes;
         var GlobalConfig = /** @class */ (function () {
             function GlobalConfig() {
                 this.DisplayColor = new GlobalClass.DisplayColor();
@@ -1829,6 +1857,7 @@
             this.userGlobalConfig = userGlobalConfig;
             this.productionGlobalConfig = new GlobalClass.GlobalConfig();
             this.authorGlobalConfig = new GlobalClass.GlobalConfig();
+            userGlobalConfig = new GlobalClass.GlobalUserConfig(userGlobalConfig);
             // region *** author global config values (if there is no user input) ***
             this.authorGlobalConfig.DisplayColor.Primary = null; // new GlobalClass.ColorProvider('#ff9e00');
             this.authorGlobalConfig.DisplayColor.Secondary = null; // new GlobalClass.ColorProvider('#989ea5');

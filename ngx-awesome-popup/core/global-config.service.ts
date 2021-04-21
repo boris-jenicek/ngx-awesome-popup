@@ -2,6 +2,7 @@ import {Inject, Injectable} from '@angular/core';
 import {GlobalClass, GlobalInterface} from './global';
 import {ColorVariance} from './enums';
 import IColorProvider = GlobalInterface.IColorProvider;
+import {ConfirmBoxClass} from '../types/confirm-box/core/model';
 
 @Injectable({
     providedIn: 'root'
@@ -12,8 +13,8 @@ export class GlobalConfigService {
     private authorGlobalConfig: GlobalInterface.IGlobalConfig = new GlobalClass.GlobalConfig();
     
     constructor(@Inject('globalConfig') private userGlobalConfig: GlobalInterface.IGlobalUserConfig) {
-        
-        
+        userGlobalConfig = new GlobalClass.GlobalUserConfig(userGlobalConfig);
+
         // region *** author global config values (if there is no user input) ***
         this.authorGlobalConfig.DisplayColor.Primary   = null; // new GlobalClass.ColorProvider('#ff9e00');
         this.authorGlobalConfig.DisplayColor.Secondary = null; // new GlobalClass.ColorProvider('#989ea5');

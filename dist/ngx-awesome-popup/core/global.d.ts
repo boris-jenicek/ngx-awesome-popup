@@ -97,6 +97,20 @@ export declare namespace GlobalClass {
         LayoutType: ButtonLayoutDisplay;
         constructor(Label: string, ID: string, LayoutType?: ButtonLayoutDisplay);
     }
+    class GlobalUserConfig implements GlobalInterface.IGlobalUserConfig {
+        ColorList: GlobalInterface.IColorTypes;
+        constructor(_GlobalUserConfig: GlobalInterface.IGlobalUserConfig);
+    }
+    class ColorTypes implements GlobalInterface.IColorTypes {
+        Primary: string;
+        Secondary: string;
+        Success: string;
+        Info: string;
+        Warning: string;
+        Danger: string;
+        Light: string;
+        Dark: string;
+    }
     class GlobalConfig implements GlobalInterface.IGlobalConfig {
         DisplayColor: GlobalInterface.IColorObject;
     }

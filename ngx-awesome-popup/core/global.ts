@@ -110,6 +110,32 @@ export namespace GlobalClass {
         }
     }
     
+    export class GlobalUserConfig implements GlobalInterface.IGlobalUserConfig {
+        ColorList: GlobalInterface.IColorTypes = new GlobalClass.ColorTypes();
+        
+        constructor(_GlobalUserConfig: GlobalInterface.IGlobalUserConfig) {
+            if (_GlobalUserConfig){
+                const dataControl    = new GlobalClass.DataControl();
+                dataControl.copyValuesFrom(_GlobalUserConfig, this);
+                const colorList = new GlobalClass.ColorTypes();
+                this.ColorList  = dataControl.copyValuesFrom(this.ColorList, colorList);
+            }
+           
+            console.log(this);
+        }
+    }
+    
+    export class ColorTypes implements  GlobalInterface.IColorTypes {
+        Primary: string   = null;
+        Secondary: string = null;
+        Success: string   = null;
+        Info: string      = null;
+        Warning: string   = null;
+        Danger: string    = null;
+        Light: string     = null;
+        Dark: string      = null;
+    }
+    
     export class GlobalConfig implements GlobalInterface.IGlobalConfig {
         DisplayColor: GlobalInterface.IColorObject = new GlobalClass.DisplayColor();
     }

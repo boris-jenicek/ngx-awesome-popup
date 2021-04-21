@@ -57,6 +57,32 @@ var GlobalClass;
         }
     }
     GlobalClass.ButtonMaker = ButtonMaker;
+    class GlobalUserConfig {
+        constructor(_GlobalUserConfig) {
+            this.ColorList = new GlobalClass.ColorTypes();
+            if (_GlobalUserConfig) {
+                const dataControl = new GlobalClass.DataControl();
+                dataControl.copyValuesFrom(_GlobalUserConfig, this);
+                const colorList = new GlobalClass.ColorTypes();
+                this.ColorList = dataControl.copyValuesFrom(this.ColorList, colorList);
+            }
+            console.log(this);
+        }
+    }
+    GlobalClass.GlobalUserConfig = GlobalUserConfig;
+    class ColorTypes {
+        constructor() {
+            this.Primary = null;
+            this.Secondary = null;
+            this.Success = null;
+            this.Info = null;
+            this.Warning = null;
+            this.Danger = null;
+            this.Light = null;
+            this.Dark = null;
+        }
+    }
+    GlobalClass.ColorTypes = ColorTypes;
     class GlobalConfig {
         constructor() {
             this.DisplayColor = new GlobalClass.DisplayColor();
@@ -1413,6 +1439,7 @@ class GlobalConfigService {
         this.userGlobalConfig = userGlobalConfig;
         this.productionGlobalConfig = new GlobalClass.GlobalConfig();
         this.authorGlobalConfig = new GlobalClass.GlobalConfig();
+        userGlobalConfig = new GlobalClass.GlobalUserConfig(userGlobalConfig);
         // region *** author global config values (if there is no user input) ***
         this.authorGlobalConfig.DisplayColor.Primary = null; // new GlobalClass.ColorProvider('#ff9e00');
         this.authorGlobalConfig.DisplayColor.Secondary = null; // new GlobalClass.ColorProvider('#989ea5');
