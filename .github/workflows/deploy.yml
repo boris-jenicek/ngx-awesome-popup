@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master # Change this to your default branch
-    #paths:
-    #  - 'dist/**'
+    paths:
+      - 'dist/**'
 
 jobs:
   gpr-publish:
@@ -36,3 +36,33 @@ jobs:
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+
+  npm-publish:
+    name: npm-publish
+    runs-on: ubuntu-latest
+
+    steps:
+      #Publish to Node Package Manager
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js (NPM)
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          registry-url: https://registry.npmjs.org
+      - name: Check if scroll-to-top version has been updated
+        id: awp
+        uses: EndBug/version-check@v1
+        with:
+          diff-search: true
+          file-name: dist/package.json
+          token: ${{ secrets.GT_TOKEN }}
+
+      - name: Publish to NPM
+        if: steps.awp.outputs.changed == 'true'
+        run: npm publish dist --access public --@costlydeveloper:registry=https://registry.npmjs.org/
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

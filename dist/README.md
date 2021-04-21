@@ -3,12 +3,12 @@
 </p>
 <h1 align="center">@costlydeveloper/ngx-awesome-popup</h1>
 <p align="center">
-		<a href="https://npmcharts.com/compare/ngx-awesome-popup?minimal=true"><img alt="Downloads per month" src="https://img.shields.io/npm/dm/ngx-awesome-popup.svg" height="20"/></a>
-<a href="https://www.npmjs.com/package/ngx-awesome-popup"><img alt="NPM Version" src="https://img.shields.io/npm/v/ngx-awesome-popup.svg" height="20"/></a>
-<a href="https://david-dm.org/ngx-awesome-popup"><img alt="Dependencies" src="https://img.shields.io/david/ngx-awesome-popup.svg" height="20"/></a>
-<a href="https://github.com/ngx-awesome-popup/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/ngx-awesome-popup.svg" height="20"/></a>
-<a href="https://github.com/badges/shields"><img alt="Custom badge" src="https://img.shields.io/badge/custom-badge-f39f37.svg" height="20"/></a>
-<a href="https://github.com/andreasbm/readme/graphs/commit-activity"><img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" height="20"/></a>
+		<a href="https://npmcharts.com/compare/@costlydeveloper/ngx-awesome-popup?minimal=true"><img alt="Downloads per month" src="https://img.shields.io/npm/dm/@costlydeveloper/ngx-awesome-popup.svg" height="20"/></a>
+<a href="https://www.npmjs.com/package/@costlydeveloper/ngx-awesome-popup"><img alt="NPM Version" src="https://img.shields.io/npm/v/@costlydeveloper/ngx-awesome-popup.svg" height="20"/></a>
+<a href="https://david-dm.org/costlydeveloper/ngx-awesome-popup"><img alt="Dependencies" src="https://img.shields.io/david/costlydeveloper/ngx-awesome-popup.svg" height="20"/></a>
+<a href="https://github.com/costlydeveloper/ngx-awesome-popup/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/costlydeveloper/ngx-awesome-popup.svg" height="20"/></a>
+<a href="https://github.com/costlydeveloper/ngx-awesome-popup/graphs/commit-activity"><img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" height="20"/></a>
+<a href="https://costlydeveloper.github.io/ngx-awesome-popup/"><img alt="undefined" src="https://awesome.re/badge.svg" height="20"/></a>
 	</p>
 
 <p align="center">
@@ -22,6 +22,19 @@
 * **Powerful**: It uses Angular factory features - generates any component anywhere in popup without HTML selector!
 * **Awesome**: The tool you don't know you needed before!
 
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
+## ➤ Table of Contents
+
+* [➤ Installation](#-installation)
+* [➤ Usage](#-usage)
+	* [Toast Notification](#toast-notification)
+	* [Confirm Box / Alert Box](#confirm-box--alert-box)
+	* [Open any component in Dialog](#open-any-component-in-dialog)
+		* [Setup of evoke of the dialog:](#setup-of-evoke-of-the-dialog)
+		* [Setup of child-dynamic component that is rendered in dialog:](#setup-of-child-dynamic-component-that-is-rendered-in-dialog)
+* [➤ License](#-license)
+
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#installation)
@@ -29,10 +42,8 @@
 ## ➤ Installation
 Install the library with:
 ```javascript
-npm install ngx-awesome-popup
+npm install @costlydeveloper/ngx-awesome-popup
 ```
-
-#### Check [The API Documentation](https://github.com/costlydeveloper/ngx-awesome-popup/wiki) for more advance setup.
 
 
 
@@ -44,7 +55,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 
 // Import your library
-import {ConfirmBoxConfigModule, DialogConfigModule, NgxAwesomePopupModule, ToastNotificationConfigModule} from 'ngx-awesome-popup';
+import {ConfirmBoxConfigModule, DialogConfigModule, NgxAwesomePopupModule, ToastNotificationConfigModule} from '@costlydeveloper/ngx-awesome-popup';
 
 
 @NgModule({
@@ -54,7 +65,7 @@ import {ConfirmBoxConfigModule, DialogConfigModule, NgxAwesomePopupModule, Toast
     imports     : [
         BrowserModule,
 
-        // Importing ngx-awesome-popup modules
+        // Importing @costlydeveloper/ngx-awesome-popup modules
         NgxAwesomePopupModule.forRoot(),
         DialogConfigModule.forRoot(),
         ConfirmBoxConfigModule.forRoot(),
@@ -77,6 +88,7 @@ API documentation:
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#usage)
 
 ## ➤ Usage
+**Check [The API Documentation](https://github.com/costlydeveloper/ngx-awesome-popup/wiki) for more advance setup.**
 
 ### Toast Notification
 Simply open toast notification from any component or any custom typescript class:
@@ -84,7 +96,7 @@ Simply open toast notification from any component or any custom typescript class
 import {Component, OnInit} from '@angular/core';
 
 // import library classes
-import {DialogLayoutDisplay, ToastNotificationInitializer} from 'ngx-awesome-popup';
+import {DialogLayoutDisplay, ToastNotificationInitializer} from '@costlydeveloper/ngx-awesome-popup';
 
 @Component({
     selector   : 'app-root',
@@ -130,7 +142,7 @@ It is very easy to open Confirm Box or Alert Box from any component or any custo
 import {Component, OnInit} from '@angular/core';
 
 // import library classes
-import {DialogLayoutDisplay, ConfirmBoxInitializer} from 'ngx-awesome-popup';
+import {DialogLayoutDisplay, ConfirmBoxInitializer} from '@costlydeveloper/ngx-awesome-popup';
 
 @Component({
     selector   : 'app-root',
@@ -186,7 +198,7 @@ import {Component, OnInit} from '@angular/core';
 import {AnyAngularComponent} from './any-angular-component/any-angular.component';
 
 // import library classes
-import {DialogLayoutDisplay, DialogInitializer, ButtonLayoutDisplay, ButtonMaker} from 'ngx-awesome-popup';
+import {DialogLayoutDisplay, DialogInitializer, ButtonLayoutDisplay, ButtonMaker} from '@costlydeveloper/ngx-awesome-popup';
 
 @Component({
     selector   : 'app-root',
@@ -247,7 +259,7 @@ The child dynamic component represents AnyAngularComponent from example above.
 ```typescript
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from 'rxjs';
-import {DialogBelonging} from 'ngx-awesome-popup';
+import {DialogBelonging} from '@costlydeveloper/ngx-awesome-popup';
 
 @Component({
     selector: 'app-any-angular-component',
