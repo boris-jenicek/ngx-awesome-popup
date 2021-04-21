@@ -3,11 +3,10 @@ on:
   push:
     branches:
       - master # Change this to your default branch
-    paths:
-      - 'dist/**'
+    #paths:
+    #  - 'dist/**'
 
 jobs:
-
   gpr-publish:
     name: gpr-publish
     runs-on: ubuntu-latest
