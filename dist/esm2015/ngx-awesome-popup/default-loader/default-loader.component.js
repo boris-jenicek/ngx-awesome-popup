@@ -1,0 +1,11 @@
+import { Component } from '@angular/core';
+export class DefaultLoaderComponent {
+}
+DefaultLoaderComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'ed-default-loader',
+                template: "<div class=\"box-position\">\n\t<div class=\"loader-center\">\n\t\t<div class=\"lds-ring\">\n\t\t\t<div></div>\n\t\t\t<div></div>\n\t\t\t<div></div>\n\t\t\t<div></div>\n\t\t</div>\n\t</div>\n</div>\n",
+                styles: [".box-position{position:absolute;top:44%;left:50%;height:auto;margin:0 auto;transform:translate(-50%,-40%);text-align:center}.box-position .loader-center{display:flex;align-items:center;justify-content:center}.box-position .loader-center .lds-ring{position:relative;display:inline-block;width:80px;height:80px}.box-position .loader-center .lds-ring div{position:absolute;display:block;box-sizing:border-box;width:64px;height:64px;margin:8px;animation:lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite;border:8px solid transparent;border-top-color:#d4d4d4;border-radius:50%}.box-position .loader-center .lds-ring div:first-child{animation-delay:-.45s}.box-position .loader-center .lds-ring div:nth-child(2){animation-delay:-.3s}.box-position .loader-center .lds-ring div:nth-child(3){animation-delay:-.15s}@keyframes lds-ring{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}"]
+            },] }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGVmYXVsdC1sb2FkZXIuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vbmd4LWF3ZXNvbWUtcG9wdXAvZGVmYXVsdC1sb2FkZXIvZGVmYXVsdC1sb2FkZXIuY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFPMUMsTUFBTSxPQUFPLHNCQUFzQjs7O1lBTGxDLFNBQVMsU0FBQztnQkFDVCxRQUFRLEVBQUUsbUJBQW1CO2dCQUM3QixtTkFBOEM7O2FBRS9DIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tcG9uZW50IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ2VkLWRlZmF1bHQtbG9hZGVyJyxcbiAgdGVtcGxhdGVVcmw6ICcuL2RlZmF1bHQtbG9hZGVyLmNvbXBvbmVudC5odG1sJyxcbiAgc3R5bGVVcmxzOiBbJy4vZGVmYXVsdC1sb2FkZXIuY29tcG9uZW50LnNjc3MnXVxufSlcbmV4cG9ydCBjbGFzcyBEZWZhdWx0TG9hZGVyQ29tcG9uZW50IHtcblxufVxuIl19

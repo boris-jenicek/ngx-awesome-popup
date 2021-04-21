@@ -1,0 +1,51 @@
+<div class="ngx-awesome-popup-overlay" (dblclick)="onOverlayClicked($event)" [@fadeInOut]="fadeInOutAnimation">
+	
+	<div class="evolve-parent-dialog"
+			[ngClass]="{
+          'standard-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 0,
+          'success-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 1,
+          'info-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 2,
+          'warning-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 3,
+          'danger-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 4
+        }"
+	>
+		<div class="loader-holder" [ngClass]="!dialogBelonging.DialogCoreConfig.DisplayLoader ? 'dialog-loader-off' : (showLoader ? 'dialog-loader-active' : 'dialog-loader-gone')">
+			<!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->
+			<div class="dialog-loader">
+				<ng-template appInsertionLoader></ng-template>
+			</div>
+		</div>
+		
+		<div class="content-holder" [ngStyle]="{'width': dialogBelonging.DialogCoreConfig.Width, 'height': dialogBelonging.DialogCoreConfig.Height}">
+
+			<!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->
+			<div class="component-content" [ngClass]="!dialogBelonging.DialogCoreConfig.DisplayLoader ? 'component-content-loader-off' : (showLoader ? 'component-content-preparing' : 'component-content-ready')">
+				<ng-template appInsertion></ng-template>
+			</div>
+			
+		</div>
+		
+		<div class="button-holder">
+			<div class="button-section" *ngIf="dialogBelonging.Buttons.length > 0" [ngStyle]="{ 'text-align': dialogBelonging.DialogCoreConfig.ButtonPosition }">
+				
+				<button
+						class="ed-btn ed-btn-lg" *ngFor="let button of dialogBelonging.Buttons" (click)="onCustomButton(button)"
+						[ngClass]="{
+			                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),
+                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),
+                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),
+                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),
+                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),
+                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),
+                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),
+                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),
+                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),
+                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)
+                            }"
+				>{{button.Label}}</button>
+			
+			</div>
+		</div>
+	</div>
+	
+</div>

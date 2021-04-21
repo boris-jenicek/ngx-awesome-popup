@@ -1,0 +1,75 @@
+<div class="ngx-awesome-popup-overlay" (dblclick)="onOverlayClicked($event)" [@fadeInOut]="fadeInOutAnimation">
+	
+	<div class="evolve-confirm-box"
+			[ngClass]="{
+				  'standard-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
+				  'success-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,
+				  'info-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,
+				  'warning-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,
+				  'danger-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4
+				}" [ngStyle]="{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}">
+		
+			
+			<div class="confirm-box-title-content" *ngIf="confirmBoxBelonging.Message.Title">
+				
+				<div class="dont-break-out">
+					<div class="text-wrapper dont-break-out">
+						<div class="confirm-box-title-text">{{confirmBoxBelonging.Message.Title}}</div>
+					</div>
+				</div>
+			
+			</div>
+		
+		<div class="content-holder" *ngIf="confirmBoxBelonging.Message.Description">
+			
+			<div class="text-wrapper-section confirm-box-inner-content" [ngStyle]="{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}">
+				
+				<!--<div class="dont-break-out" [ngClass]="{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}">-->
+				<div class="dont-break-out">
+					<div class="text-wrapper dont-break-out">{{confirmBoxBelonging.Message.Description}}</div>
+				</div>
+			
+			</div>
+			
+		
+	</div>
+		<div class="button-holder">
+			<div class="button-section" *ngIf="confirmBoxBelonging.Buttons.length" [ngStyle]="{ 'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition }">
+				
+				<button
+						class="ed-btn ed-btn-md" *ngFor="let button of confirmBoxBelonging.Buttons" (click)="onCustomButton(button)"
+						[ngClass]="{
+			                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),
+                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),
+                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),
+                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),
+                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),
+                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),
+                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),
+                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),
+                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),
+                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)
+                            }"
+				>{{button.Label}}</button>
+			
+			</div>
+			<div class="button-section" *ngIf="!confirmBoxBelonging.Buttons.length" [ngStyle]="{ 'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition }">
+				
+				<button class="ed-btn ed-btn-md" (click)="onButtonClick('confirm')"
+				        [ngClass]="{
+				          'ed-btn-primary': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
+				          'ed-btn-success': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,
+				          'ed-btn-info': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,
+				          'ed-btn-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,
+				          'ed-btn-danger': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4
+				        }"
+				>{{confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel}}
+				</button>
+				<button (click)="onButtonClick('decline')" *ngIf="confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel" class="ed-btn ed-btn-md ed-btn-secondary">
+					{{confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel}}
+				</button>
+			
+			</div>
+		</div>
+	
+	</div>

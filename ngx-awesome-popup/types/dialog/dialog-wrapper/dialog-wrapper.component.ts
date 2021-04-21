@@ -1,0 +1,105 @@
+import {AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, ComponentRef, OnDestroy, Type, ViewChild} from '@angular/core';
+import {Observable, Observer} from 'rxjs';
+import {InsertionDirective} from '../../../core/insertion.directive';
+import {fadeInOut} from '../../../core/animations';
+import {delay} from 'rxjs/operators';
+import {InsertionLoaderDirective} from '../../../core/insertion-loader.directive';
+import {DialogClass} from '../core/model';
+
+
+@Component({
+    selector   : 'dialog-popup-wrapper',
+    templateUrl: './dialog-wrapper.component.html',
+    styleUrls  : ['./dialog-wrapper.component.scss'],
+    animations : [fadeInOut(0, 1)]
+    
+})
+export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
+    fadeInOutAnimation: string = 'open';
+    showLoader: boolean        = true;
+    
+    childComponentRef: ComponentRef<any>;
+    childComponentType: Type<any>;
+    loaderComponentRef: ComponentRef<any>;
+    
+    @ViewChild(InsertionDirective, {static: true}) insertionPoint: InsertionDirective;
+    @ViewChild(InsertionLoaderDirective, {static: true}) loaderInsertionPoint: InsertionLoaderDirective;
+    
+    constructor(
+        public dialogBelonging: DialogClass.DialogBelonging,
+        private componentFactoryResolver: ComponentFactoryResolver,
+        private cd: ChangeDetectorRef
+    ) {
+    }
+    
+    ngAfterViewInit(): void {
+        this.loadChildComponent(this.childComponentType);
+        this.loadLoaderComponent(this.dialogBelonging.DialogCoreConfig.LoaderComponent);
+        this.setDefaultResponse();
+        this.cd.detectChanges();
+    }
+    
+    setDefaultResponse(): void {
+        const dialogResponse = new DialogClass.DialogDefaultResponse();
+        dialogResponse.setSuccess(false);
+        dialogResponse.setBelonging(this.dialogBelonging);
+        this.dialogBelonging.EventsController.setDefaultResponse(dialogResponse);
+    }
+    
+    ngOnDestroy(): void {
+        if (this.childComponentRef) {
+            this.childComponentRef.destroy();
+        }
+        if (this.loaderComponentRef) {
+            this.loaderComponentRef.destroy();
+        }
+    }
+    
+    loadChildComponent(_ComponentType: Type<any>): void {
+        
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(_ComponentType);
+        
+        const viewContainerRef = this.insertionPoint.viewContainerRef;
+        viewContainerRef.clear();
+        
+        this.childComponentRef = viewContainerRef.createComponent(componentFactory);
+        
+        this.childComponentRef.instance.dialogBelonging = this.dialogBelonging;
+    }
+    
+    loadLoaderComponent(_LoaderRef: Type<any>): void {
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(_LoaderRef);
+        const viewContainerRef = this.loaderInsertionPoint.viewContainerRef;
+        viewContainerRef.clear();
+        
+        this.loaderComponentRef = viewContainerRef.createComponent(componentFactory);
+    }
+    
+    close() {
+        
+        this.dialogBelonging.EventsController.close();
+    }
+    
+    closeParent$(_ClosingAnimation: string): Observable<any> {
+        this.fadeInOutAnimation = _ClosingAnimation;
+        const timer             = _ClosingAnimation === 'close-slow' ? 1400 : 150;
+        
+        return new Observable((observer: Observer<any>) => {
+            observer.next('');
+            observer.complete();
+        }).pipe(delay(timer));
+    }
+    
+    onOverlayClicked(evt: MouseEvent): void {
+        // console.log('onOverlayClicked');
+    }
+    
+    onCustomButton(_Button: any): void {
+        this.dialogBelonging.EventsController.onButtonClick(_Button);
+    }
+    
+    closeLoader(): void {
+        this.showLoader = false;
+    }
+    
+}

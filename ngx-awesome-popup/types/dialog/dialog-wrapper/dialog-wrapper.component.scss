@@ -1,0 +1,90 @@
+@import "../../../styles/style";
+
+.evolve-parent-dialog {
+
+  padding: 20px 20px 10px 20px;
+
+  .component-content {
+    width:                      100%;
+    height:                     100%;
+
+    transition-delay:           .4s;
+    transition-timing-function: linear;
+    transition-duration:        0.4s;
+    transition-property:        opacity;
+    }
+
+  .component-content-loader-off {
+    transition: none !important;
+    opacity:    1 !important;
+    }
+
+  .component-content-preparing {
+    transition: none !important;
+    opacity:    0;
+    }
+
+  .component-content-ready {
+    height:  100%;
+    opacity: 1;
+    }
+
+  .dialog-loader {
+    opacity: 1;
+    }
+
+  .dialog-loader-off {
+    display: none;
+    opacity: 0 !important;
+    }
+
+  .dialog-loader-gone {
+    opacity: 0;
+    pointer-events: none
+    }
+
+  .dialog-loader-active {
+    opacity: 1;
+    }
+
+  }
+
+.loader-holder {
+  position:                   absolute;
+  transition-delay:           .4s;
+  transition-timing-function: linear;
+  transition-duration:        0.4s;
+  transition-property:        opacity;
+  opacity:                    1;
+  display:                    flex;
+  flex-direction:             column;
+  justify-content:            center;
+  align-items:                center;
+  background:                 $gr-100;
+  width:                      100%;
+  height:                     100%;
+  margin:                     -20px;
+  }
+
+.content-holder {
+  display:        flex;
+  flex-direction: column;
+  overflow:       auto;
+  }
+
+.button-holder {
+  width:           100%;
+  // height:          100%;
+  display:         flex;
+  justify-content: flex-end;
+  flex-direction:  column;
+
+  .button-section {
+    margin:     20px -20px -10px -20px;
+    border-top: 1px solid transparentize($gr-500, 0.8);
+    background: transparentize($gr-300, 0.8);
+    padding:    5px 20px;
+    }
+  }
+
+

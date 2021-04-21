@@ -1,0 +1,273 @@
+import {Observable, Subject} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {GlobalClass, GlobalInterface} from '../../../core/global';
+import {ServiceLocator} from '../../../locator.service';
+import {DialogLayoutDisplay, VerticalPosition} from '../../../core/enums';
+import {ToastNotificationService} from './toast-notification.service';
+import {ToastNotificationConfigService} from './toast-notification-config.service';
+
+
+export namespace ToastNotificationInterface {
+    
+    export interface IToastNotificationUserConfig {
+        Buttons?: GlobalInterface.IButton[];
+        ToastCoreConfig?: ToastNotificationInterface.IToastCoreConfig;
+        Message?: GlobalInterface.IMessage;
+        GlobalSettings?: ToastNotificationInterface.IGlobalToastSettings;
+    }
+    
+    export interface IGlobalToastSettings {
+        /** Number of popups allowed on screen, recommend 3-5 */
+        AllowedMessagesAtOnce: number;
+    }
+    
+    export interface IToastCoreConfig {
+        /** Fixed popup width */
+        Width?: string;
+        /** Fixed popup height */
+        Height?: string;
+        ButtonPosition?: VerticalPosition;
+        LayoutType?: DialogLayoutDisplay;
+        Message?: GlobalInterface.IMessage;
+        /** Default confirm button Label */
+        ConfirmLabel?: string;
+        /** Default decline button Label */
+        DeclineLabel?: string;
+        /** Expressed in milliseconds */
+        AutoCloseDelay?: number;
+    }
+    
+    export interface IToastNotificationBelonging {
+        Buttons: GlobalInterface.IButton[];
+        ToastCoreConfig: ToastNotificationInterface.IToastCoreConfig;
+        EntityUniqueID: string;
+        EventsController: ToastNotificationClass.ToastNotificationEventsController;
+    }
+    
+    export interface IToastNotificationResponse {
+        setSuccess(_IsSuccess: boolean): void;
+        setClickedButtonID(_ClickedButtonID): void;
+        
+    }
+    
+    export interface IToastNotificationPublicResponse {
+        Success: boolean;
+        ClickedButtonID: string
+    }
+    
+    export interface IPrivateResponseMerged extends IToastNotificationResponse, GlobalInterface.IPrivateResponse {
+        
+        toastNotificationBelonging: ToastNotificationInterface.IToastNotificationBelonging;
+    }
+    
+    export interface IToastNotificationRawState {
+        WeakMap: WeakMap<any, ToastNotificationClass.ToastNotificationEventsController>;
+        ToastBelonging: ToastNotificationClass.ToastNotificationBelonging;
+    }
+    
+}
+
+export namespace ToastNotificationClass {
+    
+    // region *** Public ***
+    export class ToastNotificationInitializer {
+        
+        private toastNotificationCarrier: ToastNotificationClass.ToastNotificationCarrier = new ToastNotificationClass.ToastNotificationCarrier();
+        
+        constructor() {
+        }
+        
+        openToastNotification$(): Observable<ToastNotificationInterface.IToastNotificationPublicResponse> {
+            return this.toastNotificationCarrier.openToastNotification$().pipe(map(resp => {
+                const basicToastNotificationResponse = new ToastNotificationResponse();
+                const dataControl                    = new GlobalClass.DataControl();
+                dataControl.copyValuesFrom(resp, basicToastNotificationResponse);
+                return basicToastNotificationResponse;
+            }));
+        }
+        
+        setButtons(_Buttons: GlobalInterface.IButton[]): void {
+            this.toastNotificationCarrier.setButtons(_Buttons);
+        }
+        
+        setConfig(_ToastNotificationConfig: ToastNotificationInterface.IToastCoreConfig) {
+            this.toastNotificationCarrier.setConfig(_ToastNotificationConfig);
+        }
+        
+        setMessage(_Title: string, _Description: string = null): void {
+            this.toastNotificationCarrier.setTitle(_Title);
+            this.toastNotificationCarrier.setDescription(_Description);
+        }
+        
+        setTitle(_Title: string): void {
+            this.toastNotificationCarrier.setTitle(_Title);
+        }
+        
+        setDescription(_Description: string): void {
+            this.toastNotificationCarrier.setDescription(_Description);
+        }
+        
+        setButtonLabels(_Confirm: string, _Decline?: string): void {
+            this.toastNotificationCarrier.setButtonLabels(_Confirm, _Decline);
+        }
+        
+    }
+    
+    export class ToastNotificationResponse extends GlobalClass.DataControl implements ToastNotificationInterface.IToastNotificationResponse, ToastNotificationInterface.IToastNotificationPublicResponse {
+        // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
+        
+        Success: boolean        = null;
+        ClickedButtonID: string = null;
+        
+        constructor() {
+            super();
+        }
+        
+        setSuccess(_IsSuccess: boolean): void {
+            this.Success = _IsSuccess;
+        }
+        
+        setClickedButtonID(_ClickedButtonID): void {
+            this.ClickedButtonID = _ClickedButtonID;
+        }
+        
+        
+    }
+    
+    export class ToastNotificationEventsController {
+        
+        defaultResponse: ToastNotificationInterface.IPrivateResponseMerged;
+        
+        private readonly _afterClosed: Subject<ToastNotificationInterface.IPrivateResponseMerged> = new Subject<ToastNotificationInterface.IPrivateResponseMerged>();
+        afterClosed$: Observable<ToastNotificationInterface.IPrivateResponseMerged>               = this._afterClosed.asObservable();
+        private readonly _onButtonClick: Subject<GlobalInterface.IButton>                         = new Subject<GlobalInterface.IButton>();
+        onButtonClick$: Observable<GlobalInterface.IButton>                                       = this._onButtonClick.asObservable();
+        private readonly _buttonList: Subject<GlobalInterface.IButton[]>                          = new Subject<GlobalInterface.IButton[]>();
+        buttonList$: Observable<GlobalInterface.IButton[]>                                        = this._buttonList.asObservable();
+        
+        constructor(private EntityUniqueID: string) {
+        }
+        
+        
+        close(_Response?: ToastNotificationInterface.IPrivateResponseMerged): void {
+            const response = _Response ? _Response : this.defaultResponse;
+            this._afterClosed.next(response);
+        }
+        
+        onButtonClick(_Button: GlobalInterface.IButton): void {
+            this.defaultResponse.setClickedButtonID(_Button.ID);
+            this._onButtonClick.next(_Button);
+        }
+        
+        setButtonList(_ButtonList: GlobalInterface.IButton[]): void {
+            this._buttonList.next(_ButtonList);
+        }
+        
+        setDefaultResponse(_Response: ToastNotificationInterface.IPrivateResponseMerged): void {
+            this.defaultResponse = _Response;
+        }
+    }
+    
+    // endregion
+    
+    export class ToastNotificationDefaultResponse extends ToastNotificationResponse implements ToastNotificationInterface.IPrivateResponseMerged {
+        toastNotificationBelonging: ToastNotificationBelonging = null;
+        
+        constructor() {
+            super();
+        }
+        
+        setBelonging(_ToastNotificationBelonging): void {
+            this.toastNotificationBelonging = _ToastNotificationBelonging;
+        }
+        
+    }
+    
+    export class ToastNotificationCarrier {
+        
+        toastNotificationBelonging: ToastNotificationClass.ToastNotificationBelonging = new ToastNotificationClass.ToastNotificationBelonging();
+        
+        constructor() {
+        }
+        
+        setButtons(_Buttons: GlobalInterface.IButton[]) {
+            if (_Buttons.length) {
+                this.toastNotificationBelonging.Buttons = _Buttons;
+            }
+        }
+        
+        setTitle(_Title: string): void {
+            this.toastNotificationBelonging.Message.Title = _Title;
+        }
+        
+        setDescription(_Description: string): void {
+            this.toastNotificationBelonging.Message.Description = _Description;
+        }
+        
+        setButtonLabels(_Confirm: string, _Decline: string): void {
+            this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel = _Confirm;
+            this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel = _Decline;
+        }
+        
+        setConfig(_ToastNotificationBelonging: ToastNotificationInterface.IToastCoreConfig) {
+            // region *** local UserConfig (defined on place where dialog is called) ***
+            const dataControl = new GlobalClass.DataControl();
+            dataControl.copyValuesFrom(_ToastNotificationBelonging, this.toastNotificationBelonging.ToastCoreConfig);
+            // endregion
+        }
+        
+        openToastNotification$(): Observable<ToastNotificationInterface.IPrivateResponseMerged> {
+            if(!this.toastNotificationBelonging.Message.Title
+                && !this.toastNotificationBelonging.Message.Description){
+                throw Error('Toast message fail.')
+            }
+            const service: ToastNotificationService = ServiceLocator.injector.get(ToastNotificationService);
+            return service.openToast$(this.toastNotificationBelonging);
+            
+        }
+        
+    }
+    
+    export class GlobalToastSettings implements ToastNotificationInterface.IGlobalToastSettings{
+        AllowedMessagesAtOnce: number = null;
+    }
+    
+    export class Settings {
+        Buttons: GlobalInterface.IButton[]                                           = [];
+        ToastCoreConfig: ToastNotificationInterface.IToastCoreConfig = new ToastCoreConfig();
+        Message: GlobalInterface.IMessage                                            = new GlobalClass.Message();
+        GlobalSettings: GlobalToastSettings                                          = new GlobalToastSettings();
+        
+    }
+    
+    export class ToastCoreConfig implements ToastNotificationInterface.IToastCoreConfig {
+        Width: string                     = null;
+        Height: string                    = null;
+        ButtonPosition: VerticalPosition  = null;
+        LayoutType: DialogLayoutDisplay   = null;
+        Message: GlobalInterface.IMessage = null;
+        ConfirmLabel: string              = null;
+        DeclineLabel: string              = null;
+        AutoCloseDelay?: number           = null;
+    }
+    
+    export class ToastNotificationBelonging extends ToastNotificationClass.Settings implements ToastNotificationInterface.IToastNotificationBelonging {
+        
+        EntityUniqueID: string = 'T' + Math.random().toString(36).substr(2, 9);
+        EventsController: ToastNotificationEventsController;
+        
+        constructor() {
+            super();
+            this.EventsController                                               = new ToastNotificationEventsController(this.EntityUniqueID);
+            const toastNotificationConfigurator: ToastNotificationConfigService = ServiceLocator.injector.get(ToastNotificationConfigService);
+            const baseSettings                                                  = new ToastNotificationClass.Settings();
+            const dataControl                                                   = new GlobalClass.DataControl();
+            dataControl.copyValuesFrom(toastNotificationConfigurator.productionConfig.ToastCoreConfig, baseSettings.ToastCoreConfig);
+            this.ToastCoreConfig = baseSettings.ToastCoreConfig;
+            this.Buttons                 = toastNotificationConfigurator.productionConfig.Buttons.slice();
+        }
+        
+    }
+    
+    
+}

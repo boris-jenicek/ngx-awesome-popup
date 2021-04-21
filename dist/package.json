@@ -1,0 +1,40 @@
+{
+  "name": "@costlydeveloper/ngx-awesome-popup",
+  "version": "0.0.1-alpha01",
+  "description": "Gives new functionality to Angular 9+, generates beautiful popups, dialogs, ConfirmBoxes, AlertBoxes, ToastNotifications. Also gives the ability of opening dynamic components directly from typescript!",
+  "keywords": [
+    "toast notification",
+    "dynamic angular component",
+    "confirm box",
+    "alert box",
+    "dialog angular",
+    "modal angular",
+    "toast",
+    "popup",
+    "dynamic"
+  ],
+  "author": "Boris Jenicek <costlydeveloper@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/costlydeveloper/friendly-spork.git",
+    "directory": "dist"
+  },
+  "allowedNonPeerDependencies": {},
+  "peerDependencies": {
+    "@angular/common": ">8.0.0",
+    "@angular/core": ">8.0.0",
+    "rxjs": "6.*.*"
+  },
+  "main": "bundles/costlydeveloper-ngx-awesome-popup.umd.js",
+  "module": "fesm2015/costlydeveloper-ngx-awesome-popup.js",
+  "es2015": "fesm2015/costlydeveloper-ngx-awesome-popup.js",
+  "esm2015": "esm2015/costlydeveloper-ngx-awesome-popup.js",
+  "fesm2015": "fesm2015/costlydeveloper-ngx-awesome-popup.js",
+  "typings": "costlydeveloper-ngx-awesome-popup.d.ts",
+  "metadata": "costlydeveloper-ngx-awesome-popup.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

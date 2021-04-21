@@ -1,0 +1,76 @@
+name: npm-publish
+on:
+  push:
+    branches:
+      - master # Change this to your default branch
+    paths:
+      - 'dist/**'
+
+jobs:
+
+  #  npm-publish:
+  #    name: npm-publish
+  #    runs-on: ubuntu-latest
+  #
+  #    steps:
+  #      # Publish to Node Package Manager
+  #      - name: Checkout Repo
+  #        uses: actions/checkout@v2
+  #
+  #      - name: Setup Node.js (NPM)
+  #        uses: actions/setup-node@v1
+  #        with:
+  #          node-version: 12
+  #          registry-url: 'https://registry.npmjs.org'
+  #
+  #      - name: Use cached node_modules
+  #        uses: actions/cache@v2
+  #        with:
+  #          path: node_modules
+  #          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+  #          restore-keys: |
+  #            nodeModules-
+  #
+  #      - name: Install dependencies
+  #        run: yarn install --frozen-lockfile
+  #        env:
+  #          CI: true
+  #
+  #      - name: Update Publish Config
+  #        run: sed -i 's^registry-url^registry.npmjs.org^' package.json
+  #
+  #      - name: Publish to NPM
+  #        run: npm publish --access public --@costlydeveloper:registry=https://registry.npmjs.org/
+  #        env:
+  #          CI: true
+  #          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+gpr-publish:
+  name: gpr-publish
+  runs-on: ubuntu-latest
+
+  steps:
+    # Publish to GitHub Package Registry
+    - name: Checkout Repo
+      uses: actions/checkout@main
+
+    - name: Setup Node.js (GPR)
+      uses: actions/setup-node@master
+      with:
+        node-version: '12.x'
+        registry-url: https://npm.pkg.github.com/
+        scope: '${{ github.actor }}'
+    - name: Check if scroll-to-top version has been updated
+      id: awp
+      uses: EndBug/version-check@v1
+      with:
+        diff-search: true
+        file-name: dist/package.json
+        token: ${{ secrets.GT_TOKEN }}
+
+    - name: Publish AWP to GitHub Package Registry
+      if: steps.awp.outputs.changed == 'true'
+      run: npm publish dist
+      env:
+        CI: true
+        NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
