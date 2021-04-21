@@ -1,5 +1,5 @@
 import {ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector, Type} from '@angular/core';
-import {DialogClass} from './model';
+import {DialogClass, DialogInterface} from './model';
 import {DialogInjector} from '../../../core/dialog-injector';
 import {map} from 'rxjs/operators';
 import {DialogWrapperComponent} from '../dialog-wrapper/dialog-wrapper.component';
@@ -14,7 +14,7 @@ export class DialogService {
     constructor(private componentFactoryResolver: ComponentFactoryResolver, private injector: Injector, private appRef: ApplicationRef) {
     }
     
-    open(_ComponentType: Type<any>, _DialogBelonging: DialogClass.DialogBelonging): DialogClass.DialogEventsController {
+    open(_ComponentType: Type<any>, _DialogBelonging: DialogClass.DialogBelonging): DialogInterface.IDialogEventsController {
         const dialogController = _DialogBelonging.EventsController;
         const componentRef = this.getComponentRef(dialogController, _DialogBelonging);
         
@@ -30,7 +30,7 @@ export class DialogService {
         
     }
     
-    getComponentRef(_EventsController: DialogClass.DialogEventsController, _DialogBelonging: DialogClass.DialogBelonging): ComponentRef<any> | null {
+    getComponentRef(_EventsController: DialogInterface.IDialogEventsController, _DialogBelonging: DialogClass.DialogBelonging): ComponentRef<any> | null {
         let componentFactory;
         
         const dialogIndex = this.findDialogIndex(_DialogBelonging.EntityUniqueID);
@@ -47,7 +47,7 @@ export class DialogService {
         return null;
     }
     
-    listeners(_EventsController: DialogClass.DialogEventsController) {
+    listeners(_EventsController: DialogInterface.IDialogEventsController) {
         
         // Listener for closing dialog
         const closeDialogSubscription = _EventsController.afterClosed$.subscribe((response) => {

@@ -16,6 +16,7 @@ import ToastNotificationInitializer = ToastNotificationClass.ToastNotificationIn
 import IToastCoreConfig = ToastNotificationInterface.IToastCoreConfig;
 import IGlobalToastSettings = ToastNotificationInterface.IGlobalToastSettings;
 import IToastNotificationUserConfig = ToastNotificationInterface.IToastNotificationUserConfig;
+import IDialogEventsController = DialogInterface.IDialogEventsController;
 import IDialogPublicResponse = DialogInterface.IDialogPublicResponse;
 import IDialogUserConfig = DialogInterface.IDialogUserConfig;
 import IDialogCoreConfig = DialogInterface.IDialogCoreConfig;
@@ -35,6 +36,7 @@ export { IToastNotificationPublicResponse };
 export { IDialogUserConfig };
 export { IDialogCoreConfig };
 export { IDialogPublicResponse };
+export { IDialogEventsController };
 export { ButtonLayoutDisplay } from './ngx-awesome-popup/core/enums';
 export { DialogLayoutDisplay } from './ngx-awesome-popup/core/enums';
 export { VerticalPosition } from './ngx-awesome-popup/core/enums';

@@ -43,7 +43,24 @@ export declare namespace DialogInterface {
         DialogCoreConfig: DialogInterface.IDialogCoreConfig;
         EntityUniqueID: string;
         CustomData: any;
-        EventsController: DialogClass.DialogEventsController;
+        EventsController: DialogInterface.IDialogEventsController;
+    }
+    interface IDialogEventsController {
+        /** @internal */
+        defaultResponse: DialogInterface.IPrivateResponseMerged;
+        /** @internal */
+        afterClosed$: Observable<DialogInterface.IPrivateResponseMerged>;
+        /** @internal */
+        afterLoader$: Observable<string>;
+        /** @internal */
+        onButtonClick$: Observable<GlobalInterface.IButton>;
+        /** @internal */
+        buttonList$: Observable<GlobalInterface.IButton[]>;
+        close(_Response?: DialogInterface.IPrivateResponseMerged): void;
+        onButtonClick(_Button: GlobalInterface.IButton): void;
+        setButtonList(_ButtonList: GlobalInterface.IButton[]): void;
+        closeLoader(): void;
+        setDefaultResponse(_Response: DialogInterface.IPrivateResponseMerged): void;
     }
     interface IDialogResponse {
         setPayload(_Payload: any): void;
@@ -90,7 +107,7 @@ export declare namespace DialogClass {
          */
         setClickedButtonID(_ClickedButtonID: any): void;
     }
-    class DialogEventsController {
+    class DialogEventsController implements DialogInterface.IDialogEventsController {
         private EntityUniqueID;
         defaultResponse: DialogInterface.IPrivateResponseMerged;
         private readonly _afterClosed;
@@ -109,7 +126,7 @@ export declare namespace DialogClass {
         setDefaultResponse(_Response: DialogInterface.IPrivateResponseMerged): void;
     }
     class DialogDefaultResponse extends DialogResponse implements DialogInterface.IPrivateResponseMerged {
-        DialogBelonging: DialogBelonging;
+        DialogBelonging: DialogInterface.IDialogBelonging;
         constructor();
         setBelonging(_DialogBelonging: any): void;
     }
@@ -139,7 +156,7 @@ export declare namespace DialogClass {
         /** @internal */
         EntityUniqueID: string;
         CustomData: CustomData;
-        EventsController: DialogEventsController;
+        EventsController: DialogInterface.IDialogEventsController;
         constructor();
     }
 }

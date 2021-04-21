@@ -51,7 +51,30 @@ export namespace DialogInterface {
         DialogCoreConfig: DialogInterface.IDialogCoreConfig;
         EntityUniqueID: string;
         CustomData: any;
-        EventsController: DialogClass.DialogEventsController;
+        EventsController: DialogInterface.IDialogEventsController;
+    }
+    
+    export interface IDialogEventsController {
+        /** @internal */
+        defaultResponse: DialogInterface.IPrivateResponseMerged;
+        /** @internal */
+        afterClosed$: Observable<DialogInterface.IPrivateResponseMerged>;
+        /** @internal */
+        afterLoader$: Observable<string>;
+        /** @internal */
+        onButtonClick$: Observable<GlobalInterface.IButton>;
+        /** @internal */
+        buttonList$: Observable<GlobalInterface.IButton[]>;
+        
+        close(_Response?: DialogInterface.IPrivateResponseMerged): void;
+        
+        onButtonClick(_Button: GlobalInterface.IButton): void;
+        
+        setButtonList(_ButtonList: GlobalInterface.IButton[]): void;
+        
+        closeLoader(): void;
+        
+        setDefaultResponse(_Response: DialogInterface.IPrivateResponseMerged): void;
     }
     
     export interface IDialogResponse {
@@ -90,6 +113,7 @@ export namespace DialogClass {
         constructor(private component: Type<any>) {
             this.dialogCarrier.setComponent(this.component);
         }
+        
         /** Generic method accept expected payload from dynamic child component.*/
         openDialog$<ResponsePayload = any>(): Observable<DialogInterface.IDialogPublicResponse<ResponsePayload>> {
             return this.dialogCarrier.openDialog$().pipe(map(resp => {
@@ -118,9 +142,9 @@ export namespace DialogClass {
     export class DialogResponse extends GlobalClass.DataControl implements DialogInterface.IDialogResponse, DialogInterface.IDialogPublicResponse<any> {
         // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
         
-        Payload: any = null;
-        Success: boolean         = null;
-        ClickedButtonID: string  = null;
+        Payload: any            = null;
+        Success: boolean        = null;
+        ClickedButtonID: string = null;
         
         constructor() {
             super();
@@ -149,7 +173,7 @@ export namespace DialogClass {
         
     }
     
-    export class DialogEventsController {
+    export class DialogEventsController implements DialogInterface.IDialogEventsController {
         
         defaultResponse: DialogInterface.IPrivateResponseMerged;
         
@@ -195,7 +219,7 @@ export namespace DialogClass {
     // endregion
     
     export class DialogDefaultResponse extends DialogResponse implements DialogInterface.IPrivateResponseMerged {
-        DialogBelonging: DialogBelonging = null;
+        DialogBelonging: DialogInterface.IDialogBelonging = null;
         
         constructor() {
             super();
@@ -264,7 +288,7 @@ export namespace DialogClass {
         EntityUniqueID: string = 'D' + Math.random().toString(36).substr(2, 9);
         
         CustomData: CustomData = null;
-        EventsController: DialogEventsController;
+        EventsController: DialogInterface.IDialogEventsController;
         
         constructor() {
             super();

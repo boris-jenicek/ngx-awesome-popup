@@ -20,6 +20,7 @@ import IToastCoreConfig = ToastNotificationInterface.IToastCoreConfig;
 import IGlobalToastSettings = ToastNotificationInterface.IGlobalToastSettings;
 import IToastNotificationUserConfig = ToastNotificationInterface.IToastNotificationUserConfig;
 
+import IDialogEventsController = DialogInterface.IDialogEventsController;
 import IDialogPublicResponse = DialogInterface.IDialogPublicResponse;
 import IDialogUserConfig = DialogInterface.IDialogUserConfig;
 import IDialogCoreConfig = DialogInterface.IDialogCoreConfig;
@@ -44,6 +45,7 @@ export {IToastNotificationPublicResponse};
 export {IDialogUserConfig};
 export {IDialogCoreConfig};
 export {IDialogPublicResponse};
+export {IDialogEventsController};
 // endregion
 
 export {ButtonLayoutDisplay} from './ngx-awesome-popup/core/enums';
