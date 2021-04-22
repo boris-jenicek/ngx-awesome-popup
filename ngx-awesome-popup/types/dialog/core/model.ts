@@ -65,23 +65,23 @@ export namespace DialogInterface {
         onButtonClick$: Observable<GlobalInterface.IButton>;
         /** @internal */
         buttonList$: Observable<GlobalInterface.IButton[]>;
-        
-        close(_Response?: DialogInterface.IPrivateResponseMerged): void;
-        
+    
+        close(_Payload?: any): void;
+    
         onButtonClick(_Button: GlobalInterface.IButton): void;
-        
+    
         setButtonList(_ButtonList: GlobalInterface.IButton[]): void;
-        
+    
         closeLoader(): void;
-        
+    
+        setDefaultResponse(_Response: DialogInterface.IPrivateResponseMerged): void;
+    
         setDefaultResponse(_Response: DialogInterface.IPrivateResponseMerged): void;
     }
     
     export interface IDialogResponse {
         
         setPayload(_Payload: any): void;
-        
-        setSuccess(_IsSuccess: boolean): void;
         
         setClickedButtonID(_ClickedButtonID): void;
         
@@ -160,13 +160,6 @@ export namespace DialogClass {
         /**
          * @ignore
          */
-        setSuccess(_IsSuccess: boolean): void {
-            this.Success = _IsSuccess;
-        }
-        
-        /**
-         * @ignore
-         */
         setClickedButtonID(_ClickedButtonID): void {
             this.ClickedButtonID = _ClickedButtonID;
         }
@@ -179,27 +172,27 @@ export namespace DialogClass {
         
         private readonly _afterClosed: Subject<DialogInterface.IPrivateResponseMerged> = new Subject<DialogInterface.IPrivateResponseMerged>();
         afterClosed$: Observable<DialogInterface.IPrivateResponseMerged>               = this._afterClosed.asObservable();
-        
+    
         private readonly _afterLoader: any                                = new Subject<string>();
         afterLoader$: Observable<string>                                  = this._afterLoader.asObservable();
         private readonly _onButtonClick: Subject<GlobalInterface.IButton> = new Subject<GlobalInterface.IButton>();
         onButtonClick$: Observable<GlobalInterface.IButton>               = this._onButtonClick.asObservable();
         private readonly _buttonList: Subject<GlobalInterface.IButton[]>  = new Subject<GlobalInterface.IButton[]>();
         buttonList$: Observable<GlobalInterface.IButton[]>                = this._buttonList.asObservable();
-        
+    
         constructor(private EntityUniqueID: string) {
         }
-        
-        close(_Response?: DialogInterface.IPrivateResponseMerged): void {
-            const response = _Response ? _Response : this.defaultResponse;
-            this._afterClosed.next(response);
+    
+        close(_Payload: any = null): void {
+            this.defaultResponse.setPayload(_Payload);
+            this._afterClosed.next(this.defaultResponse);
         }
-        
+    
         onButtonClick(_Button: GlobalInterface.IButton): void {
             this.defaultResponse.setClickedButtonID(_Button.ID);
             this._onButtonClick.next(_Button);
         }
-        
+    
         setButtonList(_ButtonList: GlobalInterface.IButton[]): void {
             this._buttonList.next(_ButtonList);
         }
@@ -257,6 +250,9 @@ export namespace DialogClass {
             // region *** local UserConfig (defined on place where dialog is called) ***
             const dataControl = new GlobalClass.DataControl();
             dataControl.copyValuesFrom(_DialogConfig, this.dialogBelonging.DialogCoreConfig);
+            if (_DialogConfig?.LoaderComponent) {
+                this.dialogBelonging.DialogCoreConfig.DisplayLoader = true;
+            }
             // endregion
         }
         

@@ -120,8 +120,6 @@ export namespace GlobalClass {
                 const colorList = new GlobalClass.ColorTypes();
                 this.ColorList  = dataControl.copyValuesFrom(this.ColorList, colorList);
             }
-           
-            console.log(this);
         }
     }
     

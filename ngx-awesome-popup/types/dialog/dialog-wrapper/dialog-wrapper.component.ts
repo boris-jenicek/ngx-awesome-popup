@@ -41,7 +41,6 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     
     setDefaultResponse(): void {
         const dialogResponse = new DialogClass.DialogDefaultResponse();
-        dialogResponse.setSuccess(false);
         dialogResponse.setBelonging(this.dialogBelonging);
         this.dialogBelonging.EventsController.setDefaultResponse(dialogResponse);
     }
