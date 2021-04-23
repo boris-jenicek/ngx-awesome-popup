@@ -22,10 +22,19 @@
 * **Powerful**: It uses Angular factory features - generates any component anywhere in popup without HTML selector!
 * **Awesome**: The tool you don't know you needed before!
 
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#external-links)
+
+## ➤ External links
+
+* [➤ **DEMO** showcase](https://costlydeveloper.github.io/demo-ngx-awesome-popup/)
+* [➤ GitHub repository of the DEMO](https://github.com/costlydeveloper/demo-ngx-awesome-popup)
+* [➤ API documentation](https://github.com/costlydeveloper/ngx-awesome-popup/wiki)
+
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
 ## ➤ Table of Contents
 
+* [➤ External links](#-external-links)
 * [➤ Installation](#-installation)
 * [➤ Usage](#-usage)
 	* [Toast Notification](#toast-notification)
@@ -168,12 +177,13 @@ export class AppComponent implements OnInit {
         confirmBox.setConfig({
             LayoutType: DialogLayoutDisplay.DANGER // SUCCESS | INFO | NONE | DANGER | WARNING
         });
-        
-        // Simply open the popup and listen which button is clicked
-        confirmBox.openConfirmBox$().subscribe(resp => {
-            // IConfirmBoxPublicResponse
-            console.log('Clicked button response: ', resp);
-        });
+
+		// Simply open the popup and listen which button is clicked
+		const subscription = confirmBox.openConfirmBox$().subscribe(resp => {
+			// IConfirmBoxPublicResponse
+			console.log('Clicked button response: ', resp);
+			subscription.unsubscribe();
+		});
     }
 
 }
@@ -237,11 +247,12 @@ export class AppComponent implements OnInit {
         ]);
     
         // Simply open the popup and listen which button is clicked and, 
-        // receive optional payload from AnyAngularComponent.
-        dialogPopup.openDialog$().subscribe(resp => {
-            // IDialogPublicResponse
-            console.log('dialog response: ', resp);
-        });
+		// receive optional payload from AnyAngularComponent.
+		const subscription = dialogPopup.openDialog$().subscribe(resp => {
+			// IDialogPublicResponse
+			console.log('dialog response: ', resp);
+			subscription.unsubscribe();
+		});
     }
 
 }
@@ -256,29 +267,31 @@ API documentation:
 
 #### Setup of child-dynamic component that is rendered in dialog:
 The child dynamic component represents AnyAngularComponent from example above.
+
 ```typescript
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {DialogBelonging} from '@costlydeveloper/ngx-awesome-popup';
 
 @Component({
-    selector: 'app-any-angular-component',
-    templateUrl: './any-angular.component.html',
-    styleUrls: ['./any-angular.component.scss']
+	selector   : 'app-any-angular-component',
+	templateUrl: './any-angular.component.html',
+	styleUrls  : ['./any-angular.component.scss']
 })
 export class AnyAngularComponent implements OnInit, OnDestroy {
 
 	subscriptions: Subscription[] = [];
-    
-    // Dependency Injection of the dialogBelonging in constructor is crucial.
-    constructor(private dialogBelonging: DialogBelonging) {}
-    
-    ngOnInit(): void {
-        // Check recived data and other available features.
-        console.log(this.dialogBelonging);
-        
-        // Subscribe to button listeners.
-        this.subscriptions.push(
+
+	// Dependency Injection of the dialogBelonging in constructor is crucial.
+	constructor(private dialogBelonging: DialogBelonging) {
+	}
+
+	ngOnInit(): void {
+		// Check recived data and other available features.
+		console.log(this.dialogBelonging);
+
+		// Subscribe to button listeners.
+		this.subscriptions.push(
             // IDialogEventsController
             this.dialogBelonging.EventsController.onButtonClick$.subscribe((_Button) => {
                 if (_Button.ID === 'edit') {

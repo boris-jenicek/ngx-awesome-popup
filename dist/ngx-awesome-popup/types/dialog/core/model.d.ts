@@ -11,7 +11,6 @@ export declare namespace DialogInterface {
         Buttons?: GlobalInterface.IButton[];
         DialogCoreConfig?: DialogInterface.IDialogCoreConfig;
     }
-    
     /**
      * Optional user configuration.
      *
@@ -58,17 +57,11 @@ export declare namespace DialogInterface {
         onButtonClick$: Observable<GlobalInterface.IButton>;
         /** @internal */
         buttonList$: Observable<GlobalInterface.IButton[]>;
-    
         close(_Payload?: any): void;
-    
         onButtonClick(_Button: GlobalInterface.IButton): void;
-    
         setButtonList(_ButtonList: GlobalInterface.IButton[]): void;
-    
         closeLoader(): void;
-    
         setDefaultResponse(_Response: DialogInterface.IPrivateResponseMerged): void;
-    
         setDefaultResponse(_Response: DialogInterface.IPrivateResponseMerged): void;
     }
     interface IDialogResponse {
@@ -122,11 +115,8 @@ export declare namespace DialogClass {
         onButtonClick$: Observable<GlobalInterface.IButton>;
         private readonly _buttonList;
         buttonList$: Observable<GlobalInterface.IButton[]>;
-    
         constructor(EntityUniqueID: string);
-    
         close(_Payload?: any): void;
-    
         onButtonClick(_Button: GlobalInterface.IButton): void;
         setButtonList(_ButtonList: GlobalInterface.IButton[]): void;
         closeLoader(): void;

@@ -10,7 +10,6 @@ export class ToastNotificationWrapperComponent {
         this.cd                         = cd;
         this.fadeInOutAnimation         = 'open';
     }
-
     ngAfterViewInit() {
         this.setResponse(false);
         this.cd.detectChanges();

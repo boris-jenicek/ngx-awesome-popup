@@ -14,7 +14,6 @@ export class DialogWrapperComponent {
         this.fadeInOutAnimation       = 'open';
         this.showLoader               = true;
     }
-
     ngAfterViewInit() {
         this.loadChildComponent(this.childComponentType);
         this.loadLoaderComponent(this.dialogBelonging.DialogCoreConfig.LoaderComponent);

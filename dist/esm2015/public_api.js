@@ -14,7 +14,7 @@ export {DialogLayoutDisplay} from './ngx-awesome-popup/core/enums';
 /**
  * @returns It will return custom button object ready to be used in child component layout.
  */
-export { ButtonMaker };
+export {ButtonMaker};
 /**
  * This is the class that needs to be added as DI in the constructor of a child component that will be
  * opened dynamically with {@link DialogInitializer}. It contains various information or

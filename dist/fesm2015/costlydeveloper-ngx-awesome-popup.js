@@ -1342,21 +1342,17 @@ var DialogClass;
             this._buttonList    = new Subject();
             this.buttonList$    = this._buttonList.asObservable();
         }
-
         close(_Payload = null) {
             this.defaultResponse.setPayload(_Payload);
             this._afterClosed.next(this.defaultResponse);
         }
-
         onButtonClick(_Button) {
             this.defaultResponse.setClickedButtonID(_Button.ID);
             this._onButtonClick.next(_Button);
         }
-
         setButtonList(_ButtonList) {
             this._buttonList.next(_ButtonList);
         }
-
         closeLoader() {
             setTimeout(() => {
                 this._afterLoader.next(this.EntityUniqueID);

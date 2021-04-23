@@ -1738,19 +1738,19 @@
                 this.buttonList$    = this._buttonList.asObservable();
             }
 
-            DialogEventsController.prototype.close              = function (_Payload) {
+            DialogEventsController.prototype.close         = function (_Payload) {
                 if (_Payload === void 0) { _Payload = null; }
                 this.defaultResponse.setPayload(_Payload);
                 this._afterClosed.next(this.defaultResponse);
             };
-            DialogEventsController.prototype.onButtonClick      = function (_Button) {
+            DialogEventsController.prototype.onButtonClick = function (_Button) {
                 this.defaultResponse.setClickedButtonID(_Button.ID);
                 this._onButtonClick.next(_Button);
             };
-            DialogEventsController.prototype.setButtonList      = function (_ButtonList) {
+            DialogEventsController.prototype.setButtonList = function (_ButtonList) {
                 this._buttonList.next(_ButtonList);
             };
-            DialogEventsController.prototype.closeLoader        = function () {
+            DialogEventsController.prototype.closeLoader   = function () {
                 var _this = this;
                 setTimeout(function () {
                     _this._afterLoader.next(_this.EntityUniqueID);
