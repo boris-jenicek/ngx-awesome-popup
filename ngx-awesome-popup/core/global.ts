@@ -174,10 +174,10 @@ export namespace GlobalClass {
                 this.BrightShade               = this.brightness(this.brightness(this.Base, 'darken', darken), 'brighten', brighten);
                 this.TransparentDarkenVariance = this.brightness(this.transparentize(this.Base, 80), 'darken', 40);
                 if (this.isBright(this.Base)) {
-                    this.ContrastColor = 'rgb(52, 58, 64)';
+                    this.ContrastColor = 'rgb(52, 58, 64, 0.2)';
                     this.IsBaseBright  = true;
                 } else {
-                    this.ContrastColor = 'rgb(255,255,255)';
+                    this.ContrastColor = 'rgb(255,255,255, 0.2)';
                     this.IsBaseBright  = false;
                 }
                 

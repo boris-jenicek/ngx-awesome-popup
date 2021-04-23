@@ -21,8 +21,8 @@
     margin-left:    auto;
     margin-top:     10px;
     max-height:     350px;
-    max-width:      350px;
-    min-width:      200px;
+    max-width:      300px;
+    min-width:      300px;
     position:       relative;
     vertical-align: bottom;
 
@@ -86,24 +86,25 @@
       width:            auto;
 
       .toast-title-text {
-        font-weight: bold;
+        font-size: 15px;
         }
       }
 
     .content-holder {
+      color:          $gr-600;
       display:        flex;
       flex-direction: row-reverse;
       height:         100%;
       overflow:       auto;
       width:          100%;
-      color:          $gr-700;
 
       .toast-inner-content {
-        padding: 5px 10px;
+        padding: 10px;
         }
 
       .text-wrapper p {
-        margin: 0;
+        font-size: 14px;
+        margin:    0;
         }
       }
 
