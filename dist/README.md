@@ -257,7 +257,7 @@ API documentation:
 #### Setup of child-dynamic component that is rendered in dialog:
 The child dynamic component represents AnyAngularComponent from example above.
 ```typescript
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {DialogBelonging} from '@costlydeveloper/ngx-awesome-popup';
 
@@ -266,9 +266,9 @@ import {DialogBelonging} from '@costlydeveloper/ngx-awesome-popup';
     templateUrl: './any-angular.component.html',
     styleUrls: ['./any-angular.component.scss']
 })
-export class AnyAngularComponent implements OnInit {
-    
-    subscriptions: Subscription[] = [];
+export class AnyAngularComponent implements OnInit, OnDestroy {
+
+	subscriptions: Subscription[] = [];
     
     // Dependency Injection of the dialogBelonging in constructor is crucial.
     constructor(private dialogBelonging: DialogBelonging) {}

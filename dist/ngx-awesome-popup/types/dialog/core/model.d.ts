@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs';
-import { Type } from '@angular/core';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
-import { GlobalClass, GlobalInterface } from '../../../core/global';
+import {Observable} from 'rxjs';
+import {Type} from '@angular/core';
+import {DialogLayoutDisplay, VerticalPosition} from '../../../core/enums';
+import {GlobalClass, GlobalInterface} from '../../../core/global';
+
 export declare namespace DialogInterface {
     /**
      * Check interface of properties.
@@ -10,6 +11,7 @@ export declare namespace DialogInterface {
         Buttons?: GlobalInterface.IButton[];
         DialogCoreConfig?: DialogInterface.IDialogCoreConfig;
     }
+    
     /**
      * Optional user configuration.
      *
@@ -56,15 +58,21 @@ export declare namespace DialogInterface {
         onButtonClick$: Observable<GlobalInterface.IButton>;
         /** @internal */
         buttonList$: Observable<GlobalInterface.IButton[]>;
-        close(_Response?: DialogInterface.IPrivateResponseMerged): void;
+    
+        close(_Payload?: any): void;
+    
         onButtonClick(_Button: GlobalInterface.IButton): void;
+    
         setButtonList(_ButtonList: GlobalInterface.IButton[]): void;
+    
         closeLoader(): void;
+    
+        setDefaultResponse(_Response: DialogInterface.IPrivateResponseMerged): void;
+    
         setDefaultResponse(_Response: DialogInterface.IPrivateResponseMerged): void;
     }
     interface IDialogResponse {
         setPayload(_Payload: any): void;
-        setSuccess(_IsSuccess: boolean): void;
         setClickedButtonID(_ClickedButtonID: any): void;
     }
     interface IDialogPublicResponse<ResponsePayload> {
@@ -101,10 +109,6 @@ export declare namespace DialogClass {
         /**
          * @ignore
          */
-        setSuccess(_IsSuccess: boolean): void;
-        /**
-         * @ignore
-         */
         setClickedButtonID(_ClickedButtonID: any): void;
     }
     class DialogEventsController implements DialogInterface.IDialogEventsController {
@@ -118,8 +122,11 @@ export declare namespace DialogClass {
         onButtonClick$: Observable<GlobalInterface.IButton>;
         private readonly _buttonList;
         buttonList$: Observable<GlobalInterface.IButton[]>;
+    
         constructor(EntityUniqueID: string);
-        close(_Response?: DialogInterface.IPrivateResponseMerged): void;
+    
+        close(_Payload?: any): void;
+    
         onButtonClick(_Button: GlobalInterface.IButton): void;
         setButtonList(_ButtonList: GlobalInterface.IButton[]): void;
         closeLoader(): void;
