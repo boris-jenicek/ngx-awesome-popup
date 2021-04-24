@@ -4,7 +4,7 @@ import {ToastNotificationClass, ToastNotificationInterface} from './ngx-awesome-
 import {DialogClass, DialogInterface} from './ngx-awesome-popup/types/dialog/core/model';
 
 import IButton = GlobalInterface.IButton;
-import IMessage = GlobalInterface.IMessage;
+import IDispatch = GlobalInterface.IDispatch;
 import IGlobalUserConfig = GlobalInterface.IGlobalUserConfig;
 import IColorTypes = GlobalInterface.IColorTypes;
 import ButtonMaker = GlobalClass.ButtonMaker;
@@ -30,7 +30,7 @@ import DialogBelonging = DialogClass.DialogBelonging;
 // region *** Interface ***
 export {IGlobalUserConfig};
 export {IButton};
-export {IMessage};
+export {IDispatch};
 export {IColorTypes};
 
 export {IConfirmBoxUserConfig};
@@ -153,8 +153,8 @@ export {IDialogPublicResponse as IDialogResponse};
  * // Set desired Title.
  *newToastNotification.setTitle('Warning!');
  *
- * // Set desired Description.
- *newToastNotification.setDescription('Form is not valid!');
+ * // Set desired Message.
+ *newToastNotification.setMessage('Form is not valid!');
  *
  * // Set desired configuration.
  *newToastNotification.setConfig({
@@ -186,8 +186,8 @@ export {ToastNotificationInitializer};
  * // Create the initializer.
  *const newConfirmBox = new ConfirmBoxInitializer();
  *
- * // Set desired message: _Title: string, _Description: string.
- *newConfirmBox.setMessage('Are you sure?', 'That action will delete user!');
+ * // Set desired dispatch: _Title: string, _Message: string.
+ *newConfirmBox.setDispatch('Are you sure?', 'That action will delete user!');
  *
  * // Set desired configuration.
  *newConfirmBox.setConfig({
@@ -316,7 +316,7 @@ export {NgxAwesomePopupModule} from './ngx-awesome-popup/ngx-awesome-popup.modul
 export {DialogConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.module';
 /**
  * This is the module that ignites Confirm box dialog, its purpose is to show popup in a
- * small dialog window in the middle of the screen. User can provide title, description and include buttons.
+ * small dialog window in the middle of the screen. User can provide title, message and include buttons.
  * Confirm box is available in predefined layout types (enums): {@link DialogLayoutDisplay}.
  *
  * It is crucial for user to add this module in angular.app imports.
@@ -333,9 +333,9 @@ export {DialogConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.module';
  *       LayoutType: DialogLayoutDisplay.DANGER,
  *       ButtonPosition: 'center'
  *    },
- *    Message: {  // Optional default message object.
+ *    Dispatch: {  // Optional default dispatch object.
  *       Title: 'Default title',
- *       Description: 'Default description'
+ *       Message: 'Default message'
  *    },
  *    Buttons     : [
  *       new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY),
@@ -344,7 +344,7 @@ export {DialogConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.module';
  * })
  * ```
  * * ConfirmBoxCoreConfig: {@link IConfirmBoxCoreConfig}
- * * Message: {@link IMessage}
+ * * Dispatch: {@link IDispatch}
  * * Buttons: {@link IButton}
  * * ButtonMaker: {@link ButtonMaker}
  * @category Imports for angular app.module
@@ -353,7 +353,7 @@ export {ConfirmBoxConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.modu
 /**
  * This is the module that ignites Toast notifications dialog, its purpose is to show toast popup in a
  * small dialog window in the corner of the screen. User can provide title and message and include buttons, or setup auto disappearing.
- * Toast messages are available in predefined layout types (enums): {@link DialogLayoutDisplay}.
+ * Toast notifications are available in predefined layout types (enums): {@link DialogLayoutDisplay}.
  *
  * It is crucial for user to add this module in angular.app imports.
  * Below is the example with (optional) default user configuration, that's what will be used if there is no
@@ -368,16 +368,16 @@ export {ConfirmBoxConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.modu
  *       Width: '300px',
  *    },
  *    GlobalSettings: {
- *       // The number of toast messages that can be shown at once.
- *       AllowedMessagesAtOnce: 4,
+ *       // The number of toast notifications that can be shown at once.
+ *       AllowedNotificationsAtOnce: 4,
  *
  *        // Milliseconds it will be ignored if buttons are included.
  *       AutoCloseDelay: 3000
  *    },
- *    // Optional default message object.
- *    Message: {
+ *    // Optional default dispatch object.
+ *    Dispatch: {
  *      Title: 'Default title',
- *      Description: 'Default description'
+ *      Message: 'Default message'
  *   },
  *   Buttons: [
  *      new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY),
@@ -387,7 +387,7 @@ export {ConfirmBoxConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.modu
  * ```
  * * ToastCoreConfig: {@link IToastCoreConfig}
  * * GlobalSettings: {@link IGlobalToastSettings}
- * * Message: {@link IMessage}
+ * * Dispatch: {@link IDispatch}
  * * Buttons: {@link IButton}
  * * ButtonMaker: {@link ButtonMaker}
  * @category Imports for angular app.module

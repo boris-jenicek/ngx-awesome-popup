@@ -1,5 +1,5 @@
-import {Observable, Subject} from 'rxjs';
-import {delay, map} from 'rxjs/operators';
+import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
+import {delay, map, tap} from 'rxjs/operators';
 import * as i0 from '@angular/core';
 import {
     ApplicationRef,
@@ -54,13 +54,14 @@ var ColorVariance;
 
 var GlobalClass;
 (function (GlobalClass) {
-    class Message {
+    class Dispatch {
         constructor() {
-            this.Title = null;
-            this.Description = null;
+            this.Title   = null;
+            this.Message = null;
         }
     }
-    GlobalClass.Message = Message;
+
+    GlobalClass.Dispatch = Dispatch;
     class ButtonMaker {
         constructor(Label, ID, LayoutType = ButtonLayoutDisplay.PRIMARY) {
             this.Label = Label;
@@ -135,11 +136,11 @@ var GlobalClass;
                 this.BrightShade = this.brightness(this.brightness(this.Base, 'darken', darken), 'brighten', brighten);
                 this.TransparentDarkenVariance = this.brightness(this.transparentize(this.Base, 80), 'darken', 40);
                 if (this.isBright(this.Base)) {
-                    this.ContrastColor = 'rgb(52, 58, 64, 0.2)';
+                    this.ContrastColor = 'rgba(58,65,71,0.5)';
                     this.IsBaseBright  = true;
                 }
                 else {
-                    this.ContrastColor = 'rgb(255,255,255, 0.2)';
+                    this.ContrastColor = 'rgb(255,255,255, 0.7)';
                     this.IsBaseBright  = false;
                 }
                 /*         console.log('%c Color ', `background: ${this.BrightShade}; color: ${this.ContrastColor}`, luminance, darken, brighten);
@@ -206,7 +207,7 @@ var GlobalClass;
             const brightest = Math.max(1.05, _Luminance + 0.05);
             const darkest = Math.min(1.05, _Luminance + 0.05);
             const contrast = (brightest) / (darkest);
-            return contrast < 3;
+            return contrast < 2.7;
         }
         isColor(_StrColor) {
             const CSSDeclaration = new Option().style;
@@ -279,22 +280,24 @@ class ServiceLocator {
 
 class ConfirmBoxConfigService {
     constructor(userConfig = {}) {
-        this.userConfig = userConfig;
-        this.authorConfig = new ConfirmBoxClass.Settings();
+        this.userConfig       = userConfig;
+        this.authorConfig     = new ConfirmBoxClass.Settings();
         this.productionConfig = new ConfirmBoxClass.Settings();
         // region *** confirmBox userConfig (user input app-module) ***
-        const userConfigBase = new ConfirmBoxClass.Settings();
-        const dataControl = new GlobalClass.DataControl();
+        const userConfigBase  = new ConfirmBoxClass.Settings();
+        const dataControl     = new GlobalClass.DataControl();
         dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, userConfigBase.ConfirmBoxCoreConfig); // this will make sure that object has right properties
         userConfig.ConfirmBoxCoreConfig = userConfigBase.ConfirmBoxCoreConfig;
         // endregion
         // region *** author default config values (if there is no user input) ***
-        this.authorConfig.ConfirmBoxCoreConfig.Width = 'auto';
-        this.authorConfig.ConfirmBoxCoreConfig.Height = 'auto';
-        this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition = 'center';
-        this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel = 'Confirm';
-        this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel = 'Decline';
-        this.authorConfig.ConfirmBoxCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
+        this.authorConfig.ConfirmBoxCoreConfig.Width            = 'auto';
+        this.authorConfig.ConfirmBoxCoreConfig.Height           = 'auto';
+        this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition   = 'center';
+        this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel     = 'Confirm';
+        this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel     = 'Decline';
+        this.authorConfig.ConfirmBoxCoreConfig.DisableIcon      = false;
+        this.authorConfig.ConfirmBoxCoreConfig.AllowHTMLMessage = false;
+        this.authorConfig.ConfirmBoxCoreConfig.LayoutType       = DialogLayoutDisplay.NONE;
         // endregion
         // region *** Production setup ***
         dataControl.copyValuesFrom(this.authorConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
@@ -379,11 +382,11 @@ class ConfirmBoxWrapperComponent {
 }
 ConfirmBoxWrapperComponent.decorators = [
     { type: Component, args: [{
-                selector: 'app-confirm-box-wrapper',
-                template: "<div class=\"ngx-awesome-popup-overlay\" (dblclick)=\"onOverlayClicked($event)\" [@fadeInOut]=\"fadeInOutAnimation\">\n\t\n\t<div class=\"evolve-confirm-box\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t  'standard-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n\t\t\t\t  'success-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n\t\t\t\t  'info-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n\t\t\t\t  'warning-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n\t\t\t\t  'danger-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n\t\t\t\t}\" [ngStyle]=\"{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}\">\n\t\t\n\t\t\t\n\t\t\t<div class=\"confirm-box-title-content\" *ngIf=\"confirmBoxBelonging.Message.Title\">\n\t\t\t\t\n\t\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t\t<div class=\"text-wrapper dont-break-out\">\n\t\t\t\t\t\t<div class=\"confirm-box-title-text\">{{confirmBoxBelonging.Message.Title}}</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</div>\n\t\t\n\t\t<div class=\"content-holder\" *ngIf=\"confirmBoxBelonging.Message.Description\">\n\t\t\t\n\t\t\t<div class=\"text-wrapper-section confirm-box-inner-content\" [ngStyle]=\"{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}\">\n\t\t\t\t\n\t\t\t\t<!--<div class=\"dont-break-out\" [ngClass]=\"{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}\">-->\n\t\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t\t<div class=\"text-wrapper dont-break-out\">{{confirmBoxBelonging.Message.Description}}</div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</div>\n\t\t\t\n\t\t\n\t</div>\n\t\t<div class=\"button-holder\">\n\t\t\t<div class=\"button-section\" *ngIf=\"confirmBoxBelonging.Buttons.length\" [ngStyle]=\"{ 'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-md\" *ngFor=\"let button of confirmBoxBelonging.Buttons\" (click)=\"onCustomButton(button)\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),\n                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),\n                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),\n                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),\n                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),\n                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),\n                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),\n                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),\n                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),\n                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)\n                            }\"\n\t\t\t\t>{{button.Label}}</button>\n\t\t\t\n\t\t\t</div>\n\t\t\t<div class=\"button-section\" *ngIf=\"!confirmBoxBelonging.Buttons.length\" [ngStyle]=\"{ 'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button class=\"ed-btn ed-btn-md\" (click)=\"onButtonClick('confirm')\"\n\t\t\t\t        [ngClass]=\"{\n\t\t\t\t          'ed-btn-primary': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n\t\t\t\t          'ed-btn-success': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n\t\t\t\t          'ed-btn-info': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n\t\t\t\t          'ed-btn-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n\t\t\t\t          'ed-btn-danger': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t>{{confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel}}\n\t\t\t\t</button>\n\t\t\t\t<button (click)=\"onButtonClick('decline')\" *ngIf=\"confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel\" class=\"ed-btn ed-btn-md ed-btn-secondary\">\n\t\t\t\t\t{{confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel}}\n\t\t\t\t</button>\n\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t\n\t</div>\n",
-                animations: [fadeInOut(0, 1)],
-            styles: [".ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:1000}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;text-align:center;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ngx-awesome-popup-overlay .evolve-confirm-box{padding:0 20px}.ngx-awesome-popup-overlay .evolve-confirm-box .confirm-box-title-content{align-items:center;background-clip:padding-box;border-bottom:1px solid rgba(0,0,0,.05);color:#6c757d;display:flex;flex-direction:column;height:auto;justify-content:center;padding:2px 10px 5px;margin:8px 0 10px;width:auto}.ngx-awesome-popup-overlay .evolve-confirm-box .confirm-box-title-content .confirm-box-title-text{font-weight:700;font-size:18px}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder{display:flex;flex-direction:row-reverse;height:100%;overflow:auto;width:100%;color:#495057}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .confirm-box-inner-content{padding:5px 10px}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .text-wrapper p{margin:0}.ngx-awesome-popup-overlay .evolve-confirm-box .button-holder{display:flex;flex-direction:column;justify-content:flex-end;width:100%;margin:10px 0 8px}.ngx-awesome-popup-overlay .evolve-confirm-box .button-holder .button-section{margin:0;padding:4px 10px}"]
-            },] }
+            selector: 'app-confirm-box-wrapper',
+            template: "<div class=\"ngx-awesome-popup-overlay\" (dblclick)=\"onOverlayClicked($event)\" [@fadeInOut]=\"fadeInOutAnimation\">\n\t\n\t<div class=\"evolve-confirm-box\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t  'standard-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n\t\t\t\t  'success-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n\t\t\t\t  'info-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n\t\t\t\t  'warning-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n\t\t\t\t  'danger-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n\t\t\t\t}\" [ngStyle]=\"{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}\">\n\t\t\n\t\t\t\n\t\t\t<div class=\"confirm-box-title-content\" *ngIf=\"confirmBoxBelonging.Dispatch.Title\">\n\t\t\t\t\n\t\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t\t<div class=\"text-wrapper dont-break-out\">\n\t\t\t\t\t\t<div class=\"confirm-box-title-text\">{{confirmBoxBelonging.Dispatch.Title}}</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</div>\n\t\n\t\t\n\t\t<div class=\"content-holder\" *ngIf=\"confirmBoxBelonging.Dispatch.Message\">\n\t\t\t<div class=\"icon-section\" *ngIf=\"!confirmBoxBelonging.ConfirmBoxCoreConfig.DisableIcon\">\n\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"icon-type-confirm-box\" [ngClass]=\"{\n\t\t\t\t          '': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n\t\t\t\t          'ap-icon-success icon-check-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n\t\t\t\t          'ap-icon-info icon-info-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n\t\t\t\t          'ap-icon-warning icon-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n\t\t\t\t          'ap-icon-danger icon-times-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t\t></span>\n\t\t\t</div>\n\t\t\t<div class=\"text-wrapper-section confirm-box-inner-content\" [ngStyle]=\"{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}\">\n\t\t\t\t\n\t\t\t\t<!--<div class=\"dont-break-out\" [ngClass]=\"{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}\">-->\n\t\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t\t<div *ngIf=\"!confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage\" class=\"text-wrapper dont-break-out\">{{confirmBoxBelonging.Dispatch.Message}}</div>\n\t\t\t\t\t<div *ngIf=\"confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage\" class=\"text-wrapper\" [innerHTML]=\"confirmBoxBelonging.Dispatch.Message\"></div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</div>\n\t\t\t\n\t\t\n\t</div>\n\t\t<div class=\"button-holder\">\n\t\t\t<div class=\"button-section\" *ngIf=\"confirmBoxBelonging.Buttons.length\" [ngStyle]=\"{ 'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-md\" *ngFor=\"let button of confirmBoxBelonging.Buttons\" (click)=\"onCustomButton(button)\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),\n                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),\n                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),\n                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),\n                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),\n                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),\n                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),\n                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),\n                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),\n                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)\n                            }\"\n\t\t\t\t>{{button.Label}}</button>\n\t\t\t\n\t\t\t</div>\n\t\t\t<div class=\"button-section\" *ngIf=\"!confirmBoxBelonging.Buttons.length\" [ngStyle]=\"{ 'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button class=\"ed-btn ed-btn-md\" (click)=\"onButtonClick('confirm')\"\n\t\t\t\t        [ngClass]=\"{\n\t\t\t\t          'ed-btn-primary': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n\t\t\t\t          'ed-btn-success': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n\t\t\t\t          'ed-btn-info': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n\t\t\t\t          'ed-btn-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n\t\t\t\t          'ed-btn-danger': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t>{{confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel}}\n\t\t\t\t</button>\n\t\t\t\t<button (click)=\"onButtonClick('decline')\" *ngIf=\"confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel\" class=\"ed-btn ed-btn-md ed-btn-secondary\">\n\t\t\t\t\t{{confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel}}\n\t\t\t\t</button>\n\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t\n\t</div>\n",
+            animations: [fadeInOut(0, 1)],
+            styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(../assets/fonts/icomoon.eot?vap0ng);src:url(../assets/fonts/icomoon.eot?vap0ng#iefix) format(\"embedded-opentype\"),url(../assets/fonts/icomoon.ttf?vap0ng) format(\"truetype\"),url(../assets/fonts/icomoon.woff?vap0ng) format(\"woff\"),url(../assets/fonts/icomoon.svg?vap0ng#icomoon) format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;speak:never;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:1000}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;text-align:center;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.ngx-awesome-popup-overlay .evolve-confirm-box{padding:0 20px}.ngx-awesome-popup-overlay .evolve-confirm-box .confirm-box-title-content{align-items:center;background-clip:padding-box;border-bottom:1px solid rgba(0,0,0,.05);color:#6c757d;display:flex;flex-direction:column;height:auto;justify-content:center;padding:2px 10px 5px;margin:8px 0 10px;width:auto}.ngx-awesome-popup-overlay .evolve-confirm-box .confirm-box-title-content .confirm-box-title-text{font-weight:700;font-size:18px}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder{color:#495057;display:flex;flex-direction:row;height:100%;overflow:auto;width:100%;justify-content:space-between;align-items:center}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .icon-section .icon-type-confirm-box{font-size:34px;margin:4px}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .confirm-box-inner-content{padding:5px 10px}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .text-wrapper p{margin:0}.ngx-awesome-popup-overlay .evolve-confirm-box .button-holder{display:flex;flex-direction:column;justify-content:flex-end;width:100%;margin:10px 0 8px}.ngx-awesome-popup-overlay .evolve-confirm-box .button-holder .button-section{margin:0;padding:4px 10px}"]
+        },] }
 ];
 ConfirmBoxWrapperComponent.ctorParameters = () => [
     { type: ConfirmBoxClass.ConfirmBoxBelonging },
@@ -496,19 +499,24 @@ var ConfirmBoxClass;
         setButtons(_Buttons) {
             this.confirmBoxCarrier.setButtons(_Buttons);
         }
+
         setConfig(_ConfirmBoxCoreConfig) {
             this.confirmBoxCarrier.setConfig(_ConfirmBoxCoreConfig);
         }
-        setMessage(_Title, _Description = null) {
+
+        setDispatch(_Title, _Message = null) {
             this.confirmBoxCarrier.setTitle(_Title);
-            this.confirmBoxCarrier.setDescription(_Description);
+            this.confirmBoxCarrier.setMessage(_Message);
         }
+
         setTitle(_Title) {
             this.confirmBoxCarrier.setTitle(_Title);
         }
-        setDescription(_Description) {
-            this.confirmBoxCarrier.setDescription(_Description);
+
+        setMessage(_Message) {
+            this.confirmBoxCarrier.setMessage(_Message);
         }
+
         setButtonLabels(_Confirm, _Decline) {
             this.confirmBoxCarrier.setButtonLabels(_Confirm, _Decline);
         }
@@ -570,21 +578,26 @@ var ConfirmBoxClass;
         constructor() {
             this.confirmBoxBelonging = new ConfirmBoxClass.ConfirmBoxBelonging();
         }
+
         setButtons(_Buttons) {
             if (_Buttons.length) {
                 this.confirmBoxBelonging.Buttons = _Buttons;
             }
         }
+
         setTitle(_Title) {
-            this.confirmBoxBelonging.Message.Title = _Title;
+            this.confirmBoxBelonging.Dispatch.Title = _Title;
         }
-        setDescription(_Description) {
-            this.confirmBoxBelonging.Message.Description = _Description;
+
+        setMessage(_Message) {
+            this.confirmBoxBelonging.Dispatch.Message = _Message;
         }
+
         setButtonLabels(_Confirm, _Decline) {
             this.confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel = _Confirm;
             this.confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel = _Decline;
         }
+
         setConfig(_ConfirmBoxBelonging) {
             // region *** local UserConfig (defined on place where dialog is called) ***
             const dataControl = new GlobalClass.DataControl();
@@ -600,46 +613,214 @@ var ConfirmBoxClass;
     ConfirmBoxClass.ConfirmBoxCarrier = ConfirmBoxCarrier;
     class Settings {
         constructor() {
-            this.Buttons = [];
+            this.Buttons              = [];
             this.ConfirmBoxCoreConfig = new ConfirmBoxCoreConfig();
-            this.Message = new GlobalClass.Message();
+            this.Dispatch             = new GlobalClass.Dispatch();
         }
     }
     ConfirmBoxClass.Settings = Settings;
     class ConfirmBoxCoreConfig {
         constructor() {
-            this.Width = null;
-            this.Height = null;
-            this.ButtonPosition = null;
-            this.LayoutType = null;
-            this.Message = null;
-            this.ConfirmLabel = null;
-            this.DeclineLabel = null;
+            this.Width            = null;
+            this.Height           = null;
+            this.ButtonPosition   = null;
+            this.LayoutType       = null;
+            this.Dispatch         = null;
+            this.ConfirmLabel     = null;
+            this.DeclineLabel     = null;
+            this.DisableIcon      = null;
+            this.AllowHTMLMessage = null;
         }
     }
     ConfirmBoxClass.ConfirmBoxCoreConfig = ConfirmBoxCoreConfig;
     class ConfirmBoxBelonging extends ConfirmBoxClass.Settings {
         constructor() {
             super();
-            this.EntityUniqueID = 'C' + Math.random().toString(36).substr(2, 9);
-            this.EventsController = new ConfirmBoxEventsController(this.EntityUniqueID);
+            this.EntityUniqueID              = 'C' + Math.random().toString(36).substr(2, 9);
+            this.EventsController            = new ConfirmBoxEventsController(this.EntityUniqueID);
             const ConfirmBoxCoreConfigurator = ServiceLocator.injector.get(ConfirmBoxConfigService);
-            const baseSettings = new ConfirmBoxClass.Settings();
-            const dataControl = new GlobalClass.DataControl();
+            const baseSettings               = new ConfirmBoxClass.Settings();
+            const dataControl                = new GlobalClass.DataControl();
             dataControl.copyValuesFrom(ConfirmBoxCoreConfigurator.productionConfig.ConfirmBoxCoreConfig, baseSettings.ConfirmBoxCoreConfig);
             this.ConfirmBoxCoreConfig = baseSettings.ConfirmBoxCoreConfig;
-            this.Buttons = ConfirmBoxCoreConfigurator.productionConfig.Buttons.slice();
+            this.Buttons              = ConfirmBoxCoreConfigurator.productionConfig.Buttons.slice();
         }
     }
+
     ConfirmBoxClass.ConfirmBoxBelonging = ConfirmBoxBelonging;
 })(ConfirmBoxClass || (ConfirmBoxClass = {}));
 
-class ToastNotificationWrapperComponent {
-    constructor(toastNotificationBelonging, cd) {
-        this.toastNotificationBelonging = toastNotificationBelonging;
-        this.cd = cd;
-        this.fadeInOutAnimation = 'open';
+class GlobalConfigService {
+    constructor(userGlobalConfig) {
+        this.userGlobalConfig                          = userGlobalConfig;
+        this.productionGlobalConfig                    = new GlobalClass.GlobalConfig();
+        this.authorGlobalConfig                        = new GlobalClass.GlobalConfig();
+        userGlobalConfig                               = new GlobalClass.GlobalUserConfig(userGlobalConfig);
+        // region *** author global config values (if there is no user input) ***
+        this.authorGlobalConfig.DisplayColor.Primary   = null; // new GlobalClass.ColorProvider('#ff9e00');
+        this.authorGlobalConfig.DisplayColor.Secondary = null; // new GlobalClass.ColorProvider('#989ea5');
+        this.authorGlobalConfig.DisplayColor.Success   = null; // new GlobalClass.ColorProvider('#3caea3');
+        this.authorGlobalConfig.DisplayColor.Info      = null; // new GlobalClass.ColorProvider('#2f8ee5');
+        this.authorGlobalConfig.DisplayColor.Warning   = null; // new GlobalClass.ColorProvider('#ffc107');
+        this.authorGlobalConfig.DisplayColor.Danger    = null; // new GlobalClass.ColorProvider('#e46464');
+        this.authorGlobalConfig.DisplayColor.Light     = null; // new GlobalClass.ColorProvider('#f8f9fa');
+        this.authorGlobalConfig.DisplayColor.Dark      = null; // new GlobalClass.ColorProvider('#343a40');
+        // endregion
+        this.productionGlobalConfig.DisplayColor = this.authorGlobalConfig.DisplayColor;
+        // region *** global userConfig (user input app-module) ***
+        this.setUserColors(userGlobalConfig.ColorList);
+        // endregion
+        this.setToastNode();
+        this.setNodeStyles(this.productionGlobalConfig.DisplayColor);
     }
+
+    setNodeStyles(_ProductionColorTypes) {
+        Object.keys(_ProductionColorTypes).forEach(key => {
+            if (_ProductionColorTypes[key]) {
+                this.setButtonStyling(key, _ProductionColorTypes[key]);
+                this.setIconStyling(key, _ProductionColorTypes[key]);
+                this.setToastStyling(key, _ProductionColorTypes[key]);
+                this.setDialogFrame(key, _ProductionColorTypes[key]);
+                if (ColorVariance[key.toUpperCase()] === ColorVariance.PRIMARY) {
+                    this.getSheet().addRule('.ngx-awesome-popup-overlay', `background:  ${_ProductionColorTypes[key].TransparentDarkenVariance}!important;`);
+                }
+            }
+        });
+    }
+
+    setToastStyling(_Key, _ColorProvider) {
+        const baseClass = `.overlay-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
+        const baseStyle = `
+        background:  ${_ColorProvider.BrightShade}!important;
+        border-color: ${_ColorProvider.Brighten}!important;
+        `;
+        this.getSheet().addRule(baseClass, baseStyle);
+    }
+
+    setButtonStyling(_Key, _ColorProvider) {
+        const baseButtonClass        = `.ed-btn-${_Key.toLowerCase()}`;
+        const baseStyle              = `
+        color: ${_ColorProvider.ContrastColor}!important;
+        background:  ${_ColorProvider.Base}!important;
+        border-color: ${_ColorProvider.BrightenForShade}!important;
+        `;
+        const hoverButtonClass       = `.ed-btn-${_Key.toLowerCase()}:hover`;
+        const hoverStyle             = `
+        background:  ${_ColorProvider.IsBaseBright ? _ColorProvider.DarkenForShade : _ColorProvider.BrightenForShade}!important;
+        border-color: ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
+        `;
+        const focusActiveButtonClass = `.ed-btn-${_Key.toLowerCase()}:focus, .ed-btn-${_Key.toLowerCase()}:active`;
+        const focusActiveStyle       = `
+        box-shadow: 0 0 1px 2px ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
+        `;
+        this.getSheet().addRule(baseButtonClass, baseStyle);
+        this.getSheet().addRule(hoverButtonClass, hoverStyle);
+        this.getSheet().addRule(focusActiveButtonClass, focusActiveStyle);
+    }
+
+    setIconStyling(_Key, _ColorProvider) {
+        const baseIconClass = `.ap-icon-${_Key.toLowerCase()}`;
+        const baseStyle     = `
+        color: ${_ColorProvider.BrightenForShade}!important;`;
+        this.getSheet().addRule(baseIconClass, baseStyle);
+    }
+
+    setDialogFrame(_Key, _ColorProvider) {
+        const baseDialogFrameClass = `.ngx-awesome-popup-overlay .${_Key.toLowerCase()}-dialog`;
+        const baseStyle            = `
+        border-color: ${_ColorProvider.Brighten}!important;
+        `;
+        this.getSheet().addRule(baseDialogFrameClass, baseStyle);
+    }
+
+    getSheet() {
+        // Create the <style> tag
+        let evolveDialogStyleNode = document.getElementById('ngx-awesome-popup-styles');
+        if (!evolveDialogStyleNode) {
+            const headNode = document.head || document.getElementsByTagName('head')[0];
+            if (!headNode) {
+                return;
+            }
+            evolveDialogStyleNode = document.createElement('style');
+            evolveDialogStyleNode.setAttribute('id', 'ngx-awesome-popup-styles');
+            evolveDialogStyleNode.appendChild(document.createTextNode(''));
+            headNode.appendChild(evolveDialogStyleNode);
+        }
+        return evolveDialogStyleNode ? evolveDialogStyleNode.sheet : null;
+    }
+    ;
+
+    setToastNode() {
+        const bodyNode = document.body || document.getElementsByTagName('body')[0];
+        if (!bodyNode) {
+            return;
+        }
+        const toastWrapper = document.createElement('div');
+        toastWrapper.setAttribute('id', 'toast-wrapper');
+        toastWrapper.appendChild(document.createTextNode(''));
+        bodyNode.prepend(toastWrapper);
+        // bodyNode.appendChild(toastWrapper);
+        this.getSheet().addRule(`#toast-wrapper`, `position: fixed;
+                                        z-index: 1001;
+                                        top: 20px;
+                                        right: 20px;`);
+        this.getSheet().addRule(`.toast-entity`, `all 0.5s ease;`);
+        this.getSheet().addRule(`.toast-entity:first-child`, `animation: move 0.7s ease-out;`);
+        this.getSheet().addRule(`@-webkit-keyframes move`, `
+                                        0% {margin-top: -5px; opacity: 0.4;}
+                                        30% {margin-top: -4px; opacity: 0.7;}
+                                        100% {margin-top: 0px; opacity: 1;}
+                                        `);
+        this.getSheet().addRule(`@keyframes move`, `
+                                        0% {margin-top: -5px; opacity: 0.4;}
+                                        30% {margin-top: -4px; opacity: 0.7;}
+                                        100% {margin-top: 0px; opacity: 1;}
+                                        `);
+    }
+
+    setUserColors(_UserColorTypes) {
+        if (typeof _UserColorTypes !== 'object') {
+            return;
+        }
+        const userKeys             = Object.keys(_UserColorTypes);
+        const productionObjectKeys = Object.keys(this.productionGlobalConfig.DisplayColor);
+        userKeys.forEach(key => {
+            if (productionObjectKeys.find(tKey => tKey === key)) {
+                const baseColorProvider = new GlobalClass.ColorProvider(_UserColorTypes[key]);
+                if (baseColorProvider.Base) {
+                    this.productionGlobalConfig.DisplayColor[key] = baseColorProvider;
+                }
+            }
+        });
+    }
+}
+
+GlobalConfigService.ɵprov          = i0.ɵɵdefineInjectable({
+    factory: function GlobalConfigService_Factory() { return new GlobalConfigService(i0.ɵɵinject("globalConfig")); },
+    token: GlobalConfigService,
+    providedIn: "root"
+});
+GlobalConfigService.decorators     = [
+    {
+        type: Injectable, args: [{
+            providedIn: 'root'
+        },]
+    }
+];
+GlobalConfigService.ctorParameters = () => [
+    {type: undefined, decorators: [{type: Inject, args: ['globalConfig',]}]}
+];
+
+class ToastNotificationWrapperComponent {
+    constructor(gConfig, toastNotificationBelonging, cd) {
+        this.gConfig                    = gConfig;
+        this.toastNotificationBelonging = toastNotificationBelonging;
+        this.cd                         = cd;
+        this.fadeInOutAnimation         = 'open';
+        this.timerStarted$              = new BehaviorSubject('start-counter');
+        this.isTimerStarted             = false;
+    }
+
     ngAfterViewInit() {
         this.setResponse(false);
         this.cd.detectChanges();
@@ -660,50 +841,84 @@ class ToastNotificationWrapperComponent {
     onToastClicked(evt) {
         // console.log('onOverlayClicked');
     }
+
     onCustomButton(_Button) {
         this.toastNotificationBelonging.EventsController.onButtonClick(_Button);
         this.setResponse(true, _Button.ID);
         this.toastNotificationBelonging.EventsController.close();
     }
+
     onButtonClick(_Type) {
         this.setResponse(_Type === 'confirm');
         this.toastNotificationBelonging.EventsController.close();
     }
+
     autoClose() {
-        if (this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay
-            && !(this.toastNotificationBelonging.Buttons.length
-                || this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel
-                || this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel)) {
-            setTimeout(() => {
-                this.closeParent$('close-slow').subscribe(resp => {
-                    this.toastNotificationBelonging.EventsController.close();
-                });
-            }, this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
+        if (this.autoCloseCondition()) {
+            this.subTimer = this.timerStarted$.pipe(tap((next) => {
+                if ('start-counter' === next) {
+                    this.isTimerStarted = true;
+                    this.timer          = setTimeout(() => {
+                        this.subsToClosingDelay = this.closeParent$('close-slow').subscribe(resp => {
+                            this.toastNotificationBelonging.EventsController.close();
+                        });
+                    }, this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
+                } else if ('stop-counter' === next) {
+                    if (this.isTimerStarted) {
+                        clearTimeout(this.timer);
+                        this.isTimerStarted = false;
+                    }
+                }
+            })).subscribe();
         }
     }
+
+    autoCloseCondition() {
+        return this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay
+            && !(this.toastNotificationBelonging.Buttons.length
+                || this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel
+                || this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel);
+    }
+
     closeParent$(_ClosingAnimation) {
         this.fadeInOutAnimation = _ClosingAnimation;
-        const timer = _ClosingAnimation === 'close-slow' ? 1400 : 150;
-        return new Observable((observer) => {
-            observer.next('');
-            observer.complete();
-        }).pipe(delay(timer));
+        const timer             = _ClosingAnimation === 'close-slow' ? 1400 : 150;
+        return of('').pipe(delay(timer));
     }
+
     close() {
         this.toastNotificationBelonging.EventsController.close();
+    }
+
+    mouseOver() {
+        var _a;
+        this.timerStarted$.next('stop-counter');
+        this.fadeInOutAnimation = 'open';
+        (_a = this.subsToClosingDelay) === null || _a === void 0 ? void 0 : _a.unsubscribe();
+    }
+
+    mouseOut() {
+        this.timerStarted$.next('start-counter');
+    }
+
+    ngOnDestroy() {
+        var _a, _b;
+        (_a = this.subsToClosingDelay) === null || _a === void 0 ? void 0 : _a.unsubscribe();
+        (_b = this.subTimer) === null || _b === void 0 ? void 0 : _b.unsubscribe();
     }
 }
 ToastNotificationWrapperComponent.decorators = [
     { type: Component, args: [{
-                selector: 'app-toast-notification-wrapper',
-                template: "<div class=\"overlay-toast\" (dblclick)=\"onOverlayClicked($event)\" [@fadeInOut]=\"fadeInOutAnimation\">\n\t\n\t<div\n\t\t\tclass=\"evolve-toast\" (click)=\"onToastClicked($event)\" [ngClass]=\"{\n          'standard-dialog': 0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'success-dialog': 1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'info-dialog': 2 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'warning-dialog': 3 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'danger-dialog': 4 === toastNotificationBelonging.ToastCoreConfig.LayoutType\n        }\"\n\t\t\t[ngStyle]=\"{'width': toastNotificationBelonging.ToastCoreConfig.Width, 'height': toastNotificationBelonging.ToastCoreConfig.Height}\"\n\t>\n\t\t<div class=\"toast-title-content\" *ngIf=\"toastNotificationBelonging.Message.Title\">\n\t\t\t\n\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t<div class=\"text-wrapper dont-break-out\">\n\t\t\t\t\t<div class=\"toast-title-text\">{{toastNotificationBelonging.Message.Title}}</div>\n\t\t\t\t\t<div class=\"close-ico\" (click)=\"close()\"\n\t\t\t\t\t\t\t*ngIf=\"\n\t\t\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t\t\t     \"\n\t\t\t\t\t></div>\n\t\t\t\t\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"content-holder\" *ngIf=\"toastNotificationBelonging.Message.Description\">\n\t\t\t\n\t\t\t<div class=\"text-wrapper-section toast-inner-content\" [ngStyle]=\"{'width': toastNotificationBelonging.ToastCoreConfig.Width, 'height': toastNotificationBelonging.ToastCoreConfig.Height}\">\n\t\t\t\t\n\t\t\t\t<!--<div class=\"dont-break-out\" [ngClass]=\"{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}\">-->\n\t\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t\t<div class=\"text-wrapper dont-break-out\"><p>{{toastNotificationBelonging.Message.Description}}</p></div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class=\"close-ico\" (click)=\"close()\"\n\t\t\t     *ngIf=\"\n\t\t\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t\t\t     && !toastNotificationBelonging.Message.Title\n\t\t\t\t\t     \"\n\t\t\t></div>\n\t\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"button-holder\">\n\t\t\t<div class=\"button-section\" *ngIf=\"toastNotificationBelonging.Buttons.length\" [ngStyle]=\"{ 'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-sm\" *ngFor=\"let button of toastNotificationBelonging.Buttons\" (click)=\"onCustomButton(button)\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),\n                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),\n                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),\n                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),\n                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),\n                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),\n                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),\n                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),\n                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),\n                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)\n                            }\"\n\t\t\t\t>{{button.Label}}\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div\n\t\t\t\t\tclass=\"button-section\" [ngStyle]=\"{ 'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition }\"\n\t\t\t\t\t*ngIf=\"\n\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t     && (\n\t\t\t      toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t      ||  toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t     )\"\n\t\t\t>\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\t*ngIf=\"toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\"\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-sm\" (click)=\"onButtonClick('confirm')\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t          'ed-btn-primary': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n\t\t\t\t          'ed-btn-success': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n\t\t\t\t          'ed-btn-info': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n\t\t\t\t          'ed-btn-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n\t\t\t\t          'ed-btn-danger': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t>{{toastNotificationBelonging.ToastCoreConfig.ConfirmLabel}}\n\t\t\t\t</button>\n\t\t\t\t<button class=\"ed-btn ed-btn-sm ed-btn-secondary\" (click)=\"onButtonClick('decline')\" *ngIf=\"toastNotificationBelonging.ToastCoreConfig.DeclineLabel\">\n\t\t\t\t\t{{toastNotificationBelonging.ToastCoreConfig.DeclineLabel}}\n\t\t\t\t</button>\n\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t\n\t</div>\n\n</div>\n",
-                animations: [fadeInOut(0, 1)],
-            styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:1000}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;text-align:center;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.overlay-toast{background:transparent;margin:0;opacity:0;padding:0;z-index:0}.overlay-toast,.overlay-toast .evolve-toast{display:flex;flex-direction:column;position:relative}.overlay-toast .evolve-toast{background:#fbfbfb;border-radius:5px;border-right:4px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);margin-left:auto;margin-top:10px;max-height:350px;max-width:300px;min-width:300px;vertical-align:bottom}.overlay-toast .evolve-toast.standard-dialog{border-color:transparent}.overlay-toast .evolve-toast.success-dialog{background-color:#dcf3f1;border-color:#3caea3}.overlay-toast .evolve-toast.info-dialog{background-color:#e4f1fc;border-color:#2f8ee5}.overlay-toast .evolve-toast.warning-dialog{background-color:#fff4d3;border-color:#ffc107}.overlay-toast .evolve-toast.danger-dialog{background-color:#f7d1d1;border-color:#e46464}.overlay-toast .evolve-toast .close-ico{background:rgba(0,0,0,.2);border-radius:50%;cursor:pointer;height:18px;position:absolute;right:6px;top:6px;width:18px}.overlay-toast .evolve-toast div.close-ico:after{color:hsla(0,0%,100%,.5);content:\"\u00D7\";font-size:15px;left:5px;position:relative;text-align:center;top:-1px}.overlay-toast .evolve-toast .toast-title-content{align-items:flex-start;background-clip:padding-box;background-color:hsla(0,0%,100%,.55);border-bottom:1px solid rgba(0,0,0,.05);border-radius:5px 5px 0 0;color:#6c757d;display:flex;flex-direction:column;height:auto;justify-content:flex-start;padding:5px 10px;width:auto}.overlay-toast .evolve-toast .toast-title-content .toast-title-text{font-size:15px}.overlay-toast .evolve-toast .content-holder{color:#6c757d;display:flex;flex-direction:row-reverse;height:100%;overflow:auto;width:100%}.overlay-toast .evolve-toast .content-holder .toast-inner-content{padding:10px}.overlay-toast .evolve-toast .content-holder .text-wrapper p{font-size:14px;margin:0}.overlay-toast .evolve-toast .button-holder{display:flex;flex-direction:column;justify-content:flex-end;width:100%}.overlay-toast .evolve-toast .button-holder .button-section{margin:0;padding:4px 10px}"]
-            },] }
+            selector: 'app-toast-notification-wrapper',
+            template: "<div class=\"overlay-toast\" (dblclick)=\"onOverlayClicked($event)\" [@fadeInOut]=\"fadeInOutAnimation\">\n\t\n\t<div\n        #evolveToast\n\t\t(mouseover)=\"mouseOver()\" (mouseout)=\"mouseOut()\"\n\t\tclass=\"evolve-toast\" (click)=\"onToastClicked($event)\" [ngClass]=\"{\n          'standard-dialog': 0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'success-dialog': 1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'info-dialog': 2 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'warning-dialog': 3 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'danger-dialog': 4 === toastNotificationBelonging.ToastCoreConfig.LayoutType\n        }\"\n\t\t[ngStyle]=\"{'width': toastNotificationBelonging.ToastCoreConfig.Width, 'height': toastNotificationBelonging.ToastCoreConfig.Height}\"\n\t>\n\t\t<div class=\"toast-title-content\" *ngIf=\"toastNotificationBelonging.Dispatch.Title\">\n\t\t\t\n\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t<div class=\"text-wrapper dont-break-out\">\n\t\t\t\t\t<div class=\"toast-title-text\">{{toastNotificationBelonging.Dispatch.Title}}</div>\n\t\t\t\t\t<div\n\t\t\t\t\t\t\tclass=\"close-ico\" (click)=\"close()\"\n\t\t\t\t\t\t\t*ngIf=\"\n\t\t\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t\t\t     \"\n\t\t\t\t\t></div>\n\t\t\t\t\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"content-holder\" *ngIf=\"toastNotificationBelonging.Dispatch.Message\">\n\t\t\t<div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.DisableIcon\">\n\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"icon-type-toast\" [ngClass]=\"{\n\t\t\t\t          '': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n\t\t\t\t          'ap-icon-success icon-check-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n\t\t\t\t          'ap-icon-info icon-info-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n\t\t\t\t          'ap-icon-warning icon-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n\t\t\t\t          'ap-icon-danger icon-times-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t\t></span>\n\t\t\t</div>\n\t\t\t<div class=\"text-wrapper-section toast-inner-content\" [ngStyle]=\"{'width': toastNotificationBelonging.ToastCoreConfig.Width, 'height': toastNotificationBelonging.ToastCoreConfig.Height}\">\n\t\t\t\t\n\t\t\t\t<!--<div class=\"dont-break-out\" [ngClass]=\"{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}\">-->\n\t\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t\t<div  *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\" class=\"text-wrapper dont-break-out\"><p>{{toastNotificationBelonging.Dispatch.Message}}</p></div>\n\t\t\t\t\t<div *ngIf=\"toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\" class=\"text-wrapper\" [innerHTML]=\"toastNotificationBelonging.Dispatch.Message\"></div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</div>\n\t\t\t<!--<span class=\"icon-times-circle\"></span>-->\n\t\t\t<div\n\t\t\t\t\tclass=\"close-ico\" (click)=\"close()\"\n\t\t\t\t\t*ngIf=\"\n\t\t\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t\t\t     && !toastNotificationBelonging.Dispatch.Title\n\t\t\t\t\t     \"\n\t\t\t></div>\n\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"button-holder\">\n\t\t\t<div class=\"button-section\" *ngIf=\"toastNotificationBelonging.Buttons.length\" [ngStyle]=\"{ 'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-sm\" *ngFor=\"let button of toastNotificationBelonging.Buttons\" (click)=\"onCustomButton(button)\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),\n                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),\n                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),\n                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),\n                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),\n                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),\n                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),\n                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),\n                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),\n                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)\n                            }\"\n\t\t\t\t>{{button.Label}}\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div\n\t\t\t\t\tclass=\"button-section\" [ngStyle]=\"{ 'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition }\"\n\t\t\t\t\t*ngIf=\"\n\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t     && (\n\t\t\t      toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t      ||  toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t     )\"\n\t\t\t>\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\t*ngIf=\"toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\"\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-sm\" (click)=\"onButtonClick('confirm')\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t          'ed-btn-primary': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n\t\t\t\t          'ed-btn-success': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n\t\t\t\t          'ed-btn-info': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n\t\t\t\t          'ed-btn-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n\t\t\t\t          'ed-btn-danger': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t>{{toastNotificationBelonging.ToastCoreConfig.ConfirmLabel}}\n\t\t\t\t</button>\n\t\t\t\t<button class=\"ed-btn ed-btn-sm ed-btn-secondary\" (click)=\"onButtonClick('decline')\" *ngIf=\"toastNotificationBelonging.ToastCoreConfig.DeclineLabel\">\n\t\t\t\t\t{{toastNotificationBelonging.ToastCoreConfig.DeclineLabel}}\n\t\t\t\t</button>\n\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t\n\t</div>\n\n</div>\n",
+            animations: [fadeInOut(0, 1)],
+            styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(../assets/fonts/icomoon.eot?vap0ng);src:url(../assets/fonts/icomoon.eot?vap0ng#iefix) format(\"embedded-opentype\"),url(../assets/fonts/icomoon.ttf?vap0ng) format(\"truetype\"),url(../assets/fonts/icomoon.woff?vap0ng) format(\"woff\"),url(../assets/fonts/icomoon.svg?vap0ng#icomoon) format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;speak:never;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:1000}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;text-align:center;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.overlay-toast{background:transparent;margin:0;opacity:0;padding:0;z-index:0}.overlay-toast,.overlay-toast .evolve-toast{display:flex;flex-direction:column;position:relative}.overlay-toast .evolve-toast{background:#fbfbfb;border-radius:5px;border-right:4px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);margin-left:auto;margin-top:10px;max-height:350px;max-width:300px;min-width:300px;transition:box-shadow .3s ease-in-out;vertical-align:bottom}.overlay-toast .evolve-toast:hover{box-shadow:0 0 4px 3px rgba(0,0,0,.25)}.overlay-toast .evolve-toast.standard-dialog{border-color:transparent}.overlay-toast .evolve-toast.success-dialog{background-color:#dcf3f1;border-color:#3caea3}.overlay-toast .evolve-toast.info-dialog{background-color:#e4f1fc;border-color:#2f8ee5}.overlay-toast .evolve-toast.warning-dialog{background-color:#fff4d3;border-color:#ffc107}.overlay-toast .evolve-toast.danger-dialog{background-color:#f7d1d1;border-color:#e46464}.overlay-toast .evolve-toast .close-ico{background:rgba(0,0,0,.2);border-radius:50%;cursor:pointer;height:18px;position:absolute;right:6px;top:6px;width:18px}.overlay-toast .evolve-toast div.close-ico:after{color:hsla(0,0%,100%,.5);content:\"\u00D7\";font-size:15px;left:5px;position:relative;text-align:center;top:-1px}.overlay-toast .evolve-toast .toast-title-content{align-items:flex-start;background-clip:padding-box;background-color:hsla(0,0%,100%,.55);border-bottom:1px solid rgba(0,0,0,.05);border-radius:5px 5px 0 0;color:#6c757d;display:flex;flex-direction:column;height:auto;justify-content:flex-start;padding:5px 10px;width:auto}.overlay-toast .evolve-toast .toast-title-content .toast-title-text{font-size:15px}.overlay-toast .evolve-toast .content-holder{color:#6c757d;display:flex;height:100%;overflow:auto;width:100%;justify-content:space-between;align-items:center;flex-wrap:nowrap}.overlay-toast .evolve-toast .content-holder .icon-section .icon-type-toast{font-size:26px;padding:0 8px}.overlay-toast .evolve-toast .content-holder .toast-inner-content{padding:10px}.overlay-toast .evolve-toast .content-holder .text-wrapper p{font-size:14px;margin:0;text-align:right}.overlay-toast .evolve-toast .button-holder{display:flex;flex-direction:column;justify-content:flex-end;width:100%}.overlay-toast .evolve-toast .button-holder .button-section{margin:0;padding:4px 10px}"]
+        },] }
 ];
 ToastNotificationWrapperComponent.ctorParameters = () => [
-    { type: ToastNotificationClass.ToastNotificationBelonging },
-    { type: ChangeDetectorRef }
+    {type: GlobalConfigService},
+    {type: ToastNotificationClass.ToastNotificationBelonging},
+    {type: ChangeDetectorRef}
 ];
 
 class ToastNotificationConfigService {
@@ -718,14 +933,16 @@ class ToastNotificationConfigService {
         userConfig.ToastCoreConfig = userConfigBase.ToastCoreConfig;
         // endregion
         // region *** author default config values (if there is no user input) ***
-        this.authorConfig.ToastCoreConfig.Width = 'auto';
-        this.authorConfig.ToastCoreConfig.Height = 'auto';
+        this.authorConfig.ToastCoreConfig.Width          = 'auto';
+        this.authorConfig.ToastCoreConfig.Height         = 'auto';
         this.authorConfig.ToastCoreConfig.ButtonPosition = 'right';
         // this.authorConfig.ToastCoreConfig.ConfirmLabel   = 'Confirm';
         // this.authorConfig.ToastCoreConfig.DeclineLabel   = 'Decline';
-        this.authorConfig.ToastCoreConfig.AutoCloseDelay = 2500;
-        this.authorConfig.ToastCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
-        this.authorConfig.GlobalSettings.AllowedMessagesAtOnce = 5;
+        this.authorConfig.ToastCoreConfig.AutoCloseDelay            = 2500;
+        this.authorConfig.ToastCoreConfig.DisableIcon               = false;
+        this.authorConfig.ToastCoreConfig.AllowHTMLMessage          = true;
+        this.authorConfig.ToastCoreConfig.LayoutType                = DialogLayoutDisplay.NONE;
+        this.authorConfig.GlobalSettings.AllowedNotificationsAtOnce = 5;
         // endregion
         // region *** Production setup ***
         dataControl.copyValuesFrom(this.authorConfig.GlobalSettings, this.productionConfig.GlobalSettings);
@@ -785,7 +1002,7 @@ class ToastNotificationService {
         }
     }
     isRefListAvailable() {
-        return this.toastComponentRefList.length < this.toastConfig.productionConfig.GlobalSettings.AllowedMessagesAtOnce;
+        return this.toastComponentRefList.length < this.toastConfig.productionConfig.GlobalSettings.AllowedNotificationsAtOnce;
     }
     prepareRawToast(_EventsController, _ToastNotificationBelonging) {
         const weakMap = new WeakMap();
@@ -823,7 +1040,7 @@ class ToastNotificationService {
         toastEntity.prepend(domElem);
         // targetNode.prepend(toastEntity);
         setTimeout(() => {
-            targetNode.appendChild(toastEntity);
+            targetNode.prepend(toastEntity);
         }, 200);
     }
     removeFromBody(_EntityUniqueID) {
@@ -883,19 +1100,24 @@ var ToastNotificationClass;
         setButtons(_Buttons) {
             this.toastNotificationCarrier.setButtons(_Buttons);
         }
+
         setConfig(_ToastNotificationConfig) {
             this.toastNotificationCarrier.setConfig(_ToastNotificationConfig);
         }
-        setMessage(_Title, _Description = null) {
+
+        setDispatch(_Title, _Message = null) {
             this.toastNotificationCarrier.setTitle(_Title);
-            this.toastNotificationCarrier.setDescription(_Description);
+            this.toastNotificationCarrier.setMessage(_Message);
         }
+
         setTitle(_Title) {
             this.toastNotificationCarrier.setTitle(_Title);
         }
-        setDescription(_Description) {
-            this.toastNotificationCarrier.setDescription(_Description);
+
+        setMessage(_Message) {
+            this.toastNotificationCarrier.setMessage(_Message);
         }
+
         setButtonLabels(_Confirm, _Decline) {
             this.toastNotificationCarrier.setButtonLabels(_Confirm, _Decline);
         }
@@ -957,21 +1179,26 @@ var ToastNotificationClass;
         constructor() {
             this.toastNotificationBelonging = new ToastNotificationClass.ToastNotificationBelonging();
         }
+
         setButtons(_Buttons) {
             if (_Buttons.length) {
                 this.toastNotificationBelonging.Buttons = _Buttons;
             }
         }
+
         setTitle(_Title) {
-            this.toastNotificationBelonging.Message.Title = _Title;
+            this.toastNotificationBelonging.Dispatch.Title = _Title;
         }
-        setDescription(_Description) {
-            this.toastNotificationBelonging.Message.Description = _Description;
+
+        setMessage(_Message) {
+            this.toastNotificationBelonging.Dispatch.Message = _Message;
         }
+
         setButtonLabels(_Confirm, _Decline) {
             this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel = _Confirm;
             this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel = _Decline;
         }
+
         setConfig(_ToastNotificationBelonging) {
             // region *** local UserConfig (defined on place where dialog is called) ***
             const dataControl = new GlobalClass.DataControl();
@@ -979,8 +1206,8 @@ var ToastNotificationClass;
             // endregion
         }
         openToastNotification$() {
-            if (!this.toastNotificationBelonging.Message.Title
-                && !this.toastNotificationBelonging.Message.Description) {
+            if (!this.toastNotificationBelonging.Dispatch.Title
+                && !this.toastNotificationBelonging.Dispatch.Message) {
                 throw Error('Toast message fail.');
             }
             const service = ServiceLocator.injector.get(ToastNotificationService);
@@ -990,29 +1217,31 @@ var ToastNotificationClass;
     ToastNotificationClass.ToastNotificationCarrier = ToastNotificationCarrier;
     class GlobalToastSettings {
         constructor() {
-            this.AllowedMessagesAtOnce = null;
+            this.AllowedNotificationsAtOnce = null;
         }
     }
     ToastNotificationClass.GlobalToastSettings = GlobalToastSettings;
     class Settings {
         constructor() {
-            this.Buttons = [];
+            this.Buttons         = [];
             this.ToastCoreConfig = new ToastCoreConfig();
-            this.Message = new GlobalClass.Message();
-            this.GlobalSettings = new GlobalToastSettings();
+            this.Dispatch        = new GlobalClass.Dispatch();
+            this.GlobalSettings  = new GlobalToastSettings();
         }
     }
     ToastNotificationClass.Settings = Settings;
     class ToastCoreConfig {
         constructor() {
-            this.Width = null;
-            this.Height = null;
-            this.ButtonPosition = null;
-            this.LayoutType = null;
-            this.Message = null;
-            this.ConfirmLabel = null;
-            this.DeclineLabel = null;
-            this.AutoCloseDelay = null;
+            this.Width            = null;
+            this.Height           = null;
+            this.ButtonPosition   = null;
+            this.LayoutType       = null;
+            this.Dispatch         = null;
+            this.ConfirmLabel     = null;
+            this.DeclineLabel     = null;
+            this.AutoCloseDelay   = null;
+            this.DisableIcon      = null;
+            this.AllowHTMLMessage = null;
         }
     }
     ToastNotificationClass.ToastCoreConfig = ToastCoreConfig;
@@ -1179,7 +1408,7 @@ DialogWrapperComponent.decorators = [
                 selector: 'dialog-popup-wrapper',
                 template: "<div class=\"ngx-awesome-popup-overlay\" (dblclick)=\"onOverlayClicked($event)\" [@fadeInOut]=\"fadeInOutAnimation\">\n\t\n\t<div class=\"evolve-parent-dialog\"\n\t\t\t[ngClass]=\"{\n          'standard-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 0,\n          'success-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 1,\n          'info-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 2,\n          'warning-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 3,\n          'danger-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 4\n        }\"\n\t>\n\t\t<div class=\"loader-holder\" [ngClass]=\"!dialogBelonging.DialogCoreConfig.DisplayLoader ? 'dialog-loader-off' : (showLoader ? 'dialog-loader-active' : 'dialog-loader-gone')\">\n\t\t\t<!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->\n\t\t\t<div class=\"dialog-loader\">\n\t\t\t\t<ng-template appInsertionLoader></ng-template>\n\t\t\t</div>\n\t\t</div>\n\t\t\n\t\t<div class=\"content-holder\" [ngStyle]=\"{'width': dialogBelonging.DialogCoreConfig.Width, 'height': dialogBelonging.DialogCoreConfig.Height}\">\n\n\t\t\t<!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->\n\t\t\t<div class=\"component-content\" [ngClass]=\"!dialogBelonging.DialogCoreConfig.DisplayLoader ? 'component-content-loader-off' : (showLoader ? 'component-content-preparing' : 'component-content-ready')\">\n\t\t\t\t<ng-template appInsertion></ng-template>\n\t\t\t</div>\n\t\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"button-holder\">\n\t\t\t<div class=\"button-section\" *ngIf=\"dialogBelonging.Buttons.length > 0\" [ngStyle]=\"{ 'text-align': dialogBelonging.DialogCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-lg\" *ngFor=\"let button of dialogBelonging.Buttons\" (click)=\"onCustomButton(button)\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),\n                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),\n                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),\n                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),\n                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),\n                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),\n                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),\n                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),\n                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),\n                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)\n                            }\"\n\t\t\t\t>{{button.Label}}</button>\n\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t\n</div>\n",
                 animations: [fadeInOut(0, 1)],
-            styles: [".ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:1000}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;text-align:center;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.evolve-parent-dialog{padding:20px 20px 10px}.evolve-parent-dialog .component-content{width:100%;height:100%;transition-delay:.4s;transition-timing-function:linear;transition-duration:.4s;transition-property:opacity}.evolve-parent-dialog .component-content-loader-off{transition:none!important;opacity:1!important}.evolve-parent-dialog .component-content-preparing{transition:none!important;opacity:0}.evolve-parent-dialog .component-content-ready{height:100%;opacity:1}.evolve-parent-dialog .dialog-loader{opacity:1}.evolve-parent-dialog .dialog-loader-off{display:none;opacity:0!important}.evolve-parent-dialog .dialog-loader-gone{opacity:0;pointer-events:none}.evolve-parent-dialog .dialog-loader-active{opacity:1}.loader-holder{position:absolute;transition-delay:.4s;transition-timing-function:linear;transition-duration:.4s;transition-property:opacity;opacity:1;justify-content:center;align-items:center;background:#fbfbfb;width:100%;height:100%;margin:-20px}.content-holder,.loader-holder{display:flex;flex-direction:column}.content-holder{overflow:auto}.button-holder{width:100%;display:flex;justify-content:flex-end;flex-direction:column}.button-holder .button-section{margin:20px -20px -10px;border-top:1px solid rgba(152,158,165,.2);background:rgba(222,226,230,.2);padding:5px 20px}"]
+            styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(../assets/fonts/icomoon.eot?vap0ng);src:url(../assets/fonts/icomoon.eot?vap0ng#iefix) format(\"embedded-opentype\"),url(../assets/fonts/icomoon.ttf?vap0ng) format(\"truetype\"),url(../assets/fonts/icomoon.woff?vap0ng) format(\"woff\"),url(../assets/fonts/icomoon.svg?vap0ng#icomoon) format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;speak:never;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:1000}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;text-align:center;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.evolve-parent-dialog{padding:20px 20px 10px}.evolve-parent-dialog .component-content{height:100%;max-width:95vw;transition-delay:.4s;transition-duration:.4s;transition-property:opacity;transition-timing-function:linear;width:100%}.evolve-parent-dialog .component-content-loader-off{transition:none!important;opacity:1!important}.evolve-parent-dialog .component-content-preparing{transition:none!important;opacity:0}.evolve-parent-dialog .component-content-ready{height:100%;opacity:1}.evolve-parent-dialog .dialog-loader{opacity:1}.evolve-parent-dialog .dialog-loader-off{display:none;opacity:0!important}.evolve-parent-dialog .dialog-loader-gone{opacity:0;pointer-events:none}.evolve-parent-dialog .dialog-loader-active{opacity:1}.loader-holder{position:absolute;transition-delay:.4s;transition-timing-function:linear;transition-duration:.4s;transition-property:opacity;opacity:1;justify-content:center;align-items:center;background:#fbfbfb;width:100%;height:100%;margin:-20px}.content-holder,.loader-holder{display:flex;flex-direction:column}.content-holder{overflow:auto}.button-holder{width:100%;display:flex;justify-content:flex-end;flex-direction:column}.button-holder .button-section{margin:20px -20px -10px;border-top:1px solid rgba(152,158,165,.2);background:rgba(222,226,230,.2);padding:5px 20px}"]
             },] }
 ];
 DialogWrapperComponent.ctorParameters = () => [
@@ -1441,145 +1670,6 @@ var DialogClass;
     DialogClass.DialogBelonging = DialogBelonging;
 })(DialogClass || (DialogClass = {}));
 
-class GlobalConfigService {
-    constructor(userGlobalConfig) {
-        this.userGlobalConfig = userGlobalConfig;
-        this.productionGlobalConfig = new GlobalClass.GlobalConfig();
-        this.authorGlobalConfig = new GlobalClass.GlobalConfig();
-        userGlobalConfig = new GlobalClass.GlobalUserConfig(userGlobalConfig);
-        // region *** author global config values (if there is no user input) ***
-        this.authorGlobalConfig.DisplayColor.Primary = null; // new GlobalClass.ColorProvider('#ff9e00');
-        this.authorGlobalConfig.DisplayColor.Secondary = null; // new GlobalClass.ColorProvider('#989ea5');
-        this.authorGlobalConfig.DisplayColor.Success = null; // new GlobalClass.ColorProvider('#3caea3');
-        this.authorGlobalConfig.DisplayColor.Info = null; // new GlobalClass.ColorProvider('#2f8ee5');
-        this.authorGlobalConfig.DisplayColor.Warning = null; // new GlobalClass.ColorProvider('#ffc107');
-        this.authorGlobalConfig.DisplayColor.Danger = null; // new GlobalClass.ColorProvider('#e46464');
-        this.authorGlobalConfig.DisplayColor.Light = null; // new GlobalClass.ColorProvider('#f8f9fa');
-        this.authorGlobalConfig.DisplayColor.Dark = null; // new GlobalClass.ColorProvider('#343a40');
-        // endregion
-        this.productionGlobalConfig.DisplayColor = this.authorGlobalConfig.DisplayColor;
-        // region *** global userConfig (user input app-module) ***
-        this.setUserColors(userGlobalConfig.ColorList);
-        // endregion
-        this.setToastNode();
-        this.setNodeStyles(this.productionGlobalConfig.DisplayColor);
-    }
-    setNodeStyles(_ProductionColorTypes) {
-        Object.keys(_ProductionColorTypes).forEach(key => {
-            if (_ProductionColorTypes[key]) {
-                this.setButtonStyling(key, _ProductionColorTypes[key]);
-                this.setToastStyling(key, _ProductionColorTypes[key]);
-                this.setDialogFrame(key, _ProductionColorTypes[key]);
-                if (ColorVariance[key.toUpperCase()] === ColorVariance.PRIMARY) {
-                    this.getSheet().addRule('.ngx-awesome-popup-overlay', `background:  ${_ProductionColorTypes[key].TransparentDarkenVariance}!important;`);
-                }
-            }
-        });
-    }
-    setToastStyling(_Key, _ColorProvider) {
-        const baseClass = `.overlay-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
-        const baseStyle = `
-        background:  ${_ColorProvider.BrightShade}!important;
-        border-color: ${_ColorProvider.Brighten}!important;
-        `;
-        this.getSheet().addRule(baseClass, baseStyle);
-    }
-    setButtonStyling(_Key, _ColorProvider) {
-        const baseButtonClass = `.ed-btn-${_Key.toLowerCase()}`;
-        const baseStyle = `
-        color: ${_ColorProvider.ContrastColor}!important;
-        background:  ${_ColorProvider.Base}!important;
-        border-color: ${_ColorProvider.BrightenForShade}!important;
-        `;
-        const hoverButtonClass = `.ed-btn-${_Key.toLowerCase()}:hover`;
-        const hoverStyle = `
-        background:  ${_ColorProvider.IsBaseBright ? _ColorProvider.DarkenForShade : _ColorProvider.BrightenForShade}!important;
-        border-color: ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
-        `;
-        const focusActiveButtonClass = `.ed-btn-${_Key.toLowerCase()}:focus, .ed-btn-${_Key.toLowerCase()}:active`;
-        const focusActiveStyle = `
-        box-shadow: 0 0 1px 2px ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
-        `;
-        this.getSheet().addRule(baseButtonClass, baseStyle);
-        this.getSheet().addRule(hoverButtonClass, hoverStyle);
-        this.getSheet().addRule(focusActiveButtonClass, focusActiveStyle);
-    }
-    setDialogFrame(_Key, _ColorProvider) {
-        const baseDialogFrameClass = `.ngx-awesome-popup-overlay .${_Key.toLowerCase()}-dialog`;
-        const baseStyle = `
-        border-color: ${_ColorProvider.Brighten}!important;
-        `;
-        this.getSheet().addRule(baseDialogFrameClass, baseStyle);
-    }
-    getSheet() {
-        // Create the <style> tag
-        let evolveDialogStyleNode = document.getElementById('ngx-awesome-popup-styles');
-        if (!evolveDialogStyleNode) {
-            const headNode = document.head || document.getElementsByTagName('head')[0];
-            if (!headNode) {
-                return;
-            }
-            evolveDialogStyleNode = document.createElement('style');
-            evolveDialogStyleNode.setAttribute('id', 'ngx-awesome-popup-styles');
-            evolveDialogStyleNode.appendChild(document.createTextNode(''));
-            headNode.appendChild(evolveDialogStyleNode);
-        }
-        return evolveDialogStyleNode ? evolveDialogStyleNode.sheet : null;
-    }
-    ;
-    setToastNode() {
-        const bodyNode = document.body || document.getElementsByTagName('body')[0];
-        if (!bodyNode) {
-            return;
-        }
-        const toastWrapper = document.createElement('div');
-        toastWrapper.setAttribute('id', 'toast-wrapper');
-        toastWrapper.appendChild(document.createTextNode(''));
-        bodyNode.prepend(toastWrapper);
-        // bodyNode.appendChild(toastWrapper);
-        this.getSheet().addRule(`#toast-wrapper`, `position: fixed;
-                                        z-index: 1001;
-                                        top: 20px;
-                                        right: 20px;`);
-        this.getSheet().addRule(`.toast-entity`, `all 0.5s ease;`);
-        this.getSheet().addRule(`.toast-entity:first-child`, `animation: move 0.7s ease-out;`);
-        this.getSheet().addRule(`@-webkit-keyframes move`, `
-                                        0% {margin-top: -5px; opacity: 0.4;}
-                                        30% {margin-top: -4px; opacity: 0.7;}
-                                        100% {margin-top: 0px; opacity: 1;}
-                                        `);
-        this.getSheet().addRule(`@keyframes move`, `
-                                        0% {margin-top: -5px; opacity: 0.4;}
-                                        30% {margin-top: -4px; opacity: 0.7;}
-                                        100% {margin-top: 0px; opacity: 1;}
-                                        `);
-    }
-    setUserColors(_UserColorTypes) {
-        if (typeof _UserColorTypes !== 'object') {
-            return;
-        }
-        const userKeys = Object.keys(_UserColorTypes);
-        const productionObjectKeys = Object.keys(this.productionGlobalConfig.DisplayColor);
-        userKeys.forEach(key => {
-            if (productionObjectKeys.find(tKey => tKey === key)) {
-                const baseColorProvider = new GlobalClass.ColorProvider(_UserColorTypes[key]);
-                if (baseColorProvider.Base) {
-                    this.productionGlobalConfig.DisplayColor[key] = baseColorProvider;
-                }
-            }
-        });
-    }
-}
-GlobalConfigService.ɵprov = i0.ɵɵdefineInjectable({ factory: function GlobalConfigService_Factory() { return new GlobalConfigService(i0.ɵɵinject("globalConfig")); }, token: GlobalConfigService, providedIn: "root" });
-GlobalConfigService.decorators = [
-    { type: Injectable, args: [{
-                providedIn: 'root'
-            },] }
-];
-GlobalConfigService.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: Inject, args: ['globalConfig',] }] }
-];
-
 class NgxAwesomePopupModule {
     constructor(injector, gConfigService) {
         this.injector = injector;
@@ -1677,5 +1767,34 @@ var DialogBelonging = DialogClass.DialogBelonging;
  * Generated bundle index. Do not edit.
  */
 
-export { ButtonLayoutDisplay, ButtonMaker, ConfirmBoxConfigModule, ConfirmBoxInitializer, DialogBelonging, DialogConfigModule, DialogInitializer, DialogLayoutDisplay, NgxAwesomePopupModule, ToastNotificationConfigModule, ToastNotificationInitializer, DialogWrapperComponent as ɵa, fadeInOut as ɵb, InsertionDirective as ɵc, InsertionLoaderDirective as ɵd, DialogClass as ɵe, DefaultLoaderComponent as ɵf, ConfirmBoxWrapperComponent as ɵg, ConfirmBoxClass as ɵh, ToastNotificationWrapperComponent as ɵi, ToastNotificationClass as ɵj, DialogService as ɵk, ConfirmBoxService as ɵl, ToastNotificationService as ɵm, ToastNotificationConfigService as ɵn, GlobalConfigService as ɵp, DialogConfigService as ɵr, ConfirmBoxConfigService as ɵt };
+export {
+    ButtonLayoutDisplay,
+    ButtonMaker,
+    ConfirmBoxConfigModule,
+    ConfirmBoxInitializer,
+    DialogBelonging,
+    DialogConfigModule,
+    DialogInitializer,
+    DialogLayoutDisplay,
+    NgxAwesomePopupModule,
+    ToastNotificationConfigModule,
+    ToastNotificationInitializer,
+    DialogWrapperComponent as ɵa,
+    fadeInOut as ɵb,
+    InsertionDirective as ɵc,
+    InsertionLoaderDirective as ɵd,
+    DialogClass as ɵe,
+    DefaultLoaderComponent as ɵf,
+    ConfirmBoxWrapperComponent as ɵg,
+    ConfirmBoxClass as ɵh,
+    ToastNotificationWrapperComponent as ɵi,
+    GlobalConfigService as ɵj,
+    ToastNotificationClass as ɵl,
+    DialogService as ɵm,
+    ConfirmBoxService as ɵn,
+    ToastNotificationService as ɵo,
+    ToastNotificationConfigService as ɵp,
+    DialogConfigService as ɵr,
+    ConfirmBoxConfigService as ɵt
+};
 //# sourceMappingURL=costlydeveloper-ngx-awesome-popup.js.map

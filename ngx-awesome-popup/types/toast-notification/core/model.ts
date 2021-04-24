@@ -12,13 +12,13 @@ export namespace ToastNotificationInterface {
     export interface IToastNotificationUserConfig {
         Buttons?: GlobalInterface.IButton[];
         ToastCoreConfig?: ToastNotificationInterface.IToastCoreConfig;
-        Message?: GlobalInterface.IMessage;
+        Dispatch?: GlobalInterface.IDispatch;
         GlobalSettings?: ToastNotificationInterface.IGlobalToastSettings;
     }
     
     export interface IGlobalToastSettings {
         /** Number of popups allowed on screen, recommend 3-5 */
-        AllowedMessagesAtOnce: number;
+        AllowedNotificationsAtOnce: number;
     }
     
     export interface IToastCoreConfig {
@@ -28,13 +28,15 @@ export namespace ToastNotificationInterface {
         Height?: string;
         ButtonPosition?: VerticalPosition;
         LayoutType?: DialogLayoutDisplay;
-        Message?: GlobalInterface.IMessage;
+        Dispatch?: GlobalInterface.IDispatch;
         /** Default confirm button Label */
         ConfirmLabel?: string;
         /** Default decline button Label */
         DeclineLabel?: string;
         /** Expressed in milliseconds */
         AutoCloseDelay?: number;
+        DisableIcon?: boolean;
+        AllowHTMLMessage?: boolean;
     }
     
     export interface IToastNotificationBelonging {
@@ -46,6 +48,7 @@ export namespace ToastNotificationInterface {
     
     export interface IToastNotificationResponse {
         setSuccess(_IsSuccess: boolean): void;
+    
         setClickedButtonID(_ClickedButtonID): void;
         
     }
@@ -93,24 +96,24 @@ export namespace ToastNotificationClass {
         setConfig(_ToastNotificationConfig: ToastNotificationInterface.IToastCoreConfig) {
             this.toastNotificationCarrier.setConfig(_ToastNotificationConfig);
         }
-        
-        setMessage(_Title: string, _Description: string = null): void {
+    
+        setDispatch(_Title: string, _Message: string = null): void {
             this.toastNotificationCarrier.setTitle(_Title);
-            this.toastNotificationCarrier.setDescription(_Description);
+            this.toastNotificationCarrier.setMessage(_Message);
         }
-        
+    
         setTitle(_Title: string): void {
             this.toastNotificationCarrier.setTitle(_Title);
         }
-        
-        setDescription(_Description: string): void {
-            this.toastNotificationCarrier.setDescription(_Description);
+    
+        setMessage(_Message: string): void {
+            this.toastNotificationCarrier.setMessage(_Message);
         }
-        
+    
         setButtonLabels(_Confirm: string, _Decline?: string): void {
             this.toastNotificationCarrier.setButtonLabels(_Confirm, _Decline);
         }
-        
+    
     }
     
     export class ToastNotificationResponse extends GlobalClass.DataControl implements ToastNotificationInterface.IToastNotificationResponse, ToastNotificationInterface.IToastNotificationPublicResponse {
@@ -189,26 +192,26 @@ export namespace ToastNotificationClass {
         
         constructor() {
         }
-        
+    
         setButtons(_Buttons: GlobalInterface.IButton[]) {
             if (_Buttons.length) {
                 this.toastNotificationBelonging.Buttons = _Buttons;
             }
         }
-        
+    
         setTitle(_Title: string): void {
-            this.toastNotificationBelonging.Message.Title = _Title;
+            this.toastNotificationBelonging.Dispatch.Title = _Title;
         }
-        
-        setDescription(_Description: string): void {
-            this.toastNotificationBelonging.Message.Description = _Description;
+    
+        setMessage(_Message: string): void {
+            this.toastNotificationBelonging.Dispatch.Message = _Message;
         }
-        
+    
         setButtonLabels(_Confirm: string, _Decline: string): void {
             this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel = _Confirm;
             this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel = _Decline;
         }
-        
+    
         setConfig(_ToastNotificationBelonging: ToastNotificationInterface.IToastCoreConfig) {
             // region *** local UserConfig (defined on place where dialog is called) ***
             const dataControl = new GlobalClass.DataControl();
@@ -217,38 +220,41 @@ export namespace ToastNotificationClass {
         }
         
         openToastNotification$(): Observable<ToastNotificationInterface.IPrivateResponseMerged> {
-            if(!this.toastNotificationBelonging.Message.Title
-                && !this.toastNotificationBelonging.Message.Description){
-                throw Error('Toast message fail.')
+            if (!this.toastNotificationBelonging.Dispatch.Title
+                && !this.toastNotificationBelonging.Dispatch.Message) {
+                throw Error('Toast message fail.');
             }
             const service: ToastNotificationService = ServiceLocator.injector.get(ToastNotificationService);
             return service.openToast$(this.toastNotificationBelonging);
-            
+    
         }
-        
+    
     }
     
-    export class GlobalToastSettings implements ToastNotificationInterface.IGlobalToastSettings{
-        AllowedMessagesAtOnce: number = null;
+    export class GlobalToastSettings implements ToastNotificationInterface.IGlobalToastSettings {
+        AllowedNotificationsAtOnce: number = null;
     }
     
     export class Settings {
-        Buttons: GlobalInterface.IButton[]                                           = [];
+        Buttons: GlobalInterface.IButton[]                           = [];
         ToastCoreConfig: ToastNotificationInterface.IToastCoreConfig = new ToastCoreConfig();
-        Message: GlobalInterface.IMessage                                            = new GlobalClass.Message();
-        GlobalSettings: GlobalToastSettings                                          = new GlobalToastSettings();
+        Dispatch: GlobalInterface.IDispatch                          = new GlobalClass.Dispatch();
+        GlobalSettings: GlobalToastSettings                          = new GlobalToastSettings();
         
     }
     
     export class ToastCoreConfig implements ToastNotificationInterface.IToastCoreConfig {
-        Width: string                     = null;
-        Height: string                    = null;
-        ButtonPosition: VerticalPosition  = null;
-        LayoutType: DialogLayoutDisplay   = null;
-        Message: GlobalInterface.IMessage = null;
-        ConfirmLabel: string              = null;
-        DeclineLabel: string              = null;
-        AutoCloseDelay?: number           = null;
+        Width: string                       = null;
+        Height: string                      = null;
+        ButtonPosition: VerticalPosition    = null;
+        LayoutType: DialogLayoutDisplay     = null;
+        Dispatch: GlobalInterface.IDispatch = null;
+        ConfirmLabel: string                = null;
+        DeclineLabel: string                = null;
+        AutoCloseDelay: number              = null;
+        DisableIcon: boolean                = null;
+        AllowHTMLMessage: boolean           = null;
+        
     }
     
     export class ToastNotificationBelonging extends ToastNotificationClass.Settings implements ToastNotificationInterface.IToastNotificationBelonging {
@@ -264,7 +270,7 @@ export namespace ToastNotificationClass {
             const dataControl                                                   = new GlobalClass.DataControl();
             dataControl.copyValuesFrom(toastNotificationConfigurator.productionConfig.ToastCoreConfig, baseSettings.ToastCoreConfig);
             this.ToastCoreConfig = baseSettings.ToastCoreConfig;
-            this.Buttons                 = toastNotificationConfigurator.productionConfig.Buttons.slice();
+            this.Buttons         = toastNotificationConfigurator.productionConfig.Buttons.slice();
         }
         
     }

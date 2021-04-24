@@ -53,7 +53,7 @@ export class ToastNotificationService {
     }
  
     isRefListAvailable(): boolean {
-        return this.toastComponentRefList.length < this.toastConfig.productionConfig.GlobalSettings.AllowedMessagesAtOnce;
+        return this.toastComponentRefList.length < this.toastConfig.productionConfig.GlobalSettings.AllowedNotificationsAtOnce;
     }
     
     prepareRawToast(_EventsController: ToastNotificationClass.ToastNotificationEventsController, _ToastNotificationBelonging: ToastNotificationClass.ToastNotificationBelonging): ToastNotificationInterface.IToastNotificationRawState {

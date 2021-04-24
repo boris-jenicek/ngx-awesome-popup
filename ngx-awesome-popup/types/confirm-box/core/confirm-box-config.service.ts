@@ -19,21 +19,23 @@ export class ConfirmBoxConfigService {
         dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, userConfigBase.ConfirmBoxCoreConfig); // this will make sure that object has right properties
         userConfig.ConfirmBoxCoreConfig = userConfigBase.ConfirmBoxCoreConfig;
         // endregion
-        
+    
         // region *** author default config values (if there is no user input) ***
-        this.authorConfig.ConfirmBoxCoreConfig.Width          = 'auto';
-        this.authorConfig.ConfirmBoxCoreConfig.Height         = 'auto';
-        this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition = 'center';
-        this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel   = 'Confirm';
-        this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel   = 'Decline';
-        this.authorConfig.ConfirmBoxCoreConfig.LayoutType     = DialogLayoutDisplay.NONE;
-        
+        this.authorConfig.ConfirmBoxCoreConfig.Width            = 'auto';
+        this.authorConfig.ConfirmBoxCoreConfig.Height           = 'auto';
+        this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition   = 'center';
+        this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel     = 'Confirm';
+        this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel     = 'Decline';
+        this.authorConfig.ConfirmBoxCoreConfig.DisableIcon      = false;
+        this.authorConfig.ConfirmBoxCoreConfig.AllowHTMLMessage = false;
+        this.authorConfig.ConfirmBoxCoreConfig.LayoutType       = DialogLayoutDisplay.NONE;
+    
         // endregion
-        
+    
         // region *** Production setup ***
         dataControl.copyValuesFrom(this.authorConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
         dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
         // endregion
-        
+    
     }
 }

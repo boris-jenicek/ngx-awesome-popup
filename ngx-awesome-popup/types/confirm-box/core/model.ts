@@ -11,7 +11,7 @@ export namespace ConfirmBoxInterface {
     export interface IConfirmBoxUserConfig {
         Buttons?: GlobalInterface.IButton[];
         ConfirmBoxCoreConfig?: ConfirmBoxInterface.IConfirmBoxCoreConfig;
-        Message?: GlobalInterface.IMessage;
+        Dispatch?: GlobalInterface.IDispatch;
     }
     
     export interface IConfirmBoxCoreConfig {
@@ -21,9 +21,11 @@ export namespace ConfirmBoxInterface {
         Height?: string;
         ButtonPosition?: VerticalPosition;
         LayoutType?: DialogLayoutDisplay;
-        Message?: GlobalInterface.IMessage;
+        Dispatch?: GlobalInterface.IDispatch;
         ConfirmLabel?: string;
         DeclineLabel?: string;
+        DisableIcon?: boolean;
+        AllowHTMLMessage?: boolean;
     }
     
     export interface IConfirmBoxBelonging {
@@ -57,7 +59,7 @@ export namespace ConfirmBoxClass {
     
     // region *** Public ***
     
-
+    
     export class ConfirmBoxInitializer {
         /** @internal */
         private confirmBoxCarrier: ConfirmBoxClass.ConfirmBoxCarrier = new ConfirmBoxClass.ConfirmBoxCarrier();
@@ -82,17 +84,17 @@ export namespace ConfirmBoxClass {
             this.confirmBoxCarrier.setConfig(_ConfirmBoxCoreConfig);
         }
         
-        setMessage(_Title: string, _Description: string = null): void {
+        setDispatch(_Title: string, _Message: string = null): void {
             this.confirmBoxCarrier.setTitle(_Title);
-            this.confirmBoxCarrier.setDescription(_Description);
+            this.confirmBoxCarrier.setMessage(_Message);
         }
         
         setTitle(_Title: string): void {
             this.confirmBoxCarrier.setTitle(_Title);
         }
-    
-        setDescription(_Description: string): void {
-            this.confirmBoxCarrier.setDescription(_Description);
+        
+        setMessage(_Message: string): void {
+            this.confirmBoxCarrier.setMessage(_Message);
         }
         
         setButtonLabels(_Confirm: string, _Decline?: string): void {
@@ -157,6 +159,7 @@ export namespace ConfirmBoxClass {
             this.defaultResponse = _Response;
         }
     }
+    
     // endregion
     
     export class ConfirmBoxDefaultResponse extends ConfirmBoxResponse implements ConfirmBoxInterface.IPrivateResponseMerged {
@@ -178,19 +181,19 @@ export namespace ConfirmBoxClass {
         
         constructor() {
         }
-        
+    
         setButtons(_Buttons: GlobalInterface.IButton[]) {
             if (_Buttons.length) {
                 this.confirmBoxBelonging.Buttons = _Buttons;
             }
         }
-        
+    
         setTitle(_Title: string): void {
-            this.confirmBoxBelonging.Message.Title = _Title;
+            this.confirmBoxBelonging.Dispatch.Title = _Title;
         }
     
-        setDescription(_Description: string): void {
-            this.confirmBoxBelonging.Message.Description = _Description;
+        setMessage(_Message: string): void {
+            this.confirmBoxBelonging.Dispatch.Message = _Message;
         }
     
     
@@ -198,7 +201,7 @@ export namespace ConfirmBoxClass {
             this.confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel = _Confirm;
             this.confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel = _Decline;
         }
-        
+    
         setConfig(_ConfirmBoxBelonging: ConfirmBoxInterface.IConfirmBoxCoreConfig) {
             // region *** local UserConfig (defined on place where dialog is called) ***
             const dataControl = new GlobalClass.DataControl();
@@ -215,19 +218,21 @@ export namespace ConfirmBoxClass {
     }
     
     export class Settings {
-        Buttons: GlobalInterface.IButton[]                      = [];
+        Buttons: GlobalInterface.IButton[]                              = [];
         ConfirmBoxCoreConfig: ConfirmBoxInterface.IConfirmBoxCoreConfig = new ConfirmBoxCoreConfig();
-        Message: GlobalInterface.IMessage                       = new GlobalClass.Message();
+        Dispatch: GlobalInterface.IDispatch                             = new GlobalClass.Dispatch();
     }
     
     export class ConfirmBoxCoreConfig implements ConfirmBoxInterface.IConfirmBoxCoreConfig {
-        Width: string                     = null;
-        Height: string                    = null;
-        ButtonPosition: VerticalPosition  = null;
-        LayoutType: DialogLayoutDisplay   = null;
-        Message: GlobalInterface.IMessage = null;
-        ConfirmLabel: string              = null;
-        DeclineLabel: string              = null;
+        Width: string                       = null;
+        Height: string                      = null;
+        ButtonPosition: VerticalPosition    = null;
+        LayoutType: DialogLayoutDisplay     = null;
+        Dispatch: GlobalInterface.IDispatch = null;
+        ConfirmLabel: string                = null;
+        DeclineLabel: string                = null;
+        DisableIcon: boolean                = null;
+        AllowHTMLMessage: boolean           = null;
     }
     
     export class ConfirmBoxBelonging extends ConfirmBoxClass.Settings implements ConfirmBoxInterface.IConfirmBoxBelonging {
@@ -237,13 +242,13 @@ export namespace ConfirmBoxClass {
         
         constructor() {
             super();
-            this.EventsController                                       = new ConfirmBoxEventsController(this.EntityUniqueID);
+            this.EventsController                                     = new ConfirmBoxEventsController(this.EntityUniqueID);
             const ConfirmBoxCoreConfigurator: ConfirmBoxConfigService = ServiceLocator.injector.get(ConfirmBoxConfigService);
-            const baseSettings                                          = new ConfirmBoxClass.Settings();
-            const dataControl                                           = new GlobalClass.DataControl();
+            const baseSettings                                        = new ConfirmBoxClass.Settings();
+            const dataControl                                         = new GlobalClass.DataControl();
             dataControl.copyValuesFrom(ConfirmBoxCoreConfigurator.productionConfig.ConfirmBoxCoreConfig, baseSettings.ConfirmBoxCoreConfig);
             this.ConfirmBoxCoreConfig = baseSettings.ConfirmBoxCoreConfig;
-            this.Buttons          = ConfirmBoxCoreConfigurator.productionConfig.Buttons.slice();
+            this.Buttons              = ConfirmBoxCoreConfigurator.productionConfig.Buttons.slice();
         }
         
     }

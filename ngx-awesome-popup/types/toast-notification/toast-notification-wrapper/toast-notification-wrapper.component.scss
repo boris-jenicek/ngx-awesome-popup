@@ -95,21 +95,42 @@
         }
       }
 
+    .content-with-icon {
+
+      }
+
     .content-holder {
-      color:          $gr-600;
-      display:        flex;
-      flex-direction: row-reverse;
-      height:         100%;
-      overflow:       auto;
-      width:          100%;
+      align-items:     center;
+      color:           $gr-600;
+      display:         flex;
+      flex-wrap:       nowrap;
+      height:          100%;
+      justify-content: space-between;
+      overflow:        auto;
+      width:           100%;
+      /*      display:        flex;
+            flex-direction: row-reverse;
+            height:         100%;
+            overflow:       auto;
+            width:          100%;*/
+
+      .icon-section {
+
+        .icon-type-toast {
+          font-size: 26px;
+          padding:   0 8px;
+          }
+        }
+
 
       .toast-inner-content {
         padding: 10px;
         }
 
       .text-wrapper p {
-        font-size: 14px;
-        margin:    0;
+        font-size:  14px;
+        margin:     0;
+        text-align: right;
         }
       }
 

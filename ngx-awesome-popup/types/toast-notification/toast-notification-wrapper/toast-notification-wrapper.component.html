@@ -1,8 +1,9 @@
 <div class="overlay-toast" (dblclick)="onOverlayClicked($event)" [@fadeInOut]="fadeInOutAnimation">
 	
 	<div
-			(mouseover)="mouseOver()" (mouseout)="mouseOut()"
-			class="evolve-toast" (click)="onToastClicked($event)" [ngClass]="{
+			class="evolve-toast"
+            #evolveToast (mouseover)="mouseOver()"
+			(mouseout)="mouseOut()" (click)="onToastClicked($event)" [ngClass]="{
           'standard-dialog': 0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,
           'success-dialog': 1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,
           'info-dialog': 2 === toastNotificationBelonging.ToastCoreConfig.LayoutType,
@@ -11,12 +12,13 @@
         }"
 			[ngStyle]="{'width': toastNotificationBelonging.ToastCoreConfig.Width, 'height': toastNotificationBelonging.ToastCoreConfig.Height}"
 	>
-		<div class="toast-title-content" *ngIf="toastNotificationBelonging.Message.Title">
+		<div class="toast-title-content" *ngIf="toastNotificationBelonging.Dispatch.Title">
 			
 			<div class="dont-break-out">
 				<div class="text-wrapper dont-break-out">
-					<div class="toast-title-text">{{toastNotificationBelonging.Message.Title}}</div>
-					<div class="close-ico" (click)="close()"
+					<div class="toast-title-text">{{toastNotificationBelonging.Dispatch.Title}}</div>
+					<div
+							class="close-ico" (click)="close()"
 							*ngIf="
 					     !toastNotificationBelonging.Buttons.length
 					     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel
@@ -29,26 +31,38 @@
 		
 		</div>
 		
-		<div class="content-holder" *ngIf="toastNotificationBelonging.Message.Description">
-			
+		<div class="content-holder" *ngIf="toastNotificationBelonging.Dispatch.Message">
+			<div class="icon-section" *ngIf="!toastNotificationBelonging.ToastCoreConfig.DisableIcon">
+					<span
+							class="icon-type-toast" [ngClass]="{
+				          '': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,
+				          'ap-icon-success icon-check-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,
+				          'ap-icon-info icon-info-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,
+				          'ap-icon-warning icon-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,
+				          'ap-icon-danger icon-times-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4
+				        }"
+					></span>
+			</div>
 			<div class="text-wrapper-section toast-inner-content" [ngStyle]="{'width': toastNotificationBelonging.ToastCoreConfig.Width, 'height': toastNotificationBelonging.ToastCoreConfig.Height}">
 				
 				<!--<div class="dont-break-out" [ngClass]="{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}">-->
 				<div class="dont-break-out">
-					<div class="text-wrapper dont-break-out"><p>{{toastNotificationBelonging.Message.Description}}</p></div>
+					<div class="text-wrapper dont-break-out" *ngIf="!toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage"><p>{{toastNotificationBelonging.Dispatch.Message}}</p></div>
+					<div class="text-wrapper" *ngIf="toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage" [innerHTML]="toastNotificationBelonging.Dispatch.Message"></div>
 				</div>
 			
 			</div>
-			
-			<div class="close-ico" (click)="close()"
-			     *ngIf="
+			<!--<span class="icon-times-circle"></span>-->
+			<div
+					class="close-ico" (click)="close()"
+					*ngIf="
 					     !toastNotificationBelonging.Buttons.length
 					     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel
 					     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel
-					     && !toastNotificationBelonging.Message.Title
+					     && !toastNotificationBelonging.Dispatch.Title
 					     "
 			></div>
-			
+		
 		</div>
 		
 		<div class="button-holder">

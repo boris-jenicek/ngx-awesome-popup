@@ -2,7 +2,6 @@ import {Inject, Injectable} from '@angular/core';
 import {GlobalClass, GlobalInterface} from './global';
 import {ColorVariance} from './enums';
 import IColorProvider = GlobalInterface.IColorProvider;
-import {ConfirmBoxClass} from '../types/confirm-box/core/model';
 
 @Injectable({
     providedIn: 'root'
@@ -44,6 +43,7 @@ export class GlobalConfigService {
             if (_ProductionColorTypes[key]) {
                 
                 this.setButtonStyling(key, _ProductionColorTypes[key]);
+                this.setIconStyling(key, _ProductionColorTypes[key]);
                 this.setToastStyling(key, _ProductionColorTypes[key]);
                 this.setDialogFrame(key, _ProductionColorTypes[key]);
                 
@@ -85,10 +85,21 @@ export class GlobalConfigService {
         const focusActiveStyle       = `
         box-shadow: 0 0 1px 2px ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
         `;
-        
+    
         this.getSheet().addRule(baseButtonClass, baseStyle);
         this.getSheet().addRule(hoverButtonClass, hoverStyle);
         this.getSheet().addRule(focusActiveButtonClass, focusActiveStyle);
+    
+    }
+    
+    private setIconStyling(_Key: string, _ColorProvider: IColorProvider) {
+        
+        const baseIconClass = `.ap-icon-${_Key.toLowerCase()}`;
+        const baseStyle     = `
+        color: ${_ColorProvider.BrightenForShade}!important;`;
+        
+        
+        this.getSheet().addRule(baseIconClass, baseStyle);
         
     }
     

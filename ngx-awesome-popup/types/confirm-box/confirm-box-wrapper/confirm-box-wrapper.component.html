@@ -1,38 +1,49 @@
 <div class="ngx-awesome-popup-overlay" (dblclick)="onOverlayClicked($event)" [@fadeInOut]="fadeInOutAnimation">
 	
-	<div class="evolve-confirm-box"
+	<div
+			class="evolve-confirm-box"
 			[ngClass]="{
 				  'standard-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
 				  'success-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,
 				  'info-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,
 				  'warning-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,
 				  'danger-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4
-				}" [ngStyle]="{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}">
+				}" [ngStyle]="{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}"
+	>
 		
+		<div class="confirm-box-title-content" *ngIf="confirmBoxBelonging.Dispatch.Title">
 			
-			<div class="confirm-box-title-content" *ngIf="confirmBoxBelonging.Message.Title">
-				
-				<div class="dont-break-out">
-					<div class="text-wrapper dont-break-out">
-						<div class="confirm-box-title-text">{{confirmBoxBelonging.Message.Title}}</div>
-					</div>
+			<div class="dont-break-out">
+				<div class="text-wrapper dont-break-out">
+					<div class="confirm-box-title-text">{{confirmBoxBelonging.Dispatch.Title}}</div>
 				</div>
-			
 			</div>
 		
-		<div class="content-holder" *ngIf="confirmBoxBelonging.Message.Description">
-			
+		</div>
+		
+		<div class="content-holder" *ngIf="confirmBoxBelonging.Dispatch.Message">
+			<div class="icon-section" *ngIf="!confirmBoxBelonging.ConfirmBoxCoreConfig.DisableIcon">
+					<span
+							class="icon-type-confirm-box" [ngClass]="{
+				          '': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
+				          'ap-icon-success icon-check-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,
+				          'ap-icon-info icon-info-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,
+				          'ap-icon-warning icon-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,
+				          'ap-icon-danger icon-times-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4
+				        }"
+					></span>
+			</div>
 			<div class="text-wrapper-section confirm-box-inner-content" [ngStyle]="{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}">
 				
 				<!--<div class="dont-break-out" [ngClass]="{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}">-->
 				<div class="dont-break-out">
-					<div class="text-wrapper dont-break-out">{{confirmBoxBelonging.Message.Description}}</div>
+					<div class="text-wrapper dont-break-out" *ngIf="!confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage">{{confirmBoxBelonging.Dispatch.Message}}</div>
+					<div class="text-wrapper" *ngIf="confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage" [innerHTML]="confirmBoxBelonging.Dispatch.Message"></div>
 				</div>
 			
 			</div>
-			
 		
-	</div>
+		</div>
 		<div class="button-holder">
 			<div class="button-section" *ngIf="confirmBoxBelonging.Buttons.length" [ngStyle]="{ 'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition }">
 				

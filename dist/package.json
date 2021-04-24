@@ -1,6 +1,6 @@
 {
   "name": "@costlydeveloper/ngx-awesome-popup",
-  "version": "0.0.1-alpha06",
+  "version": "0.0.1-alpha07",
   "description": "Gives new functionality to Angular 9+, generates beautiful popups, dialogs, ConfirmBoxes, AlertBoxes, ToastNotifications. Also gives the ability of opening dynamic components directly from typescript!",
   "keywords": [
     "toast notification",
@@ -11,7 +11,8 @@
     "modal angular",
     "toast",
     "popup",
-    "dynamic"
+    "dynamic",
+    "evoke custom HTML"
   ],
   "homepage": "https://costlydeveloper.github.io/ngx-awesome-popup/",
   "bugs": {

@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 import {delay, tap} from 'rxjs/operators';
 import {fadeInOut} from '../../../core/animations';
 import {GlobalInterface} from '../../../core/global';
+import {GlobalConfigService} from '../../../core/global-config.service';
 
 @Component({
     selector   : 'app-toast-notification-wrapper',
@@ -19,7 +20,7 @@ export class ToastNotificationWrapperComponent implements AfterViewInit, OnDestr
     subsToClosingDelay: Subscription;
     timer;
     
-    constructor(public toastNotificationBelonging: ToastNotificationClass.ToastNotificationBelonging, private cd: ChangeDetectorRef) {
+    constructor(public gConfig: GlobalConfigService, public toastNotificationBelonging: ToastNotificationClass.ToastNotificationBelonging, private cd: ChangeDetectorRef) {
     }
     
     ngAfterViewInit(): void {

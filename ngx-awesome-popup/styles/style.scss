@@ -1,5 +1,6 @@
 @import "variables";
 @import "buttons";
+@import "icons";
 // @import "node_modules/font-awesome";
 
 .ngx-awesome-popup-overlay {
@@ -69,9 +70,25 @@
 
   &.warning-dialog {
     border-color: $warning;
-  }
+    }
 
   &.danger-dialog {
     border-color: $danger;
+    }
   }
-}
+
+.ap-icon-success {
+  color: lighten($success, 10%);
+  }
+
+.ap-icon-info {
+  color: lighten($info, 10%);
+  }
+
+.ap-icon-warning {
+  color: lighten($warning, 10%);
+  }
+
+.ap-icon-danger {
+  color: lighten($danger, 10%);
+  }

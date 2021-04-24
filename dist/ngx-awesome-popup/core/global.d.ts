@@ -1,4 +1,5 @@
-import { ButtonLayoutDisplay } from './enums';
+import {ButtonLayoutDisplay} from './enums';
+
 export declare namespace GlobalInterface {
     /**
      * Each property of {@link ColorList} represent a string which represent a color in hex or rgb/rgba format.
@@ -81,20 +82,23 @@ export declare namespace GlobalInterface {
         TransparentDarkenVariance: string;
         IsBaseBright: boolean;
     }
-    interface IMessage {
+    
+    interface IDispatch {
         Title: string;
-        Description: string;
+        Message: string;
     }
 }
 export declare namespace GlobalClass {
-    class Message {
+    class Dispatch {
         Title: string;
-        Description: string;
+        Message: string;
     }
+    
     class ButtonMaker implements GlobalInterface.IButton {
         Label: string;
         ID: string;
         LayoutType: ButtonLayoutDisplay;
+        
         constructor(Label: string, ID: string, LayoutType?: ButtonLayoutDisplay);
     }
     class GlobalUserConfig implements GlobalInterface.IGlobalUserConfig {

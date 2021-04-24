@@ -80,7 +80,7 @@ export namespace GlobalInterface {
     }
     
     export interface IColorProvider {
-        
+    
         Base: string;
         Brighten: string;
         BrightenForShade: string;
@@ -91,17 +91,18 @@ export namespace GlobalInterface {
         TransparentDarkenVariance: string;
         IsBaseBright: boolean;
     }
-    export interface IMessage {
+    
+    export interface IDispatch {
         Title: string;
-        Description: string;
+        Message: string;
     }
 }
 
 export namespace GlobalClass {
     
-    export class Message {
-        Title: string       = null;
-        Description: string = null;
+    export class Dispatch {
+        Title: string   = null;
+        Message: string = null;
     }
     
     export class ButtonMaker implements GlobalInterface.IButton {
@@ -174,10 +175,10 @@ export namespace GlobalClass {
                 this.BrightShade               = this.brightness(this.brightness(this.Base, 'darken', darken), 'brighten', brighten);
                 this.TransparentDarkenVariance = this.brightness(this.transparentize(this.Base, 80), 'darken', 40);
                 if (this.isBright(this.Base)) {
-                    this.ContrastColor = 'rgb(52, 58, 64, 0.2)';
+                    this.ContrastColor = 'rgba(58,65,71,0.5)';
                     this.IsBaseBright  = true;
                 } else {
-                    this.ContrastColor = 'rgb(255,255,255, 0.2)';
+                    this.ContrastColor = 'rgb(255,255,255, 0.7)';
                     this.IsBaseBright  = false;
                 }
                 
@@ -258,7 +259,7 @@ export namespace GlobalClass {
             const brightest = Math.max(1.05, _Luminance + 0.05);
             const darkest   = Math.min(1.05, _Luminance + 0.05);
             const contrast  = (brightest) / (darkest);
-            return contrast < 3;
+            return contrast < 2.7;
         }
         
         private isColor(_StrColor) {

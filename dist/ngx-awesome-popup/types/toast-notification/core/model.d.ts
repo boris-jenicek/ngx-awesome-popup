@@ -1,16 +1,18 @@
-import { Observable } from 'rxjs';
-import { GlobalClass, GlobalInterface } from '../../../core/global';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import {Observable} from 'rxjs';
+import {GlobalClass, GlobalInterface} from '../../../core/global';
+import {DialogLayoutDisplay, VerticalPosition} from '../../../core/enums';
+
 export declare namespace ToastNotificationInterface {
     interface IToastNotificationUserConfig {
         Buttons?: GlobalInterface.IButton[];
         ToastCoreConfig?: ToastNotificationInterface.IToastCoreConfig;
-        Message?: GlobalInterface.IMessage;
+        Dispatch?: GlobalInterface.IDispatch;
         GlobalSettings?: ToastNotificationInterface.IGlobalToastSettings;
     }
+    
     interface IGlobalToastSettings {
         /** Number of popups allowed on screen, recommend 3-5 */
-        AllowedMessagesAtOnce: number;
+        AllowedNotificationsAtOnce: number;
     }
     interface IToastCoreConfig {
         /** Fixed popup width */
@@ -19,13 +21,15 @@ export declare namespace ToastNotificationInterface {
         Height?: string;
         ButtonPosition?: VerticalPosition;
         LayoutType?: DialogLayoutDisplay;
-        Message?: GlobalInterface.IMessage;
+        Dispatch?: GlobalInterface.IDispatch;
         /** Default confirm button Label */
         ConfirmLabel?: string;
         /** Default decline button Label */
         DeclineLabel?: string;
         /** Expressed in milliseconds */
         AutoCloseDelay?: number;
+        DisableIcon?: boolean;
+        AllowHTMLMessage?: boolean;
     }
     interface IToastNotificationBelonging {
         Buttons: GlobalInterface.IButton[];
@@ -55,10 +59,15 @@ export declare namespace ToastNotificationClass {
         constructor();
         openToastNotification$(): Observable<ToastNotificationInterface.IToastNotificationPublicResponse>;
         setButtons(_Buttons: GlobalInterface.IButton[]): void;
+    
         setConfig(_ToastNotificationConfig: ToastNotificationInterface.IToastCoreConfig): void;
-        setMessage(_Title: string, _Description?: string): void;
+    
+        setDispatch(_Title: string, _Message?: string): void;
+    
         setTitle(_Title: string): void;
-        setDescription(_Description: string): void;
+    
+        setMessage(_Message: string): void;
+    
         setButtonLabels(_Confirm: string, _Decline?: string): void;
     }
     class ToastNotificationResponse extends GlobalClass.DataControl implements ToastNotificationInterface.IToastNotificationResponse, ToastNotificationInterface.IToastNotificationPublicResponse {
@@ -92,34 +101,42 @@ export declare namespace ToastNotificationClass {
         toastNotificationBelonging: ToastNotificationClass.ToastNotificationBelonging;
         constructor();
         setButtons(_Buttons: GlobalInterface.IButton[]): void;
+    
         setTitle(_Title: string): void;
-        setDescription(_Description: string): void;
+    
+        setMessage(_Message: string): void;
+    
         setButtonLabels(_Confirm: string, _Decline: string): void;
         setConfig(_ToastNotificationBelonging: ToastNotificationInterface.IToastCoreConfig): void;
         openToastNotification$(): Observable<ToastNotificationInterface.IPrivateResponseMerged>;
     }
     class GlobalToastSettings implements ToastNotificationInterface.IGlobalToastSettings {
-        AllowedMessagesAtOnce: number;
+        AllowedNotificationsAtOnce: number;
     }
     class Settings {
         Buttons: GlobalInterface.IButton[];
         ToastCoreConfig: ToastNotificationInterface.IToastCoreConfig;
-        Message: GlobalInterface.IMessage;
+        Dispatch: GlobalInterface.IDispatch;
         GlobalSettings: GlobalToastSettings;
     }
+    
     class ToastCoreConfig implements ToastNotificationInterface.IToastCoreConfig {
         Width: string;
         Height: string;
         ButtonPosition: VerticalPosition;
         LayoutType: DialogLayoutDisplay;
-        Message: GlobalInterface.IMessage;
+        Dispatch: GlobalInterface.IDispatch;
         ConfirmLabel: string;
         DeclineLabel: string;
-        AutoCloseDelay?: number;
+        AutoCloseDelay: number;
+        DisableIcon: boolean;
+        AllowHTMLMessage: boolean;
     }
+    
     class ToastNotificationBelonging extends ToastNotificationClass.Settings implements ToastNotificationInterface.IToastNotificationBelonging {
         EntityUniqueID: string;
         EventsController: ToastNotificationEventsController;
+        
         constructor();
     }
 }
