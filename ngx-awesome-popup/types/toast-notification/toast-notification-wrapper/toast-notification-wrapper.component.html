@@ -1,6 +1,7 @@
 <div class="overlay-toast" (dblclick)="onOverlayClicked($event)" [@fadeInOut]="fadeInOutAnimation">
 	
 	<div
+			(mouseover)="mouseOver()" (mouseout)="mouseOut()"
 			class="evolve-toast" (click)="onToastClicked($event)" [ngClass]="{
           'standard-dialog': 0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,
           'success-dialog': 1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,

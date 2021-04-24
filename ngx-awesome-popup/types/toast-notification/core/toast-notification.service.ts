@@ -100,7 +100,7 @@ export class ToastNotificationService {
         toastEntity.prepend(domElem);
         // targetNode.prepend(toastEntity);
         setTimeout(()=> {
-            targetNode.appendChild(toastEntity);
+            targetNode.prepend(toastEntity);
         }, 200);
         
         
