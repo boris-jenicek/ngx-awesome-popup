@@ -1,10 +1,9 @@
-import {Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {GlobalClass} from '../../../core/global';
-import {ServiceLocator} from '../../../locator.service';
-import {ConfirmBoxConfigService} from './confirm-box-config.service';
-import {ConfirmBoxService} from './confirm-box-service';
-
+import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { GlobalClass } from '../../../core/global';
+import { ServiceLocator } from '../../../locator.service';
+import { ConfirmBoxConfigService } from './confirm-box-config.service';
+import { ConfirmBoxService } from './confirm-box-service';
 export var ConfirmBoxClass;
 (function (ConfirmBoxClass) {
     // region *** Public ***
@@ -128,22 +127,22 @@ export var ConfirmBoxClass;
     ConfirmBoxClass.ConfirmBoxCarrier = ConfirmBoxCarrier;
     class Settings {
         constructor() {
-            this.Buttons              = [];
+            this.Buttons = [];
             this.ConfirmBoxCoreConfig = new ConfirmBoxCoreConfig();
-            this.Dispatch             = new GlobalClass.Dispatch();
+            this.Dispatch = new GlobalClass.Dispatch();
         }
     }
     ConfirmBoxClass.Settings = Settings;
     class ConfirmBoxCoreConfig {
         constructor() {
-            this.Width            = null;
-            this.Height           = null;
-            this.ButtonPosition   = null;
-            this.LayoutType       = null;
-            this.Dispatch         = null;
-            this.ConfirmLabel     = null;
-            this.DeclineLabel     = null;
-            this.DisableIcon      = null;
+            this.Width = null;
+            this.Height = null;
+            this.ButtonPosition = null;
+            this.LayoutType = null;
+            this.Dispatch = null;
+            this.ConfirmLabel = null;
+            this.DeclineLabel = null;
+            this.DisableIcon = null;
             this.AllowHTMLMessage = null;
         }
     }
@@ -151,14 +150,14 @@ export var ConfirmBoxClass;
     class ConfirmBoxBelonging extends ConfirmBoxClass.Settings {
         constructor() {
             super();
-            this.EntityUniqueID              = 'C' + Math.random().toString(36).substr(2, 9);
-            this.EventsController            = new ConfirmBoxEventsController(this.EntityUniqueID);
+            this.EntityUniqueID = 'C' + Math.random().toString(36).substr(2, 9);
+            this.EventsController = new ConfirmBoxEventsController(this.EntityUniqueID);
             const ConfirmBoxCoreConfigurator = ServiceLocator.injector.get(ConfirmBoxConfigService);
-            const baseSettings               = new ConfirmBoxClass.Settings();
-            const dataControl                = new GlobalClass.DataControl();
+            const baseSettings = new ConfirmBoxClass.Settings();
+            const dataControl = new GlobalClass.DataControl();
             dataControl.copyValuesFrom(ConfirmBoxCoreConfigurator.productionConfig.ConfirmBoxCoreConfig, baseSettings.ConfirmBoxCoreConfig);
             this.ConfirmBoxCoreConfig = baseSettings.ConfirmBoxCoreConfig;
-            this.Buttons              = ConfirmBoxCoreConfigurator.productionConfig.Buttons.slice();
+            this.Buttons = ConfirmBoxCoreConfigurator.productionConfig.Buttons.slice();
         }
     }
     ConfirmBoxClass.ConfirmBoxBelonging = ConfirmBoxBelonging;

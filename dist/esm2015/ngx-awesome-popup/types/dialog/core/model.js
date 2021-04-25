@@ -1,16 +1,15 @@
-import {Subject} from 'rxjs';
-import {ServiceLocator} from '../../../locator.service';
-import {DialogConfigService} from './dialog-config.service';
-import {map} from 'rxjs/operators';
-import {GlobalClass} from '../../../core/global';
-import {DialogService} from './dialog.service';
-
+import { Subject } from 'rxjs';
+import { ServiceLocator } from '../../../locator.service';
+import { DialogConfigService } from './dialog-config.service';
+import { map } from 'rxjs/operators';
+import { GlobalClass } from '../../../core/global';
+import { DialogService } from './dialog.service';
 export var DialogClass;
 (function (DialogClass) {
     // region *** Public ***
     class DialogInitializer {
         constructor(component) {
-            this.component     = component;
+            this.component = component;
             this.dialogCarrier = new DialogClass.DialogCarrier();
             this.dialogCarrier.setComponent(this.component);
         }
@@ -60,14 +59,14 @@ export var DialogClass;
     class DialogEventsController {
         constructor(EntityUniqueID) {
             this.EntityUniqueID = EntityUniqueID;
-            this._afterClosed   = new Subject();
-            this.afterClosed$   = this._afterClosed.asObservable();
-            this._afterLoader   = new Subject();
-            this.afterLoader$   = this._afterLoader.asObservable();
+            this._afterClosed = new Subject();
+            this.afterClosed$ = this._afterClosed.asObservable();
+            this._afterLoader = new Subject();
+            this.afterLoader$ = this._afterLoader.asObservable();
             this._onButtonClick = new Subject();
             this.onButtonClick$ = this._onButtonClick.asObservable();
-            this._buttonList    = new Subject();
-            this.buttonList$    = this._buttonList.asObservable();
+            this._buttonList = new Subject();
+            this.buttonList$ = this._buttonList.asObservable();
         }
         close(_Payload = null) {
             this.defaultResponse.setPayload(_Payload);
@@ -155,14 +154,14 @@ export var DialogClass;
             super();
             /** @internal */
             this.EntityUniqueID = 'D' + Math.random().toString(36).substr(2, 9);
-            this.CustomData          = null;
-            this.EventsController    = new DialogEventsController(this.EntityUniqueID);
+            this.CustomData = null;
+            this.EventsController = new DialogEventsController(this.EntityUniqueID);
             const dialogConfigurator = ServiceLocator.injector.get(DialogConfigService);
-            const baseSettings       = new DialogSettings();
-            const dataControl        = new GlobalClass.DataControl();
+            const baseSettings = new DialogSettings();
+            const dataControl = new GlobalClass.DataControl();
             dataControl.copyValuesFrom(dialogConfigurator.productionConfig.DialogCoreConfig, baseSettings.DialogCoreConfig);
             this.DialogCoreConfig = baseSettings.DialogCoreConfig;
-            this.Buttons          = dialogConfigurator.productionConfig.Buttons.slice();
+            this.Buttons = dialogConfigurator.productionConfig.Buttons.slice();
         }
     }
     DialogClass.DialogBelonging = DialogBelonging;

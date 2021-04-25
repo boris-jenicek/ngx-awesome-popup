@@ -1,7 +1,6 @@
-import {Observable} from 'rxjs';
-import {GlobalClass, GlobalInterface} from '../../../core/global';
-import {DialogLayoutDisplay, VerticalPosition} from '../../../core/enums';
-
+import { Observable } from 'rxjs';
+import { GlobalClass, GlobalInterface } from '../../../core/global';
+import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
 export declare namespace ConfirmBoxInterface {
     interface IConfirmBoxUserConfig {
         Buttons?: GlobalInterface.IButton[];

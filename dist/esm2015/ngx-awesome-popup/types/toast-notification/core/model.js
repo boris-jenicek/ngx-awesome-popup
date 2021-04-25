@@ -1,10 +1,9 @@
-import {Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {GlobalClass} from '../../../core/global';
-import {ServiceLocator} from '../../../locator.service';
-import {ToastNotificationService} from './toast-notification.service';
-import {ToastNotificationConfigService} from './toast-notification-config.service';
-
+import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { GlobalClass } from '../../../core/global';
+import { ServiceLocator } from '../../../locator.service';
+import { ToastNotificationService } from './toast-notification.service';
+import { ToastNotificationConfigService } from './toast-notification-config.service';
 export var ToastNotificationClass;
 (function (ToastNotificationClass) {
     // region *** Public ***
@@ -136,24 +135,24 @@ export var ToastNotificationClass;
     ToastNotificationClass.GlobalToastSettings = GlobalToastSettings;
     class Settings {
         constructor() {
-            this.Buttons         = [];
+            this.Buttons = [];
             this.ToastCoreConfig = new ToastCoreConfig();
-            this.Dispatch        = new GlobalClass.Dispatch();
-            this.GlobalSettings  = new GlobalToastSettings();
+            this.Dispatch = new GlobalClass.Dispatch();
+            this.GlobalSettings = new GlobalToastSettings();
         }
     }
     ToastNotificationClass.Settings = Settings;
     class ToastCoreConfig {
         constructor() {
-            this.Width            = null;
-            this.Height           = null;
-            this.ButtonPosition   = null;
-            this.LayoutType       = null;
-            this.Dispatch         = null;
-            this.ConfirmLabel     = null;
-            this.DeclineLabel     = null;
-            this.AutoCloseDelay   = null;
-            this.DisableIcon      = null;
+            this.Width = null;
+            this.Height = null;
+            this.ButtonPosition = null;
+            this.LayoutType = null;
+            this.Dispatch = null;
+            this.ConfirmLabel = null;
+            this.DeclineLabel = null;
+            this.AutoCloseDelay = null;
+            this.DisableIcon = null;
             this.AllowHTMLMessage = null;
         }
     }
@@ -161,14 +160,14 @@ export var ToastNotificationClass;
     class ToastNotificationBelonging extends ToastNotificationClass.Settings {
         constructor() {
             super();
-            this.EntityUniqueID                 = 'T' + Math.random().toString(36).substr(2, 9);
-            this.EventsController               = new ToastNotificationEventsController(this.EntityUniqueID);
+            this.EntityUniqueID = 'T' + Math.random().toString(36).substr(2, 9);
+            this.EventsController = new ToastNotificationEventsController(this.EntityUniqueID);
             const toastNotificationConfigurator = ServiceLocator.injector.get(ToastNotificationConfigService);
-            const baseSettings                  = new ToastNotificationClass.Settings();
-            const dataControl                   = new GlobalClass.DataControl();
+            const baseSettings = new ToastNotificationClass.Settings();
+            const dataControl = new GlobalClass.DataControl();
             dataControl.copyValuesFrom(toastNotificationConfigurator.productionConfig.ToastCoreConfig, baseSettings.ToastCoreConfig);
             this.ToastCoreConfig = baseSettings.ToastCoreConfig;
-            this.Buttons         = toastNotificationConfigurator.productionConfig.Buttons.slice();
+            this.Buttons = toastNotificationConfigurator.productionConfig.Buttons.slice();
         }
     }
     ToastNotificationClass.ToastNotificationBelonging = ToastNotificationBelonging;

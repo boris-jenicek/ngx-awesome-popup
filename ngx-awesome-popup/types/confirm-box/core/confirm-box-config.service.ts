@@ -26,7 +26,7 @@ export class ConfirmBoxConfigService {
         this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition   = 'center';
         this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel     = 'Confirm';
         this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel     = 'Decline';
-        this.authorConfig.ConfirmBoxCoreConfig.DisableIcon      = true;
+        this.authorConfig.ConfirmBoxCoreConfig.DisableIcon      = false;
         this.authorConfig.ConfirmBoxCoreConfig.AllowHTMLMessage = false;
         this.authorConfig.ConfirmBoxCoreConfig.LayoutType       = DialogLayoutDisplay.NONE;
     

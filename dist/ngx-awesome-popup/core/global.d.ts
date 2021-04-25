@@ -1,5 +1,4 @@
-import {ButtonLayoutDisplay} from './enums';
-
+import { ButtonLayoutDisplay } from './enums';
 export declare namespace GlobalInterface {
     /**
      * Each property of {@link ColorList} represent a string which represent a color in hex or rgb/rgba format.

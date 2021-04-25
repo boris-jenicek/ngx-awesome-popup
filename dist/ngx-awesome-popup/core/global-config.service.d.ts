@@ -1,5 +1,4 @@
-import {GlobalInterface} from './global';
-
+import { GlobalInterface } from './global';
 export declare class GlobalConfigService {
     private userGlobalConfig;
     productionGlobalConfig: GlobalInterface.IGlobalConfig;

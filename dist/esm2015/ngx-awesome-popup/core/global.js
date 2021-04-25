@@ -1,10 +1,9 @@
-import {ButtonLayoutDisplay} from './enums';
-
+import { ButtonLayoutDisplay } from './enums';
 export var GlobalClass;
 (function (GlobalClass) {
     class Dispatch {
         constructor() {
-            this.Title   = null;
+            this.Title = null;
             this.Message = null;
         }
     }
@@ -84,11 +83,11 @@ export var GlobalClass;
                 this.TransparentDarkenVariance = this.brightness(this.transparentize(this.Base, 80), 'darken', 40);
                 if (this.isBright(this.Base)) {
                     this.ContrastColor = 'rgba(58,65,71,0.5)';
-                    this.IsBaseBright  = true;
+                    this.IsBaseBright = true;
                 }
                 else {
                     this.ContrastColor = 'rgb(255,255,255, 0.7)';
-                    this.IsBaseBright  = false;
+                    this.IsBaseBright = false;
                 }
                 /*         console.log('%c Color ', `background: ${this.BrightShade}; color: ${this.ContrastColor}`, luminance, darken, brighten);
                            console.log('%c Brighten ', `background: ${this.Brighten}; color: ${this.ContrastColor}`, this.Brighten);

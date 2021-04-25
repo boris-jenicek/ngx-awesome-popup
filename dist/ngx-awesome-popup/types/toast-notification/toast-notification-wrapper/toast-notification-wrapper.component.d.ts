@@ -1,9 +1,8 @@
-import {AfterViewInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
-import {ToastNotificationClass} from '../core/model';
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
-import {GlobalInterface} from '../../../core/global';
-import {GlobalConfigService} from '../../../core/global-config.service';
-
+import { AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { ToastNotificationClass } from '../core/model';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { GlobalInterface } from '../../../core/global';
+import { GlobalConfigService } from '../../../core/global-config.service';
 export declare class ToastNotificationWrapperComponent implements AfterViewInit, OnDestroy {
     gConfig: GlobalConfigService;
     toastNotificationBelonging: ToastNotificationClass.ToastNotificationBelonging;
