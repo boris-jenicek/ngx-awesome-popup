@@ -8,7 +8,6 @@ export declare namespace ConfirmBoxInterface {
         ConfirmBoxCoreConfig?: ConfirmBoxInterface.IConfirmBoxCoreConfig;
         Dispatch?: GlobalInterface.IDispatch;
     }
-    
     interface IConfirmBoxCoreConfig {
         /** Fixed popup width */
         Width?: string;
@@ -47,15 +46,10 @@ export declare namespace ConfirmBoxClass {
         constructor();
         openConfirmBox$(): Observable<ConfirmBoxInterface.IConfirmBoxPublicResponse>;
         setButtons(_Buttons: GlobalInterface.IButton[]): void;
-    
         setConfig(_ConfirmBoxCoreConfig: ConfirmBoxInterface.IConfirmBoxCoreConfig): void;
-    
         setDispatch(_Title: string, _Message?: string): void;
-    
         setTitle(_Title: string): void;
-    
         setMessage(_Message: string): void;
-    
         setButtonLabels(_Confirm: string, _Decline?: string): void;
     }
     class ConfirmBoxResponse extends GlobalClass.DataControl implements ConfirmBoxInterface.IConfirmBoxResponse, ConfirmBoxInterface.IConfirmBoxPublicResponse {
@@ -89,11 +83,8 @@ export declare namespace ConfirmBoxClass {
         confirmBoxBelonging: ConfirmBoxClass.ConfirmBoxBelonging;
         constructor();
         setButtons(_Buttons: GlobalInterface.IButton[]): void;
-    
         setTitle(_Title: string): void;
-    
         setMessage(_Message: string): void;
-    
         setButtonLabels(_Confirm: string, _Decline: string): void;
         setConfig(_ConfirmBoxBelonging: ConfirmBoxInterface.IConfirmBoxCoreConfig): void;
         openConfirmBox$(): Observable<ConfirmBoxInterface.IPrivateResponseMerged>;
@@ -103,7 +94,6 @@ export declare namespace ConfirmBoxClass {
         ConfirmBoxCoreConfig: ConfirmBoxInterface.IConfirmBoxCoreConfig;
         Dispatch: GlobalInterface.IDispatch;
     }
-    
     class ConfirmBoxCoreConfig implements ConfirmBoxInterface.IConfirmBoxCoreConfig {
         Width: string;
         Height: string;
@@ -115,11 +105,9 @@ export declare namespace ConfirmBoxClass {
         DisableIcon: boolean;
         AllowHTMLMessage: boolean;
     }
-    
     class ConfirmBoxBelonging extends ConfirmBoxClass.Settings implements ConfirmBoxInterface.IConfirmBoxBelonging {
         EntityUniqueID: string;
         EventsController: ConfirmBoxEventsController;
-        
         constructor();
     }
 }

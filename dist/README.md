@@ -269,7 +269,6 @@ API documentation:
 
 #### Setup of child-dynamic component that is rendered in dialog:
 The child dynamic component represents AnyAngularComponent from example above.
-
 ```typescript
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Subscription} from 'rxjs';

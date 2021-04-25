@@ -4,9 +4,7 @@ export declare class GlobalConfigService {
     private userGlobalConfig;
     productionGlobalConfig: GlobalInterface.IGlobalConfig;
     private authorGlobalConfig;
-    
     constructor(userGlobalConfig: GlobalInterface.IGlobalUserConfig);
-    
     private setNodeStyles;
     private setToastStyling;
     private setButtonStyling;

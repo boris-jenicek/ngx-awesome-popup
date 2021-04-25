@@ -95,9 +95,7 @@ export class GlobalConfigService {
     private setIconStyling(_Key: string, _ColorProvider: IColorProvider) {
         
         const baseIconClass = `.ap-icon-${_Key.toLowerCase()}`;
-        const baseStyle     = `
-        color: ${_ColorProvider.BrightenForShade}!important;`;
-        
+        const baseStyle     = `color: ${_ColorProvider.BrightenForShade}!important;`;
         
         this.getSheet().addRule(baseIconClass, baseStyle);
         
@@ -185,4 +183,5 @@ export class GlobalConfigService {
         });
         
     }
+    
 }

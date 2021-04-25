@@ -82,7 +82,6 @@ export declare namespace GlobalInterface {
         TransparentDarkenVariance: string;
         IsBaseBright: boolean;
     }
-    
     interface IDispatch {
         Title: string;
         Message: string;
@@ -93,12 +92,10 @@ export declare namespace GlobalClass {
         Title: string;
         Message: string;
     }
-    
     class ButtonMaker implements GlobalInterface.IButton {
         Label: string;
         ID: string;
         LayoutType: ButtonLayoutDisplay;
-        
         constructor(Label: string, ID: string, LayoutType?: ButtonLayoutDisplay);
     }
     class GlobalUserConfig implements GlobalInterface.IGlobalUserConfig {

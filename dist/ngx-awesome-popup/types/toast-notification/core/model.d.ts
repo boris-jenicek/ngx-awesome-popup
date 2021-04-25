@@ -9,7 +9,6 @@ export declare namespace ToastNotificationInterface {
         Dispatch?: GlobalInterface.IDispatch;
         GlobalSettings?: ToastNotificationInterface.IGlobalToastSettings;
     }
-    
     interface IGlobalToastSettings {
         /** Number of popups allowed on screen, recommend 3-5 */
         AllowedNotificationsAtOnce: number;
@@ -59,15 +58,10 @@ export declare namespace ToastNotificationClass {
         constructor();
         openToastNotification$(): Observable<ToastNotificationInterface.IToastNotificationPublicResponse>;
         setButtons(_Buttons: GlobalInterface.IButton[]): void;
-    
         setConfig(_ToastNotificationConfig: ToastNotificationInterface.IToastCoreConfig): void;
-    
         setDispatch(_Title: string, _Message?: string): void;
-    
         setTitle(_Title: string): void;
-    
         setMessage(_Message: string): void;
-    
         setButtonLabels(_Confirm: string, _Decline?: string): void;
     }
     class ToastNotificationResponse extends GlobalClass.DataControl implements ToastNotificationInterface.IToastNotificationResponse, ToastNotificationInterface.IToastNotificationPublicResponse {
@@ -101,11 +95,8 @@ export declare namespace ToastNotificationClass {
         toastNotificationBelonging: ToastNotificationClass.ToastNotificationBelonging;
         constructor();
         setButtons(_Buttons: GlobalInterface.IButton[]): void;
-    
         setTitle(_Title: string): void;
-    
         setMessage(_Message: string): void;
-    
         setButtonLabels(_Confirm: string, _Decline: string): void;
         setConfig(_ToastNotificationBelonging: ToastNotificationInterface.IToastCoreConfig): void;
         openToastNotification$(): Observable<ToastNotificationInterface.IPrivateResponseMerged>;
@@ -119,7 +110,6 @@ export declare namespace ToastNotificationClass {
         Dispatch: GlobalInterface.IDispatch;
         GlobalSettings: GlobalToastSettings;
     }
-    
     class ToastCoreConfig implements ToastNotificationInterface.IToastCoreConfig {
         Width: string;
         Height: string;
@@ -132,11 +122,9 @@ export declare namespace ToastNotificationClass {
         DisableIcon: boolean;
         AllowHTMLMessage: boolean;
     }
-    
     class ToastNotificationBelonging extends ToastNotificationClass.Settings implements ToastNotificationInterface.IToastNotificationBelonging {
         EntityUniqueID: string;
         EventsController: ToastNotificationEventsController;
-        
         constructor();
     }
 }

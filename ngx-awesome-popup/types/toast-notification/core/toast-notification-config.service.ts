@@ -29,7 +29,7 @@ export class ToastNotificationConfigService {
         // this.authorConfig.ToastCoreConfig.ConfirmLabel   = 'Confirm';
         // this.authorConfig.ToastCoreConfig.DeclineLabel   = 'Decline';
         this.authorConfig.ToastCoreConfig.AutoCloseDelay            = 2500;
-        this.authorConfig.ToastCoreConfig.DisableIcon               = false;
+        this.authorConfig.ToastCoreConfig.DisableIcon               = true;
         this.authorConfig.ToastCoreConfig.AllowHTMLMessage          = true;
         this.authorConfig.ToastCoreConfig.LayoutType                = DialogLayoutDisplay.NONE;
         this.authorConfig.GlobalSettings.AllowedNotificationsAtOnce = 5;

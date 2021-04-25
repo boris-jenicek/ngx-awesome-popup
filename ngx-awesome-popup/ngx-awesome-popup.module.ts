@@ -1,25 +1,25 @@
 import {Injector, ModuleWithProviders, NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ServiceLocator} from './locator.service';
+import {DialogWrapperComponent} from './types/dialog/dialog-wrapper/dialog-wrapper.component';
 import {InsertionDirective} from './core/insertion.directive';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {BrowserModule} from '@angular/platform-browser';
-import {DialogConfigService} from './types/dialog/core/dialog-config.service';
-import {DefaultLoaderComponent} from './default-loader/default-loader.component';
 import {InsertionLoaderDirective} from './core/insertion-loader.directive';
-import {GlobalConfigService} from './core/global-config.service';
-import {GlobalInterface} from './core/global';
+import {DefaultLoaderComponent} from './default-loader/default-loader.component';
 import {ConfirmBoxWrapperComponent} from './types/confirm-box/confirm-box-wrapper/confirm-box-wrapper.component';
+import {ToastNotificationWrapperComponent} from './types/toast-notification/toast-notification-wrapper/toast-notification-wrapper.component';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DialogService} from './types/dialog/core/dialog.service';
+import {ConfirmBoxService} from './types/confirm-box/core/confirm-box-service';
+import {ToastNotificationService} from './types/toast-notification/core/toast-notification.service';
+import {GlobalConfigService} from './core/global-config.service';
 import {ConfirmBoxConfigService} from './types/confirm-box/core/confirm-box-config.service';
+import {DialogConfigService} from './types/dialog/core/dialog-config.service';
+import {ToastNotificationConfigService} from './types/toast-notification/core/toast-notification-config.service';
+import {ToastNotificationClass, ToastNotificationInterface} from './types/toast-notification/core/model';
 import {ConfirmBoxClass, ConfirmBoxInterface} from './types/confirm-box/core/model';
 import {DialogClass, DialogInterface} from './types/dialog/core/model';
-import {ConfirmBoxService} from './types/confirm-box/core/confirm-box-service';
-import {ToastNotificationWrapperComponent} from './types/toast-notification/toast-notification-wrapper/toast-notification-wrapper.component';
-import {ToastNotificationClass, ToastNotificationInterface} from './types/toast-notification/core/model';
-import {ToastNotificationConfigService} from './types/toast-notification/core/toast-notification-config.service';
-import {ToastNotificationService} from './types/toast-notification/core/toast-notification.service';
-import {DialogWrapperComponent} from './types/dialog/dialog-wrapper/dialog-wrapper.component';
-import {DialogService} from './types/dialog/core/dialog.service';
+import {ServiceLocator} from './locator.service';
+import {GlobalInterface} from './core/global';
 
 @NgModule({
     declarations: [
