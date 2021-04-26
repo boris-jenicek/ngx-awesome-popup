@@ -27,7 +27,8 @@
 
 ## ➤ External links
 
-* [➤ **DEMO** showcase](https://costlydeveloper.github.io/demo-ngx-awesome-popup/)
+* [➤ DEMO showcase](https://costlydeveloper.github.io/demo-ngx-awesome-popup/)
+* [➤ DEMO StackBlitz](https://stackblitz.com/github/costlydeveloper/demo-ngx-awesome-popup?file=src%2Fapp%2Fapp.component.ts)
 * [➤ GitHub repository of the DEMO](https://github.com/costlydeveloper/demo-ngx-awesome-popup)
 * [➤ API documentation](https://github.com/costlydeveloper/ngx-awesome-popup/wiki)
 

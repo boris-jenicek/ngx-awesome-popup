@@ -56,24 +56,12 @@
       }
 
     .close-ico {
-      background:    transparentize($black, 0.8);
-      border-radius: 50%;
+      color:    transparentize($black, 0.8);
       cursor:        pointer;
-      height:        18px;
       position:      absolute;
       right:         6px;
-      top:           6px;
-      width:         18px;
-      }
-
-    div.close-ico::after {
-      color:      transparentize($white, 0.5);
-      content:    "\d7";
-      font-size:  15px;
-      left:       5px;
-      position:   relative;
-      text-align: center;
-      top:        -1px;
+      top:           4px;
+      font-size:     20px;
       }
 
     .toast-title-content {

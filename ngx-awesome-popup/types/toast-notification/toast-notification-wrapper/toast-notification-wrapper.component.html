@@ -17,14 +17,13 @@
 			<div class="dont-break-out">
 				<div class="text-wrapper dont-break-out">
 					<div class="toast-title-text">{{toastNotificationBelonging.Dispatch.Title}}</div>
-					<div
-							class="close-ico" (click)="close()"
-							*ngIf="
+					<span (click)="close()" class="close-ico icon-times-circle"
+					      *ngIf="
 					     !toastNotificationBelonging.Buttons.length
 					     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel
 					     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel
 					     "
-					></div>
+					></span>
 				
 				</div>
 			</div>
@@ -52,17 +51,15 @@
 				</div>
 			
 			</div>
-			<!--<span class="icon-times-circle"></span>-->
-			<div
-					class="close-ico" (click)="close()"
-					*ngIf="
+			<span (click)="close()" class="close-ico icon-times-circle"
+			      *ngIf="
 					     !toastNotificationBelonging.Buttons.length
 					     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel
 					     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel
 					     && !toastNotificationBelonging.Dispatch.Title
 					     "
-			></div>
-		
+			></span>
+			
 		</div>
 		
 		<div class="button-holder">
