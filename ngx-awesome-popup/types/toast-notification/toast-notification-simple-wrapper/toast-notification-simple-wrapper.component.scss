@@ -14,7 +14,7 @@
 
   .progress-bar-container {
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 0  0 5px 5px;
+    border-radius: 0  0 2px 2px;
     }
   .progress-bar {
     height: 4px;
@@ -22,10 +22,8 @@
     }
   .evolve-toast {
     background:     $gr-100;
-    border-radius:  5px;
-    border-right:   4px solid;
-    // padding:        10px 10px 5px 10px;
-    box-shadow:     0 0 4px 1px transparentize(black, 0.75);
+    border-radius:  2px;
+    box-shadow:     0 0 2px 1px transparentize(black, 0.75);
     display:        flex;
     flex-direction: column;
     margin-top:     10px;
@@ -35,7 +33,7 @@
     vertical-align: bottom;
 
     &:hover {
-      box-shadow: 0 0 4px 3px transparentize(black, 0.75);
+      box-shadow: 0 0 4px 2px transparentize(black, 0.75);
       }
 
     &.standard-dialog {
@@ -46,35 +44,31 @@
       }
 
     &.success-dialog {
-      background-color: lighten($success, 45%);
-      border-color:     $success;
+      background-color: lighten($success, 25%);
 
       .progress-bar {
-        background-color: lighten($success, 25%);
+        background-color: lighten($success, 15%);
         }
       }
 
     &.info-dialog {
-      background-color: lighten($info, 40%);
-      border-color:     $info;
+      background-color: lighten($info, 30%);
 
       .progress-bar {
-        background-color: lighten($info, 25%);
+        background-color: lighten($info, 15%);
         }
       }
 
     &.warning-dialog {
-      background-color: lighten($warning, 40%);
-      border-color:     $warning;
+      background-color: lighten($warning, 30%);
 
       .progress-bar {
-        background-color: lighten($warning, 25%);
+        background-color: lighten($warning, 20%);
         }
       }
 
     &.danger-dialog {
-      background-color: lighten($danger, 25%);
-      border-color:     $danger;
+      background-color: lighten($danger, 20%);
 
       .progress-bar {
         background-color: lighten($danger, 10%);
@@ -87,23 +81,33 @@
       position:  absolute;
       right:     6px;
       top:       4px;
-      font-size: 20px;
+      font-size: 18px;
       }
 
     .toast-title-content {
-      align-items:      flex-start;
-      background-clip:  padding-box;
-      background-color: transparentize($white, 0.45);
-      border-bottom:    1px solid transparentize($black, 0.95);
-      border-radius:    5px 5px 0 0;
-      color:            $gr-600;
-      display:          flex;
-      flex-direction:   column;
-      height:           auto;
-      justify-content:  flex-start;
-      padding:          5px 10px 5px;
-      width:            auto;
+      align-items: center;
+      background-clip: padding-box;
+      border-radius: 2px 2px 0 0;
+      color: #6c757d;
+      display: flex;
+      flex-direction: row;
+      height: auto;
+      justify-content: flex-start;
+      padding: 5px 10px 5px;
+      width: auto;
+      align-content: space-around;
+      flex-wrap: wrap;
 
+
+      .icon-section {
+
+
+        .icon-type-toast {
+          font-size: 20px;
+          padding: 0 6px 0 0;
+          opacity: 0.8;
+          }
+        }
       .toast-title-text {
         font-size: 0.87rem;
         }
@@ -122,19 +126,8 @@
       justify-content: space-between;
       overflow:        auto;
       width:           100%;
-      /*      display:        flex;
-            flex-direction: row-reverse;
-            height:         100%;
-            overflow:       auto;
-            width:          100%;*/
 
-      .icon-section {
 
-        .icon-type-toast {
-          font-size: 26px;
-          padding:   0 2px 0 6px;
-          }
-        }
 
 
       .toast-inner-content {
@@ -149,14 +142,11 @@
 
     .button-holder {
       display:         flex;
-      // height:          100%;
       flex-direction:  column;
       justify-content: flex-end;
       width:           100%;
 
       .button-section {
-        //  background: transparentize($gr-100, 0.8);
-        // border-top: 1px solid transparentize($gr-200, 0.5);
         margin:  0;
         padding: 4px 10px;
         }

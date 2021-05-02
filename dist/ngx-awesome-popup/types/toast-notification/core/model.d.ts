@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { GlobalClass, GlobalInterface } from '../../../core/global';
 import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import { GlobalClass, GlobalInterface } from '../../../core/global';
 export declare namespace ToastNotificationInterface {
     interface IToastNotificationUserConfig {
         Buttons?: GlobalInterface.IButton[];
@@ -13,11 +13,12 @@ export declare namespace ToastNotificationInterface {
         AllowedNotificationsAtOnce: number;
     }
     interface IToastCoreConfig {
-        /** Fixed popup width */
-        Width?: string;
-        /** Fixed popup height */
-        Height?: string;
+        ToastPosition?: ToastPositionEnum;
+        ProgressBar?: ToastProgressBarEnum;
+        ToastUserViewType?: ToastUserViewTypeEnum;
+        OpenInElementID?: string;
         ButtonPosition?: VerticalPosition;
+        TextPosition?: VerticalPosition;
         LayoutType?: DialogLayoutDisplay;
         Dispatch?: GlobalInterface.IDispatch;
         /** Default confirm button Label */
@@ -103,6 +104,9 @@ export declare namespace ToastNotificationClass {
     class GlobalToastSettings implements ToastNotificationInterface.IGlobalToastSettings {
         AllowedNotificationsAtOnce: number;
     }
+    class ResetToastGlobalSettings {
+        constructor(globalToastConfig?: ToastNotificationInterface.IGlobalToastSettings);
+    }
     class Settings {
         Buttons: GlobalInterface.IButton[];
         ToastCoreConfig: ToastNotificationInterface.IToastCoreConfig;
@@ -110,9 +114,12 @@ export declare namespace ToastNotificationClass {
         GlobalSettings: GlobalToastSettings;
     }
     class ToastCoreConfig implements ToastNotificationInterface.IToastCoreConfig {
-        Width: string;
-        Height: string;
+        ToastPosition: ToastPositionEnum;
+        ProgressBar: ToastProgressBarEnum;
+        ToastUserViewType: ToastUserViewTypeEnum;
+        OpenInElementID: string;
         ButtonPosition: VerticalPosition;
+        TextPosition: VerticalPosition;
         LayoutType: DialogLayoutDisplay;
         Dispatch: GlobalInterface.IDispatch;
         ConfirmLabel: string;
@@ -126,4 +133,23 @@ export declare namespace ToastNotificationClass {
         EventsController: ToastNotificationEventsController;
         constructor();
     }
+}
+export declare enum ToastProgressBarEnum {
+    NONE = 0,
+    INCREASE = 1,
+    DECREASE = 2
+}
+export declare enum ToastPositionEnum {
+    TOP_LEFT = "top-left",
+    TOP_CENTER = "top-center",
+    TOP_RIGHT = "top-right",
+    TOP_FULL_WIDTH = "top-fullwidth",
+    BOTTOM_LEFT = "bottom-left",
+    BOTTOM_CENTER = "bottom-center",
+    BOTTOM_RIGHT = "bottom-right",
+    BOTTOM_FULL_WIDTH = "bottom-fullwidth"
+}
+export declare enum ToastUserViewTypeEnum {
+    SIMPLE = "simple",
+    STANDARD = "standard"
 }

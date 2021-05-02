@@ -7,6 +7,7 @@ import IDispatch = GlobalInterface.IDispatch;
 import IGlobalUserConfig = GlobalInterface.IGlobalUserConfig;
 import IColorTypes = GlobalInterface.IColorTypes;
 import ButtonMaker = GlobalClass.ButtonMaker;
+import ResetGlobalConfig = GlobalClass.ResetGlobalConfig;
 import IConfirmBoxPublicResponse = ConfirmBoxInterface.IConfirmBoxPublicResponse;
 import IConfirmBoxUserConfig = ConfirmBoxInterface.IConfirmBoxUserConfig;
 import IConfirmBoxCoreConfig = ConfirmBoxInterface.IConfirmBoxCoreConfig;
@@ -16,6 +17,7 @@ import ToastNotificationInitializer = ToastNotificationClass.ToastNotificationIn
 import IToastCoreConfig = ToastNotificationInterface.IToastCoreConfig;
 import IGlobalToastSettings = ToastNotificationInterface.IGlobalToastSettings;
 import IToastNotificationUserConfig = ToastNotificationInterface.IToastNotificationUserConfig;
+import ResetToastGlobalSettings = ToastNotificationClass.ResetToastGlobalSettings;
 import IDialogEventsController = DialogInterface.IDialogEventsController;
 import IDialogPublicResponse = DialogInterface.IDialogPublicResponse;
 import IDialogUserConfig = DialogInterface.IDialogUserConfig;
@@ -40,10 +42,42 @@ export { IDialogEventsController };
 export { ButtonLayoutDisplay } from './ngx-awesome-popup/core/enums';
 export { DialogLayoutDisplay } from './ngx-awesome-popup/core/enums';
 export { VerticalPosition } from './ngx-awesome-popup/core/enums';
+export { ToastPositionEnum } from './ngx-awesome-popup/types/toast-notification/core/model';
+export { ToastProgressBarEnum } from './ngx-awesome-popup/types/toast-notification/core/model';
+export { ToastUserViewTypeEnum } from './ngx-awesome-popup/types/toast-notification/core/model';
 /**
  * @returns It will return custom button object ready to be used in child component layout.
  */
 export { ButtonMaker };
+/**
+ *```typescript
+ * // Instantiate config object as example below to change global settings on-fly it takes {@link IGlobalUserConfig}
+ * as the argument.
+ * new ResetGlobalConfig({
+ *     ColorList: {
+ *            Primary  : '#ff9e00', // optional
+ *            Secondary: '#989ea5', // optional
+ *            Info     : '#2f8ee5', // optional
+ *            Success  : '#3caea3', // optional
+ *            Warning  : '#ffc107', // optional
+ *            Danger   : '#e46464', // optional
+ *            Light    : '#fbfbfb', // optional
+ *            Dark     : '#343a40'  // optional
+ *           }
+ * })
+ * ```
+ */
+export { ResetGlobalConfig };
+/**
+ *```typescript
+ * // Instantiate toast global config object as example below to change global settings on-fly it takes {@link IGlobalToastSettings}
+ * as the argument.
+ * new ResetToastGlobalSettings({
+ *     AllowedNotificationsAtOnce: 2
+ * })
+ * ```
+ */
+export { ResetToastGlobalSettings };
 /**
  * This is the class that needs to be added as DI in the constructor of a child component that will be
  * opened dynamically with {@link DialogInitializer}. It contains various information or
@@ -88,7 +122,7 @@ export { ButtonMaker };
  *        }, 1000);
  *    }
  *}
- 
+
  ngOnDestroy(): void {
         // Close all subscriptions.
         this.subscriptions.forEach(sub => sub.unsubscribe());
@@ -139,7 +173,7 @@ export { IDialogPublicResponse as IDialogResponse };
  *newToastNotification.setConfig({
  *      LayoutType: DialogLayoutDisplay.WARNING
  *   });
- 
+
  * // Open a ToastNotification.
  * newConfirmBox.openConfirmBox$().subscribe(resp => {
  *   console.log('confirmBox response: ', resp);

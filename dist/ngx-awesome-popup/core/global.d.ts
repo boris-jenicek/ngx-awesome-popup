@@ -78,6 +78,7 @@ export declare namespace GlobalInterface {
         DarkenForShade: string;
         ContrastColor: string;
         BrightShade: string;
+        BrightWarmly: string;
         TransparentDarkenVariance: string;
         IsBaseBright: boolean;
     }
@@ -111,6 +112,9 @@ export declare namespace GlobalClass {
         Light: string;
         Dark: string;
     }
+    class ResetGlobalConfig {
+        constructor(globalConfig?: GlobalInterface.IGlobalUserConfig);
+    }
     class GlobalConfig implements GlobalInterface.IGlobalConfig {
         DisplayColor: GlobalInterface.IColorObject;
     }
@@ -133,15 +137,18 @@ export declare namespace GlobalClass {
         ContrastColor: string;
         TransparentDarkenVariance: string;
         BrightShade: string;
+        BrightWarmly: string;
         IsBaseBright: boolean;
         constructor(_Color: string);
+        saturate(_Rgb: string): string;
         private isBright;
-        private brightness;
+        brightness(_Rgb: string, _Action: 'brighten' | 'darken', _Percentage: number): string;
         private getLowMidHi;
         private contrast;
         private isColor;
         private getRGBArray;
         private luminance;
+        getLightnessOfRGB(_Rgb: string): number;
         private transparentize;
     }
     class DataControl {
@@ -149,5 +156,18 @@ export declare namespace GlobalClass {
          * @ignore
          */
         copyValuesFrom(_Data: any, _DestinationObject: any): any;
+    }
+    class Timer {
+        TimePassed: number;
+        Timer: any;
+        Progress: number;
+        Remaining: number;
+        Milliseconds: number;
+        constructor();
+        setMilliseconds(_Milliseconds: number): void;
+        reset(): void;
+        pause(): void;
+        stop(): void;
+        start(): void;
     }
 }
