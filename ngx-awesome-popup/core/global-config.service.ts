@@ -117,13 +117,13 @@ export class GlobalConfigService {
 
 	private setToastStyling(_Key: string, _ColorProvider: IColorProvider) {
 
-		const standardToast = `.toast-wrapper.standard-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
+		const standardToast      = `.toast-wrapper.standard-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
 		const standardToastStyle = `
         background:  ${_ColorProvider.BrightShade}!important;
         border-color: ${_ColorProvider.Brighten}!important;
         `;
 
-		const simpleToast = `.toast-wrapper.simple-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
+		const simpleToast      = `.toast-wrapper.simple-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
 		const simpleToastStyle = `
         background:  ${_ColorProvider.BrightWarmly}!important;
         color:  ${_ColorProvider.Darken}!important;

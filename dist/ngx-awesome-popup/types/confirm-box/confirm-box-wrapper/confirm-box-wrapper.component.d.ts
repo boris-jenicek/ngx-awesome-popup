@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Observable } from 'rxjs';
 import { GlobalInterface } from '../../../core/global';
 import { ConfirmBoxClass } from '../core/model';
-import { Observable } from 'rxjs';
 export declare class ConfirmBoxWrapperComponent implements AfterViewInit {
     confirmBoxBelonging: ConfirmBoxClass.ConfirmBoxBelonging;
     private cd;

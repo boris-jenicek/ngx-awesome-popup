@@ -8,12 +8,14 @@
   min-width:    40px;
   padding:      2px 8px;
   }
+
 .ed-btn-md {
   font-size:    14px;
   margin-right: 5px;
   min-width:    60px;
   padding:      3px 10px;
   }
+
 .ed-btn-lg {
   font-size:    16px;
   margin-right: 5px;
@@ -23,26 +25,26 @@
 
 .ed-btn {
   background-color: transparent;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  display: inline-block;
-  line-height: 1.5;
-  text-align: center;
-  text-decoration: none;
+  border:           none;
+  border-radius:    3px;
+  cursor:           pointer;
+  display:          inline-block;
+  line-height:      1.5;
+  text-align:       center;
+  text-decoration:  none;
 
-  user-select: none;
-  vertical-align: middle;
+  user-select:      none;
+  vertical-align:   middle;
 
   &:hover {
     color: $gr-500;
-  }
+    }
 
   .ed-btn-check:focus + &,
   &:focus {
     box-shadow: 0 0 1px 2px;
-    outline: 0;
-  }
+    outline:    0;
+    }
 
   .ed-btn-check:checked + &,
   .ed-btn-check:active + &,
@@ -52,8 +54,8 @@
 
     &:focus {
       box-shadow: 0 0 1px 2px;
+      }
     }
-  }
 
   &:disabled,
   &.disabled,
@@ -85,9 +87,9 @@ $threshold: 65%;
 
     .ed-btn-check:focus + &,
     &:focus {
-      outline: 0;
+      outline:    0;
       box-shadow: 0 0 1px 2px lighten($value, 5);
-    }
+      }
 
     .ed-btn-check:checked + &,
     .ed-btn-check:active + &,
@@ -97,7 +99,7 @@ $threshold: 65%;
 
       &:focus {
         box-shadow: 0 0 1px 2px lighten($value, 5);
+        }
       }
     }
   }
-}

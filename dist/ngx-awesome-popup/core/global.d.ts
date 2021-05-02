@@ -141,14 +141,14 @@ export declare namespace GlobalClass {
         IsBaseBright: boolean;
         constructor(_Color: string);
         saturate(_Rgb: string): string;
-        private isBright;
         brightness(_Rgb: string, _Action: 'brighten' | 'darken', _Percentage: number): string;
+        getLightnessOfRGB(_Rgb: string): number;
+        private isBright;
         private getLowMidHi;
         private contrast;
         private isColor;
         private getRGBArray;
         private luminance;
-        getLightnessOfRGB(_Rgb: string): number;
         private transparentize;
     }
     class DataControl {

@@ -176,7 +176,7 @@ export namespace GlobalClass {
 		ContrastColor: string             = null;
 		TransparentDarkenVariance: string = null;
 		BrightShade: string               = null;
-		BrightWarmly: string               = null;
+		BrightWarmly: string              = null;
 		IsBaseBright: boolean             = null;
 
 
@@ -190,7 +190,7 @@ export namespace GlobalClass {
 				const darken                   = luminance > 50 ? 5 : (luminance > 40 ? 10 : (luminance > 20 ? 15 : luminance));
 				const brighten                 = luminance > 55 ? 65 : (luminance > 45 ? 60 : (luminance > 20 ? 55 : (luminance > 10 ? 45 : 80)));
 				this.BrightShade               = this.brightness(this.brightness(this.Base, 'darken', darken), 'brighten', brighten);
-				this.BrightWarmly               = this.brightness(this.brightness(this.saturate(this.Base), 'darken', darken -10), 'brighten', brighten -5);
+				this.BrightWarmly              = this.brightness(this.brightness(this.saturate(this.Base), 'darken', darken - 10), 'brighten', brighten - 5);
 				this.TransparentDarkenVariance = this.brightness(this.transparentize(this.Base, 80), 'darken', 40);
 				if (this.isBright(this.Base)) {
 					this.ContrastColor = 'rgba(58,65,71,0.5)';
@@ -221,23 +221,18 @@ export namespace GlobalClass {
 				return _Rgb;
 			}
 
-			const saturationRange = Math.round(Math.min(255 - greyVal, greyVal));
-			const maxChange = Math.min(255 - highest.val, lowest.val);
-			const changeAmount = Math.min(saturationRange / 10, maxChange);
+			const saturationRange  = Math.round(Math.min(255 - greyVal, greyVal));
+			const maxChange        = Math.min(255 - highest.val, lowest.val);
+			const changeAmount     = Math.min(saturationRange / 10, maxChange);
 			const middleValueRatio = (greyVal - middle.val) / (greyVal - highest.val) + 0.07;
 
-			const returnArray = [];
+			const returnArray          = [];
 			returnArray[highest.index] = Math.round(highest.val + changeAmount);
-			returnArray[lowest.index] = Math.round(lowest.val - changeAmount);
-			returnArray[middle.index] = Math.round(
+			returnArray[lowest.index]  = Math.round(lowest.val - changeAmount);
+			returnArray[middle.index]  = Math.round(
 				greyVal + (returnArray[highest.index] - greyVal) * middleValueRatio + 5
 			);
 			return `rgb(${[returnArray].join()})`;
-		}
-
-
-		private isBright(_Rgb: string) {
-			return this.contrast(this.luminance(_Rgb));
 		}
 
 		public brightness(_Rgb: string, _Action: 'brighten' | 'darken', _Percentage: number): string {
@@ -275,6 +270,18 @@ export namespace GlobalClass {
 				return (`rgba(${returnList.join()})`);
 			}
 			return (`rgb(${returnList.join()})`);
+		}
+
+		getLightnessOfRGB(_Rgb: string) {
+			const rgbIntArray = this.getRGBArray(_Rgb);
+
+			const highest = Math.max(...rgbIntArray);
+			const lowest  = Math.min(...rgbIntArray);
+			return (highest + lowest) / 2 / 255;
+		}
+
+		private isBright(_Rgb: string) {
+			return this.contrast(this.luminance(_Rgb));
 		}
 
 		private getLowMidHi(_RgbArray: number[]) {
@@ -327,14 +334,6 @@ export namespace GlobalClass {
 					: Math.pow((item + 0.055) / 1.055, 2.4);
 			});
 			return W3algorithm[0] * 0.2126 + W3algorithm[1] * 0.7152 + W3algorithm[2] * 0.0722;
-		}
-
-		getLightnessOfRGB(_Rgb: string) {
-			const rgbIntArray = this.getRGBArray(_Rgb);
-
-			const highest = Math.max(...rgbIntArray);
-			const lowest = Math.min(...rgbIntArray);
-			return (highest + lowest) / 2 / 255;
 		}
 
 		private transparentize(_Rgb: string, _Percentage: number) {
@@ -398,7 +397,7 @@ export namespace GlobalClass {
 		constructor() {
 		}
 
-		setMilliseconds(_Milliseconds: number){
+		setMilliseconds(_Milliseconds: number) {
 			this.Milliseconds = _Milliseconds;
 		}
 

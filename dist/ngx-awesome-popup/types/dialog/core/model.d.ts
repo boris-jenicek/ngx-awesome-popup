@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
 import { Type } from '@angular/core';
+import { Observable } from 'rxjs';
 import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
 import { GlobalClass, GlobalInterface } from '../../../core/global';
 export declare namespace DialogInterface {

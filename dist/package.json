@@ -1,6 +1,6 @@
 {
   "name": "@costlydeveloper/ngx-awesome-popup",
-  "version": "0.0.1-alpha11",
+  "version": "1.0.0",
   "description": "Gives new functionality to Angular 9+, generates beautiful popups, dialogs, ConfirmBoxes, AlertBoxes, ToastNotifications. Also gives the ability of opening dynamic components directly from typescript!",
   "keywords": [
     "front-end",

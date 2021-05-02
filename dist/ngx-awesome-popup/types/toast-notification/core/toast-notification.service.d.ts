@@ -22,8 +22,8 @@ export declare class ToastNotificationService {
     getComponentRef(_ToastNotificationRawState: ToastNotificationInterface.IToastNotificationRawState): ComponentRef<any> | null;
     listeners(_EventsController: ToastNotificationClass.ToastNotificationEventsController): void;
     appendToBodyParentComponent(_ComponentRef: ComponentRef<any>): void;
-    private setToastOverlayNode;
-    private setToastWrapperNode;
     removeFromBody(_EntityUniqueID: string): void;
     findDialogIndex(_DialogUniqueID: string): number;
+    private setToastOverlayNode;
+    private setToastWrapperNode;
 }

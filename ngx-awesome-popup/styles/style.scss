@@ -4,27 +4,29 @@
 
 
 .ngx-awesome-popup-overlay {
-  align-items: center;
+  align-items:     center;
   backdrop-filter: blur(2px);
-  background: transparentize(darken($primary-color, 40), 0.6);
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
+  background:      transparentize(darken($primary-color, 40), 0.6);
+  bottom:          0;
+  display:         flex;
+  flex-direction:  column;
   justify-content: center;
-  left: 0;
-  opacity: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1000;
-}
+  left:            0;
+  opacity:         0;
+  position:        fixed;
+  right:           0;
+  top:             0;
+  z-index:         1000;
+  }
+
 .evolve-parent-dialog,
-.evolve-confirm-box{
+.evolve-confirm-box {
   .text-wrapper {
     text-align: center;
     }
 
   }
+
 .evolve-parent-dialog,
 .evolve-confirm-box,
 .evolve-toast {
@@ -33,45 +35,45 @@
 
     .text-wrapper {
       display: block;
-      width: 100%;
-    }
+      width:   100%;
+      }
 
     .dont-break-out {
-      hyphens: auto;
+      hyphens:       auto;
       overflow-wrap: break-word;
-      white-space: pre-wrap;
+      white-space:   pre-wrap;
       // word-break: break-all;
-      word-wrap: break-word;
+      word-wrap:     break-word;
+      }
     }
   }
-}
 
 .evolve-parent-dialog,
 .evolve-confirm-box {
-  background: $gr-100;
-  border-radius: 5px;
-  border-top: 7px solid;
-  box-shadow: 0 0 4px 1px transparentize(black, 0.75);
-  display: flex;
+  background:     $gr-100;
+  border-radius:  5px;
+  border-top:     7px solid;
+  box-shadow:     0 0 4px 1px transparentize(black, 0.75);
+  display:        flex;
   flex-direction: column;
-  max-height: calc(100vh - 100px);
-  max-width: calc(100vw - 100px);
+  max-height:     calc(100vh - 100px);
+  max-width:      calc(100vw - 100px);
 
-  position: relative;
+  position:       relative;
   vertical-align: bottom;
 
   &.standard-dialog {
     border-color: transparent;
-    padding: 17px 20px 10px 20px;
-  }
+    padding:      17px 20px 10px 20px;
+    }
 
   &.success-dialog {
     border-color: $success;
-  }
+    }
 
   &.info-dialog {
     border-color: $info;
-  }
+    }
 
   &.warning-dialog {
     border-color: $warning;

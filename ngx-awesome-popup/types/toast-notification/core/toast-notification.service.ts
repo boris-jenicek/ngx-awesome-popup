@@ -14,7 +14,7 @@ import {ToastNotificationConfigService} from './toast-notification-config.servic
 export class ToastNotificationService {
 
 	// toastComponentRefList: ComponentRef<ToastNotificationWrapperComponent>[]    = [];
-	toastComponentRefList: ComponentRef<any>[]    = [];
+	toastComponentRefList: ComponentRef<any>[]                                  = [];
 	bufferToastRawList: ToastNotificationInterface.IToastNotificationRawState[] = [];
 	bufferCheckingIntervalIsReady: boolean                                      = true;
 
@@ -76,7 +76,7 @@ export class ToastNotificationService {
 		if (dialogIndex === -1) {
 
 			let toastUserViewComponent: Type<any> = ToastNotificationWrapperComponent;
-			if(_ToastNotificationRawState.ToastBelonging.ToastCoreConfig.ToastUserViewType === ToastUserViewTypeEnum.SIMPLE){
+			if (_ToastNotificationRawState.ToastBelonging.ToastCoreConfig.ToastUserViewType === ToastUserViewTypeEnum.SIMPLE) {
 				toastUserViewComponent = ToastNotificationSimpleWrapperComponent;
 			}
 			const componentFactory = this.componentFactoryResolver.resolveComponentFactory(toastUserViewComponent);
@@ -102,27 +102,27 @@ export class ToastNotificationService {
 
 
 		const toastPosition: ToastPositionEnum = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.ToastPosition;
-		const openInElementID = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.OpenInElementID;
+		const openInElementID                  = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.OpenInElementID;
 		let targetNode: HTMLElement;
-		if(!openInElementID){
+		if (!openInElementID) {
 			this.setToastWrapperNode(_ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.ToastPosition, this.setToastOverlayNode());
 			targetNode = document.getElementById(`toast-wrapper-${toastPosition}`);
-		}else{
+		} else {
 			targetNode = document.getElementById(openInElementID);
 		}
 
 
 		const domElem = (_ComponentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
 
-		const toastEntity             = document.createElement('div');
+		const toastEntity = document.createElement('div');
 		toastEntity.setAttribute('id', _ComponentRef.instance.toastNotificationBelonging.EntityUniqueID);
 		toastEntity.className = 'toast-entity';
-		const split =  toastPosition.split('-');
-		if(split[1] === 'fullwidth'){
+		const split           = toastPosition.split('-');
+		if (split[1] === 'fullwidth') {
 			toastEntity.style.width = '97vw';
-		}else if(openInElementID){
+		} else if (openInElementID) {
 			toastEntity.style.width = '100%';
-		}else{
+		} else {
 			toastEntity.style.width = '300px';
 		}
 		toastEntity.style.margin = 'auto';
@@ -131,55 +131,6 @@ export class ToastNotificationService {
 		setTimeout(() => {
 			targetNode.prepend(toastEntity);
 		}, 200);
-
-	}
-
-	private setToastOverlayNode(): HTMLElement {
-		const bodyNode = document.body || document.getElementsByTagName('body')[0];
-		if (!bodyNode) {
-			return;
-		}
-		// check the overlay
-		let toastOverlayNode = document.getElementById('toast-overlay-container') as HTMLStyleElement;
-
-		if(!toastOverlayNode){
-			let toastOverlayNode = document.createElement('div');
-			toastOverlayNode.setAttribute('id', 'toast-overlay-container');
-			toastOverlayNode.appendChild(document.createTextNode(''));
-			toastOverlayNode.style.position = 'fixed';
-			toastOverlayNode.style.top = '0';
-			toastOverlayNode.style.left = '0';
-			bodyNode.appendChild(toastOverlayNode);
-			return toastOverlayNode;
-		}
-
-		return toastOverlayNode;
-
-	}
-	private setToastWrapperNode(_Position: ToastPositionEnum, _ToastOverlayNode: HTMLElement ) {
-
-		   let toastWrapperNode = document.getElementById(`toast-wrapper-${_Position}`) as HTMLStyleElement;
-		   if(!toastWrapperNode){
-			   const toastWrapper = document.createElement('div');
-			   toastWrapper.setAttribute('id', 'toast-wrapper-' + _Position);
-			   toastWrapper.appendChild(document.createTextNode(''));
-			   _ToastOverlayNode.prepend(toastWrapper);
-
-			   const split =  _Position.split('-');
-
-			   if(split[1] === 'right' || split[1] === 'left'){
-				   this.gConfigService.getSheet('ngx-awesome-popup-styles').addRule(`#toast-wrapper-${_Position}`, `${split[0]}: 20px; ${split[1]}: 20px; position: fixed; z-index: 999999;`);
-			   }
-			   if(split[1] === 'center'){
-				   this.gConfigService.getSheet('ngx-awesome-popup-styles').addRule(`#toast-wrapper-${_Position}`, `${split[0]}: 20px; width: 100%; position: fixed; z-index: 999999; pointer-events: none;`);
-			   }
-			   if(split[1] === 'fullwidth'){
-				   this.gConfigService.getSheet('ngx-awesome-popup-styles').addRule(`#toast-wrapper-${_Position}`, `${split[0]}: 10px; width: 100%; position: fixed; z-index: 999999; pointer-events: none;`);
-			   }
-
-		   }
-
-
 
 	}
 
@@ -212,5 +163,55 @@ export class ToastNotificationService {
 		return this.toastComponentRefList.findIndex((item) => {
 			return _DialogUniqueID === item.instance.toastNotificationBelonging.EntityUniqueID;
 		});
+	}
+
+	private setToastOverlayNode(): HTMLElement {
+		const bodyNode = document.body || document.getElementsByTagName('body')[0];
+		if (!bodyNode) {
+			return;
+		}
+		// check the overlay
+		let toastOverlayNode = document.getElementById('toast-overlay-container') as HTMLStyleElement;
+
+		if (!toastOverlayNode) {
+			let toastOverlayNode = document.createElement('div');
+			toastOverlayNode.setAttribute('id', 'toast-overlay-container');
+			toastOverlayNode.appendChild(document.createTextNode(''));
+			toastOverlayNode.style.position = 'fixed';
+			toastOverlayNode.style.top      = '0';
+			toastOverlayNode.style.left     = '0';
+			toastOverlayNode.style.zIndex   = '999999999';
+			bodyNode.appendChild(toastOverlayNode);
+			return toastOverlayNode;
+		}
+
+		return toastOverlayNode;
+
+	}
+
+	private setToastWrapperNode(_Position: ToastPositionEnum, _ToastOverlayNode: HTMLElement) {
+
+		let toastWrapperNode = document.getElementById(`toast-wrapper-${_Position}`) as HTMLStyleElement;
+		if (!toastWrapperNode) {
+			const toastWrapper = document.createElement('div');
+			toastWrapper.setAttribute('id', 'toast-wrapper-' + _Position);
+			toastWrapper.appendChild(document.createTextNode(''));
+			_ToastOverlayNode.prepend(toastWrapper);
+
+			const split = _Position.split('-');
+
+			if (split[1] === 'right' || split[1] === 'left') {
+				this.gConfigService.getSheet('ngx-awesome-popup-styles').addRule(`#toast-wrapper-${_Position}`, `${split[0]}: 20px; ${split[1]}: 20px; position: fixed; z-index: 999999;`);
+			}
+			if (split[1] === 'center') {
+				this.gConfigService.getSheet('ngx-awesome-popup-styles').addRule(`#toast-wrapper-${_Position}`, `${split[0]}: 20px; width: 100%; position: fixed; z-index: 999999; pointer-events: none;`);
+			}
+			if (split[1] === 'fullwidth') {
+				this.gConfigService.getSheet('ngx-awesome-popup-styles').addRule(`#toast-wrapper-${_Position}`, `${split[0]}: 10px; width: 100%; position: fixed; z-index: 999999; pointer-events: none;`);
+			}
+
+		}
+
+
 	}
 }

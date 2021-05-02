@@ -1,8 +1,8 @@
 $primary-color:      #ff9e00;
 $secondary-color:    #d87b20;
-$primary-color-text: #fff;
+$primary-color-text: #ffffff;
 
-$white:              #fff;
+$white:              #ffffff;
 $gr-100:             #fbfbfb;
 $gr-200:             #e9ecef;
 $gr-300:             #dee2e6;
@@ -12,7 +12,7 @@ $gr-600:             #6c757d;
 $gr-700:             #495057;
 $gr-800:             #343a40;
 $gr-900:             #212529;
-$black:              #000;
+$black:              #000000;
 
 $blue:               #2f8ee5;
 $indigo:             #6610f2;
@@ -35,12 +35,12 @@ $light:              $gr-100;
 $dark:               $gr-800;
 
 $types:              (
-  "primary": $primary,
-  "secondary": $secondary,
-  "success": $success,
-  "info": $info,
-  "warning": $warning,
-  "danger": $danger,
-  "light": $light,
-  "dark": $dark
-);
+                             "primary": $primary,
+                             "secondary": $secondary,
+                             "success": $success,
+                             "info": $info,
+                             "warning": $warning,
+                             "danger": $danger,
+                             "light": $light,
+                             "dark": $dark
+                     );

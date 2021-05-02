@@ -1,35 +1,35 @@
 .box-position {
-  position: absolute;
-  top: 44%;
-  left: 50%;
-  height: auto;
-  margin: 0 auto;
-  transform: translate(-50%, -40%);
+  height:     auto;
+  left:       50%;
+  margin:     0 auto;
+  position:   absolute;
   text-align: center;
+  top:        44%;
+  transform:  translate(-50%, -40%);
 
   .loader-center {
-    display: flex;
-    align-items: center;
+    align-items:     center;
+    display:         flex;
     justify-content: center;
 
     .lds-ring {
+      display:  inline-block;
+      height:   80px;
       position: relative;
-      display: inline-block;
-      width: 80px;
-      height: 80px;
+      width:    80px;
       }
 
     .lds-ring div {
-      position: absolute;
-      display: block;
-      box-sizing: border-box;
-      width: 64px;
-      height: 64px;
-      margin: 8px;
-      animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-      border: 8px solid;
-      border-color: #d4d4d4 transparent transparent transparent;
+      animation:     lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border:        8px solid;
+      border-color:  #d4d4d4 transparent transparent transparent;
       border-radius: 50%;
+      box-sizing:    border-box;
+      display:       block;
+      height:        64px;
+      margin:        8px;
+      position:      absolute;
+      width:         64px;
       }
 
     .lds-ring div:nth-child(1) {

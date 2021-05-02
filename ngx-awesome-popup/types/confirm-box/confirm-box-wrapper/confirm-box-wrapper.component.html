@@ -66,8 +66,9 @@
 			</div>
 			<div class="button-section" *ngIf="!confirmBoxBelonging.Buttons.length" [ngStyle]="{ 'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition }">
 				
-				<button class="ed-btn ed-btn-md" (click)="onButtonClick('confirm')"
-				        [ngClass]="{
+				<button
+						class="ed-btn ed-btn-md" (click)="onButtonClick('confirm')"
+						[ngClass]="{
 				          'ed-btn-primary': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
 				          'ed-btn-success': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,
 				          'ed-btn-info': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,
@@ -76,7 +77,7 @@
 				        }"
 				>{{confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel}}
 				</button>
-				<button (click)="onButtonClick('decline')" *ngIf="confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel" class="ed-btn ed-btn-md ed-btn-secondary">
+				<button class="ed-btn ed-btn-md ed-btn-secondary" (click)="onButtonClick('decline')" *ngIf="confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel">
 					{{confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel}}
 				</button>
 			

@@ -15,13 +15,13 @@
     }
 
   .component-content-loader-off {
-    transition: none !important;
     opacity:    1 !important;
+    transition: none !important;
     }
 
   .component-content-preparing {
-    transition: none !important;
     opacity:    0;
+    transition: none !important;
     }
 
   .component-content-ready {
@@ -50,42 +50,40 @@
   }
 
 .loader-holder {
-  position:                   absolute;
-  transition-delay:           .4s;
-  transition-timing-function: linear;
-  transition-duration:        0.4s;
-  transition-property:        opacity;
-  opacity:                    1;
-  display:                    flex;
-  flex-direction:             column;
-  justify-content:            center;
   align-items:                center;
   background:                 $gr-100;
-  width:                      100%;
+  display:                    flex;
+  flex-direction:             column;
   height:                     100%;
+  justify-content:            center;
   margin:                     -20px;
+  opacity:                    1;
+  position:                   absolute;
+  transition-delay:           .4s;
+  transition-duration:        0.4s;
+  transition-property:        opacity;
+  transition-timing-function: linear;
+  width:                      100%;
   }
 
 .content-holder {
   display:        flex;
   flex-direction: column;
+  max-width:      calc(100vw - 100px);
   overflow:       auto;
-  max-width: calc(100vw - 100px);
   }
 
 .button-holder {
-  width:           100%;
-  // height:          100%;
   display:         flex;
-  justify-content: flex-end;
+  // height:          100%;
   flex-direction:  column;
+  justify-content: flex-end;
+  width:           100%;
 
   .button-section {
-    margin:     20px -20px -10px -20px;
-    border-top: 1px solid transparentize($gr-500, 0.8);
     background: transparentize($gr-300, 0.8);
+    border-top: 1px solid transparentize($gr-500, 0.8);
+    margin:     20px -20px -10px -20px;
     padding:    5px 20px;
     }
   }
-
-

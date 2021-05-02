@@ -17,7 +17,7 @@
 				<div class="text-wrapper dont-break-out">
 					<div class="toast-title-text">{{toastNotificationBelonging.Dispatch.Title}}</div>
 					<span
-							(click)="close()" class="close-ico icon-times-circle"
+							class="close-ico icon-times-circle" (click)="close()"
 							*ngIf="
 					     !toastNotificationBelonging.Buttons.length
 					     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel
@@ -42,7 +42,8 @@
 				        }"
 					></span>
 			</div>
-			<div class="text-wrapper-section toast-inner-content" [ngStyle]="{ 'text-align': toastNotificationBelonging.ToastCoreConfig.TextPosition }">
+			<div class="text-wrapper-section toast-inner-content" [ngStyle]="{ 'text-align': toastNotificationBelonging.ToastCoreConfig.TextPosition }"
+			     [ngClass]="{'only-message': !toastNotificationBelonging.Dispatch.Title}">
 				
 				<div class="dont-break-out">
 					<div class="text-wrapper dont-break-out" *ngIf="!toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage"><p>{{toastNotificationBelonging.Dispatch.Message}}</p></div>
@@ -51,7 +52,7 @@
 			
 			</div>
 			<span
-					(click)="close()" class="close-ico icon-times-circle"
+					class="close-ico icon-times-circle" (click)="close()"
 					*ngIf="
 					     !toastNotificationBelonging.Buttons.length
 					     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel
@@ -94,8 +95,8 @@
 			>
 				
 				<button
-						*ngIf="toastNotificationBelonging.ToastCoreConfig.ConfirmLabel"
-						class="ed-btn ed-btn-sm" (click)="onButtonClick('confirm')"
+						class="ed-btn ed-btn-sm"
+						*ngIf="toastNotificationBelonging.ToastCoreConfig.ConfirmLabel" (click)="onButtonClick('confirm')"
 						[ngClass]="{
 				          'ed-btn-primary': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,
 				          'ed-btn-success': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,
@@ -111,7 +112,7 @@
 			
 			</div>
 		</div>
-
+		
 		<div
 				class="progress-bar-container" *ngIf="
 					     !toastNotificationBelonging.Buttons.length

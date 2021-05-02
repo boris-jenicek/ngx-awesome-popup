@@ -1,6 +1,6 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector } from '@angular/core';
-import { ConfirmBoxClass } from './model';
 import { ConfirmBoxWrapperComponent } from '../confirm-box-wrapper/confirm-box-wrapper.component';
+import { ConfirmBoxClass } from './model';
 export declare class ConfirmBoxService {
     private componentFactoryResolver;
     private injector;

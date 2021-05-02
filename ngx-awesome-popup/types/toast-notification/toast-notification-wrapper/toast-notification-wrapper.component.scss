@@ -7,24 +7,26 @@
   margin:         auto;
   opacity:        0;
   padding:        0;
-  position:       relative;
-  z-index:        0;
   pointer-events: auto;
-  width: 100%;
+  position:       relative;
+  width:          100%;
+  z-index:        0;
 
   .progress-bar-container {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 0  0 5px 5px;
+    background:    rgba(255, 255, 255, 0.2);
+    border-radius: 0 0 5px 5px;
     }
+
   .progress-bar {
-    height: 4px;
-    width: 0;
+    height:     4px;
+    transition: none;
+    width:      0;
     }
+
   .evolve-toast {
     background:     $gr-100;
     border-radius:  5px;
     border-right:   4px solid;
-    // padding:        10px 10px 5px 10px;
     box-shadow:     0 0 4px 1px transparentize(black, 0.75);
     display:        flex;
     flex-direction: column;
@@ -40,6 +42,7 @@
 
     &.standard-dialog {
       border-color: transparent;
+
       .progress-bar {
         background-color: rgba(42, 42, 42, 0.2);
         }
@@ -84,10 +87,10 @@
     .close-ico {
       color:     transparentize($black, 0.8);
       cursor:    pointer;
+      font-size: 20px;
       position:  absolute;
       right:     6px;
       top:       4px;
-      font-size: 20px;
       }
 
     .toast-title-content {
@@ -109,10 +112,6 @@
         }
       }
 
-    .content-with-icon {
-
-      }
-
     .content-holder {
       align-items:     center;
       color:           $gr-600;
@@ -122,16 +121,11 @@
       justify-content: space-between;
       overflow:        auto;
       width:           100%;
-      /*      display:        flex;
-            flex-direction: row-reverse;
-            height:         100%;
-            overflow:       auto;
-            width:          100%;*/
 
       .icon-section {
 
         .icon-type-toast {
-          font-size: 26px;
+          font-size: 24px;
           padding:   0 2px 0 6px;
           }
         }
@@ -140,7 +134,9 @@
       .toast-inner-content {
         padding: 6px 10px;
         }
-
+      .only-message {
+        padding: 6px 27px 6px 10px;
+        }
       .text-wrapper {
         font-size: 0.97rem;
         margin:    0;
@@ -149,14 +145,11 @@
 
     .button-holder {
       display:         flex;
-      // height:          100%;
       flex-direction:  column;
       justify-content: flex-end;
       width:           100%;
 
       .button-section {
-        //  background: transparentize($gr-100, 0.8);
-        // border-top: 1px solid transparentize($gr-200, 0.5);
         margin:  0;
         padding: 4px 10px;
         }

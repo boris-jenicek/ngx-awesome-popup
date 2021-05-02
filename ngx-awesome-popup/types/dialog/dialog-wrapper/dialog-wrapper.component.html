@@ -1,6 +1,7 @@
 <div class="ngx-awesome-popup-overlay" (dblclick)="onOverlayClicked($event)" [@fadeInOut]="fadeInOutAnimation">
 	
-	<div class="evolve-parent-dialog"
+	<div
+			class="evolve-parent-dialog"
 			[ngClass]="{
           'standard-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 0,
           'success-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 1,
@@ -17,12 +18,12 @@
 		</div>
 		
 		<div class="content-holder" [ngStyle]="{'width': dialogBelonging.DialogCoreConfig.Width, 'height': dialogBelonging.DialogCoreConfig.Height}">
-
+			
 			<!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->
 			<div class="component-content" [ngClass]="!dialogBelonging.DialogCoreConfig.DisplayLoader ? 'component-content-loader-off' : (showLoader ? 'component-content-preparing' : 'component-content-ready')">
 				<ng-template appInsertion></ng-template>
 			</div>
-			
+		
 		</div>
 		
 		<div class="button-holder">
@@ -47,5 +48,5 @@
 			</div>
 		</div>
 	</div>
-	
+
 </div>

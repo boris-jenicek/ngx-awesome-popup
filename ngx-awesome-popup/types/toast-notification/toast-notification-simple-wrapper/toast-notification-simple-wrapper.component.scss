@@ -7,19 +7,22 @@
   margin:         auto;
   opacity:        0;
   padding:        0;
-  position:       relative;
-  z-index:        0;
   pointer-events: auto;
-  width: 100%;
+  position:       relative;
+  width:          100%;
+  z-index:        0;
 
   .progress-bar-container {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 0  0 2px 2px;
+    background:    rgba(255, 255, 255, 0.2);
+    border-radius: 0 0 2px 2px;
     }
+
   .progress-bar {
-    height: 4px;
-    width: 0;
+    height:     4px;
+    transition: none;
+    width:      0;
     }
+
   .evolve-toast {
     background:     $gr-100;
     border-radius:  2px;
@@ -38,6 +41,7 @@
 
     &.standard-dialog {
       border-color: transparent;
+
       .progress-bar {
         background-color: rgba(42, 42, 42, 0.2);
         }
@@ -78,44 +82,41 @@
     .close-ico {
       color:     transparentize($black, 0.8);
       cursor:    pointer;
+      font-size: 18px;
       position:  absolute;
       right:     6px;
       top:       4px;
-      font-size: 18px;
       }
 
     .toast-title-content {
-      align-items: center;
+      align-content:   space-around;
+      align-items:     center;
       background-clip: padding-box;
-      border-radius: 2px 2px 0 0;
-      color: #6c757d;
-      display: flex;
-      flex-direction: row;
-      height: auto;
+      border-radius:   2px 2px 0 0;
+      color:           #6c757d;
+      display:         flex;
+      flex-direction:  row;
+      flex-wrap:       wrap;
+      height:          auto;
       justify-content: flex-start;
-      padding: 5px 10px 5px;
-      width: auto;
-      align-content: space-around;
-      flex-wrap: wrap;
-
+      padding:         5px 10px 5px;
+      width:           auto;
 
       .icon-section {
 
 
         .icon-type-toast {
           font-size: 20px;
-          padding: 0 6px 0 0;
-          opacity: 0.8;
+          opacity:   0.8;
+          padding:   0 6px 0 0;
           }
         }
+
       .toast-title-text {
         font-size: 0.87rem;
         }
       }
 
-    .content-with-icon {
-
-      }
 
     .content-holder {
       align-items:     center;
@@ -127,13 +128,12 @@
       overflow:        auto;
       width:           100%;
 
-
-
-
       .toast-inner-content {
         padding: 6px 10px;
         }
-
+      .only-message {
+        padding: 6px 27px 6px 10px;
+        }
       .text-wrapper {
         font-size: 0.97rem;
         margin:    0;

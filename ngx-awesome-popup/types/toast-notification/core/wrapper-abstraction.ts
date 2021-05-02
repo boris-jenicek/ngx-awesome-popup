@@ -1,11 +1,11 @@
-import {AfterViewInit, ChangeDetectorRef, Directive, OnDestroy} from '@angular/core';
+import {Directive, OnDestroy} from '@angular/core';
 import {BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 import {delay, tap} from 'rxjs/operators';
 import {GlobalClass, GlobalInterface} from '../../../core/global';
 import {ToastNotificationClass} from './model';
 
 @Directive()
-export abstract class WrapperAbstraction implements  OnDestroy {
+export abstract class WrapperAbstraction implements OnDestroy {
 
 	fadeInOutAnimation: string = 'open';
 	timerStarted$              = new BehaviorSubject('start-counter');
@@ -13,7 +13,7 @@ export abstract class WrapperAbstraction implements  OnDestroy {
 	subTimer: Subscription;
 	isTimerStarted             = false;
 	timeout;
-	timer: GlobalClass.Timer = new GlobalClass.Timer();
+	timer: GlobalClass.Timer   = new GlobalClass.Timer();
 
 	protected constructor(
 		public toastNotificationBelonging: ToastNotificationClass.ToastNotificationBelonging
@@ -31,15 +31,15 @@ export abstract class WrapperAbstraction implements  OnDestroy {
 	}
 
 
-
 	onOverlayClicked(evt: MouseEvent): void {
 		//  console.log('onOverlayClicked');
-		}
+	}
 
 
 	onToastClicked(evt: MouseEvent): void {
-		 // console.log('onOverlayClicked');
+		// console.log('onOverlayClicked');
 	}
+
 	setResponse(_IsSuccess: boolean, _ClickedButtonID?: string): void {
 		const response = new ToastNotificationClass.ToastNotificationDefaultResponse();
 		if (_ClickedButtonID) {
@@ -60,9 +60,9 @@ export abstract class WrapperAbstraction implements  OnDestroy {
 	onButtonClick(_Type: 'confirm' | 'decline') {
 
 		let buttonID;
-		if(_Type === 'confirm'){
+		if (_Type === 'confirm') {
 			buttonID = this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel.toLowerCase();
-		}else if (_Type === 'decline'){
+		} else if (_Type === 'decline') {
 			buttonID = this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel.toLowerCase();
 		}
 
@@ -72,13 +72,13 @@ export abstract class WrapperAbstraction implements  OnDestroy {
 
 	autoClose() {
 		if (this.autoCloseCondition()) {
-			this.timer.setMilliseconds(this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay)
+			this.timer.setMilliseconds(this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
 			this.subTimer = this.timerStarted$.pipe(
 				tap((next) => {
 					if ('start-counter' === next) {
 						this.timer.start();
 						this.isTimerStarted = true;
-						this.timeout          = setTimeout(() => {
+						this.timeout        = setTimeout(() => {
 							this.subsToClosingDelay = this.closeParent$('close-slow').subscribe(resp => {
 								this.toastNotificationBelonging.EventsController.close();
 							});
