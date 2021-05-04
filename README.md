@@ -19,6 +19,14 @@
 <br />
 
 
+<div align="center"> 
+<a href="https://costlydeveloper.github.io/demo-ngx-awesome-popup/#/toast-advanced" target="_blank">
+<img alt="Dynamic dialog" src=https://github.com/costlydeveloper/demo-ngx-awesome-popup/blob/7da59249fdc0f453e8f1d7b067dba9ea6a8f2da6/src/assets/toasts.gif?raw=true" >
+<p>Simple toast</p>
+</a>
+</div>
+
+
 * **Well documented**: Extremely simple to use - just follow the tutorials and API documentation!
 * **Powerful**: It uses Angular factory features - generates any component anywhere in popup without HTML selector!
 * **Awesome**: The tool you don't know you needed before!
@@ -103,6 +111,27 @@ API documentation:
 **Check [The API Documentation](https://github.com/costlydeveloper/ngx-awesome-popup/wiki) for more advance setup.**
 
 ### Toast Notification
+<div align="center"> 
+<a href="https://costlydeveloper.github.io/demo-ngx-awesome-popup/#/toast-advanced" target="_blank">
+<img alt="Standard toast" src=https://github.com/costlydeveloper/demo-ngx-awesome-popup/blob/7da59249fdc0f453e8f1d7b067dba9ea6a8f2da6/src/assets/toast-standard.gif?raw=true" >
+<p>Standard toast</p>
+</a>
+</div>
+
+<div align="center"> 
+<a href="https://costlydeveloper.github.io/demo-ngx-awesome-popup/#/toast-advanced" target="_blank">
+<img alt="Toast cookie banner, bottom corner" src=https://github.com/costlydeveloper/demo-ngx-awesome-popup/blob/master/src/assets/cookies-banner.png?raw=true" >
+<p>Toast cookie banner, bottom corner.</p>
+</a>
+</div>
+
+<div align="center"> 
+<a href="https://costlydeveloper.github.io/demo-ngx-awesome-popup/#/toast-advanced" target="_blank">
+<img alt="Wide bottom toast, cookie terms" src=https://github.com/costlydeveloper/demo-ngx-awesome-popup/blob/master/src/assets/cookies-wide-white.png?raw=true" >
+<p>Wide bottom toast, cookie terms.</p>
+</a>
+</div>
+
 Simply open toast notification from any component or any custom typescript class:
 ```typescript
 import {Component, OnInit} from '@angular/core';
@@ -148,7 +177,29 @@ API documentation:
 - [IToastNotificationPublicResponse](https://github.com/costlydeveloper/ngx-awesome-popup/wiki/Interface:%20IToastNotificationPublicResponse)
 
 
+
 ### Confirm Box / Alert Box
+<div align="center"> 
+<a href="https://costlydeveloper.github.io/demo-ngx-awesome-popup/" target="_blank">
+<img alt="Confirmation box - danger" alt="Dynamic dialog" src=https://github.com/costlydeveloper/demo-ngx-awesome-popup/blob/master/src/assets/confirm-box-red.png?raw=true" >
+<p>Confirmation box.</p>
+</a>
+</div>
+
+<div align="center"> 
+<a href="https://costlydeveloper.github.io/demo-ngx-awesome-popup/" target="_blank">
+<img alt="Confirmation box" src=https://github.com/costlydeveloper/demo-ngx-awesome-popup/blob/master/src/assets/confirm-box.png?raw=true" >
+<p>Confirmation box.</p>
+</a>
+</div>
+
+<div align="center"> 
+<a href="https://costlydeveloper.github.io/demo-ngx-awesome-popup/" target="_blank">
+<img alt="Alert popup" src=https://github.com/costlydeveloper/demo-ngx-awesome-popup/blob/master/src/assets/alert-box.png?raw=true" >
+<p>Alert popup</p>
+</a>
+</div>
+
 It is very easy to open Confirm Box or Alert Box from any component or any custom typescript class:
 ```typescript
 import {Component, OnInit} from '@angular/core';
@@ -198,7 +249,15 @@ API documentation:
 - [IConfirmBoxPublicResponse](https://github.com/costlydeveloper/ngx-awesome-popup/wiki/Interface:%20IConfirmBoxPublicResponse)
 
 
+
 ### Open any component in Dialog
+<div align="center"> 
+<a href="https://costlydeveloper.github.io/demo-ngx-awesome-popup/" target="_blank">
+<img alt="Dynamic dialog" src=https://github.com/costlydeveloper/demo-ngx-awesome-popup/blob/master/src/assets/dynamic-dialog.png?raw=true" >
+<p>Dynamic dialog.</p>
+</a>
+</div>
+
 Simply open any Angular component from any typescript file without HTML selector.
 * Send and receive any data with dialog dynamic component and back.
 * Set custom buttons and listen the click event inside dynamic component (AnyAngularComponent)
@@ -341,4 +400,3 @@ API documentation:
 ## ➤ License
 	
 Licensed under [MIT](https://opensource.org/licenses/MIT).
-
