@@ -1,4 +1,4 @@
-import { ToastNotificationInterface } from './model';
+import { ToastNotificationInterface } from "./model";
 export declare class ToastNotificationConfigService {
     private userConfig;
     authorConfig: ToastNotificationInterface.IToastNotificationUserConfig;

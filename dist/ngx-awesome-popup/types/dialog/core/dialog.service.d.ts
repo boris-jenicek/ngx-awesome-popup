@@ -1,5 +1,5 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector, Type } from '@angular/core';
-import { DialogClass, DialogInterface } from './model';
+import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector, Type } from "@angular/core";
+import { DialogClass, DialogInterface } from "./model";
 export declare class DialogService {
     private componentFactoryResolver;
     private injector;

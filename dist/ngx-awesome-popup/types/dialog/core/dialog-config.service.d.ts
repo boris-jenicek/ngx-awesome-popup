@@ -1,4 +1,4 @@
-import { DialogInterface } from './model';
+import { DialogInterface } from "./model";
 export declare class DialogConfigService {
     private userConfig;
     authorConfig: DialogInterface.IDialogUserConfig;

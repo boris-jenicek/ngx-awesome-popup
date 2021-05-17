@@ -1,8 +1,8 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector } from '@angular/core';
-import { Observable } from 'rxjs';
-import { GlobalConfigService } from '../../../core/global-config.service';
-import { ToastNotificationClass, ToastNotificationInterface } from './model';
-import { ToastNotificationConfigService } from './toast-notification-config.service';
+import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector } from "@angular/core";
+import { Observable } from "rxjs";
+import { GlobalConfigService } from "../../../core/global-config.service";
+import { ToastNotificationClass, ToastNotificationInterface } from "./model";
+import { ToastNotificationConfigService } from "./toast-notification-config.service";
 export declare class ToastNotificationService {
     private componentFactoryResolver;
     private injector;

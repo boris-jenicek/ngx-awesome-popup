@@ -408,7 +408,7 @@
             var _this = this;
             if (_Reset === void 0) { _Reset = false; }
             if (_Reset) {
-                var evolveDialogStyleNode = document.getElementById('ngx-awesome-popup-glob-styles');
+                var evolveDialogStyleNode = document.getElementById("ngx-awesome-popup-glob-styles");
                 if (evolveDialogStyleNode) {
                     evolveDialogStyleNode.remove();
                 }
@@ -421,14 +421,14 @@
                     _this.setToastStyling(key, _ProductionColorTypes[key]);
                     _this.setDialogFrame(key, _ProductionColorTypes[key]);
                     if (ColorVariance[key.toUpperCase()] === ColorVariance.PRIMARY) {
-                        _this.getSheet('ngx-awesome-popup-styles').addRule('.ngx-awesome-popup-overlay', "background:  " + _ProductionColorTypes[key].TransparentDarkenVariance + "!important;");
+                        _this.getSheet("ngx-awesome-popup-styles").addRule(".ngx-awesome-popup-overlay", "background:  " + _ProductionColorTypes[key].TransparentDarkenVariance + "!important;");
                     }
                 }
             });
         };
         GlobalConfigService.prototype.setUserColors = function (_UserColorTypes) {
             var _this = this;
-            if (typeof _UserColorTypes !== 'object') {
+            if (typeof _UserColorTypes !== "object") {
                 return;
             }
             var userKeys = Object.keys(_UserColorTypes);
@@ -451,18 +451,17 @@
             // Create the <style> tag
             var evolveDialogStyleNode = document.getElementById(_StyleID);
             if (!evolveDialogStyleNode) {
-                var headNode = document.head || document.getElementsByTagName('head')[0];
+                var headNode = document.head || document.getElementsByTagName("head")[0];
                 if (!headNode) {
                     return;
                 }
-                evolveDialogStyleNode = document.createElement('style');
-                evolveDialogStyleNode.setAttribute('id', _StyleID);
-                evolveDialogStyleNode.appendChild(document.createTextNode(''));
+                evolveDialogStyleNode = document.createElement("style");
+                evolveDialogStyleNode.setAttribute("id", _StyleID);
+                evolveDialogStyleNode.appendChild(document.createTextNode(""));
                 headNode.appendChild(evolveDialogStyleNode);
             }
             return evolveDialogStyleNode ? evolveDialogStyleNode.sheet : null;
         };
-        ;
         GlobalConfigService.prototype.setToastStyling = function (_Key, _ColorProvider) {
             var standardToast = ".toast-wrapper.standard-toast .evolve-toast." + _Key.toLowerCase() + "-dialog";
             var standardToastStyle = "\n        background:  " + _ColorProvider.BrightShade + "!important;\n        border-color: " + _ColorProvider.Brighten + "!important;\n        ";
@@ -470,47 +469,53 @@
             var simpleToastStyle = "\n        background:  " + _ColorProvider.BrightWarmly + "!important;\n        color:  " + _ColorProvider.Darken + "!important;\n        ";
             var baseProgress = ".toast-wrapper .evolve-toast." + _Key.toLowerCase() + "-dialog .progress-bar";
             var baseProgressStyle = "\n        background-color:  " + _ColorProvider.Brighten + "!important;\n        ";
-            this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseProgress, baseProgressStyle);
-            this.getSheet('ngx-awesome-popup-glob-styles').addRule(standardToast, standardToastStyle);
-            this.getSheet('ngx-awesome-popup-glob-styles').addRule(simpleToast, simpleToastStyle);
+            this.getSheet("ngx-awesome-popup-glob-styles").addRule(baseProgress, baseProgressStyle);
+            this.getSheet("ngx-awesome-popup-glob-styles").addRule(standardToast, standardToastStyle);
+            this.getSheet("ngx-awesome-popup-glob-styles").addRule(simpleToast, simpleToastStyle);
         };
         GlobalConfigService.prototype.setButtonStyling = function (_Key, _ColorProvider) {
             var baseButtonClass = ".ed-btn-" + _Key.toLowerCase();
             var baseStyle = "\n        color: " + _ColorProvider.ContrastColor + "!important;\n        background:  " + _ColorProvider.Base + "!important;\n        border-color: " + _ColorProvider.BrightenForShade + "!important;\n        ";
             var hoverButtonClass = ".ed-btn-" + _Key.toLowerCase() + ":hover";
-            var hoverStyle = "\n        background:  " + (_ColorProvider.IsBaseBright ? _ColorProvider.DarkenForShade : _ColorProvider.BrightenForShade) + "!important;\n        border-color: " + (_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten) + "!important;\n        ";
+            var hoverStyle = "\n        background:  " + (_ColorProvider.IsBaseBright
+                ? _ColorProvider.DarkenForShade
+                : _ColorProvider.BrightenForShade) + "!important;\n        border-color: " + (_ColorProvider.IsBaseBright
+                ? _ColorProvider.Darken
+                : _ColorProvider.Brighten) + "!important;\n        ";
             var focusActiveButtonClass = ".ed-btn-" + _Key.toLowerCase() + ":focus, .ed-btn-" + _Key.toLowerCase() + ":active";
-            var focusActiveStyle = "\n        box-shadow: 0 0 1px 2px " + (_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten) + "!important;\n        ";
-            this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseButtonClass, baseStyle);
-            this.getSheet('ngx-awesome-popup-glob-styles').addRule(hoverButtonClass, hoverStyle);
-            this.getSheet('ngx-awesome-popup-glob-styles').addRule(focusActiveButtonClass, focusActiveStyle);
+            var focusActiveStyle = "\n        box-shadow: 0 0 1px 2px " + (_ColorProvider.IsBaseBright
+                ? _ColorProvider.Darken
+                : _ColorProvider.Brighten) + "!important;\n        ";
+            this.getSheet("ngx-awesome-popup-glob-styles").addRule(baseButtonClass, baseStyle);
+            this.getSheet("ngx-awesome-popup-glob-styles").addRule(hoverButtonClass, hoverStyle);
+            this.getSheet("ngx-awesome-popup-glob-styles").addRule(focusActiveButtonClass, focusActiveStyle);
         };
         GlobalConfigService.prototype.setIconStyling = function (_Key, _ColorProvider) {
             var baseIconClass = ".ap-icon-" + _Key.toLowerCase();
             var baseStyle = "color: " + _ColorProvider.BrightenForShade + "!important;";
-            this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseIconClass, baseStyle);
+            this.getSheet("ngx-awesome-popup-glob-styles").addRule(baseIconClass, baseStyle);
         };
         GlobalConfigService.prototype.setDialogFrame = function (_Key, _ColorProvider) {
             var baseDialogFrameClass = ".ngx-awesome-popup-overlay ." + _Key.toLowerCase() + "-dialog";
             var baseStyle = "\n        border-color: " + _ColorProvider.Brighten + "!important;\n        ";
-            this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseDialogFrameClass, baseStyle);
+            this.getSheet("ngx-awesome-popup-glob-styles").addRule(baseDialogFrameClass, baseStyle);
         };
         GlobalConfigService.prototype.setToastStyles = function () {
-            this.getSheet('ngx-awesome-popup-styles').addRule(".toast-entity", "all 0.5s ease;");
-            this.getSheet('ngx-awesome-popup-styles').addRule(".toast-entity:first-child", "animation: move 0.7s ease-out;");
-            this.getSheet('ngx-awesome-popup-styles').addRule("@-webkit-keyframes move", "\n                                        0% {margin-top: -5px; opacity: 0.4;}\n                                        30% {margin-top: -4px; opacity: 0.7;}\n                                        100% {margin-top: 0px; opacity: 1;}\n                                        ");
-            this.getSheet('ngx-awesome-popup-styles').addRule("@keyframes move", "\n                                        0% {margin-top: -5px; opacity: 0.4;}\n                                        30% {margin-top: -4px; opacity: 0.7;}\n                                        100% {margin-top: 0px; opacity: 1;}\n                                        ");
+            this.getSheet("ngx-awesome-popup-styles").addRule(".toast-entity", "all 0.5s ease;");
+            this.getSheet("ngx-awesome-popup-styles").addRule(".toast-entity:first-child", "animation: move 0.7s ease-out;");
+            this.getSheet("ngx-awesome-popup-styles").addRule("@-webkit-keyframes move", "\n                                        0% {margin-top: -5px; opacity: 0.4;}\n                                        30% {margin-top: -4px; opacity: 0.7;}\n                                        100% {margin-top: 0px; opacity: 1;}\n                                        ");
+            this.getSheet("ngx-awesome-popup-styles").addRule("@keyframes move", "\n                                        0% {margin-top: -5px; opacity: 0.4;}\n                                        30% {margin-top: -4px; opacity: 0.7;}\n                                        100% {margin-top: 0px; opacity: 1;}\n                                        ");
         };
         return GlobalConfigService;
     }());
     GlobalConfigService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function GlobalConfigService_Factory() { return new GlobalConfigService(i0__namespace.ɵɵinject("globalConfig")); }, token: GlobalConfigService, providedIn: "root" });
     GlobalConfigService.decorators = [
         { type: i0.Injectable, args: [{
-                    providedIn: 'root'
+                    providedIn: "root",
                 },] }
     ];
     GlobalConfigService.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: i0.Inject, args: ['globalConfig',] }] }
+        { type: undefined, decorators: [{ type: i0.Inject, args: ["globalConfig",] }] }
     ]; };
 
     var GlobalClass;
@@ -607,34 +612,48 @@
                 this.BrightShade = null;
                 this.BrightWarmly = null;
                 this.IsBaseBright = null;
-                if (this.Base = this.isColor(_Color)) {
-                    this.Brighten = this.brightness(this.Base, 'brighten', 25);
-                    this.BrightenForShade = this.brightness(this.Base, 'brighten', 10);
-                    this.Darken = this.brightness(this.Base, 'darken', 20);
-                    this.DarkenForShade = this.brightness(this.Base, 'darken', 10);
+                if ((this.Base = this.isColor(_Color))) {
+                    this.Brighten = this.brightness(this.Base, "brighten", 25);
+                    this.BrightenForShade = this.brightness(this.Base, "brighten", 10);
+                    this.Darken = this.brightness(this.Base, "darken", 20);
+                    this.DarkenForShade = this.brightness(this.Base, "darken", 10);
                     var luminance = Math.floor(this.luminance(this.Base) * 100);
-                    var darken = luminance > 50 ? 5 : (luminance > 40 ? 10 : (luminance > 20 ? 15 : luminance));
-                    var brighten = luminance > 55 ? 65 : (luminance > 45 ? 60 : (luminance > 20 ? 55 : (luminance > 10 ? 45 : 80)));
-                    this.BrightShade = this.brightness(this.brightness(this.Base, 'darken', darken), 'brighten', brighten);
-                    this.BrightWarmly = this.brightness(this.brightness(this.saturate(this.Base), 'darken', darken - 10), 'brighten', brighten - 5);
-                    this.TransparentDarkenVariance = this.brightness(this.transparentize(this.Base, 80), 'darken', 40);
+                    var darken = luminance > 50
+                        ? 5
+                        : luminance > 40
+                            ? 10
+                            : luminance > 20
+                                ? 15
+                                : luminance;
+                    var brighten = luminance > 55
+                        ? 65
+                        : luminance > 45
+                            ? 60
+                            : luminance > 20
+                                ? 55
+                                : luminance > 10
+                                    ? 45
+                                    : 80;
+                    this.BrightShade = this.brightness(this.brightness(this.Base, "darken", darken), "brighten", brighten);
+                    this.BrightWarmly = this.brightness(this.brightness(this.saturate(this.Base), "darken", darken - 10), "brighten", brighten - 5);
+                    this.TransparentDarkenVariance = this.brightness(this.transparentize(this.Base, 80), "darken", 40);
                     if (this.isBright(this.Base)) {
-                        this.ContrastColor = 'rgba(58,65,71,0.5)';
+                        this.ContrastColor = "rgba(58,65,71,0.5)";
                         this.IsBaseBright = true;
                     }
                     else {
-                        this.ContrastColor = 'rgb(255,255,255, 0.7)';
+                        this.ContrastColor = "rgb(255,255,255, 0.7)";
                         this.IsBaseBright = false;
                     }
                     /*	       console.log('%c BrightShade ', `background: ${this.BrightShade}; color: ${this.ContrastColor}`, this.BrightShade);
-                               console.log('%c BrightWarmly ', `background: ${this.BrightWarmly}; color: ${this.ContrastColor}`, this.BrightWarmly);
-                               console.log('%c Brighten ', `background: ${this.Brighten}; color: ${this.ContrastColor}`, this.Brighten);
-                               console.log('%c BrightenForShade ', `background: ${this.BrightenForShade}; color: ${this.ContrastColor}`, this.BrightenForShade);
-                               console.log('%c Base ', `background: ${this.Base}; color: ${this.ContrastColor}`, this.Base);
-                               console.log('%c DarkenForShade ', `background: ${this.DarkenForShade}; color: ${this.ContrastColor}`, this.DarkenForShade);
-                               console.log('%c Darken ', `background: ${this.Darken}; color: ${this.ContrastColor}`, this.Darken);
-                               console.log('%c TransparentDarkenVariance ', `background: ${this.TransparentDarkenVariance}; color: ${this.ContrastColor}`, this.TransparentDarkenVariance);
-                */
+                                       console.log('%c BrightWarmly ', `background: ${this.BrightWarmly}; color: ${this.ContrastColor}`, this.BrightWarmly);
+                                       console.log('%c Brighten ', `background: ${this.Brighten}; color: ${this.ContrastColor}`, this.Brighten);
+                                       console.log('%c BrightenForShade ', `background: ${this.BrightenForShade}; color: ${this.ContrastColor}`, this.BrightenForShade);
+                                       console.log('%c Base ', `background: ${this.Base}; color: ${this.ContrastColor}`, this.Base);
+                                       console.log('%c DarkenForShade ', `background: ${this.DarkenForShade}; color: ${this.ContrastColor}`, this.DarkenForShade);
+                                       console.log('%c Darken ', `background: ${this.Darken}; color: ${this.ContrastColor}`, this.Darken);
+                                       console.log('%c TransparentDarkenVariance ', `background: ${this.TransparentDarkenVariance}; color: ${this.ContrastColor}`, this.TransparentDarkenVariance);
+                        */
                 }
             }
             ColorProvider.prototype.saturate = function (_Rgb) {
@@ -657,32 +676,34 @@
             ColorProvider.prototype.brightness = function (_Rgb, _Action, _Percentage) {
                 var rgbIntArray = this.getRGBArray(_Rgb);
                 var _a = __read(this.getLowMidHi(rgbIntArray), 3), lowest = _a[0], middle = _a[1], highest = _a[2];
-                if (_Action === 'brighten' && lowest.val === 255) {
+                if (_Action === "brighten" && lowest.val === 255) {
                     return _Rgb;
                 }
-                if (_Action === 'darken' && highest.val === 0) {
+                if (_Action === "darken" && highest.val === 0) {
                     return _Rgb;
                 }
-                var amount = _Percentage / 100 * 255;
+                var amount = (_Percentage / 100) * 255;
                 var returnList = [];
-                if (_Action === 'brighten') {
-                    returnList[lowest.index] = Math.round(lowest.val + (Math.min(255 - lowest.val, amount)));
+                if (_Action === "brighten") {
+                    returnList[lowest.index] = Math.round(lowest.val + Math.min(255 - lowest.val, amount));
                     var increaseFraction = (returnList[lowest.index] - lowest.val) / (255 - lowest.val);
-                    returnList[middle.index] = middle.val + (255 - middle.val) * increaseFraction;
-                    returnList[highest.index] = highest.val + (255 - highest.val) * increaseFraction;
+                    returnList[middle.index] =
+                        middle.val + (255 - middle.val) * increaseFraction;
+                    returnList[highest.index] =
+                        highest.val + (255 - highest.val) * increaseFraction;
                 }
-                if (_Action === 'darken') {
-                    returnList[highest.index] = highest.val - (Math.min(highest.val, amount));
-                    var decreaseFraction = (highest.val - returnList[highest.index]) / (highest.val);
+                if (_Action === "darken") {
+                    returnList[highest.index] = highest.val - Math.min(highest.val, amount);
+                    var decreaseFraction = (highest.val - returnList[highest.index]) / highest.val;
                     returnList[middle.index] = middle.val - middle.val * decreaseFraction;
                     returnList[lowest.index] = lowest.val - lowest.val * decreaseFraction;
                 }
                 returnList = returnList.map(function (item) { return Math.round(item); });
                 if (rgbIntArray.length > 3) {
                     returnList.push(rgbIntArray[3]);
-                    return ("rgba(" + returnList.join() + ")");
+                    return "rgba(" + returnList.join() + ")";
                 }
-                return ("rgb(" + returnList.join() + ")");
+                return "rgb(" + returnList.join() + ")";
             };
             ColorProvider.prototype.getLightnessOfRGB = function (_Rgb) {
                 var rgbIntArray = this.getRGBArray(_Rgb);
@@ -695,7 +716,9 @@
             };
             ColorProvider.prototype.getLowMidHi = function (_RgbArray) {
                 var rgbArrayCopy = _RgbArray.slice();
-                var rgbArrayWithoutAlpha = _RgbArray.length > 3 ? rgbArrayCopy.reverse().slice(1).reverse() : _RgbArray;
+                var rgbArrayWithoutAlpha = _RgbArray.length > 3
+                    ? rgbArrayCopy.reverse().slice(1).reverse()
+                    : _RgbArray;
                 var highest = { val: -1, index: -1 };
                 var lowest = { val: Infinity, index: -1 };
                 rgbArrayWithoutAlpha.map(function (val, index) {
@@ -709,14 +732,17 @@
                 if (lowest.index === highest.index) {
                     lowest.index = highest.index + 1;
                 }
-                var middleIndex = (3 - highest.index - lowest.index);
-                var middle = { val: rgbArrayWithoutAlpha[middleIndex], index: middleIndex };
+                var middleIndex = 3 - highest.index - lowest.index;
+                var middle = {
+                    val: rgbArrayWithoutAlpha[middleIndex],
+                    index: middleIndex,
+                };
                 return [lowest, middle, highest];
             };
             ColorProvider.prototype.contrast = function (_Luminance) {
                 var brightest = Math.max(1.05, _Luminance + 0.05);
                 var darkest = Math.min(1.05, _Luminance + 0.05);
-                var contrast = (brightest) / (darkest);
+                var contrast = brightest / darkest;
                 return contrast < 2.7;
             };
             ColorProvider.prototype.isColor = function (_StrColor) {
@@ -725,7 +751,12 @@
                 return !!CSSDeclaration.color ? CSSDeclaration.color : null;
             };
             ColorProvider.prototype.getRGBArray = function (_Rgb) {
-                return _Rgb.replace(/^(rgb|rgba)\(/, '').replace(/\)$/, '').replace(/\s/g, '').split(',').map(function (x) { return +x; });
+                return _Rgb
+                    .replace(/^(rgb|rgba)\(/, "")
+                    .replace(/\)$/, "")
+                    .replace(/\s/g, "")
+                    .split(",")
+                    .map(function (x) { return +x; });
             };
             ColorProvider.prototype.luminance = function (_Rgb) {
                 var rgbIntArray = this.getRGBArray(_Rgb);
@@ -735,16 +766,22 @@
                         ? item / 12.92
                         : Math.pow((item + 0.055) / 1.055, 2.4);
                 });
-                return W3algorithm[0] * 0.2126 + W3algorithm[1] * 0.7152 + W3algorithm[2] * 0.0722;
+                return (W3algorithm[0] * 0.2126 +
+                    W3algorithm[1] * 0.7152 +
+                    W3algorithm[2] * 0.0722);
             };
             ColorProvider.prototype.transparentize = function (_Rgb, _Percentage) {
-                var baseArray = this.Base.replace(/^(rgb|rgba)\(/, '').replace(/\)$/, '').replace(/\s/g, '').split(',').map(function (x) { return +x; });
+                var baseArray = this.Base.replace(/^(rgb|rgba)\(/, "")
+                    .replace(/\)$/, "")
+                    .replace(/\s/g, "")
+                    .split(",")
+                    .map(function (x) { return +x; });
                 if (baseArray.length > 3) {
                     baseArray.pop();
                 }
                 var amount = (100 - _Percentage) / 100;
                 baseArray.push(amount);
-                return ("rgb(" + baseArray.join() + ")");
+                return "rgb(" + baseArray.join() + ")";
             };
             return ColorProvider;
         }());
@@ -756,14 +793,14 @@
              * @ignore
              */
             DataControl.prototype.copyValuesFrom = function (_Data, _DestinationObject) {
-                if (typeof _Data !== 'object') {
+                if (typeof _Data !== "object") {
                     return _DestinationObject;
                 }
                 var dataKeys = Object.keys(_Data);
                 var destinationObjectKeys = Object.keys(_DestinationObject);
                 dataKeys.forEach(function (key) {
-                    if (destinationObjectKeys.find(function (tKey) { return tKey === key || tKey === '_' + key; })) {
-                        if (key.includes('Date')) {
+                    if (destinationObjectKeys.find(function (tKey) { return tKey === key || tKey === "_" + key; })) {
+                        if (key.includes("Date")) {
                             var date = Date.parse(_Data[key]);
                             if (date) {
                                 _DestinationObject[key] = new Date(date);
@@ -815,7 +852,7 @@
                         return;
                     }
                     _this.TimePassed += 100;
-                    _this.Progress = _this.TimePassed * 100 / _this.Milliseconds;
+                    _this.Progress = (_this.TimePassed * 100) / _this.Milliseconds;
                     _this.Remaining = 100 - _this.Progress;
                 }, 100);
             };
@@ -837,14 +874,15 @@
             userConfig.ConfirmBoxCoreConfig = userConfigBase.ConfirmBoxCoreConfig;
             // endregion
             // region *** author default config values (if there is no user input) ***
-            this.authorConfig.ConfirmBoxCoreConfig.Width = 'auto';
-            this.authorConfig.ConfirmBoxCoreConfig.Height = 'auto';
-            this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition = 'center';
-            this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel = 'Confirm';
-            this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel = 'Decline';
+            this.authorConfig.ConfirmBoxCoreConfig.Width = "auto";
+            this.authorConfig.ConfirmBoxCoreConfig.Height = "auto";
+            this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition = "center";
+            this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel = "Confirm";
+            this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel = "Decline";
             this.authorConfig.ConfirmBoxCoreConfig.DisableIcon = false;
             this.authorConfig.ConfirmBoxCoreConfig.AllowHTMLMessage = false;
-            this.authorConfig.ConfirmBoxCoreConfig.LayoutType = exports.DialogLayoutDisplay.NONE;
+            this.authorConfig.ConfirmBoxCoreConfig.LayoutType =
+                exports.DialogLayoutDisplay.NONE;
             // endregion
             // region *** Production setup ***
             dataControl.copyValuesFrom(this.authorConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
@@ -856,11 +894,11 @@
     ConfirmBoxConfigService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ConfirmBoxConfigService_Factory() { return new ConfirmBoxConfigService(i0__namespace.ɵɵinject("confirmBoxConfig")); }, token: ConfirmBoxConfigService, providedIn: "root" });
     ConfirmBoxConfigService.decorators = [
         { type: i0.Injectable, args: [{
-                    providedIn: 'root'
+                    providedIn: "root",
                 },] }
     ];
     ConfirmBoxConfigService.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: i0.Inject, args: ['confirmBoxConfig',] }] }
+        { type: undefined, decorators: [{ type: i0.Inject, args: ["confirmBoxConfig",] }] }
     ]; };
 
     var DialogInjector = /** @class */ (function () {
@@ -881,26 +919,18 @@
     function fadeInOut(_OpacityMin, _OpacityMax) {
         if (_OpacityMin === void 0) { _OpacityMin = 0; }
         if (_OpacityMax === void 0) { _OpacityMax = 1; }
-        return animations.trigger('fadeInOut', [
+        return animations.trigger("fadeInOut", [
             // ...
-            animations.state('open', animations.style({
-                opacity: _OpacityMax
+            animations.state("open", animations.style({
+                opacity: _OpacityMax,
             })),
-            animations.state('closed', animations.style({
-                opacity: _OpacityMin
+            animations.state("closed", animations.style({
+                opacity: _OpacityMin,
             })),
-            animations.transition('* => close-fast', [
-                animations.animate('0.1s')
-            ]),
-            animations.transition('* => open', [
-                animations.animate('0.2s')
-            ]),
-            animations.transition('* => close-slow', [
-                animations.animate('1.3s')
-            ]),
-            animations.transition('* => close-instant', [
-                animations.animate('0s')
-            ])
+            animations.transition("* => close-fast", [animations.animate("0.1s")]),
+            animations.transition("* => open", [animations.animate("0.2s")]),
+            animations.transition("* => close-slow", [animations.animate("1.3s")]),
+            animations.transition("* => close-instant", [animations.animate("0s")]),
         ]);
     }
 
@@ -908,7 +938,7 @@
         function ConfirmBoxWrapperComponent(confirmBoxBelonging, cd) {
             this.confirmBoxBelonging = confirmBoxBelonging;
             this.cd = cd;
-            this.fadeInOutAnimation = 'open';
+            this.fadeInOutAnimation = "open";
         }
         ConfirmBoxWrapperComponent.prototype.ngAfterViewInit = function () {
             this.setResponse(false);
@@ -933,20 +963,20 @@
         };
         ConfirmBoxWrapperComponent.prototype.onButtonClick = function (_Type) {
             var buttonID;
-            if (_Type === 'confirm') {
+            if (_Type === "confirm") {
                 buttonID = this.confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel.toLowerCase();
             }
-            else if (_Type === 'decline') {
+            else if (_Type === "decline") {
                 buttonID = this.confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel.toLowerCase();
             }
-            this.setResponse(_Type === 'confirm', buttonID);
+            this.setResponse(_Type === "confirm", buttonID);
             this.confirmBoxBelonging.EventsController.close();
         };
         ConfirmBoxWrapperComponent.prototype.closeParent$ = function (_ClosingAnimation) {
             this.fadeInOutAnimation = _ClosingAnimation;
-            var timer = _ClosingAnimation === 'close-slow' ? 1400 : 150;
+            var timer = _ClosingAnimation === "close-slow" ? 1400 : 150;
             return new rxjs.Observable(function (observer) {
-                observer.next('');
+                observer.next("");
                 observer.complete();
             }).pipe(operators.delay(timer));
         };
@@ -954,10 +984,10 @@
     }());
     ConfirmBoxWrapperComponent.decorators = [
         { type: i0.Component, args: [{
-                    selector: 'app-confirm-box-wrapper',
-                    template: "<div class=\"ngx-awesome-popup-overlay\" (dblclick)=\"onOverlayClicked($event)\" [@fadeInOut]=\"fadeInOutAnimation\">\n\t\n\t<div\n\t\t\tclass=\"evolve-confirm-box\"\n\t\t\t[ngClass]=\"{\n\t\t\t\t  'standard-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n\t\t\t\t  'success-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n\t\t\t\t  'info-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n\t\t\t\t  'warning-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n\t\t\t\t  'danger-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n\t\t\t\t}\" [ngStyle]=\"{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}\"\n\t>\n\t\t\n\t\t<div class=\"confirm-box-title-content\" *ngIf=\"confirmBoxBelonging.Dispatch.Title\">\n\t\t\t\n\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t<div class=\"text-wrapper dont-break-out\">\n\t\t\t\t\t<div class=\"confirm-box-title-text\">{{confirmBoxBelonging.Dispatch.Title}}</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"content-holder\" *ngIf=\"confirmBoxBelonging.Dispatch.Message\">\n\t\t\t<div class=\"icon-section\" *ngIf=\"!confirmBoxBelonging.ConfirmBoxCoreConfig.DisableIcon\">\n\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"icon-type-confirm-box\" [ngClass]=\"{\n\t\t\t\t          '': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n\t\t\t\t          'ap-icon-success icon-check-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n\t\t\t\t          'ap-icon-info icon-info-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n\t\t\t\t          'ap-icon-warning icon-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n\t\t\t\t          'ap-icon-danger icon-times-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t\t></span>\n\t\t\t</div>\n\t\t\t<div class=\"text-wrapper-section confirm-box-inner-content\" [ngStyle]=\"{'width': confirmBoxBelonging.ConfirmBoxCoreConfig.Width, 'height': confirmBoxBelonging.ConfirmBoxCoreConfig.Height}\">\n\t\t\t\t\n\t\t\t\t<!--<div class=\"dont-break-out\" [ngClass]=\"{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}\">-->\n\t\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t\t<div class=\"text-wrapper dont-break-out\" *ngIf=\"!confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage\">{{confirmBoxBelonging.Dispatch.Message}}</div>\n\t\t\t\t\t<div class=\"text-wrapper\" *ngIf=\"confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage\" [innerHTML]=\"confirmBoxBelonging.Dispatch.Message\"></div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</div>\n\t\t\n\t\t</div>\n\t\t<div class=\"button-holder\">\n\t\t\t<div class=\"button-section\" *ngIf=\"confirmBoxBelonging.Buttons.length\" [ngStyle]=\"{ 'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-md\" *ngFor=\"let button of confirmBoxBelonging.Buttons\" (click)=\"onCustomButton(button)\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),\n                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),\n                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),\n                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),\n                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),\n                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),\n                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),\n                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),\n                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),\n                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)\n                            }\"\n\t\t\t\t>{{button.Label}}</button>\n\t\t\t\n\t\t\t</div>\n\t\t\t<div class=\"button-section\" *ngIf=\"!confirmBoxBelonging.Buttons.length\" [ngStyle]=\"{ 'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-md\" (click)=\"onButtonClick('confirm')\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t          'ed-btn-primary': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n\t\t\t\t          'ed-btn-success': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n\t\t\t\t          'ed-btn-info': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n\t\t\t\t          'ed-btn-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n\t\t\t\t          'ed-btn-danger': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t>{{confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel}}\n\t\t\t\t</button>\n\t\t\t\t<button class=\"ed-btn ed-btn-md ed-btn-secondary\" (click)=\"onButtonClick('decline')\" *ngIf=\"confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel\">\n\t\t\t\t\t{{confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel}}\n\t\t\t\t</button>\n\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t\n\t</div>\n",
+                    selector: "app-confirm-box-wrapper",
+                    template: "<div\n  class=\"ngx-awesome-popup-overlay\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"fadeInOutAnimation\"\n>\n  <div\n    class=\"evolve-confirm-box\"\n    [ngClass]=\"{\n      'standard-dialog':\n        confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n      'success-dialog':\n        confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n      'info-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n      'warning-dialog':\n        confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n      'danger-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n    }\"\n    [ngStyle]=\"{\n      width: confirmBoxBelonging.ConfirmBoxCoreConfig.Width,\n      height: confirmBoxBelonging.ConfirmBoxCoreConfig.Height\n    }\"\n  >\n    <div\n      class=\"confirm-box-title-content\"\n      *ngIf=\"confirmBoxBelonging.Dispatch.Title\"\n    >\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          <div class=\"confirm-box-title-text\">\n            {{ confirmBoxBelonging.Dispatch.Title }}\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div\n      class=\"content-holder\"\n      [ngClass]=\"confirmBoxBelonging.Dispatch.Title ? '' : 'without-title'\"\n      *ngIf=\"confirmBoxBelonging.Dispatch.Message\"\n    >\n      <div\n        class=\"icon-section\"\n        *ngIf=\"!confirmBoxBelonging.ConfirmBoxCoreConfig.DisableIcon\"\n      >\n        <span\n          class=\"icon-type-confirm-box\"\n          [ngClass]=\"{\n            '': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n            'ap-icon-success icon-check-circle':\n              confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n            'ap-icon-info icon-info-circle':\n              confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n            'ap-icon-warning icon-warning':\n              confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n            'ap-icon-danger icon-times-circle':\n              confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n          }\"\n        ></span>\n      </div>\n      <div class=\"text-wrapper-section confirm-box-inner-content\">\n        <!--<div class=\"dont-break-out\" [ngClass]=\"{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}\">-->\n        <div class=\"dont-break-out\">\n          <div\n            class=\"text-wrapper dont-break-out\"\n            *ngIf=\"!confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage\"\n          >\n            {{ confirmBoxBelonging.Dispatch.Message }}\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage\"\n            [innerHTML]=\"confirmBoxBelonging.Dispatch.Message\"\n          ></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"button-holder\">\n      <div\n        class=\"button-section\"\n        *ngIf=\"confirmBoxBelonging.Buttons.length\"\n        [ngStyle]=\"{\n          'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-md\"\n          *ngFor=\"let button of confirmBoxBelonging.Buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.LayoutType ? button.LayoutType === 0 : false,\n            'ed-btn-success': button.LayoutType\n              ? button.LayoutType === 1\n              : false,\n            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,\n            'ed-btn-warning': button.LayoutType\n              ? button.LayoutType === 3\n              : false,\n            'ed-btn-danger': button.LayoutType\n              ? button.LayoutType === 4\n              : false,\n            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,\n            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,\n            'ed-btn-primary': button.LayoutType\n              ? button.LayoutType === 7\n              : false,\n            'ed-btn-secondary': button.LayoutType\n              ? button.LayoutType === 8\n              : false,\n            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false\n          }\"\n        >\n          {{ button.Label }}\n        </button>\n      </div>\n      <div\n        class=\"button-section\"\n        *ngIf=\"!confirmBoxBelonging.Buttons.length\"\n        [ngStyle]=\"{\n          'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-md\"\n          (click)=\"onButtonClick('confirm')\"\n          [ngClass]=\"{\n            'ed-btn-primary':\n              confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n            'ed-btn-success':\n              confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n            'ed-btn-info':\n              confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n            'ed-btn-warning':\n              confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n            'ed-btn-danger':\n              confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n          }\"\n        >\n          {{ confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-md ed-btn-secondary\"\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel\"\n        >\n          {{ confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel }}\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n",
                     animations: [fadeInOut(0, 1)],
-                    styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(\"data:font/eot;base64,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\");src:url(\"data:font/eot;base64,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\") format(\"embedded-opentype\"),url(\"data:font/ttf;base64,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\") format(\"truetype\"),url(\"data:font/woff;base64,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\") format(\"woff\"),url(\"data:font/svg;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiID4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPG1ldGFkYXRhPkdlbmVyYXRlZCBieSBJY29Nb29uPC9tZXRhZGF0YT4KCTxkZWZzPgoJCTxmb250IGlkPSJpY29tb29uIiBob3Jpei1hZHYteD0iMTAyNCI+CgkJCTxmb250LWZhY2UgdW5pdHMtcGVyLWVtPSIxMDI0IiBhc2NlbnQ9Ijk2MCIgZGVzY2VudD0iLTY0Ii8+CgkJCTxtaXNzaW5nLWdseXBoIGhvcml6LWFkdi14PSIxMDI0Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3gyMDsiIGhvcml6LWFkdi14PSI1MTIiIGQ9IiIvPgoJCQk8Z2x5cGggdW5pY29kZT0iJiN4ZTkwMDsiIGdseXBoLW5hbWU9InRpbWVzLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTY1Ni41NzEgMzA5LjcxNGMwIDkuNzE0LTQgMTguODU3LTEwLjg1NyAyNS43MTRsLTEwMy40MjkgMTAzLjQyOSAxMDMuNDI5IDEwMy40MjljNi44NTcgNi44NTcgMTAuODU3IDE2IDEwLjg1NyAyNS43MTRzLTQgMTkuNDI5LTEwLjg1NyAyNi4yODZsLTUxLjQyOSA1MS40MjljLTYuODU3IDYuODU3LTE2LjU3MSAxMC44NTctMjYuMjg2IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMTAzLjQyOS0xMDMuNDI5LTEwMy40MjkgMTAzLjQyOWMtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE5LjQyOS00LTI2LjI4Ni0xMC44NTdsLTUxLjQyOS01MS40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi41NzEtMTAuODU3LTI2LjI4NnM0LTE4Ljg1NyAxMC44NTctMjUuNzE0bDEwMy40MjktMTAzLjQyOS0xMDMuNDI5LTEwMy40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi0xMC44NTctMjUuNzE0czQtMTkuNDI5IDEwLjg1Ny0yNi4yODZsNTEuNDI5LTUxLjQyOWM2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI2LjI4Ni0xMC44NTdzMTguODU3IDQgMjUuNzE0IDEwLjg1N2wxMDMuNDI5IDEwMy40MjkgMTAzLjQyOS0xMDMuNDI5YzYuODU3LTYuODU3IDE2LTEwLjg1NyAyNS43MTQtMTAuODU3czE5LjQyOSA0IDI2LjI4NiAxMC44NTdsNTEuNDI5IDUxLjQyOWM2Ljg1NyA2Ljg1NyAxMC44NTcgMTYuNTcxIDEwLjg1NyAyNi4yODZ6TTg3Ny43MTQgNDM4Ljg1N2MwLTI0Mi4yODYtMTk2LjU3MS00MzguODU3LTQzOC44NTctNDM4Ljg1N3MtNDM4Ljg1NyAxOTYuNTcxLTQzOC44NTcgNDM4Ljg1NyAxOTYuNTcxIDQzOC44NTcgNDM4Ljg1NyA0MzguODU3IDQzOC44NTctMTk2LjU3MSA0MzguODU3LTQzOC44NTd6Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3hlOTAxOyIgZ2x5cGgtbmFtZT0iZXhjbGFtYXRpb24tdHJpYW5nbGUsIHdhcm5pbmciIGQ9Ik01ODUuMTQzIDE2NS4xNDN2MTA4LjU3MWMwIDEwLjI4Ni04IDE4Ljg1Ny0xOC4yODYgMTguODU3aC0xMDkuNzE0Yy0xMC4yODYgMC0xOC4yODYtOC41NzEtMTguMjg2LTE4Ljg1N3YtMTA4LjU3MWMwLTEwLjI4NiA4LTE4Ljg1NyAxOC4yODYtMTguODU3aDEwOS43MTRjMTAuMjg2IDAgMTguMjg2IDguNTcxIDE4LjI4NiAxOC44NTd6TTU4NCAzNzguODU3bDEwLjI4NiAyNjIuMjg2YzAgMy40MjktMS43MTQgOC01LjcxNCAxMC44NTctMy40MjkgMi44NTctOC41NzEgNi4yODYtMTMuNzE0IDYuMjg2aC0xMjUuNzE0Yy01LjE0MyAwLTEwLjI4Ni0zLjQyOS0xMy43MTQtNi4yODYtNC0yLjg1Ny01LjcxNC04LjU3MS01LjcxNC0xMmw5LjcxNC0yNjEuMTQzYzAtNy40MjkgOC41NzEtMTMuMTQzIDE5LjQyOS0xMy4xNDNoMTA1LjcxNGMxMC4yODYgMCAxOC44NTcgNS43MTQgMTkuNDI5IDEzLjE0M3pNNTc2IDkxMi41NzFsNDM4Ljg1Ny04MDQuNTcxYzEyLjU3MS0yMi4yODYgMTItNDkuNzE0LTEuMTQzLTcycy0zNy4xNDMtMzYtNjIuODU3LTM2aC04NzcuNzE0Yy0yNS43MTQgMC00OS43MTQgMTMuNzE0LTYyLjg1NyAzNnMtMTMuNzE0IDQ5LjcxNC0xLjE0MyA3Mmw0MzguODU3IDgwNC41NzFjMTIuNTcxIDIzLjQyOSAzNy4xNDMgMzguMjg2IDY0IDM4LjI4NnM1MS40MjktMTQuODU3IDY0LTM4LjI4NnoiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDI7IiBnbHlwaC1uYW1lPSJjaGVjay1jaXJjbGUiIGhvcml6LWFkdi14PSI4NzgiIGQ9Ik03MzMuNzE0IDUzMS40MjhjMCA5LjcxNC0zLjQyOSAxOS40MjktMTAuMjg2IDI2LjI4NmwtNTIgNTEuNDI5Yy02Ljg1NyA2Ljg1Ny0xNiAxMC44NTctMjUuNzE0IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMjMzLjE0My0yMzIuNTcxLTEyOS4xNDMgMTI5LjE0M2MtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE4Ljg1Ny00LTI1LjcxNC0xMC44NTdsLTUyLTUxLjQyOWMtNi44NTctNi44NTctMTAuMjg2LTE2LjU3MS0xMC4yODYtMjYuMjg2czMuNDI5LTE4Ljg1NyAxMC4yODYtMjUuNzE0bDIwNi44NTctMjA2Ljg1N2M2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI1LjcxNC0xMC44NTcgOS43MTQgMCAxOS40MjkgNCAyNi4yODYgMTAuODU3bDMxMC4yODYgMzEwLjI4NmM2Ljg1NyA2Ljg1NyAxMC4yODYgMTYgMTAuMjg2IDI1LjcxNHpNODc3LjcxNCA0MzguODU3YzAtMjQyLjI4Ni0xOTYuNTcxLTQzOC44NTctNDM4Ljg1Ny00MzguODU3cy00MzguODU3IDE5Ni41NzEtNDM4Ljg1NyA0MzguODU3IDE5Ni41NzEgNDM4Ljg1NyA0MzguODU3IDQzOC44NTcgNDM4Ljg1Ny0xOTYuNTcxIDQzOC44NTctNDM4Ljg1N3oiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDM7IiBnbHlwaC1uYW1lPSJpbmZvLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTU4NS4xNDMgMTY0LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtNTQuODU3djI5Mi41NzFjMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTgyLjg1N2MtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoNTQuODU3di0xODIuODU3aC01NC44NTdjLTEwLjI4NiAwLTE4LjI4Ni04LTE4LjI4Ni0xOC4yODZ2LTkxLjQyOWMwLTEwLjI4NiA4LTE4LjI4NiAxOC4yODYtMTguMjg2aDI1NmMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek01MTIgNjc2LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTA5LjcxNGMtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoMTA5LjcxNGMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek04NzcuNzE0IDQzOC44NTdjMC0yNDIuMjg2LTE5Ni41NzEtNDM4Ljg1Ny00MzguODU3LTQzOC44NTdzLTQzOC44NTcgMTk2LjU3MS00MzguODU3IDQzOC44NTcgMTk2LjU3MSA0MzguODU3IDQzOC44NTcgNDM4Ljg1NyA0MzguODU3LTE5Ni41NzEgNDM4Ljg1Ny00MzguODU3eiIvPgoJCTwvZm9udD48L2RlZnM+Cjwvc3ZnPgo=\") format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;-webkit-font-smoothing:antialiased;font-style:normal;font-variant:normal;font-weight:400;line-height:1;-moz-osx-font-smoothing:grayscale;speak:never;text-transform:none}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:1000}.evolve-confirm-box .text-wrapper,.evolve-parent-dialog .text-wrapper{text-align:center}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.ngx-awesome-popup-overlay .evolve-confirm-box{padding:0 20px}.ngx-awesome-popup-overlay .evolve-confirm-box .confirm-box-title-content{align-items:center;background-clip:padding-box;border-bottom:1px solid rgba(0,0,0,.05);color:#6c757d;display:flex;flex-direction:column;height:auto;justify-content:center;margin:8px 0 10px;padding:2px 10px 5px;width:auto}.ngx-awesome-popup-overlay .evolve-confirm-box .confirm-box-title-content .confirm-box-title-text{font-size:18px;font-weight:700}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder{align-items:center;color:#495057;display:flex;flex-direction:row;height:100%;justify-content:space-between;overflow:auto;width:100%}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .icon-section .icon-type-confirm-box{font-size:34px;margin:4px}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .confirm-box-inner-content{padding:5px 10px}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .text-wrapper p{margin:0}.ngx-awesome-popup-overlay .evolve-confirm-box .button-holder{display:flex;flex-direction:column;justify-content:flex-end;margin:10px 0 8px;width:100%}.ngx-awesome-popup-overlay .evolve-confirm-box .button-holder .button-section{margin:0;padding:4px 10px}"]
+                    styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(\"data:font/eot;base64,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\");src:url(\"data:font/eot;base64,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\") format(\"embedded-opentype\"),url(\"data:font/ttf;base64,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\") format(\"truetype\"),url(\"data:font/woff;base64,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\") format(\"woff\"),url(\"data:font/svg;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiID4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPG1ldGFkYXRhPkdlbmVyYXRlZCBieSBJY29Nb29uPC9tZXRhZGF0YT4KCTxkZWZzPgoJCTxmb250IGlkPSJpY29tb29uIiBob3Jpei1hZHYteD0iMTAyNCI+CgkJCTxmb250LWZhY2UgdW5pdHMtcGVyLWVtPSIxMDI0IiBhc2NlbnQ9Ijk2MCIgZGVzY2VudD0iLTY0Ii8+CgkJCTxtaXNzaW5nLWdseXBoIGhvcml6LWFkdi14PSIxMDI0Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3gyMDsiIGhvcml6LWFkdi14PSI1MTIiIGQ9IiIvPgoJCQk8Z2x5cGggdW5pY29kZT0iJiN4ZTkwMDsiIGdseXBoLW5hbWU9InRpbWVzLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTY1Ni41NzEgMzA5LjcxNGMwIDkuNzE0LTQgMTguODU3LTEwLjg1NyAyNS43MTRsLTEwMy40MjkgMTAzLjQyOSAxMDMuNDI5IDEwMy40MjljNi44NTcgNi44NTcgMTAuODU3IDE2IDEwLjg1NyAyNS43MTRzLTQgMTkuNDI5LTEwLjg1NyAyNi4yODZsLTUxLjQyOSA1MS40MjljLTYuODU3IDYuODU3LTE2LjU3MSAxMC44NTctMjYuMjg2IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMTAzLjQyOS0xMDMuNDI5LTEwMy40MjkgMTAzLjQyOWMtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE5LjQyOS00LTI2LjI4Ni0xMC44NTdsLTUxLjQyOS01MS40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi41NzEtMTAuODU3LTI2LjI4NnM0LTE4Ljg1NyAxMC44NTctMjUuNzE0bDEwMy40MjktMTAzLjQyOS0xMDMuNDI5LTEwMy40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi0xMC44NTctMjUuNzE0czQtMTkuNDI5IDEwLjg1Ny0yNi4yODZsNTEuNDI5LTUxLjQyOWM2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI2LjI4Ni0xMC44NTdzMTguODU3IDQgMjUuNzE0IDEwLjg1N2wxMDMuNDI5IDEwMy40MjkgMTAzLjQyOS0xMDMuNDI5YzYuODU3LTYuODU3IDE2LTEwLjg1NyAyNS43MTQtMTAuODU3czE5LjQyOSA0IDI2LjI4NiAxMC44NTdsNTEuNDI5IDUxLjQyOWM2Ljg1NyA2Ljg1NyAxMC44NTcgMTYuNTcxIDEwLjg1NyAyNi4yODZ6TTg3Ny43MTQgNDM4Ljg1N2MwLTI0Mi4yODYtMTk2LjU3MS00MzguODU3LTQzOC44NTctNDM4Ljg1N3MtNDM4Ljg1NyAxOTYuNTcxLTQzOC44NTcgNDM4Ljg1NyAxOTYuNTcxIDQzOC44NTcgNDM4Ljg1NyA0MzguODU3IDQzOC44NTctMTk2LjU3MSA0MzguODU3LTQzOC44NTd6Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3hlOTAxOyIgZ2x5cGgtbmFtZT0iZXhjbGFtYXRpb24tdHJpYW5nbGUsIHdhcm5pbmciIGQ9Ik01ODUuMTQzIDE2NS4xNDN2MTA4LjU3MWMwIDEwLjI4Ni04IDE4Ljg1Ny0xOC4yODYgMTguODU3aC0xMDkuNzE0Yy0xMC4yODYgMC0xOC4yODYtOC41NzEtMTguMjg2LTE4Ljg1N3YtMTA4LjU3MWMwLTEwLjI4NiA4LTE4Ljg1NyAxOC4yODYtMTguODU3aDEwOS43MTRjMTAuMjg2IDAgMTguMjg2IDguNTcxIDE4LjI4NiAxOC44NTd6TTU4NCAzNzguODU3bDEwLjI4NiAyNjIuMjg2YzAgMy40MjktMS43MTQgOC01LjcxNCAxMC44NTctMy40MjkgMi44NTctOC41NzEgNi4yODYtMTMuNzE0IDYuMjg2aC0xMjUuNzE0Yy01LjE0MyAwLTEwLjI4Ni0zLjQyOS0xMy43MTQtNi4yODYtNC0yLjg1Ny01LjcxNC04LjU3MS01LjcxNC0xMmw5LjcxNC0yNjEuMTQzYzAtNy40MjkgOC41NzEtMTMuMTQzIDE5LjQyOS0xMy4xNDNoMTA1LjcxNGMxMC4yODYgMCAxOC44NTcgNS43MTQgMTkuNDI5IDEzLjE0M3pNNTc2IDkxMi41NzFsNDM4Ljg1Ny04MDQuNTcxYzEyLjU3MS0yMi4yODYgMTItNDkuNzE0LTEuMTQzLTcycy0zNy4xNDMtMzYtNjIuODU3LTM2aC04NzcuNzE0Yy0yNS43MTQgMC00OS43MTQgMTMuNzE0LTYyLjg1NyAzNnMtMTMuNzE0IDQ5LjcxNC0xLjE0MyA3Mmw0MzguODU3IDgwNC41NzFjMTIuNTcxIDIzLjQyOSAzNy4xNDMgMzguMjg2IDY0IDM4LjI4NnM1MS40MjktMTQuODU3IDY0LTM4LjI4NnoiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDI7IiBnbHlwaC1uYW1lPSJjaGVjay1jaXJjbGUiIGhvcml6LWFkdi14PSI4NzgiIGQ9Ik03MzMuNzE0IDUzMS40MjhjMCA5LjcxNC0zLjQyOSAxOS40MjktMTAuMjg2IDI2LjI4NmwtNTIgNTEuNDI5Yy02Ljg1NyA2Ljg1Ny0xNiAxMC44NTctMjUuNzE0IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMjMzLjE0My0yMzIuNTcxLTEyOS4xNDMgMTI5LjE0M2MtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE4Ljg1Ny00LTI1LjcxNC0xMC44NTdsLTUyLTUxLjQyOWMtNi44NTctNi44NTctMTAuMjg2LTE2LjU3MS0xMC4yODYtMjYuMjg2czMuNDI5LTE4Ljg1NyAxMC4yODYtMjUuNzE0bDIwNi44NTctMjA2Ljg1N2M2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI1LjcxNC0xMC44NTcgOS43MTQgMCAxOS40MjkgNCAyNi4yODYgMTAuODU3bDMxMC4yODYgMzEwLjI4NmM2Ljg1NyA2Ljg1NyAxMC4yODYgMTYgMTAuMjg2IDI1LjcxNHpNODc3LjcxNCA0MzguODU3YzAtMjQyLjI4Ni0xOTYuNTcxLTQzOC44NTctNDM4Ljg1Ny00MzguODU3cy00MzguODU3IDE5Ni41NzEtNDM4Ljg1NyA0MzguODU3IDE5Ni41NzEgNDM4Ljg1NyA0MzguODU3IDQzOC44NTcgNDM4Ljg1Ny0xOTYuNTcxIDQzOC44NTctNDM4Ljg1N3oiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDM7IiBnbHlwaC1uYW1lPSJpbmZvLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTU4NS4xNDMgMTY0LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtNTQuODU3djI5Mi41NzFjMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTgyLjg1N2MtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoNTQuODU3di0xODIuODU3aC01NC44NTdjLTEwLjI4NiAwLTE4LjI4Ni04LTE4LjI4Ni0xOC4yODZ2LTkxLjQyOWMwLTEwLjI4NiA4LTE4LjI4NiAxOC4yODYtMTguMjg2aDI1NmMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek01MTIgNjc2LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTA5LjcxNGMtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoMTA5LjcxNGMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek04NzcuNzE0IDQzOC44NTdjMC0yNDIuMjg2LTE5Ni41NzEtNDM4Ljg1Ny00MzguODU3LTQzOC44NTdzLTQzOC44NTcgMTk2LjU3MS00MzguODU3IDQzOC44NTcgMTk2LjU3MSA0MzguODU3IDQzOC44NTcgNDM4Ljg1NyA0MzguODU3LTE5Ni41NzEgNDM4Ljg1Ny00MzguODU3eiIvPgoJCTwvZm9udD48L2RlZnM+Cjwvc3ZnPgo=\") format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;-webkit-font-smoothing:antialiased;font-style:normal;font-variant:normal;font-weight:400;line-height:1;-moz-osx-font-smoothing:grayscale;speak:never;text-transform:none}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:999999999}.evolve-confirm-box .text-wrapper,.evolve-parent-dialog .text-wrapper{text-align:center}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.ngx-awesome-popup-overlay .evolve-confirm-box{padding:0 20px}.ngx-awesome-popup-overlay .evolve-confirm-box .confirm-box-title-content{align-items:center;background-clip:padding-box;border-bottom:1px solid rgba(0,0,0,.05);color:#6c757d;display:flex;flex-direction:column;height:auto;justify-content:center;margin:8px 0 10px;padding:2px 10px 5px;width:auto}.ngx-awesome-popup-overlay .evolve-confirm-box .confirm-box-title-content .confirm-box-title-text{font-size:18px;font-weight:700}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder{align-items:center;color:#495057;display:flex;flex-direction:row;height:100%;justify-content:space-between;overflow:auto;width:100%}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder.without-title{margin-top:10px}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .icon-section .icon-type-confirm-box{font-size:34px;margin:4px}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .confirm-box-inner-content{padding:5px 10px}.ngx-awesome-popup-overlay .evolve-confirm-box .content-holder .text-wrapper p{margin:0}.ngx-awesome-popup-overlay .evolve-confirm-box .button-holder{display:flex;flex-direction:column;justify-content:flex-end;margin:10px 0 8px;width:100%}.ngx-awesome-popup-overlay .evolve-confirm-box .button-holder .button-section{margin:0;padding:4px 10px}"]
                 },] }
     ];
     ConfirmBoxWrapperComponent.ctorParameters = function () { return [
@@ -1005,7 +1035,8 @@
             // attach view to ignite lifecycle hooks
             this.appRef.attachView(_ComponentRef.hostView);
             // DOM
-            var domElem = _ComponentRef.hostView.rootNodes[0];
+            var domElem = _ComponentRef.hostView
+                .rootNodes[0];
             document.body.appendChild(domElem);
         };
         ConfirmBoxService.prototype.closeDialogWrapperComponent = function (_DialogUniqueID) {
@@ -1015,16 +1046,19 @@
         ConfirmBoxService.prototype.removeFromBodyParentComponent = function (_DialogIndex) {
             var _this = this;
             if (_DialogIndex > -1) {
-                this.confirmBoxComponentRefList[_DialogIndex].instance.closeParent$('close-fast').pipe(operators.map(function (item) {
+                this.confirmBoxComponentRefList[_DialogIndex].instance
+                    .closeParent$("close-fast")
+                    .pipe(operators.map(function (item) {
                     _this.appRef.detachView(_this.confirmBoxComponentRefList[_DialogIndex].hostView);
                     _this.confirmBoxComponentRefList[_DialogIndex].destroy();
                     _this.confirmBoxComponentRefList.splice(_DialogIndex, 1);
-                })).subscribe();
+                }))
+                    .subscribe();
             }
         };
         ConfirmBoxService.prototype.findDialogIndex = function (_DialogUniqueID) {
             return this.confirmBoxComponentRefList.findIndex(function (item) {
-                return _DialogUniqueID === item.instance.confirmBoxBelonging.EntityUniqueID;
+                return (_DialogUniqueID === item.instance.confirmBoxBelonging.EntityUniqueID);
             });
         };
         return ConfirmBoxService;
@@ -1032,7 +1066,7 @@
     ConfirmBoxService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ConfirmBoxService_Factory() { return new ConfirmBoxService(i0__namespace.ɵɵinject(i0__namespace.ComponentFactoryResolver), i0__namespace.ɵɵinject(i0__namespace.INJECTOR), i0__namespace.ɵɵinject(i0__namespace.ApplicationRef)); }, token: ConfirmBoxService, providedIn: "root" });
     ConfirmBoxService.decorators = [
         { type: i0.Injectable, args: [{
-                    providedIn: 'root'
+                    providedIn: "root",
                 },] }
     ];
     ConfirmBoxService.ctorParameters = function () { return [
@@ -1200,7 +1234,7 @@
             __extends(ConfirmBoxBelonging, _super);
             function ConfirmBoxBelonging() {
                 var _this = _super.call(this) || this;
-                _this.EntityUniqueID = 'C' + Math.random().toString(36).substr(2, 9);
+                _this.EntityUniqueID = "C" + Math.random().toString(36).substr(2, 9);
                 _this.EventsController = new ConfirmBoxEventsController(_this.EntityUniqueID);
                 var ConfirmBoxCoreConfigurator = ServiceLocator.injector.get(ConfirmBoxConfigService);
                 var baseSettings = new ConfirmBoxClass.Settings();
@@ -1215,623 +1249,6 @@
         ConfirmBoxClass.ConfirmBoxBelonging = ConfirmBoxBelonging;
     })(exports.ɵh || (exports.ɵh = {}));
 
-    var ToastNotificationConfigService = /** @class */ (function () {
-        function ToastNotificationConfigService(userConfig) {
-            if (userConfig === void 0) { userConfig = {}; }
-            this.userConfig = userConfig;
-            this.authorConfig = new exports.ɵk.Settings();
-            this.productionConfig = new exports.ɵk.Settings();
-            this.dataControl = new GlobalClass.DataControl();
-            // region *** confirmBox userConfig (user input app-module) ***
-            var userConfigBase = new exports.ɵk.Settings();
-            this.dataControl.copyValuesFrom(userConfig.ToastCoreConfig, userConfigBase.ToastCoreConfig); // this will make sure that object has right properties
-            userConfig.ToastCoreConfig = userConfigBase.ToastCoreConfig;
-            // endregion
-            // region *** author default config values (if there is no user input) ***
-            this.authorConfig.ToastCoreConfig.ButtonPosition = 'right';
-            this.authorConfig.ToastCoreConfig.TextPosition = 'left';
-            this.authorConfig.ToastCoreConfig.ToastPosition = exports.ToastPositionEnum.TOP_RIGHT;
-            this.authorConfig.ToastCoreConfig.ProgressBar = exports.ToastProgressBarEnum.INCREASE;
-            this.authorConfig.ToastCoreConfig.ToastUserViewType = exports.ToastUserViewTypeEnum.STANDARD;
-            this.authorConfig.ToastCoreConfig.AutoCloseDelay = 2500;
-            this.authorConfig.ToastCoreConfig.DisableIcon = false;
-            this.authorConfig.ToastCoreConfig.AllowHTMLMessage = true;
-            this.authorConfig.ToastCoreConfig.LayoutType = exports.DialogLayoutDisplay.NONE;
-            this.authorConfig.GlobalSettings.AllowedNotificationsAtOnce = 5;
-            // endregion
-            // region *** Production setup ***
-            this.setResetGlobalToastConfig();
-            this.dataControl.copyValuesFrom(this.authorConfig.ToastCoreConfig, this.productionConfig.ToastCoreConfig);
-            this.dataControl.copyValuesFrom(this.userConfig.ToastCoreConfig, this.productionConfig.ToastCoreConfig);
-            // endregion
-        }
-        ToastNotificationConfigService.prototype.setResetGlobalToastConfig = function (globalToastConfig) {
-            this.dataControl.copyValuesFrom(this.authorConfig.GlobalSettings, this.productionConfig.GlobalSettings);
-            this.dataControl.copyValuesFrom(globalToastConfig ? globalToastConfig : this.userConfig.GlobalSettings, this.productionConfig.GlobalSettings);
-        };
-        return ToastNotificationConfigService;
-    }());
-    ToastNotificationConfigService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ToastNotificationConfigService_Factory() { return new ToastNotificationConfigService(i0__namespace.ɵɵinject("toastNotificationConfig")); }, token: ToastNotificationConfigService, providedIn: "root" });
-    ToastNotificationConfigService.decorators = [
-        { type: i0.Injectable, args: [{
-                    providedIn: 'root'
-                },] }
-    ];
-    ToastNotificationConfigService.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: i0.Inject, args: ['toastNotificationConfig',] }] }
-    ]; };
-
-    var WrapperAbstraction = /** @class */ (function () {
-        function WrapperAbstraction(toastNotificationBelonging) {
-            this.toastNotificationBelonging = toastNotificationBelonging;
-            this.fadeInOutAnimation = 'open';
-            this.timerStarted$ = new rxjs.BehaviorSubject('start-counter');
-            this.isTimerStarted = false;
-            this.timer = new GlobalClass.Timer();
-        }
-        WrapperAbstraction.prototype.mouseOver = function () {
-            var _a;
-            this.timerStarted$.next('stop-counter');
-            this.fadeInOutAnimation = 'open';
-            (_a = this.subsToClosingDelay) === null || _a === void 0 ? void 0 : _a.unsubscribe();
-        };
-        WrapperAbstraction.prototype.mouseOut = function () {
-            this.timerStarted$.next('start-counter');
-        };
-        WrapperAbstraction.prototype.onOverlayClicked = function (evt) {
-            //  console.log('onOverlayClicked');
-        };
-        WrapperAbstraction.prototype.onToastClicked = function (evt) {
-            // console.log('onOverlayClicked');
-        };
-        WrapperAbstraction.prototype.setResponse = function (_IsSuccess, _ClickedButtonID) {
-            var response = new exports.ɵk.ToastNotificationDefaultResponse();
-            if (_ClickedButtonID) {
-                response.ClickedButtonID = _ClickedButtonID;
-            }
-            response.setSuccess(_IsSuccess);
-            response.setBelonging(this.toastNotificationBelonging);
-            this.toastNotificationBelonging.EventsController.setDefaultResponse(response);
-        };
-        WrapperAbstraction.prototype.onCustomButton = function (_Button) {
-            this.toastNotificationBelonging.EventsController.onButtonClick(_Button);
-            this.setResponse(true, _Button.ID);
-            this.toastNotificationBelonging.EventsController.close();
-        };
-        WrapperAbstraction.prototype.onButtonClick = function (_Type) {
-            var buttonID;
-            if (_Type === 'confirm') {
-                buttonID = this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel.toLowerCase();
-            }
-            else if (_Type === 'decline') {
-                buttonID = this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel.toLowerCase();
-            }
-            this.setResponse(_Type === 'confirm', buttonID);
-            this.toastNotificationBelonging.EventsController.close();
-        };
-        WrapperAbstraction.prototype.autoClose = function () {
-            var _this = this;
-            if (this.autoCloseCondition()) {
-                this.timer.setMilliseconds(this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
-                this.subTimer = this.timerStarted$.pipe(operators.tap(function (next) {
-                    if ('start-counter' === next) {
-                        _this.timer.start();
-                        _this.isTimerStarted = true;
-                        _this.timeout = setTimeout(function () {
-                            _this.subsToClosingDelay = _this.closeParent$('close-slow').subscribe(function (resp) {
-                                _this.toastNotificationBelonging.EventsController.close();
-                            });
-                        }, _this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
-                    }
-                    else if ('stop-counter' === next) {
-                        if (_this.isTimerStarted) {
-                            _this.timer.stop();
-                            clearTimeout(_this.timeout);
-                            _this.isTimerStarted = false;
-                        }
-                    }
-                })).subscribe();
-            }
-        };
-        WrapperAbstraction.prototype.autoCloseCondition = function () {
-            return this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay
-                && !(this.toastNotificationBelonging.Buttons.length
-                    || this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel
-                    || this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel);
-        };
-        WrapperAbstraction.prototype.closeParent$ = function (_ClosingAnimation) {
-            this.fadeInOutAnimation = _ClosingAnimation;
-            var timer = _ClosingAnimation === 'close-slow' ? 1400 : 150;
-            return rxjs.of('').pipe(operators.delay(timer));
-        };
-        WrapperAbstraction.prototype.close = function () {
-            this.toastNotificationBelonging.EventsController.close();
-        };
-        WrapperAbstraction.prototype.ngOnDestroy = function () {
-            var _a, _b;
-            (_a = this.subsToClosingDelay) === null || _a === void 0 ? void 0 : _a.unsubscribe();
-            (_b = this.subTimer) === null || _b === void 0 ? void 0 : _b.unsubscribe();
-        };
-        return WrapperAbstraction;
-    }());
-    WrapperAbstraction.decorators = [
-        { type: i0.Directive }
-    ];
-    WrapperAbstraction.ctorParameters = function () { return [
-        { type: exports.ɵk.ToastNotificationBelonging }
-    ]; };
-
-    var ToastNotificationSimpleWrapperComponent = /** @class */ (function (_super) {
-        __extends(ToastNotificationSimpleWrapperComponent, _super);
-        function ToastNotificationSimpleWrapperComponent(gConfig, toastNotificationBelonging, cd) {
-            var _this = _super.call(this, toastNotificationBelonging) || this;
-            _this.gConfig = gConfig;
-            _this.toastNotificationBelonging = toastNotificationBelonging;
-            _this.cd = cd;
-            return _this;
-        }
-        ToastNotificationSimpleWrapperComponent.prototype.ngAfterViewInit = function () {
-            this.setResponse(false);
-            this.cd.detectChanges();
-            this.autoClose();
-        };
-        return ToastNotificationSimpleWrapperComponent;
-    }(WrapperAbstraction));
-    ToastNotificationSimpleWrapperComponent.decorators = [
-        { type: i0.Component, args: [{
-                    selector: 'app-toast-notification-simple-wrapper',
-                    template: "<div class=\"toast-wrapper simple-toast\" (dblclick)=\"onOverlayClicked($event)\" [@fadeInOut]=\"fadeInOutAnimation\">\n\t<div\n\t\t\tclass=\"evolve-toast\"\n\t\t\t(mouseover)=\"mouseOver()\"\n\t\t\t(mouseout)=\"mouseOut()\" (click)=\"onToastClicked($event)\" [ngClass]=\"{\n          'standard-dialog': 0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'success-dialog': 1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'info-dialog': 2 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'warning-dialog': 3 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'danger-dialog': 4 === toastNotificationBelonging.ToastCoreConfig.LayoutType\n        }\"\n\t>\n\t\t<div class=\"toast-title-content\" *ngIf=\"toastNotificationBelonging.Dispatch.Title\">\n\t\t\t<div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.DisableIcon\">\n\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"icon-type-toast\" [ngClass]=\"{\n\t\t\t\t          '': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n\t\t\t\t          'ap-icon-success icon-check-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n\t\t\t\t          'ap-icon-info icon-info-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n\t\t\t\t          'ap-icon-warning icon-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n\t\t\t\t          'ap-icon-danger icon-times-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t\t></span>\n\t\t\t</div>\n\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t\n\t\t\t\t<div class=\"text-wrapper dont-break-out\">\n\t\t\t\t\t\n\t\t\t\t\t<div class=\"toast-title-text toast-text\">{{toastNotificationBelonging.Dispatch.Title}}</div>\n\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"close-ico icon-times-circle\" (click)=\"close()\"\n\t\t\t\t\t\t\t*ngIf=\"\n\t\t\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t\t\t     \"\n\t\t\t\t\t></span>\n\t\t\t\t\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"content-holder toast-text\" *ngIf=\"toastNotificationBelonging.Dispatch.Message\">\n\t\t\t<div class=\"text-wrapper-section toast-inner-content\" [ngStyle]=\"{'text-align': toastNotificationBelonging.ToastCoreConfig.TextPosition}\"\n\t\t\t     [ngClass]=\"{'only-message': !toastNotificationBelonging.Dispatch.Title}\">\n\t\t\t\t\n\t\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t\t<div class=\"text-wrapper dont-break-out\" *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\"><p>{{toastNotificationBelonging.Dispatch.Message}}</p></div>\n\t\t\t\t\t<div class=\"text-wrapper\" *ngIf=\"toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\" [innerHTML]=\"toastNotificationBelonging.Dispatch.Message\"></div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</div>\n\t\t\t<span\n\t\t\t\t\tclass=\"close-ico icon-times-circle\" (click)=\"close()\"\n\t\t\t\t\t*ngIf=\"\n\t\t\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t\t\t     && !toastNotificationBelonging.Dispatch.Title\n\t\t\t\t\t     \"\n\t\t\t></span>\n\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"button-holder\">\n\t\t\t<div class=\"button-section\" *ngIf=\"toastNotificationBelonging.Buttons.length\" [ngStyle]=\"{ 'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-sm\" *ngFor=\"let button of toastNotificationBelonging.Buttons\" (click)=\"onCustomButton(button)\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),\n                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),\n                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),\n                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),\n                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),\n                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),\n                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),\n                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),\n                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),\n                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)\n                            }\"\n\t\t\t\t>{{button.Label}}\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div\n\t\t\t\t\tclass=\"button-section\" [ngStyle]=\"{ 'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition }\"\n\t\t\t\t\t*ngIf=\"\n\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t     && (\n\t\t\t      toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t      ||  toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t     )\"\n\t\t\t>\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-sm\"\n\t\t\t\t\t\t*ngIf=\"toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\" (click)=\"onButtonClick('confirm')\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t          'ed-btn-primary': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n\t\t\t\t          'ed-btn-success': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n\t\t\t\t          'ed-btn-info': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n\t\t\t\t          'ed-btn-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n\t\t\t\t          'ed-btn-danger': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t>{{toastNotificationBelonging.ToastCoreConfig.ConfirmLabel}}\n\t\t\t\t</button>\n\t\t\t\t<button class=\"ed-btn ed-btn-sm ed-btn-secondary\" (click)=\"onButtonClick('decline')\" *ngIf=\"toastNotificationBelonging.ToastCoreConfig.DeclineLabel\">\n\t\t\t\t\t{{toastNotificationBelonging.ToastCoreConfig.DeclineLabel}}\n\t\t\t\t</button>\n\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t\t\n\t\t<div\n\t\t\t\tclass=\"progress-bar-container\" *ngIf=\"\n\t\t\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t\t\t     && toastNotificationBelonging.ToastCoreConfig.ProgressBar !== 0\n\t\t\t\t\t     \"\n\t\t>\n\t\t\t<div\n\t\t\t\t\tclass=\"progress-bar\"\n\t\t\t\t\t[ngStyle]=\"{'width':\n\t\t\t     (toastNotificationBelonging.ToastCoreConfig.ProgressBar === 1 ?\n\t\t\t     timer.Progress :\n\t\t\t     timer.Remaining)\n\t\t\t      + '%'}\"\n\t\t\t>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</div>\n",
-                    animations: [fadeInOut(0, 1)],
-                    styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(\"data:font/eot;base64,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\");src:url(\"data:font/eot;base64,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\") format(\"embedded-opentype\"),url(\"data:font/ttf;base64,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\") format(\"truetype\"),url(\"data:font/woff;base64,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\") format(\"woff\"),url(\"data:font/svg;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiID4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPG1ldGFkYXRhPkdlbmVyYXRlZCBieSBJY29Nb29uPC9tZXRhZGF0YT4KCTxkZWZzPgoJCTxmb250IGlkPSJpY29tb29uIiBob3Jpei1hZHYteD0iMTAyNCI+CgkJCTxmb250LWZhY2UgdW5pdHMtcGVyLWVtPSIxMDI0IiBhc2NlbnQ9Ijk2MCIgZGVzY2VudD0iLTY0Ii8+CgkJCTxtaXNzaW5nLWdseXBoIGhvcml6LWFkdi14PSIxMDI0Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3gyMDsiIGhvcml6LWFkdi14PSI1MTIiIGQ9IiIvPgoJCQk8Z2x5cGggdW5pY29kZT0iJiN4ZTkwMDsiIGdseXBoLW5hbWU9InRpbWVzLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTY1Ni41NzEgMzA5LjcxNGMwIDkuNzE0LTQgMTguODU3LTEwLjg1NyAyNS43MTRsLTEwMy40MjkgMTAzLjQyOSAxMDMuNDI5IDEwMy40MjljNi44NTcgNi44NTcgMTAuODU3IDE2IDEwLjg1NyAyNS43MTRzLTQgMTkuNDI5LTEwLjg1NyAyNi4yODZsLTUxLjQyOSA1MS40MjljLTYuODU3IDYuODU3LTE2LjU3MSAxMC44NTctMjYuMjg2IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMTAzLjQyOS0xMDMuNDI5LTEwMy40MjkgMTAzLjQyOWMtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE5LjQyOS00LTI2LjI4Ni0xMC44NTdsLTUxLjQyOS01MS40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi41NzEtMTAuODU3LTI2LjI4NnM0LTE4Ljg1NyAxMC44NTctMjUuNzE0bDEwMy40MjktMTAzLjQyOS0xMDMuNDI5LTEwMy40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi0xMC44NTctMjUuNzE0czQtMTkuNDI5IDEwLjg1Ny0yNi4yODZsNTEuNDI5LTUxLjQyOWM2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI2LjI4Ni0xMC44NTdzMTguODU3IDQgMjUuNzE0IDEwLjg1N2wxMDMuNDI5IDEwMy40MjkgMTAzLjQyOS0xMDMuNDI5YzYuODU3LTYuODU3IDE2LTEwLjg1NyAyNS43MTQtMTAuODU3czE5LjQyOSA0IDI2LjI4NiAxMC44NTdsNTEuNDI5IDUxLjQyOWM2Ljg1NyA2Ljg1NyAxMC44NTcgMTYuNTcxIDEwLjg1NyAyNi4yODZ6TTg3Ny43MTQgNDM4Ljg1N2MwLTI0Mi4yODYtMTk2LjU3MS00MzguODU3LTQzOC44NTctNDM4Ljg1N3MtNDM4Ljg1NyAxOTYuNTcxLTQzOC44NTcgNDM4Ljg1NyAxOTYuNTcxIDQzOC44NTcgNDM4Ljg1NyA0MzguODU3IDQzOC44NTctMTk2LjU3MSA0MzguODU3LTQzOC44NTd6Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3hlOTAxOyIgZ2x5cGgtbmFtZT0iZXhjbGFtYXRpb24tdHJpYW5nbGUsIHdhcm5pbmciIGQ9Ik01ODUuMTQzIDE2NS4xNDN2MTA4LjU3MWMwIDEwLjI4Ni04IDE4Ljg1Ny0xOC4yODYgMTguODU3aC0xMDkuNzE0Yy0xMC4yODYgMC0xOC4yODYtOC41NzEtMTguMjg2LTE4Ljg1N3YtMTA4LjU3MWMwLTEwLjI4NiA4LTE4Ljg1NyAxOC4yODYtMTguODU3aDEwOS43MTRjMTAuMjg2IDAgMTguMjg2IDguNTcxIDE4LjI4NiAxOC44NTd6TTU4NCAzNzguODU3bDEwLjI4NiAyNjIuMjg2YzAgMy40MjktMS43MTQgOC01LjcxNCAxMC44NTctMy40MjkgMi44NTctOC41NzEgNi4yODYtMTMuNzE0IDYuMjg2aC0xMjUuNzE0Yy01LjE0MyAwLTEwLjI4Ni0zLjQyOS0xMy43MTQtNi4yODYtNC0yLjg1Ny01LjcxNC04LjU3MS01LjcxNC0xMmw5LjcxNC0yNjEuMTQzYzAtNy40MjkgOC41NzEtMTMuMTQzIDE5LjQyOS0xMy4xNDNoMTA1LjcxNGMxMC4yODYgMCAxOC44NTcgNS43MTQgMTkuNDI5IDEzLjE0M3pNNTc2IDkxMi41NzFsNDM4Ljg1Ny04MDQuNTcxYzEyLjU3MS0yMi4yODYgMTItNDkuNzE0LTEuMTQzLTcycy0zNy4xNDMtMzYtNjIuODU3LTM2aC04NzcuNzE0Yy0yNS43MTQgMC00OS43MTQgMTMuNzE0LTYyLjg1NyAzNnMtMTMuNzE0IDQ5LjcxNC0xLjE0MyA3Mmw0MzguODU3IDgwNC41NzFjMTIuNTcxIDIzLjQyOSAzNy4xNDMgMzguMjg2IDY0IDM4LjI4NnM1MS40MjktMTQuODU3IDY0LTM4LjI4NnoiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDI7IiBnbHlwaC1uYW1lPSJjaGVjay1jaXJjbGUiIGhvcml6LWFkdi14PSI4NzgiIGQ9Ik03MzMuNzE0IDUzMS40MjhjMCA5LjcxNC0zLjQyOSAxOS40MjktMTAuMjg2IDI2LjI4NmwtNTIgNTEuNDI5Yy02Ljg1NyA2Ljg1Ny0xNiAxMC44NTctMjUuNzE0IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMjMzLjE0My0yMzIuNTcxLTEyOS4xNDMgMTI5LjE0M2MtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE4Ljg1Ny00LTI1LjcxNC0xMC44NTdsLTUyLTUxLjQyOWMtNi44NTctNi44NTctMTAuMjg2LTE2LjU3MS0xMC4yODYtMjYuMjg2czMuNDI5LTE4Ljg1NyAxMC4yODYtMjUuNzE0bDIwNi44NTctMjA2Ljg1N2M2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI1LjcxNC0xMC44NTcgOS43MTQgMCAxOS40MjkgNCAyNi4yODYgMTAuODU3bDMxMC4yODYgMzEwLjI4NmM2Ljg1NyA2Ljg1NyAxMC4yODYgMTYgMTAuMjg2IDI1LjcxNHpNODc3LjcxNCA0MzguODU3YzAtMjQyLjI4Ni0xOTYuNTcxLTQzOC44NTctNDM4Ljg1Ny00MzguODU3cy00MzguODU3IDE5Ni41NzEtNDM4Ljg1NyA0MzguODU3IDE5Ni41NzEgNDM4Ljg1NyA0MzguODU3IDQzOC44NTcgNDM4Ljg1Ny0xOTYuNTcxIDQzOC44NTctNDM4Ljg1N3oiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDM7IiBnbHlwaC1uYW1lPSJpbmZvLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTU4NS4xNDMgMTY0LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtNTQuODU3djI5Mi41NzFjMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTgyLjg1N2MtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoNTQuODU3di0xODIuODU3aC01NC44NTdjLTEwLjI4NiAwLTE4LjI4Ni04LTE4LjI4Ni0xOC4yODZ2LTkxLjQyOWMwLTEwLjI4NiA4LTE4LjI4NiAxOC4yODYtMTguMjg2aDI1NmMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek01MTIgNjc2LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTA5LjcxNGMtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoMTA5LjcxNGMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek04NzcuNzE0IDQzOC44NTdjMC0yNDIuMjg2LTE5Ni41NzEtNDM4Ljg1Ny00MzguODU3LTQzOC44NTdzLTQzOC44NTcgMTk2LjU3MS00MzguODU3IDQzOC44NTcgMTk2LjU3MSA0MzguODU3IDQzOC44NTcgNDM4Ljg1NyA0MzguODU3LTE5Ni41NzEgNDM4Ljg1Ny00MzguODU3eiIvPgoJCTwvZm9udD48L2RlZnM+Cjwvc3ZnPgo=\") format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;-webkit-font-smoothing:antialiased;font-style:normal;font-variant:normal;font-weight:400;line-height:1;-moz-osx-font-smoothing:grayscale;speak:never;text-transform:none}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:1000}.evolve-confirm-box .text-wrapper,.evolve-parent-dialog .text-wrapper{text-align:center}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.toast-wrapper{background:transparent;display:flex;flex-direction:column;margin:auto;opacity:0;padding:0;pointer-events:auto;position:relative;width:100%;z-index:0}.toast-wrapper .progress-bar-container{background:hsla(0,0%,100%,.2);border-radius:0 0 2px 2px}.toast-wrapper .progress-bar{height:4px;transition:none;width:0}.toast-wrapper .evolve-toast{background:#fbfbfb;border-radius:2px;box-shadow:0 0 2px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;margin-top:10px;max-height:350px;position:relative;transition:box-shadow .3s ease-in-out;vertical-align:bottom}.toast-wrapper .evolve-toast:hover{box-shadow:0 0 4px 2px rgba(0,0,0,.25)}.toast-wrapper .evolve-toast.standard-dialog{border-color:transparent}.toast-wrapper .evolve-toast.standard-dialog .progress-bar{background-color:rgba(42,42,42,.2)}.toast-wrapper .evolve-toast.success-dialog{background-color:#91d9d2}.toast-wrapper .evolve-toast.success-dialog .progress-bar{background-color:#6bccc2}.toast-wrapper .evolve-toast.info-dialog{background-color:#b7d8f6}.toast-wrapper .evolve-toast.info-dialog .progress-bar{background-color:#73b3ee}.toast-wrapper .evolve-toast.warning-dialog{background-color:#ffe7a0}.toast-wrapper .evolve-toast.warning-dialog .progress-bar{background-color:#ffdb6d}.toast-wrapper .evolve-toast.danger-dialog{background-color:#f3bbbb}.toast-wrapper .evolve-toast.danger-dialog .progress-bar{background-color:#ec8f8f}.toast-wrapper .evolve-toast .close-ico{color:rgba(0,0,0,.2);cursor:pointer;font-size:18px;position:absolute;right:6px;top:4px}.toast-wrapper .evolve-toast .toast-title-content{align-content:space-around;align-items:center;background-clip:padding-box;border-radius:2px 2px 0 0;color:#6c757d;display:flex;flex-direction:row;flex-wrap:wrap;height:auto;justify-content:flex-start;padding:5px 10px;width:auto}.toast-wrapper .evolve-toast .toast-title-content .icon-section .icon-type-toast{font-size:20px;opacity:.8;padding:0 6px 0 0}.toast-wrapper .evolve-toast .toast-title-content .toast-title-text{font-size:.87rem}.toast-wrapper .evolve-toast .content-holder{align-items:center;color:#6c757d;display:flex;flex-wrap:nowrap;height:100%;justify-content:space-between;overflow:auto;width:100%}.toast-wrapper .evolve-toast .content-holder .toast-inner-content{padding:6px 10px}.toast-wrapper .evolve-toast .content-holder .only-message{padding:6px 27px 6px 10px}.toast-wrapper .evolve-toast .content-holder .text-wrapper{font-size:.97rem;margin:0}.toast-wrapper .evolve-toast .button-holder{display:flex;flex-direction:column;justify-content:flex-end;width:100%}.toast-wrapper .evolve-toast .button-holder .button-section{margin:0;padding:4px 10px}"]
-                },] }
-    ];
-    ToastNotificationSimpleWrapperComponent.ctorParameters = function () { return [
-        { type: GlobalConfigService },
-        { type: exports.ɵk.ToastNotificationBelonging },
-        { type: i0.ChangeDetectorRef }
-    ]; };
-
-    var ToastNotificationWrapperComponent = /** @class */ (function (_super) {
-        __extends(ToastNotificationWrapperComponent, _super);
-        function ToastNotificationWrapperComponent(gConfig, toastNotificationBelonging, cd) {
-            var _this = _super.call(this, toastNotificationBelonging) || this;
-            _this.gConfig = gConfig;
-            _this.toastNotificationBelonging = toastNotificationBelonging;
-            _this.cd = cd;
-            return _this;
-        }
-        ToastNotificationWrapperComponent.prototype.ngAfterViewInit = function () {
-            this.setResponse(false);
-            this.cd.detectChanges();
-            this.autoClose();
-        };
-        return ToastNotificationWrapperComponent;
-    }(WrapperAbstraction));
-    ToastNotificationWrapperComponent.decorators = [
-        { type: i0.Component, args: [{
-                    selector: 'app-toast-notification-wrapper',
-                    template: "<div class=\"toast-wrapper standard-toast\" (dblclick)=\"onOverlayClicked($event)\" [@fadeInOut]=\"fadeInOutAnimation\">\n\t\n\t<div\n\t\t\tclass=\"evolve-toast\"\n\t\t\t(mouseover)=\"mouseOver()\"\n\t\t\t(mouseout)=\"mouseOut()\" (click)=\"onToastClicked($event)\" [ngClass]=\"{\n          'standard-dialog': 0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'success-dialog': 1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'info-dialog': 2 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'warning-dialog': 3 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n          'danger-dialog': 4 === toastNotificationBelonging.ToastCoreConfig.LayoutType\n        }\"\n\t>\n\t\t<div class=\"toast-title-content\" *ngIf=\"toastNotificationBelonging.Dispatch.Title\">\n\t\t\t\n\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t<div class=\"text-wrapper dont-break-out\">\n\t\t\t\t\t<div class=\"toast-title-text\">{{toastNotificationBelonging.Dispatch.Title}}</div>\n\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"close-ico icon-times-circle\" (click)=\"close()\"\n\t\t\t\t\t\t\t*ngIf=\"\n\t\t\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t\t\t     \"\n\t\t\t\t\t></span>\n\t\t\t\t\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"content-holder\" *ngIf=\"toastNotificationBelonging.Dispatch.Message\">\n\t\t\t<div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.DisableIcon\">\n\t\t\t\t\t<span\n\t\t\t\t\t\t\tclass=\"icon-type-toast\" [ngClass]=\"{\n\t\t\t\t          '': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n\t\t\t\t          'ap-icon-success icon-check-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n\t\t\t\t          'ap-icon-info icon-info-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n\t\t\t\t          'ap-icon-warning icon-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n\t\t\t\t          'ap-icon-danger icon-times-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t\t></span>\n\t\t\t</div>\n\t\t\t<div class=\"text-wrapper-section toast-inner-content\" [ngStyle]=\"{ 'text-align': toastNotificationBelonging.ToastCoreConfig.TextPosition }\"\n\t\t\t     [ngClass]=\"{'only-message': !toastNotificationBelonging.Dispatch.Title}\">\n\t\t\t\t\n\t\t\t\t<div class=\"dont-break-out\">\n\t\t\t\t\t<div class=\"text-wrapper dont-break-out\" *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\"><p>{{toastNotificationBelonging.Dispatch.Message}}</p></div>\n\t\t\t\t\t<div class=\"text-wrapper\" *ngIf=\"toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\" [innerHTML]=\"toastNotificationBelonging.Dispatch.Message\"></div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</div>\n\t\t\t<span\n\t\t\t\t\tclass=\"close-ico icon-times-circle\" (click)=\"close()\"\n\t\t\t\t\t*ngIf=\"\n\t\t\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t\t\t     && !toastNotificationBelonging.Dispatch.Title\n\t\t\t\t\t     \"\n\t\t\t></span>\n\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"button-holder\">\n\t\t\t<div class=\"button-section\" *ngIf=\"toastNotificationBelonging.Buttons.length\" [ngStyle]=\"{ 'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-sm\" *ngFor=\"let button of toastNotificationBelonging.Buttons\" (click)=\"onCustomButton(button)\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),\n                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),\n                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),\n                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),\n                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),\n                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),\n                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),\n                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),\n                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),\n                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)\n                            }\"\n\t\t\t\t>{{button.Label}}\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div\n\t\t\t\t\tclass=\"button-section\" [ngStyle]=\"{ 'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition }\"\n\t\t\t\t\t*ngIf=\"\n\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t     && (\n\t\t\t      toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t      ||  toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t     )\"\n\t\t\t>\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-sm\"\n\t\t\t\t\t\t*ngIf=\"toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\" (click)=\"onButtonClick('confirm')\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t          'ed-btn-primary': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n\t\t\t\t          'ed-btn-success': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n\t\t\t\t          'ed-btn-info': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n\t\t\t\t          'ed-btn-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n\t\t\t\t          'ed-btn-danger': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n\t\t\t\t        }\"\n\t\t\t\t>{{toastNotificationBelonging.ToastCoreConfig.ConfirmLabel}}\n\t\t\t\t</button>\n\t\t\t\t<button class=\"ed-btn ed-btn-sm ed-btn-secondary\" (click)=\"onButtonClick('decline')\" *ngIf=\"toastNotificationBelonging.ToastCoreConfig.DeclineLabel\">\n\t\t\t\t\t{{toastNotificationBelonging.ToastCoreConfig.DeclineLabel}}\n\t\t\t\t</button>\n\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t\t\n\t\t<div\n\t\t\t\tclass=\"progress-bar-container\" *ngIf=\"\n\t\t\t\t\t     !toastNotificationBelonging.Buttons.length\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.DeclineLabel\n\t\t\t\t\t     && !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n\t\t\t\t\t     && toastNotificationBelonging.ToastCoreConfig.ProgressBar !== 0\n\t\t\t\t\t     \"\n\t\t>\n\t\t\t<div\n\t\t\t\t\tclass=\"progress-bar\"\n\t\t\t\t\t[ngStyle]=\"{'width':\n\t\t\t     (toastNotificationBelonging.ToastCoreConfig.ProgressBar === 1 ?\n\t\t\t     timer.Progress :\n\t\t\t     timer.Remaining)\n\t\t\t      + '%'}\"\n\t\t\t>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</div>\n",
-                    animations: [fadeInOut(0, 1)],
-                    styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(\"data:font/eot;base64,CAgAAGQHAAABAAIAAAAAAAAAAAAAAAAAAAABAJABAAAAAExQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA/2/OwAAAAAAAAAAAAAAAAAAAAAAAAA4AaQBjAG8AbQBvAG8AbgAAAA4AUgBlAGcAdQBsAGEAcgAAABYAVgBlAHIAcwBpAG8AbgAgADEALgAwAAAADgBpAGMAbwBtAG8AbwBuAAAAAAAAAQAAAAsAgAADADBPUy8yDxIFbwAAALwAAABgY21hcBdW0ooAAAEcAAAAVGdhc3AAAAAQAAABcAAAAAhnbHlmw5gfRwAAAXgAAAOUaGVhZBxow6wAAAUMAAAANmhoZWEHuQPJAAAFRAAAACRobXR4FEoACQAABWgAAAAgbG9jYQLuAhQAAAWIAAAAEm1heHAADABaAAAFnAAAACBuYW1lmUoJ+wAABbwAAAGGcG9zdAADAAAAAAdEAAAAIAADA0IBkAAFAAACmQLMAAAAjwKZAswAAAHrADMBCQAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAEAAAOkDA8D/wABAA8AAQAAAAAEAAAAAAAAAAAAAACAAAAAAAAMAAAADAAAAHAABAAMAAAAcAAMAAQAAABwABAA4AAAACgAIAAIAAgABACDpA//9//8AAAAAACDpAP/9//8AAf/jFwQAAwABAAAAAAAAAAAAAAABAAH//wAPAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAIAAAAAA24DbgA7AFcAAAE0Ji8BNz4BNTQmLwEuASMiBg8BJy4BIyIGDwEOARUUFh8BBw4BFRQWHwEeATMyNj8BFx4BMzI2PwE+ATcUBw4BBwYjIicuAScmNTQ3PgE3NjMyFx4BFxYCkQYFaGgFBgYFNAUOBwcOBWdoBQ0HCA0GMwUGBgVnZwUGBgUzBg0IBw0FaGcFDgcHDgU0BQbdIyJ3UFBbW1BQdyMiIiN3UFBbW1BQdyIjATYHDQVoZwUOBwcOBTQFBgYFaGgFBgYFNAUOBwcOBWdoBQ0HCA0GMwUGBgVnZwUGBgUzBg2JW1BQdyIjIyJ3UFBbW1BQdyIjIyJ3UFAAAwAJAAAD9wO3AA8AJgA8AAAlNTQmKwEiBh0BFBY7ATI2JxM0JicuASsBIgYHDgEVExQWOwEyNjUDARYUBw4BIyEiJicmNDcBPgEzMhYXAkkKCG4ICgoIbggKAQoCAwMHBH4EBwMDAgkMCGoHDAgBtwkKCiIT/JITIgoKCQG3CSMUFCMJpW0HDAwHbQgLC94BBgMGAgIEBAICBwP++wYHBwYCFvzbESYRERMTEREmEQMlERUVEQAAAAIAAAAAA24DbgAkAEAAAAE0Ji8BLgEjIgYPAScuASMiBg8BDgEVFBYfAR4BMzI2NwE+ATUXFAcOAQcGIyInLgEnJjU0Nz4BNzYzMhceARcWAt4FBjQFDQcIDQXpgQUOBwcOBTQFBQUFzwUOBwcOBQE2BgWQIyJ3UFBbW1BQdyMiIiN3UFBbW1BQdyIjAhMIDgUzBQYGBeiBBQYGBTQFDgcHDgXPBQUFBQE3BQ0HXFtQUHciIyMid1BQW1tQUHciIyMid1BQAAAAAwAAAAADbgNuAB8ALwBLAAAlNTQmKwERNCYrASIGHQEUFjsBFSMiBh0BFBYzITI2NQM1NCYrASIGHQEUFjsBMjYFFAcOAQcGIyInLgEnJjU0Nz4BNzYzMhceARcWAkkKCDcLB7cICgoINzcICgoIAQAICkkLB24ICgoIbgcLAW4jIndQUFtbUFB3IyIiI3dQUFtbUFB3IiOlWwgKASUICgoIXAcLtwoIWwgLCwgCAFsICgoIWwgLC+ZbUFB3IiMjIndQUFtbUFB3IiMjIndQUAAAAAABAAAAAAAAwM5v/18PPPUACwQAAAAAANyqP3wAAAAA3Ko/fAAAAAAD9wO3AAAACAACAAAAAAAAAAEAAAPA/8AAAAQAAAAAAAP3AAEAAAAAAAAAAAAAAAAAAAAIBAAAAAAAAAAAAAAAAgAAAANuAAAEAAAJA24AAANuAAAAAAAAAAoAFAAeAKAA/AFgAcoAAAABAAAACABYAAMAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEABwAAAAEAAAAAAAIABwBgAAEAAAAAAAMABwA2AAEAAAAAAAQABwB1AAEAAAAAAAUACwAVAAEAAAAAAAYABwBLAAEAAAAAAAoAGgCKAAMAAQQJAAEADgAHAAMAAQQJAAIADgBnAAMAAQQJAAMADgA9AAMAAQQJAAQADgB8AAMAAQQJAAUAFgAgAAMAAQQJAAYADgBSAAMAAQQJAAoANACkaWNvbW9vbgBpAGMAbwBtAG8AbwBuVmVyc2lvbiAxLjAAVgBlAHIAcwBpAG8AbgAgADEALgAwaWNvbW9vbgBpAGMAbwBtAG8AbwBuaWNvbW9vbgBpAGMAbwBtAG8AbwBuUmVndWxhcgBSAGUAZwB1AGwAYQByaWNvbW9vbgBpAGMAbwBtAG8AbwBuRm9udCBnZW5lcmF0ZWQgYnkgSWNvTW9vbi4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==\");src:url(\"data:font/eot;base64,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\") format(\"embedded-opentype\"),url(\"data:font/ttf;base64,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\") format(\"truetype\"),url(\"data:font/woff;base64,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\") format(\"woff\"),url(\"data:font/svg;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiID4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPG1ldGFkYXRhPkdlbmVyYXRlZCBieSBJY29Nb29uPC9tZXRhZGF0YT4KCTxkZWZzPgoJCTxmb250IGlkPSJpY29tb29uIiBob3Jpei1hZHYteD0iMTAyNCI+CgkJCTxmb250LWZhY2UgdW5pdHMtcGVyLWVtPSIxMDI0IiBhc2NlbnQ9Ijk2MCIgZGVzY2VudD0iLTY0Ii8+CgkJCTxtaXNzaW5nLWdseXBoIGhvcml6LWFkdi14PSIxMDI0Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3gyMDsiIGhvcml6LWFkdi14PSI1MTIiIGQ9IiIvPgoJCQk8Z2x5cGggdW5pY29kZT0iJiN4ZTkwMDsiIGdseXBoLW5hbWU9InRpbWVzLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTY1Ni41NzEgMzA5LjcxNGMwIDkuNzE0LTQgMTguODU3LTEwLjg1NyAyNS43MTRsLTEwMy40MjkgMTAzLjQyOSAxMDMuNDI5IDEwMy40MjljNi44NTcgNi44NTcgMTAuODU3IDE2IDEwLjg1NyAyNS43MTRzLTQgMTkuNDI5LTEwLjg1NyAyNi4yODZsLTUxLjQyOSA1MS40MjljLTYuODU3IDYuODU3LTE2LjU3MSAxMC44NTctMjYuMjg2IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMTAzLjQyOS0xMDMuNDI5LTEwMy40MjkgMTAzLjQyOWMtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE5LjQyOS00LTI2LjI4Ni0xMC44NTdsLTUxLjQyOS01MS40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi41NzEtMTAuODU3LTI2LjI4NnM0LTE4Ljg1NyAxMC44NTctMjUuNzE0bDEwMy40MjktMTAzLjQyOS0xMDMuNDI5LTEwMy40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi0xMC44NTctMjUuNzE0czQtMTkuNDI5IDEwLjg1Ny0yNi4yODZsNTEuNDI5LTUxLjQyOWM2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI2LjI4Ni0xMC44NTdzMTguODU3IDQgMjUuNzE0IDEwLjg1N2wxMDMuNDI5IDEwMy40MjkgMTAzLjQyOS0xMDMuNDI5YzYuODU3LTYuODU3IDE2LTEwLjg1NyAyNS43MTQtMTAuODU3czE5LjQyOSA0IDI2LjI4NiAxMC44NTdsNTEuNDI5IDUxLjQyOWM2Ljg1NyA2Ljg1NyAxMC44NTcgMTYuNTcxIDEwLjg1NyAyNi4yODZ6TTg3Ny43MTQgNDM4Ljg1N2MwLTI0Mi4yODYtMTk2LjU3MS00MzguODU3LTQzOC44NTctNDM4Ljg1N3MtNDM4Ljg1NyAxOTYuNTcxLTQzOC44NTcgNDM4Ljg1NyAxOTYuNTcxIDQzOC44NTcgNDM4Ljg1NyA0MzguODU3IDQzOC44NTctMTk2LjU3MSA0MzguODU3LTQzOC44NTd6Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3hlOTAxOyIgZ2x5cGgtbmFtZT0iZXhjbGFtYXRpb24tdHJpYW5nbGUsIHdhcm5pbmciIGQ9Ik01ODUuMTQzIDE2NS4xNDN2MTA4LjU3MWMwIDEwLjI4Ni04IDE4Ljg1Ny0xOC4yODYgMTguODU3aC0xMDkuNzE0Yy0xMC4yODYgMC0xOC4yODYtOC41NzEtMTguMjg2LTE4Ljg1N3YtMTA4LjU3MWMwLTEwLjI4NiA4LTE4Ljg1NyAxOC4yODYtMTguODU3aDEwOS43MTRjMTAuMjg2IDAgMTguMjg2IDguNTcxIDE4LjI4NiAxOC44NTd6TTU4NCAzNzguODU3bDEwLjI4NiAyNjIuMjg2YzAgMy40MjktMS43MTQgOC01LjcxNCAxMC44NTctMy40MjkgMi44NTctOC41NzEgNi4yODYtMTMuNzE0IDYuMjg2aC0xMjUuNzE0Yy01LjE0MyAwLTEwLjI4Ni0zLjQyOS0xMy43MTQtNi4yODYtNC0yLjg1Ny01LjcxNC04LjU3MS01LjcxNC0xMmw5LjcxNC0yNjEuMTQzYzAtNy40MjkgOC41NzEtMTMuMTQzIDE5LjQyOS0xMy4xNDNoMTA1LjcxNGMxMC4yODYgMCAxOC44NTcgNS43MTQgMTkuNDI5IDEzLjE0M3pNNTc2IDkxMi41NzFsNDM4Ljg1Ny04MDQuNTcxYzEyLjU3MS0yMi4yODYgMTItNDkuNzE0LTEuMTQzLTcycy0zNy4xNDMtMzYtNjIuODU3LTM2aC04NzcuNzE0Yy0yNS43MTQgMC00OS43MTQgMTMuNzE0LTYyLjg1NyAzNnMtMTMuNzE0IDQ5LjcxNC0xLjE0MyA3Mmw0MzguODU3IDgwNC41NzFjMTIuNTcxIDIzLjQyOSAzNy4xNDMgMzguMjg2IDY0IDM4LjI4NnM1MS40MjktMTQuODU3IDY0LTM4LjI4NnoiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDI7IiBnbHlwaC1uYW1lPSJjaGVjay1jaXJjbGUiIGhvcml6LWFkdi14PSI4NzgiIGQ9Ik03MzMuNzE0IDUzMS40MjhjMCA5LjcxNC0zLjQyOSAxOS40MjktMTAuMjg2IDI2LjI4NmwtNTIgNTEuNDI5Yy02Ljg1NyA2Ljg1Ny0xNiAxMC44NTctMjUuNzE0IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMjMzLjE0My0yMzIuNTcxLTEyOS4xNDMgMTI5LjE0M2MtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE4Ljg1Ny00LTI1LjcxNC0xMC44NTdsLTUyLTUxLjQyOWMtNi44NTctNi44NTctMTAuMjg2LTE2LjU3MS0xMC4yODYtMjYuMjg2czMuNDI5LTE4Ljg1NyAxMC4yODYtMjUuNzE0bDIwNi44NTctMjA2Ljg1N2M2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI1LjcxNC0xMC44NTcgOS43MTQgMCAxOS40MjkgNCAyNi4yODYgMTAuODU3bDMxMC4yODYgMzEwLjI4NmM2Ljg1NyA2Ljg1NyAxMC4yODYgMTYgMTAuMjg2IDI1LjcxNHpNODc3LjcxNCA0MzguODU3YzAtMjQyLjI4Ni0xOTYuNTcxLTQzOC44NTctNDM4Ljg1Ny00MzguODU3cy00MzguODU3IDE5Ni41NzEtNDM4Ljg1NyA0MzguODU3IDE5Ni41NzEgNDM4Ljg1NyA0MzguODU3IDQzOC44NTcgNDM4Ljg1Ny0xOTYuNTcxIDQzOC44NTctNDM4Ljg1N3oiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDM7IiBnbHlwaC1uYW1lPSJpbmZvLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTU4NS4xNDMgMTY0LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtNTQuODU3djI5Mi41NzFjMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTgyLjg1N2MtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoNTQuODU3di0xODIuODU3aC01NC44NTdjLTEwLjI4NiAwLTE4LjI4Ni04LTE4LjI4Ni0xOC4yODZ2LTkxLjQyOWMwLTEwLjI4NiA4LTE4LjI4NiAxOC4yODYtMTguMjg2aDI1NmMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek01MTIgNjc2LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTA5LjcxNGMtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoMTA5LjcxNGMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek04NzcuNzE0IDQzOC44NTdjMC0yNDIuMjg2LTE5Ni41NzEtNDM4Ljg1Ny00MzguODU3LTQzOC44NTdzLTQzOC44NTcgMTk2LjU3MS00MzguODU3IDQzOC44NTcgMTk2LjU3MSA0MzguODU3IDQzOC44NTcgNDM4Ljg1NyA0MzguODU3LTE5Ni41NzEgNDM4Ljg1Ny00MzguODU3eiIvPgoJCTwvZm9udD48L2RlZnM+Cjwvc3ZnPgo=\") format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;-webkit-font-smoothing:antialiased;font-style:normal;font-variant:normal;font-weight:400;line-height:1;-moz-osx-font-smoothing:grayscale;speak:never;text-transform:none}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:1000}.evolve-confirm-box .text-wrapper,.evolve-parent-dialog .text-wrapper{text-align:center}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.toast-wrapper{background:transparent;display:flex;flex-direction:column;margin:auto;opacity:0;padding:0;pointer-events:auto;position:relative;width:100%;z-index:0}.toast-wrapper .progress-bar-container{background:hsla(0,0%,100%,.2);border-radius:0 0 5px 5px}.toast-wrapper .progress-bar{height:4px;transition:none;width:0}.toast-wrapper .evolve-toast{background:#fbfbfb;border-radius:5px;border-right:4px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;margin-top:10px;max-height:350px;position:relative;transition:box-shadow .3s ease-in-out;vertical-align:bottom}.toast-wrapper .evolve-toast:hover{box-shadow:0 0 4px 3px rgba(0,0,0,.25)}.toast-wrapper .evolve-toast.standard-dialog{border-color:transparent}.toast-wrapper .evolve-toast.standard-dialog .progress-bar{background-color:rgba(42,42,42,.2)}.toast-wrapper .evolve-toast.success-dialog{background-color:#dcf3f1;border-color:#3caea3}.toast-wrapper .evolve-toast.success-dialog .progress-bar{background-color:#91d9d2}.toast-wrapper .evolve-toast.info-dialog{background-color:#e4f1fc;border-color:#2f8ee5}.toast-wrapper .evolve-toast.info-dialog .progress-bar{background-color:#a0ccf3}.toast-wrapper .evolve-toast.warning-dialog{background-color:#fff4d3;border-color:#ffc107}.toast-wrapper .evolve-toast.warning-dialog .progress-bar{background-color:#ffe187}.toast-wrapper .evolve-toast.danger-dialog{background-color:#f7d1d1;border-color:#e46464}.toast-wrapper .evolve-toast.danger-dialog .progress-bar{background-color:#ec8f8f}.toast-wrapper .evolve-toast .close-ico{color:rgba(0,0,0,.2);cursor:pointer;font-size:20px;position:absolute;right:6px;top:4px}.toast-wrapper .evolve-toast .toast-title-content{align-items:flex-start;background-clip:padding-box;background-color:hsla(0,0%,100%,.55);border-bottom:1px solid rgba(0,0,0,.05);border-radius:5px 5px 0 0;color:#6c757d;display:flex;flex-direction:column;height:auto;justify-content:flex-start;padding:5px 10px;width:auto}.toast-wrapper .evolve-toast .toast-title-content .toast-title-text{font-size:.87rem}.toast-wrapper .evolve-toast .content-holder{align-items:center;color:#6c757d;display:flex;flex-wrap:nowrap;height:100%;justify-content:space-between;overflow:auto;width:100%}.toast-wrapper .evolve-toast .content-holder .icon-section .icon-type-toast{font-size:24px;padding:0 2px 0 6px}.toast-wrapper .evolve-toast .content-holder .toast-inner-content{padding:6px 10px}.toast-wrapper .evolve-toast .content-holder .only-message{padding:6px 27px 6px 10px}.toast-wrapper .evolve-toast .content-holder .text-wrapper{font-size:.97rem;margin:0}.toast-wrapper .evolve-toast .button-holder{display:flex;flex-direction:column;justify-content:flex-end;width:100%}.toast-wrapper .evolve-toast .button-holder .button-section{margin:0;padding:4px 10px}"]
-                },] }
-    ];
-    ToastNotificationWrapperComponent.ctorParameters = function () { return [
-        { type: GlobalConfigService },
-        { type: exports.ɵk.ToastNotificationBelonging },
-        { type: i0.ChangeDetectorRef }
-    ]; };
-
-    var ToastNotificationService = /** @class */ (function () {
-        function ToastNotificationService(componentFactoryResolver, injector, appRef, toastConfig, gConfigService) {
-            this.componentFactoryResolver = componentFactoryResolver;
-            this.injector = injector;
-            this.appRef = appRef;
-            this.toastConfig = toastConfig;
-            this.gConfigService = gConfigService;
-            // toastComponentRefList: ComponentRef<ToastNotificationWrapperComponent>[]    = [];
-            this.toastComponentRefList = [];
-            this.bufferToastRawList = [];
-            this.bufferCheckingIntervalIsReady = true;
-        }
-        ToastNotificationService.prototype.openToast$ = function (_ToastNotificationBelonging) {
-            var eventController = _ToastNotificationBelonging.EventsController;
-            // console.log(`%c ${_ToastNotificationBelonging.EntityUniqueID} `, `background: #339933; color: #fff`);
-            var toastRawInstance = this.prepareRawToast(eventController, _ToastNotificationBelonging);
-            this.listeners(eventController);
-            this.internalRouting(toastRawInstance);
-            return eventController.afterClosed$;
-        };
-        ToastNotificationService.prototype.internalRouting = function (_ToastRawInstance) {
-            if (this.isRefListAvailable()) {
-                this.sendToProduction(_ToastRawInstance);
-                return true;
-            }
-            else {
-                this.sendToBuffer(_ToastRawInstance);
-                return false;
-            }
-        };
-        ToastNotificationService.prototype.sendToBuffer = function (_ToastRawInstance) {
-            this.bufferToastRawList.push(_ToastRawInstance);
-        };
-        ToastNotificationService.prototype.sendToProduction = function (_ToastRawInstance) {
-            var componentRef = this.getComponentRef(_ToastRawInstance);
-            if (componentRef) {
-                this.toastComponentRefList.push(componentRef);
-                componentRef.instance.toastNotificationBelonging = _ToastRawInstance.ToastBelonging;
-                this.appendToBodyParentComponent(componentRef);
-            }
-        };
-        ToastNotificationService.prototype.isRefListAvailable = function () {
-            return this.toastComponentRefList.length < this.toastConfig.productionConfig.GlobalSettings.AllowedNotificationsAtOnce;
-        };
-        ToastNotificationService.prototype.prepareRawToast = function (_EventsController, _ToastNotificationBelonging) {
-            var weakMap = new WeakMap();
-            weakMap.set(exports.ɵk.ToastNotificationEventsController, _EventsController);
-            return {
-                WeakMap: weakMap,
-                ToastBelonging: _ToastNotificationBelonging
-            };
-        };
-        ToastNotificationService.prototype.getComponentRef = function (_ToastNotificationRawState) {
-            var dialogIndex = this.findDialogIndex(_ToastNotificationRawState.ToastBelonging.EntityUniqueID);
-            if (dialogIndex === -1) {
-                var toastUserViewComponent = ToastNotificationWrapperComponent;
-                if (_ToastNotificationRawState.ToastBelonging.ToastCoreConfig.ToastUserViewType === exports.ToastUserViewTypeEnum.SIMPLE) {
-                    toastUserViewComponent = ToastNotificationSimpleWrapperComponent;
-                }
-                var componentFactory = this.componentFactoryResolver.resolveComponentFactory(toastUserViewComponent);
-                return componentFactory.create(new DialogInjector(this.injector, _ToastNotificationRawState.WeakMap));
-            }
-            return null;
-        };
-        ToastNotificationService.prototype.listeners = function (_EventsController) {
-            var _this = this;
-            // Listener for closing dialog
-            var closeDialogSubscription = _EventsController.afterClosed$.subscribe(function (response) {
-                // this.removeFromBodyParentComponent(modalIndex);
-                _this.removeFromBody(response.toastNotificationBelonging.EntityUniqueID);
-                closeDialogSubscription.unsubscribe();
-            });
-        };
-        ToastNotificationService.prototype.appendToBodyParentComponent = function (_ComponentRef) {
-            // attach view to ignite lifecycle hooks
-            this.appRef.attachView(_ComponentRef.hostView);
-            var toastPosition = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.ToastPosition;
-            var openInElementID = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.OpenInElementID;
-            var targetNode;
-            if (!openInElementID) {
-                this.setToastWrapperNode(_ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.ToastPosition, this.setToastOverlayNode());
-                targetNode = document.getElementById("toast-wrapper-" + toastPosition);
-            }
-            else {
-                targetNode = document.getElementById(openInElementID);
-            }
-            var domElem = _ComponentRef.hostView.rootNodes[0];
-            var toastEntity = document.createElement('div');
-            toastEntity.setAttribute('id', _ComponentRef.instance.toastNotificationBelonging.EntityUniqueID);
-            toastEntity.className = 'toast-entity';
-            var split = toastPosition.split('-');
-            if (split[1] === 'fullwidth') {
-                toastEntity.style.width = '97vw';
-            }
-            else if (openInElementID) {
-                toastEntity.style.width = '100%';
-            }
-            else {
-                toastEntity.style.width = '300px';
-            }
-            toastEntity.style.margin = 'auto';
-            toastEntity.prepend(domElem);
-            // targetNode.prepend(toastEntity);
-            setTimeout(function () {
-                targetNode.prepend(toastEntity);
-            }, 200);
-        };
-        ToastNotificationService.prototype.removeFromBody = function (_EntityUniqueID) {
-            var _this = this;
-            var modalIndex = this.findDialogIndex(_EntityUniqueID);
-            if (modalIndex > -1) {
-                if (this.bufferToastRawList.length) {
-                    this.sendToProduction(this.bufferToastRawList[0]);
-                    this.bufferToastRawList.splice(0, 1);
-                }
-                this.toastComponentRefList[modalIndex].instance.closeParent$('close-fast').pipe(operators.map(function (item) {
-                    var modalIndex = _this.findDialogIndex(_EntityUniqueID);
-                    if (_this.toastComponentRefList[modalIndex]) {
-                        var toastEntity = document.getElementById(_this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.EntityUniqueID);
-                        toastEntity.remove();
-                        // console.log(`%c ${this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.EntityUniqueID} `, `background: #cc3333; color: #fff`);
-                        _this.appRef.detachView(_this.toastComponentRefList[modalIndex].hostView);
-                        _this.toastComponentRefList[modalIndex].destroy();
-                        _this.toastComponentRefList.splice(modalIndex, 1);
-                    }
-                })).subscribe();
-            }
-        };
-        ToastNotificationService.prototype.findDialogIndex = function (_DialogUniqueID) {
-            return this.toastComponentRefList.findIndex(function (item) {
-                return _DialogUniqueID === item.instance.toastNotificationBelonging.EntityUniqueID;
-            });
-        };
-        ToastNotificationService.prototype.setToastOverlayNode = function () {
-            var bodyNode = document.body || document.getElementsByTagName('body')[0];
-            if (!bodyNode) {
-                return;
-            }
-            // check the overlay
-            var toastOverlayNode = document.getElementById('toast-overlay-container');
-            if (!toastOverlayNode) {
-                var toastOverlayNode_1 = document.createElement('div');
-                toastOverlayNode_1.setAttribute('id', 'toast-overlay-container');
-                toastOverlayNode_1.appendChild(document.createTextNode(''));
-                toastOverlayNode_1.style.position = 'fixed';
-                toastOverlayNode_1.style.top = '0';
-                toastOverlayNode_1.style.left = '0';
-                toastOverlayNode_1.style.zIndex = '999999999';
-                bodyNode.appendChild(toastOverlayNode_1);
-                return toastOverlayNode_1;
-            }
-            return toastOverlayNode;
-        };
-        ToastNotificationService.prototype.setToastWrapperNode = function (_Position, _ToastOverlayNode) {
-            var toastWrapperNode = document.getElementById("toast-wrapper-" + _Position);
-            if (!toastWrapperNode) {
-                var toastWrapper = document.createElement('div');
-                toastWrapper.setAttribute('id', 'toast-wrapper-' + _Position);
-                toastWrapper.appendChild(document.createTextNode(''));
-                _ToastOverlayNode.prepend(toastWrapper);
-                var split = _Position.split('-');
-                if (split[1] === 'right' || split[1] === 'left') {
-                    this.gConfigService.getSheet('ngx-awesome-popup-styles').addRule("#toast-wrapper-" + _Position, split[0] + ": 20px; " + split[1] + ": 20px; position: fixed; z-index: 999999;");
-                }
-                if (split[1] === 'center') {
-                    this.gConfigService.getSheet('ngx-awesome-popup-styles').addRule("#toast-wrapper-" + _Position, split[0] + ": 20px; width: 100%; position: fixed; z-index: 999999; pointer-events: none;");
-                }
-                if (split[1] === 'fullwidth') {
-                    this.gConfigService.getSheet('ngx-awesome-popup-styles').addRule("#toast-wrapper-" + _Position, split[0] + ": 10px; width: 100%; position: fixed; z-index: 999999; pointer-events: none;");
-                }
-            }
-        };
-        return ToastNotificationService;
-    }());
-    ToastNotificationService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ToastNotificationService_Factory() { return new ToastNotificationService(i0__namespace.ɵɵinject(i0__namespace.ComponentFactoryResolver), i0__namespace.ɵɵinject(i0__namespace.INJECTOR), i0__namespace.ɵɵinject(i0__namespace.ApplicationRef), i0__namespace.ɵɵinject(ToastNotificationConfigService), i0__namespace.ɵɵinject(GlobalConfigService)); }, token: ToastNotificationService, providedIn: "root" });
-    ToastNotificationService.decorators = [
-        { type: i0.Injectable, args: [{
-                    providedIn: 'root'
-                },] }
-    ];
-    ToastNotificationService.ctorParameters = function () { return [
-        { type: i0.ComponentFactoryResolver },
-        { type: i0.Injector },
-        { type: i0.ApplicationRef },
-        { type: ToastNotificationConfigService },
-        { type: GlobalConfigService }
-    ]; };
-
-    exports.ɵk = void 0;
-    (function (ToastNotificationClass) {
-        // region *** Public ***
-        var ToastNotificationInitializer = /** @class */ (function () {
-            function ToastNotificationInitializer() {
-                this.toastNotificationCarrier = new ToastNotificationClass.ToastNotificationCarrier();
-            }
-            ToastNotificationInitializer.prototype.openToastNotification$ = function () {
-                return this.toastNotificationCarrier.openToastNotification$().pipe(operators.map(function (resp) {
-                    var basicToastNotificationResponse = new ToastNotificationResponse();
-                    var dataControl = new GlobalClass.DataControl();
-                    dataControl.copyValuesFrom(resp, basicToastNotificationResponse);
-                    return basicToastNotificationResponse;
-                }));
-            };
-            ToastNotificationInitializer.prototype.setButtons = function (_Buttons) {
-                this.toastNotificationCarrier.setButtons(_Buttons);
-            };
-            ToastNotificationInitializer.prototype.setConfig = function (_ToastNotificationConfig) {
-                this.toastNotificationCarrier.setConfig(_ToastNotificationConfig);
-            };
-            ToastNotificationInitializer.prototype.setDispatch = function (_Title, _Message) {
-                if (_Message === void 0) { _Message = null; }
-                this.toastNotificationCarrier.setTitle(_Title);
-                this.toastNotificationCarrier.setMessage(_Message);
-            };
-            ToastNotificationInitializer.prototype.setTitle = function (_Title) {
-                this.toastNotificationCarrier.setTitle(_Title);
-            };
-            ToastNotificationInitializer.prototype.setMessage = function (_Message) {
-                this.toastNotificationCarrier.setMessage(_Message);
-            };
-            ToastNotificationInitializer.prototype.setButtonLabels = function (_Confirm, _Decline) {
-                this.toastNotificationCarrier.setButtonLabels(_Confirm, _Decline);
-            };
-            return ToastNotificationInitializer;
-        }());
-        ToastNotificationClass.ToastNotificationInitializer = ToastNotificationInitializer;
-        var ToastNotificationResponse = /** @class */ (function (_super) {
-            __extends(ToastNotificationResponse, _super);
-            function ToastNotificationResponse() {
-                var _this = _super.call(this) || this;
-                // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
-                _this.Success = null;
-                _this.ClickedButtonID = null;
-                return _this;
-            }
-            ToastNotificationResponse.prototype.setSuccess = function (_IsSuccess) {
-                this.Success = _IsSuccess;
-            };
-            ToastNotificationResponse.prototype.setClickedButtonID = function (_ClickedButtonID) {
-                this.ClickedButtonID = _ClickedButtonID;
-            };
-            return ToastNotificationResponse;
-        }(GlobalClass.DataControl));
-        ToastNotificationClass.ToastNotificationResponse = ToastNotificationResponse;
-        var ToastNotificationEventsController = /** @class */ (function () {
-            function ToastNotificationEventsController(EntityUniqueID) {
-                this.EntityUniqueID = EntityUniqueID;
-                this._afterClosed = new rxjs.Subject();
-                this.afterClosed$ = this._afterClosed.asObservable();
-                this._onButtonClick = new rxjs.Subject();
-                this.onButtonClick$ = this._onButtonClick.asObservable();
-                this._buttonList = new rxjs.Subject();
-                this.buttonList$ = this._buttonList.asObservable();
-            }
-            ToastNotificationEventsController.prototype.close = function (_Response) {
-                var response = _Response ? _Response : this.defaultResponse;
-                this._afterClosed.next(response);
-            };
-            ToastNotificationEventsController.prototype.onButtonClick = function (_Button) {
-                this.defaultResponse.setClickedButtonID(_Button.ID);
-                this._onButtonClick.next(_Button);
-            };
-            ToastNotificationEventsController.prototype.setButtonList = function (_ButtonList) {
-                this._buttonList.next(_ButtonList);
-            };
-            ToastNotificationEventsController.prototype.setDefaultResponse = function (_Response) {
-                this.defaultResponse = _Response;
-            };
-            return ToastNotificationEventsController;
-        }());
-        ToastNotificationClass.ToastNotificationEventsController = ToastNotificationEventsController;
-        // endregion
-        var ToastNotificationDefaultResponse = /** @class */ (function (_super) {
-            __extends(ToastNotificationDefaultResponse, _super);
-            function ToastNotificationDefaultResponse() {
-                var _this = _super.call(this) || this;
-                _this.toastNotificationBelonging = null;
-                return _this;
-            }
-            ToastNotificationDefaultResponse.prototype.setBelonging = function (_ToastNotificationBelonging) {
-                this.toastNotificationBelonging = _ToastNotificationBelonging;
-            };
-            return ToastNotificationDefaultResponse;
-        }(ToastNotificationResponse));
-        ToastNotificationClass.ToastNotificationDefaultResponse = ToastNotificationDefaultResponse;
-        var ToastNotificationCarrier = /** @class */ (function () {
-            function ToastNotificationCarrier() {
-                this.toastNotificationBelonging = new ToastNotificationClass.ToastNotificationBelonging();
-            }
-            ToastNotificationCarrier.prototype.setButtons = function (_Buttons) {
-                if (_Buttons.length) {
-                    this.toastNotificationBelonging.Buttons = _Buttons;
-                }
-            };
-            ToastNotificationCarrier.prototype.setTitle = function (_Title) {
-                this.toastNotificationBelonging.Dispatch.Title = _Title;
-            };
-            ToastNotificationCarrier.prototype.setMessage = function (_Message) {
-                this.toastNotificationBelonging.Dispatch.Message = _Message;
-            };
-            ToastNotificationCarrier.prototype.setButtonLabels = function (_Confirm, _Decline) {
-                this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel = _Confirm;
-                this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel = _Decline;
-            };
-            ToastNotificationCarrier.prototype.setConfig = function (_ToastNotificationBelonging) {
-                // region *** local UserConfig (defined on place where dialog is called) ***
-                var dataControl = new GlobalClass.DataControl();
-                dataControl.copyValuesFrom(_ToastNotificationBelonging, this.toastNotificationBelonging.ToastCoreConfig);
-                // endregion
-            };
-            ToastNotificationCarrier.prototype.openToastNotification$ = function () {
-                if (!this.toastNotificationBelonging.Dispatch.Title
-                    && !this.toastNotificationBelonging.Dispatch.Message) {
-                    throw Error('Toast notification can not be without both message and title.');
-                }
-                var service = ServiceLocator.injector.get(ToastNotificationService);
-                return service.openToast$(this.toastNotificationBelonging);
-            };
-            return ToastNotificationCarrier;
-        }());
-        ToastNotificationClass.ToastNotificationCarrier = ToastNotificationCarrier;
-        var GlobalToastSettings = /** @class */ (function () {
-            function GlobalToastSettings() {
-                this.AllowedNotificationsAtOnce = null;
-            }
-            return GlobalToastSettings;
-        }());
-        ToastNotificationClass.GlobalToastSettings = GlobalToastSettings;
-        var ResetToastGlobalSettings = /** @class */ (function () {
-            function ResetToastGlobalSettings(globalToastConfig) {
-                var globalToastConfigService = ServiceLocator.injector.get(ToastNotificationConfigService);
-                if (globalToastConfigService) {
-                    globalToastConfigService.setResetGlobalToastConfig(globalToastConfig);
-                }
-                else {
-                    globalToastConfigService.setResetGlobalToastConfig();
-                }
-            }
-            return ResetToastGlobalSettings;
-        }());
-        ToastNotificationClass.ResetToastGlobalSettings = ResetToastGlobalSettings;
-        var Settings = /** @class */ (function () {
-            function Settings() {
-                this.Buttons = [];
-                this.ToastCoreConfig = new ToastCoreConfig();
-                this.Dispatch = new GlobalClass.Dispatch();
-                this.GlobalSettings = new GlobalToastSettings();
-            }
-            return Settings;
-        }());
-        ToastNotificationClass.Settings = Settings;
-        var ToastCoreConfig = /** @class */ (function () {
-            function ToastCoreConfig() {
-                this.ToastPosition = null;
-                this.ProgressBar = null;
-                this.ToastUserViewType = null;
-                this.OpenInElementID = null;
-                this.ButtonPosition = null;
-                this.TextPosition = null;
-                this.LayoutType = null;
-                this.Dispatch = null;
-                this.ConfirmLabel = null;
-                this.DeclineLabel = null;
-                this.AutoCloseDelay = null;
-                this.DisableIcon = null;
-                this.AllowHTMLMessage = null;
-            }
-            return ToastCoreConfig;
-        }());
-        ToastNotificationClass.ToastCoreConfig = ToastCoreConfig;
-        var ToastNotificationBelonging = /** @class */ (function (_super) {
-            __extends(ToastNotificationBelonging, _super);
-            function ToastNotificationBelonging() {
-                var _this = _super.call(this) || this;
-                _this.EntityUniqueID = 'T' + Math.random().toString(36).substr(2, 9);
-                _this.EventsController = new ToastNotificationEventsController(_this.EntityUniqueID);
-                var toastNotificationConfigurator = ServiceLocator.injector.get(ToastNotificationConfigService);
-                var baseSettings = new ToastNotificationClass.Settings();
-                var dataControl = new GlobalClass.DataControl();
-                dataControl.copyValuesFrom(toastNotificationConfigurator.productionConfig.ToastCoreConfig, baseSettings.ToastCoreConfig);
-                _this.ToastCoreConfig = baseSettings.ToastCoreConfig;
-                _this.Buttons = toastNotificationConfigurator.productionConfig.Buttons.slice();
-                return _this;
-            }
-            return ToastNotificationBelonging;
-        }(ToastNotificationClass.Settings));
-        ToastNotificationClass.ToastNotificationBelonging = ToastNotificationBelonging;
-    })(exports.ɵk || (exports.ɵk = {}));
-    exports.ToastProgressBarEnum = void 0;
-    (function (ToastProgressBarEnum) {
-        ToastProgressBarEnum[ToastProgressBarEnum["NONE"] = 0] = "NONE";
-        ToastProgressBarEnum[ToastProgressBarEnum["INCREASE"] = 1] = "INCREASE";
-        ToastProgressBarEnum[ToastProgressBarEnum["DECREASE"] = 2] = "DECREASE";
-    })(exports.ToastProgressBarEnum || (exports.ToastProgressBarEnum = {}));
-    exports.ToastPositionEnum = void 0;
-    (function (ToastPositionEnum) {
-        ToastPositionEnum["TOP_LEFT"] = "top-left";
-        ToastPositionEnum["TOP_CENTER"] = "top-center";
-        ToastPositionEnum["TOP_RIGHT"] = "top-right";
-        ToastPositionEnum["TOP_FULL_WIDTH"] = "top-fullwidth";
-        ToastPositionEnum["BOTTOM_LEFT"] = "bottom-left";
-        ToastPositionEnum["BOTTOM_CENTER"] = "bottom-center";
-        ToastPositionEnum["BOTTOM_RIGHT"] = "bottom-right";
-        ToastPositionEnum["BOTTOM_FULL_WIDTH"] = "bottom-fullwidth";
-    })(exports.ToastPositionEnum || (exports.ToastPositionEnum = {}));
-    exports.ToastUserViewTypeEnum = void 0;
-    (function (ToastUserViewTypeEnum) {
-        ToastUserViewTypeEnum["SIMPLE"] = "simple";
-        ToastUserViewTypeEnum["STANDARD"] = "standard";
-    })(exports.ToastUserViewTypeEnum || (exports.ToastUserViewTypeEnum = {}));
-
     var DefaultLoaderComponent = /** @class */ (function () {
         function DefaultLoaderComponent() {
         }
@@ -1839,8 +1256,8 @@
     }());
     DefaultLoaderComponent.decorators = [
         { type: i0.Component, args: [{
-                    selector: 'ed-default-loader',
-                    template: "<div class=\"box-position\">\n\t<div class=\"loader-center\">\n\t\t<div class=\"lds-ring\">\n\t\t\t<div></div>\n\t\t\t<div></div>\n\t\t\t<div></div>\n\t\t\t<div></div>\n\t\t</div>\n\t</div>\n</div>\n",
+                    selector: "ed-default-loader",
+                    template: "<div class=\"box-position\">\n  <div class=\"loader-center\">\n    <div class=\"lds-ring\">\n      <div></div>\n      <div></div>\n      <div></div>\n      <div></div>\n    </div>\n  </div>\n</div>\n",
                     styles: [".box-position{height:auto;left:50%;margin:0 auto;position:absolute;text-align:center;top:44%;transform:translate(-50%,-40%)}.box-position .loader-center{align-items:center;display:flex;justify-content:center}.box-position .loader-center .lds-ring{display:inline-block;height:80px;position:relative;width:80px}.box-position .loader-center .lds-ring div{animation:lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite;border:8px solid transparent;border-top-color:#d4d4d4;border-radius:50%;box-sizing:border-box;display:block;height:64px;margin:8px;position:absolute;width:64px}.box-position .loader-center .lds-ring div:first-child{animation-delay:-.45s}.box-position .loader-center .lds-ring div:nth-child(2){animation-delay:-.3s}.box-position .loader-center .lds-ring div:nth-child(3){animation-delay:-.15s}@keyframes lds-ring{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}"]
                 },] }
     ];
@@ -1857,13 +1274,14 @@
             dataControl.copyValuesFrom(userConfig.DialogCoreConfig, userConfigBase.DialogCoreConfig); // this will make sure that object has right properties
             userConfig.DialogCoreConfig = userConfigBase.DialogCoreConfig;
             if (userConfig.DialogCoreConfig.LoaderComponent !== null) {
-                userConfig.DialogCoreConfig.DisplayLoader = userConfig.DialogCoreConfig.DisplayLoader === null;
+                userConfig.DialogCoreConfig.DisplayLoader =
+                    userConfig.DialogCoreConfig.DisplayLoader === null;
             }
             // endregion
             // region *** author default config values (if there is no user input) ***
-            this.authorConfig.DialogCoreConfig.Width = 'auto';
-            this.authorConfig.DialogCoreConfig.Height = 'auto';
-            this.authorConfig.DialogCoreConfig.ButtonPosition = 'right';
+            this.authorConfig.DialogCoreConfig.Width = "auto";
+            this.authorConfig.DialogCoreConfig.Height = "auto";
+            this.authorConfig.DialogCoreConfig.ButtonPosition = "right";
             this.authorConfig.DialogCoreConfig.DisplayLoader = false;
             this.authorConfig.DialogCoreConfig.LayoutType = exports.DialogLayoutDisplay.NONE;
             this.authorConfig.DialogCoreConfig.LoaderComponent = DefaultLoaderComponent;
@@ -1872,22 +1290,22 @@
             dataControl.copyValuesFrom(userConfig.DialogCoreConfig, this.productionConfig.DialogCoreConfig);
             // Buttons
             /*if(userConfig.Buttons){
-                this.config.Buttons.push(
-                    new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY)
-                    ,new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY)
-                );
-            }*/
+                    this.config.Buttons.push(
+                        new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY)
+                        ,new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY)
+                    );
+                }*/
         }
         return DialogConfigService;
     }());
     DialogConfigService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function DialogConfigService_Factory() { return new DialogConfigService(i0__namespace.ɵɵinject("dialogConfig")); }, token: DialogConfigService, providedIn: "root" });
     DialogConfigService.decorators = [
         { type: i0.Injectable, args: [{
-                    providedIn: 'root'
+                    providedIn: "root",
                 },] }
     ];
     DialogConfigService.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: i0.Inject, args: ['dialogConfig',] }] }
+        { type: undefined, decorators: [{ type: i0.Inject, args: ["dialogConfig",] }] }
     ]; };
 
     var InsertionLoaderDirective = /** @class */ (function () {
@@ -1898,7 +1316,7 @@
     }());
     InsertionLoaderDirective.decorators = [
         { type: i0.Directive, args: [{
-                    selector: '[appInsertionLoader]'
+                    selector: "[appInsertionLoader]",
                 },] }
     ];
     InsertionLoaderDirective.ctorParameters = function () { return [
@@ -1913,7 +1331,7 @@
     }());
     InsertionDirective.decorators = [
         { type: i0.Directive, args: [{
-                    selector: '[appInsertion]'
+                    selector: "[appInsertion]",
                 },] }
     ];
     InsertionDirective.ctorParameters = function () { return [
@@ -1925,7 +1343,7 @@
             this.dialogBelonging = dialogBelonging;
             this.componentFactoryResolver = componentFactoryResolver;
             this.cd = cd;
-            this.fadeInOutAnimation = 'open';
+            this.fadeInOutAnimation = "open";
             this.showLoader = true;
         }
         DialogWrapperComponent.prototype.ngAfterViewInit = function () {
@@ -1965,9 +1383,9 @@
         };
         DialogWrapperComponent.prototype.closeParent$ = function (_ClosingAnimation) {
             this.fadeInOutAnimation = _ClosingAnimation;
-            var timer = _ClosingAnimation === 'close-slow' ? 1400 : 150;
+            var timer = _ClosingAnimation === "close-slow" ? 1400 : 150;
             return new rxjs.Observable(function (observer) {
-                observer.next('');
+                observer.next("");
                 observer.complete();
             }).pipe(operators.delay(timer));
         };
@@ -1984,10 +1402,10 @@
     }());
     DialogWrapperComponent.decorators = [
         { type: i0.Component, args: [{
-                    selector: 'dialog-popup-wrapper',
-                    template: "<div class=\"ngx-awesome-popup-overlay\" (dblclick)=\"onOverlayClicked($event)\" [@fadeInOut]=\"fadeInOutAnimation\">\n\t\n\t<div\n\t\t\tclass=\"evolve-parent-dialog\"\n\t\t\t[ngClass]=\"{\n          'standard-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 0,\n          'success-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 1,\n          'info-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 2,\n          'warning-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 3,\n          'danger-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 4\n        }\"\n\t>\n\t\t<div class=\"loader-holder\" [ngClass]=\"!dialogBelonging.DialogCoreConfig.DisplayLoader ? 'dialog-loader-off' : (showLoader ? 'dialog-loader-active' : 'dialog-loader-gone')\">\n\t\t\t<!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->\n\t\t\t<div class=\"dialog-loader\">\n\t\t\t\t<ng-template appInsertionLoader></ng-template>\n\t\t\t</div>\n\t\t</div>\n\t\t\n\t\t<div class=\"content-holder\" [ngStyle]=\"{'width': dialogBelonging.DialogCoreConfig.Width, 'height': dialogBelonging.DialogCoreConfig.Height}\">\n\t\t\t\n\t\t\t<!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->\n\t\t\t<div class=\"component-content\" [ngClass]=\"!dialogBelonging.DialogCoreConfig.DisplayLoader ? 'component-content-loader-off' : (showLoader ? 'component-content-preparing' : 'component-content-ready')\">\n\t\t\t\t<ng-template appInsertion></ng-template>\n\t\t\t</div>\n\t\t\n\t\t</div>\n\t\t\n\t\t<div class=\"button-holder\">\n\t\t\t<div class=\"button-section\" *ngIf=\"dialogBelonging.Buttons.length > 0\" [ngStyle]=\"{ 'text-align': dialogBelonging.DialogCoreConfig.ButtonPosition }\">\n\t\t\t\t\n\t\t\t\t<button\n\t\t\t\t\t\tclass=\"ed-btn ed-btn-lg\" *ngFor=\"let button of dialogBelonging.Buttons\" (click)=\"onCustomButton(button)\"\n\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t                   '': (button.LayoutType ? (button.LayoutType === 0)  : false),\n                              'ed-btn-success': (button.LayoutType ? (button.LayoutType === 1) : false),\n                              'ed-btn-info': (button.LayoutType ? (button.LayoutType === 2) : false),\n                              'ed-btn-warning': (button.LayoutType ? (button.LayoutType === 3)  : false),\n                              'ed-btn-danger': (button.LayoutType ? (button.LayoutType === 4)  : false),\n                              'ed-btn-dark': (button.LayoutType ? (button.LayoutType === 5)  : false),\n                              'ed-btn-light': (button.LayoutType ? (button.LayoutType === 6)  : false),\n                               'ed-btn-primary': (button.LayoutType ? (button.LayoutType === 7) : false),\n                              'ed-btn-secondary': (button.LayoutType ? (button.LayoutType === 8)  : false),\n                              'ed-btn-link': (button.LayoutType ? (button.LayoutType === 9)  : false)\n                            }\"\n\t\t\t\t>{{button.Label}}</button>\n\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</div>\n",
+                    selector: "dialog-popup-wrapper",
+                    template: "<div\n  class=\"ngx-awesome-popup-overlay\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"fadeInOutAnimation\"\n>\n  <div\n    class=\"evolve-parent-dialog\"\n    [ngClass]=\"{\n      'standard-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 0,\n      'success-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 1,\n      'info-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 2,\n      'warning-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 3,\n      'danger-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 4\n    }\"\n  >\n    <div\n      class=\"loader-holder\"\n      [ngClass]=\"\n        !dialogBelonging.DialogCoreConfig.DisplayLoader\n          ? 'dialog-loader-off'\n          : showLoader\n          ? 'dialog-loader-active'\n          : 'dialog-loader-gone'\n      \"\n    >\n      <!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->\n      <div class=\"dialog-loader\">\n        <ng-template appInsertionLoader></ng-template>\n      </div>\n    </div>\n\n    <div\n      class=\"content-holder\"\n      [ngStyle]=\"{\n        width: dialogBelonging.DialogCoreConfig.Width,\n        height: dialogBelonging.DialogCoreConfig.Height\n      }\"\n    >\n      <!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->\n      <div\n        class=\"component-content\"\n        [ngClass]=\"\n          !dialogBelonging.DialogCoreConfig.DisplayLoader\n            ? 'component-content-loader-off'\n            : showLoader\n            ? 'component-content-preparing'\n            : 'component-content-ready'\n        \"\n      >\n        <ng-template appInsertion></ng-template>\n      </div>\n    </div>\n\n    <div class=\"button-holder\">\n      <div\n        class=\"button-section\"\n        *ngIf=\"dialogBelonging.Buttons.length > 0\"\n        [ngStyle]=\"{\n          'text-align': dialogBelonging.DialogCoreConfig.ButtonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-lg\"\n          *ngFor=\"let button of dialogBelonging.Buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.LayoutType ? button.LayoutType === 0 : false,\n            'ed-btn-success': button.LayoutType\n              ? button.LayoutType === 1\n              : false,\n            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,\n            'ed-btn-warning': button.LayoutType\n              ? button.LayoutType === 3\n              : false,\n            'ed-btn-danger': button.LayoutType\n              ? button.LayoutType === 4\n              : false,\n            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,\n            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,\n            'ed-btn-primary': button.LayoutType\n              ? button.LayoutType === 7\n              : false,\n            'ed-btn-secondary': button.LayoutType\n              ? button.LayoutType === 8\n              : false,\n            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false\n          }\"\n        >\n          {{ button.Label }}\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n",
                     animations: [fadeInOut(0, 1)],
-                    styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(\"data:font/eot;base64,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\");src:url(\"data:font/eot;base64,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\") format(\"embedded-opentype\"),url(\"data:font/ttf;base64,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\") format(\"truetype\"),url(\"data:font/woff;base64,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\") format(\"woff\"),url(\"data:font/svg;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiID4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPG1ldGFkYXRhPkdlbmVyYXRlZCBieSBJY29Nb29uPC9tZXRhZGF0YT4KCTxkZWZzPgoJCTxmb250IGlkPSJpY29tb29uIiBob3Jpei1hZHYteD0iMTAyNCI+CgkJCTxmb250LWZhY2UgdW5pdHMtcGVyLWVtPSIxMDI0IiBhc2NlbnQ9Ijk2MCIgZGVzY2VudD0iLTY0Ii8+CgkJCTxtaXNzaW5nLWdseXBoIGhvcml6LWFkdi14PSIxMDI0Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3gyMDsiIGhvcml6LWFkdi14PSI1MTIiIGQ9IiIvPgoJCQk8Z2x5cGggdW5pY29kZT0iJiN4ZTkwMDsiIGdseXBoLW5hbWU9InRpbWVzLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTY1Ni41NzEgMzA5LjcxNGMwIDkuNzE0LTQgMTguODU3LTEwLjg1NyAyNS43MTRsLTEwMy40MjkgMTAzLjQyOSAxMDMuNDI5IDEwMy40MjljNi44NTcgNi44NTcgMTAuODU3IDE2IDEwLjg1NyAyNS43MTRzLTQgMTkuNDI5LTEwLjg1NyAyNi4yODZsLTUxLjQyOSA1MS40MjljLTYuODU3IDYuODU3LTE2LjU3MSAxMC44NTctMjYuMjg2IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMTAzLjQyOS0xMDMuNDI5LTEwMy40MjkgMTAzLjQyOWMtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE5LjQyOS00LTI2LjI4Ni0xMC44NTdsLTUxLjQyOS01MS40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi41NzEtMTAuODU3LTI2LjI4NnM0LTE4Ljg1NyAxMC44NTctMjUuNzE0bDEwMy40MjktMTAzLjQyOS0xMDMuNDI5LTEwMy40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi0xMC44NTctMjUuNzE0czQtMTkuNDI5IDEwLjg1Ny0yNi4yODZsNTEuNDI5LTUxLjQyOWM2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI2LjI4Ni0xMC44NTdzMTguODU3IDQgMjUuNzE0IDEwLjg1N2wxMDMuNDI5IDEwMy40MjkgMTAzLjQyOS0xMDMuNDI5YzYuODU3LTYuODU3IDE2LTEwLjg1NyAyNS43MTQtMTAuODU3czE5LjQyOSA0IDI2LjI4NiAxMC44NTdsNTEuNDI5IDUxLjQyOWM2Ljg1NyA2Ljg1NyAxMC44NTcgMTYuNTcxIDEwLjg1NyAyNi4yODZ6TTg3Ny43MTQgNDM4Ljg1N2MwLTI0Mi4yODYtMTk2LjU3MS00MzguODU3LTQzOC44NTctNDM4Ljg1N3MtNDM4Ljg1NyAxOTYuNTcxLTQzOC44NTcgNDM4Ljg1NyAxOTYuNTcxIDQzOC44NTcgNDM4Ljg1NyA0MzguODU3IDQzOC44NTctMTk2LjU3MSA0MzguODU3LTQzOC44NTd6Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3hlOTAxOyIgZ2x5cGgtbmFtZT0iZXhjbGFtYXRpb24tdHJpYW5nbGUsIHdhcm5pbmciIGQ9Ik01ODUuMTQzIDE2NS4xNDN2MTA4LjU3MWMwIDEwLjI4Ni04IDE4Ljg1Ny0xOC4yODYgMTguODU3aC0xMDkuNzE0Yy0xMC4yODYgMC0xOC4yODYtOC41NzEtMTguMjg2LTE4Ljg1N3YtMTA4LjU3MWMwLTEwLjI4NiA4LTE4Ljg1NyAxOC4yODYtMTguODU3aDEwOS43MTRjMTAuMjg2IDAgMTguMjg2IDguNTcxIDE4LjI4NiAxOC44NTd6TTU4NCAzNzguODU3bDEwLjI4NiAyNjIuMjg2YzAgMy40MjktMS43MTQgOC01LjcxNCAxMC44NTctMy40MjkgMi44NTctOC41NzEgNi4yODYtMTMuNzE0IDYuMjg2aC0xMjUuNzE0Yy01LjE0MyAwLTEwLjI4Ni0zLjQyOS0xMy43MTQtNi4yODYtNC0yLjg1Ny01LjcxNC04LjU3MS01LjcxNC0xMmw5LjcxNC0yNjEuMTQzYzAtNy40MjkgOC41NzEtMTMuMTQzIDE5LjQyOS0xMy4xNDNoMTA1LjcxNGMxMC4yODYgMCAxOC44NTcgNS43MTQgMTkuNDI5IDEzLjE0M3pNNTc2IDkxMi41NzFsNDM4Ljg1Ny04MDQuNTcxYzEyLjU3MS0yMi4yODYgMTItNDkuNzE0LTEuMTQzLTcycy0zNy4xNDMtMzYtNjIuODU3LTM2aC04NzcuNzE0Yy0yNS43MTQgMC00OS43MTQgMTMuNzE0LTYyLjg1NyAzNnMtMTMuNzE0IDQ5LjcxNC0xLjE0MyA3Mmw0MzguODU3IDgwNC41NzFjMTIuNTcxIDIzLjQyOSAzNy4xNDMgMzguMjg2IDY0IDM4LjI4NnM1MS40MjktMTQuODU3IDY0LTM4LjI4NnoiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDI7IiBnbHlwaC1uYW1lPSJjaGVjay1jaXJjbGUiIGhvcml6LWFkdi14PSI4NzgiIGQ9Ik03MzMuNzE0IDUzMS40MjhjMCA5LjcxNC0zLjQyOSAxOS40MjktMTAuMjg2IDI2LjI4NmwtNTIgNTEuNDI5Yy02Ljg1NyA2Ljg1Ny0xNiAxMC44NTctMjUuNzE0IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMjMzLjE0My0yMzIuNTcxLTEyOS4xNDMgMTI5LjE0M2MtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE4Ljg1Ny00LTI1LjcxNC0xMC44NTdsLTUyLTUxLjQyOWMtNi44NTctNi44NTctMTAuMjg2LTE2LjU3MS0xMC4yODYtMjYuMjg2czMuNDI5LTE4Ljg1NyAxMC4yODYtMjUuNzE0bDIwNi44NTctMjA2Ljg1N2M2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI1LjcxNC0xMC44NTcgOS43MTQgMCAxOS40MjkgNCAyNi4yODYgMTAuODU3bDMxMC4yODYgMzEwLjI4NmM2Ljg1NyA2Ljg1NyAxMC4yODYgMTYgMTAuMjg2IDI1LjcxNHpNODc3LjcxNCA0MzguODU3YzAtMjQyLjI4Ni0xOTYuNTcxLTQzOC44NTctNDM4Ljg1Ny00MzguODU3cy00MzguODU3IDE5Ni41NzEtNDM4Ljg1NyA0MzguODU3IDE5Ni41NzEgNDM4Ljg1NyA0MzguODU3IDQzOC44NTcgNDM4Ljg1Ny0xOTYuNTcxIDQzOC44NTctNDM4Ljg1N3oiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDM7IiBnbHlwaC1uYW1lPSJpbmZvLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTU4NS4xNDMgMTY0LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtNTQuODU3djI5Mi41NzFjMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTgyLjg1N2MtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoNTQuODU3di0xODIuODU3aC01NC44NTdjLTEwLjI4NiAwLTE4LjI4Ni04LTE4LjI4Ni0xOC4yODZ2LTkxLjQyOWMwLTEwLjI4NiA4LTE4LjI4NiAxOC4yODYtMTguMjg2aDI1NmMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek01MTIgNjc2LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTA5LjcxNGMtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoMTA5LjcxNGMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek04NzcuNzE0IDQzOC44NTdjMC0yNDIuMjg2LTE5Ni41NzEtNDM4Ljg1Ny00MzguODU3LTQzOC44NTdzLTQzOC44NTcgMTk2LjU3MS00MzguODU3IDQzOC44NTcgMTk2LjU3MSA0MzguODU3IDQzOC44NTcgNDM4Ljg1NyA0MzguODU3LTE5Ni41NzEgNDM4Ljg1Ny00MzguODU3eiIvPgoJCTwvZm9udD48L2RlZnM+Cjwvc3ZnPgo=\") format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;-webkit-font-smoothing:antialiased;font-style:normal;font-variant:normal;font-weight:400;line-height:1;-moz-osx-font-smoothing:grayscale;speak:never;text-transform:none}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:1000}.evolve-confirm-box .text-wrapper,.evolve-parent-dialog .text-wrapper{text-align:center}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.evolve-parent-dialog{padding:20px 20px 10px}.evolve-parent-dialog .component-content{height:100%;max-width:95vw;transition-delay:.4s;transition-duration:.4s;transition-property:opacity;transition-timing-function:linear;width:100%}.evolve-parent-dialog .component-content-loader-off{opacity:1!important;transition:none!important}.evolve-parent-dialog .component-content-preparing{opacity:0;transition:none!important}.evolve-parent-dialog .component-content-ready{height:100%;opacity:1}.evolve-parent-dialog .dialog-loader{opacity:1}.evolve-parent-dialog .dialog-loader-off{display:none;opacity:0!important}.evolve-parent-dialog .dialog-loader-gone{opacity:0;pointer-events:none}.evolve-parent-dialog .dialog-loader-active{opacity:1}.loader-holder{align-items:center;background:#fbfbfb;height:100%;justify-content:center;margin:-20px;opacity:1;position:absolute;transition-delay:.4s;transition-duration:.4s;transition-property:opacity;transition-timing-function:linear;width:100%}.content-holder,.loader-holder{display:flex;flex-direction:column}.content-holder{max-width:calc(100vw - 100px);overflow:auto}.button-holder{display:flex;flex-direction:column;justify-content:flex-end;width:100%}.button-holder .button-section{background:rgba(222,226,230,.2);border-top:1px solid rgba(152,158,165,.2);margin:20px -20px -10px;padding:5px 20px}"]
+                    styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(\"data:font/eot;base64,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\");src:url(\"data:font/eot;base64,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\") format(\"embedded-opentype\"),url(\"data:font/ttf;base64,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\") format(\"truetype\"),url(\"data:font/woff;base64,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\") format(\"woff\"),url(\"data:font/svg;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiID4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPG1ldGFkYXRhPkdlbmVyYXRlZCBieSBJY29Nb29uPC9tZXRhZGF0YT4KCTxkZWZzPgoJCTxmb250IGlkPSJpY29tb29uIiBob3Jpei1hZHYteD0iMTAyNCI+CgkJCTxmb250LWZhY2UgdW5pdHMtcGVyLWVtPSIxMDI0IiBhc2NlbnQ9Ijk2MCIgZGVzY2VudD0iLTY0Ii8+CgkJCTxtaXNzaW5nLWdseXBoIGhvcml6LWFkdi14PSIxMDI0Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3gyMDsiIGhvcml6LWFkdi14PSI1MTIiIGQ9IiIvPgoJCQk8Z2x5cGggdW5pY29kZT0iJiN4ZTkwMDsiIGdseXBoLW5hbWU9InRpbWVzLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTY1Ni41NzEgMzA5LjcxNGMwIDkuNzE0LTQgMTguODU3LTEwLjg1NyAyNS43MTRsLTEwMy40MjkgMTAzLjQyOSAxMDMuNDI5IDEwMy40MjljNi44NTcgNi44NTcgMTAuODU3IDE2IDEwLjg1NyAyNS43MTRzLTQgMTkuNDI5LTEwLjg1NyAyNi4yODZsLTUxLjQyOSA1MS40MjljLTYuODU3IDYuODU3LTE2LjU3MSAxMC44NTctMjYuMjg2IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMTAzLjQyOS0xMDMuNDI5LTEwMy40MjkgMTAzLjQyOWMtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE5LjQyOS00LTI2LjI4Ni0xMC44NTdsLTUxLjQyOS01MS40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi41NzEtMTAuODU3LTI2LjI4NnM0LTE4Ljg1NyAxMC44NTctMjUuNzE0bDEwMy40MjktMTAzLjQyOS0xMDMuNDI5LTEwMy40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi0xMC44NTctMjUuNzE0czQtMTkuNDI5IDEwLjg1Ny0yNi4yODZsNTEuNDI5LTUxLjQyOWM2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI2LjI4Ni0xMC44NTdzMTguODU3IDQgMjUuNzE0IDEwLjg1N2wxMDMuNDI5IDEwMy40MjkgMTAzLjQyOS0xMDMuNDI5YzYuODU3LTYuODU3IDE2LTEwLjg1NyAyNS43MTQtMTAuODU3czE5LjQyOSA0IDI2LjI4NiAxMC44NTdsNTEuNDI5IDUxLjQyOWM2Ljg1NyA2Ljg1NyAxMC44NTcgMTYuNTcxIDEwLjg1NyAyNi4yODZ6TTg3Ny43MTQgNDM4Ljg1N2MwLTI0Mi4yODYtMTk2LjU3MS00MzguODU3LTQzOC44NTctNDM4Ljg1N3MtNDM4Ljg1NyAxOTYuNTcxLTQzOC44NTcgNDM4Ljg1NyAxOTYuNTcxIDQzOC44NTcgNDM4Ljg1NyA0MzguODU3IDQzOC44NTctMTk2LjU3MSA0MzguODU3LTQzOC44NTd6Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3hlOTAxOyIgZ2x5cGgtbmFtZT0iZXhjbGFtYXRpb24tdHJpYW5nbGUsIHdhcm5pbmciIGQ9Ik01ODUuMTQzIDE2NS4xNDN2MTA4LjU3MWMwIDEwLjI4Ni04IDE4Ljg1Ny0xOC4yODYgMTguODU3aC0xMDkuNzE0Yy0xMC4yODYgMC0xOC4yODYtOC41NzEtMTguMjg2LTE4Ljg1N3YtMTA4LjU3MWMwLTEwLjI4NiA4LTE4Ljg1NyAxOC4yODYtMTguODU3aDEwOS43MTRjMTAuMjg2IDAgMTguMjg2IDguNTcxIDE4LjI4NiAxOC44NTd6TTU4NCAzNzguODU3bDEwLjI4NiAyNjIuMjg2YzAgMy40MjktMS43MTQgOC01LjcxNCAxMC44NTctMy40MjkgMi44NTctOC41NzEgNi4yODYtMTMuNzE0IDYuMjg2aC0xMjUuNzE0Yy01LjE0MyAwLTEwLjI4Ni0zLjQyOS0xMy43MTQtNi4yODYtNC0yLjg1Ny01LjcxNC04LjU3MS01LjcxNC0xMmw5LjcxNC0yNjEuMTQzYzAtNy40MjkgOC41NzEtMTMuMTQzIDE5LjQyOS0xMy4xNDNoMTA1LjcxNGMxMC4yODYgMCAxOC44NTcgNS43MTQgMTkuNDI5IDEzLjE0M3pNNTc2IDkxMi41NzFsNDM4Ljg1Ny04MDQuNTcxYzEyLjU3MS0yMi4yODYgMTItNDkuNzE0LTEuMTQzLTcycy0zNy4xNDMtMzYtNjIuODU3LTM2aC04NzcuNzE0Yy0yNS43MTQgMC00OS43MTQgMTMuNzE0LTYyLjg1NyAzNnMtMTMuNzE0IDQ5LjcxNC0xLjE0MyA3Mmw0MzguODU3IDgwNC41NzFjMTIuNTcxIDIzLjQyOSAzNy4xNDMgMzguMjg2IDY0IDM4LjI4NnM1MS40MjktMTQuODU3IDY0LTM4LjI4NnoiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDI7IiBnbHlwaC1uYW1lPSJjaGVjay1jaXJjbGUiIGhvcml6LWFkdi14PSI4NzgiIGQ9Ik03MzMuNzE0IDUzMS40MjhjMCA5LjcxNC0zLjQyOSAxOS40MjktMTAuMjg2IDI2LjI4NmwtNTIgNTEuNDI5Yy02Ljg1NyA2Ljg1Ny0xNiAxMC44NTctMjUuNzE0IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMjMzLjE0My0yMzIuNTcxLTEyOS4xNDMgMTI5LjE0M2MtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE4Ljg1Ny00LTI1LjcxNC0xMC44NTdsLTUyLTUxLjQyOWMtNi44NTctNi44NTctMTAuMjg2LTE2LjU3MS0xMC4yODYtMjYuMjg2czMuNDI5LTE4Ljg1NyAxMC4yODYtMjUuNzE0bDIwNi44NTctMjA2Ljg1N2M2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI1LjcxNC0xMC44NTcgOS43MTQgMCAxOS40MjkgNCAyNi4yODYgMTAuODU3bDMxMC4yODYgMzEwLjI4NmM2Ljg1NyA2Ljg1NyAxMC4yODYgMTYgMTAuMjg2IDI1LjcxNHpNODc3LjcxNCA0MzguODU3YzAtMjQyLjI4Ni0xOTYuNTcxLTQzOC44NTctNDM4Ljg1Ny00MzguODU3cy00MzguODU3IDE5Ni41NzEtNDM4Ljg1NyA0MzguODU3IDE5Ni41NzEgNDM4Ljg1NyA0MzguODU3IDQzOC44NTcgNDM4Ljg1Ny0xOTYuNTcxIDQzOC44NTctNDM4Ljg1N3oiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDM7IiBnbHlwaC1uYW1lPSJpbmZvLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTU4NS4xNDMgMTY0LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtNTQuODU3djI5Mi41NzFjMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTgyLjg1N2MtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoNTQuODU3di0xODIuODU3aC01NC44NTdjLTEwLjI4NiAwLTE4LjI4Ni04LTE4LjI4Ni0xOC4yODZ2LTkxLjQyOWMwLTEwLjI4NiA4LTE4LjI4NiAxOC4yODYtMTguMjg2aDI1NmMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek01MTIgNjc2LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTA5LjcxNGMtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoMTA5LjcxNGMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek04NzcuNzE0IDQzOC44NTdjMC0yNDIuMjg2LTE5Ni41NzEtNDM4Ljg1Ny00MzguODU3LTQzOC44NTdzLTQzOC44NTcgMTk2LjU3MS00MzguODU3IDQzOC44NTcgMTk2LjU3MSA0MzguODU3IDQzOC44NTcgNDM4Ljg1NyA0MzguODU3LTE5Ni41NzEgNDM4Ljg1Ny00MzguODU3eiIvPgoJCTwvZm9udD48L2RlZnM+Cjwvc3ZnPgo=\") format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;-webkit-font-smoothing:antialiased;font-style:normal;font-variant:normal;font-weight:400;line-height:1;-moz-osx-font-smoothing:grayscale;speak:never;text-transform:none}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:999999999}.evolve-confirm-box .text-wrapper,.evolve-parent-dialog .text-wrapper{text-align:center}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.evolve-parent-dialog{padding:20px 20px 10px}.evolve-parent-dialog .component-content{height:100%;max-width:95vw;transition-delay:.4s;transition-duration:.4s;transition-property:opacity;transition-timing-function:linear;width:100%}.evolve-parent-dialog .component-content-loader-off{opacity:1!important;transition:none!important}.evolve-parent-dialog .component-content-preparing{opacity:0;transition:none!important}.evolve-parent-dialog .component-content-ready{height:100%;opacity:1}.evolve-parent-dialog .dialog-loader{opacity:1}.evolve-parent-dialog .dialog-loader-off{display:none;opacity:0!important}.evolve-parent-dialog .dialog-loader-gone{opacity:0;pointer-events:none}.evolve-parent-dialog .dialog-loader-active{opacity:1}.loader-holder{align-items:center;background:#fbfbfb;height:100%;justify-content:center;margin:-20px;opacity:1;position:absolute;transition-delay:.4s;transition-duration:.4s;transition-property:opacity;transition-timing-function:linear;width:100%}.content-holder,.loader-holder{display:flex;flex-direction:column}.content-holder{max-width:calc(100vw - 100px);overflow:auto}.button-holder{display:flex;flex-direction:column;justify-content:flex-end;width:100%}.button-holder .button-section{background:rgba(222,226,230,.2);border-top:1px solid rgba(152,158,165,.2);margin:20px -20px -10px;padding:5px 20px}"]
                 },] }
     ];
     DialogWrapperComponent.ctorParameters = function () { return [
@@ -2047,13 +1465,13 @@
                 closeLoaderSubscription.unsubscribe();
             });
         };
-        DialogService.prototype.childComponentResolver = function () {
-        };
+        DialogService.prototype.childComponentResolver = function () { };
         DialogService.prototype.appendToBodyParentComponent = function (_ComponentRef) {
             // attach view to ignite lifecycle hooks
             this.appRef.attachView(_ComponentRef.hostView);
             // DOM
-            var domElem = _ComponentRef.hostView.rootNodes[0];
+            var domElem = _ComponentRef.hostView
+                .rootNodes[0];
             document.body.appendChild(domElem);
         };
         DialogService.prototype.closeDialogWrapperComponent = function (_DialogUniqueID) {
@@ -2063,11 +1481,14 @@
         DialogService.prototype.removeFromBodyDialogWrapperComponent = function (_DialogIndex) {
             var _this = this;
             if (_DialogIndex > -1) {
-                this.dialogParentComponentRefList[_DialogIndex].instance.closeParent$('close-fast').pipe(operators.map(function (item) {
+                this.dialogParentComponentRefList[_DialogIndex].instance
+                    .closeParent$("close-fast")
+                    .pipe(operators.map(function (item) {
                     _this.appRef.detachView(_this.dialogParentComponentRefList[_DialogIndex].hostView);
                     _this.dialogParentComponentRefList[_DialogIndex].destroy();
                     _this.dialogParentComponentRefList.splice(_DialogIndex, 1);
-                })).subscribe();
+                }))
+                    .subscribe();
             }
         };
         DialogService.prototype.findDialogIndex = function (_DialogUniqueID) {
@@ -2080,7 +1501,7 @@
     DialogService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function DialogService_Factory() { return new DialogService(i0__namespace.ɵɵinject(i0__namespace.ComponentFactoryResolver), i0__namespace.ɵɵinject(i0__namespace.INJECTOR), i0__namespace.ɵɵinject(i0__namespace.ApplicationRef)); }, token: DialogService, providedIn: "root" });
     DialogService.decorators = [
         { type: i0.Injectable, args: [{
-                    providedIn: 'root'
+                    providedIn: "root",
                 },] }
     ];
     DialogService.ctorParameters = function () { return [
@@ -2252,7 +1673,7 @@
             function DialogBelonging() {
                 var _this = _super.call(this) || this;
                 /** @internal */
-                _this.EntityUniqueID = 'D' + Math.random().toString(36).substr(2, 9);
+                _this.EntityUniqueID = "D" + Math.random().toString(36).substr(2, 9);
                 _this.CustomData = null;
                 _this.EventsController = new DialogEventsController(_this.EntityUniqueID);
                 var dialogConfigurator = ServiceLocator.injector.get(DialogConfigService);
@@ -2268,6 +1689,647 @@
         DialogClass.DialogBelonging = DialogBelonging;
     })(exports.ɵe || (exports.ɵe = {}));
 
+    var ToastNotificationConfigService = /** @class */ (function () {
+        function ToastNotificationConfigService(userConfig) {
+            if (userConfig === void 0) { userConfig = {}; }
+            this.userConfig = userConfig;
+            this.authorConfig = new exports.ɵk.Settings();
+            this.productionConfig = new exports.ɵk.Settings();
+            this.dataControl = new GlobalClass.DataControl();
+            // region *** confirmBox userConfig (user input app-module) ***
+            var userConfigBase = new exports.ɵk.Settings();
+            this.dataControl.copyValuesFrom(userConfig.ToastCoreConfig, userConfigBase.ToastCoreConfig); // this will make sure that object has right properties
+            userConfig.ToastCoreConfig = userConfigBase.ToastCoreConfig;
+            // endregion
+            // region *** author default config values (if there is no user input) ***
+            this.authorConfig.ToastCoreConfig.ButtonPosition = "right";
+            this.authorConfig.ToastCoreConfig.TextPosition = "left";
+            this.authorConfig.ToastCoreConfig.ToastPosition =
+                exports.ToastPositionEnum.TOP_RIGHT;
+            this.authorConfig.ToastCoreConfig.ProgressBar =
+                exports.ToastProgressBarEnum.INCREASE;
+            this.authorConfig.ToastCoreConfig.ToastUserViewType =
+                exports.ToastUserViewTypeEnum.SIMPLE;
+            this.authorConfig.ToastCoreConfig.AutoCloseDelay = 2500;
+            this.authorConfig.ToastCoreConfig.DisableIcon = false;
+            this.authorConfig.ToastCoreConfig.AllowHTMLMessage = true;
+            this.authorConfig.ToastCoreConfig.LayoutType = exports.DialogLayoutDisplay.NONE;
+            this.authorConfig.GlobalSettings.AllowedNotificationsAtOnce = 5;
+            // endregion
+            // region *** Production setup ***
+            this.setResetGlobalToastConfig();
+            this.dataControl.copyValuesFrom(this.authorConfig.ToastCoreConfig, this.productionConfig.ToastCoreConfig);
+            this.dataControl.copyValuesFrom(this.userConfig.ToastCoreConfig, this.productionConfig.ToastCoreConfig);
+            // endregion
+        }
+        ToastNotificationConfigService.prototype.setResetGlobalToastConfig = function (globalToastConfig) {
+            this.dataControl.copyValuesFrom(this.authorConfig.GlobalSettings, this.productionConfig.GlobalSettings);
+            this.dataControl.copyValuesFrom(globalToastConfig ? globalToastConfig : this.userConfig.GlobalSettings, this.productionConfig.GlobalSettings);
+        };
+        return ToastNotificationConfigService;
+    }());
+    ToastNotificationConfigService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ToastNotificationConfigService_Factory() { return new ToastNotificationConfigService(i0__namespace.ɵɵinject("toastNotificationConfig")); }, token: ToastNotificationConfigService, providedIn: "root" });
+    ToastNotificationConfigService.decorators = [
+        { type: i0.Injectable, args: [{
+                    providedIn: "root",
+                },] }
+    ];
+    ToastNotificationConfigService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: ["toastNotificationConfig",] }] }
+    ]; };
+
+    var WrapperAbstraction = /** @class */ (function () {
+        function WrapperAbstraction(toastNotificationBelonging) {
+            this.toastNotificationBelonging = toastNotificationBelonging;
+            this.fadeInOutAnimation = "open";
+            this.timerStarted$ = new rxjs.BehaviorSubject("start-counter");
+            this.isTimerStarted = false;
+            this.timer = new GlobalClass.Timer();
+        }
+        WrapperAbstraction.prototype.mouseOver = function () {
+            var _a;
+            this.timerStarted$.next("stop-counter");
+            this.fadeInOutAnimation = "open";
+            (_a = this.subsToClosingDelay) === null || _a === void 0 ? void 0 : _a.unsubscribe();
+        };
+        WrapperAbstraction.prototype.mouseOut = function () {
+            this.timerStarted$.next("start-counter");
+        };
+        WrapperAbstraction.prototype.onOverlayClicked = function (evt) {
+            //  console.log('onOverlayClicked');
+        };
+        WrapperAbstraction.prototype.onToastClicked = function (evt) {
+            // console.log('onOverlayClicked');
+        };
+        WrapperAbstraction.prototype.setResponse = function (_IsSuccess, _ClickedButtonID) {
+            var response = new exports.ɵk.ToastNotificationDefaultResponse();
+            if (_ClickedButtonID) {
+                response.ClickedButtonID = _ClickedButtonID;
+            }
+            response.setSuccess(_IsSuccess);
+            response.setBelonging(this.toastNotificationBelonging);
+            this.toastNotificationBelonging.EventsController.setDefaultResponse(response);
+        };
+        WrapperAbstraction.prototype.onCustomButton = function (_Button) {
+            this.toastNotificationBelonging.EventsController.onButtonClick(_Button);
+            this.setResponse(true, _Button.ID);
+            this.toastNotificationBelonging.EventsController.close();
+        };
+        WrapperAbstraction.prototype.onButtonClick = function (_Type) {
+            var buttonID;
+            if (_Type === "confirm") {
+                buttonID = this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel.toLowerCase();
+            }
+            else if (_Type === "decline") {
+                buttonID = this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel.toLowerCase();
+            }
+            this.setResponse(_Type === "confirm", buttonID);
+            this.toastNotificationBelonging.EventsController.close();
+        };
+        WrapperAbstraction.prototype.autoClose = function () {
+            var _this = this;
+            if (this.autoCloseCondition()) {
+                this.timer.setMilliseconds(this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
+                this.subTimer = this.timerStarted$
+                    .pipe(operators.tap(function (next) {
+                    if ("start-counter" === next) {
+                        _this.timer.start();
+                        _this.isTimerStarted = true;
+                        _this.timeout = setTimeout(function () {
+                            _this.subsToClosingDelay = _this.closeParent$("close-slow").subscribe(function (resp) {
+                                _this.toastNotificationBelonging.EventsController.close();
+                            });
+                        }, _this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
+                    }
+                    else if ("stop-counter" === next) {
+                        if (_this.isTimerStarted) {
+                            _this.timer.stop();
+                            clearTimeout(_this.timeout);
+                            _this.isTimerStarted = false;
+                        }
+                    }
+                }))
+                    .subscribe();
+            }
+        };
+        WrapperAbstraction.prototype.autoCloseCondition = function () {
+            return (this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay &&
+                !(this.toastNotificationBelonging.Buttons.length ||
+                    this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||
+                    this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel));
+        };
+        WrapperAbstraction.prototype.closeParent$ = function (_ClosingAnimation) {
+            this.fadeInOutAnimation = _ClosingAnimation;
+            var timer = _ClosingAnimation === "close-slow" ? 1400 : 150;
+            return rxjs.of("").pipe(operators.delay(timer));
+        };
+        WrapperAbstraction.prototype.close = function () {
+            this.toastNotificationBelonging.EventsController.close();
+        };
+        WrapperAbstraction.prototype.ngOnDestroy = function () {
+            var _a, _b;
+            (_a = this.subsToClosingDelay) === null || _a === void 0 ? void 0 : _a.unsubscribe();
+            (_b = this.subTimer) === null || _b === void 0 ? void 0 : _b.unsubscribe();
+        };
+        return WrapperAbstraction;
+    }());
+    WrapperAbstraction.decorators = [
+        { type: i0.Directive }
+    ];
+    WrapperAbstraction.ctorParameters = function () { return [
+        { type: exports.ɵk.ToastNotificationBelonging }
+    ]; };
+
+    var ToastNotificationSimpleWrapperComponent = /** @class */ (function (_super) {
+        __extends(ToastNotificationSimpleWrapperComponent, _super);
+        function ToastNotificationSimpleWrapperComponent(gConfig, toastNotificationBelonging, cd) {
+            var _this = _super.call(this, toastNotificationBelonging) || this;
+            _this.gConfig = gConfig;
+            _this.toastNotificationBelonging = toastNotificationBelonging;
+            _this.cd = cd;
+            return _this;
+        }
+        ToastNotificationSimpleWrapperComponent.prototype.ngAfterViewInit = function () {
+            this.setResponse(false);
+            this.cd.detectChanges();
+            this.autoClose();
+        };
+        return ToastNotificationSimpleWrapperComponent;
+    }(WrapperAbstraction));
+    ToastNotificationSimpleWrapperComponent.decorators = [
+        { type: i0.Component, args: [{
+                    selector: "app-toast-notification-simple-wrapper",
+                    template: "<div\n  class=\"toast-wrapper simple-toast\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"fadeInOutAnimation\"\n>\n  <div\n    class=\"evolve-toast\"\n    (mouseover)=\"mouseOver()\"\n    (mouseout)=\"mouseOut()\"\n    (click)=\"onToastClicked($event)\"\n    [ngClass]=\"{\n      'standard-dialog':\n        0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'success-dialog':\n        1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'info-dialog':\n        2 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'warning-dialog':\n        3 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'danger-dialog':\n        4 === toastNotificationBelonging.ToastCoreConfig.LayoutType\n    }\"\n  >\n    <div\n      class=\"toast-title-content\"\n      *ngIf=\"toastNotificationBelonging.Dispatch.Title\"\n    >\n      <div\n        class=\"icon-section\"\n        *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.DisableIcon\"\n      >\n        <span\n          class=\"icon-type-toast\"\n          [ngClass]=\"{\n            '': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n            'ap-icon-success icon-check-circle':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n            'ap-icon-info icon-info-circle':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n            'ap-icon-warning icon-warning':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n            'ap-icon-danger icon-times-circle':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n          }\"\n        ></span>\n      </div>\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          <div class=\"toast-title-text toast-text\">\n            {{ toastNotificationBelonging.Dispatch.Title }}\n          </div>\n          <span\n            class=\"close-ico icon-times-circle\"\n            (click)=\"close()\"\n            *ngIf=\"\n              !toastNotificationBelonging.Buttons.length &&\n              !toastNotificationBelonging.ToastCoreConfig.DeclineLabel &&\n              !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n            \"\n          ></span>\n        </div>\n      </div>\n    </div>\n\n    <div\n      class=\"content-holder toast-text\"\n      *ngIf=\"toastNotificationBelonging.Dispatch.Message\"\n    >\n      <div\n        class=\"text-wrapper-section toast-inner-content\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.ToastCoreConfig.TextPosition\n        }\"\n        [ngClass]=\"{\n          'only-message': !toastNotificationBelonging.Dispatch.Title\n        }\"\n      >\n        <div class=\"dont-break-out\">\n          <div\n            class=\"text-wrapper dont-break-out\"\n            *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\"\n          >\n            <p>{{ toastNotificationBelonging.Dispatch.Message }}</p>\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\"\n            [innerHTML]=\"toastNotificationBelonging.Dispatch.Message\"\n          ></div>\n        </div>\n      </div>\n      <span\n        class=\"close-ico icon-times-circle\"\n        (click)=\"close()\"\n        *ngIf=\"\n          !toastNotificationBelonging.Buttons.length &&\n          !toastNotificationBelonging.ToastCoreConfig.DeclineLabel &&\n          !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel &&\n          !toastNotificationBelonging.Dispatch.Title\n        \"\n      ></span>\n    </div>\n\n    <div class=\"button-holder\">\n      <div\n        class=\"button-section\"\n        *ngIf=\"toastNotificationBelonging.Buttons.length\"\n        [ngStyle]=\"{\n          'text-align':\n            toastNotificationBelonging.ToastCoreConfig.ButtonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          *ngFor=\"let button of toastNotificationBelonging.Buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.LayoutType ? button.LayoutType === 0 : false,\n            'ed-btn-success': button.LayoutType\n              ? button.LayoutType === 1\n              : false,\n            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,\n            'ed-btn-warning': button.LayoutType\n              ? button.LayoutType === 3\n              : false,\n            'ed-btn-danger': button.LayoutType\n              ? button.LayoutType === 4\n              : false,\n            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,\n            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,\n            'ed-btn-primary': button.LayoutType\n              ? button.LayoutType === 7\n              : false,\n            'ed-btn-secondary': button.LayoutType\n              ? button.LayoutType === 8\n              : false,\n            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false\n          }\"\n        >\n          {{ button.Label }}\n        </button>\n      </div>\n\n      <div\n        class=\"button-section\"\n        [ngStyle]=\"{\n          'text-align':\n            toastNotificationBelonging.ToastCoreConfig.ButtonPosition\n        }\"\n        *ngIf=\"\n          !toastNotificationBelonging.Buttons.length &&\n          (toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||\n            toastNotificationBelonging.ToastCoreConfig.ConfirmLabel)\n        \"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          *ngIf=\"toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\"\n          (click)=\"onButtonClick('confirm')\"\n          [ngClass]=\"{\n            'ed-btn-primary':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n            'ed-btn-success':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n            'ed-btn-info':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n            'ed-btn-warning':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n            'ed-btn-danger':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n          }\"\n        >\n          {{ toastNotificationBelonging.ToastCoreConfig.ConfirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-sm ed-btn-secondary\"\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"toastNotificationBelonging.ToastCoreConfig.DeclineLabel\"\n        >\n          {{ toastNotificationBelonging.ToastCoreConfig.DeclineLabel }}\n        </button>\n      </div>\n    </div>\n\n    <div\n      class=\"progress-bar-container\"\n      *ngIf=\"\n        !toastNotificationBelonging.Buttons.length &&\n        !toastNotificationBelonging.ToastCoreConfig.DeclineLabel &&\n        !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel &&\n        toastNotificationBelonging.ToastCoreConfig.ProgressBar !== 0\n      \"\n    >\n      <div\n        class=\"progress-bar\"\n        [ngStyle]=\"{\n          width:\n            (toastNotificationBelonging.ToastCoreConfig.ProgressBar === 1\n              ? timer.Progress\n              : timer.Remaining) + '%'\n        }\"\n      ></div>\n    </div>\n  </div>\n</div>\n",
+                    animations: [fadeInOut(0, 1)],
+                    styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(\"data:font/eot;base64,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\");src:url(\"data:font/eot;base64,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\") format(\"embedded-opentype\"),url(\"data:font/ttf;base64,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\") format(\"truetype\"),url(\"data:font/woff;base64,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\") format(\"woff\"),url(\"data:font/svg;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiID4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPG1ldGFkYXRhPkdlbmVyYXRlZCBieSBJY29Nb29uPC9tZXRhZGF0YT4KCTxkZWZzPgoJCTxmb250IGlkPSJpY29tb29uIiBob3Jpei1hZHYteD0iMTAyNCI+CgkJCTxmb250LWZhY2UgdW5pdHMtcGVyLWVtPSIxMDI0IiBhc2NlbnQ9Ijk2MCIgZGVzY2VudD0iLTY0Ii8+CgkJCTxtaXNzaW5nLWdseXBoIGhvcml6LWFkdi14PSIxMDI0Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3gyMDsiIGhvcml6LWFkdi14PSI1MTIiIGQ9IiIvPgoJCQk8Z2x5cGggdW5pY29kZT0iJiN4ZTkwMDsiIGdseXBoLW5hbWU9InRpbWVzLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTY1Ni41NzEgMzA5LjcxNGMwIDkuNzE0LTQgMTguODU3LTEwLjg1NyAyNS43MTRsLTEwMy40MjkgMTAzLjQyOSAxMDMuNDI5IDEwMy40MjljNi44NTcgNi44NTcgMTAuODU3IDE2IDEwLjg1NyAyNS43MTRzLTQgMTkuNDI5LTEwLjg1NyAyNi4yODZsLTUxLjQyOSA1MS40MjljLTYuODU3IDYuODU3LTE2LjU3MSAxMC44NTctMjYuMjg2IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMTAzLjQyOS0xMDMuNDI5LTEwMy40MjkgMTAzLjQyOWMtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE5LjQyOS00LTI2LjI4Ni0xMC44NTdsLTUxLjQyOS01MS40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi41NzEtMTAuODU3LTI2LjI4NnM0LTE4Ljg1NyAxMC44NTctMjUuNzE0bDEwMy40MjktMTAzLjQyOS0xMDMuNDI5LTEwMy40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi0xMC44NTctMjUuNzE0czQtMTkuNDI5IDEwLjg1Ny0yNi4yODZsNTEuNDI5LTUxLjQyOWM2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI2LjI4Ni0xMC44NTdzMTguODU3IDQgMjUuNzE0IDEwLjg1N2wxMDMuNDI5IDEwMy40MjkgMTAzLjQyOS0xMDMuNDI5YzYuODU3LTYuODU3IDE2LTEwLjg1NyAyNS43MTQtMTAuODU3czE5LjQyOSA0IDI2LjI4NiAxMC44NTdsNTEuNDI5IDUxLjQyOWM2Ljg1NyA2Ljg1NyAxMC44NTcgMTYuNTcxIDEwLjg1NyAyNi4yODZ6TTg3Ny43MTQgNDM4Ljg1N2MwLTI0Mi4yODYtMTk2LjU3MS00MzguODU3LTQzOC44NTctNDM4Ljg1N3MtNDM4Ljg1NyAxOTYuNTcxLTQzOC44NTcgNDM4Ljg1NyAxOTYuNTcxIDQzOC44NTcgNDM4Ljg1NyA0MzguODU3IDQzOC44NTctMTk2LjU3MSA0MzguODU3LTQzOC44NTd6Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3hlOTAxOyIgZ2x5cGgtbmFtZT0iZXhjbGFtYXRpb24tdHJpYW5nbGUsIHdhcm5pbmciIGQ9Ik01ODUuMTQzIDE2NS4xNDN2MTA4LjU3MWMwIDEwLjI4Ni04IDE4Ljg1Ny0xOC4yODYgMTguODU3aC0xMDkuNzE0Yy0xMC4yODYgMC0xOC4yODYtOC41NzEtMTguMjg2LTE4Ljg1N3YtMTA4LjU3MWMwLTEwLjI4NiA4LTE4Ljg1NyAxOC4yODYtMTguODU3aDEwOS43MTRjMTAuMjg2IDAgMTguMjg2IDguNTcxIDE4LjI4NiAxOC44NTd6TTU4NCAzNzguODU3bDEwLjI4NiAyNjIuMjg2YzAgMy40MjktMS43MTQgOC01LjcxNCAxMC44NTctMy40MjkgMi44NTctOC41NzEgNi4yODYtMTMuNzE0IDYuMjg2aC0xMjUuNzE0Yy01LjE0MyAwLTEwLjI4Ni0zLjQyOS0xMy43MTQtNi4yODYtNC0yLjg1Ny01LjcxNC04LjU3MS01LjcxNC0xMmw5LjcxNC0yNjEuMTQzYzAtNy40MjkgOC41NzEtMTMuMTQzIDE5LjQyOS0xMy4xNDNoMTA1LjcxNGMxMC4yODYgMCAxOC44NTcgNS43MTQgMTkuNDI5IDEzLjE0M3pNNTc2IDkxMi41NzFsNDM4Ljg1Ny04MDQuNTcxYzEyLjU3MS0yMi4yODYgMTItNDkuNzE0LTEuMTQzLTcycy0zNy4xNDMtMzYtNjIuODU3LTM2aC04NzcuNzE0Yy0yNS43MTQgMC00OS43MTQgMTMuNzE0LTYyLjg1NyAzNnMtMTMuNzE0IDQ5LjcxNC0xLjE0MyA3Mmw0MzguODU3IDgwNC41NzFjMTIuNTcxIDIzLjQyOSAzNy4xNDMgMzguMjg2IDY0IDM4LjI4NnM1MS40MjktMTQuODU3IDY0LTM4LjI4NnoiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDI7IiBnbHlwaC1uYW1lPSJjaGVjay1jaXJjbGUiIGhvcml6LWFkdi14PSI4NzgiIGQ9Ik03MzMuNzE0IDUzMS40MjhjMCA5LjcxNC0zLjQyOSAxOS40MjktMTAuMjg2IDI2LjI4NmwtNTIgNTEuNDI5Yy02Ljg1NyA2Ljg1Ny0xNiAxMC44NTctMjUuNzE0IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMjMzLjE0My0yMzIuNTcxLTEyOS4xNDMgMTI5LjE0M2MtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE4Ljg1Ny00LTI1LjcxNC0xMC44NTdsLTUyLTUxLjQyOWMtNi44NTctNi44NTctMTAuMjg2LTE2LjU3MS0xMC4yODYtMjYuMjg2czMuNDI5LTE4Ljg1NyAxMC4yODYtMjUuNzE0bDIwNi44NTctMjA2Ljg1N2M2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI1LjcxNC0xMC44NTcgOS43MTQgMCAxOS40MjkgNCAyNi4yODYgMTAuODU3bDMxMC4yODYgMzEwLjI4NmM2Ljg1NyA2Ljg1NyAxMC4yODYgMTYgMTAuMjg2IDI1LjcxNHpNODc3LjcxNCA0MzguODU3YzAtMjQyLjI4Ni0xOTYuNTcxLTQzOC44NTctNDM4Ljg1Ny00MzguODU3cy00MzguODU3IDE5Ni41NzEtNDM4Ljg1NyA0MzguODU3IDE5Ni41NzEgNDM4Ljg1NyA0MzguODU3IDQzOC44NTcgNDM4Ljg1Ny0xOTYuNTcxIDQzOC44NTctNDM4Ljg1N3oiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDM7IiBnbHlwaC1uYW1lPSJpbmZvLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTU4NS4xNDMgMTY0LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtNTQuODU3djI5Mi41NzFjMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTgyLjg1N2MtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoNTQuODU3di0xODIuODU3aC01NC44NTdjLTEwLjI4NiAwLTE4LjI4Ni04LTE4LjI4Ni0xOC4yODZ2LTkxLjQyOWMwLTEwLjI4NiA4LTE4LjI4NiAxOC4yODYtMTguMjg2aDI1NmMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek01MTIgNjc2LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTA5LjcxNGMtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoMTA5LjcxNGMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek04NzcuNzE0IDQzOC44NTdjMC0yNDIuMjg2LTE5Ni41NzEtNDM4Ljg1Ny00MzguODU3LTQzOC44NTdzLTQzOC44NTcgMTk2LjU3MS00MzguODU3IDQzOC44NTcgMTk2LjU3MSA0MzguODU3IDQzOC44NTcgNDM4Ljg1NyA0MzguODU3LTE5Ni41NzEgNDM4Ljg1Ny00MzguODU3eiIvPgoJCTwvZm9udD48L2RlZnM+Cjwvc3ZnPgo=\") format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;-webkit-font-smoothing:antialiased;font-style:normal;font-variant:normal;font-weight:400;line-height:1;-moz-osx-font-smoothing:grayscale;speak:never;text-transform:none}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:999999999}.evolve-confirm-box .text-wrapper,.evolve-parent-dialog .text-wrapper{text-align:center}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.toast-wrapper{background:transparent;display:flex;flex-direction:column;margin:auto;opacity:0;padding:0;pointer-events:auto;position:relative;width:100%;z-index:0}.toast-wrapper .progress-bar-container{background:hsla(0,0%,100%,.2);border-radius:0 0 2px 2px}.toast-wrapper .progress-bar{height:4px;transition:none;width:0}.toast-wrapper .evolve-toast{background:#fbfbfb;border-radius:2px;box-shadow:0 0 2px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;margin-top:10px;max-height:350px;position:relative;transition:box-shadow .3s ease-in-out;vertical-align:bottom}.toast-wrapper .evolve-toast:hover{box-shadow:0 0 4px 2px rgba(0,0,0,.25)}.toast-wrapper .evolve-toast.standard-dialog{border-color:transparent}.toast-wrapper .evolve-toast.standard-dialog .progress-bar{background-color:rgba(42,42,42,.2)}.toast-wrapper .evolve-toast.success-dialog{background-color:#91d9d2}.toast-wrapper .evolve-toast.success-dialog .progress-bar{background-color:#6bccc2}.toast-wrapper .evolve-toast.info-dialog{background-color:#b7d8f6}.toast-wrapper .evolve-toast.info-dialog .progress-bar{background-color:#73b3ee}.toast-wrapper .evolve-toast.warning-dialog{background-color:#ffe7a0}.toast-wrapper .evolve-toast.warning-dialog .progress-bar{background-color:#ffdb6d}.toast-wrapper .evolve-toast.danger-dialog{background-color:#f3bbbb}.toast-wrapper .evolve-toast.danger-dialog .progress-bar{background-color:#ec8f8f}.toast-wrapper .evolve-toast .close-ico{color:rgba(0,0,0,.2);cursor:pointer;font-size:18px;position:absolute;right:6px;top:4px}.toast-wrapper .evolve-toast .toast-title-content{align-content:space-around;align-items:center;background-clip:padding-box;border-radius:2px 2px 0 0;color:#6c757d;display:flex;flex-direction:row;flex-wrap:wrap;height:auto;justify-content:flex-start;padding:5px 10px;width:auto}.toast-wrapper .evolve-toast .toast-title-content .icon-section .icon-type-toast{font-size:20px;opacity:.8;padding:0 6px 0 0}.toast-wrapper .evolve-toast .toast-title-content .toast-title-text{font-size:.87rem}.toast-wrapper .evolve-toast .content-holder{align-items:center;color:#6c757d;display:flex;flex-wrap:nowrap;height:100%;justify-content:space-between;overflow:auto;width:100%}.toast-wrapper .evolve-toast .content-holder .toast-inner-content{padding:6px 10px}.toast-wrapper .evolve-toast .content-holder .only-message{padding:6px 27px 6px 10px}.toast-wrapper .evolve-toast .content-holder .text-wrapper{font-size:.97rem;margin:0}.toast-wrapper .evolve-toast .button-holder{display:flex;flex-direction:column;justify-content:flex-end;width:100%}.toast-wrapper .evolve-toast .button-holder .button-section{margin:0;padding:4px 10px}"]
+                },] }
+    ];
+    ToastNotificationSimpleWrapperComponent.ctorParameters = function () { return [
+        { type: GlobalConfigService },
+        { type: exports.ɵk.ToastNotificationBelonging },
+        { type: i0.ChangeDetectorRef }
+    ]; };
+
+    var ToastNotificationWrapperComponent = /** @class */ (function (_super) {
+        __extends(ToastNotificationWrapperComponent, _super);
+        function ToastNotificationWrapperComponent(gConfig, toastNotificationBelonging, cd) {
+            var _this = _super.call(this, toastNotificationBelonging) || this;
+            _this.gConfig = gConfig;
+            _this.toastNotificationBelonging = toastNotificationBelonging;
+            _this.cd = cd;
+            return _this;
+        }
+        ToastNotificationWrapperComponent.prototype.ngAfterViewInit = function () {
+            this.setResponse(false);
+            this.cd.detectChanges();
+            this.autoClose();
+        };
+        return ToastNotificationWrapperComponent;
+    }(WrapperAbstraction));
+    ToastNotificationWrapperComponent.decorators = [
+        { type: i0.Component, args: [{
+                    selector: "app-toast-notification-wrapper",
+                    template: "<div\n  class=\"toast-wrapper standard-toast\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"fadeInOutAnimation\"\n>\n  <div\n    class=\"evolve-toast\"\n    (mouseover)=\"mouseOver()\"\n    (mouseout)=\"mouseOut()\"\n    (click)=\"onToastClicked($event)\"\n    [ngClass]=\"{\n      'standard-dialog':\n        0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'success-dialog':\n        1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'info-dialog':\n        2 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'warning-dialog':\n        3 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'danger-dialog':\n        4 === toastNotificationBelonging.ToastCoreConfig.LayoutType\n    }\"\n  >\n    <div\n      class=\"toast-title-content\"\n      *ngIf=\"toastNotificationBelonging.Dispatch.Title\"\n    >\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          <div class=\"toast-title-text\">\n            {{ toastNotificationBelonging.Dispatch.Title }}\n          </div>\n          <span\n            class=\"close-ico icon-times-circle\"\n            (click)=\"close()\"\n            *ngIf=\"\n              !toastNotificationBelonging.Buttons.length &&\n              !toastNotificationBelonging.ToastCoreConfig.DeclineLabel &&\n              !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\n            \"\n          ></span>\n        </div>\n      </div>\n    </div>\n\n    <div\n      class=\"content-holder\"\n      *ngIf=\"toastNotificationBelonging.Dispatch.Message\"\n    >\n      <div\n        class=\"icon-section\"\n        *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.DisableIcon\"\n      >\n        <span\n          class=\"icon-type-toast\"\n          [ngClass]=\"{\n            '': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n            'ap-icon-success icon-check-circle':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n            'ap-icon-info icon-info-circle':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n            'ap-icon-warning icon-warning':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n            'ap-icon-danger icon-times-circle':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n          }\"\n        ></span>\n      </div>\n      <div\n        class=\"text-wrapper-section toast-inner-content\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.ToastCoreConfig.TextPosition\n        }\"\n        [ngClass]=\"{\n          'only-message': !toastNotificationBelonging.Dispatch.Title\n        }\"\n      >\n        <div class=\"dont-break-out\">\n          <div\n            class=\"text-wrapper dont-break-out\"\n            *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\"\n          >\n            <p>{{ toastNotificationBelonging.Dispatch.Message }}</p>\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\"\n            [innerHTML]=\"toastNotificationBelonging.Dispatch.Message\"\n          ></div>\n        </div>\n      </div>\n      <span\n        class=\"close-ico icon-times-circle\"\n        (click)=\"close()\"\n        *ngIf=\"\n          !toastNotificationBelonging.Buttons.length &&\n          !toastNotificationBelonging.ToastCoreConfig.DeclineLabel &&\n          !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel &&\n          !toastNotificationBelonging.Dispatch.Title\n        \"\n      ></span>\n    </div>\n\n    <div class=\"button-holder\">\n      <div\n        class=\"button-section\"\n        *ngIf=\"toastNotificationBelonging.Buttons.length\"\n        [ngStyle]=\"{\n          'text-align':\n            toastNotificationBelonging.ToastCoreConfig.ButtonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          *ngFor=\"let button of toastNotificationBelonging.Buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.LayoutType ? button.LayoutType === 0 : false,\n            'ed-btn-success': button.LayoutType\n              ? button.LayoutType === 1\n              : false,\n            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,\n            'ed-btn-warning': button.LayoutType\n              ? button.LayoutType === 3\n              : false,\n            'ed-btn-danger': button.LayoutType\n              ? button.LayoutType === 4\n              : false,\n            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,\n            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,\n            'ed-btn-primary': button.LayoutType\n              ? button.LayoutType === 7\n              : false,\n            'ed-btn-secondary': button.LayoutType\n              ? button.LayoutType === 8\n              : false,\n            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false\n          }\"\n        >\n          {{ button.Label }}\n        </button>\n      </div>\n\n      <div\n        class=\"button-section\"\n        [ngStyle]=\"{\n          'text-align':\n            toastNotificationBelonging.ToastCoreConfig.ButtonPosition\n        }\"\n        *ngIf=\"\n          !toastNotificationBelonging.Buttons.length &&\n          (toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||\n            toastNotificationBelonging.ToastCoreConfig.ConfirmLabel)\n        \"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          *ngIf=\"toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\"\n          (click)=\"onButtonClick('confirm')\"\n          [ngClass]=\"{\n            'ed-btn-primary':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n            'ed-btn-success':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n            'ed-btn-info':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n            'ed-btn-warning':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n            'ed-btn-danger':\n              toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n          }\"\n        >\n          {{ toastNotificationBelonging.ToastCoreConfig.ConfirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-sm ed-btn-secondary\"\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"toastNotificationBelonging.ToastCoreConfig.DeclineLabel\"\n        >\n          {{ toastNotificationBelonging.ToastCoreConfig.DeclineLabel }}\n        </button>\n      </div>\n    </div>\n\n    <div\n      class=\"progress-bar-container\"\n      *ngIf=\"\n        !toastNotificationBelonging.Buttons.length &&\n        !toastNotificationBelonging.ToastCoreConfig.DeclineLabel &&\n        !toastNotificationBelonging.ToastCoreConfig.ConfirmLabel &&\n        toastNotificationBelonging.ToastCoreConfig.ProgressBar !== 0\n      \"\n    >\n      <div\n        class=\"progress-bar\"\n        [ngStyle]=\"{\n          width:\n            (toastNotificationBelonging.ToastCoreConfig.ProgressBar === 1\n              ? timer.Progress\n              : timer.Remaining) + '%'\n        }\"\n      ></div>\n    </div>\n  </div>\n</div>\n",
+                    animations: [fadeInOut(0, 1)],
+                    styles: ["@charset \"UTF-8\";.ed-btn-sm{font-size:12px;font-weight:400;margin-right:3px;min-width:40px;padding:2px 8px}.ed-btn-md{font-size:14px;margin-right:5px;min-width:60px;padding:3px 10px}.ed-btn-lg{font-size:16px;margin-right:5px;min-width:70px;padding:4px 10px}.ed-btn{background-color:initial;border:none;border-radius:3px;cursor:pointer;display:inline-block;line-height:1.5;text-align:center;text-decoration:none;-webkit-user-select:none;user-select:none;vertical-align:middle}.ed-btn:hover{color:#989ea5}.ed-btn-check:focus+.ed-btn,.ed-btn:focus{box-shadow:0 0 1px 2px;outline:0}.ed-btn-check:active+.ed-btn,.ed-btn-check:active+.ed-btn:focus,.ed-btn-check:checked+.ed-btn,.ed-btn-check:checked+.ed-btn:focus,.ed-btn.active,.ed-btn.active:focus,.ed-btn:active,.ed-btn:active:focus{box-shadow:0 0 1px 2px}.ed-btn.disabled,.ed-btn:disabled,fieldset:disabled .ed-btn{box-shadow:none;opacity:.6;pointer-events:none}.ed-btn-primary{color:hsla(0,0%,98.4%,.8);background:#ff9e00;border-color:#ff9e00}.ed-btn-primary:hover{color:#fbfbfb;border-color:#ffa81a;background:#ffb133}.ed-btn-check:focus+.ed-btn-primary,.ed-btn-primary:focus{outline:0;box-shadow:0 0 1px 2px #ffa81a}.ed-btn-check:active+.ed-btn-primary,.ed-btn-check:active+.ed-btn-primary:focus,.ed-btn-check:checked+.ed-btn-primary,.ed-btn-check:checked+.ed-btn-primary:focus,.ed-btn-primary.active,.ed-btn-primary.active:focus,.ed-btn-primary:active,.ed-btn-primary:active:focus{box-shadow:0 0 1px 2px #ffa81a}.ed-btn-secondary{color:hsla(0,0%,98.4%,.8);background:#989ea5;border-color:#989ea5}.ed-btn-secondary:hover{color:#fbfbfb;border-color:#a6abb1;background:#b3b8bd}.ed-btn-check:focus+.ed-btn-secondary,.ed-btn-secondary:focus{outline:0;box-shadow:0 0 1px 2px #a6abb1}.ed-btn-check:active+.ed-btn-secondary,.ed-btn-check:active+.ed-btn-secondary:focus,.ed-btn-check:checked+.ed-btn-secondary,.ed-btn-check:checked+.ed-btn-secondary:focus,.ed-btn-secondary.active,.ed-btn-secondary.active:focus,.ed-btn-secondary:active,.ed-btn-secondary:active:focus{box-shadow:0 0 1px 2px #a6abb1}.ed-btn-success{color:hsla(0,0%,98.4%,.8);background:#3caea3;border-color:#3caea3}.ed-btn-success:hover{color:#fbfbfb;border-color:#45bfb3;background:#58c5bb}.ed-btn-check:focus+.ed-btn-success,.ed-btn-success:focus{outline:0;box-shadow:0 0 1px 2px #45bfb3}.ed-btn-check:active+.ed-btn-success,.ed-btn-check:active+.ed-btn-success:focus,.ed-btn-check:checked+.ed-btn-success,.ed-btn-check:checked+.ed-btn-success:focus,.ed-btn-success.active,.ed-btn-success.active:focus,.ed-btn-success:active,.ed-btn-success:active:focus{box-shadow:0 0 1px 2px #45bfb3}.ed-btn-info{color:hsla(0,0%,98.4%,.8);background:#2f8ee5;border-color:#2f8ee5}.ed-btn-info:hover{color:#fbfbfb;border-color:#469ae8;background:#5ca7eb}.ed-btn-check:focus+.ed-btn-info,.ed-btn-info:focus{outline:0;box-shadow:0 0 1px 2px #469ae8}.ed-btn-check:active+.ed-btn-info,.ed-btn-check:active+.ed-btn-info:focus,.ed-btn-check:checked+.ed-btn-info,.ed-btn-check:checked+.ed-btn-info:focus,.ed-btn-info.active,.ed-btn-info.active:focus,.ed-btn-info:active,.ed-btn-info:active:focus{box-shadow:0 0 1px 2px #469ae8}.ed-btn-warning{color:hsla(0,0%,98.4%,.8);background:#ffc107;border-color:#ffc107}.ed-btn-warning:hover{color:#fbfbfb;border-color:#ffc721;background:#ffce3a}.ed-btn-check:focus+.ed-btn-warning,.ed-btn-warning:focus{outline:0;box-shadow:0 0 1px 2px #ffc721}.ed-btn-check:active+.ed-btn-warning,.ed-btn-check:active+.ed-btn-warning:focus,.ed-btn-check:checked+.ed-btn-warning,.ed-btn-check:checked+.ed-btn-warning:focus,.ed-btn-warning.active,.ed-btn-warning.active:focus,.ed-btn-warning:active,.ed-btn-warning:active:focus{box-shadow:0 0 1px 2px #ffc721}.ed-btn-danger{color:hsla(0,0%,98.4%,.8);background:#e46464;border-color:#e46464}.ed-btn-danger:hover{color:#fbfbfb;border-color:#e87a7a;background:#ec8f8f}.ed-btn-check:focus+.ed-btn-danger,.ed-btn-danger:focus{outline:0;box-shadow:0 0 1px 2px #e87a7a}.ed-btn-check:active+.ed-btn-danger,.ed-btn-check:active+.ed-btn-danger:focus,.ed-btn-check:checked+.ed-btn-danger,.ed-btn-check:checked+.ed-btn-danger:focus,.ed-btn-danger.active,.ed-btn-danger.active:focus,.ed-btn-danger:active,.ed-btn-danger:active:focus{box-shadow:0 0 1px 2px #e87a7a}.ed-btn-light{color:rgba(52,58,64,.8);background:#fbfbfb;border-color:#fbfbfb}.ed-btn-light:hover{color:#343a40;border-color:#fff;background:#fff}.ed-btn-check:focus+.ed-btn-light,.ed-btn-light:focus{outline:0;box-shadow:0 0 1px 2px #fff}.ed-btn-check:active+.ed-btn-light,.ed-btn-check:active+.ed-btn-light:focus,.ed-btn-check:checked+.ed-btn-light,.ed-btn-check:checked+.ed-btn-light:focus,.ed-btn-light.active,.ed-btn-light.active:focus,.ed-btn-light:active,.ed-btn-light:active:focus{box-shadow:0 0 1px 2px #fff}.ed-btn-dark{color:hsla(0,0%,98.4%,.8);background:#343a40;border-color:#343a40}.ed-btn-dark:hover{color:#fbfbfb;border-color:#3f474e;background:#4b545c}.ed-btn-check:focus+.ed-btn-dark,.ed-btn-dark:focus{outline:0;box-shadow:0 0 1px 2px #3f474e}.ed-btn-check:active+.ed-btn-dark,.ed-btn-check:active+.ed-btn-dark:focus,.ed-btn-check:checked+.ed-btn-dark,.ed-btn-check:checked+.ed-btn-dark:focus,.ed-btn-dark.active,.ed-btn-dark.active:focus,.ed-btn-dark:active,.ed-btn-dark:active:focus{box-shadow:0 0 1px 2px #3f474e}@font-face{font-family:icomoon;src:url(\"data:font/eot;base64,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\");src:url(\"data:font/eot;base64,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\") format(\"embedded-opentype\"),url(\"data:font/ttf;base64,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\") format(\"truetype\"),url(\"data:font/woff;base64,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\") format(\"woff\"),url(\"data:font/svg;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiID4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPG1ldGFkYXRhPkdlbmVyYXRlZCBieSBJY29Nb29uPC9tZXRhZGF0YT4KCTxkZWZzPgoJCTxmb250IGlkPSJpY29tb29uIiBob3Jpei1hZHYteD0iMTAyNCI+CgkJCTxmb250LWZhY2UgdW5pdHMtcGVyLWVtPSIxMDI0IiBhc2NlbnQ9Ijk2MCIgZGVzY2VudD0iLTY0Ii8+CgkJCTxtaXNzaW5nLWdseXBoIGhvcml6LWFkdi14PSIxMDI0Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3gyMDsiIGhvcml6LWFkdi14PSI1MTIiIGQ9IiIvPgoJCQk8Z2x5cGggdW5pY29kZT0iJiN4ZTkwMDsiIGdseXBoLW5hbWU9InRpbWVzLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTY1Ni41NzEgMzA5LjcxNGMwIDkuNzE0LTQgMTguODU3LTEwLjg1NyAyNS43MTRsLTEwMy40MjkgMTAzLjQyOSAxMDMuNDI5IDEwMy40MjljNi44NTcgNi44NTcgMTAuODU3IDE2IDEwLjg1NyAyNS43MTRzLTQgMTkuNDI5LTEwLjg1NyAyNi4yODZsLTUxLjQyOSA1MS40MjljLTYuODU3IDYuODU3LTE2LjU3MSAxMC44NTctMjYuMjg2IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMTAzLjQyOS0xMDMuNDI5LTEwMy40MjkgMTAzLjQyOWMtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE5LjQyOS00LTI2LjI4Ni0xMC44NTdsLTUxLjQyOS01MS40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi41NzEtMTAuODU3LTI2LjI4NnM0LTE4Ljg1NyAxMC44NTctMjUuNzE0bDEwMy40MjktMTAzLjQyOS0xMDMuNDI5LTEwMy40MjljLTYuODU3LTYuODU3LTEwLjg1Ny0xNi0xMC44NTctMjUuNzE0czQtMTkuNDI5IDEwLjg1Ny0yNi4yODZsNTEuNDI5LTUxLjQyOWM2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI2LjI4Ni0xMC44NTdzMTguODU3IDQgMjUuNzE0IDEwLjg1N2wxMDMuNDI5IDEwMy40MjkgMTAzLjQyOS0xMDMuNDI5YzYuODU3LTYuODU3IDE2LTEwLjg1NyAyNS43MTQtMTAuODU3czE5LjQyOSA0IDI2LjI4NiAxMC44NTdsNTEuNDI5IDUxLjQyOWM2Ljg1NyA2Ljg1NyAxMC44NTcgMTYuNTcxIDEwLjg1NyAyNi4yODZ6TTg3Ny43MTQgNDM4Ljg1N2MwLTI0Mi4yODYtMTk2LjU3MS00MzguODU3LTQzOC44NTctNDM4Ljg1N3MtNDM4Ljg1NyAxOTYuNTcxLTQzOC44NTcgNDM4Ljg1NyAxOTYuNTcxIDQzOC44NTcgNDM4Ljg1NyA0MzguODU3IDQzOC44NTctMTk2LjU3MSA0MzguODU3LTQzOC44NTd6Ii8+CgkJCTxnbHlwaCB1bmljb2RlPSImI3hlOTAxOyIgZ2x5cGgtbmFtZT0iZXhjbGFtYXRpb24tdHJpYW5nbGUsIHdhcm5pbmciIGQ9Ik01ODUuMTQzIDE2NS4xNDN2MTA4LjU3MWMwIDEwLjI4Ni04IDE4Ljg1Ny0xOC4yODYgMTguODU3aC0xMDkuNzE0Yy0xMC4yODYgMC0xOC4yODYtOC41NzEtMTguMjg2LTE4Ljg1N3YtMTA4LjU3MWMwLTEwLjI4NiA4LTE4Ljg1NyAxOC4yODYtMTguODU3aDEwOS43MTRjMTAuMjg2IDAgMTguMjg2IDguNTcxIDE4LjI4NiAxOC44NTd6TTU4NCAzNzguODU3bDEwLjI4NiAyNjIuMjg2YzAgMy40MjktMS43MTQgOC01LjcxNCAxMC44NTctMy40MjkgMi44NTctOC41NzEgNi4yODYtMTMuNzE0IDYuMjg2aC0xMjUuNzE0Yy01LjE0MyAwLTEwLjI4Ni0zLjQyOS0xMy43MTQtNi4yODYtNC0yLjg1Ny01LjcxNC04LjU3MS01LjcxNC0xMmw5LjcxNC0yNjEuMTQzYzAtNy40MjkgOC41NzEtMTMuMTQzIDE5LjQyOS0xMy4xNDNoMTA1LjcxNGMxMC4yODYgMCAxOC44NTcgNS43MTQgMTkuNDI5IDEzLjE0M3pNNTc2IDkxMi41NzFsNDM4Ljg1Ny04MDQuNTcxYzEyLjU3MS0yMi4yODYgMTItNDkuNzE0LTEuMTQzLTcycy0zNy4xNDMtMzYtNjIuODU3LTM2aC04NzcuNzE0Yy0yNS43MTQgMC00OS43MTQgMTMuNzE0LTYyLjg1NyAzNnMtMTMuNzE0IDQ5LjcxNC0xLjE0MyA3Mmw0MzguODU3IDgwNC41NzFjMTIuNTcxIDIzLjQyOSAzNy4xNDMgMzguMjg2IDY0IDM4LjI4NnM1MS40MjktMTQuODU3IDY0LTM4LjI4NnoiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDI7IiBnbHlwaC1uYW1lPSJjaGVjay1jaXJjbGUiIGhvcml6LWFkdi14PSI4NzgiIGQ9Ik03MzMuNzE0IDUzMS40MjhjMCA5LjcxNC0zLjQyOSAxOS40MjktMTAuMjg2IDI2LjI4NmwtNTIgNTEuNDI5Yy02Ljg1NyA2Ljg1Ny0xNiAxMC44NTctMjUuNzE0IDEwLjg1N3MtMTguODU3LTQtMjUuNzE0LTEwLjg1N2wtMjMzLjE0My0yMzIuNTcxLTEyOS4xNDMgMTI5LjE0M2MtNi44NTcgNi44NTctMTYgMTAuODU3LTI1LjcxNCAxMC44NTdzLTE4Ljg1Ny00LTI1LjcxNC0xMC44NTdsLTUyLTUxLjQyOWMtNi44NTctNi44NTctMTAuMjg2LTE2LjU3MS0xMC4yODYtMjYuMjg2czMuNDI5LTE4Ljg1NyAxMC4yODYtMjUuNzE0bDIwNi44NTctMjA2Ljg1N2M2Ljg1Ny02Ljg1NyAxNi41NzEtMTAuODU3IDI1LjcxNC0xMC44NTcgOS43MTQgMCAxOS40MjkgNCAyNi4yODYgMTAuODU3bDMxMC4yODYgMzEwLjI4NmM2Ljg1NyA2Ljg1NyAxMC4yODYgMTYgMTAuMjg2IDI1LjcxNHpNODc3LjcxNCA0MzguODU3YzAtMjQyLjI4Ni0xOTYuNTcxLTQzOC44NTctNDM4Ljg1Ny00MzguODU3cy00MzguODU3IDE5Ni41NzEtNDM4Ljg1NyA0MzguODU3IDE5Ni41NzEgNDM4Ljg1NyA0MzguODU3IDQzOC44NTcgNDM4Ljg1Ny0xOTYuNTcxIDQzOC44NTctNDM4Ljg1N3oiLz4KCQkJPGdseXBoIHVuaWNvZGU9IiYjeGU5MDM7IiBnbHlwaC1uYW1lPSJpbmZvLWNpcmNsZSIgaG9yaXotYWR2LXg9Ijg3OCIgZD0iTTU4NS4xNDMgMTY0LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtNTQuODU3djI5Mi41NzFjMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTgyLjg1N2MtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoNTQuODU3di0xODIuODU3aC01NC44NTdjLTEwLjI4NiAwLTE4LjI4Ni04LTE4LjI4Ni0xOC4yODZ2LTkxLjQyOWMwLTEwLjI4NiA4LTE4LjI4NiAxOC4yODYtMTguMjg2aDI1NmMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek01MTIgNjc2LjU3MXY5MS40MjljMCAxMC4yODYtOCAxOC4yODYtMTguMjg2IDE4LjI4NmgtMTA5LjcxNGMtMTAuMjg2IDAtMTguMjg2LTgtMTguMjg2LTE4LjI4NnYtOTEuNDI5YzAtMTAuMjg2IDgtMTguMjg2IDE4LjI4Ni0xOC4yODZoMTA5LjcxNGMxMC4yODYgMCAxOC4yODYgOCAxOC4yODYgMTguMjg2ek04NzcuNzE0IDQzOC44NTdjMC0yNDIuMjg2LTE5Ni41NzEtNDM4Ljg1Ny00MzguODU3LTQzOC44NTdzLTQzOC44NTcgMTk2LjU3MS00MzguODU3IDQzOC44NTcgMTk2LjU3MSA0MzguODU3IDQzOC44NTcgNDM4Ljg1NyA0MzguODU3LTE5Ni41NzEgNDM4Ljg1Ny00MzguODU3eiIvPgoJCTwvZm9udD48L2RlZnM+Cjwvc3ZnPgo=\") format(\"svg\");font-weight:400;font-style:normal;font-display:block}[class*=\" icon-\"],[class^=icon-]{font-family:icomoon!important;-webkit-font-smoothing:antialiased;font-style:normal;font-variant:normal;font-weight:400;line-height:1;-moz-osx-font-smoothing:grayscale;speak:never;text-transform:none}.icon-times-circle:before{content:\"\uE900\"}.icon-exclamation-triangle:before,.icon-warning:before{content:\"\uE901\"}.icon-check-circle:before{content:\"\uE902\"}.icon-info-circle:before{content:\"\uE903\"}.ngx-awesome-popup-overlay{align-items:center;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:rgba(51,32,0,.4);bottom:0;display:flex;flex-direction:column;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;z-index:999999999}.evolve-confirm-box .text-wrapper,.evolve-parent-dialog .text-wrapper{text-align:center}.evolve-confirm-box .text-wrapper-section,.evolve-parent-dialog .text-wrapper-section,.evolve-toast .text-wrapper-section{width:100%}.evolve-confirm-box .text-wrapper-section .text-wrapper,.evolve-parent-dialog .text-wrapper-section .text-wrapper,.evolve-toast .text-wrapper-section .text-wrapper{display:block;width:100%}.evolve-confirm-box .text-wrapper-section .dont-break-out,.evolve-parent-dialog .text-wrapper-section .dont-break-out,.evolve-toast .text-wrapper-section .dont-break-out{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word;white-space:pre-wrap;word-wrap:break-word}.evolve-confirm-box,.evolve-parent-dialog{background:#fbfbfb;border-radius:5px;border-top:7px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 100px);max-width:calc(100vw - 100px);position:relative;vertical-align:bottom}.evolve-confirm-box.standard-dialog,.evolve-parent-dialog.standard-dialog{border-color:transparent;padding:17px 20px 10px}.evolve-confirm-box.success-dialog,.evolve-parent-dialog.success-dialog{border-color:#3caea3}.evolve-confirm-box.info-dialog,.evolve-parent-dialog.info-dialog{border-color:#2f8ee5}.evolve-confirm-box.warning-dialog,.evolve-parent-dialog.warning-dialog{border-color:#ffc107}.evolve-confirm-box.danger-dialog,.evolve-parent-dialog.danger-dialog{border-color:#e46464}.ap-icon-success{color:#58c5bb}.ap-icon-info{color:#5ca7eb}.ap-icon-warning{color:#ffce3a}.ap-icon-danger{color:#ec8f8f}.toast-wrapper{background:transparent;display:flex;flex-direction:column;margin:auto;opacity:0;padding:0;pointer-events:auto;position:relative;width:100%;z-index:0}.toast-wrapper .progress-bar-container{background:hsla(0,0%,100%,.2);border-radius:0 0 5px 5px}.toast-wrapper .progress-bar{height:4px;transition:none;width:0}.toast-wrapper .evolve-toast{background:#fbfbfb;border-radius:5px;border-right:4px solid;box-shadow:0 0 4px 1px rgba(0,0,0,.25);display:flex;flex-direction:column;margin-top:10px;max-height:350px;position:relative;transition:box-shadow .3s ease-in-out;vertical-align:bottom}.toast-wrapper .evolve-toast:hover{box-shadow:0 0 4px 3px rgba(0,0,0,.25)}.toast-wrapper .evolve-toast.standard-dialog{border-color:transparent}.toast-wrapper .evolve-toast.standard-dialog .progress-bar{background-color:rgba(42,42,42,.2)}.toast-wrapper .evolve-toast.success-dialog{background-color:#dcf3f1;border-color:#3caea3}.toast-wrapper .evolve-toast.success-dialog .progress-bar{background-color:#91d9d2}.toast-wrapper .evolve-toast.info-dialog{background-color:#e4f1fc;border-color:#2f8ee5}.toast-wrapper .evolve-toast.info-dialog .progress-bar{background-color:#a0ccf3}.toast-wrapper .evolve-toast.warning-dialog{background-color:#fff4d3;border-color:#ffc107}.toast-wrapper .evolve-toast.warning-dialog .progress-bar{background-color:#ffe187}.toast-wrapper .evolve-toast.danger-dialog{background-color:#f7d1d1;border-color:#e46464}.toast-wrapper .evolve-toast.danger-dialog .progress-bar{background-color:#ec8f8f}.toast-wrapper .evolve-toast .close-ico{color:rgba(0,0,0,.2);cursor:pointer;font-size:20px;position:absolute;right:6px;top:4px}.toast-wrapper .evolve-toast .toast-title-content{align-items:flex-start;background-clip:padding-box;background-color:hsla(0,0%,100%,.55);border-bottom:1px solid rgba(0,0,0,.05);border-radius:5px 5px 0 0;color:#6c757d;display:flex;flex-direction:column;height:auto;justify-content:flex-start;padding:5px 10px;width:auto}.toast-wrapper .evolve-toast .toast-title-content .toast-title-text{font-size:.87rem}.toast-wrapper .evolve-toast .content-holder{align-items:center;color:#6c757d;display:flex;flex-wrap:nowrap;height:100%;justify-content:space-between;overflow:auto;width:100%}.toast-wrapper .evolve-toast .content-holder .icon-section .icon-type-toast{font-size:24px;padding:0 2px 0 6px}.toast-wrapper .evolve-toast .content-holder .toast-inner-content{padding:6px 10px}.toast-wrapper .evolve-toast .content-holder .only-message{padding:6px 27px 6px 10px}.toast-wrapper .evolve-toast .content-holder .text-wrapper{font-size:.97rem;margin:0}.toast-wrapper .evolve-toast .button-holder{display:flex;flex-direction:column;justify-content:flex-end;width:100%}.toast-wrapper .evolve-toast .button-holder .button-section{margin:0;padding:4px 10px}"]
+                },] }
+    ];
+    ToastNotificationWrapperComponent.ctorParameters = function () { return [
+        { type: GlobalConfigService },
+        { type: exports.ɵk.ToastNotificationBelonging },
+        { type: i0.ChangeDetectorRef }
+    ]; };
+
+    var ToastNotificationService = /** @class */ (function () {
+        function ToastNotificationService(componentFactoryResolver, injector, appRef, toastConfig, gConfigService) {
+            this.componentFactoryResolver = componentFactoryResolver;
+            this.injector = injector;
+            this.appRef = appRef;
+            this.toastConfig = toastConfig;
+            this.gConfigService = gConfigService;
+            // toastComponentRefList: ComponentRef<ToastNotificationWrapperComponent>[]    = [];
+            this.toastComponentRefList = [];
+            this.bufferToastRawList = [];
+            this.bufferCheckingIntervalIsReady = true;
+        }
+        ToastNotificationService.prototype.openToast$ = function (_ToastNotificationBelonging) {
+            var eventController = _ToastNotificationBelonging.EventsController;
+            // console.log(`%c ${_ToastNotificationBelonging.EntityUniqueID} `, `background: #339933; color: #fff`);
+            var toastRawInstance = this.prepareRawToast(eventController, _ToastNotificationBelonging);
+            this.listeners(eventController);
+            this.internalRouting(toastRawInstance);
+            return eventController.afterClosed$;
+        };
+        ToastNotificationService.prototype.internalRouting = function (_ToastRawInstance) {
+            if (this.isRefListAvailable()) {
+                this.sendToProduction(_ToastRawInstance);
+                return true;
+            }
+            else {
+                this.sendToBuffer(_ToastRawInstance);
+                return false;
+            }
+        };
+        ToastNotificationService.prototype.sendToBuffer = function (_ToastRawInstance) {
+            this.bufferToastRawList.push(_ToastRawInstance);
+        };
+        ToastNotificationService.prototype.sendToProduction = function (_ToastRawInstance) {
+            var componentRef = this.getComponentRef(_ToastRawInstance);
+            if (componentRef) {
+                this.toastComponentRefList.push(componentRef);
+                componentRef.instance.toastNotificationBelonging =
+                    _ToastRawInstance.ToastBelonging;
+                this.appendToBodyParentComponent(componentRef);
+            }
+        };
+        ToastNotificationService.prototype.isRefListAvailable = function () {
+            return (this.toastComponentRefList.length <
+                this.toastConfig.productionConfig.GlobalSettings
+                    .AllowedNotificationsAtOnce);
+        };
+        ToastNotificationService.prototype.prepareRawToast = function (_EventsController, _ToastNotificationBelonging) {
+            var weakMap = new WeakMap();
+            weakMap.set(exports.ɵk.ToastNotificationEventsController, _EventsController);
+            return {
+                WeakMap: weakMap,
+                ToastBelonging: _ToastNotificationBelonging,
+            };
+        };
+        ToastNotificationService.prototype.getComponentRef = function (_ToastNotificationRawState) {
+            var dialogIndex = this.findDialogIndex(_ToastNotificationRawState.ToastBelonging.EntityUniqueID);
+            if (dialogIndex === -1) {
+                var toastUserViewComponent = ToastNotificationWrapperComponent;
+                if (_ToastNotificationRawState.ToastBelonging.ToastCoreConfig
+                    .ToastUserViewType === exports.ToastUserViewTypeEnum.SIMPLE) {
+                    toastUserViewComponent = ToastNotificationSimpleWrapperComponent;
+                }
+                var componentFactory = this.componentFactoryResolver.resolveComponentFactory(toastUserViewComponent);
+                return componentFactory.create(new DialogInjector(this.injector, _ToastNotificationRawState.WeakMap));
+            }
+            return null;
+        };
+        ToastNotificationService.prototype.listeners = function (_EventsController) {
+            var _this = this;
+            // Listener for closing dialog
+            var closeDialogSubscription = _EventsController.afterClosed$.subscribe(function (response) {
+                // this.removeFromBodyParentComponent(modalIndex);
+                _this.removeFromBody(response.toastNotificationBelonging.EntityUniqueID);
+                closeDialogSubscription.unsubscribe();
+            });
+        };
+        ToastNotificationService.prototype.appendToBodyParentComponent = function (_ComponentRef) {
+            // attach view to ignite lifecycle hooks
+            this.appRef.attachView(_ComponentRef.hostView);
+            var toastPosition = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig
+                .ToastPosition;
+            var openInElementID = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig
+                .OpenInElementID;
+            var targetNode;
+            if (!openInElementID) {
+                this.setToastWrapperNode(_ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig
+                    .ToastPosition, this.setToastOverlayNode());
+                targetNode = document.getElementById("toast-wrapper-" + toastPosition);
+            }
+            else {
+                targetNode = document.getElementById(openInElementID);
+            }
+            var domElem = _ComponentRef.hostView
+                .rootNodes[0];
+            var toastEntity = document.createElement("div");
+            toastEntity.setAttribute("id", _ComponentRef.instance.toastNotificationBelonging.EntityUniqueID);
+            toastEntity.className = "toast-entity";
+            var split = toastPosition.split("-");
+            if (split[1] === "fullwidth") {
+                toastEntity.style.width = "93vw";
+            }
+            else if (openInElementID) {
+                toastEntity.style.width = "100%";
+            }
+            else {
+                toastEntity.style.width = "300px";
+            }
+            toastEntity.style.margin = "auto";
+            toastEntity.prepend(domElem);
+            // targetNode.prepend(toastEntity);
+            setTimeout(function () {
+                targetNode.prepend(toastEntity);
+            }, 200);
+        };
+        ToastNotificationService.prototype.removeFromBody = function (_EntityUniqueID) {
+            var _this = this;
+            var modalIndex = this.findDialogIndex(_EntityUniqueID);
+            if (modalIndex > -1) {
+                if (this.bufferToastRawList.length) {
+                    this.sendToProduction(this.bufferToastRawList[0]);
+                    this.bufferToastRawList.splice(0, 1);
+                }
+                this.toastComponentRefList[modalIndex].instance
+                    .closeParent$("close-fast")
+                    .pipe(operators.map(function (item) {
+                    var modalIndex = _this.findDialogIndex(_EntityUniqueID);
+                    if (_this.toastComponentRefList[modalIndex]) {
+                        var toastEntity = document.getElementById(_this.toastComponentRefList[modalIndex].instance
+                            .toastNotificationBelonging.EntityUniqueID);
+                        toastEntity.remove();
+                        // console.log(`%c ${this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.EntityUniqueID} `, `background: #cc3333; color: #fff`);
+                        _this.appRef.detachView(_this.toastComponentRefList[modalIndex].hostView);
+                        _this.toastComponentRefList[modalIndex].destroy();
+                        _this.toastComponentRefList.splice(modalIndex, 1);
+                    }
+                }))
+                    .subscribe();
+            }
+        };
+        ToastNotificationService.prototype.findDialogIndex = function (_DialogUniqueID) {
+            return this.toastComponentRefList.findIndex(function (item) {
+                return (_DialogUniqueID ===
+                    item.instance.toastNotificationBelonging.EntityUniqueID);
+            });
+        };
+        ToastNotificationService.prototype.setToastOverlayNode = function () {
+            var bodyNode = document.body || document.getElementsByTagName("body")[0];
+            if (!bodyNode) {
+                return;
+            }
+            // check the overlay
+            var toastOverlayNode = document.getElementById("toast-overlay-container");
+            if (!toastOverlayNode) {
+                var toastOverlayNode_1 = document.createElement("div");
+                toastOverlayNode_1.setAttribute("id", "toast-overlay-container");
+                toastOverlayNode_1.appendChild(document.createTextNode(""));
+                toastOverlayNode_1.style.position = "fixed";
+                toastOverlayNode_1.style.top = "0";
+                toastOverlayNode_1.style.left = "0";
+                toastOverlayNode_1.style.zIndex = "999999999";
+                bodyNode.appendChild(toastOverlayNode_1);
+                return toastOverlayNode_1;
+            }
+            return toastOverlayNode;
+        };
+        ToastNotificationService.prototype.setToastWrapperNode = function (_Position, _ToastOverlayNode) {
+            var toastWrapperNode = document.getElementById("toast-wrapper-" + _Position);
+            if (!toastWrapperNode) {
+                var toastWrapper = document.createElement("div");
+                toastWrapper.setAttribute("id", "toast-wrapper-" + _Position);
+                toastWrapper.appendChild(document.createTextNode(""));
+                _ToastOverlayNode.prepend(toastWrapper);
+                var split = _Position.split("-");
+                if (split[1] === "right" || split[1] === "left") {
+                    this.gConfigService
+                        .getSheet("ngx-awesome-popup-styles")
+                        .addRule("#toast-wrapper-" + _Position, split[0] + ": 20px; " + split[1] + ": 20px; position: fixed; z-index: 999999;");
+                }
+                if (split[1] === "center") {
+                    this.gConfigService
+                        .getSheet("ngx-awesome-popup-styles")
+                        .addRule("#toast-wrapper-" + _Position, split[0] + ": 20px; width: 100%; position: fixed; z-index: 999999; pointer-events: none;");
+                }
+                if (split[1] === "fullwidth") {
+                    this.gConfigService
+                        .getSheet("ngx-awesome-popup-styles")
+                        .addRule("#toast-wrapper-" + _Position, split[0] + ": 10px; width: 100%; position: fixed; z-index: 999999; pointer-events: none;");
+                }
+            }
+        };
+        return ToastNotificationService;
+    }());
+    ToastNotificationService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ToastNotificationService_Factory() { return new ToastNotificationService(i0__namespace.ɵɵinject(i0__namespace.ComponentFactoryResolver), i0__namespace.ɵɵinject(i0__namespace.INJECTOR), i0__namespace.ɵɵinject(i0__namespace.ApplicationRef), i0__namespace.ɵɵinject(ToastNotificationConfigService), i0__namespace.ɵɵinject(GlobalConfigService)); }, token: ToastNotificationService, providedIn: "root" });
+    ToastNotificationService.decorators = [
+        { type: i0.Injectable, args: [{
+                    providedIn: "root",
+                },] }
+    ];
+    ToastNotificationService.ctorParameters = function () { return [
+        { type: i0.ComponentFactoryResolver },
+        { type: i0.Injector },
+        { type: i0.ApplicationRef },
+        { type: ToastNotificationConfigService },
+        { type: GlobalConfigService }
+    ]; };
+
+    exports.ɵk = void 0;
+    (function (ToastNotificationClass) {
+        // region *** Public ***
+        var ToastNotificationInitializer = /** @class */ (function () {
+            function ToastNotificationInitializer() {
+                this.toastNotificationCarrier = new ToastNotificationClass.ToastNotificationCarrier();
+            }
+            ToastNotificationInitializer.prototype.openToastNotification$ = function () {
+                return this.toastNotificationCarrier.openToastNotification$().pipe(operators.map(function (resp) {
+                    var basicToastNotificationResponse = new ToastNotificationResponse();
+                    var dataControl = new GlobalClass.DataControl();
+                    dataControl.copyValuesFrom(resp, basicToastNotificationResponse);
+                    return basicToastNotificationResponse;
+                }));
+            };
+            ToastNotificationInitializer.prototype.setButtons = function (_Buttons) {
+                this.toastNotificationCarrier.setButtons(_Buttons);
+            };
+            ToastNotificationInitializer.prototype.setConfig = function (_ToastNotificationConfig) {
+                this.toastNotificationCarrier.setConfig(_ToastNotificationConfig);
+            };
+            ToastNotificationInitializer.prototype.setDispatch = function (_Title, _Message) {
+                if (_Message === void 0) { _Message = null; }
+                this.toastNotificationCarrier.setTitle(_Title);
+                this.toastNotificationCarrier.setMessage(_Message);
+            };
+            ToastNotificationInitializer.prototype.setTitle = function (_Title) {
+                this.toastNotificationCarrier.setTitle(_Title);
+            };
+            ToastNotificationInitializer.prototype.setMessage = function (_Message) {
+                this.toastNotificationCarrier.setMessage(_Message);
+            };
+            ToastNotificationInitializer.prototype.setButtonLabels = function (_Confirm, _Decline) {
+                this.toastNotificationCarrier.setButtonLabels(_Confirm, _Decline);
+            };
+            return ToastNotificationInitializer;
+        }());
+        ToastNotificationClass.ToastNotificationInitializer = ToastNotificationInitializer;
+        var ToastNotificationResponse = /** @class */ (function (_super) {
+            __extends(ToastNotificationResponse, _super);
+            function ToastNotificationResponse() {
+                var _this = _super.call(this) || this;
+                // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
+                _this.Success = null;
+                _this.ClickedButtonID = null;
+                return _this;
+            }
+            ToastNotificationResponse.prototype.setSuccess = function (_IsSuccess) {
+                this.Success = _IsSuccess;
+            };
+            ToastNotificationResponse.prototype.setClickedButtonID = function (_ClickedButtonID) {
+                this.ClickedButtonID = _ClickedButtonID;
+            };
+            return ToastNotificationResponse;
+        }(GlobalClass.DataControl));
+        ToastNotificationClass.ToastNotificationResponse = ToastNotificationResponse;
+        var ToastNotificationEventsController = /** @class */ (function () {
+            function ToastNotificationEventsController(EntityUniqueID) {
+                this.EntityUniqueID = EntityUniqueID;
+                this._afterClosed = new rxjs.Subject();
+                this.afterClosed$ = this._afterClosed.asObservable();
+                this._onButtonClick = new rxjs.Subject();
+                this.onButtonClick$ = this._onButtonClick.asObservable();
+                this._buttonList = new rxjs.Subject();
+                this.buttonList$ = this._buttonList.asObservable();
+            }
+            ToastNotificationEventsController.prototype.close = function (_Response) {
+                var response = _Response ? _Response : this.defaultResponse;
+                this._afterClosed.next(response);
+            };
+            ToastNotificationEventsController.prototype.onButtonClick = function (_Button) {
+                this.defaultResponse.setClickedButtonID(_Button.ID);
+                this._onButtonClick.next(_Button);
+            };
+            ToastNotificationEventsController.prototype.setButtonList = function (_ButtonList) {
+                this._buttonList.next(_ButtonList);
+            };
+            ToastNotificationEventsController.prototype.setDefaultResponse = function (_Response) {
+                this.defaultResponse = _Response;
+            };
+            return ToastNotificationEventsController;
+        }());
+        ToastNotificationClass.ToastNotificationEventsController = ToastNotificationEventsController;
+        // endregion
+        var ToastNotificationDefaultResponse = /** @class */ (function (_super) {
+            __extends(ToastNotificationDefaultResponse, _super);
+            function ToastNotificationDefaultResponse() {
+                var _this = _super.call(this) || this;
+                _this.toastNotificationBelonging = null;
+                return _this;
+            }
+            ToastNotificationDefaultResponse.prototype.setBelonging = function (_ToastNotificationBelonging) {
+                this.toastNotificationBelonging = _ToastNotificationBelonging;
+            };
+            return ToastNotificationDefaultResponse;
+        }(ToastNotificationResponse));
+        ToastNotificationClass.ToastNotificationDefaultResponse = ToastNotificationDefaultResponse;
+        var ToastNotificationCarrier = /** @class */ (function () {
+            function ToastNotificationCarrier() {
+                this.toastNotificationBelonging = new ToastNotificationClass.ToastNotificationBelonging();
+            }
+            ToastNotificationCarrier.prototype.setButtons = function (_Buttons) {
+                if (_Buttons.length) {
+                    this.toastNotificationBelonging.Buttons = _Buttons;
+                }
+            };
+            ToastNotificationCarrier.prototype.setTitle = function (_Title) {
+                this.toastNotificationBelonging.Dispatch.Title = _Title;
+            };
+            ToastNotificationCarrier.prototype.setMessage = function (_Message) {
+                this.toastNotificationBelonging.Dispatch.Message = _Message;
+            };
+            ToastNotificationCarrier.prototype.setButtonLabels = function (_Confirm, _Decline) {
+                this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel = _Confirm;
+                this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel = _Decline;
+            };
+            ToastNotificationCarrier.prototype.setConfig = function (_ToastNotificationBelonging) {
+                // region *** local UserConfig (defined on place where dialog is called) ***
+                var dataControl = new GlobalClass.DataControl();
+                dataControl.copyValuesFrom(_ToastNotificationBelonging, this.toastNotificationBelonging.ToastCoreConfig);
+                // endregion
+            };
+            ToastNotificationCarrier.prototype.openToastNotification$ = function () {
+                if (!this.toastNotificationBelonging.Dispatch.Title &&
+                    !this.toastNotificationBelonging.Dispatch.Message) {
+                    throw Error("Toast notification can not be without both message and title.");
+                }
+                var service = ServiceLocator.injector.get(ToastNotificationService);
+                return service.openToast$(this.toastNotificationBelonging);
+            };
+            return ToastNotificationCarrier;
+        }());
+        ToastNotificationClass.ToastNotificationCarrier = ToastNotificationCarrier;
+        var GlobalToastSettings = /** @class */ (function () {
+            function GlobalToastSettings() {
+                this.AllowedNotificationsAtOnce = null;
+            }
+            return GlobalToastSettings;
+        }());
+        ToastNotificationClass.GlobalToastSettings = GlobalToastSettings;
+        var ResetToastGlobalSettings = /** @class */ (function () {
+            function ResetToastGlobalSettings(globalToastConfig) {
+                var globalToastConfigService = ServiceLocator.injector.get(ToastNotificationConfigService);
+                if (globalToastConfigService) {
+                    globalToastConfigService.setResetGlobalToastConfig(globalToastConfig);
+                }
+                else {
+                    globalToastConfigService.setResetGlobalToastConfig();
+                }
+            }
+            return ResetToastGlobalSettings;
+        }());
+        ToastNotificationClass.ResetToastGlobalSettings = ResetToastGlobalSettings;
+        var Settings = /** @class */ (function () {
+            function Settings() {
+                this.Buttons = [];
+                this.ToastCoreConfig = new ToastCoreConfig();
+                this.Dispatch = new GlobalClass.Dispatch();
+                this.GlobalSettings = new GlobalToastSettings();
+            }
+            return Settings;
+        }());
+        ToastNotificationClass.Settings = Settings;
+        var ToastCoreConfig = /** @class */ (function () {
+            function ToastCoreConfig() {
+                this.ToastPosition = null;
+                this.ProgressBar = null;
+                this.ToastUserViewType = null;
+                this.OpenInElementID = null;
+                this.ButtonPosition = null;
+                this.TextPosition = null;
+                this.LayoutType = null;
+                this.Dispatch = null;
+                this.ConfirmLabel = null;
+                this.DeclineLabel = null;
+                this.AutoCloseDelay = null;
+                this.DisableIcon = null;
+                this.AllowHTMLMessage = null;
+            }
+            return ToastCoreConfig;
+        }());
+        ToastNotificationClass.ToastCoreConfig = ToastCoreConfig;
+        var ToastNotificationBelonging = /** @class */ (function (_super) {
+            __extends(ToastNotificationBelonging, _super);
+            function ToastNotificationBelonging() {
+                var _this = _super.call(this) || this;
+                _this.EntityUniqueID = "T" + Math.random().toString(36).substr(2, 9);
+                _this.EventsController = new ToastNotificationEventsController(_this.EntityUniqueID);
+                var toastNotificationConfigurator = ServiceLocator.injector.get(ToastNotificationConfigService);
+                var baseSettings = new ToastNotificationClass.Settings();
+                var dataControl = new GlobalClass.DataControl();
+                dataControl.copyValuesFrom(toastNotificationConfigurator.productionConfig.ToastCoreConfig, baseSettings.ToastCoreConfig);
+                _this.ToastCoreConfig = baseSettings.ToastCoreConfig;
+                _this.Buttons = toastNotificationConfigurator.productionConfig.Buttons.slice();
+                return _this;
+            }
+            return ToastNotificationBelonging;
+        }(ToastNotificationClass.Settings));
+        ToastNotificationClass.ToastNotificationBelonging = ToastNotificationBelonging;
+    })(exports.ɵk || (exports.ɵk = {}));
+    exports.ToastProgressBarEnum = void 0;
+    (function (ToastProgressBarEnum) {
+        ToastProgressBarEnum[ToastProgressBarEnum["NONE"] = 0] = "NONE";
+        ToastProgressBarEnum[ToastProgressBarEnum["INCREASE"] = 1] = "INCREASE";
+        ToastProgressBarEnum[ToastProgressBarEnum["DECREASE"] = 2] = "DECREASE";
+    })(exports.ToastProgressBarEnum || (exports.ToastProgressBarEnum = {}));
+    exports.ToastPositionEnum = void 0;
+    (function (ToastPositionEnum) {
+        ToastPositionEnum["TOP_LEFT"] = "top-left";
+        ToastPositionEnum["TOP_CENTER"] = "top-center";
+        ToastPositionEnum["TOP_RIGHT"] = "top-right";
+        ToastPositionEnum["TOP_FULL_WIDTH"] = "top-fullwidth";
+        ToastPositionEnum["BOTTOM_LEFT"] = "bottom-left";
+        ToastPositionEnum["BOTTOM_CENTER"] = "bottom-center";
+        ToastPositionEnum["BOTTOM_RIGHT"] = "bottom-right";
+        ToastPositionEnum["BOTTOM_FULL_WIDTH"] = "bottom-fullwidth";
+    })(exports.ToastPositionEnum || (exports.ToastPositionEnum = {}));
+    exports.ToastUserViewTypeEnum = void 0;
+    (function (ToastUserViewTypeEnum) {
+        ToastUserViewTypeEnum["SIMPLE"] = "simple";
+        ToastUserViewTypeEnum["STANDARD"] = "standard";
+    })(exports.ToastUserViewTypeEnum || (exports.ToastUserViewTypeEnum = {}));
+
     var NgxAwesomePopupModule = /** @class */ (function () {
         function NgxAwesomePopupModule(injector, gConfigService) {
             this.injector = injector;
@@ -2277,7 +2339,10 @@
         NgxAwesomePopupModule.forRoot = function (globalConfig) {
             return {
                 ngModule: NgxAwesomePopupModule,
-                providers: [GlobalConfigService, { provide: 'globalConfig', useValue: globalConfig }]
+                providers: [
+                    GlobalConfigService,
+                    { provide: "globalConfig", useValue: globalConfig },
+                ],
             };
         };
         return NgxAwesomePopupModule;
@@ -2291,13 +2356,9 @@
                         DefaultLoaderComponent,
                         ConfirmBoxWrapperComponent,
                         ToastNotificationWrapperComponent,
-                        ToastNotificationSimpleWrapperComponent
+                        ToastNotificationSimpleWrapperComponent,
                     ],
-                    imports: [
-                        common.CommonModule,
-                        platformBrowser.BrowserModule,
-                        animations$1.BrowserAnimationsModule
-                    ],
+                    imports: [common.CommonModule, platformBrowser.BrowserModule, animations$1.BrowserAnimationsModule],
                     providers: [
                         DialogService,
                         ConfirmBoxService,
@@ -2308,15 +2369,15 @@
                         ToastNotificationConfigService,
                         exports.ɵe.DialogBelonging,
                         exports.ɵh.ConfirmBoxBelonging,
-                        exports.ɵk.ToastNotificationBelonging
+                        exports.ɵk.ToastNotificationBelonging,
                     ],
                     entryComponents: [
                         DialogWrapperComponent,
                         DefaultLoaderComponent,
                         ConfirmBoxWrapperComponent,
                         ToastNotificationWrapperComponent,
-                        ToastNotificationSimpleWrapperComponent
-                    ]
+                        ToastNotificationSimpleWrapperComponent,
+                    ],
                 },] }
     ];
     NgxAwesomePopupModule.ctorParameters = function () { return [
@@ -2329,7 +2390,10 @@
         DialogConfigModule.forRoot = function (dialogConfig) {
             return {
                 ngModule: DialogConfigModule,
-                providers: [DialogConfigService, { provide: 'dialogConfig', useValue: dialogConfig }]
+                providers: [
+                    DialogConfigService,
+                    { provide: "dialogConfig", useValue: dialogConfig },
+                ],
             };
         };
         return DialogConfigModule;
@@ -2343,7 +2407,10 @@
         ConfirmBoxConfigModule.forRoot = function (confirmBoxConfig) {
             return {
                 ngModule: ConfirmBoxConfigModule,
-                providers: [ConfirmBoxConfigService, { provide: 'confirmBoxConfig', useValue: confirmBoxConfig }]
+                providers: [
+                    ConfirmBoxConfigService,
+                    { provide: "confirmBoxConfig", useValue: confirmBoxConfig },
+                ],
             };
         };
         return ConfirmBoxConfigModule;
@@ -2357,7 +2424,13 @@
         ToastNotificationConfigModule.forRoot = function (toastNotificationConfig) {
             return {
                 ngModule: ToastNotificationConfigModule,
-                providers: [ToastNotificationConfigService, { provide: 'toastNotificationConfig', useValue: toastNotificationConfig }]
+                providers: [
+                    ToastNotificationConfigService,
+                    {
+                        provide: "toastNotificationConfig",
+                        useValue: toastNotificationConfig,
+                    },
+                ],
             };
         };
         return ToastNotificationConfigModule;
@@ -2366,13 +2439,13 @@
         { type: i0.NgModule, args: [{},] }
     ];
 
+    var ConfirmBoxInitializer = exports.ɵh.ConfirmBoxInitializer;
+    var DialogBelonging = exports.ɵe.DialogBelonging;
+    var DialogInitializer = exports.ɵe.DialogInitializer;
     var ButtonMaker = GlobalClass.ButtonMaker;
     var ResetGlobalConfig = GlobalClass.ResetGlobalConfig;
-    var ConfirmBoxInitializer = exports.ɵh.ConfirmBoxInitializer;
-    var ToastNotificationInitializer = exports.ɵk.ToastNotificationInitializer;
     var ResetToastGlobalSettings = exports.ɵk.ResetToastGlobalSettings;
-    var DialogInitializer = exports.ɵe.DialogInitializer;
-    var DialogBelonging = exports.ɵe.DialogBelonging;
+    var ToastNotificationInitializer = exports.ɵk.ToastNotificationInitializer;
     // endregion
 
     /**

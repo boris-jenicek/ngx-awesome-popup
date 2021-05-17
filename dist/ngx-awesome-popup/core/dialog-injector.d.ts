@@ -1,4 +1,4 @@
-import { InjectFlags, InjectionToken, Injector, Type } from '@angular/core';
+import { InjectFlags, InjectionToken, Injector, Type } from "@angular/core";
 export declare class DialogInjector implements Injector {
     private ParentInjector;
     private AdditionalTokens;

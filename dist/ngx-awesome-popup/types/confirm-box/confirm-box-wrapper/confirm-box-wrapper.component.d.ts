@@ -1,7 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { Observable } from 'rxjs';
-import { GlobalInterface } from '../../../core/global';
-import { ConfirmBoxClass } from '../core/model';
+import { AfterViewInit, ChangeDetectorRef } from "@angular/core";
+import { Observable } from "rxjs";
+import { GlobalInterface } from "../../../core/global";
+import { ConfirmBoxClass } from "../core/model";
 export declare class ConfirmBoxWrapperComponent implements AfterViewInit {
     confirmBoxBelonging: ConfirmBoxClass.ConfirmBoxBelonging;
     private cd;
@@ -11,6 +11,6 @@ export declare class ConfirmBoxWrapperComponent implements AfterViewInit {
     setResponse(_IsSuccess: boolean, _ClickedButtonID?: string): void;
     onOverlayClicked(evt: MouseEvent): void;
     onCustomButton(_Button: GlobalInterface.IButton): void;
-    onButtonClick(_Type: 'confirm' | 'decline'): void;
+    onButtonClick(_Type: "confirm" | "decline"): void;
     closeParent$(_ClosingAnimation: string): Observable<any>;
 }

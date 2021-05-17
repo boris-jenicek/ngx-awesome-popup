@@ -1,9 +1,9 @@
-import { Injector, ModuleWithProviders } from '@angular/core';
-import { GlobalInterface } from './core/global';
-import { GlobalConfigService } from './core/global-config.service';
-import { ConfirmBoxInterface } from './types/confirm-box/core/model';
-import { DialogInterface } from './types/dialog/core/model';
-import { ToastNotificationInterface } from './types/toast-notification/core/model';
+import { Injector, ModuleWithProviders } from "@angular/core";
+import { GlobalInterface } from "./core/global";
+import { GlobalConfigService } from "./core/global-config.service";
+import { ConfirmBoxInterface } from "./types/confirm-box/core/model";
+import { DialogInterface } from "./types/dialog/core/model";
+import { ToastNotificationInterface } from "./types/toast-notification/core/model";
 export declare class NgxAwesomePopupModule {
     private injector;
     private gConfigService;

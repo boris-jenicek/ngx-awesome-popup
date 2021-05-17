@@ -1,8 +1,8 @@
-import { AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, OnDestroy, Type } from '@angular/core';
-import { Observable } from 'rxjs';
-import { InsertionLoaderDirective } from '../../../core/insertion-loader.directive';
-import { InsertionDirective } from '../../../core/insertion.directive';
-import { DialogClass } from '../core/model';
+import { AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, OnDestroy, Type } from "@angular/core";
+import { Observable } from "rxjs";
+import { InsertionLoaderDirective } from "../../../core/insertion-loader.directive";
+import { InsertionDirective } from "../../../core/insertion.directive";
+import { DialogClass } from "../core/model";
 export declare class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     dialogBelonging: DialogClass.DialogBelonging;
     private componentFactoryResolver;

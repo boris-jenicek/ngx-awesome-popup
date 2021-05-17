@@ -1,4 +1,4 @@
-import { ButtonLayoutDisplay } from './enums';
+import { ButtonLayoutDisplay } from "./enums";
 export declare namespace GlobalInterface {
     /**
      * Each property of {@link ColorList} represent a string which represent a color in hex or rgb/rgba format.
@@ -141,7 +141,7 @@ export declare namespace GlobalClass {
         IsBaseBright: boolean;
         constructor(_Color: string);
         saturate(_Rgb: string): string;
-        brightness(_Rgb: string, _Action: 'brighten' | 'darken', _Percentage: number): string;
+        brightness(_Rgb: string, _Action: "brighten" | "darken", _Percentage: number): string;
         getLightnessOfRGB(_Rgb: string): number;
         private isBright;
         private getLowMidHi;

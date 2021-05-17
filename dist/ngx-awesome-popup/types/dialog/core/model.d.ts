@@ -1,7 +1,7 @@
-import { Type } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
-import { GlobalClass, GlobalInterface } from '../../../core/global';
+import { Type } from "@angular/core";
+import { Observable } from "rxjs";
+import { DialogLayoutDisplay, VerticalPosition } from "../../../core/enums";
+import { GlobalClass, GlobalInterface } from "../../../core/global";
 export declare namespace DialogInterface {
     /**
      * Check interface of properties.
@@ -22,7 +22,7 @@ export declare namespace DialogInterface {
      *        Height        : '500px',
      *        ButtonPosition: 'right',
      *        LayoutType: DialogLayoutDisplay.INFO,
-     *        LoaderComponent: // Any Angular component class name can be included as a loader.
+     *        // LoaderComponent: // Any Angular component class name can be included as a loader.
      *        DisplayLoader: false // This will override LoaderComponent.
      *     }
      *  }

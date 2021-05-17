@@ -1,4 +1,4 @@
-import { ConfirmBoxInterface } from './model';
+import { ConfirmBoxInterface } from "./model";
 export declare class ConfirmBoxConfigService {
     private userConfig;
     authorConfig: ConfirmBoxInterface.IConfirmBoxUserConfig;

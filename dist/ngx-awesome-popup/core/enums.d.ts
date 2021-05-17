@@ -27,4 +27,4 @@ export declare enum ColorVariance {
     PRIMARY = 7,
     SECONDARY = 8
 }
-export declare type VerticalPosition = 'left' | 'center' | 'right';
+export declare type VerticalPosition = "left" | "center" | "right";
