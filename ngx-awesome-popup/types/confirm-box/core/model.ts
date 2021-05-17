@@ -1,257 +1,266 @@
-import {Observable, Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {DialogLayoutDisplay, VerticalPosition} from '../../../core/enums';
-import {GlobalClass, GlobalInterface} from '../../../core/global';
-import {ServiceLocator} from '../../../locator.service';
-import {ConfirmBoxConfigService} from './confirm-box-config.service';
-import {ConfirmBoxService} from './confirm-box-service';
+import { Observable, Subject } from "rxjs";
+import { map } from "rxjs/operators";
+import { DialogLayoutDisplay, VerticalPosition } from "../../../core/enums";
+import { GlobalClass, GlobalInterface } from "../../../core/global";
+import { ServiceLocator } from "../../../locator.service";
+import { ConfirmBoxConfigService } from "./confirm-box-config.service";
+import { ConfirmBoxService } from "./confirm-box-service";
 
 export namespace ConfirmBoxInterface {
+  export interface IConfirmBoxUserConfig {
+    Buttons?: GlobalInterface.IButton[];
+    ConfirmBoxCoreConfig?: ConfirmBoxInterface.IConfirmBoxCoreConfig;
+    Dispatch?: GlobalInterface.IDispatch;
+  }
 
-	export interface IConfirmBoxUserConfig {
-		Buttons?: GlobalInterface.IButton[];
-		ConfirmBoxCoreConfig?: ConfirmBoxInterface.IConfirmBoxCoreConfig;
-		Dispatch?: GlobalInterface.IDispatch;
-	}
+  export interface IConfirmBoxCoreConfig {
+    /** Fixed popup width */
+    Width?: string;
+    /** Fixed popup height */
+    Height?: string;
+    ButtonPosition?: VerticalPosition;
+    LayoutType?: DialogLayoutDisplay;
+    Dispatch?: GlobalInterface.IDispatch;
+    ConfirmLabel?: string;
+    DeclineLabel?: string;
+    DisableIcon?: boolean;
+    AllowHTMLMessage?: boolean;
+  }
 
-	export interface IConfirmBoxCoreConfig {
-		/** Fixed popup width */
-		Width?: string;
-		/** Fixed popup height */
-		Height?: string;
-		ButtonPosition?: VerticalPosition;
-		LayoutType?: DialogLayoutDisplay;
-		Dispatch?: GlobalInterface.IDispatch;
-		ConfirmLabel?: string;
-		DeclineLabel?: string;
-		DisableIcon?: boolean;
-		AllowHTMLMessage?: boolean;
-	}
+  export interface IConfirmBoxBelonging {
+    Buttons: GlobalInterface.IButton[];
+    ConfirmBoxCoreConfig: ConfirmBoxInterface.IConfirmBoxCoreConfig;
+    EntityUniqueID: string;
+    EventsController: ConfirmBoxClass.ConfirmBoxEventsController;
+  }
 
-	export interface IConfirmBoxBelonging {
-		Buttons: GlobalInterface.IButton[];
-		ConfirmBoxCoreConfig: ConfirmBoxInterface.IConfirmBoxCoreConfig;
-		EntityUniqueID: string;
-		EventsController: ConfirmBoxClass.ConfirmBoxEventsController;
-	}
+  export interface IConfirmBoxResponse {
+    setSuccess(_IsSuccess: boolean): void;
 
-	export interface IConfirmBoxResponse {
+    setClickedButtonID(_ClickedButtonID): void;
+  }
 
-		setSuccess(_IsSuccess: boolean): void;
+  export interface IConfirmBoxPublicResponse {
+    Success: boolean;
+    ClickedButtonID: string;
+  }
 
-		setClickedButtonID(_ClickedButtonID): void;
-
-	}
-
-	export interface IConfirmBoxPublicResponse {
-		Success: boolean;
-		ClickedButtonID: string
-	}
-
-	export interface IPrivateResponseMerged extends IConfirmBoxResponse, GlobalInterface.IPrivateResponse {
-
-		confirmBoxBelonging: ConfirmBoxInterface.IConfirmBoxBelonging;
-	}
-
+  export interface IPrivateResponseMerged
+    extends IConfirmBoxResponse,
+      GlobalInterface.IPrivateResponse {
+    confirmBoxBelonging: ConfirmBoxInterface.IConfirmBoxBelonging;
+  }
 }
 
 export namespace ConfirmBoxClass {
+  // region *** Public ***
 
-	// region *** Public ***
+  export class ConfirmBoxInitializer {
+    /** @internal */
+    private confirmBoxCarrier: ConfirmBoxClass.ConfirmBoxCarrier = new ConfirmBoxClass.ConfirmBoxCarrier();
 
+    constructor() {}
 
-	export class ConfirmBoxInitializer {
-		/** @internal */
-		private confirmBoxCarrier: ConfirmBoxClass.ConfirmBoxCarrier = new ConfirmBoxClass.ConfirmBoxCarrier();
+    openConfirmBox$(): Observable<ConfirmBoxInterface.IConfirmBoxPublicResponse> {
+      return this.confirmBoxCarrier.openConfirmBox$().pipe(
+        map((resp) => {
+          const basicConfirmBoxResponse = new ConfirmBoxResponse();
+          const dataControl = new GlobalClass.DataControl();
+          dataControl.copyValuesFrom(resp, basicConfirmBoxResponse);
+          return basicConfirmBoxResponse;
+        })
+      );
+    }
 
-		constructor() {
-		}
+    setButtons(_Buttons: GlobalInterface.IButton[]): void {
+      this.confirmBoxCarrier.setButtons(_Buttons);
+    }
 
-		openConfirmBox$(): Observable<ConfirmBoxInterface.IConfirmBoxPublicResponse> {
-			return this.confirmBoxCarrier.openConfirmBox$().pipe(map(resp => {
-				const basicConfirmBoxResponse = new ConfirmBoxResponse();
-				const dataControl             = new GlobalClass.DataControl();
-				dataControl.copyValuesFrom(resp, basicConfirmBoxResponse);
-				return basicConfirmBoxResponse;
-			}));
-		}
+    setConfig(
+      _ConfirmBoxCoreConfig: ConfirmBoxInterface.IConfirmBoxCoreConfig
+    ) {
+      this.confirmBoxCarrier.setConfig(_ConfirmBoxCoreConfig);
+    }
 
-		setButtons(_Buttons: GlobalInterface.IButton[]): void {
-			this.confirmBoxCarrier.setButtons(_Buttons);
-		}
+    setDispatch(_Title: string, _Message: string = null): void {
+      this.confirmBoxCarrier.setTitle(_Title);
+      this.confirmBoxCarrier.setMessage(_Message);
+    }
 
-		setConfig(_ConfirmBoxCoreConfig: ConfirmBoxInterface.IConfirmBoxCoreConfig) {
-			this.confirmBoxCarrier.setConfig(_ConfirmBoxCoreConfig);
-		}
+    setTitle(_Title: string): void {
+      this.confirmBoxCarrier.setTitle(_Title);
+    }
 
-		setDispatch(_Title: string, _Message: string = null): void {
-			this.confirmBoxCarrier.setTitle(_Title);
-			this.confirmBoxCarrier.setMessage(_Message);
-		}
+    setMessage(_Message: string): void {
+      this.confirmBoxCarrier.setMessage(_Message);
+    }
 
-		setTitle(_Title: string): void {
-			this.confirmBoxCarrier.setTitle(_Title);
-		}
+    setButtonLabels(_Confirm: string, _Decline?: string): void {
+      this.confirmBoxCarrier.setButtonLabels(_Confirm, _Decline);
+    }
+  }
 
-		setMessage(_Message: string): void {
-			this.confirmBoxCarrier.setMessage(_Message);
-		}
+  export class ConfirmBoxResponse
+    extends GlobalClass.DataControl
+    implements
+      ConfirmBoxInterface.IConfirmBoxResponse,
+      ConfirmBoxInterface.IConfirmBoxPublicResponse {
+    // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
 
-		setButtonLabels(_Confirm: string, _Decline?: string): void {
-			this.confirmBoxCarrier.setButtonLabels(_Confirm, _Decline);
-		}
+    Success: boolean = null;
+    ClickedButtonID: string = null;
 
-	}
+    constructor() {
+      super();
+    }
 
-	export class ConfirmBoxResponse extends GlobalClass.DataControl implements ConfirmBoxInterface.IConfirmBoxResponse, ConfirmBoxInterface.IConfirmBoxPublicResponse {
-		// private Response: DialogPrepareResponse            = new DialogPrepareResponse();
+    setSuccess(_IsSuccess: boolean): void {
+      this.Success = _IsSuccess;
+    }
 
-		Success: boolean        = null;
-		ClickedButtonID: string = null;
+    setClickedButtonID(_ClickedButtonID): void {
+      this.ClickedButtonID = _ClickedButtonID;
+    }
+  }
 
-		constructor() {
-			super();
-		}
+  export class ConfirmBoxEventsController {
+    defaultResponse: ConfirmBoxInterface.IPrivateResponseMerged;
 
-		setSuccess(_IsSuccess: boolean): void {
-			this.Success = _IsSuccess;
-		}
+    private readonly _afterClosed: Subject<ConfirmBoxInterface.IPrivateResponseMerged> = new Subject<ConfirmBoxInterface.IPrivateResponseMerged>();
+    afterClosed$: Observable<ConfirmBoxInterface.IPrivateResponseMerged> = this._afterClosed.asObservable();
 
-		setClickedButtonID(_ClickedButtonID): void {
-			this.ClickedButtonID = _ClickedButtonID;
-		}
+    private readonly _onButtonClick: Subject<GlobalInterface.IButton> = new Subject<GlobalInterface.IButton>();
+    onButtonClick$: Observable<GlobalInterface.IButton> = this._onButtonClick.asObservable();
+    private readonly _buttonList: Subject<
+      GlobalInterface.IButton[]
+    > = new Subject<GlobalInterface.IButton[]>();
+    buttonList$: Observable<
+      GlobalInterface.IButton[]
+    > = this._buttonList.asObservable();
 
+    constructor(private EntityUniqueID: string) {}
 
-	}
+    close(_Response?: ConfirmBoxInterface.IPrivateResponseMerged): void {
+      const response = _Response ? _Response : this.defaultResponse;
+      this._afterClosed.next(response);
+    }
 
-	export class ConfirmBoxEventsController {
+    onButtonClick(_Button: GlobalInterface.IButton): void {
+      this.defaultResponse.setClickedButtonID(_Button.ID);
+      this._onButtonClick.next(_Button);
+    }
 
-		defaultResponse: ConfirmBoxInterface.IPrivateResponseMerged;
+    setButtonList(_ButtonList: GlobalInterface.IButton[]): void {
+      this._buttonList.next(_ButtonList);
+    }
 
-		private readonly _afterClosed: Subject<ConfirmBoxInterface.IPrivateResponseMerged> = new Subject<ConfirmBoxInterface.IPrivateResponseMerged>();
-		afterClosed$: Observable<ConfirmBoxInterface.IPrivateResponseMerged>               = this._afterClosed.asObservable();
+    setDefaultResponse(
+      _Response: ConfirmBoxInterface.IPrivateResponseMerged
+    ): void {
+      this.defaultResponse = _Response;
+    }
+  }
 
+  // endregion
 
-		private readonly _onButtonClick: Subject<GlobalInterface.IButton> = new Subject<GlobalInterface.IButton>();
-		onButtonClick$: Observable<GlobalInterface.IButton>               = this._onButtonClick.asObservable();
-		private readonly _buttonList: Subject<GlobalInterface.IButton[]>  = new Subject<GlobalInterface.IButton[]>();
-		buttonList$: Observable<GlobalInterface.IButton[]>                = this._buttonList.asObservable();
+  export class ConfirmBoxDefaultResponse
+    extends ConfirmBoxResponse
+    implements ConfirmBoxInterface.IPrivateResponseMerged {
+    confirmBoxBelonging: ConfirmBoxBelonging = null;
 
-		constructor(private EntityUniqueID: string) {
-		}
+    constructor() {
+      super();
+    }
 
+    setBelonging(_ConfirmBoxBelonging): void {
+      this.confirmBoxBelonging = _ConfirmBoxBelonging;
+    }
+  }
 
-		close(_Response?: ConfirmBoxInterface.IPrivateResponseMerged): void {
-			const response = _Response ? _Response : this.defaultResponse;
-			this._afterClosed.next(response);
-		}
+  export class ConfirmBoxCarrier {
+    confirmBoxBelonging: ConfirmBoxClass.ConfirmBoxBelonging = new ConfirmBoxClass.ConfirmBoxBelonging();
 
-		onButtonClick(_Button: GlobalInterface.IButton): void {
-			this.defaultResponse.setClickedButtonID(_Button.ID);
-			this._onButtonClick.next(_Button);
-		}
+    constructor() {}
 
-		setButtonList(_ButtonList: GlobalInterface.IButton[]): void {
-			this._buttonList.next(_ButtonList);
-		}
+    setButtons(_Buttons: GlobalInterface.IButton[]) {
+      if (_Buttons.length) {
+        this.confirmBoxBelonging.Buttons = _Buttons;
+      }
+    }
 
-		setDefaultResponse(_Response: ConfirmBoxInterface.IPrivateResponseMerged): void {
-			this.defaultResponse = _Response;
-		}
-	}
+    setTitle(_Title: string): void {
+      this.confirmBoxBelonging.Dispatch.Title = _Title;
+    }
 
-	// endregion
+    setMessage(_Message: string): void {
+      this.confirmBoxBelonging.Dispatch.Message = _Message;
+    }
 
-	export class ConfirmBoxDefaultResponse extends ConfirmBoxResponse implements ConfirmBoxInterface.IPrivateResponseMerged {
-		confirmBoxBelonging: ConfirmBoxBelonging = null;
+    setButtonLabels(_Confirm: string, _Decline: string): void {
+      this.confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel = _Confirm;
+      this.confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel = _Decline;
+    }
 
-		constructor() {
-			super();
-		}
+    setConfig(_ConfirmBoxBelonging: ConfirmBoxInterface.IConfirmBoxCoreConfig) {
+      // region *** local UserConfig (defined on place where dialog is called) ***
+      const dataControl = new GlobalClass.DataControl();
+      dataControl.copyValuesFrom(
+        _ConfirmBoxBelonging,
+        this.confirmBoxBelonging.ConfirmBoxCoreConfig
+      );
+      // endregion
+    }
 
-		setBelonging(_ConfirmBoxBelonging): void {
-			this.confirmBoxBelonging = _ConfirmBoxBelonging;
-		}
+    openConfirmBox$(): Observable<ConfirmBoxInterface.IPrivateResponseMerged> {
+      const service: ConfirmBoxService = ServiceLocator.injector.get(
+        ConfirmBoxService
+      );
+      const confirmBoxController = service.open(this.confirmBoxBelonging);
+      return confirmBoxController.afterClosed$;
+    }
+  }
 
-	}
+  export class Settings {
+    Buttons: GlobalInterface.IButton[] = [];
+    ConfirmBoxCoreConfig: ConfirmBoxInterface.IConfirmBoxCoreConfig = new ConfirmBoxCoreConfig();
+    Dispatch: GlobalInterface.IDispatch = new GlobalClass.Dispatch();
+  }
 
-	export class ConfirmBoxCarrier {
+  export class ConfirmBoxCoreConfig
+    implements ConfirmBoxInterface.IConfirmBoxCoreConfig {
+    Width: string = null;
+    Height: string = null;
+    ButtonPosition: VerticalPosition = null;
+    LayoutType: DialogLayoutDisplay = null;
+    Dispatch: GlobalInterface.IDispatch = null;
+    ConfirmLabel: string = null;
+    DeclineLabel: string = null;
+    DisableIcon: boolean = null;
+    AllowHTMLMessage: boolean = null;
+  }
 
-		confirmBoxBelonging: ConfirmBoxClass.ConfirmBoxBelonging = new ConfirmBoxClass.ConfirmBoxBelonging();
+  export class ConfirmBoxBelonging
+    extends ConfirmBoxClass.Settings
+    implements ConfirmBoxInterface.IConfirmBoxBelonging {
+    EntityUniqueID: string = "C" + Math.random().toString(36).substr(2, 9);
+    EventsController: ConfirmBoxEventsController;
 
-		constructor() {
-		}
-
-		setButtons(_Buttons: GlobalInterface.IButton[]) {
-			if (_Buttons.length) {
-				this.confirmBoxBelonging.Buttons = _Buttons;
-			}
-		}
-
-		setTitle(_Title: string): void {
-			this.confirmBoxBelonging.Dispatch.Title = _Title;
-		}
-
-		setMessage(_Message: string): void {
-			this.confirmBoxBelonging.Dispatch.Message = _Message;
-		}
-
-
-		setButtonLabels(_Confirm: string, _Decline: string): void {
-			this.confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel = _Confirm;
-			this.confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel = _Decline;
-		}
-
-		setConfig(_ConfirmBoxBelonging: ConfirmBoxInterface.IConfirmBoxCoreConfig) {
-			// region *** local UserConfig (defined on place where dialog is called) ***
-			const dataControl = new GlobalClass.DataControl();
-			dataControl.copyValuesFrom(_ConfirmBoxBelonging, this.confirmBoxBelonging.ConfirmBoxCoreConfig);
-			// endregion
-		}
-
-		openConfirmBox$(): Observable<ConfirmBoxInterface.IPrivateResponseMerged> {
-			const service: ConfirmBoxService = ServiceLocator.injector.get(ConfirmBoxService);
-			const confirmBoxController       = service.open(this.confirmBoxBelonging);
-			return confirmBoxController.afterClosed$;
-		}
-
-	}
-
-	export class Settings {
-		Buttons: GlobalInterface.IButton[]                              = [];
-		ConfirmBoxCoreConfig: ConfirmBoxInterface.IConfirmBoxCoreConfig = new ConfirmBoxCoreConfig();
-		Dispatch: GlobalInterface.IDispatch                             = new GlobalClass.Dispatch();
-	}
-
-	export class ConfirmBoxCoreConfig implements ConfirmBoxInterface.IConfirmBoxCoreConfig {
-		Width: string                       = null;
-		Height: string                      = null;
-		ButtonPosition: VerticalPosition    = null;
-		LayoutType: DialogLayoutDisplay     = null;
-		Dispatch: GlobalInterface.IDispatch = null;
-		ConfirmLabel: string                = null;
-		DeclineLabel: string                = null;
-		DisableIcon: boolean                = null;
-		AllowHTMLMessage: boolean           = null;
-	}
-
-	export class ConfirmBoxBelonging extends ConfirmBoxClass.Settings implements ConfirmBoxInterface.IConfirmBoxBelonging {
-
-		EntityUniqueID: string = 'C' + Math.random().toString(36).substr(2, 9);
-		EventsController: ConfirmBoxEventsController;
-
-		constructor() {
-			super();
-			this.EventsController                                     = new ConfirmBoxEventsController(this.EntityUniqueID);
-			const ConfirmBoxCoreConfigurator: ConfirmBoxConfigService = ServiceLocator.injector.get(ConfirmBoxConfigService);
-			const baseSettings                                        = new ConfirmBoxClass.Settings();
-			const dataControl                                         = new GlobalClass.DataControl();
-			dataControl.copyValuesFrom(ConfirmBoxCoreConfigurator.productionConfig.ConfirmBoxCoreConfig, baseSettings.ConfirmBoxCoreConfig);
-			this.ConfirmBoxCoreConfig = baseSettings.ConfirmBoxCoreConfig;
-			this.Buttons              = ConfirmBoxCoreConfigurator.productionConfig.Buttons.slice();
-		}
-
-	}
-
-
+    constructor() {
+      super();
+      this.EventsController = new ConfirmBoxEventsController(
+        this.EntityUniqueID
+      );
+      const ConfirmBoxCoreConfigurator: ConfirmBoxConfigService = ServiceLocator.injector.get(
+        ConfirmBoxConfigService
+      );
+      const baseSettings = new ConfirmBoxClass.Settings();
+      const dataControl = new GlobalClass.DataControl();
+      dataControl.copyValuesFrom(
+        ConfirmBoxCoreConfigurator.productionConfig.ConfirmBoxCoreConfig,
+        baseSettings.ConfirmBoxCoreConfig
+      );
+      this.ConfirmBoxCoreConfig = baseSettings.ConfirmBoxCoreConfig;
+      this.Buttons = ConfirmBoxCoreConfigurator.productionConfig.Buttons.slice();
+    }
+  }
 }

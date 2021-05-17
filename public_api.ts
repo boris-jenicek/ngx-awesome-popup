@@ -1,71 +1,81 @@
-import {GlobalClass, GlobalInterface} from './ngx-awesome-popup/core/global';
-import {ConfirmBoxClass, ConfirmBoxInterface} from './ngx-awesome-popup/types/confirm-box/core/model';
-import {ToastNotificationClass, ToastNotificationInterface, ToastPositionEnum, ToastUserViewTypeEnum} from './ngx-awesome-popup/types/toast-notification/core/model';
-import {DialogClass, DialogInterface} from './ngx-awesome-popup/types/dialog/core/model';
-
-import IButton = GlobalInterface.IButton;
-import IDispatch = GlobalInterface.IDispatch;
-import IGlobalUserConfig = GlobalInterface.IGlobalUserConfig;
-import IColorTypes = GlobalInterface.IColorTypes;
-import ButtonMaker = GlobalClass.ButtonMaker;
-import ResetGlobalConfig = GlobalClass.ResetGlobalConfig;
+import { GlobalClass, GlobalInterface } from "./ngx-awesome-popup/core/global";
+import {
+  ConfirmBoxClass,
+  ConfirmBoxInterface,
+} from "./ngx-awesome-popup/types/confirm-box/core/model";
+import {
+  DialogClass,
+  DialogInterface,
+} from "./ngx-awesome-popup/types/dialog/core/model";
+import {
+  ToastNotificationClass,
+  ToastNotificationInterface,
+  ToastPositionEnum,
+  ToastUserViewTypeEnum,
+} from "./ngx-awesome-popup/types/toast-notification/core/model";
+import ConfirmBoxInitializer = ConfirmBoxClass.ConfirmBoxInitializer;
+import IConfirmBoxCoreConfig = ConfirmBoxInterface.IConfirmBoxCoreConfig;
 
 import IConfirmBoxPublicResponse = ConfirmBoxInterface.IConfirmBoxPublicResponse;
 import IConfirmBoxUserConfig = ConfirmBoxInterface.IConfirmBoxUserConfig;
-import IConfirmBoxCoreConfig = ConfirmBoxInterface.IConfirmBoxCoreConfig;
-import ConfirmBoxInitializer = ConfirmBoxClass.ConfirmBoxInitializer;
-
-import IToastNotificationPublicResponse = ToastNotificationInterface.IToastNotificationPublicResponse;
-import ToastNotificationInitializer = ToastNotificationClass.ToastNotificationInitializer;
-import IToastCoreConfig = ToastNotificationInterface.IToastCoreConfig;
-import IGlobalToastSettings = ToastNotificationInterface.IGlobalToastSettings;
-import IToastNotificationUserConfig = ToastNotificationInterface.IToastNotificationUserConfig;
-import ResetToastGlobalSettings = ToastNotificationClass.ResetToastGlobalSettings;
+import DialogBelonging = DialogClass.DialogBelonging;
+import DialogInitializer = DialogClass.DialogInitializer;
+import IDialogCoreConfig = DialogInterface.IDialogCoreConfig;
 
 import IDialogEventsController = DialogInterface.IDialogEventsController;
 import IDialogPublicResponse = DialogInterface.IDialogPublicResponse;
 import IDialogUserConfig = DialogInterface.IDialogUserConfig;
-import IDialogCoreConfig = DialogInterface.IDialogCoreConfig;
-import DialogInitializer = DialogClass.DialogInitializer;
-import DialogBelonging = DialogClass.DialogBelonging;
+import ButtonMaker = GlobalClass.ButtonMaker;
+import ResetGlobalConfig = GlobalClass.ResetGlobalConfig;
+
+import IButton = GlobalInterface.IButton;
+import IColorTypes = GlobalInterface.IColorTypes;
+import IDispatch = GlobalInterface.IDispatch;
+import IGlobalUserConfig = GlobalInterface.IGlobalUserConfig;
+import ResetToastGlobalSettings = ToastNotificationClass.ResetToastGlobalSettings;
+import ToastNotificationInitializer = ToastNotificationClass.ToastNotificationInitializer;
+import IGlobalToastSettings = ToastNotificationInterface.IGlobalToastSettings;
+import IToastCoreConfig = ToastNotificationInterface.IToastCoreConfig;
+
+import IToastNotificationPublicResponse = ToastNotificationInterface.IToastNotificationPublicResponse;
+import IToastNotificationUserConfig = ToastNotificationInterface.IToastNotificationUserConfig;
 
 // region *** Interface ***
-export {IGlobalUserConfig};
-export {IButton};
-export {IDispatch};
-export {IColorTypes};
+export { IGlobalUserConfig };
+export { IButton };
+export { IDispatch };
+export { IColorTypes };
 
-export {IConfirmBoxUserConfig};
-export {IConfirmBoxCoreConfig};
-export {IConfirmBoxPublicResponse};
+export { IConfirmBoxUserConfig };
+export { IConfirmBoxCoreConfig };
+export { IConfirmBoxPublicResponse };
 
-export {IGlobalToastSettings};
-export {IToastCoreConfig};
-export {IToastNotificationUserConfig};
-export {IToastNotificationPublicResponse};
+export { IGlobalToastSettings };
+export { IToastCoreConfig };
+export { IToastNotificationUserConfig };
+export { IToastNotificationPublicResponse };
 
-export {IDialogUserConfig};
-export {IDialogCoreConfig};
-export {IDialogPublicResponse};
-export {IDialogEventsController};
+export { IDialogUserConfig };
+export { IDialogCoreConfig };
+export { IDialogPublicResponse };
+export { IDialogEventsController };
 // endregion
 
-export {ButtonLayoutDisplay} from './ngx-awesome-popup/core/enums';
-export {DialogLayoutDisplay} from './ngx-awesome-popup/core/enums';
-export {VerticalPosition} from './ngx-awesome-popup/core/enums';
-export {ToastPositionEnum} from './ngx-awesome-popup/types/toast-notification/core/model';
-export {ToastProgressBarEnum} from './ngx-awesome-popup/types/toast-notification/core/model';
-export {ToastUserViewTypeEnum} from './ngx-awesome-popup/types/toast-notification/core/model';
-
+export { ButtonLayoutDisplay } from "./ngx-awesome-popup/core/enums";
+export { DialogLayoutDisplay } from "./ngx-awesome-popup/core/enums";
+export { VerticalPosition } from "./ngx-awesome-popup/core/enums";
+export { ToastPositionEnum } from "./ngx-awesome-popup/types/toast-notification/core/model";
+export { ToastProgressBarEnum } from "./ngx-awesome-popup/types/toast-notification/core/model";
+export { ToastUserViewTypeEnum } from "./ngx-awesome-popup/types/toast-notification/core/model";
 
 /**
  * @returns It will return custom button object ready to be used in child component layout.
  */
-export {ButtonMaker};
+export { ButtonMaker };
 
 /**
  *```typescript
- * // Instantiate config object as example below to change global settings on-fly it takes {@link IGlobalUserConfig}
+ * // Instantiate config object as example below to change global settings on-fly it takes IGlobalUserConfig
  * as the argument.
  * new ResetGlobalConfig({
  *     ColorList: {
@@ -81,19 +91,18 @@ export {ButtonMaker};
  * })
  * ```
  */
-export {ResetGlobalConfig};
+export { ResetGlobalConfig };
 
 /**
  *```typescript
- * // Instantiate toast global config object as example below to change global settings on-fly it takes {@link IGlobalToastSettings}
+ * // Instantiate toast global config object as example below to change global settings on-fly it takes IGlobalToastSettings
  * as the argument.
  * new ResetToastGlobalSettings({
  *     AllowedNotificationsAtOnce: 2
  * })
  * ```
  */
-export {ResetToastGlobalSettings};
-
+export { ResetToastGlobalSettings };
 
 /**
  * This is the class that needs to be added as DI in the constructor of a child component that will be
@@ -147,7 +156,7 @@ export {ResetToastGlobalSettings};
  * ```
  * @category child dynamic component data & event controller
  */
-export {DialogBelonging};
+export { DialogBelonging };
 
 // region *** Observable response after closing popup ***
 /**
@@ -155,19 +164,19 @@ export {DialogBelonging};
  *
  * @category Observable response after closing popup
  */
-export {IToastNotificationPublicResponse as IToastNotificationResponse};
+export { IToastNotificationPublicResponse as IToastNotificationResponse };
 /**
  * Regular description
  *
  * @category Observable response after closing popup
  */
-export {IConfirmBoxPublicResponse as IConfirmBoxResponse};
+export { IConfirmBoxPublicResponse as IConfirmBoxResponse };
 /**
  * Regular description
  *
  * @category Observable response after closing popup
  */
-export {IDialogPublicResponse as IDialogResponse};
+export { IDialogPublicResponse as IDialogResponse };
 // endregion
 
 // region *** Popup open  ***
@@ -207,7 +216,7 @@ export {IDialogPublicResponse as IDialogResponse};
  * * IToastNotificationPublicResponse: {@link IToastNotificationPublicResponse}
  * @category Popup open
  */
-export {ToastNotificationInitializer};
+export { ToastNotificationInitializer };
 /**
  * This is the class that needs to be instantiated to set up and ignite a ConfirmBox and create content.
  * Its purpose is to get confirmation response from end-user. It can be called from any angular
@@ -244,7 +253,7 @@ export {ToastNotificationInitializer};
  * * IConfirmBoxPublicResponse: {@link IConfirmBoxPublicResponse}
  * @category Popup open
  */
-export {ConfirmBoxInitializer};
+export { ConfirmBoxInitializer };
 /**
  * This is the class that needs to be instantiated to set up and ignite a Dialog and create dynamic component,
  * its purpose is to render any angular component view with specific configuration from any angular typescript file.
@@ -292,7 +301,7 @@ export {ConfirmBoxInitializer};
  * * IDialogPublicResponse: {@link IDialogPublicResponse}
  * @category Popup open
  */
-export {DialogInitializer};
+export { DialogInitializer };
 // endregion
 
 // region *** Imports for angular app.module ***
@@ -317,7 +326,7 @@ export {DialogInitializer};
  * ```
  * @category Imports for angular app.module
  */
-export {NgxAwesomePopupModule} from './ngx-awesome-popup/ngx-awesome-popup.module';
+export { NgxAwesomePopupModule } from "./ngx-awesome-popup/ngx-awesome-popup.module";
 /**
  * This is the module that ignites dynamic dialog modal, its purpose is to load any angular component in
  * dialog window. Dynamic component means that user can evoke any Angular component in the popup just from typescript. Component view
@@ -349,7 +358,7 @@ export {NgxAwesomePopupModule} from './ngx-awesome-popup/ngx-awesome-popup.modul
  * * ButtonMaker: {@link ButtonMaker}
  * @category Imports for angular app.module
  */
-export {DialogConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.module';
+export { DialogConfigModule } from "./ngx-awesome-popup/ngx-awesome-popup.module";
 /**
  * This is the module that ignites Confirm box dialog, its purpose is to show popup in a
  * small dialog window in the middle of the screen. User can provide title, message and include buttons.
@@ -385,7 +394,7 @@ export {DialogConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.module';
  * * ButtonMaker: {@link ButtonMaker}
  * @category Imports for angular app.module
  */
-export {ConfirmBoxConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.module';
+export { ConfirmBoxConfigModule } from "./ngx-awesome-popup/ngx-awesome-popup.module";
 /**
  * This is the module that ignites Toast notifications dialog, its purpose is to show toast popup in a
  * small dialog window in the corner of the screen. User can provide title and message and include buttons, or setup auto disappearing.
@@ -428,5 +437,5 @@ export {ConfirmBoxConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.modu
  * * ButtonMaker: {@link ButtonMaker}
  * @category Imports for angular app.module
  */
-export {ToastNotificationConfigModule} from './ngx-awesome-popup/ngx-awesome-popup.module';
+export { ToastNotificationConfigModule } from "./ngx-awesome-popup/ngx-awesome-popup.module";
 // endregion

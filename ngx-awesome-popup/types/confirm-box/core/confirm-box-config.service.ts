@@ -1,41 +1,51 @@
-import {Inject, Injectable} from '@angular/core';
-import {DialogLayoutDisplay} from '../../../core/enums';
-import {GlobalClass} from '../../../core/global';
-import {ConfirmBoxClass, ConfirmBoxInterface} from './model';
+import { Inject, Injectable } from "@angular/core";
+import { DialogLayoutDisplay } from "../../../core/enums";
+import { GlobalClass } from "../../../core/global";
+import { ConfirmBoxClass, ConfirmBoxInterface } from "./model";
 
 @Injectable({
-	providedIn: 'root'
+  providedIn: "root",
 })
 export class ConfirmBoxConfigService {
+  authorConfig: ConfirmBoxInterface.IConfirmBoxUserConfig = new ConfirmBoxClass.Settings();
+  productionConfig: ConfirmBoxInterface.IConfirmBoxUserConfig = new ConfirmBoxClass.Settings();
 
-	authorConfig: ConfirmBoxInterface.IConfirmBoxUserConfig     = new ConfirmBoxClass.Settings();
-	productionConfig: ConfirmBoxInterface.IConfirmBoxUserConfig = new ConfirmBoxClass.Settings();
+  constructor(
+    @Inject("confirmBoxConfig")
+    private userConfig: ConfirmBoxInterface.IConfirmBoxUserConfig = {}
+  ) {
+    // region *** confirmBox userConfig (user input app-module) ***
+    const userConfigBase = new ConfirmBoxClass.Settings();
+    const dataControl = new GlobalClass.DataControl();
+    dataControl.copyValuesFrom(
+      userConfig.ConfirmBoxCoreConfig,
+      userConfigBase.ConfirmBoxCoreConfig
+    ); // this will make sure that object has right properties
+    userConfig.ConfirmBoxCoreConfig = userConfigBase.ConfirmBoxCoreConfig;
+    // endregion
 
-	constructor(@Inject('confirmBoxConfig') private userConfig: ConfirmBoxInterface.IConfirmBoxUserConfig = {}) {
+    // region *** author default config values (if there is no user input) ***
+    this.authorConfig.ConfirmBoxCoreConfig.Width = "auto";
+    this.authorConfig.ConfirmBoxCoreConfig.Height = "auto";
+    this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition = "center";
+    this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel = "Confirm";
+    this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel = "Decline";
+    this.authorConfig.ConfirmBoxCoreConfig.DisableIcon = false;
+    this.authorConfig.ConfirmBoxCoreConfig.AllowHTMLMessage = false;
+    this.authorConfig.ConfirmBoxCoreConfig.LayoutType =
+      DialogLayoutDisplay.NONE;
 
-		// region *** confirmBox userConfig (user input app-module) ***
-		const userConfigBase = new ConfirmBoxClass.Settings();
-		const dataControl    = new GlobalClass.DataControl();
-		dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, userConfigBase.ConfirmBoxCoreConfig); // this will make sure that object has right properties
-		userConfig.ConfirmBoxCoreConfig = userConfigBase.ConfirmBoxCoreConfig;
-		// endregion
+    // endregion
 
-		// region *** author default config values (if there is no user input) ***
-		this.authorConfig.ConfirmBoxCoreConfig.Width            = 'auto';
-		this.authorConfig.ConfirmBoxCoreConfig.Height           = 'auto';
-		this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition   = 'center';
-		this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel     = 'Confirm';
-		this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel     = 'Decline';
-		this.authorConfig.ConfirmBoxCoreConfig.DisableIcon      = false;
-		this.authorConfig.ConfirmBoxCoreConfig.AllowHTMLMessage = false;
-		this.authorConfig.ConfirmBoxCoreConfig.LayoutType       = DialogLayoutDisplay.NONE;
-
-		// endregion
-
-		// region *** Production setup ***
-		dataControl.copyValuesFrom(this.authorConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
-		dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
-		// endregion
-
-	}
+    // region *** Production setup ***
+    dataControl.copyValuesFrom(
+      this.authorConfig.ConfirmBoxCoreConfig,
+      this.productionConfig.ConfirmBoxCoreConfig
+    );
+    dataControl.copyValuesFrom(
+      userConfig.ConfirmBoxCoreConfig,
+      this.productionConfig.ConfirmBoxCoreConfig
+    );
+    // endregion
+  }
 }

@@ -374,9 +374,6 @@ export { ConfirmBoxConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.mo
  * ```typescript
  * // app.module imports:
  *ToastNotificationConfigModule.forRoot({
- *    ToastCoreConfig: {
- *       Width: '300px',
- *    },
  *    GlobalSettings: {
  *       // The number of toast notifications that can be shown at once.
  *       AllowedNotificationsAtOnce: 4,

@@ -1,159 +1,158 @@
 @import "../../../styles/style";
 
 .toast-wrapper {
-  background:     transparent;
-  display:        flex;
+  background: transparent;
+  display: flex;
   flex-direction: column;
-  margin:         auto;
-  opacity:        0;
-  padding:        0;
+  margin: auto;
+  opacity: 0;
+  padding: 0;
   pointer-events: auto;
-  position:       relative;
-  width:          100%;
-  z-index:        0;
+  position: relative;
+  width: 100%;
+  z-index: 0;
 
   .progress-bar-container {
-    background:    rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 0 0 5px 5px;
-    }
+  }
 
   .progress-bar {
-    height:     4px;
+    height: 4px;
     transition: none;
-    width:      0;
-    }
+    width: 0;
+  }
 
   .evolve-toast {
-    background:     $gr-100;
-    border-radius:  5px;
-    border-right:   4px solid;
-    box-shadow:     0 0 4px 1px transparentize(black, 0.75);
-    display:        flex;
+    background: $gr-100;
+    border-radius: 5px;
+    border-right: 4px solid;
+    box-shadow: 0 0 4px 1px transparentize(black, 0.75);
+    display: flex;
     flex-direction: column;
-    margin-top:     10px;
-    max-height:     350px;
-    position:       relative;
-    transition:     box-shadow 0.3s ease-in-out;
+    margin-top: 10px;
+    max-height: 350px;
+    position: relative;
+    transition: box-shadow 0.3s ease-in-out;
     vertical-align: bottom;
 
     &:hover {
       box-shadow: 0 0 4px 3px transparentize(black, 0.75);
-      }
+    }
 
     &.standard-dialog {
       border-color: transparent;
 
       .progress-bar {
         background-color: rgba(42, 42, 42, 0.2);
-        }
       }
+    }
 
     &.success-dialog {
       background-color: lighten($success, 45%);
-      border-color:     $success;
+      border-color: $success;
 
       .progress-bar {
         background-color: lighten($success, 25%);
-        }
       }
+    }
 
     &.info-dialog {
       background-color: lighten($info, 40%);
-      border-color:     $info;
+      border-color: $info;
 
       .progress-bar {
         background-color: lighten($info, 25%);
-        }
       }
+    }
 
     &.warning-dialog {
       background-color: lighten($warning, 40%);
-      border-color:     $warning;
+      border-color: $warning;
 
       .progress-bar {
         background-color: lighten($warning, 25%);
-        }
       }
+    }
 
     &.danger-dialog {
       background-color: lighten($danger, 25%);
-      border-color:     $danger;
+      border-color: $danger;
 
       .progress-bar {
         background-color: lighten($danger, 10%);
-        }
       }
+    }
 
     .close-ico {
-      color:     transparentize($black, 0.8);
-      cursor:    pointer;
+      color: transparentize($black, 0.8);
+      cursor: pointer;
       font-size: 20px;
-      position:  absolute;
-      right:     6px;
-      top:       4px;
-      }
+      position: absolute;
+      right: 6px;
+      top: 4px;
+    }
 
     .toast-title-content {
-      align-items:      flex-start;
-      background-clip:  padding-box;
+      align-items: flex-start;
+      background-clip: padding-box;
       background-color: transparentize($white, 0.45);
-      border-bottom:    1px solid transparentize($black, 0.95);
-      border-radius:    5px 5px 0 0;
-      color:            $gr-600;
-      display:          flex;
-      flex-direction:   column;
-      height:           auto;
-      justify-content:  flex-start;
-      padding:          5px 10px 5px;
-      width:            auto;
+      border-bottom: 1px solid transparentize($black, 0.95);
+      border-radius: 5px 5px 0 0;
+      color: $gr-600;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      justify-content: flex-start;
+      padding: 5px 10px 5px;
+      width: auto;
 
       .toast-title-text {
         font-size: 0.87rem;
-        }
       }
+    }
 
     .content-holder {
-      align-items:     center;
-      color:           $gr-600;
-      display:         flex;
-      flex-wrap:       nowrap;
-      height:          100%;
+      align-items: center;
+      color: $gr-600;
+      display: flex;
+      flex-wrap: nowrap;
+      height: 100%;
       justify-content: space-between;
-      overflow:        auto;
-      width:           100%;
+      overflow: auto;
+      width: 100%;
 
       .icon-section {
-
         .icon-type-toast {
           font-size: 24px;
-          padding:   0 2px 0 6px;
-          }
+          padding: 0 2px 0 6px;
         }
-
+      }
 
       .toast-inner-content {
         padding: 6px 10px;
-        }
+      }
+
       .only-message {
         padding: 6px 27px 6px 10px;
-        }
+      }
+
       .text-wrapper {
         font-size: 0.97rem;
-        margin:    0;
-        }
+        margin: 0;
       }
+    }
 
     .button-holder {
-      display:         flex;
-      flex-direction:  column;
+      display: flex;
+      flex-direction: column;
       justify-content: flex-end;
-      width:           100%;
+      width: 100%;
 
       .button-section {
-        margin:  0;
+        margin: 0;
         padding: 4px 10px;
-        }
       }
-
     }
   }
+}

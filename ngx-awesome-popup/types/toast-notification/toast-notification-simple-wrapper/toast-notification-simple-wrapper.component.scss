@@ -1,156 +1,154 @@
 @import "../../../styles/style";
 
 .toast-wrapper {
-  background:     transparent;
-  display:        flex;
+  background: transparent;
+  display: flex;
   flex-direction: column;
-  margin:         auto;
-  opacity:        0;
-  padding:        0;
+  margin: auto;
+  opacity: 0;
+  padding: 0;
   pointer-events: auto;
-  position:       relative;
-  width:          100%;
-  z-index:        0;
+  position: relative;
+  width: 100%;
+  z-index: 0;
 
   .progress-bar-container {
-    background:    rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 0 0 2px 2px;
-    }
+  }
 
   .progress-bar {
-    height:     4px;
+    height: 4px;
     transition: none;
-    width:      0;
-    }
+    width: 0;
+  }
 
   .evolve-toast {
-    background:     $gr-100;
-    border-radius:  2px;
-    box-shadow:     0 0 2px 1px transparentize(black, 0.75);
-    display:        flex;
+    background: $gr-100;
+    border-radius: 2px;
+    box-shadow: 0 0 2px 1px transparentize(black, 0.75);
+    display: flex;
     flex-direction: column;
-    margin-top:     10px;
-    max-height:     350px;
-    position:       relative;
-    transition:     box-shadow 0.3s ease-in-out;
+    margin-top: 10px;
+    max-height: 350px;
+    position: relative;
+    transition: box-shadow 0.3s ease-in-out;
     vertical-align: bottom;
 
     &:hover {
       box-shadow: 0 0 4px 2px transparentize(black, 0.75);
-      }
+    }
 
     &.standard-dialog {
       border-color: transparent;
 
       .progress-bar {
         background-color: rgba(42, 42, 42, 0.2);
-        }
       }
+    }
 
     &.success-dialog {
       background-color: lighten($success, 25%);
 
       .progress-bar {
         background-color: lighten($success, 15%);
-        }
       }
+    }
 
     &.info-dialog {
       background-color: lighten($info, 30%);
 
       .progress-bar {
         background-color: lighten($info, 15%);
-        }
       }
+    }
 
     &.warning-dialog {
       background-color: lighten($warning, 30%);
 
       .progress-bar {
         background-color: lighten($warning, 20%);
-        }
       }
+    }
 
     &.danger-dialog {
       background-color: lighten($danger, 20%);
 
       .progress-bar {
         background-color: lighten($danger, 10%);
-        }
       }
+    }
 
     .close-ico {
-      color:     transparentize($black, 0.8);
-      cursor:    pointer;
+      color: transparentize($black, 0.8);
+      cursor: pointer;
       font-size: 18px;
-      position:  absolute;
-      right:     6px;
-      top:       4px;
-      }
+      position: absolute;
+      right: 6px;
+      top: 4px;
+    }
 
     .toast-title-content {
-      align-content:   space-around;
-      align-items:     center;
+      align-content: space-around;
+      align-items: center;
       background-clip: padding-box;
-      border-radius:   2px 2px 0 0;
-      color:           #6c757d;
-      display:         flex;
-      flex-direction:  row;
-      flex-wrap:       wrap;
-      height:          auto;
+      border-radius: 2px 2px 0 0;
+      color: #6c757d;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      height: auto;
       justify-content: flex-start;
-      padding:         5px 10px 5px;
-      width:           auto;
+      padding: 5px 10px 5px;
+      width: auto;
 
       .icon-section {
-
-
         .icon-type-toast {
           font-size: 20px;
-          opacity:   0.8;
-          padding:   0 6px 0 0;
-          }
+          opacity: 0.8;
+          padding: 0 6px 0 0;
         }
+      }
 
       .toast-title-text {
         font-size: 0.87rem;
-        }
       }
-
+    }
 
     .content-holder {
-      align-items:     center;
-      color:           $gr-600;
-      display:         flex;
-      flex-wrap:       nowrap;
-      height:          100%;
+      align-items: center;
+      color: $gr-600;
+      display: flex;
+      flex-wrap: nowrap;
+      height: 100%;
       justify-content: space-between;
-      overflow:        auto;
-      width:           100%;
+      overflow: auto;
+      width: 100%;
 
       .toast-inner-content {
         padding: 6px 10px;
-        }
+      }
+
       .only-message {
         padding: 6px 27px 6px 10px;
-        }
+      }
+
       .text-wrapper {
         font-size: 0.97rem;
-        margin:    0;
-        }
+        margin: 0;
       }
+    }
 
     .button-holder {
-      display:         flex;
-      flex-direction:  column;
+      display: flex;
+      flex-direction: column;
       justify-content: flex-end;
-      width:           100%;
+      width: 100%;
 
       .button-section {
-        margin:  0;
+        margin: 0;
         padding: 4px 10px;
-        }
       }
-
     }
   }
+}
