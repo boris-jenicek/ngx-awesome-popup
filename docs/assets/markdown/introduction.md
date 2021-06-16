@@ -9,12 +9,11 @@
 <a href="https://costlydeveloper.github.io/ngx-awesome-popup/"><img alt="undefined" src="https://awesome.re/badge.svg" height="20"/></a>
 	</p>
  <p align="center">
-  <b>Gives new functionality to Angular 9+, generates beautiful popups, dialogs, ConfirmBoxes, AlertBoxes, ToastNotifications. Also gives the ability of opening dynamic components directly from typescript!</b><br />
+  <b>Gives new functionality to Angular 12 (9+), generates beautiful popups, dialogs, ConfirmBoxes, AlertBoxes, ToastNotifications. Also gives the ability of opening dynamic components directly from typescript!</b><br />
   <sub>Use this popup generator to easily generate beautiful, highly scalable popups. From regular Angular component it renders dynamic component view in popup directly from typescript, including toast notifications, alert box or confirm box.</sub>
 </p>
 
 <br />
-
 
 <div align="center"> 
 <a href="https://costlydeveloper.github.io/demo-ngx-awesome-popup/#/toast-advanced" target="_blank">
@@ -23,33 +22,31 @@
 </a>
 </div>
 
- * **Well documented**: Extremely simple to use - just follow the tutorials and API documentation!
-* **Powerful**: It uses Angular factory features - generates any component anywhere in popup without HTML selector!
-* **Awesome**: The tool you don't know you needed before! ## External links
+- **Well documented**: Extremely simple to use - just follow the tutorials and API documentation!
+- **Powerful**: It uses Angular factory features - generates any component anywhere in popup without HTML selector!
+- **Awesome**: The tool you don't know you needed before! ## External links
 
-- [➤ DEMO showcase](https://costlydeveloper.github.io/demo-ngx-awesome-popup/)
-- [➤ DEMO StackBlitz](https://stackblitz.com/github/costlydeveloper/demo-ngx-awesome-popup?file=src%2Fapp%2Fapp.component.ts)
-- [➤ GitHub repository of the DEMO](https://github.com/costlydeveloper/demo-ngx-awesome-popup)
-- [➤ API documentation](https://github.com/costlydeveloper/ngx-awesome-popup/wiki)
- 
+* [➤ DEMO showcase](https://costlydeveloper.github.io/demo-ngx-awesome-popup/)
+* [➤ DEMO StackBlitz](https://stackblitz.com/github/costlydeveloper/demo-ngx-awesome-popup?file=src%2Fapp%2Fapp.component.ts)
+* [➤ GitHub repository of the DEMO](https://github.com/costlydeveloper/demo-ngx-awesome-popup)
+* [➤ API documentation](https://github.com/costlydeveloper/ngx-awesome-popup/wiki)
+
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
 ## ➤ Table of Contents
 
-* [➤ Installation](#-installation)
-* [➤ Usage](#-usage)
-	* [Toast Notification](#toast-notification)
-	* [Confirm Box / Alert Box](#confirm-box--alert-box)
-	* [Open any component in Dialog](#open-any-component-in-dialog)
-		* [Setup of evoke of the dialog:](#setup-of-evoke-of-the-dialog)
-		* [Setup of child-dynamic component that is rendered in dialog:](#setup-of-child-dynamic-component-that-is-rendered-in-dialog)
-	* [After all,](#after-all)
-			* [rate it on Openbase,](#rate-it-on-openbase)
-			* [and give a star to a GitHub repo!](#and-give-a-star-to-a-github-repo)
-	* [Thanks, stay tuned, and expect more nice features, documentation, and tutorials!](#thanks-stay-tuned-and-expect-more-nice-features-documentation-and-tutorials)
-* [➤ License](#-license)
-
-
+- [➤ Installation](#-installation)
+- [➤ Usage](#-usage)
+  - [Toast Notification](#toast-notification)
+  - [Confirm Box / Alert Box](#confirm-box--alert-box)
+  - [Open any component in Dialog](#open-any-component-in-dialog)
+    - [Setup of evoke of the dialog:](#setup-of-evoke-of-the-dialog)
+    - [Setup of child-dynamic component that is rendered in dialog:](#setup-of-child-dynamic-component-that-is-rendered-in-dialog)
+  - [After all,](#after-all)
+    _ [rate it on Openbase,](#rate-it-on-openbase)
+    _ [and give a star to a GitHub repo!](#and-give-a-star-to-a-github-repo)
+  - [Thanks, stay tuned, and expect more nice features, documentation, and tutorials!](#thanks-stay-tuned-and-expect-more-nice-features-documentation-and-tutorials)
+- [➤ License](#-license)
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#installation)
 
@@ -60,7 +57,6 @@ Install the library with:
 ```javascript
 npm install @costlydeveloper/ngx-awesome-popup
 ```
-
 
 Then import it in your `AppModule`:
 
@@ -100,8 +96,6 @@ API documentation:
 - [DialogConfigModule](https://github.com/costlydeveloper/ngx-awesome-popup/wiki/Class:%20DialogConfigModule)
 - [ConfirmBoxConfigModule](https://github.com/costlydeveloper/ngx-awesome-popup/wiki/Class:%20ConfirmBoxConfigModule)
 - [ToastNotificationConfigModule](https://github.com/costlydeveloper/ngx-awesome-popup/wiki/Class:%20ToastNotificationConfigModule)
-
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#usage)
 
@@ -219,7 +213,7 @@ export class AppComponent implements OnInit {
 
     // Simply open the popup and listen which button is clicked and,
     // receive optional payload from AnyAngularComponent.
-    const subscription = dialogPopup.openDialog$().subscribe((resp) => {
+    const subscription = dialogPopup.openDialog$().subscribe(resp => {
       // IDialogPublicResponse
       console.log("dialog response: ", resp);
       subscription.unsubscribe();
@@ -264,7 +258,7 @@ export class AnyAngularComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       // IDialogEventsController
       this.dialogBelonging.EventsController.onButtonClick$.subscribe(
-        (_Button) => {
+        _Button => {
           if (_Button.ID === "edit") {
             // Do some logic for example edit user.
           } else if (_Button.ID === "submit") {
@@ -288,7 +282,7 @@ export class AnyAngularComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // Care about memory and close all subscriptions.
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }
 ```
@@ -297,8 +291,6 @@ API documentation:
 
 - [DialogBelonging](https://github.com/costlydeveloper/ngx-awesome-popup/wiki/Class:%20DialogBelonging)
 - [IDialogEventsController](https://github.com/costlydeveloper/ngx-awesome-popup/wiki/Interface:%20IDialogEventsController)
-
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
@@ -314,10 +306,8 @@ API documentation:
 
 ### Thanks, stay tuned, and expect more nice features, documentation, and tutorials!
 
-
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#license)
 
 ## ➤ License
-	
+
 Licensed under [MIT](https://opensource.org/licenses/MIT).
