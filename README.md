@@ -8,7 +8,7 @@
 	</p>
 
 <p align="center">
-  <b>Gives new functionality to Angular 9+, generates beautiful popups, dialogs, ConfirmBoxes, AlertBoxes, ToastNotifications. Also gives the ability of opening dynamic components directly from typescript!</b><br />
+  <b>Gives new functionality to Angular 12 (9+), generates beautiful popups, dialogs, Confirm Boxes, Alert Boxes, Toast Notifications. Also gives the ability of opening dynamic components directly from typescript!</b><br />
   <sub>Use this library to easily generate beautiful, highly scalable popups. It renders dynamic component view in popup directly from typescript, including toast notifications, cookie banners, alert box or confirm box.</sub>
 </p>
 
@@ -16,15 +16,19 @@
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#license)
 
-* **Well documented**: Extremely simple to use - just follow the tutorials and API documentation!
-* **Powerful**: It uses Angular factory features - generates any component anywhere in popup without HTML selector!
-* **Awesome**: The tool you don't know you needed before!
+- **Toast notification for Angular**: Extremely simple to use - just look at the playground!
+- **Confirm box for Angular**: Prevent mistakes, the tool you don't know you needed before!
+- **Modal window for Angular**: It uses Angular factory features - generates any component anywhere in popup without HTML selector!
 
-[![Ngx Awesome Popup](https://raw.githubusercontent.com/costlydeveloper/demo-ngx-awesome-popup/bda09e0f2bbfce0e12f4c0a036c4dcc2d952c194/src/assets/og-img.jpg)](https://costlydeveloper.github.io/ngx-awesome-popup/)
+[![Ngx Awesome Popup](https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/og-img.jpg)](https://costlydeveloper.github.io/ngx-awesome-popup/)
 
 ### Website
 
 Visit the [Ngx Awesome Popup](https://costlydeveloper.github.io/ngx-awesome-popup/) for general information, demos and documentation.
+
+### Blog
+
+If you in doubt, find out the good reasons to use it on the [Blog](https://dev.to/costlydeveloper).
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#license)
 
