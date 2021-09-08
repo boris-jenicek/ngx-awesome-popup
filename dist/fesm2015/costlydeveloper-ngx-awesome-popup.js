@@ -1,7 +1,7 @@
 import * as i0 from '@angular/core';
 import { Injectable, Inject, Component, ChangeDetectorRef, ComponentFactoryResolver, Injector, ApplicationRef, Directive, ViewContainerRef, ViewChild, NgModule } from '@angular/core';
 import { Observable, Subject, BehaviorSubject, of } from 'rxjs';
-import { delay, map, tap } from 'rxjs/operators';
+import { delay, map, take, tap } from 'rxjs/operators';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -755,7 +755,7 @@ var ConfirmBoxClass;
                 const dataControl = new GlobalClass.DataControl();
                 dataControl.copyValuesFrom(resp, basicConfirmBoxResponse);
                 return basicConfirmBoxResponse;
-            }));
+            }), take(1));
         }
         setButtons(_Buttons) {
             this.confirmBoxCarrier.setButtons(_Buttons);
@@ -1166,7 +1166,7 @@ var DialogClass;
                 const dataControl = new GlobalClass.DataControl();
                 dataControl.copyValuesFrom(resp, basicDialogResponse);
                 return basicDialogResponse;
-            }));
+            }), take(1));
         }
         /** It accepts list of custom buttons */
         setButtons(_Buttons) {
@@ -1731,7 +1731,7 @@ var ToastNotificationClass;
                 const dataControl = new GlobalClass.DataControl();
                 dataControl.copyValuesFrom(resp, basicToastNotificationResponse);
                 return basicToastNotificationResponse;
-            }));
+            }), take(1));
         }
         setButtons(_Buttons) {
             this.toastNotificationCarrier.setButtons(_Buttons);

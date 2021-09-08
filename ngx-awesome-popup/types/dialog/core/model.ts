@@ -1,6 +1,6 @@
 import { Type } from "@angular/core";
 import { Observable, Subject } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, take } from "rxjs/operators";
 import { DialogLayoutDisplay, VerticalPosition } from "../../../core/enums";
 import { GlobalClass, GlobalInterface } from "../../../core/global";
 import { ServiceLocator } from "../../../locator.service";
@@ -118,7 +118,8 @@ export namespace DialogClass {
           const dataControl = new GlobalClass.DataControl();
           dataControl.copyValuesFrom(resp, basicDialogResponse);
           return basicDialogResponse;
-        })
+        }),
+        take(1)
       );
     }
 

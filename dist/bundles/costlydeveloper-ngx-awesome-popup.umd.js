@@ -1089,7 +1089,7 @@
                     var dataControl = new GlobalClass.DataControl();
                     dataControl.copyValuesFrom(resp, basicConfirmBoxResponse);
                     return basicConfirmBoxResponse;
-                }));
+                }), operators.take(1));
             };
             ConfirmBoxInitializer.prototype.setButtons = function (_Buttons) {
                 this.confirmBoxCarrier.setButtons(_Buttons);
@@ -1526,7 +1526,7 @@
                     var dataControl = new GlobalClass.DataControl();
                     dataControl.copyValuesFrom(resp, basicDialogResponse);
                     return basicDialogResponse;
-                }));
+                }), operators.take(1));
             };
             /** It accepts list of custom buttons */
             DialogInitializer.prototype.setButtons = function (_Buttons) {
@@ -2120,7 +2120,7 @@
                     var dataControl = new GlobalClass.DataControl();
                     dataControl.copyValuesFrom(resp, basicToastNotificationResponse);
                     return basicToastNotificationResponse;
-                }));
+                }), operators.take(1));
             };
             ToastNotificationInitializer.prototype.setButtons = function (_Buttons) {
                 this.toastNotificationCarrier.setButtons(_Buttons);

@@ -16,9 +16,9 @@
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#license)
 
-- **Toast notification for Angular**: Extremely simple to use - just look at the playground!
-- **Confirm box for Angular**: Prevent mistakes, the tool you don't know you needed before!
-- **Modal window for Angular**: It uses Angular factory features - generates any component anywhere in popup without HTML selector!
+* **Toast notification for Angular**: Extremely simple to use - just look at the playground!
+* **Confirm box for Angular**: Prevent mistakes, the tool you don't know you needed before!
+* **Modal window for Angular**: It uses Angular factory features - generates any component anywhere in popup without HTML selector!
 
 [![Ngx Awesome Popup](https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/og-img.jpg)](https://costlydeveloper.github.io/ngx-awesome-popup/)
 
