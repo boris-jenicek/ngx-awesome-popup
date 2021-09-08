@@ -11,7 +11,7 @@ const dialogCoreConfig = {
        Height        : '500px',
        ButtonPosition: 'right',
        LayoutType: DialogLayoutDisplay.INFO,
-       LoaderComponent: // Any Angular component class name can be included as a loader.
+       // LoaderComponent: // Any Angular component class name can be included as a loader.
        DisplayLoader: false // This will override LoaderComponent.
     }
  }

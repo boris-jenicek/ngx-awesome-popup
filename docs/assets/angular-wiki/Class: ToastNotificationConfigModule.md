@@ -14,14 +14,12 @@ Example:
 // app.module imports:
 ToastNotificationConfigModule.forRoot({
    ToastCoreConfig: {
-      Width: '300px',
+      // Milliseconds it will be ignored if buttons are included.
+      AutoCloseDelay: 3000
    },
    GlobalSettings: {
       // The number of toast notifications that can be shown at once.
-      AllowedNotificationsAtOnce: 4,
-
-       // Milliseconds it will be ignored if buttons are included.
-      AutoCloseDelay: 3000
+      AllowedNotificationsAtOnce: 4
    },
    // Optional default dispatch object.
    Dispatch: {
