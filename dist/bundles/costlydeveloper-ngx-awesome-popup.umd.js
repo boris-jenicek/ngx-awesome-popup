@@ -503,8 +503,11 @@
         GlobalConfigService.prototype.setToastStyles = function () {
             this.getSheet("ngx-awesome-popup-styles").addRule(".toast-entity", "all 0.5s ease;");
             this.getSheet("ngx-awesome-popup-styles").addRule(".toast-entity:first-child", "animation: move 0.7s ease-out;");
-            this.getSheet("ngx-awesome-popup-styles").addRule("@-webkit-keyframes move", "\n                                        0% {margin-top: -5px; opacity: 0.4;}\n                                        30% {margin-top: -4px; opacity: 0.7;}\n                                        100% {margin-top: 0px; opacity: 1;}\n                                        ");
-            this.getSheet("ngx-awesome-popup-styles").addRule("@keyframes move", "\n                                        0% {margin-top: -5px; opacity: 0.4;}\n                                        30% {margin-top: -4px; opacity: 0.7;}\n                                        100% {margin-top: 0px; opacity: 1;}\n                                        ");
+            var isIEOrEdge = /msie\s|trident\//i.test(window.navigator.userAgent);
+            if (!isIEOrEdge) {
+                this.getSheet("ngx-awesome-popup-styles").addRule("@-webkit-keyframes move", "\n                                        0% {margin-top: -5px; opacity: 0.4;}\n                                        30% {margin-top: -4px; opacity: 0.7;}\n                                        100% {margin-top: 0px; opacity: 1;}\n                                        ");
+                this.getSheet("ngx-awesome-popup-styles").addRule("@keyframes move", "\n                                        0% {margin-top: -5px; opacity: 0.4;}\n                                        30% {margin-top: -4px; opacity: 0.7;}\n                                        100% {margin-top: 0px; opacity: 1;}\n                                        ");
+            }
         };
         return GlobalConfigService;
     }());

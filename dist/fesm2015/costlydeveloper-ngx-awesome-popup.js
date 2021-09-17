@@ -185,16 +185,19 @@ class GlobalConfigService {
     setToastStyles() {
         this.getSheet("ngx-awesome-popup-styles").addRule(`.toast-entity`, `all 0.5s ease;`);
         this.getSheet("ngx-awesome-popup-styles").addRule(`.toast-entity:first-child`, `animation: move 0.7s ease-out;`);
-        this.getSheet("ngx-awesome-popup-styles").addRule(`@-webkit-keyframes move`, `
+        const isIEOrEdge = /msie\s|trident\//i.test(window.navigator.userAgent);
+        if (!isIEOrEdge) {
+            this.getSheet("ngx-awesome-popup-styles").addRule(`@-webkit-keyframes move`, `
                                         0% {margin-top: -5px; opacity: 0.4;}
                                         30% {margin-top: -4px; opacity: 0.7;}
                                         100% {margin-top: 0px; opacity: 1;}
                                         `);
-        this.getSheet("ngx-awesome-popup-styles").addRule(`@keyframes move`, `
+            this.getSheet("ngx-awesome-popup-styles").addRule(`@keyframes move`, `
                                         0% {margin-top: -5px; opacity: 0.4;}
                                         30% {margin-top: -4px; opacity: 0.7;}
                                         100% {margin-top: 0px; opacity: 1;}
                                         `);
+        }
     }
 }
 GlobalConfigService.ɵprov = i0.ɵɵdefineInjectable({ factory: function GlobalConfigService_Factory() { return new GlobalConfigService(i0.ɵɵinject("globalConfig")); }, token: GlobalConfigService, providedIn: "root" });
