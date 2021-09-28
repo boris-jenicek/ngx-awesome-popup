@@ -24,9 +24,16 @@ export namespace DialogInterface {
    * // Dialog core config object example.
    * const dialogCoreConfig = {
    *     DialogCoreConfig: {
-   *        Width         : '500px',
-   *        Height        : '500px',
-   *        ButtonPosition: 'right',
+   *        Width          : '500px',
+   *        // MinWidth       : '300px',  // v1.1.0
+   *        // MaxWidth       : '700px',  // v1.1.0
+   *        Height         : '500px',
+   *        // MinHeight      : '100vh',  // v1.1.0
+   *        // MaxHeight      : '100px',  // v1.1.0
+   *        HideScrollbar  : true,        // v1.1.0
+   *        EscapeKeyClose : true,        // v1.1.0
+   *        // FullScreen : true,         // v1.1.0
+   *        ButtonPosition : 'right',
    *        LayoutType: DialogLayoutDisplay.INFO,
    *        // LoaderComponent: // Any Angular component class name can be included as a loader.
    *        DisplayLoader: false // This will override LoaderComponent.

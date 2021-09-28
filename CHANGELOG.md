@@ -1,6 +1,6 @@
 v1.1.0
 
-####Added:
+#### Added:
 
 - dialog size options:
   - min width
