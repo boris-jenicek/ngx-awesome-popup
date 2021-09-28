@@ -28,11 +28,9 @@ export declare namespace DialogInterface {
      *  }
      * ```
      */
-    interface IDialogCoreConfig {
-        /** Fixed popup width */
-        Width?: string;
-        /** Fixed popup height */
-        Height?: string;
+    interface IDialogCoreConfig extends GlobalInterface.ISizes {
+        EscapeKeyClose?: boolean;
+        HideScrollbar?: boolean;
         ButtonPosition?: VerticalPosition;
         LayoutType?: DialogLayoutDisplay;
         DisplayLoader?: boolean;
@@ -136,9 +134,9 @@ export declare namespace DialogClass {
         setConfig(_DialogConfig: DialogInterface.IDialogCoreConfig): void;
         openDialog$(): Observable<DialogInterface.IPrivateResponseMerged>;
     }
-    class DialogCoreConfig implements DialogInterface.IDialogCoreConfig {
-        Width: string;
-        Height: string;
+    class DialogCoreConfig extends GlobalClass.Sizes implements DialogInterface.IDialogCoreConfig {
+        EscapeKeyClose: boolean;
+        HideScrollbar: boolean;
         ButtonPosition: VerticalPosition;
         LayoutType: DialogLayoutDisplay;
         DisplayLoader: boolean;

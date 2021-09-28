@@ -1,5 +1,14 @@
 import { ButtonLayoutDisplay } from "./enums";
 export declare namespace GlobalInterface {
+    interface ISizes {
+        Width?: string;
+        MinWidth?: string;
+        MaxWidth?: string;
+        Height?: string;
+        MinHeight?: string;
+        MaxHeight?: string;
+        FullScreen?: boolean;
+    }
     /**
      * Each property of {@link ColorList} represent a string which represent a color in hex or rgb/rgba format.
      * For available color types(properties) check {@link IColorTypes} interface.
@@ -88,6 +97,15 @@ export declare namespace GlobalInterface {
     }
 }
 export declare namespace GlobalClass {
+    class Sizes implements GlobalInterface.ISizes {
+        Width: string;
+        MinWidth: string;
+        MaxWidth: string;
+        Height: string;
+        MinHeight: string;
+        MaxHeight: string;
+        FullScreen: boolean;
+    }
     class Dispatch {
         Title: string;
         Message: string;

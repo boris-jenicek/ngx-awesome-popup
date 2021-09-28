@@ -9,6 +9,7 @@ export declare class DialogWrapperComponent implements AfterViewInit, OnDestroy 
     private cd;
     fadeInOutAnimation: string;
     showLoader: boolean;
+    bodyOverflow: string;
     childComponentRef: ComponentRef<any>;
     childComponentType: Type<any>;
     loaderComponentRef: ComponentRef<any>;
@@ -16,8 +17,11 @@ export declare class DialogWrapperComponent implements AfterViewInit, OnDestroy 
     loaderInsertionPoint: InsertionLoaderDirective;
     constructor(dialogBelonging: DialogClass.DialogBelonging, componentFactoryResolver: ComponentFactoryResolver, cd: ChangeDetectorRef);
     ngAfterViewInit(): void;
+    hideScrollbar(): void;
+    revertScrollbarSettings(): void;
     setDefaultResponse(): void;
     ngOnDestroy(): void;
+    hideScroller(): void;
     loadChildComponent(_ComponentType: Type<any>): void;
     loadLoaderComponent(_LoaderRef: Type<any>): void;
     close(): void;
@@ -25,4 +29,5 @@ export declare class DialogWrapperComponent implements AfterViewInit, OnDestroy 
     onOverlayClicked(evt: MouseEvent): void;
     onCustomButton(_Button: any): void;
     closeLoader(): void;
+    keyEvent(event: KeyboardEvent): void;
 }
