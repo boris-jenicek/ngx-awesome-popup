@@ -3,6 +3,16 @@ import { ButtonLayoutDisplay } from "./enums";
 import { GlobalConfigService } from "./global-config.service";
 
 export namespace GlobalInterface {
+  export interface ISizes {
+    Width?: string;
+    MinWidth?: string;
+    MaxWidth?: string;
+    Height?: string;
+    MinHeight?: string;
+    MaxHeight?: string;
+    FullScreen?: boolean;
+  }
+
   /**
    * Each property of {@link ColorList} represent a string which represent a color in hex or rgb/rgba format.
    * For available color types(properties) check {@link IColorTypes} interface.
@@ -99,6 +109,16 @@ export namespace GlobalInterface {
 }
 
 export namespace GlobalClass {
+  export class Sizes implements GlobalInterface.ISizes {
+    Width: string = null;
+    MinWidth: string = null;
+    MaxWidth: string = null;
+    Height: string = null;
+    MinHeight: string = null;
+    MaxHeight: string = null;
+    FullScreen: boolean = null;
+  }
+
   export class Dispatch {
     Title: string = null;
     Message: string = null;

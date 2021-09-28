@@ -5,6 +5,14 @@
 >
   <div
     class="evolve-parent-dialog"
+    [ngStyle]="
+      dialogBelonging.DialogCoreConfig.FullScreen && {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        width: '100%',
+        borderRadius: '0'
+      }
+    "
     [ngClass]="{
       'standard-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 0,
       'success-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 1,
@@ -28,14 +36,47 @@
         <ng-template appInsertionLoader></ng-template>
       </div>
     </div>
-
+    <ng-container
+      *ngIf="!dialogBelonging.DialogCoreConfig.FullScreen; else fullScreen"
+    >
+    </ng-container>
+    <ng-template #fullScreen></ng-template>
     <div
       class="content-holder"
-      [ngStyle]="{
-        width: dialogBelonging.DialogCoreConfig.Width,
-        height: dialogBelonging.DialogCoreConfig.Height
-      }"
+      [ngStyle]="
+        dialogBelonging.DialogCoreConfig.FullScreen
+          ? {
+              width: '100vw',
+              height: '100vh'
+            }
+          : {
+              width: dialogBelonging.DialogCoreConfig.Width,
+              minWidth: dialogBelonging.DialogCoreConfig.MinWidth,
+              maxWidth: dialogBelonging.DialogCoreConfig.MaxWidth,
+              height: dialogBelonging.DialogCoreConfig.Height,
+              minHeight: dialogBelonging.DialogCoreConfig.MinHeight,
+              maxHeight: dialogBelonging.DialogCoreConfig.MaxHeight
+            }
+      "
     >
+      <!--      <div
+      class="content-holder"
+      [ngStyle]="
+        dialogBelonging.DialogCoreConfig.FullScreen
+          ? {
+              width: dialogBelonging.DialogCoreConfig.Width,
+              minWidth: dialogBelonging.DialogCoreConfig.MinWidth,
+              maxWidth: dialogBelonging.DialogCoreConfig.MaxWidth,
+              height: dialogBelonging.DialogCoreConfig.Height,
+              minHeight: dialogBelonging.DialogCoreConfig.MinHeight,
+              maxHeight: dialogBelonging.DialogCoreConfig.MaxHeight
+            }
+          : {
+              width: '100vw',
+              height: '100vh'
+            }
+      "
+    >-->
       <!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->
       <div
         class="component-content"

@@ -34,11 +34,9 @@ export namespace DialogInterface {
    *  }
    * ```
    */
-  export interface IDialogCoreConfig {
-    /** Fixed popup width */
-    Width?: string;
-    /** Fixed popup height */
-    Height?: string;
+  export interface IDialogCoreConfig extends GlobalInterface.ISizes {
+    EscapeKeyClose?: boolean;
+    HideScrollbar?: boolean;
     ButtonPosition?: VerticalPosition;
     LayoutType?: DialogLayoutDisplay;
     DisplayLoader?: boolean;
@@ -273,9 +271,11 @@ export namespace DialogClass {
     }
   }
 
-  export class DialogCoreConfig implements DialogInterface.IDialogCoreConfig {
-    Width: string = null;
-    Height: string = null;
+  export class DialogCoreConfig
+    extends GlobalClass.Sizes
+    implements DialogInterface.IDialogCoreConfig {
+    EscapeKeyClose: boolean = null;
+    HideScrollbar: boolean = null;
     ButtonPosition: VerticalPosition = null;
     LayoutType: DialogLayoutDisplay = null;
     DisplayLoader: boolean = null;

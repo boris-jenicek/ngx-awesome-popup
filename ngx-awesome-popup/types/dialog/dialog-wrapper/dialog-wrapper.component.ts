@@ -4,6 +4,7 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef,
+  HostListener,
   OnDestroy,
   Type,
   ViewChild,
@@ -24,6 +25,7 @@ import { DialogClass } from "../core/model";
 export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   fadeInOutAnimation: string = "open";
   showLoader: boolean = true;
+  bodyOverflow: string;
 
   childComponentRef: ComponentRef<any>;
   childComponentType: Type<any>;
@@ -41,12 +43,27 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   ) {}
 
   ngAfterViewInit(): void {
+    this.hideScrollbar(); // hide scrollbar if config enabled
+
     this.loadChildComponent(this.childComponentType);
     this.loadLoaderComponent(
       this.dialogBelonging.DialogCoreConfig.LoaderComponent
     );
     this.setDefaultResponse();
     this.cd.detectChanges();
+  }
+
+  hideScrollbar() {
+    if (this.dialogBelonging.DialogCoreConfig.HideScrollbar) {
+      this.bodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  revertScrollbarSettings() {
+    if (this.dialogBelonging.DialogCoreConfig.HideScrollbar) {
+      document.body.style.overflow = this.bodyOverflow;
+    }
   }
 
   setDefaultResponse(): void {
@@ -56,6 +73,8 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.revertScrollbarSettings();
+
     if (this.childComponentRef) {
       this.childComponentRef.destroy();
     }
@@ -63,6 +82,8 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
       this.loaderComponentRef.destroy();
     }
   }
+
+  hideScroller() {}
 
   loadChildComponent(_ComponentType: Type<any>): void {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
@@ -113,5 +134,12 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
 
   closeLoader(): void {
     this.showLoader = false;
+  }
+
+  @HostListener("window:keyup", ["$event"])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.close();
+    }
   }
 }

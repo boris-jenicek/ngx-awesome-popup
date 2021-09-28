@@ -33,6 +33,8 @@ export class DialogConfigService {
     // region *** author default config values (if there is no user input) ***
     this.authorConfig.DialogCoreConfig.Width = "auto";
     this.authorConfig.DialogCoreConfig.Height = "auto";
+    this.authorConfig.DialogCoreConfig.HideScrollbar = false;
+    this.authorConfig.DialogCoreConfig.EscapeKeyClose = false;
     this.authorConfig.DialogCoreConfig.ButtonPosition = "right";
     this.authorConfig.DialogCoreConfig.DisplayLoader = false;
     this.authorConfig.DialogCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
