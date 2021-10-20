@@ -49,7 +49,7 @@
   "peerDependencies": {
     "@angular/common": ">8.0.0",
     "@angular/core": ">8.0.0",
-    "rxjs": "6.*.*"
+    "rxjs": ">6.*.*"
   },
   "main": "bundles/costlydeveloper-ngx-awesome-popup.umd.js",
   "module": "fesm2015/costlydeveloper-ngx-awesome-popup.js",

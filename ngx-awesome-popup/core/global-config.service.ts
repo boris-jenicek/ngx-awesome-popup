@@ -1,10 +1,10 @@
-import { Inject, Injectable } from "@angular/core";
-import { ColorVariance } from "./enums";
-import { GlobalClass, GlobalInterface } from "./global";
+import { Inject, Injectable } from '@angular/core';
+import { ColorVariance } from './enums';
+import { GlobalClass, GlobalInterface } from './global';
 import IColorProvider = GlobalInterface.IColorProvider;
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class GlobalConfigService {
   productionGlobalConfig: GlobalInterface.IGlobalConfig = new GlobalClass.GlobalConfig();
@@ -12,7 +12,7 @@ export class GlobalConfigService {
   private userGeneratedConfig: GlobalInterface.IGlobalUserConfig;
 
   constructor(
-    @Inject("globalConfig")
+    @Inject('cdGlobalConfig')
     private userGlobalConfig: GlobalInterface.IGlobalUserConfig
   ) {
     this.userGeneratedConfig = new GlobalClass.GlobalUserConfig(
@@ -51,7 +51,7 @@ export class GlobalConfigService {
   ) {
     if (_Reset) {
       let evolveDialogStyleNode = document.getElementById(
-        "ngx-awesome-popup-glob-styles"
+        'ngx-awesome-popup-glob-styles'
       ) as HTMLStyleElement;
       if (evolveDialogStyleNode) {
         evolveDialogStyleNode.remove();
@@ -59,7 +59,7 @@ export class GlobalConfigService {
     }
     this.setToastStyles();
 
-    Object.keys(_ProductionColorTypes).forEach((key) => {
+    Object.keys(_ProductionColorTypes).forEach(key => {
       if (_ProductionColorTypes[key]) {
         this.setButtonStyling(key, _ProductionColorTypes[key]);
         this.setIconStyling(key, _ProductionColorTypes[key]);
@@ -67,8 +67,8 @@ export class GlobalConfigService {
         this.setDialogFrame(key, _ProductionColorTypes[key]);
 
         if (ColorVariance[key.toUpperCase()] === ColorVariance.PRIMARY) {
-          this.getSheet("ngx-awesome-popup-styles").addRule(
-            ".ngx-awesome-popup-overlay",
+          this.getSheet('ngx-awesome-popup-styles').addRule(
+            '.ngx-awesome-popup-overlay',
             `background:  ${_ProductionColorTypes[key].TransparentDarkenVariance}!important;`
           );
         }
@@ -77,7 +77,7 @@ export class GlobalConfigService {
   }
 
   public setUserColors(_UserColorTypes: GlobalInterface.IColorTypes): void {
-    if (typeof _UserColorTypes !== "object") {
+    if (typeof _UserColorTypes !== 'object') {
       return;
     }
 
@@ -86,8 +86,8 @@ export class GlobalConfigService {
       this.productionGlobalConfig.DisplayColor
     );
 
-    userKeys.forEach((key) => {
-      if (productionObjectKeys.find((tKey) => tKey === key)) {
+    userKeys.forEach(key => {
+      if (productionObjectKeys.find(tKey => tKey === key)) {
         if (_UserColorTypes[key]) {
           const baseColorProvider = new GlobalClass.ColorProvider(
             _UserColorTypes[key]
@@ -109,14 +109,14 @@ export class GlobalConfigService {
     ) as HTMLStyleElement;
     if (!evolveDialogStyleNode) {
       const headNode =
-        document.head || document.getElementsByTagName("head")[0];
+        document.head || document.getElementsByTagName('head')[0];
       if (!headNode) {
         return;
       }
 
-      evolveDialogStyleNode = document.createElement("style");
-      evolveDialogStyleNode.setAttribute("id", _StyleID);
-      evolveDialogStyleNode.appendChild(document.createTextNode(""));
+      evolveDialogStyleNode = document.createElement('style');
+      evolveDialogStyleNode.setAttribute('id', _StyleID);
+      evolveDialogStyleNode.appendChild(document.createTextNode(''));
       headNode.appendChild(evolveDialogStyleNode);
     }
 
@@ -141,15 +141,15 @@ export class GlobalConfigService {
         background-color:  ${_ColorProvider.Brighten}!important;
         `;
 
-    this.getSheet("ngx-awesome-popup-glob-styles").addRule(
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
       baseProgress,
       baseProgressStyle
     );
-    this.getSheet("ngx-awesome-popup-glob-styles").addRule(
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
       standardToast,
       standardToastStyle
     );
-    this.getSheet("ngx-awesome-popup-glob-styles").addRule(
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
       simpleToast,
       simpleToastStyle
     );
@@ -186,15 +186,15 @@ export class GlobalConfigService {
         }!important;
         `;
 
-    this.getSheet("ngx-awesome-popup-glob-styles").addRule(
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
       baseButtonClass,
       baseStyle
     );
-    this.getSheet("ngx-awesome-popup-glob-styles").addRule(
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
       hoverButtonClass,
       hoverStyle
     );
-    this.getSheet("ngx-awesome-popup-glob-styles").addRule(
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
       focusActiveButtonClass,
       focusActiveStyle
     );
@@ -204,7 +204,7 @@ export class GlobalConfigService {
     const baseIconClass = `.ap-icon-${_Key.toLowerCase()}`;
     const baseStyle = `color: ${_ColorProvider.BrightenForShade}!important;`;
 
-    this.getSheet("ngx-awesome-popup-glob-styles").addRule(
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
       baseIconClass,
       baseStyle
     );
@@ -216,25 +216,25 @@ export class GlobalConfigService {
         border-color: ${_ColorProvider.Brighten}!important;
         `;
 
-    this.getSheet("ngx-awesome-popup-glob-styles").addRule(
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
       baseDialogFrameClass,
       baseStyle
     );
   }
 
   private setToastStyles() {
-    this.getSheet("ngx-awesome-popup-styles").addRule(
+    this.getSheet('ngx-awesome-popup-styles').addRule(
       `.toast-entity`,
       `all 0.5s ease;`
     );
-    this.getSheet("ngx-awesome-popup-styles").addRule(
+    this.getSheet('ngx-awesome-popup-styles').addRule(
       `.toast-entity:first-child`,
       `animation: move 0.7s ease-out;`
     );
 
     const isIEOrEdge = /msie\s|trident\//i.test(window.navigator.userAgent);
     if (!isIEOrEdge) {
-      this.getSheet("ngx-awesome-popup-styles").addRule(
+      this.getSheet('ngx-awesome-popup-styles').addRule(
         `@-webkit-keyframes move`,
         `
                                         0% {margin-top: -5px; opacity: 0.4;}
@@ -242,7 +242,7 @@ export class GlobalConfigService {
                                         100% {margin-top: 0px; opacity: 1;}
                                         `
       );
-      this.getSheet("ngx-awesome-popup-styles").addRule(
+      this.getSheet('ngx-awesome-popup-styles').addRule(
         `@keyframes move`,
         `
                                         0% {margin-top: -5px; opacity: 0.4;}

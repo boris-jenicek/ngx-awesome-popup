@@ -1,10 +1,16 @@
-import { Observable, Subject } from "rxjs";
-import { map, take } from "rxjs/operators";
-import { DialogLayoutDisplay, VerticalPosition } from "../../../core/enums";
-import { GlobalClass, GlobalInterface } from "../../../core/global";
-import { ServiceLocator } from "../../../locator.service";
-import { ConfirmBoxConfigService } from "./confirm-box-config.service";
-import { ConfirmBoxService } from "./confirm-box-service";
+import { Observable, Subject } from 'rxjs';
+import { map, take } from 'rxjs/operators';
+import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import { GlobalClass, GlobalInterface } from '../../../core/global';
+import { ServiceLocator } from '../../../locator.service';
+import { ConfirmBoxConfigService } from './confirm-box-config.service';
+import { ConfirmBoxService } from './confirm-box-service';
+
+export interface IConfirmBoxUserConfig {
+  Buttons?: GlobalInterface.IButton[];
+  ConfirmBoxCoreConfig?: ConfirmBoxInterface.IConfirmBoxCoreConfig;
+  Dispatch?: GlobalInterface.IDispatch;
+}
 
 export namespace ConfirmBoxInterface {
   export interface IConfirmBoxUserConfig {
@@ -63,7 +69,7 @@ export namespace ConfirmBoxClass {
 
     openConfirmBox$(): Observable<ConfirmBoxInterface.IConfirmBoxPublicResponse> {
       return this.confirmBoxCarrier.openConfirmBox$().pipe(
-        map((resp) => {
+        map(resp => {
           const basicConfirmBoxResponse = new ConfirmBoxResponse();
           const dataControl = new GlobalClass.DataControl();
           dataControl.copyValuesFrom(resp, basicConfirmBoxResponse);
@@ -243,7 +249,7 @@ export namespace ConfirmBoxClass {
   export class ConfirmBoxBelonging
     extends ConfirmBoxClass.Settings
     implements ConfirmBoxInterface.IConfirmBoxBelonging {
-    EntityUniqueID: string = "C" + Math.random().toString(36).substr(2, 9);
+    EntityUniqueID: string = 'C' + Math.random().toString(36).substr(2, 9);
     EventsController: ConfirmBoxEventsController;
 
     constructor() {
