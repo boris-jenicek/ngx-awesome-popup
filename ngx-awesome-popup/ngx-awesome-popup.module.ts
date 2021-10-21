@@ -39,10 +39,7 @@ export class NgxAwesomePopupModule {
   ): ModuleWithProviders<NgxAwesomePopupModule> {
     return {
       ngModule: NgxAwesomePopupModule,
-      providers: [
-        GlobalConfigService,
-        { provide: 'cdGlobalConfig', useValue: globalConfig }
-      ]
+      providers: [{ provide: 'cdGlobalConfig', useValue: globalConfig }]
     };
   }
 }

@@ -24,7 +24,7 @@ export class ToastNotificationConfigService {
     @Inject('toastNotificationConfig')
     private userConfig: IToastNotificationUserConfig = {}
   ) {
-    // region *** confirmBox userConfig (user input app-module) ***
+    // region *** toastNotification userConfig (user input app-module) ***
     const userConfigBase = new ToastSettings();
 
     this.dataControl.copyValuesFrom(

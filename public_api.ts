@@ -115,8 +115,7 @@ export { ResetToastGlobalSettings };
  *
  *    subscriptions: Subscription[] = [];
  *
- *    constructor(private dialogBelonging: DialogBelonging) {
- *    }
+ *    constructor(@Inject('dialogBelonging') private dialogBelonging: DialogBelonging) {}
  *
  *    ngOnInit(): void {
  *    console.log(this.dialogBelonging);

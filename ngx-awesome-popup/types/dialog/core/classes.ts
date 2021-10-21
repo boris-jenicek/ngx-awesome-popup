@@ -98,6 +98,7 @@ export class DialogEventsController implements IDialogEventsController {
   constructor(private EntityUniqueID: string) {}
 
   close(_Payload: any = null): void {
+    console.log(this.defaultResponse);
     this.defaultResponse.setPayload(_Payload);
     this._afterClosed.next(this.defaultResponse);
   }
