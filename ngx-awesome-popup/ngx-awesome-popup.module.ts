@@ -26,44 +26,11 @@ import { ToastNotificationSimpleWrapperComponent } from './types/toast-notificat
 import { ToastNotificationWrapperComponent } from './types/toast-notification/toast-notification-wrapper/toast-notification-wrapper.component';
 
 @NgModule({
-  declarations: [
-    DialogWrapperComponent,
-    InsertionDirective,
-    InsertionLoaderDirective,
-    DefaultLoaderComponent,
-    ConfirmBoxWrapperComponent,
-    ToastNotificationWrapperComponent,
-    ToastNotificationSimpleWrapperComponent
-  ],
   imports: [CommonModule, BrowserModule, BrowserAnimationsModule],
-  providers: [
-    DialogService,
-    ConfirmBoxService,
-    ToastNotificationService,
-    GlobalConfigService,
-    DialogConfigService,
-    ConfirmBoxConfigService,
-    ToastNotificationConfigService,
-    { provide: 'confirmBoxBelonging', useClass: ConfirmBoxBelonging },
-    { provide: 'dialogBelonging', useClass: DialogBelonging },
-    {
-      provide: 'toastNotificationBelonging',
-      useClass: ToastNotificationBelonging
-    }
-  ],
-  entryComponents: [
-    DialogWrapperComponent,
-    DefaultLoaderComponent,
-    ConfirmBoxWrapperComponent,
-    ToastNotificationWrapperComponent,
-    ToastNotificationSimpleWrapperComponent
-  ]
+  providers: [GlobalConfigService]
 })
 export class NgxAwesomePopupModule {
-  constructor(
-    private injector: Injector,
-    private gConfigService: GlobalConfigService
-  ) {
+  constructor(private injector: Injector) {
     ServiceLocator.injector = injector;
   }
 
@@ -80,7 +47,17 @@ export class NgxAwesomePopupModule {
   }
 }
 
-@NgModule({})
+@NgModule({
+  declarations: [
+    DialogWrapperComponent,
+    DefaultLoaderComponent,
+    InsertionDirective,
+    InsertionLoaderDirective
+  ],
+  imports: [CommonModule],
+  providers: [DialogService, DialogConfigService],
+  entryComponents: [DialogWrapperComponent, DefaultLoaderComponent]
+})
 export class DialogConfigModule {
   static forRoot(
     dialogConfig?: IDialogUserConfig
@@ -88,14 +65,19 @@ export class DialogConfigModule {
     return {
       ngModule: DialogConfigModule,
       providers: [
-        DialogConfigService,
-        { provide: 'dialogConfig', useValue: dialogConfig }
+        { provide: 'dialogConfig', useValue: dialogConfig },
+        { provide: 'dialogBelonging', useClass: DialogBelonging }
       ]
     };
   }
 }
 
-@NgModule({})
+@NgModule({
+  declarations: [ConfirmBoxWrapperComponent],
+  imports: [CommonModule],
+  providers: [ConfirmBoxService, ConfirmBoxConfigService],
+  entryComponents: [ConfirmBoxWrapperComponent]
+})
 export class ConfirmBoxConfigModule {
   static forRoot(
     confirmBoxConfig?: IConfirmBoxUserConfig
@@ -103,14 +85,25 @@ export class ConfirmBoxConfigModule {
     return {
       ngModule: ConfirmBoxConfigModule,
       providers: [
-        ConfirmBoxConfigService,
-        { provide: 'confirmBoxConfig', useValue: confirmBoxConfig }
+        { provide: 'confirmBoxConfig', useValue: confirmBoxConfig },
+        { provide: 'confirmBoxBelonging', useClass: ConfirmBoxBelonging }
       ]
     };
   }
 }
 
-@NgModule({})
+@NgModule({
+  declarations: [
+    ToastNotificationWrapperComponent,
+    ToastNotificationSimpleWrapperComponent
+  ],
+  imports: [CommonModule],
+  providers: [ToastNotificationService, ToastNotificationConfigService],
+  entryComponents: [
+    ToastNotificationWrapperComponent,
+    ToastNotificationSimpleWrapperComponent
+  ]
+})
 export class ToastNotificationConfigModule {
   static forRoot(
     toastNotificationConfig?: IToastNotificationUserConfig
@@ -118,10 +111,13 @@ export class ToastNotificationConfigModule {
     return {
       ngModule: ToastNotificationConfigModule,
       providers: [
-        ToastNotificationConfigService,
         {
           provide: 'toastNotificationConfig',
           useValue: toastNotificationConfig
+        },
+        {
+          provide: 'toastNotificationBelonging',
+          useClass: ToastNotificationBelonging
         }
       ]
     };
