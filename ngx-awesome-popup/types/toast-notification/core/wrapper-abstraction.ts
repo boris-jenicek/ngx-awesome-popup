@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { Timer } from '../../../core/global-classes';
@@ -9,9 +9,7 @@ import {
   ToastNotificationDefaultResponse
 } from './classes';
 
-@Component({
-  template: ''
-})
+@Injectable()
 export abstract class WrapperAbstraction implements OnDestroy {
   fadeInOutAnimation: string = 'open';
   timerStarted$ = new BehaviorSubject('start-counter');

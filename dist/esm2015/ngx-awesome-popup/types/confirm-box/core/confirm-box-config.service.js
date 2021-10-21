@@ -1,0 +1,43 @@
+import { Inject, Injectable } from '@angular/core';
+import { DialogLayoutDisplay } from '../../../core/enums';
+import { DataControl } from '../../../core/global-classes';
+import { ConfirmBoxSettings } from './classes';
+import * as i0 from "@angular/core";
+export class ConfirmBoxConfigService {
+    constructor(userConfig = {}) {
+        this.userConfig = userConfig;
+        this.authorConfig = new ConfirmBoxSettings();
+        this.productionConfig = new ConfirmBoxSettings();
+        // region *** confirmBox userConfig (user input app-module) ***
+        const userConfigBase = new ConfirmBoxSettings();
+        const dataControl = new DataControl();
+        dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, userConfigBase.ConfirmBoxCoreConfig); // this will make sure that object has right properties
+        userConfig.ConfirmBoxCoreConfig = userConfigBase.ConfirmBoxCoreConfig;
+        // endregion
+        // region *** author default config values (if there is no user input) ***
+        this.authorConfig.ConfirmBoxCoreConfig.Width = 'auto';
+        this.authorConfig.ConfirmBoxCoreConfig.Height = 'auto';
+        this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition = 'center';
+        this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel = 'Confirm';
+        this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel = 'Decline';
+        this.authorConfig.ConfirmBoxCoreConfig.DisableIcon = false;
+        this.authorConfig.ConfirmBoxCoreConfig.AllowHTMLMessage = false;
+        this.authorConfig.ConfirmBoxCoreConfig.LayoutType =
+            DialogLayoutDisplay.NONE;
+        // endregion
+        // region *** Production setup ***
+        dataControl.copyValuesFrom(this.authorConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
+        dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
+        // endregion
+    }
+}
+ConfirmBoxConfigService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ConfirmBoxConfigService_Factory() { return new ConfirmBoxConfigService(i0.ɵɵinject("confirmBoxConfig")); }, token: ConfirmBoxConfigService, providedIn: "root" });
+ConfirmBoxConfigService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: 'root'
+            },] }
+];
+ConfirmBoxConfigService.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: Inject, args: ['confirmBoxConfig',] }] }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29uZmlybS1ib3gtY29uZmlnLnNlcnZpY2UuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9uZ3gtYXdlc29tZS1wb3B1cC90eXBlcy9jb25maXJtLWJveC9jb3JlL2NvbmZpcm0tYm94LWNvbmZpZy5zZXJ2aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxNQUFNLEVBQUUsVUFBVSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQ25ELE9BQU8sRUFBRSxtQkFBbUIsRUFBRSxNQUFNLHFCQUFxQixDQUFDO0FBQzFELE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSw4QkFBOEIsQ0FBQztBQUMzRCxPQUFPLEVBQUUsa0JBQWtCLEVBQUUsTUFBTSxXQUFXLENBQUM7O0FBTS9DLE1BQU0sT0FBTyx1QkFBdUI7SUFJbEMsWUFFVSxhQUFvQyxFQUFFO1FBQXRDLGVBQVUsR0FBVixVQUFVLENBQTRCO1FBTGhELGlCQUFZLEdBQTBCLElBQUksa0JBQWtCLEVBQUUsQ0FBQztRQUMvRCxxQkFBZ0IsR0FBMEIsSUFBSSxrQkFBa0IsRUFBRSxDQUFDO1FBTWpFLCtEQUErRDtRQUMvRCxNQUFNLGNBQWMsR0FBRyxJQUFJLGtCQUFrQixFQUFFLENBQUM7UUFDaEQsTUFBTSxXQUFXLEdBQUcsSUFBSSxXQUFXLEVBQUUsQ0FBQztRQUN0QyxXQUFXLENBQUMsY0FBYyxDQUN4QixVQUFVLENBQUMsb0JBQW9CLEVBQy9CLGNBQWMsQ0FBQyxvQkFBb0IsQ0FDcEMsQ0FBQyxDQUFDLHVEQUF1RDtRQUMxRCxVQUFVLENBQUMsb0JBQW9CLEdBQUcsY0FBYyxDQUFDLG9CQUFvQixDQUFDO1FBQ3RFLFlBQVk7UUFFWiwwRUFBMEU7UUFDMUUsSUFBSSxDQUFDLFlBQVksQ0FBQyxvQkFBb0IsQ0FBQyxLQUFLLEdBQUcsTUFBTSxDQUFDO1FBQ3RELElBQUksQ0FBQyxZQUFZLENBQUMsb0JBQW9CLENBQUMsTUFBTSxHQUFHLE1BQU0sQ0FBQztRQUN2RCxJQUFJLENBQUMsWUFBWSxDQUFDLG9CQUFvQixDQUFDLGNBQWMsR0FBRyxRQUFRLENBQUM7UUFDakUsSUFBSSxDQUFDLFlBQVksQ0FBQyxvQkFBb0IsQ0FBQyxZQUFZLEdBQUcsU0FBUyxDQUFDO1FBQ2hFLElBQUksQ0FBQyxZQUFZLENBQUMsb0JBQW9CLENBQUMsWUFBWSxHQUFHLFNBQVMsQ0FBQztRQUNoRSxJQUFJLENBQUMsWUFBWSxDQUFDLG9CQUFvQixDQUFDLFdBQVcsR0FBRyxLQUFLLENBQUM7UUFDM0QsSUFBSSxDQUFDLFlBQVksQ0FBQyxvQkFBb0IsQ0FBQyxnQkFBZ0IsR0FBRyxLQUFLLENBQUM7UUFDaEUsSUFBSSxDQUFDLFlBQVksQ0FBQyxvQkFBb0IsQ0FBQyxVQUFVO1lBQy9DLG1CQUFtQixDQUFDLElBQUksQ0FBQztRQUUzQixZQUFZO1FBRVosa0NBQWtDO1FBQ2xDLFdBQVcsQ0FBQyxjQUFjLENBQ3hCLElBQUksQ0FBQyxZQUFZLENBQUMsb0JBQW9CLEVBQ3RDLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxvQkFBb0IsQ0FDM0MsQ0FBQztRQUNGLFdBQVcsQ0FBQyxjQUFjLENBQ3hCLFVBQVUsQ0FBQyxvQkFBb0IsRUFDL0IsSUFBSSxDQUFDLGdCQUFnQixDQUFDLG9CQUFvQixDQUMzQyxDQUFDO1FBQ0YsWUFBWTtJQUNkLENBQUM7Ozs7WUE1Q0YsVUFBVSxTQUFDO2dCQUNWLFVBQVUsRUFBRSxNQUFNO2FBQ25COzs7NENBTUksTUFBTSxTQUFDLGtCQUFrQiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdCwgSW5qZWN0YWJsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgRGlhbG9nTGF5b3V0RGlzcGxheSB9IGZyb20gJy4uLy4uLy4uL2NvcmUvZW51bXMnO1xuaW1wb3J0IHsgRGF0YUNvbnRyb2wgfSBmcm9tICcuLi8uLi8uLi9jb3JlL2dsb2JhbC1jbGFzc2VzJztcbmltcG9ydCB7IENvbmZpcm1Cb3hTZXR0aW5ncyB9IGZyb20gJy4vY2xhc3Nlcyc7XG5pbXBvcnQgeyBJQ29uZmlybUJveFVzZXJDb25maWcgfSBmcm9tICcuL2ludGVyZmFjZXMnO1xuXG5ASW5qZWN0YWJsZSh7XG4gIHByb3ZpZGVkSW46ICdyb290J1xufSlcbmV4cG9ydCBjbGFzcyBDb25maXJtQm94Q29uZmlnU2VydmljZSB7XG4gIGF1dGhvckNvbmZpZzogSUNvbmZpcm1Cb3hVc2VyQ29uZmlnID0gbmV3IENvbmZpcm1Cb3hTZXR0aW5ncygpO1xuICBwcm9kdWN0aW9uQ29uZmlnOiBJQ29uZmlybUJveFVzZXJDb25maWcgPSBuZXcgQ29uZmlybUJveFNldHRpbmdzKCk7XG5cbiAgY29uc3RydWN0b3IoXG4gICAgQEluamVjdCgnY29uZmlybUJveENvbmZpZycpXG4gICAgcHJpdmF0ZSB1c2VyQ29uZmlnOiBJQ29uZmlybUJveFVzZXJDb25maWcgPSB7fVxuICApIHtcbiAgICAvLyByZWdpb24gKioqIGNvbmZpcm1Cb3ggdXNlckNvbmZpZyAodXNlciBpbnB1dCBhcHAtbW9kdWxlKSAqKipcbiAgICBjb25zdCB1c2VyQ29uZmlnQmFzZSA9IG5ldyBDb25maXJtQm94U2V0dGluZ3MoKTtcbiAgICBjb25zdCBkYXRhQ29udHJvbCA9IG5ldyBEYXRhQ29udHJvbCgpO1xuICAgIGRhdGFDb250cm9sLmNvcHlWYWx1ZXNGcm9tKFxuICAgICAgdXNlckNvbmZpZy5Db25maXJtQm94Q29yZUNvbmZpZyxcbiAgICAgIHVzZXJDb25maWdCYXNlLkNvbmZpcm1Cb3hDb3JlQ29uZmlnXG4gICAgKTsgLy8gdGhpcyB3aWxsIG1ha2Ugc3VyZSB0aGF0IG9iamVjdCBoYXMgcmlnaHQgcHJvcGVydGllc1xuICAgIHVzZXJDb25maWcuQ29uZmlybUJveENvcmVDb25maWcgPSB1c2VyQ29uZmlnQmFzZS5Db25maXJtQm94Q29yZUNvbmZpZztcbiAgICAvLyBlbmRyZWdpb25cblxuICAgIC8vIHJlZ2lvbiAqKiogYXV0aG9yIGRlZmF1bHQgY29uZmlnIHZhbHVlcyAoaWYgdGhlcmUgaXMgbm8gdXNlciBpbnB1dCkgKioqXG4gICAgdGhpcy5hdXRob3JDb25maWcuQ29uZmlybUJveENvcmVDb25maWcuV2lkdGggPSAnYXV0byc7XG4gICAgdGhpcy5hdXRob3JDb25maWcuQ29uZmlybUJveENvcmVDb25maWcuSGVpZ2h0ID0gJ2F1dG8nO1xuICAgIHRoaXMuYXV0aG9yQ29uZmlnLkNvbmZpcm1Cb3hDb3JlQ29uZmlnLkJ1dHRvblBvc2l0aW9uID0gJ2NlbnRlcic7XG4gICAgdGhpcy5hdXRob3JDb25maWcuQ29uZmlybUJveENvcmVDb25maWcuQ29uZmlybUxhYmVsID0gJ0NvbmZpcm0nO1xuICAgIHRoaXMuYXV0aG9yQ29uZmlnLkNvbmZpcm1Cb3hDb3JlQ29uZmlnLkRlY2xpbmVMYWJlbCA9ICdEZWNsaW5lJztcbiAgICB0aGlzLmF1dGhvckNvbmZpZy5Db25maXJtQm94Q29yZUNvbmZpZy5EaXNhYmxlSWNvbiA9IGZhbHNlO1xuICAgIHRoaXMuYXV0aG9yQ29uZmlnLkNvbmZpcm1Cb3hDb3JlQ29uZmlnLkFsbG93SFRNTE1lc3NhZ2UgPSBmYWxzZTtcbiAgICB0aGlzLmF1dGhvckNvbmZpZy5Db25maXJtQm94Q29yZUNvbmZpZy5MYXlvdXRUeXBlID1cbiAgICAgIERpYWxvZ0xheW91dERpc3BsYXkuTk9ORTtcblxuICAgIC8vIGVuZHJlZ2lvblxuXG4gICAgLy8gcmVnaW9uICoqKiBQcm9kdWN0aW9uIHNldHVwICoqKlxuICAgIGRhdGFDb250cm9sLmNvcHlWYWx1ZXNGcm9tKFxuICAgICAgdGhpcy5hdXRob3JDb25maWcuQ29uZmlybUJveENvcmVDb25maWcsXG4gICAgICB0aGlzLnByb2R1Y3Rpb25Db25maWcuQ29uZmlybUJveENvcmVDb25maWdcbiAgICApO1xuICAgIGRhdGFDb250cm9sLmNvcHlWYWx1ZXNGcm9tKFxuICAgICAgdXNlckNvbmZpZy5Db25maXJtQm94Q29yZUNvbmZpZyxcbiAgICAgIHRoaXMucHJvZHVjdGlvbkNvbmZpZy5Db25maXJtQm94Q29yZUNvbmZpZ1xuICAgICk7XG4gICAgLy8gZW5kcmVnaW9uXG4gIH1cbn1cbiJdfQ==
