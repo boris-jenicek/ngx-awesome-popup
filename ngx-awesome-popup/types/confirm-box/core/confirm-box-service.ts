@@ -4,15 +4,15 @@ import {
   ComponentRef,
   EmbeddedViewRef,
   Injectable,
-  Injector,
-} from "@angular/core";
-import { map } from "rxjs/operators";
-import { DialogInjector } from "../../../core/dialog-injector";
-import { ConfirmBoxWrapperComponent } from "../confirm-box-wrapper/confirm-box-wrapper.component";
-import { ConfirmBoxClass } from "./model";
+  Injector
+} from '@angular/core';
+import { map } from 'rxjs/operators';
+import { DialogInjector } from '../../../core/dialog-injector';
+import { ConfirmBoxWrapperComponent } from '../confirm-box-wrapper/confirm-box-wrapper.component';
+import { ConfirmBoxBelonging, ConfirmBoxEventsController } from './classes';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class ConfirmBoxService {
   confirmBoxComponentRefList: ComponentRef<ConfirmBoxWrapperComponent>[] = [];
@@ -23,9 +23,7 @@ export class ConfirmBoxService {
     private appRef: ApplicationRef
   ) {}
 
-  open(
-    _ConfirmBoxBelonging: ConfirmBoxClass.ConfirmBoxBelonging
-  ): ConfirmBoxClass.ConfirmBoxEventsController {
+  open(_ConfirmBoxBelonging: ConfirmBoxBelonging): ConfirmBoxEventsController {
     const dialogController = _ConfirmBoxBelonging.EventsController;
     const componentRef = this.getComponentRef(
       dialogController,
@@ -43,8 +41,8 @@ export class ConfirmBoxService {
   }
 
   getComponentRef(
-    _EventsController: ConfirmBoxClass.ConfirmBoxEventsController,
-    _ConfirmBoxBelonging: ConfirmBoxClass.ConfirmBoxBelonging
+    _EventsController: ConfirmBoxEventsController,
+    _ConfirmBoxBelonging: ConfirmBoxBelonging
   ): ComponentRef<any> | null {
     let componentFactory;
 
@@ -53,10 +51,7 @@ export class ConfirmBoxService {
     );
     if (dialogIndex === -1) {
       const weakMap = new WeakMap();
-      weakMap.set(
-        ConfirmBoxClass.ConfirmBoxEventsController,
-        _EventsController
-      );
+      weakMap.set(ConfirmBoxEventsController, _EventsController);
 
       componentFactory = this.componentFactoryResolver.resolveComponentFactory(
         ConfirmBoxWrapperComponent
@@ -69,10 +64,10 @@ export class ConfirmBoxService {
     return null;
   }
 
-  listeners(_EventsController: ConfirmBoxClass.ConfirmBoxEventsController) {
+  listeners(_EventsController: ConfirmBoxEventsController) {
     // Listener for closing dialog
     const closeDialogSubscription = _EventsController.afterClosed$.subscribe(
-      (response) => {
+      response => {
         const modalIndex = this.findDialogIndex(
           response.confirmBoxBelonging.EntityUniqueID
         );
@@ -100,9 +95,9 @@ export class ConfirmBoxService {
   removeFromBodyParentComponent(_DialogIndex: number): void {
     if (_DialogIndex > -1) {
       this.confirmBoxComponentRefList[_DialogIndex].instance
-        .closeParent$("close-fast")
+        .closeParent$('close-fast')
         .pipe(
-          map((item) => {
+          map(item => {
             this.appRef.detachView(
               this.confirmBoxComponentRefList[_DialogIndex].hostView
             );
@@ -115,7 +110,7 @@ export class ConfirmBoxService {
   }
 
   findDialogIndex(_DialogUniqueID: string): number {
-    return this.confirmBoxComponentRefList.findIndex((item) => {
+    return this.confirmBoxComponentRefList.findIndex(item => {
       return (
         _DialogUniqueID === item.instance.confirmBoxBelonging.EntityUniqueID
       );

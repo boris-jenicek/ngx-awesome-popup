@@ -5,15 +5,16 @@ import {
   EmbeddedViewRef,
   Injectable,
   Injector,
-  Type,
-} from "@angular/core";
-import { map } from "rxjs/operators";
-import { DialogInjector } from "../../../core/dialog-injector";
-import { DialogWrapperComponent } from "../dialog-wrapper/dialog-wrapper.component";
-import { DialogClass, DialogInterface } from "./model";
+  Type
+} from '@angular/core';
+import { map } from 'rxjs/operators';
+import { DialogInjector } from '../../../core/dialog-injector';
+import { DialogWrapperComponent } from '../dialog-wrapper/dialog-wrapper.component';
+import { DialogBelonging, DialogEventsController } from './classes';
+import { IDialogEventsController } from './interfaces';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class DialogService {
   dialogParentComponentRefList: ComponentRef<any>[] = [];
@@ -26,8 +27,8 @@ export class DialogService {
 
   open(
     _ComponentType: Type<any>,
-    _DialogBelonging: DialogClass.DialogBelonging
-  ): DialogInterface.IDialogEventsController {
+    _DialogBelonging: DialogBelonging
+  ): IDialogEventsController {
     const dialogController = _DialogBelonging.EventsController;
     const componentRef = this.getComponentRef(
       dialogController,
@@ -46,15 +47,15 @@ export class DialogService {
   }
 
   getComponentRef(
-    _EventsController: DialogInterface.IDialogEventsController,
-    _DialogBelonging: DialogClass.DialogBelonging
+    _EventsController: IDialogEventsController,
+    _DialogBelonging: DialogBelonging
   ): ComponentRef<any> | null {
     let componentFactory;
 
     const dialogIndex = this.findDialogIndex(_DialogBelonging.EntityUniqueID);
     if (dialogIndex === -1) {
       const weakMap = new WeakMap();
-      weakMap.set(DialogClass.DialogEventsController, _EventsController);
+      weakMap.set(DialogEventsController, _EventsController);
 
       componentFactory = this.componentFactoryResolver.resolveComponentFactory(
         DialogWrapperComponent
@@ -67,10 +68,10 @@ export class DialogService {
     return null;
   }
 
-  listeners(_EventsController: DialogInterface.IDialogEventsController) {
+  listeners(_EventsController: IDialogEventsController) {
     // Listener for closing dialog
     const closeDialogSubscription = _EventsController.afterClosed$.subscribe(
-      (response) => {
+      response => {
         const modalIndex = this.findDialogIndex(
           response.DialogBelonging.EntityUniqueID
         );
@@ -116,9 +117,9 @@ export class DialogService {
   removeFromBodyDialogWrapperComponent(_DialogIndex: number): void {
     if (_DialogIndex > -1) {
       this.dialogParentComponentRefList[_DialogIndex].instance
-        .closeParent$("close-fast")
+        .closeParent$('close-fast')
         .pipe(
-          map((item) => {
+          map(item => {
             this.appRef.detachView(
               this.dialogParentComponentRefList[_DialogIndex].hostView
             );
@@ -131,7 +132,7 @@ export class DialogService {
   }
 
   findDialogIndex(_DialogUniqueID: string): number {
-    return this.dialogParentComponentRefList.findIndex((item) => {
+    return this.dialogParentComponentRefList.findIndex(item => {
       return _DialogUniqueID === item.instance.dialogBelonging.EntityUniqueID;
     });
   }

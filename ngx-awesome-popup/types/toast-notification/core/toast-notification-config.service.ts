@@ -1,28 +1,31 @@
-import { Inject, Injectable } from "@angular/core";
-import { DialogLayoutDisplay } from "../../../core/enums";
-import { GlobalClass } from "../../../core/global";
+import { Inject, Injectable } from '@angular/core';
+import { DialogLayoutDisplay } from '../../../core/enums';
+import { DataControl } from '../../../core/global-classes';
+import { ToastSettings } from './classes';
 import {
-  ToastNotificationClass,
-  ToastNotificationInterface,
   ToastPositionEnum,
   ToastProgressBarEnum,
-  ToastUserViewTypeEnum,
-} from "./model";
+  ToastUserViewTypeEnum
+} from './enums';
+import {
+  IGlobalToastSettings,
+  IToastNotificationUserConfig
+} from './interfaces';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class ToastNotificationConfigService {
-  authorConfig: ToastNotificationInterface.IToastNotificationUserConfig = new ToastNotificationClass.Settings();
-  productionConfig: ToastNotificationInterface.IToastNotificationUserConfig = new ToastNotificationClass.Settings();
-  private dataControl = new GlobalClass.DataControl();
+  authorConfig: IToastNotificationUserConfig = new ToastSettings();
+  productionConfig: IToastNotificationUserConfig = new ToastSettings();
+  private dataControl = new DataControl();
 
   constructor(
-    @Inject("toastNotificationConfig")
-    private userConfig: ToastNotificationInterface.IToastNotificationUserConfig = {}
+    @Inject('toastNotificationConfig')
+    private userConfig: IToastNotificationUserConfig = {}
   ) {
     // region *** confirmBox userConfig (user input app-module) ***
-    const userConfigBase = new ToastNotificationClass.Settings();
+    const userConfigBase = new ToastSettings();
 
     this.dataControl.copyValuesFrom(
       userConfig.ToastCoreConfig,
@@ -33,8 +36,8 @@ export class ToastNotificationConfigService {
     // endregion
 
     // region *** author default config values (if there is no user input) ***
-    this.authorConfig.ToastCoreConfig.ButtonPosition = "right";
-    this.authorConfig.ToastCoreConfig.TextPosition = "left";
+    this.authorConfig.ToastCoreConfig.ButtonPosition = 'right';
+    this.authorConfig.ToastCoreConfig.TextPosition = 'left';
     this.authorConfig.ToastCoreConfig.ToastPosition =
       ToastPositionEnum.TOP_RIGHT;
     this.authorConfig.ToastCoreConfig.ProgressBar =
@@ -63,9 +66,7 @@ export class ToastNotificationConfigService {
     // endregion
   }
 
-  setResetGlobalToastConfig(
-    globalToastConfig?: ToastNotificationInterface.IGlobalToastSettings
-  ): void {
+  setResetGlobalToastConfig(globalToastConfig?: IGlobalToastSettings): void {
     this.dataControl.copyValuesFrom(
       this.authorConfig.GlobalSettings,
       this.productionConfig.GlobalSettings

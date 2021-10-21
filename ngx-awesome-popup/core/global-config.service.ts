@@ -1,33 +1,41 @@
 import { Inject, Injectable } from '@angular/core';
 import { ColorVariance } from './enums';
-import { GlobalClass, GlobalInterface } from './global';
-import IColorProvider = GlobalInterface.IColorProvider;
+import {
+  ColorProvider,
+  GlobalConfig,
+  GlobalUserConfig
+} from './global-classes';
+import {
+  IColorObject,
+  IColorProvider,
+  IColorTypes,
+  IGlobalConfig,
+  IGlobalUserConfig
+} from './global-interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalConfigService {
-  productionGlobalConfig: GlobalInterface.IGlobalConfig = new GlobalClass.GlobalConfig();
-  private authorGlobalConfig: GlobalInterface.IGlobalConfig = new GlobalClass.GlobalConfig();
-  private userGeneratedConfig: GlobalInterface.IGlobalUserConfig;
+  productionGlobalConfig: IGlobalConfig = new GlobalConfig();
+  private authorGlobalConfig: IGlobalConfig = new GlobalConfig();
+  private userGeneratedConfig: IGlobalUserConfig;
 
   constructor(
     @Inject('cdGlobalConfig')
-    private userGlobalConfig: GlobalInterface.IGlobalUserConfig
+    private userGlobalConfig: IGlobalUserConfig
   ) {
-    this.userGeneratedConfig = new GlobalClass.GlobalUserConfig(
-      userGlobalConfig
-    );
+    this.userGeneratedConfig = new GlobalUserConfig(userGlobalConfig);
 
     // region *** author global config values (if there is no user input) ***
-    this.authorGlobalConfig.DisplayColor.Primary = null; // new GlobalClass.ColorProvider('#ff9e00');
-    this.authorGlobalConfig.DisplayColor.Secondary = null; // new GlobalClass.ColorProvider('#989ea5');
-    this.authorGlobalConfig.DisplayColor.Success = null; // new GlobalClass.ColorProvider('#3caea3');
-    this.authorGlobalConfig.DisplayColor.Info = null; // new GlobalClass.ColorProvider('#2f8ee5');
-    this.authorGlobalConfig.DisplayColor.Warning = null; // new GlobalClass.ColorProvider('#ffc107');
-    this.authorGlobalConfig.DisplayColor.Danger = null; // new GlobalClass.ColorProvider('#e46464');
-    this.authorGlobalConfig.DisplayColor.Light = null; // new GlobalClass.ColorProvider('#f8f9fa');
-    this.authorGlobalConfig.DisplayColor.Dark = null; // new GlobalClass.ColorProvider('#343a40');
+    this.authorGlobalConfig.DisplayColor.Primary = null; // new ColorProvider('#ff9e00');
+    this.authorGlobalConfig.DisplayColor.Secondary = null; // new ColorProvider('#989ea5');
+    this.authorGlobalConfig.DisplayColor.Success = null; // new ColorProvider('#3caea3');
+    this.authorGlobalConfig.DisplayColor.Info = null; // new ColorProvider('#2f8ee5');
+    this.authorGlobalConfig.DisplayColor.Warning = null; // new ColorProvider('#ffc107');
+    this.authorGlobalConfig.DisplayColor.Danger = null; // new ColorProvider('#e46464');
+    this.authorGlobalConfig.DisplayColor.Light = null; // new ColorProvider('#f8f9fa');
+    this.authorGlobalConfig.DisplayColor.Dark = null; // new ColorProvider('#343a40');
     // endregion
 
     this.productionGlobalConfig.DisplayColor = this.authorGlobalConfig.DisplayColor;
@@ -45,10 +53,7 @@ export class GlobalConfigService {
     this.setNodeStyles(this.productionGlobalConfig.DisplayColor, true);
   }
 
-  setNodeStyles(
-    _ProductionColorTypes: GlobalInterface.IColorObject,
-    _Reset: boolean = false
-  ) {
+  setNodeStyles(_ProductionColorTypes: IColorObject, _Reset: boolean = false) {
     if (_Reset) {
       let evolveDialogStyleNode = document.getElementById(
         'ngx-awesome-popup-glob-styles'
@@ -76,7 +81,7 @@ export class GlobalConfigService {
     });
   }
 
-  public setUserColors(_UserColorTypes: GlobalInterface.IColorTypes): void {
+  public setUserColors(_UserColorTypes: IColorTypes): void {
     if (typeof _UserColorTypes !== 'object') {
       return;
     }
@@ -89,9 +94,7 @@ export class GlobalConfigService {
     userKeys.forEach(key => {
       if (productionObjectKeys.find(tKey => tKey === key)) {
         if (_UserColorTypes[key]) {
-          const baseColorProvider = new GlobalClass.ColorProvider(
-            _UserColorTypes[key]
-          );
+          const baseColorProvider = new ColorProvider(_UserColorTypes[key]);
           if (baseColorProvider.Base) {
             this.productionGlobalConfig.DisplayColor[key] = baseColorProvider;
           }

@@ -1,31 +1,38 @@
-import { Directive, OnDestroy } from "@angular/core";
-import { BehaviorSubject, Observable, of, Subscription } from "rxjs";
-import { delay, tap } from "rxjs/operators";
-import { GlobalClass, GlobalInterface } from "../../../core/global";
-import { ToastNotificationClass } from "./model";
+import { Component, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
+import { delay, tap } from 'rxjs/operators';
+import { Timer } from '../../../core/global-classes';
+import { IButton } from '../../../core/global-interfaces';
 
-@Directive()
+import {
+  ToastNotificationBelonging,
+  ToastNotificationDefaultResponse
+} from './classes';
+
+@Component({
+  template: ''
+})
 export abstract class WrapperAbstraction implements OnDestroy {
-  fadeInOutAnimation: string = "open";
-  timerStarted$ = new BehaviorSubject("start-counter");
+  fadeInOutAnimation: string = 'open';
+  timerStarted$ = new BehaviorSubject('start-counter');
   subsToClosingDelay: Subscription;
   subTimer: Subscription;
   isTimerStarted = false;
   timeout;
-  timer: GlobalClass.Timer = new GlobalClass.Timer();
+  timer: Timer = new Timer();
 
   protected constructor(
-    public toastNotificationBelonging: ToastNotificationClass.ToastNotificationBelonging
+    public toastNotificationBelonging: ToastNotificationBelonging
   ) {}
 
   mouseOver() {
-    this.timerStarted$.next("stop-counter");
-    this.fadeInOutAnimation = "open";
+    this.timerStarted$.next('stop-counter');
+    this.fadeInOutAnimation = 'open';
     this.subsToClosingDelay?.unsubscribe();
   }
 
   mouseOut() {
-    this.timerStarted$.next("start-counter");
+    this.timerStarted$.next('start-counter');
   }
 
   onOverlayClicked(evt: MouseEvent): void {
@@ -37,7 +44,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
   }
 
   setResponse(_IsSuccess: boolean, _ClickedButtonID?: string): void {
-    const response = new ToastNotificationClass.ToastNotificationDefaultResponse();
+    const response = new ToastNotificationDefaultResponse();
     if (_ClickedButtonID) {
       response.ClickedButtonID = _ClickedButtonID;
     }
@@ -49,21 +56,21 @@ export abstract class WrapperAbstraction implements OnDestroy {
     );
   }
 
-  onCustomButton(_Button: GlobalInterface.IButton): void {
+  onCustomButton(_Button: IButton): void {
     this.toastNotificationBelonging.EventsController.onButtonClick(_Button);
     this.setResponse(true, _Button.ID);
     this.toastNotificationBelonging.EventsController.close();
   }
 
-  onButtonClick(_Type: "confirm" | "decline") {
+  onButtonClick(_Type: 'confirm' | 'decline') {
     let buttonID;
-    if (_Type === "confirm") {
+    if (_Type === 'confirm') {
       buttonID = this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel.toLowerCase();
-    } else if (_Type === "decline") {
+    } else if (_Type === 'decline') {
       buttonID = this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel.toLowerCase();
     }
 
-    this.setResponse(_Type === "confirm", buttonID);
+    this.setResponse(_Type === 'confirm', buttonID);
     this.toastNotificationBelonging.EventsController.close();
   }
 
@@ -74,18 +81,18 @@ export abstract class WrapperAbstraction implements OnDestroy {
       );
       this.subTimer = this.timerStarted$
         .pipe(
-          tap((next) => {
-            if ("start-counter" === next) {
+          tap(next => {
+            if ('start-counter' === next) {
               this.timer.start();
               this.isTimerStarted = true;
               this.timeout = setTimeout(() => {
                 this.subsToClosingDelay = this.closeParent$(
-                  "close-slow"
-                ).subscribe((resp) => {
+                  'close-slow'
+                ).subscribe(resp => {
                   this.toastNotificationBelonging.EventsController.close();
                 });
               }, this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
-            } else if ("stop-counter" === next) {
+            } else if ('stop-counter' === next) {
               if (this.isTimerStarted) {
                 this.timer.stop();
                 clearTimeout(this.timeout);
@@ -111,8 +118,8 @@ export abstract class WrapperAbstraction implements OnDestroy {
 
   closeParent$(_ClosingAnimation: string): Observable<any> {
     this.fadeInOutAnimation = _ClosingAnimation;
-    const timer = _ClosingAnimation === "close-slow" ? 1400 : 150;
-    return of("").pipe(delay(timer));
+    const timer = _ClosingAnimation === 'close-slow' ? 1400 : 150;
+    return of('').pipe(delay(timer));
   }
 
   close() {

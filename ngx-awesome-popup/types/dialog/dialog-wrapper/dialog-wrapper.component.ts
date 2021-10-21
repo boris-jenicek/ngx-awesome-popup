@@ -5,25 +5,26 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
   HostListener,
+  Inject,
   OnDestroy,
   Type,
-  ViewChild,
-} from "@angular/core";
-import { Observable, Observer } from "rxjs";
-import { delay } from "rxjs/operators";
-import { fadeInOut } from "../../../core/animations";
-import { InsertionLoaderDirective } from "../../../core/insertion-loader.directive";
-import { InsertionDirective } from "../../../core/insertion.directive";
-import { DialogClass } from "../core/model";
+  ViewChild
+} from '@angular/core';
+import { Observable, Observer } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { fadeInOut } from '../../../core/animations';
+import { InsertionLoaderDirective } from '../../../core/insertion-loader.directive';
+import { InsertionDirective } from '../../../core/insertion.directive';
+import { DialogBelonging, DialogDefaultResponse } from '../core/classes';
 
 @Component({
-  selector: "dialog-popup-wrapper",
-  templateUrl: "./dialog-wrapper.component.html",
-  styleUrls: ["./dialog-wrapper.component.scss"],
-  animations: [fadeInOut(0, 1)],
+  selector: 'dialog-popup-wrapper',
+  templateUrl: './dialog-wrapper.component.html',
+  styleUrls: ['./dialog-wrapper.component.scss'],
+  animations: [fadeInOut(0, 1)]
 })
 export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
-  fadeInOutAnimation: string = "open";
+  fadeInOutAnimation: string = 'open';
   showLoader: boolean = true;
   bodyOverflow: string;
 
@@ -37,7 +38,8 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   loaderInsertionPoint: InsertionLoaderDirective;
 
   constructor(
-    public dialogBelonging: DialogClass.DialogBelonging,
+    @Inject('dialogBelonging')
+    public dialogBelonging: DialogBelonging,
     private componentFactoryResolver: ComponentFactoryResolver,
     private cd: ChangeDetectorRef
   ) {}
@@ -56,7 +58,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   hideScrollbar() {
     if (this.dialogBelonging.DialogCoreConfig.HideScrollbar) {
       this.bodyOverflow = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     }
   }
 
@@ -67,7 +69,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   }
 
   setDefaultResponse(): void {
-    const dialogResponse = new DialogClass.DialogDefaultResponse();
+    const dialogResponse = new DialogDefaultResponse();
     dialogResponse.setBelonging(this.dialogBelonging);
     this.dialogBelonging.EventsController.setDefaultResponse(dialogResponse);
   }
@@ -116,10 +118,10 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
 
   closeParent$(_ClosingAnimation: string): Observable<any> {
     this.fadeInOutAnimation = _ClosingAnimation;
-    const timer = _ClosingAnimation === "close-slow" ? 1400 : 150;
+    const timer = _ClosingAnimation === 'close-slow' ? 1400 : 150;
 
     return new Observable((observer: Observer<any>) => {
-      observer.next("");
+      observer.next('');
       observer.complete();
     }).pipe(delay(timer));
   }
@@ -136,9 +138,9 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     this.showLoader = false;
   }
 
-  @HostListener("window:keyup", ["$event"])
+  @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event.key === "Escape") {
+    if (event.key === 'Escape') {
       this.close();
     }
   }

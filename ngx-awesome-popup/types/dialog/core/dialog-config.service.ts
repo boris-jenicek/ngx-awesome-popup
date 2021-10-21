@@ -1,23 +1,24 @@
-import { Inject, Injectable } from "@angular/core";
-import { DialogLayoutDisplay } from "../../../core/enums";
-import { GlobalClass } from "../../../core/global";
-import { DefaultLoaderComponent } from "../../../default-loader/default-loader.component";
-import { DialogClass, DialogInterface } from "./model";
+import { Inject, Injectable } from '@angular/core';
+import { DialogLayoutDisplay } from '../../../core/enums';
+import { DataControl } from '../../../core/global-classes';
+import { DefaultLoaderComponent } from '../../../default-loader/default-loader.component';
+import { DialogSettings } from './classes';
+import { IDialogUserConfig } from './interfaces';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class DialogConfigService {
-  authorConfig: DialogInterface.IDialogUserConfig = new DialogClass.DialogSettings();
-  productionConfig: DialogInterface.IDialogUserConfig = new DialogClass.DialogSettings();
+  authorConfig: IDialogUserConfig = new DialogSettings();
+  productionConfig: IDialogUserConfig = new DialogSettings();
 
   constructor(
-    @Inject("dialogConfig")
-    private userConfig: DialogInterface.IDialogUserConfig = {}
+    @Inject('dialogConfig')
+    private userConfig: IDialogUserConfig = {}
   ) {
     // region *** dialog userConfig (user input app-module) ***
-    const userConfigBase = new DialogClass.DialogSettings();
-    const dataControl = new GlobalClass.DataControl();
+    const userConfigBase = new DialogSettings();
+    const dataControl = new DataControl();
     dataControl.copyValuesFrom(
       userConfig.DialogCoreConfig,
       userConfigBase.DialogCoreConfig
@@ -31,11 +32,11 @@ export class DialogConfigService {
     // endregion
 
     // region *** author default config values (if there is no user input) ***
-    this.authorConfig.DialogCoreConfig.Width = "auto";
-    this.authorConfig.DialogCoreConfig.Height = "auto";
+    this.authorConfig.DialogCoreConfig.Width = 'auto';
+    this.authorConfig.DialogCoreConfig.Height = 'auto';
     this.authorConfig.DialogCoreConfig.HideScrollbar = false;
     this.authorConfig.DialogCoreConfig.EscapeKeyClose = false;
-    this.authorConfig.DialogCoreConfig.ButtonPosition = "right";
+    this.authorConfig.DialogCoreConfig.ButtonPosition = 'right';
     this.authorConfig.DialogCoreConfig.DisplayLoader = false;
     this.authorConfig.DialogCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
     this.authorConfig.DialogCoreConfig.LoaderComponent = DefaultLoaderComponent;
