@@ -23,14 +23,13 @@ NgxAwesomePopupModule.forRoot({
 
 ### constructor
 
-\+ **new NgxAwesomePopupModule**(`injector`: *Injector*, `gConfigService`: *GlobalConfigService*): [*NgxAwesomePopupModule*](#/documentation/Class:%20NgxAwesomePopupModule)
+\+ **new NgxAwesomePopupModule**(`injector`: *Injector*): [*NgxAwesomePopupModule*](#/documentation/Class:%20NgxAwesomePopupModule)
 
 #### Parameters:
 
 | Name | Type |
 | :------ | :------ |
 | `injector` | *Injector* |
-| `gConfigService` | *GlobalConfigService* |
 
 **Returns:** [*NgxAwesomePopupModule*](#/documentation/Class:%20NgxAwesomePopupModule)
 

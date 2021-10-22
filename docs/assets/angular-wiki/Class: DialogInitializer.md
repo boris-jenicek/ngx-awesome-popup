@@ -13,24 +13,33 @@ it will override default configuration from app.module.
 Example:
 ```typescript
  import {DialogInitializer, DialogLayoutDisplay, ButtonMaker, ButtonLayoutDisplay} from 'ngx-awesome-popup';<
- import {CupComponent} from './cup/cup.component';
+ import {DynamicComponent} from './dynamic/dynamic.component';
 
- const newDialogPopup = new DialogInitializer(CupComponent); // Any Angular component.
+ const newDialogPopup = new DialogInitializer(DynamicComponent); // Any Angular component.
 
  // Custom data will be sent to dynamic component available in dialogBelonging object.
  newDialogPopup.setCustomData({name: 'John', surname: 'Doe', id: 1});
 
  // Local config settings IDialogCoreConfig.
  newDialogPopup.setConfig({
-     Height: '500px',
-     LayoutType: DialogLayoutDisplay.INFO,
-     LoaderComponent: Any Angular component name
-      });
+     LayoutType: DialogLayoutDisplay.INFO, // SUCCESS | INFO | NONE | DANGER | WARNING
+     Height: '500px',  // optional
+     // MaxHeight: '600px',  // optional
+     // MinHeight: '200px',  // optional
+     // Width: '500px', // optional
+     // MaxWidth: '600px', // optional
+     // MinWidth: '200px', // optional
+     // HideScrollbar: true, // optional, default is false
+     // FullScreen: true, // optional, default is false
+     // EscapeKeyClose: true, // optional, default is false
+     // ButtonPosition: "left", // optional, default is "right"
+     // LoaderComponent: Any Angular component
+  });
 
  // Custom buttons, listener is available in child component in dialogBelonging object.
  newDialogPopup.setButtons([
      new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY),
-     new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY)
+     new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY) // SUCCESS | INFO | NONE | DANGER | WARNING | PRIMARY | SECONDARY | LINK | DARK | LIGHT
  ]);
 
  // Command to open dialog, it returns observable.

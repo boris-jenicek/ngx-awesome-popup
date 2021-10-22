@@ -235,7 +235,7 @@ API documentation:
 The child dynamic component represents AnyAngularComponent from example above.
 
 ```typescript
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, Inject } from "@angular/core";
 import { Subscription } from "rxjs";
 import { DialogBelonging } from "@costlydeveloper/ngx-awesome-popup";
 
@@ -245,17 +245,19 @@ import { DialogBelonging } from "@costlydeveloper/ngx-awesome-popup";
   styleUrls: ["./any-angular.component.scss"],
 })
 export class AnyAngularComponent implements OnInit, OnDestroy {
-  subscriptions: Subscription[] = [];
+  subscriptions: Subscription = new Subscription();
 
   // Dependency Injection of the dialogBelonging in constructor is crucial.
-  constructor(private dialogBelonging: DialogBelonging) {}
+  constructor(
+    @Inject("dialogBelonging") private dialogBelonging: DialogBelonging
+  ) {}
 
   ngOnInit(): void {
     // Check recived data and other available features.
     console.log(this.dialogBelonging);
 
     // Subscribe to button listeners.
-    this.subscriptions.push(
+    this.subscriptions.add(
       // IDialogEventsController
       this.dialogBelonging.EventsController.onButtonClick$.subscribe(
         _Button => {
@@ -282,7 +284,7 @@ export class AnyAngularComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // Care about memory and close all subscriptions.
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.unsubscribe();
   }
 }
 ```

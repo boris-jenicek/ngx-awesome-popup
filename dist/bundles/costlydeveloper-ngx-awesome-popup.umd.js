@@ -1372,7 +1372,6 @@
         DialogWrapperComponent.prototype.hideScroller = function () { };
         DialogWrapperComponent.prototype.loadChildComponent = function (_ComponentType) {
             var componentFactory = this.componentFactoryResolver.resolveComponentFactory(_ComponentType);
-            console.log(this.insertionPoint);
             var viewContainerRef = this.insertionPoint.viewContainerRef;
             viewContainerRef.clear();
             this.childComponentRef = viewContainerRef.createComponent(componentFactory);

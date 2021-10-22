@@ -10,21 +10,20 @@ Example:
 ```typescript
 import {DialogBelonging} from 'ngx-awesome-popup';
 @Component({
-   selector   : 'app-cup',
-   templateUrl: './cup.component.html',
-   styleUrls  : ['./cup.component.scss']
+   selector   : 'app-dynamic',
+   templateUrl: './dynamic.component.html',
+   styleUrls  : ['./dynamic.component.scss']
 })
-export class CupComponent implements OnInit, OnDestroy {
+export class DynamicComponent implements OnInit, OnDestroy {
 
-   subscriptions: Subscription[] = [];
+   subscriptions: Subscription = new Subscription();
 
-   constructor(private dialogBelonging: DialogBelonging) {
-   }
+   constructor(@Inject('dialogBelonging') private dialogBelonging: DialogBelonging) {}
 
    ngOnInit(): void {
    console.log(this.dialogBelonging);
 
-       this.subscriptions.push(
+       this.subscriptions.add(
            this.dialogBelonging.EventsController.onButtonClick$.subscribe((_Button) => {
            if (_Button.ID === 'ok') {
                // Do some logic and close popup.
@@ -45,7 +44,7 @@ export class CupComponent implements OnInit, OnDestroy {
 
 ngOnDestroy(): void {
 // Close all subscriptions.
-this.subscriptions.forEach(sub => sub.unsubscribe());
+this.subscriptions.unsubscribe();
 }
 ```
 
@@ -87,7 +86,7 @@ Overrides: DialogSettings.constructor
 
 • **Buttons**: [*IButton*](#/documentation/Interface:%20IButton)[]= []
 
-Implementation of: DialogInterface.IDialogBelonging.Buttons
+Implementation of: IDialogBelonging.Buttons
 
 Inherited from: DialogSettings.Buttons
 
@@ -97,7 +96,7 @@ ___
 
 • **CustomData**: CustomData
 
-Implementation of: DialogInterface.IDialogBelonging.CustomData
+Implementation of: IDialogBelonging.CustomData
 
 ___
 
@@ -105,7 +104,7 @@ ___
 
 • **DialogCoreConfig**: [*IDialogCoreConfig*](#/documentation/Interface:%20IDialogCoreConfig)
 
-Implementation of: DialogInterface.IDialogBelonging.DialogCoreConfig
+Implementation of: IDialogBelonging.DialogCoreConfig
 
 Inherited from: DialogSettings.DialogCoreConfig
 
@@ -115,4 +114,4 @@ ___
 
 • **EventsController**: [*IDialogEventsController*](#/documentation/Interface:%20IDialogEventsController)
 
-Implementation of: DialogInterface.IDialogBelonging.EventsController
+Implementation of: IDialogBelonging.EventsController

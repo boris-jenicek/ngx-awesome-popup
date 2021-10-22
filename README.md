@@ -8,8 +8,8 @@
 	</p>
 
 <p align="center">
-  <b>Gives new functionality to Angular 12 (9+), generates beautiful popups, dialogs, Confirm Boxes, Alert Boxes, Toast Notifications. Also gives the ability of opening dynamic components directly from typescript!</b><br />
-  <sub>Use this library to easily generate beautiful, highly scalable popups. It renders dynamic component view in popup directly from typescript, including toast notifications, cookie banners, alert box or confirm box.</sub>
+  <b>Gives new functionality to Angular 12 (9+), generates beautiful popups, dialogs, Confirm Boxes, Alert Boxes, Toast Notifications. Also gives the ability of opening dynamic components directly from typescript!</b></br>
+  <sub>Use this library to easily generate beautiful, highly scalable popups. It renders dynamic component view in popup directly from typescript, including toast notifications, cookie banners, alert box or confirm box.<sub>
 </p>
 
 <br />

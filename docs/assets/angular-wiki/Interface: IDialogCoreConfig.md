@@ -54,7 +54,7 @@ ___
 
 • `Optional` **FullScreen**: *boolean*
 
-Inherited from: GlobalInterface.ISizes.FullScreen
+Inherited from: ISizes.FullScreen
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 • `Optional` **Height**: *string*
 
-Inherited from: GlobalInterface.ISizes.Height
+Inherited from: ISizes.Height
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 • `Optional` **MaxHeight**: *string*
 
-Inherited from: GlobalInterface.ISizes.MaxHeight
+Inherited from: ISizes.MaxHeight
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 • `Optional` **MaxWidth**: *string*
 
-Inherited from: GlobalInterface.ISizes.MaxWidth
+Inherited from: ISizes.MaxWidth
 
 ___
 
@@ -104,7 +104,7 @@ ___
 
 • `Optional` **MinHeight**: *string*
 
-Inherited from: GlobalInterface.ISizes.MinHeight
+Inherited from: ISizes.MinHeight
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 • `Optional` **MinWidth**: *string*
 
-Inherited from: GlobalInterface.ISizes.MinWidth
+Inherited from: ISizes.MinWidth
 
 ___
 
@@ -120,4 +120,4 @@ ___
 
 • `Optional` **Width**: *string*
 
-Inherited from: GlobalInterface.ISizes.Width
+Inherited from: ISizes.Width

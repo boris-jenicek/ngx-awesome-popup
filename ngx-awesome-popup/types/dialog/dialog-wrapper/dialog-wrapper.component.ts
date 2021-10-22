@@ -91,8 +91,6 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
       _ComponentType
     );
-
-    console.log(this.insertionPoint);
     const viewContainerRef = this.insertionPoint.viewContainerRef;
     viewContainerRef.clear();
 
