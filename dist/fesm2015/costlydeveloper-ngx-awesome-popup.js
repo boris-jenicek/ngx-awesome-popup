@@ -921,6 +921,7 @@ class DialogConfigService {
         this.authorConfig.DialogCoreConfig.EscapeKeyClose = false;
         this.authorConfig.DialogCoreConfig.ButtonPosition = 'right';
         this.authorConfig.DialogCoreConfig.DisplayLoader = false;
+        this.authorConfig.DialogCoreConfig.FullScreen = false;
         this.authorConfig.DialogCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
         this.authorConfig.DialogCoreConfig.LoaderComponent = DefaultLoaderComponent;
         // endregion
