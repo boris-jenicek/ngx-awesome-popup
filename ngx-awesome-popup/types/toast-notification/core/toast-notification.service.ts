@@ -29,7 +29,6 @@ import { ToastNotificationConfigService } from './toast-notification-config.serv
   providedIn: 'root'
 })
 export class ToastNotificationService {
-  // toastComponentRefList: ComponentRef<ToastNotificationWrapperComponent>[]    = [];
   toastComponentRefList: ComponentRef<any>[] = [];
   bufferToastRawList: IToastNotificationRawState[] = [];
   bufferCheckingIntervalIsReady: boolean = true;

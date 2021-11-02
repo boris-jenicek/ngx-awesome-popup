@@ -1934,7 +1934,6 @@
             this.appRef = appRef;
             this.toastConfig = toastConfig;
             this.gConfigService = gConfigService;
-            // toastComponentRefList: ComponentRef<ToastNotificationWrapperComponent>[]    = [];
             this.toastComponentRefList = [];
             this.bufferToastRawList = [];
             this.bufferCheckingIntervalIsReady = true;
