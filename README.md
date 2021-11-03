@@ -22,7 +22,7 @@
 
 ### Website
 
-Visit the [Ngx Awesome Popup](https://costlydeveloper.github.io/ngx-awesome-popup/) for general information, demos and documentation.
+Visit the [DEMO](https://costlydeveloper.github.io/ngx-awesome-popup/) for general information, demos and documentation.
 
 ### Blog
 
@@ -38,6 +38,5 @@ Licensed under [MIT](https://opensource.org/licenses/MIT).
 
 ### Do you like so far?
 
-<p align="center"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/backToTop.png" alt="Star the repo" height="29"/></p>
-<br/>
+<p align="center"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/gh-star.png" alt="Star the repo"/></p><br/>
 <p align="center"><a href="https://github.com/costlydeveloper/ngx-awesome-popup#"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/backToTop.png" alt="Back to top" height="29"/></a></p>
