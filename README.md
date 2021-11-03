@@ -38,5 +38,8 @@ Licensed under [MIT](https://opensource.org/licenses/MIT).
 
 ### Do you like so far?
 
-<p align="center"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/gh-star.png" alt="Star the repo"/></p><br/>
+#### Give us a star!
+
+<p align="center"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/gh-star.png" alt="Star the repo"/></p>
+<br/>
 <p align="center"><a href="https://github.com/costlydeveloper/ngx-awesome-popup#"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/backToTop.png" alt="Back to top" height="29"/></a></p>
