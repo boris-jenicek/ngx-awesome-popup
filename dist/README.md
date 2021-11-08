@@ -26,7 +26,7 @@ Visit the [DEMO](https://costlydeveloper.github.io/ngx-awesome-popup/) for gener
 
 ### Blog
 
-If you in doubt, find out the good reasons to use it on the [Blog](https://dev.to/costlydeveloper).
+If you in doubt, find out the good reasons to use it on the [Dev.to](https://dev.to/costlydeveloper).
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#license)
 
@@ -40,6 +40,4 @@ Licensed under [MIT](https://opensource.org/licenses/MIT).
 
 #### Give us a star!
 
-<p align="center"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/gh-star.png" alt="Star the repo"/></p>
-<br/>
-<p align="center"><a href="https://github.com/costlydeveloper/ngx-awesome-popup#"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/backToTop.png" alt="Back to top" height="29"/></a></p>
+<p align="center"><a href="https://github.com/costlydeveloper/ngx-awesome-popup#"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/gh-star.png" alt="Star the repo"/></a></p>
