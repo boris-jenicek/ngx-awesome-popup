@@ -9,7 +9,7 @@
 <a href="https://costlydeveloper.github.io/ngx-awesome-popup/"><img alt="undefined" src="https://awesome.re/badge.svg" height="20"/></a>
 	</p>
  <p align="center">
-  <b>Gives new functionality to Angular 12 (9+), generates beautiful popups, dialogs, ConfirmBoxes, AlertBoxes, ToastNotifications. Also gives the ability of opening dynamic components directly from typescript!</b><br />
+  <b>Gives new functionality to Angular 13 (9+), generates beautiful popups, dialogs, ConfirmBoxes, AlertBoxes, ToastNotifications. Also gives the ability of opening dynamic components directly from typescript!</b><br />
   <sub>Use this popup generator to easily generate beautiful, highly scalable popups. From regular Angular component it renders dynamic component view in popup directly from typescript, including toast notifications, alert box or confirm box.</sub>
 </p>
 
