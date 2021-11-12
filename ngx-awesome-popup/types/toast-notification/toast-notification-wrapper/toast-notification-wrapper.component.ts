@@ -1,10 +1,6 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  Inject
-} from '@angular/core';
-import { fadeInOut } from '../../../core/animations';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { boxAnimations } from '../../../core/animations/box.animations';
+import { fadeInOut } from '../../../core/animations/fade-in-out.animation';
 import { GlobalConfigService } from '../../../core/global-config.service';
 import { ToastNotificationBelonging } from '../core/classes';
 import { WrapperAbstraction } from '../core/wrapper-abstraction';
@@ -13,11 +9,9 @@ import { WrapperAbstraction } from '../core/wrapper-abstraction';
   selector: 'app-toast-notification-wrapper',
   templateUrl: './toast-notification-wrapper.component.html',
   styleUrls: ['./toast-notification-wrapper.component.scss'],
-  animations: [fadeInOut(0, 1)]
+  animations: [fadeInOut(), boxAnimations()]
 })
-export class ToastNotificationWrapperComponent
-  extends WrapperAbstraction
-  implements AfterViewInit {
+export class ToastNotificationWrapperComponent extends WrapperAbstraction implements AfterViewInit {
   constructor(
     @Inject('toastNotificationBelonging')
     public toastNotificationBelonging: ToastNotificationBelonging,

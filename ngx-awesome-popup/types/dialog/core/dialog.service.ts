@@ -25,15 +25,9 @@ export class DialogService {
     private appRef: ApplicationRef
   ) {}
 
-  open(
-    _ComponentType: Type<any>,
-    _DialogBelonging: DialogBelonging
-  ): IDialogEventsController {
+  open(_ComponentType: Type<any>, _DialogBelonging: DialogBelonging): IDialogEventsController {
     const dialogController = _DialogBelonging.EventsController;
-    const componentRef = this.getComponentRef(
-      dialogController,
-      _DialogBelonging
-    );
+    const componentRef = this.getComponentRef(dialogController, _DialogBelonging);
 
     this.dialogParentComponentRefList.push(componentRef);
     componentRef.instance.dialogBelonging = _DialogBelonging;
@@ -57,12 +51,8 @@ export class DialogService {
       const weakMap = new WeakMap();
       weakMap.set(DialogEventsController, _EventsController);
 
-      componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-        DialogWrapperComponent
-      );
-      return componentFactory.create(
-        new DialogInjector(this.injector, weakMap)
-      );
+      componentFactory = this.componentFactoryResolver.resolveComponentFactory(DialogWrapperComponent);
+      return componentFactory.create(new DialogInjector(this.injector, weakMap));
     }
 
     return null;
@@ -70,31 +60,23 @@ export class DialogService {
 
   listeners(_EventsController: IDialogEventsController) {
     // Listener for closing dialog
-    const closeDialogSubscription = _EventsController.afterClosed$.subscribe(
-      response => {
-        const modalIndex = this.findDialogIndex(
-          response.DialogBelonging.EntityUniqueID
-        );
-        this.removeFromBodyDialogWrapperComponent(modalIndex);
-        closeDialogSubscription.unsubscribe();
-      }
-    );
+    const closeDialogSubscription = _EventsController.afterClosed$.subscribe(response => {
+      const modalIndex = this.findDialogIndex(response.DialogBelonging.EntityUniqueID);
+      this.removeFromBodyDialogWrapperComponent(modalIndex);
+      closeDialogSubscription.unsubscribe();
+    });
 
     // Listener for turning off loader
-    const closeLoaderSubscription = _EventsController.afterLoader$.subscribe(
-      (_DialogUniqueID: string) => {
-        if (_DialogUniqueID) {
-          const modalIndex = this.findDialogIndex(_DialogUniqueID);
-          if (modalIndex !== -1) {
-            this.dialogParentComponentRefList[
-              modalIndex
-            ].instance.closeLoader();
-          }
+    const closeLoaderSubscription = _EventsController.afterLoader$.subscribe((_DialogUniqueID: string) => {
+      if (_DialogUniqueID) {
+        const modalIndex = this.findDialogIndex(_DialogUniqueID);
+        if (modalIndex !== -1) {
+          this.dialogParentComponentRefList[modalIndex].instance.closeLoader();
         }
-
-        closeLoaderSubscription.unsubscribe();
       }
-    );
+
+      closeLoaderSubscription.unsubscribe();
+    });
   }
 
   childComponentResolver() {}
@@ -104,8 +86,7 @@ export class DialogService {
     this.appRef.attachView(_ComponentRef.hostView);
 
     // DOM
-    const domElem = (_ComponentRef.hostView as EmbeddedViewRef<any>)
-      .rootNodes[0] as HTMLElement;
+    const domElem = (_ComponentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     document.body.appendChild(domElem);
   }
 
@@ -117,12 +98,10 @@ export class DialogService {
   removeFromBodyDialogWrapperComponent(_DialogIndex: number): void {
     if (_DialogIndex > -1) {
       this.dialogParentComponentRefList[_DialogIndex].instance
-        .closeParent$('close-fast')
+        .closeParent$()
         .pipe(
           map(item => {
-            this.appRef.detachView(
-              this.dialogParentComponentRefList[_DialogIndex].hostView
-            );
+            this.appRef.detachView(this.dialogParentComponentRefList[_DialogIndex].hostView);
             this.dialogParentComponentRefList[_DialogIndex].destroy();
             this.dialogParentComponentRefList.splice(_DialogIndex, 1);
           })

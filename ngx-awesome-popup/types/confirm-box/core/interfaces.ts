@@ -1,4 +1,9 @@
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import {
+  AppearanceAnimation,
+  DialogLayoutDisplay,
+  DisappearanceAnimation,
+  VerticalPosition
+} from '../../../core/enums';
 import {
   IButton,
   IDispatch,
@@ -30,6 +35,8 @@ export interface IConfirmBoxCoreConfig {
   DeclineLabel?: string;
   DisableIcon?: boolean;
   AllowHTMLMessage?: boolean;
+  AnimationIn?: AppearanceAnimation;
+  AnimationOut?: DisappearanceAnimation;
 }
 
 export interface IConfirmBoxBelonging {

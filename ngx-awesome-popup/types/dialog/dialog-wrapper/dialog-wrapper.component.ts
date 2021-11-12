@@ -12,7 +12,9 @@ import {
 } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { fadeInOut } from '../../../core/animations';
+import { boxAnimations } from '../../../core/animations/box.animations';
+import { fadeInOut } from '../../../core/animations/fade-in-out.animation';
+import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
 import { InsertionLoaderDirective } from '../../../core/insertion-loader.directive';
 import { InsertionDirective } from '../../../core/insertion.directive';
 import { DialogBelonging, DialogDefaultResponse } from '../core/classes';
@@ -21,7 +23,7 @@ import { DialogBelonging, DialogDefaultResponse } from '../core/classes';
   selector: 'dialog-popup-wrapper',
   templateUrl: './dialog-wrapper.component.html',
   styleUrls: ['./dialog-wrapper.component.scss'],
-  animations: [fadeInOut(0, 1)]
+  animations: [fadeInOut(), boxAnimations()]
 })
 export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   fadeInOutAnimation: string = 'open';
@@ -37,20 +39,24 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   @ViewChild(InsertionLoaderDirective, { static: true })
   loaderInsertionPoint: InsertionLoaderDirective;
 
+  boxAnimation: AppearanceAnimation | DisappearanceAnimation = AppearanceAnimation.NONE;
+
   constructor(
     @Inject('dialogBelonging')
     public dialogBelonging: DialogBelonging,
     private componentFactoryResolver: ComponentFactoryResolver,
     private cd: ChangeDetectorRef
-  ) {}
+  ) {
+    setTimeout(() => {
+      this.boxAnimation = this.dialogBelonging.DialogCoreConfig.AnimationIn;
+    }, 1);
+  }
 
   ngAfterViewInit(): void {
     this.hideScrollbar(); // hide scrollbar if config enabled
 
     this.loadChildComponent(this.childComponentType);
-    this.loadLoaderComponent(
-      this.dialogBelonging.DialogCoreConfig.LoaderComponent
-    );
+    this.loadLoaderComponent(this.dialogBelonging.DialogCoreConfig.LoaderComponent);
     this.setDefaultResponse();
     this.cd.detectChanges();
   }
@@ -88,9 +94,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   hideScroller() {}
 
   loadChildComponent(_ComponentType: Type<any>): void {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-      _ComponentType
-    );
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(_ComponentType);
     const viewContainerRef = this.insertionPoint.viewContainerRef;
     viewContainerRef.clear();
 
@@ -100,29 +104,25 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   }
 
   loadLoaderComponent(_LoaderRef: Type<any>): void {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-      _LoaderRef
-    );
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(_LoaderRef);
     const viewContainerRef = this.loaderInsertionPoint.viewContainerRef;
     viewContainerRef.clear();
 
-    this.loaderComponentRef = viewContainerRef.createComponent(
-      componentFactory
-    );
+    this.loaderComponentRef = viewContainerRef.createComponent(componentFactory);
   }
 
   close() {
     this.dialogBelonging.EventsController.close();
   }
 
-  closeParent$(_ClosingAnimation: string): Observable<any> {
-    this.fadeInOutAnimation = _ClosingAnimation;
-    const timer = _ClosingAnimation === 'close-slow' ? 1400 : 150;
-
+  closeParent$(): Observable<any> {
+    this.boxAnimation = this.dialogBelonging.DialogCoreConfig.AnimationOut;
+    const closeDuration = this.dialogBelonging.DialogCoreConfig.AnimationOut ? 800 : 200;
+    this.fadeInOutAnimation = 'close-fast';
     return new Observable((observer: Observer<any>) => {
       observer.next('');
       observer.complete();
-    }).pipe(delay(timer));
+    }).pipe(delay(closeDuration));
   }
 
   onOverlayClicked(evt: MouseEvent): void {

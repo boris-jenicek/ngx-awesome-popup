@@ -1,14 +1,15 @@
 import { Observable, Subject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import {
+  AppearanceAnimation,
+  DialogLayoutDisplay,
+  DisappearanceAnimation,
+  VerticalPosition
+} from '../../../core/enums';
 import { DataControl, Dispatch } from '../../../core/global-classes';
 import { IButton, IDispatch } from '../../../core/global-interfaces';
 import { ServiceLocator } from '../../../locator.service';
-import {
-  ToastPositionEnum,
-  ToastProgressBarEnum,
-  ToastUserViewTypeEnum
-} from './enums';
+import { ToastPositionEnum, ToastProgressBarEnum, ToastUserViewTypeEnum } from './enums';
 import {
   IGlobalToastSettings,
   IPrivateResponseMerged,
@@ -118,9 +119,7 @@ export class ToastNotificationEventsController {
 
 // endregion
 
-export class ToastNotificationDefaultResponse
-  extends ToastNotificationResponse
-  implements IPrivateResponseMerged {
+export class ToastNotificationDefaultResponse extends ToastNotificationResponse implements IPrivateResponseMerged {
   toastNotificationBelonging: ToastNotificationBelonging = null;
 
   constructor() {
@@ -159,25 +158,15 @@ export class ToastNotificationCarrier {
   setConfig(_ToastNotificationBelonging: IToastCoreConfig) {
     // region *** local UserConfig (defined on place where dialog is called) ***
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(
-      _ToastNotificationBelonging,
-      this.toastNotificationBelonging.ToastCoreConfig
-    );
+    dataControl.copyValuesFrom(_ToastNotificationBelonging, this.toastNotificationBelonging.ToastCoreConfig);
     // endregion
   }
 
   openToastNotification$(): Observable<IPrivateResponseMerged> {
-    if (
-      !this.toastNotificationBelonging.Dispatch.Title &&
-      !this.toastNotificationBelonging.Dispatch.Message
-    ) {
-      throw Error(
-        'Toast notification can not be without both message and title.'
-      );
+    if (!this.toastNotificationBelonging.Dispatch.Title && !this.toastNotificationBelonging.Dispatch.Message) {
+      throw Error('Toast notification can not be without both message and title.');
     }
-    const service: ToastNotificationService = ServiceLocator.injector.get(
-      ToastNotificationService
-    );
+    const service: ToastNotificationService = ServiceLocator.injector.get(ToastNotificationService);
     return service.openToast$(this.toastNotificationBelonging);
   }
 }
@@ -220,19 +209,17 @@ export class ToastCoreConfig implements IToastCoreConfig {
   AutoCloseDelay: number = null;
   DisableIcon: boolean = null;
   AllowHTMLMessage: boolean = null;
+  AnimationIn: AppearanceAnimation = null;
+  AnimationOut: DisappearanceAnimation = null;
 }
 
-export class ToastNotificationBelonging
-  extends ToastSettings
-  implements IToastNotificationBelonging {
+export class ToastNotificationBelonging extends ToastSettings implements IToastNotificationBelonging {
   EntityUniqueID: string = 'T' + Math.random().toString(36).substr(2, 9);
   EventsController: ToastNotificationEventsController;
 
   constructor() {
     super();
-    this.EventsController = new ToastNotificationEventsController(
-      this.EntityUniqueID
-    );
+    this.EventsController = new ToastNotificationEventsController(this.EntityUniqueID);
     const toastNotificationConfigurator: ToastNotificationConfigService = ServiceLocator.injector.get(
       ToastNotificationConfigService
     );

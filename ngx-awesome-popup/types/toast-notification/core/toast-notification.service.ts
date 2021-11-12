@@ -13,15 +13,9 @@ import { DialogInjector } from '../../../core/dialog-injector';
 import { GlobalConfigService } from '../../../core/global-config.service';
 import { ToastNotificationSimpleWrapperComponent } from '../toast-notification-simple-wrapper/toast-notification-simple-wrapper.component';
 import { ToastNotificationWrapperComponent } from '../toast-notification-wrapper/toast-notification-wrapper.component';
-import {
-  ToastNotificationBelonging,
-  ToastNotificationEventsController
-} from './classes';
+import { ToastNotificationBelonging, ToastNotificationEventsController } from './classes';
 import { ToastPositionEnum, ToastUserViewTypeEnum } from './enums';
-import {
-  IPrivateResponseMerged,
-  IToastNotificationRawState
-} from './interfaces';
+import { IPrivateResponseMerged, IToastNotificationRawState } from './interfaces';
 
 import { ToastNotificationConfigService } from './toast-notification-config.service';
 
@@ -41,16 +35,11 @@ export class ToastNotificationService {
     private gConfigService: GlobalConfigService
   ) {}
 
-  openToast$(
-    _ToastNotificationBelonging: ToastNotificationBelonging
-  ): Observable<IPrivateResponseMerged> {
+  openToast$(_ToastNotificationBelonging: ToastNotificationBelonging): Observable<IPrivateResponseMerged> {
     let eventController = _ToastNotificationBelonging.EventsController;
     // console.log(`%c ${_ToastNotificationBelonging.EntityUniqueID} `, `background: #339933; color: #fff`);
 
-    const toastRawInstance = this.prepareRawToast(
-      eventController,
-      _ToastNotificationBelonging
-    );
+    const toastRawInstance = this.prepareRawToast(eventController, _ToastNotificationBelonging);
     this.listeners(eventController);
     this.internalRouting(toastRawInstance);
     return eventController.afterClosed$;
@@ -74,17 +63,14 @@ export class ToastNotificationService {
     const componentRef = this.getComponentRef(_ToastRawInstance);
     if (componentRef) {
       this.toastComponentRefList.push(componentRef);
-      componentRef.instance.toastNotificationBelonging =
-        _ToastRawInstance.ToastBelonging;
+      componentRef.instance.toastNotificationBelonging = _ToastRawInstance.ToastBelonging;
       this.appendToBodyParentComponent(componentRef);
     }
   }
 
   isRefListAvailable(): boolean {
     return (
-      this.toastComponentRefList.length <
-      this.toastConfig.productionConfig.GlobalSettings
-        .AllowedNotificationsAtOnce
+      this.toastComponentRefList.length < this.toastConfig.productionConfig.GlobalSettings.AllowedNotificationsAtOnce
     );
   }
 
@@ -101,39 +87,28 @@ export class ToastNotificationService {
     };
   }
 
-  getComponentRef(
-    _ToastNotificationRawState: IToastNotificationRawState
-  ): ComponentRef<any> | null {
-    const dialogIndex = this.findDialogIndex(
-      _ToastNotificationRawState.ToastBelonging.EntityUniqueID
-    );
+  getComponentRef(_ToastNotificationRawState: IToastNotificationRawState): ComponentRef<any> | null {
+    const dialogIndex = this.findDialogIndex(_ToastNotificationRawState.ToastBelonging.EntityUniqueID);
     if (dialogIndex === -1) {
       let toastUserViewComponent: Type<any> = ToastNotificationWrapperComponent;
       if (
-        _ToastNotificationRawState.ToastBelonging.ToastCoreConfig
-          .ToastUserViewType === ToastUserViewTypeEnum.SIMPLE
+        _ToastNotificationRawState.ToastBelonging.ToastCoreConfig.ToastUserViewType === ToastUserViewTypeEnum.SIMPLE
       ) {
         toastUserViewComponent = ToastNotificationSimpleWrapperComponent;
       }
-      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-        toastUserViewComponent
-      );
-      return componentFactory.create(
-        new DialogInjector(this.injector, _ToastNotificationRawState.WeakMap)
-      );
+      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(toastUserViewComponent);
+      return componentFactory.create(new DialogInjector(this.injector, _ToastNotificationRawState.WeakMap));
     }
     return null;
   }
 
   listeners(_EventsController: ToastNotificationEventsController) {
     // Listener for closing dialog
-    const closeDialogSubscription = _EventsController.afterClosed$.subscribe(
-      response => {
-        // this.removeFromBodyParentComponent(modalIndex);
-        this.removeFromBody(response.toastNotificationBelonging.EntityUniqueID);
-        closeDialogSubscription.unsubscribe();
-      }
-    );
+    const closeDialogSubscription = _EventsController.afterClosed$.subscribe(response => {
+      // this.removeFromBodyParentComponent(modalIndex);
+      this.removeFromBody(response.toastNotificationBelonging.EntityUniqueID);
+      closeDialogSubscription.unsubscribe();
+    });
   }
 
   appendToBodyParentComponent(_ComponentRef: ComponentRef<any>): void {
@@ -141,16 +116,12 @@ export class ToastNotificationService {
     this.appRef.attachView(_ComponentRef.hostView);
 
     const toastPosition: ToastPositionEnum =
-      _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig
-        .ToastPosition;
-    const openInElementID =
-      _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig
-        .OpenInElementID;
+      _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.ToastPosition;
+    const openInElementID = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.OpenInElementID;
     let targetNode: HTMLElement;
     if (!openInElementID) {
       this.setToastWrapperNode(
-        _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig
-          .ToastPosition,
+        _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.ToastPosition,
         this.setToastOverlayNode()
       );
       targetNode = document.getElementById(`toast-wrapper-${toastPosition}`);
@@ -158,14 +129,10 @@ export class ToastNotificationService {
       targetNode = document.getElementById(openInElementID);
     }
 
-    const domElem = (_ComponentRef.hostView as EmbeddedViewRef<any>)
-      .rootNodes[0] as HTMLElement;
+    const domElem = (_ComponentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
 
     const toastEntity = document.createElement('div');
-    toastEntity.setAttribute(
-      'id',
-      _ComponentRef.instance.toastNotificationBelonging.EntityUniqueID
-    );
+    toastEntity.setAttribute('id', _ComponentRef.instance.toastNotificationBelonging.EntityUniqueID);
     toastEntity.className = 'toast-entity';
     const split = toastPosition.split('-');
     if (split[1] === 'fullwidth') {
@@ -177,10 +144,10 @@ export class ToastNotificationService {
     }
     toastEntity.style.margin = 'auto';
     toastEntity.prepend(domElem);
-    // targetNode.prepend(toastEntity);
-    setTimeout(() => {
+    targetNode.prepend(toastEntity);
+    /*setTimeout(() => {
       targetNode.prepend(toastEntity);
-    }, 200);
+    }, 200);*/
   }
 
   removeFromBody(_EntityUniqueID: string): void {
@@ -192,20 +159,17 @@ export class ToastNotificationService {
       }
 
       this.toastComponentRefList[modalIndex].instance
-        .closeParent$('close-fast')
+        .closeParent$()
         .pipe(
           map(item => {
             const modalIndex = this.findDialogIndex(_EntityUniqueID);
             if (this.toastComponentRefList[modalIndex]) {
               const toastEntity = document.getElementById(
-                this.toastComponentRefList[modalIndex].instance
-                  .toastNotificationBelonging.EntityUniqueID
+                this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.EntityUniqueID
               );
               toastEntity.remove();
               // console.log(`%c ${this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.EntityUniqueID} `, `background: #cc3333; color: #fff`);
-              this.appRef.detachView(
-                this.toastComponentRefList[modalIndex].hostView
-              );
+              this.appRef.detachView(this.toastComponentRefList[modalIndex].hostView);
               this.toastComponentRefList[modalIndex].destroy();
               this.toastComponentRefList.splice(modalIndex, 1);
             }
@@ -217,10 +181,7 @@ export class ToastNotificationService {
 
   findDialogIndex(_DialogUniqueID: string): number {
     return this.toastComponentRefList.findIndex(item => {
-      return (
-        _DialogUniqueID ===
-        item.instance.toastNotificationBelonging.EntityUniqueID
-      );
+      return _DialogUniqueID === item.instance.toastNotificationBelonging.EntityUniqueID;
     });
   }
 
@@ -230,9 +191,7 @@ export class ToastNotificationService {
       return;
     }
     // check the overlay
-    let toastOverlayNode = document.getElementById(
-      'toast-overlay-container'
-    ) as HTMLStyleElement;
+    let toastOverlayNode = document.getElementById('toast-overlay-container') as HTMLStyleElement;
 
     if (!toastOverlayNode) {
       let toastOverlayNode = document.createElement('div');
@@ -241,7 +200,7 @@ export class ToastNotificationService {
       toastOverlayNode.style.position = 'fixed';
       toastOverlayNode.style.top = '0';
       toastOverlayNode.style.left = '0';
-      toastOverlayNode.style.zIndex = '999999999';
+      toastOverlayNode.style.zIndex = '999999999999';
       bodyNode.appendChild(toastOverlayNode);
       return toastOverlayNode;
     }
@@ -249,13 +208,8 @@ export class ToastNotificationService {
     return toastOverlayNode;
   }
 
-  private setToastWrapperNode(
-    _Position: ToastPositionEnum,
-    _ToastOverlayNode: HTMLElement
-  ) {
-    let toastWrapperNode = document.getElementById(
-      `toast-wrapper-${_Position}`
-    ) as HTMLStyleElement;
+  private setToastWrapperNode(_Position: ToastPositionEnum, _ToastOverlayNode: HTMLElement) {
+    let toastWrapperNode = document.getElementById(`toast-wrapper-${_Position}`) as HTMLStyleElement;
     if (!toastWrapperNode) {
       const toastWrapper = document.createElement('div');
       toastWrapper.setAttribute('id', 'toast-wrapper-' + _Position);
@@ -269,7 +223,7 @@ export class ToastNotificationService {
           .getSheet('ngx-awesome-popup-styles')
           .addRule(
             `#toast-wrapper-${_Position}`,
-            `${split[0]}: 20px; ${split[1]}: 20px; position: fixed; z-index: 999999;`
+            `${split[0]}: 20px; ${split[1]}: 20px; position: fixed; z-index: 999999999;`
           );
       }
       if (split[1] === 'center') {
@@ -277,7 +231,7 @@ export class ToastNotificationService {
           .getSheet('ngx-awesome-popup-styles')
           .addRule(
             `#toast-wrapper-${_Position}`,
-            `${split[0]}: 20px; width: 100%; position: fixed; z-index: 999999; pointer-events: none;`
+            `${split[0]}: 20px; width: 100%; position: fixed; z-index: 999999999; pointer-events: none;`
           );
       }
       if (split[1] === 'fullwidth') {
@@ -285,7 +239,7 @@ export class ToastNotificationService {
           .getSheet('ngx-awesome-popup-styles')
           .addRule(
             `#toast-wrapper-${_Position}`,
-            `${split[0]}: 10px; width: 100%; position: fixed; z-index: 999999; pointer-events: none;`
+            `${split[0]}: 10px; width: 100%; position: fixed; z-index: 999999999; pointer-events: none;`
           );
       }
     }

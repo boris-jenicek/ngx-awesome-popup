@@ -1,9 +1,18 @@
 <div
   class="ngx-awesome-popup-overlay"
   (dblclick)="onOverlayClicked($event)"
-  [@fadeInOut]="fadeInOutAnimation"
+  [@fadeInOut]="{
+    value: fadeInOutAnimation,
+    params: {
+      closeDelay: dialogBelonging.DialogCoreConfig.AnimationOut === 0 ? '200ms' : '300ms'
+    }
+  }"
 >
   <div
+    [@.disabled]="
+      dialogBelonging.DialogCoreConfig.AnimationIn === 0 && dialogBelonging.DialogCoreConfig.AnimationOut === 0
+    "
+    [@boxAnimations]="boxAnimation"
     class="evolve-parent-dialog"
     [ngStyle]="
       dialogBelonging.DialogCoreConfig.FullScreen && {
@@ -36,10 +45,7 @@
         <ng-template appInsertionLoader></ng-template>
       </div>
     </div>
-    <ng-container
-      *ngIf="!dialogBelonging.DialogCoreConfig.FullScreen; else fullScreen"
-    >
-    </ng-container>
+    <ng-container *ngIf="!dialogBelonging.DialogCoreConfig.FullScreen; else fullScreen"></ng-container>
     <ng-template #fullScreen></ng-template>
     <div
       class="content-holder"
@@ -106,24 +112,14 @@
           (click)="onCustomButton(button)"
           [ngClass]="{
             '': button.LayoutType ? button.LayoutType === 0 : false,
-            'ed-btn-success': button.LayoutType
-              ? button.LayoutType === 1
-              : false,
+            'ed-btn-success': button.LayoutType ? button.LayoutType === 1 : false,
             'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,
-            'ed-btn-warning': button.LayoutType
-              ? button.LayoutType === 3
-              : false,
-            'ed-btn-danger': button.LayoutType
-              ? button.LayoutType === 4
-              : false,
+            'ed-btn-warning': button.LayoutType ? button.LayoutType === 3 : false,
+            'ed-btn-danger': button.LayoutType ? button.LayoutType === 4 : false,
             'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,
             'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,
-            'ed-btn-primary': button.LayoutType
-              ? button.LayoutType === 7
-              : false,
-            'ed-btn-secondary': button.LayoutType
-              ? button.LayoutType === 8
-              : false,
+            'ed-btn-primary': button.LayoutType ? button.LayoutType === 7 : false,
+            'ed-btn-secondary': button.LayoutType ? button.LayoutType === 8 : false,
             'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false
           }"
         >

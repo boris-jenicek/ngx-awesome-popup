@@ -1,11 +1,12 @@
 import { Type } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
 import {
-  IButton,
-  IPrivateResponse,
-  ISizes
-} from '../../../core/global-interfaces';
+  AppearanceAnimation,
+  DialogLayoutDisplay,
+  DisappearanceAnimation,
+  VerticalPosition
+} from '../../../core/enums';
+import { IButton, IPrivateResponse, ISizes } from '../../../core/global-interfaces';
 
 /**
  * Check interface of properties.
@@ -47,6 +48,8 @@ export interface IDialogCoreConfig extends ISizes {
   LayoutType?: DialogLayoutDisplay;
   DisplayLoader?: boolean;
   LoaderComponent?: Type<any>;
+  AnimationIn?: AppearanceAnimation;
+  AnimationOut?: DisappearanceAnimation;
 }
 
 export interface IDialogBelonging {
@@ -95,8 +98,6 @@ export interface IDialogPublicResponse<ResponsePayload> {
   ClickedButtonID: string;
 }
 
-export interface IPrivateResponseMerged
-  extends IDialogResponse,
-    IPrivateResponse {
+export interface IPrivateResponseMerged extends IDialogResponse, IPrivateResponse {
   DialogBelonging: IDialogBelonging;
 }

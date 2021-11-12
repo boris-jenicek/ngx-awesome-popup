@@ -1,8 +1,14 @@
-@import "../../../styles/style";
+@import '../../../styles/style';
 
 .ngx-awesome-popup-overlay {
   .evolve-confirm-box {
     padding: 0 20px;
+
+    &.zoom-in-block {
+      // transform: scale(0);
+      // opacity: 0;
+      // transition: opacity 0.5s, height 0.5s, transform 0.5s;
+    }
 
     .confirm-box-title-content {
       align-items: center;

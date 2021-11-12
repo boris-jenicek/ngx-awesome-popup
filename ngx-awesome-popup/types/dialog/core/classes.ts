@@ -1,7 +1,12 @@
 import { Type } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import {
+  AppearanceAnimation,
+  DialogLayoutDisplay,
+  DisappearanceAnimation,
+  VerticalPosition
+} from '../../../core/enums';
 import { DataControl, Sizes } from '../../../core/global-classes';
 import { IButton } from '../../../core/global-interfaces';
 import { ServiceLocator } from '../../../locator.service';
@@ -26,9 +31,7 @@ export class DialogInitializer {
   }
 
   /** Generic method accept expected payload from dynamic child component.*/
-  openDialog$<ResponsePayload = any>(): Observable<
-    IDialogPublicResponse<ResponsePayload>
-  > {
+  openDialog$<ResponsePayload = any>(): Observable<IDialogPublicResponse<ResponsePayload>> {
     return this.dialogCarrier.openDialog$().pipe(
       map(resp => {
         const basicDialogResponse = new DialogResponse();
@@ -54,9 +57,7 @@ export class DialogInitializer {
   }
 }
 
-export class DialogResponse
-  extends DataControl
-  implements IDialogResponse, IDialogPublicResponse<any> {
+export class DialogResponse extends DataControl implements IDialogResponse, IDialogPublicResponse<any> {
   // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
 
   Payload: any = null;
@@ -125,9 +126,7 @@ export class DialogEventsController implements IDialogEventsController {
 
 // endregion
 
-export class DialogDefaultResponse
-  extends DialogResponse
-  implements IPrivateResponseMerged {
+export class DialogDefaultResponse extends DialogResponse implements IPrivateResponseMerged {
   DialogBelonging: IDialogBelonging = null;
 
   constructor() {
@@ -162,10 +161,7 @@ export class DialogCarrier {
   setConfig(_DialogConfig: IDialogCoreConfig) {
     // region *** local UserConfig (defined on place where dialog is called) ***
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(
-      _DialogConfig,
-      this.dialogBelonging.DialogCoreConfig
-    );
+    dataControl.copyValuesFrom(_DialogConfig, this.dialogBelonging.DialogCoreConfig);
     if (_DialogConfig?.LoaderComponent) {
       this.dialogBelonging.DialogCoreConfig.DisplayLoader = true;
     }
@@ -186,6 +182,8 @@ export class DialogCoreConfig extends Sizes implements IDialogCoreConfig {
   LayoutType: DialogLayoutDisplay = null;
   DisplayLoader: boolean = null;
   LoaderComponent: Type<any> = null;
+  AnimationIn: AppearanceAnimation = null;
+  AnimationOut: DisappearanceAnimation = null;
 }
 
 export class DialogSettings {
@@ -193,9 +191,7 @@ export class DialogSettings {
   DialogCoreConfig: IDialogCoreConfig = new DialogCoreConfig();
 }
 
-export class DialogBelonging<CustomData = any>
-  extends DialogSettings
-  implements IDialogBelonging {
+export class DialogBelonging<CustomData = any> extends DialogSettings implements IDialogBelonging {
   /** @internal */
   EntityUniqueID: string = 'D' + Math.random().toString(36).substr(2, 9);
 
@@ -205,15 +201,10 @@ export class DialogBelonging<CustomData = any>
   constructor() {
     super();
     this.EventsController = new DialogEventsController(this.EntityUniqueID);
-    const dialogConfigurator: DialogConfigService = ServiceLocator.injector.get(
-      DialogConfigService
-    );
+    const dialogConfigurator: DialogConfigService = ServiceLocator.injector.get(DialogConfigService);
     const baseSettings = new DialogSettings();
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(
-      dialogConfigurator.productionConfig.DialogCoreConfig,
-      baseSettings.DialogCoreConfig
-    );
+    dataControl.copyValuesFrom(dialogConfigurator.productionConfig.DialogCoreConfig, baseSettings.DialogCoreConfig);
     this.DialogCoreConfig = baseSettings.DialogCoreConfig;
     this.Buttons = dialogConfigurator.productionConfig.Buttons.slice();
   }

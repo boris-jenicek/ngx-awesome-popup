@@ -1,4 +1,4 @@
-@import "../../../styles/style";
+@import '../../../styles/style';
 
 .toast-wrapper {
   background: transparent;
@@ -32,7 +32,7 @@
     margin-top: 10px;
     max-height: 350px;
     position: relative;
-    transition: box-shadow 0.3s ease-in-out;
+    // transition: box-shadow 0.3s ease-in-out;
     vertical-align: bottom;
 
     &:hover {

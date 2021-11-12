@@ -1,18 +1,12 @@
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
 import {
-  IButton,
-  IDispatch,
-  IPrivateResponse
-} from '../../../core/global-interfaces';
-import {
-  ToastNotificationBelonging,
-  ToastNotificationEventsController
-} from './classes';
-import {
-  ToastPositionEnum,
-  ToastProgressBarEnum,
-  ToastUserViewTypeEnum
-} from './enums';
+  AppearanceAnimation,
+  DialogLayoutDisplay,
+  DisappearanceAnimation,
+  VerticalPosition
+} from '../../../core/enums';
+import { IButton, IDispatch, IPrivateResponse } from '../../../core/global-interfaces';
+import { ToastNotificationBelonging, ToastNotificationEventsController } from './classes';
+import { ToastPositionEnum, ToastProgressBarEnum, ToastUserViewTypeEnum } from './enums';
 
 export interface IToastNotificationUserConfig {
   Buttons?: IButton[];
@@ -43,6 +37,8 @@ export interface IToastCoreConfig {
   AutoCloseDelay?: number;
   DisableIcon?: boolean;
   AllowHTMLMessage?: boolean;
+  AnimationIn?: AppearanceAnimation;
+  AnimationOut?: DisappearanceAnimation;
 }
 
 export interface IToastNotificationBelonging {
@@ -63,9 +59,7 @@ export interface IToastNotificationPublicResponse {
   ClickedButtonID: string;
 }
 
-export interface IPrivateResponseMerged
-  extends IToastNotificationResponse,
-    IPrivateResponse {
+export interface IPrivateResponseMerged extends IToastNotificationResponse, IPrivateResponse {
   toastNotificationBelonging: IToastNotificationBelonging;
 }
 

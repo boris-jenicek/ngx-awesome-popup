@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { DialogLayoutDisplay } from '../../../core/enums';
+import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation } from '../../../core/enums';
 import { DataControl } from '../../../core/global-classes';
 import { DefaultLoaderComponent } from '../../../default-loader/default-loader.component';
 import { DialogSettings } from './classes';
@@ -19,15 +19,11 @@ export class DialogConfigService {
     // region *** dialog userConfig (user input app-module) ***
     const userConfigBase = new DialogSettings();
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(
-      userConfig.DialogCoreConfig,
-      userConfigBase.DialogCoreConfig
-    ); // this will make sure that object has right properties
+    dataControl.copyValuesFrom(userConfig.DialogCoreConfig, userConfigBase.DialogCoreConfig); // this will make sure that object has right properties
     userConfig.DialogCoreConfig = userConfigBase.DialogCoreConfig;
 
     if (userConfig.DialogCoreConfig.LoaderComponent !== null) {
-      userConfig.DialogCoreConfig.DisplayLoader =
-        userConfig.DialogCoreConfig.DisplayLoader === null;
+      userConfig.DialogCoreConfig.DisplayLoader = userConfig.DialogCoreConfig.DisplayLoader === null;
     }
     // endregion
 
@@ -41,16 +37,13 @@ export class DialogConfigService {
     this.authorConfig.DialogCoreConfig.FullScreen = false;
     this.authorConfig.DialogCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
     this.authorConfig.DialogCoreConfig.LoaderComponent = DefaultLoaderComponent;
+    this.authorConfig.DialogCoreConfig.AnimationIn = AppearanceAnimation.ELASTIC;
+    this.authorConfig.DialogCoreConfig.AnimationOut = DisappearanceAnimation.SLIDE_OUT_LEFT;
+
     // endregion
 
-    dataControl.copyValuesFrom(
-      this.authorConfig.DialogCoreConfig,
-      this.productionConfig.DialogCoreConfig
-    );
-    dataControl.copyValuesFrom(
-      userConfig.DialogCoreConfig,
-      this.productionConfig.DialogCoreConfig
-    );
+    dataControl.copyValuesFrom(this.authorConfig.DialogCoreConfig, this.productionConfig.DialogCoreConfig);
+    dataControl.copyValuesFrom(userConfig.DialogCoreConfig, this.productionConfig.DialogCoreConfig);
 
     // Buttons
     /*if(userConfig.Buttons){

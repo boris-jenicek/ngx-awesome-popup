@@ -1,6 +1,11 @@
 import { Observable, Subject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import {
+  AppearanceAnimation,
+  DialogLayoutDisplay,
+  DisappearanceAnimation,
+  VerticalPosition
+} from '../../../core/enums';
 import { DataControl, Dispatch } from '../../../core/global-classes';
 import { IButton, IDispatch } from '../../../core/global-interfaces';
 import { ServiceLocator } from '../../../locator.service';
@@ -186,6 +191,8 @@ export class ConfirmBoxCoreConfig implements IConfirmBoxCoreConfig {
   DeclineLabel: string = null;
   DisableIcon: boolean = null;
   AllowHTMLMessage: boolean = null;
+  AnimationIn: AppearanceAnimation = null;
+  AnimationOut: DisappearanceAnimation = null;
 }
 
 export class ConfirmBoxBelonging

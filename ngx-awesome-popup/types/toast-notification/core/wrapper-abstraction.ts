@@ -1,13 +1,11 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
+import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
 import { Timer } from '../../../core/global-classes';
 import { IButton } from '../../../core/global-interfaces';
 
-import {
-  ToastNotificationBelonging,
-  ToastNotificationDefaultResponse
-} from './classes';
+import { ToastNotificationBelonging, ToastNotificationDefaultResponse } from './classes';
 
 @Injectable()
 export abstract class WrapperAbstraction implements OnDestroy {
@@ -18,19 +16,47 @@ export abstract class WrapperAbstraction implements OnDestroy {
   isTimerStarted = false;
   timeout;
   timer: Timer = new Timer();
+  boxAnimation: AppearanceAnimation | DisappearanceAnimation = AppearanceAnimation.NONE;
+  private closeIsClicked: boolean = false;
 
-  protected constructor(
-    public toastNotificationBelonging: ToastNotificationBelonging
-  ) {}
+  protected constructor(public toastNotificationBelonging: ToastNotificationBelonging) {
+    setTimeout(() => {
+      this.boxAnimation = this.toastNotificationBelonging.ToastCoreConfig.AnimationIn;
+    }, 1);
+  }
+
+  get autoCloseCondition(): boolean {
+    return (
+      this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay &&
+      !(
+        this.toastNotificationBelonging.Buttons.length ||
+        this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||
+        this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel
+      )
+    );
+  }
+
+  get buttonsExist(): boolean {
+    return (
+      !!this.toastNotificationBelonging.Buttons.length ||
+      !!this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||
+      !!this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel
+    );
+  }
 
   mouseOver() {
-    this.timerStarted$.next('stop-counter');
-    this.fadeInOutAnimation = 'open';
-    this.subsToClosingDelay?.unsubscribe();
+    if (!this.buttonsExist && !this.closeIsClicked) {
+      this.timerStarted$.next('stop-counter');
+      this.fadeInOutAnimation = 'open';
+      this.subsToClosingDelay?.unsubscribe();
+      this.boxAnimation = 0;
+    }
   }
 
   mouseOut() {
-    this.timerStarted$.next('start-counter');
+    if (!this.buttonsExist && !this.closeIsClicked) {
+      this.timerStarted$.next('start-counter');
+    }
   }
 
   onOverlayClicked(evt: MouseEvent): void {
@@ -49,9 +75,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
 
     response.setSuccess(_IsSuccess);
     response.setBelonging(this.toastNotificationBelonging);
-    this.toastNotificationBelonging.EventsController.setDefaultResponse(
-      response
-    );
+    this.toastNotificationBelonging.EventsController.setDefaultResponse(response);
   }
 
   onCustomButton(_Button: IButton): void {
@@ -73,10 +97,8 @@ export abstract class WrapperAbstraction implements OnDestroy {
   }
 
   autoClose() {
-    if (this.autoCloseCondition()) {
-      this.timer.setMilliseconds(
-        this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay
-      );
+    if (this.autoCloseCondition) {
+      this.timer.setMilliseconds(this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
       this.subTimer = this.timerStarted$
         .pipe(
           tap(next => {
@@ -84,9 +106,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
               this.timer.start();
               this.isTimerStarted = true;
               this.timeout = setTimeout(() => {
-                this.subsToClosingDelay = this.closeParent$(
-                  'close-slow'
-                ).subscribe(resp => {
+                this.subsToClosingDelay = this.closeParent$().subscribe(resp => {
                   this.toastNotificationBelonging.EventsController.close();
                 });
               }, this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
@@ -103,25 +123,23 @@ export abstract class WrapperAbstraction implements OnDestroy {
     }
   }
 
-  autoCloseCondition(): boolean {
-    return (
-      this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay &&
-      !(
-        this.toastNotificationBelonging.Buttons.length ||
-        this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||
-        this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel
-      )
-    );
-  }
-
-  closeParent$(_ClosingAnimation: string): Observable<any> {
-    this.fadeInOutAnimation = _ClosingAnimation;
-    const timer = _ClosingAnimation === 'close-slow' ? 1400 : 150;
-    return of('').pipe(delay(timer));
+  closeParent$(): Observable<any> {
+    this.boxAnimation = this.toastNotificationBelonging.ToastCoreConfig.AnimationOut;
+    const closeDuration = this.toastNotificationBelonging.ToastCoreConfig.AnimationOut ? 400 : 200;
+    this.fadeInOutAnimation = 'close-fast';
+    return of('').pipe(delay(closeDuration));
   }
 
   close() {
     this.toastNotificationBelonging.EventsController.close();
+  }
+
+  closeIcon(): void {
+    this.closeIsClicked = true;
+    this.subsToClosingDelay?.unsubscribe();
+    this.closeParent$().subscribe(resp => {
+      this.toastNotificationBelonging.EventsController.close();
+    });
   }
 
   ngOnDestroy() {

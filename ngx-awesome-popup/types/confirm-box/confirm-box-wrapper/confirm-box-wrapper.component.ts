@@ -1,32 +1,32 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  Inject
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { fadeInOut } from '../../../core/animations';
+import { boxAnimations } from '../../../core/animations/box.animations';
+import { fadeInOut } from '../../../core/animations/fade-in-out.animation';
+import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
 import { IButton } from '../../../core/global-interfaces';
-import {
-  ConfirmBoxBelonging,
-  ConfirmBoxDefaultResponse
-} from '../core/classes';
+import { ConfirmBoxBelonging, ConfirmBoxDefaultResponse } from '../core/classes';
 
 @Component({
   selector: 'app-confirm-box-wrapper',
   templateUrl: './confirm-box-wrapper.component.html',
   styleUrls: ['./confirm-box-wrapper.component.scss'],
-  animations: [fadeInOut(0, 1)]
+  animations: [fadeInOut(), boxAnimations()]
 })
 export class ConfirmBoxWrapperComponent implements AfterViewInit {
   fadeInOutAnimation: string = 'open';
+  animationFlyDirection = 'none';
+  boxAnimation: AppearanceAnimation | DisappearanceAnimation = AppearanceAnimation.NONE;
 
   constructor(
     @Inject('confirmBoxBelonging')
     public confirmBoxBelonging: ConfirmBoxBelonging,
     private cd: ChangeDetectorRef
-  ) {}
+  ) {
+    setTimeout(() => {
+      this.boxAnimation = this.confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationIn;
+    }, 1);
+  }
 
   ngAfterViewInit(): void {
     this.setResponse(false);
@@ -67,13 +67,13 @@ export class ConfirmBoxWrapperComponent implements AfterViewInit {
     this.confirmBoxBelonging.EventsController.close();
   }
 
-  closeParent$(_ClosingAnimation: string): Observable<any> {
-    this.fadeInOutAnimation = _ClosingAnimation;
-    const timer = _ClosingAnimation === 'close-slow' ? 1400 : 150;
-
+  closeParent$(): Observable<any> {
+    this.boxAnimation = this.confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationOut;
+    const closeDuration = this.confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationOut ? 800 : 200;
+    this.fadeInOutAnimation = 'close-fast';
     return new Observable((observer: Observer<any>) => {
       observer.next('');
       observer.complete();
-    }).pipe(delay(timer));
+    }).pipe(delay(closeDuration));
   }
 }

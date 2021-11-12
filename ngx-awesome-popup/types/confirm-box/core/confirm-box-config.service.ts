@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { DialogLayoutDisplay } from '../../../core/enums';
+import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation } from '../../../core/enums';
 import { DataControl } from '../../../core/global-classes';
 import { ConfirmBoxSettings } from './classes';
 import { IConfirmBoxUserConfig } from './interfaces';
@@ -18,10 +18,7 @@ export class ConfirmBoxConfigService {
     // region *** confirmBox userConfig (user input app-module) ***
     const userConfigBase = new ConfirmBoxSettings();
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(
-      userConfig.ConfirmBoxCoreConfig,
-      userConfigBase.ConfirmBoxCoreConfig
-    ); // this will make sure that object has right properties
+    dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, userConfigBase.ConfirmBoxCoreConfig); // this will make sure that object has right properties
     userConfig.ConfirmBoxCoreConfig = userConfigBase.ConfirmBoxCoreConfig;
     // endregion
 
@@ -33,20 +30,15 @@ export class ConfirmBoxConfigService {
     this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel = 'Decline';
     this.authorConfig.ConfirmBoxCoreConfig.DisableIcon = false;
     this.authorConfig.ConfirmBoxCoreConfig.AllowHTMLMessage = false;
-    this.authorConfig.ConfirmBoxCoreConfig.LayoutType =
-      DialogLayoutDisplay.NONE;
+    this.authorConfig.ConfirmBoxCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
+    this.authorConfig.ConfirmBoxCoreConfig.AnimationIn = AppearanceAnimation.ZOOM_IN;
+    this.authorConfig.ConfirmBoxCoreConfig.AnimationOut = DisappearanceAnimation.ZOOM_OUT_ROTATE;
 
     // endregion
 
     // region *** Production setup ***
-    dataControl.copyValuesFrom(
-      this.authorConfig.ConfirmBoxCoreConfig,
-      this.productionConfig.ConfirmBoxCoreConfig
-    );
-    dataControl.copyValuesFrom(
-      userConfig.ConfirmBoxCoreConfig,
-      this.productionConfig.ConfirmBoxCoreConfig
-    );
+    dataControl.copyValuesFrom(this.authorConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
+    dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
     // endregion
   }
 }
