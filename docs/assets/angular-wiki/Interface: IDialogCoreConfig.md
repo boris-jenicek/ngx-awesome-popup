@@ -8,14 +8,14 @@ Example:
 const dialogCoreConfig = {
     DialogCoreConfig: {
        Width          : '500px',
-       // MinWidth       : '300px',  // v1.1.0
-       // MaxWidth       : '700px',  // v1.1.0
+       // MinWidth       : '300px',
+       // MaxWidth       : '700px',
        Height         : '500px',
-       // MinHeight      : '100vh',  // v1.1.0
-       // MaxHeight      : '100px',  // v1.1.0
-       HideScrollbar  : true,        // v1.1.0
-       EscapeKeyClose : true,        // v1.1.0
-       // FullScreen : true,         // v1.1.0
+       // MinHeight      : '100vh',
+       // MaxHeight      : '100px',
+       HideScrollbar  : true,
+       EscapeKeyClose : true,
+       // FullScreen : true,
        ButtonPosition : 'right',
        LayoutType: DialogLayoutDisplay.INFO,
        // LoaderComponent: // Any Angular component class name can be included as a loader.
@@ -31,6 +31,18 @@ const dialogCoreConfig = {
   ↳ **IDialogCoreConfig**
 
 ## Properties
+
+### AnimationIn
+
+• `Optional` **AnimationIn**: [*AppearanceAnimation*](#/documentation/Enum:%20AppearanceAnimation)
+
+___
+
+### AnimationOut
+
+• `Optional` **AnimationOut**: [*DisappearanceAnimation*](#/documentation/Enum:%20DisappearanceAnimation)
+
+___
 
 ### ButtonPosition
 

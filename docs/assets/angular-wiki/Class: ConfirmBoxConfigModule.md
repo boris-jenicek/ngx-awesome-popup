@@ -7,6 +7,7 @@ Confirm box is available in predefined layout types (enums): [DialogLayoutDispla
 It is crucial for user to add this module in angular.app imports.
 Below is the example with (optional) default user configuration, that's what will be used if there is no
 local config when popup is evoked, that means it can be overridden directly when popup is evoked.
+That mean it's predefined config, so it doesn't need to be configured each time when confirm box is evoked.
 For implementation look: [IConfirmBoxUserConfig](#/documentation/Interface:%20IConfirmBoxUserConfig).
 
 Example:
@@ -16,12 +17,18 @@ ConfirmBoxConfigModule.forRoot({
    ConfirmBoxCoreConfig: {
       Width: '700px',
       LayoutType: DialogLayoutDisplay.DANGER,
-      ButtonPosition: 'center'
+      ButtonPosition: 'center', // optional ' center', 'left', 'right'
+      LayoutType: DialogLayoutDisplay.SUCCESS, // SUCCESS | INFO | NONE | DANGER | WARNING
+      AnimationIn: AppearanceAnimation.BOUNCE_IN, // BOUNCE_IN | SWING | ZOOM_IN | ZOOM_IN_ROTATE | ELASTIC | JELLO | FADE_IN | SLIDE_IN_UP | SLIDE_IN_DOWN | SLIDE_IN_LEFT | SLIDE_IN_RIGHT | NONE
+      AnimationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
+      AllowHTMLMessage: true, // default false
+      DisableIcon: true, // default false
    },
    Dispatch: {  // Optional default dispatch object.
       Title: 'Default title',
       Message: 'Default message'
    },
+   // optional predefined custom default buttons
    Buttons     : [
       new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY),
       new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY)

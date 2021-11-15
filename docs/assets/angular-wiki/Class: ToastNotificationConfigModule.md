@@ -7,6 +7,7 @@ Toast notifications are available in predefined layout types (enums): [DialogLay
 It is crucial for user to add this module in angular.app imports.
 Below is the example with (optional) default user configuration, that's what will be used if there is no
 local config when popup is evoked, that means it can be overridden directly when popup is evoked.
+That mean it's predefined config, so it doesn't need to be configured each time when toast is evoked.
 For implementation look: [IToastNotificationUserConfig](#/documentation/Interface:%20IToastNotificationUserConfig).
 
 Example:
@@ -14,8 +15,18 @@ Example:
 // app.module imports:
 ToastNotificationConfigModule.forRoot({
    ToastCoreConfig: {
-      // Milliseconds it will be ignored if buttons are included.
-      AutoCloseDelay: 3000
+      // AutoClose it will be ignored if buttons are included.
+      AutoCloseDelay: 3000 // milliseconds, optional set 0 to never expires
+      TextPosition: 'right', // optional ' center', 'left', 'right'
+      LayoutType: DialogLayoutDisplay.SUCCESS, // SUCCESS | INFO | NONE | DANGER | WARNING
+      ProgressBar: ToastProgressBarEnum.INCREASE, // INCREASE | DECREASE | NONE
+      ToastUserViewType: ToastUserViewTypeEnum.SIMPLE, // STANDARD | SIMPLE
+      AnimationIn: AppearanceAnimation.BOUNCE_IN, // BOUNCE_IN | SWING | ZOOM_IN | ZOOM_IN_ROTATE | ELASTIC | JELLO | FADE_IN | SLIDE_IN_UP | SLIDE_IN_DOWN | SLIDE_IN_LEFT | SLIDE_IN_RIGHT | NONE
+      AnimationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
+      ToastPosition: ToastPositionEnum.TOP_RIGHT,  // TOP_LEFT | TOP_CENTER | TOP_RIGHT | TOP_FULL_WIDTH | BOTTOM_LEFT | BOTTOM_CENTER | BOTTOM_RIGHT | BOTTOM_FULL_WIDTH
+      AllowHTMLMessage: true,  // default false
+      DisableIcon: true, // default false
+      ButtonPosition: 'right', / / optional ' center', 'left', 'right'
    },
    GlobalSettings: {
       // The number of toast notifications that can be shown at once.
@@ -26,6 +37,7 @@ ToastNotificationConfigModule.forRoot({
      Title: 'Default title',
      Message: 'Default message'
   },
+  // optional predefined custom default buttons
   Buttons: [
      new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY),
      new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY)

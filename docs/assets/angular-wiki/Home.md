@@ -10,8 +10,10 @@
 
 ### Enumerations
 
+- [AppearanceAnimation](#/documentation/Enum:%20AppearanceAnimation)
 - [ButtonLayoutDisplay](#/documentation/Enum:%20ButtonLayoutDisplay)
 - [DialogLayoutDisplay](#/documentation/Enum:%20DialogLayoutDisplay)
+- [DisappearanceAnimation](#/documentation/Enum:%20DisappearanceAnimation)
 - [ToastPositionEnum](#/documentation/Enum:%20ToastPositionEnum)
 - [ToastProgressBarEnum](#/documentation/Enum:%20ToastProgressBarEnum)
 - [ToastUserViewTypeEnum](#/documentation/Enum:%20ToastUserViewTypeEnum)

@@ -8,6 +8,18 @@
 
 ___
 
+### AnimationIn
+
+• `Optional` **AnimationIn**: [*AppearanceAnimation*](#/documentation/Enum:%20AppearanceAnimation)
+
+___
+
+### AnimationOut
+
+• `Optional` **AnimationOut**: [*DisappearanceAnimation*](#/documentation/Enum:%20DisappearanceAnimation)
+
+___
+
 ### AutoCloseDelay
 
 • `Optional` **AutoCloseDelay**: *number*
