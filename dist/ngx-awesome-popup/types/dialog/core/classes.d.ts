@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { DataControl, Sizes } from '../../../core/global-classes';
 import { IButton } from '../../../core/global-interfaces';
 import { IDialogBelonging, IDialogCoreConfig, IDialogEventsController, IDialogPublicResponse, IDialogResponse, IPrivateResponseMerged } from './interfaces';
@@ -69,6 +69,8 @@ export declare class DialogCoreConfig extends Sizes implements IDialogCoreConfig
     LayoutType: DialogLayoutDisplay;
     DisplayLoader: boolean;
     LoaderComponent: Type<any>;
+    AnimationIn: AppearanceAnimation;
+    AnimationOut: DisappearanceAnimation;
 }
 export declare class DialogSettings {
     Buttons: IButton[];

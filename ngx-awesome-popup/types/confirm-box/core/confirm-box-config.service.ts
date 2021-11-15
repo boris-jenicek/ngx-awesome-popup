@@ -32,7 +32,7 @@ export class ConfirmBoxConfigService {
     this.authorConfig.ConfirmBoxCoreConfig.AllowHTMLMessage = false;
     this.authorConfig.ConfirmBoxCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
     this.authorConfig.ConfirmBoxCoreConfig.AnimationIn = AppearanceAnimation.ZOOM_IN;
-    this.authorConfig.ConfirmBoxCoreConfig.AnimationOut = DisappearanceAnimation.ZOOM_OUT_ROTATE;
+    this.authorConfig.ConfirmBoxCoreConfig.AnimationOut = DisappearanceAnimation.ZOOM_OUT;
 
     // endregion
 

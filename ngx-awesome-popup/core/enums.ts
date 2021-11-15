@@ -29,7 +29,6 @@ export enum ColorVariance {
   PRIMARY = 7,
   SECONDARY = 8
 }
-// TODO export enuma
 export enum AppearanceAnimation {
   NONE = 0,
   BOUNCE_IN = 'bounceIn',

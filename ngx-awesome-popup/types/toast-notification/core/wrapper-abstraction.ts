@@ -18,6 +18,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
   timer: Timer = new Timer();
   boxAnimation: AppearanceAnimation | DisappearanceAnimation = AppearanceAnimation.NONE;
   private closeIsClicked: boolean = false;
+  private autoClosingHasStarted: boolean = false;
 
   protected constructor(public toastNotificationBelonging: ToastNotificationBelonging) {
     setTimeout(() => {
@@ -45,7 +46,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
   }
 
   mouseOver() {
-    if (!this.buttonsExist && !this.closeIsClicked) {
+    if (!this.buttonsExist && !this.closeIsClicked && !this.autoClosingHasStarted) {
       this.timerStarted$.next('stop-counter');
       this.fadeInOutAnimation = 'open';
       this.subsToClosingDelay?.unsubscribe();
@@ -54,7 +55,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
   }
 
   mouseOut() {
-    if (!this.buttonsExist && !this.closeIsClicked) {
+    if (!this.buttonsExist && !this.closeIsClicked && !this.autoClosingHasStarted) {
       this.timerStarted$.next('start-counter');
     }
   }
@@ -124,6 +125,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
   }
 
   closeParent$(): Observable<any> {
+    this.autoClosingHasStarted = true;
     this.boxAnimation = this.toastNotificationBelonging.ToastCoreConfig.AnimationOut;
     const closeDuration = this.toastNotificationBelonging.ToastCoreConfig.AnimationOut ? 400 : 200;
     this.fadeInOutAnimation = 'close-fast';

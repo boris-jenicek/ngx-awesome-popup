@@ -1,4 +1,4 @@
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { IButton, IDispatch, IPrivateResponse } from '../../../core/global-interfaces';
 import { ToastNotificationBelonging, ToastNotificationEventsController } from './classes';
 import { ToastPositionEnum, ToastProgressBarEnum, ToastUserViewTypeEnum } from './enums';
@@ -29,6 +29,8 @@ export interface IToastCoreConfig {
     AutoCloseDelay?: number;
     DisableIcon?: boolean;
     AllowHTMLMessage?: boolean;
+    AnimationIn?: AppearanceAnimation;
+    AnimationOut?: DisappearanceAnimation;
 }
 export interface IToastNotificationBelonging {
     Buttons: IButton[];

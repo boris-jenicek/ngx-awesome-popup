@@ -1,4 +1,4 @@
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { IButton, IDispatch, IPrivateResponse } from '../../../core/global-interfaces';
 import { ConfirmBoxEventsController } from './classes';
 export interface IConfirmBoxUserConfig {
@@ -23,6 +23,8 @@ export interface IConfirmBoxCoreConfig {
     DeclineLabel?: string;
     DisableIcon?: boolean;
     AllowHTMLMessage?: boolean;
+    AnimationIn?: AppearanceAnimation;
+    AnimationOut?: DisappearanceAnimation;
 }
 export interface IConfirmBoxBelonging {
     Buttons: IButton[];

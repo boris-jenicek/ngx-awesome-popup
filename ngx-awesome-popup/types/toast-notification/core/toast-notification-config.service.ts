@@ -36,8 +36,8 @@ export class ToastNotificationConfigService {
     this.authorConfig.ToastCoreConfig.AllowHTMLMessage = true;
     this.authorConfig.ToastCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
     this.authorConfig.GlobalSettings.AllowedNotificationsAtOnce = 5;
-    this.authorConfig.ToastCoreConfig.AnimationIn = AppearanceAnimation.SLIDE_IN_RIGHT;
-    this.authorConfig.ToastCoreConfig.AnimationOut = DisappearanceAnimation.FLIP_OUT;
+    this.authorConfig.ToastCoreConfig.AnimationIn = AppearanceAnimation.ZOOM_IN;
+    this.authorConfig.ToastCoreConfig.AnimationOut = DisappearanceAnimation.ZOOM_OUT;
 
     // endregion
 

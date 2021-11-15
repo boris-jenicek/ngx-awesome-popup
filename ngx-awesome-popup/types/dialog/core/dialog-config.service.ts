@@ -37,8 +37,8 @@ export class DialogConfigService {
     this.authorConfig.DialogCoreConfig.FullScreen = false;
     this.authorConfig.DialogCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
     this.authorConfig.DialogCoreConfig.LoaderComponent = DefaultLoaderComponent;
-    this.authorConfig.DialogCoreConfig.AnimationIn = AppearanceAnimation.ELASTIC;
-    this.authorConfig.DialogCoreConfig.AnimationOut = DisappearanceAnimation.SLIDE_OUT_LEFT;
+    this.authorConfig.DialogCoreConfig.AnimationIn = AppearanceAnimation.ZOOM_IN;
+    this.authorConfig.DialogCoreConfig.AnimationOut = DisappearanceAnimation.ZOOM_OUT;
 
     // endregion
 

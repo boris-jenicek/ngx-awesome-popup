@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { DataControl } from '../../../core/global-classes';
 import { IButton, IDispatch } from '../../../core/global-interfaces';
 import { IConfirmBoxBelonging, IConfirmBoxCoreConfig, IConfirmBoxPublicResponse, IConfirmBoxResponse, IPrivateResponseMerged } from './interfaces';
@@ -67,6 +67,8 @@ export declare class ConfirmBoxCoreConfig implements IConfirmBoxCoreConfig {
     DeclineLabel: string;
     DisableIcon: boolean;
     AllowHTMLMessage: boolean;
+    AnimationIn: AppearanceAnimation;
+    AnimationOut: DisappearanceAnimation;
 }
 export declare class ConfirmBoxBelonging extends ConfirmBoxSettings implements IConfirmBoxBelonging {
     EntityUniqueID: string;

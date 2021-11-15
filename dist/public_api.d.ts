@@ -27,6 +27,39 @@ export { ToastPositionEnum } from './ngx-awesome-popup/types/toast-notification/
 export { ToastProgressBarEnum } from './ngx-awesome-popup/types/toast-notification/core/enums';
 export { ToastUserViewTypeEnum } from './ngx-awesome-popup/types/toast-notification/core/enums';
 /**
+ *```
+ * ## Choose between many appearing animations that are available
+ * BOUNCE_IN
+ * SWING
+ * ZOOM_IN
+ * ZOOM_IN_ROTATE
+ * ELASTIC
+ * JELLO
+ * FADE_IN
+ * SLIDE_IN_UP
+ * SLIDE_IN_DOWN
+ * SLIDE_IN_LEFT
+ * SLIDE_IN_RIGHT
+ * NONE // use thus value for disabling the animations
+ */
+export { AppearanceAnimation } from './ngx-awesome-popup/core/enums';
+/**
+ *```
+ * ## Multiple different disappearing animations are available
+ * ## Choose between many disappearing animations that are available
+ * ZOOM_OUT_WIND
+ * BOUNCE_OUT
+ * FLIP_OUT
+ * ZOOM_OUT
+ * ZOOM_OUT_ROTATE
+ * SLIDE_OUT_UP
+ * SLIDE_OUT_DOWN
+ * SLIDE_OUT_LEFT
+ * SLIDE_OUT_RIGHT
+ * NONE // use thus value for disabling the animations
+ */
+export { DisappearanceAnimation } from './ngx-awesome-popup/core/enums';
+/**
  * @returns It will return custom button object ready to be used in child component layout.
  */
 export { ButtonMaker } from './ngx-awesome-popup/core/global-classes';
@@ -36,7 +69,7 @@ export { ButtonMaker } from './ngx-awesome-popup/core/global-classes';
  * as the argument.
  * new ResetGlobalConfig({
  *     ColorList: {
- *            Primary  : '#ff9e00', // optional
+ *            Primary  : '#ff9e00', // optional shade of the overlay color
  *            Secondary: '#989ea5', // optional
  *            Info     : '#2f8ee5', // optional
  *            Success  : '#3caea3', // optional
@@ -262,6 +295,7 @@ export { DialogInitializer };
 /**
  * This is the main module of the library, it is crucial to be added within angular.app
  * imports as an example with optional argument, look: {@link IGlobalUserConfig}
+ * Style your application by adding a color list like in this example.
  *
  * ```typescript
  * // app.module imports:
@@ -289,6 +323,7 @@ export { NgxAwesomePopupModule } from './ngx-awesome-popup/ngx-awesome-popup.mod
  * It is crucial for user to add this module in angular.app imports.
  * Below is the example with (optional) default user configuration, that is what will be in setup if there is no
  * local config when popup is evoked, that means it can be overridden directly when popup is called.
+ * That mean it's predefined config, so it doesn't need to be configured each time when dialog is evoked.
  * For implementation look: {@link IDialogUserConfig}.
  *
  * Example:
@@ -296,11 +331,26 @@ export { NgxAwesomePopupModule } from './ngx-awesome-popup/ngx-awesome-popup.mod
  * // app.module imports:
  *DialogConfigModule.forRoot({
  *     DialogCoreConfig: {
- *        Width        : '500px',
- *        ButtonPosition: 'right',
- *        LayoutType: DialogLayoutDisplay.INFO,
+ *        Width          : '500px',
+ *        // MinWidth       : '300px',  // example
+ *        // MaxWidth       : '700px',  // example
+ *        Height         : '500px',
+ *        // MinHeight      : '100vh',  // example
+ *        // MaxHeight      : '100px',  // example
+ *        ButtonPosition: 'right', // optional ' center', 'left', 'right'
+ *        LayoutType: DialogLayoutDisplay.INFO, // SUCCESS | INFO | NONE | DANGER | WARNING
  *        LoaderComponent: // Any angular component class name can be included as a loader.
- *     },
+ *        HideScrollbar  : true,
+ *        EscapeKeyClose : true,
+ *        // FullScreen : true,
+ *        ButtonPosition : 'right',
+ *        LayoutType: DialogLayoutDisplay.INFO,
+ *        // LoaderComponent: // Any Angular component class name can be included as a loader.
+ *        DisplayLoader: false // This will override LoaderComponent.
+ *        AnimationIn: AppearanceAnimation.BOUNCE_IN, // BOUNCE_IN | SWING | ZOOM_IN | ZOOM_IN_ROTATE | ELASTIC | JELLO | FADE_IN | SLIDE_IN_UP | SLIDE_IN_DOWN | SLIDE_IN_LEFT | SLIDE_IN_RIGHT | NONE
+ *        AnimationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
+ *    },
+ *    // optional predefined custom default buttons
  *     Buttons: [
  *        new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY),
  *        new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY)
@@ -321,6 +371,7 @@ export { DialogConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.module
  * It is crucial for user to add this module in angular.app imports.
  * Below is the example with (optional) default user configuration, that's what will be used if there is no
  * local config when popup is evoked, that means it can be overridden directly when popup is evoked.
+ * That mean it's predefined config, so it doesn't need to be configured each time when confirm box is evoked.
  * For implementation look: {@link IConfirmBoxUserConfig}.
  *
  * Example:
@@ -330,12 +381,18 @@ export { DialogConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.module
  *    ConfirmBoxCoreConfig: {
  *       Width: '700px',
  *       LayoutType: DialogLayoutDisplay.DANGER,
- *       ButtonPosition: 'center'
+ *       ButtonPosition: 'center', // optional ' center', 'left', 'right'
+ *       LayoutType: DialogLayoutDisplay.SUCCESS, // SUCCESS | INFO | NONE | DANGER | WARNING
+ *       AnimationIn: AppearanceAnimation.BOUNCE_IN, // BOUNCE_IN | SWING | ZOOM_IN | ZOOM_IN_ROTATE | ELASTIC | JELLO | FADE_IN | SLIDE_IN_UP | SLIDE_IN_DOWN | SLIDE_IN_LEFT | SLIDE_IN_RIGHT | NONE
+ *       AnimationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
+ *       AllowHTMLMessage: true, // default false
+ *       DisableIcon: true, // default false
  *    },
  *    Dispatch: {  // Optional default dispatch object.
  *       Title: 'Default title',
  *       Message: 'Default message'
  *    },
+ *    // optional predefined custom default buttons
  *    Buttons     : [
  *       new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY),
  *       new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY)
@@ -357,6 +414,7 @@ export { ConfirmBoxConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.mo
  * It is crucial for user to add this module in angular.app imports.
  * Below is the example with (optional) default user configuration, that's what will be used if there is no
  * local config when popup is evoked, that means it can be overridden directly when popup is evoked.
+ * That mean it's predefined config, so it doesn't need to be configured each time when toast is evoked.
  * For implementation look: {@link IToastNotificationUserConfig}.
  *
  * Example:
@@ -364,8 +422,18 @@ export { ConfirmBoxConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.mo
  * // app.module imports:
  *ToastNotificationConfigModule.forRoot({
  *    ToastCoreConfig: {
- *       // Milliseconds it will be ignored if buttons are included.
- *       AutoCloseDelay: 3000
+ *       // AutoClose it will be ignored if buttons are included.
+ *       AutoCloseDelay: 3000 // milliseconds, optional set 0 to never expires
+ *       TextPosition: 'right', // optional ' center', 'left', 'right'
+ *       LayoutType: DialogLayoutDisplay.SUCCESS, // SUCCESS | INFO | NONE | DANGER | WARNING
+ *       ProgressBar: ToastProgressBarEnum.INCREASE, // INCREASE | DECREASE | NONE
+ *       ToastUserViewType: ToastUserViewTypeEnum.SIMPLE, // STANDARD | SIMPLE
+ *       AnimationIn: AppearanceAnimation.BOUNCE_IN, // BOUNCE_IN | SWING | ZOOM_IN | ZOOM_IN_ROTATE | ELASTIC | JELLO | FADE_IN | SLIDE_IN_UP | SLIDE_IN_DOWN | SLIDE_IN_LEFT | SLIDE_IN_RIGHT | NONE
+ *       AnimationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
+ *       ToastPosition: ToastPositionEnum.TOP_RIGHT,  // TOP_LEFT | TOP_CENTER | TOP_RIGHT | TOP_FULL_WIDTH | BOTTOM_LEFT | BOTTOM_CENTER | BOTTOM_RIGHT | BOTTOM_FULL_WIDTH
+ *       AllowHTMLMessage: true,  // default false
+ *       DisableIcon: true, // default false
+ *       ButtonPosition: 'right', / / optional ' center', 'left', 'right'
  *    },
  *    GlobalSettings: {
  *       // The number of toast notifications that can be shown at once.
@@ -376,6 +444,7 @@ export { ConfirmBoxConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.mo
  *      Title: 'Default title',
  *      Message: 'Default message'
  *   },
+ *   // optional predefined custom default buttons
  *   Buttons: [
  *      new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY),
  *      new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY)

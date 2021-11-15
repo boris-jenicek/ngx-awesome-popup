@@ -1,7 +1,7 @@
-<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️--><h1 align="center">@costlydeveloper/ngx-awesome-popup</h1>
+<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️--><h1 align="center">Ngx Awesome Popup</h1>
 
 <p align="center">
-  <b>The world's easiest, most powerful Angular dialog modal framework.</b></br>
+  <b>The world's easiest, most powerful dialog modal framework for Angular.</b></br>
 </p>
 
 <p align="center">
@@ -14,19 +14,19 @@
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#license)
 
-- **Extremely simple to use - just look at the playground!**
-- **Prevent mistakes!**
+- **Extremely simple to use - try it on the [DEMO](https://costlydeveloper.github.io/ngx-awesome-popup/)!**
+- **Animated!**
 - **Without HTML selector!**
 
 [![Ngx Awesome Popup](https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/og-img.png)](https://costlydeveloper.github.io/ngx-awesome-popup/)
 
 ### Website
 
-Visit the [DEMO](https://costlydeveloper.github.io/ngx-awesome-popup/) for general information, demos and documentation.
+Visit the [DEMO](https://costlydeveloper.github.io/ngx-awesome-popup/) for code generators, demos and documentation.
 
-### Blog
+### Articles
 
-If you in doubt, find out the good reasons to use it on the [Blog](https://dev.to/costlydeveloper).
+If you in any doubt, find out the good reasons to use this library **on the** [**Dev.to**](https://dev.to/costlydeveloper).
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#license)
 
@@ -36,10 +36,10 @@ Licensed under [MIT](https://opensource.org/licenses/MIT).
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#license)
 
-### Do you like so far?
+### Support us with a GitHub star!
 
-#### Give us a star!
+<p align="center"><a href="https://github.com/costlydeveloper/ngx-awesome-popup#"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/gh-star.png" alt="Star the repo"/></a></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/gh-star.png" alt="Star the repo"/></p>
 <br/>
 <p align="center"><a href="https://github.com/costlydeveloper/ngx-awesome-popup#"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/backToTop.png" alt="Back to top" height="29"/></a></p>
+

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { DataControl } from '../../../core/global-classes';
 import { IButton, IDispatch } from '../../../core/global-interfaces';
 import { ToastPositionEnum, ToastProgressBarEnum, ToastUserViewTypeEnum } from './enums';
@@ -78,6 +78,8 @@ export declare class ToastCoreConfig implements IToastCoreConfig {
     AutoCloseDelay: number;
     DisableIcon: boolean;
     AllowHTMLMessage: boolean;
+    AnimationIn: AppearanceAnimation;
+    AnimationOut: DisappearanceAnimation;
 }
 export declare class ToastNotificationBelonging extends ToastSettings implements IToastNotificationBelonging {
     EntityUniqueID: string;

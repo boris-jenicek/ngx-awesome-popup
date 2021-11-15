@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DialogLayoutDisplay, VerticalPosition } from '../../../core/enums';
+import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { IButton, IPrivateResponse, ISizes } from '../../../core/global-interfaces';
 /**
  * Check interface of properties.
@@ -18,14 +18,14 @@ export interface IDialogUserConfig {
  * const dialogCoreConfig = {
  *     DialogCoreConfig: {
  *        Width          : '500px',
- *        // MinWidth       : '300px',  // v1.1.0
- *        // MaxWidth       : '700px',  // v1.1.0
+ *        // MinWidth       : '300px',
+ *        // MaxWidth       : '700px',
  *        Height         : '500px',
- *        // MinHeight      : '100vh',  // v1.1.0
- *        // MaxHeight      : '100px',  // v1.1.0
- *        HideScrollbar  : true,        // v1.1.0
- *        EscapeKeyClose : true,        // v1.1.0
- *        // FullScreen : true,         // v1.1.0
+ *        // MinHeight      : '100vh',
+ *        // MaxHeight      : '100px',
+ *        HideScrollbar  : true,
+ *        EscapeKeyClose : true,
+ *        // FullScreen : true,
  *        ButtonPosition : 'right',
  *        LayoutType: DialogLayoutDisplay.INFO,
  *        // LoaderComponent: // Any Angular component class name can be included as a loader.
@@ -41,6 +41,8 @@ export interface IDialogCoreConfig extends ISizes {
     LayoutType?: DialogLayoutDisplay;
     DisplayLoader?: boolean;
     LoaderComponent?: Type<any>;
+    AnimationIn?: AppearanceAnimation;
+    AnimationOut?: DisappearanceAnimation;
 }
 export interface IDialogBelonging {
     Buttons: IButton[];
