@@ -669,10 +669,11 @@ const zoomIn = [
         offset: 0
     }),
     style({
-        offset: 0.2,
+        offset: 0.1,
         opacity: 1
     }),
     style({
+        transform: 'scale3d(1, 1, 1)',
         offset: 1
     })
 ];

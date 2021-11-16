@@ -29,6 +29,7 @@ export enum ColorVariance {
   PRIMARY = 7,
   SECONDARY = 8
 }
+
 export enum AppearanceAnimation {
   NONE = 0,
   BOUNCE_IN = 'bounceIn',
