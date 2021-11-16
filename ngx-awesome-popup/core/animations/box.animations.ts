@@ -1,10 +1,22 @@
-import { animate, keyframes, transition, trigger } from '@angular/animations';
+import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import * as kf from './keyframes';
 
 export function boxAnimations() {
   return trigger('boxAnimations', [
     // in
-    transition('* => bounceIn', animate('600ms cubic-bezier(0.215, 0.61, 0.355, 1)', keyframes(kf.bounceIn))),
+    state('bounceIn', style({ opacity: 1 })),
+    state('swing', style({ opacity: 1 })),
+    state('zoomIn', style({ opacity: 1 })),
+    state('zoomInRotate', style({ opacity: 1 })),
+    state('elastic', style({ opacity: 1 })),
+    state('jello', style({ opacity: 1 })),
+    state('fadeIn', style({ opacity: 1 })),
+    state('slideInUp', style({ opacity: 1 })),
+    state('slideInDown', style({ opacity: 1 })),
+    state('slideInLeft', style({ opacity: 1 })),
+    state('slideInRight', style({ opacity: 1 })),
+
+    transition('* => bounceIn', animate('1000ms cubic-bezier(0.215, 0.61, 0.355, 1)', keyframes(kf.bounceIn))),
     transition('* => swing', animate('800ms', keyframes(kf.swing))),
     transition('* => zoomIn', animate('400ms', keyframes(kf.zoomIn))),
     transition('* => zoomInRotate', animate('800ms ease-out', keyframes(kf.zoomInRotate))),
@@ -17,6 +29,16 @@ export function boxAnimations() {
     transition('* => slideInRight', animate('400ms ease-out', keyframes(kf.slideInRight))),
 
     // out
+    state('zoomOutWind', style({ opacity: 0 })),
+    state('bounceOut', style({ opacity: 0 })),
+    state('flipOutY', style({ opacity: 0 })),
+    state('zoomOut', style({ opacity: 0 })),
+    state('zoomOutRotate', style({ opacity: 0 })),
+    state('slideOutUp', style({ opacity: 0 })),
+    state('slideOutDown', style({ opacity: 0 })),
+    state('slideOutLeft', style({ opacity: 0 })),
+    state('slideOutRight', style({ opacity: 0 })),
+
     transition('* => zoomOutWind', animate('400ms ease-in', keyframes(kf.zoomOutWind))),
     transition('* => bounceOut', animate('400ms ease-in', keyframes(kf.bounceOut))),
     transition('* => flipOutY', animate('400ms ease-in', keyframes(kf.flipOutY))),

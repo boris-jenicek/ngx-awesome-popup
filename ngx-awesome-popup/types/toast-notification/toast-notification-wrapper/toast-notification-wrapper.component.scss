@@ -1,4 +1,4 @@
-@import "../../../styles/style";
+@import '../../../styles/style';
 
 .toast-wrapper {
   background: transparent;
@@ -35,6 +35,7 @@
     position: relative;
     transition: box-shadow 0.3s ease-in-out;
     vertical-align: bottom;
+    opacity: 0;
 
     &:hover {
       box-shadow: 0 0 4px 3px transparentize(black, 0.75);

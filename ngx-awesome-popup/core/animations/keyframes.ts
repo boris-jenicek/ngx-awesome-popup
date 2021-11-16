@@ -45,15 +45,10 @@ export const swing = [
 export const zoomIn = [
   style({
     transform: 'scale3d(0.3, 0.3, 0.3)',
-    opacity: 0,
     offset: 0
   }),
   style({
     offset: 0.2,
-    opacity: 0
-  }),
-  style({
-    offset: 0.6,
     opacity: 1
   }),
   style({
@@ -146,18 +141,12 @@ export const zoomOutWind = [
 
 export const bounceOut = [
   style({
+    transform: 'scale3d(1.3, 1.3, 1.3)',
+    offset: 0.3
+  }),
+  style({
     transform: 'scale3d(0.9, 0.9, 0.9)',
-    offset: 0.2
-  }),
-  style({
-    opacity: 1,
-    transform: 'scale3d(1.1, 1.1, 1.1)',
     offset: 0.5
-  }),
-  style({
-    opacity: 1,
-    transform: 'scale3d(1.1, 1.1, 1.1)',
-    offset: 0.55
   }),
   style({
     transform: 'scale3d(0.3, 0.3, 0.3)',

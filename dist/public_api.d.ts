@@ -27,36 +27,13 @@ export { ToastPositionEnum } from './ngx-awesome-popup/types/toast-notification/
 export { ToastProgressBarEnum } from './ngx-awesome-popup/types/toast-notification/core/enums';
 export { ToastUserViewTypeEnum } from './ngx-awesome-popup/types/toast-notification/core/enums';
 /**
- *```
+ *
  * ## Choose between many appearing animations that are available
- * BOUNCE_IN
- * SWING
- * ZOOM_IN
- * ZOOM_IN_ROTATE
- * ELASTIC
- * JELLO
- * FADE_IN
- * SLIDE_IN_UP
- * SLIDE_IN_DOWN
- * SLIDE_IN_LEFT
- * SLIDE_IN_RIGHT
- * NONE // use thus value for disabling the animations
  */
 export { AppearanceAnimation } from './ngx-awesome-popup/core/enums';
 /**
- *```
- * ## Multiple different disappearing animations are available
+ *
  * ## Choose between many disappearing animations that are available
- * ZOOM_OUT_WIND
- * BOUNCE_OUT
- * FLIP_OUT
- * ZOOM_OUT
- * ZOOM_OUT_ROTATE
- * SLIDE_OUT_UP
- * SLIDE_OUT_DOWN
- * SLIDE_OUT_LEFT
- * SLIDE_OUT_RIGHT
- * NONE // use thus value for disabling the animations
  */
 export { DisappearanceAnimation } from './ngx-awesome-popup/core/enums';
 /**

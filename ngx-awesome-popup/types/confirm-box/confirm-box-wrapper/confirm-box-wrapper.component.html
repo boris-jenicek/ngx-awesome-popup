@@ -14,7 +14,7 @@
       confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationOut === 0
     "
     [@boxAnimations]="boxAnimation"
-    class="evolve-confirm-box zoom-in-block"
+    class="evolve-confirm-box"
     [ngClass]="{
       'standard-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
       'success-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,
@@ -24,7 +24,8 @@
     }"
     [ngStyle]="{
       width: confirmBoxBelonging.ConfirmBoxCoreConfig.Width,
-      height: confirmBoxBelonging.ConfirmBoxCoreConfig.Height
+      height: confirmBoxBelonging.ConfirmBoxCoreConfig.Height,
+      opacity: confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationIn === 0 ? 1 : 0
     }"
   >
     <div class="confirm-box-title-content" *ngIf="confirmBoxBelonging.Dispatch.Title">

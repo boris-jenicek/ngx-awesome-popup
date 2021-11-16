@@ -39,7 +39,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   @ViewChild(InsertionLoaderDirective, { static: true })
   loaderInsertionPoint: InsertionLoaderDirective;
 
-  boxAnimation: AppearanceAnimation | DisappearanceAnimation = AppearanceAnimation.NONE;
+  boxAnimation: AppearanceAnimation | DisappearanceAnimation;
 
   constructor(
     @Inject('dialogBelonging')

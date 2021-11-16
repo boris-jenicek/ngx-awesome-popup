@@ -16,7 +16,7 @@ import { ConfirmBoxBelonging, ConfirmBoxDefaultResponse } from '../core/classes'
 export class ConfirmBoxWrapperComponent implements AfterViewInit {
   fadeInOutAnimation: string = 'open';
   animationFlyDirection = 'none';
-  boxAnimation: AppearanceAnimation | DisappearanceAnimation = AppearanceAnimation.NONE;
+  boxAnimation: AppearanceAnimation | DisappearanceAnimation;
 
   constructor(
     @Inject('confirmBoxBelonging')

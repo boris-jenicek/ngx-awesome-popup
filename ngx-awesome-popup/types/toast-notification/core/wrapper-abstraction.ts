@@ -16,7 +16,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
   isTimerStarted = false;
   timeout;
   timer: Timer = new Timer();
-  boxAnimation: AppearanceAnimation | DisappearanceAnimation = AppearanceAnimation.NONE;
+  boxAnimation: AppearanceAnimation | DisappearanceAnimation;
   private closeIsClicked: boolean = false;
   private autoClosingHasStarted: boolean = false;
 
@@ -50,7 +50,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
       this.timerStarted$.next('stop-counter');
       this.fadeInOutAnimation = 'open';
       this.subsToClosingDelay?.unsubscribe();
-      this.boxAnimation = 0;
+      this.boxAnimation = null;
     }
   }
 
