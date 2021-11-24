@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation } from '../../../core/enums';
 import { DataControl } from '../../../core/global-classes';
 import { DefaultLoaderComponent } from '../../../default-loader/default-loader.component';
-import { DialogSettings } from './classes';
+import { DialogCustomStyles, DialogSettings } from './classes';
 import { IDialogUserConfig } from './interfaces';
 
 @Injectable({
@@ -39,6 +39,7 @@ export class DialogConfigService {
     this.authorConfig.DialogCoreConfig.LoaderComponent = DefaultLoaderComponent;
     this.authorConfig.DialogCoreConfig.AnimationIn = AppearanceAnimation.ZOOM_IN;
     this.authorConfig.DialogCoreConfig.AnimationOut = DisappearanceAnimation.ZOOM_OUT;
+    this.authorConfig.DialogCoreConfig.CustomStyles = new DialogCustomStyles();
 
     // endregion
 

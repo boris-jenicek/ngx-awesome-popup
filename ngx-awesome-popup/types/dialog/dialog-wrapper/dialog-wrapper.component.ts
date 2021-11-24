@@ -4,11 +4,14 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef,
+  ElementRef,
   HostListener,
   Inject,
   OnDestroy,
+  QueryList,
   Type,
-  ViewChild
+  ViewChild,
+  ViewChildren
 } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -26,6 +29,9 @@ import { DialogBelonging, DialogDefaultResponse } from '../core/classes';
   animations: [fadeInOut(), boxAnimations()]
 })
 export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
+  @ViewChild('elDialogWrapper') elDialogWrapper: ElementRef;
+  @ViewChild('elButtonWrapper') elButtonWrapper: ElementRef;
+  @ViewChildren('elButton') elButton: QueryList<ElementRef>;
   fadeInOutAnimation: string = 'open';
   showLoader: boolean = true;
   bodyOverflow: string;
@@ -59,6 +65,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     this.loadLoaderComponent(this.dialogBelonging.DialogCoreConfig.LoaderComponent);
     this.setDefaultResponse();
     this.cd.detectChanges();
+    this.setCustomStyles();
   }
 
   hideScrollbar() {
@@ -135,6 +142,20 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
 
   closeLoader(): void {
     this.showLoader = false;
+  }
+
+  setCustomStyles(): void {
+    if (this.dialogBelonging.DialogCoreConfig.CustomStyles.WrapperCSS && this.elDialogWrapper) {
+      this.elDialogWrapper.nativeElement.style.cssText += this.dialogBelonging.DialogCoreConfig.CustomStyles.WrapperCSS;
+    }
+    if (this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
+      this.elButtonWrapper.nativeElement.style.cssText += this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonSectionCSS;
+    }
+    if (this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
+      this.elButton.forEach(el => {
+        el.nativeElement.style.cssText += this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonCSS;
+      });
+    }
   }
 
   @HostListener('window:keyup', ['$event'])

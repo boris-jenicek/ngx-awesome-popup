@@ -1,4 +1,4 @@
-import { OnDestroy } from '@angular/core';
+import { ElementRef, OnDestroy, QueryList } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
 import { Timer } from '../../../core/global-classes';
@@ -6,6 +6,10 @@ import { IButton } from '../../../core/global-interfaces';
 import { ToastNotificationBelonging } from './classes';
 export declare abstract class WrapperAbstraction implements OnDestroy {
     toastNotificationBelonging: ToastNotificationBelonging;
+    elTextWrapper: ElementRef;
+    elTitleWrapper: ElementRef;
+    elButtonWrapper: ElementRef;
+    elButton: QueryList<ElementRef>;
     fadeInOutAnimation: string;
     timerStarted$: BehaviorSubject<string>;
     subsToClosingDelay: Subscription;
@@ -13,12 +17,13 @@ export declare abstract class WrapperAbstraction implements OnDestroy {
     isTimerStarted: boolean;
     timeout: any;
     timer: Timer;
-    boxAnimation: AppearanceAnimation | DisappearanceAnimation;
+    boxAnimation: AppearanceAnimation | DisappearanceAnimation | 'reset';
     private closeIsClicked;
     private autoClosingHasStarted;
     protected constructor(toastNotificationBelonging: ToastNotificationBelonging);
     get autoCloseCondition(): boolean;
     get buttonsExist(): boolean;
+    setCustomStyles(): void;
     mouseOver(): void;
     mouseOut(): void;
     onOverlayClicked(evt: MouseEvent): void;

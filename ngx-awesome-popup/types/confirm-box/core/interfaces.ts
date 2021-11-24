@@ -4,11 +4,7 @@ import {
   DisappearanceAnimation,
   VerticalPosition
 } from '../../../core/enums';
-import {
-  IButton,
-  IDispatch,
-  IPrivateResponse
-} from '../../../core/global-interfaces';
+import { IButton, IDispatch, IPrivateResponse } from '../../../core/global-interfaces';
 import { ConfirmBoxEventsController } from './classes';
 
 export interface IConfirmBoxUserConfig {
@@ -21,6 +17,14 @@ export interface IConfirmBoxUserConfig {
   Buttons?: IButton[];
   ConfirmBoxCoreConfig?: IConfirmBoxCoreConfig;
   Dispatch?: IDispatch;
+}
+
+export interface IConfirmBoxCustomStyles {
+  TitleCSS?: string;
+  TextCSS?: string;
+  ButtonSectionCSS?: string;
+  ButtonCSS?: string;
+  WrapperCSS?: string;
 }
 
 export interface IConfirmBoxCoreConfig {
@@ -37,6 +41,7 @@ export interface IConfirmBoxCoreConfig {
   AllowHTMLMessage?: boolean;
   AnimationIn?: AppearanceAnimation;
   AnimationOut?: DisappearanceAnimation;
+  CustomStyles?: IConfirmBoxCustomStyles;
 }
 
 export interface IConfirmBoxBelonging {
@@ -57,8 +62,6 @@ export interface IConfirmBoxPublicResponse {
   ClickedButtonID: string;
 }
 
-export interface IPrivateResponseMerged
-  extends IConfirmBoxResponse,
-    IPrivateResponse {
+export interface IPrivateResponseMerged extends IConfirmBoxResponse, IPrivateResponse {
   confirmBoxBelonging: IConfirmBoxBelonging;
 }

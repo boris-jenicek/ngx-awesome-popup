@@ -15,6 +15,7 @@
     "
     [@boxAnimations]="boxAnimation"
     class="evolve-confirm-box"
+    #elConfirmBoxWrapper
     [ngClass]="{
       'standard-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
       'success-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,
@@ -28,7 +29,7 @@
       opacity: confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationIn === 0 ? 1 : 0
     }"
   >
-    <div class="confirm-box-title-content" *ngIf="confirmBoxBelonging.Dispatch.Title">
+    <div class="confirm-box-title-content" #elTitleWrapper *ngIf="confirmBoxBelonging.Dispatch.Title">
       <div class="dont-break-out">
         <div class="text-wrapper dont-break-out">
           <div class="confirm-box-title-text">
@@ -40,6 +41,7 @@
 
     <div
       class="content-holder"
+      #elTextWrapper
       [ngClass]="confirmBoxBelonging.Dispatch.Title ? '' : 'without-title'"
       *ngIf="confirmBoxBelonging.Dispatch.Message"
     >
@@ -69,7 +71,7 @@
         </div>
       </div>
     </div>
-    <div class="button-holder">
+    <div class="button-holder" #elButtonWrapper>
       <div
         class="button-section"
         *ngIf="confirmBoxBelonging.Buttons.length"
@@ -78,6 +80,7 @@
         }"
       >
         <button
+          #elButton
           class="ed-btn ed-btn-md"
           *ngFor="let button of confirmBoxBelonging.Buttons"
           (click)="onCustomButton(button)"
@@ -105,6 +108,7 @@
         }"
       >
         <button
+          #elButton
           class="ed-btn ed-btn-md"
           (click)="onButtonClick('confirm')"
           [ngClass]="{
@@ -118,6 +122,7 @@
           {{ confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel }}
         </button>
         <button
+          #elButton
           class="ed-btn ed-btn-md ed-btn-secondary"
           (click)="onButtonClick('decline')"
           *ngIf="confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel"

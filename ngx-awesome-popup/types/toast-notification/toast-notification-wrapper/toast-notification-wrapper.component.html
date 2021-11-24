@@ -26,18 +26,16 @@
       'danger-dialog': 4 === toastNotificationBelonging.ToastCoreConfig.LayoutType
     }"
   >
-    <div class="toast-title-content" *ngIf="toastNotificationBelonging.Dispatch.Title">
+    <div class="toast-title-content" #elTitleWrapper *ngIf="toastNotificationBelonging.Dispatch.Title">
       <div class="dont-break-out">
         <div class="text-wrapper dont-break-out">
-          <div class="toast-title-text">
-            {{ toastNotificationBelonging.Dispatch.Title }}
-          </div>
+          {{ toastNotificationBelonging.Dispatch.Title }}
           <span class="close-ico icon-times-circle" (click)="closeIcon()" *ngIf="!buttonsExist"></span>
         </div>
       </div>
     </div>
 
-    <div class="content-holder" *ngIf="toastNotificationBelonging.Dispatch.Message">
+    <div class="content-holder toast-text" #elTextWrapper *ngIf="toastNotificationBelonging.Dispatch.Message">
       <div class="icon-section" *ngIf="!toastNotificationBelonging.ToastCoreConfig.DisableIcon">
         <span
           class="icon-type-toast"
@@ -77,7 +75,7 @@
       ></span>
     </div>
 
-    <div class="button-holder">
+    <div class="button-holder" #elButtonWrapper>
       <div
         class="button-section"
         *ngIf="toastNotificationBelonging.Buttons.length"
@@ -86,6 +84,7 @@
         }"
       >
         <button
+          #elButton
           class="ed-btn ed-btn-sm"
           *ngFor="let button of toastNotificationBelonging.Buttons"
           (click)="onCustomButton(button)"
@@ -118,6 +117,7 @@
         "
       >
         <button
+          #elButton
           class="ed-btn ed-btn-sm"
           *ngIf="toastNotificationBelonging.ToastCoreConfig.ConfirmLabel"
           (click)="onButtonClick('confirm')"
@@ -132,6 +132,7 @@
           {{ toastNotificationBelonging.ToastCoreConfig.ConfirmLabel }}
         </button>
         <button
+          #elButton
           class="ed-btn ed-btn-sm ed-btn-secondary"
           (click)="onButtonClick('decline')"
           *ngIf="toastNotificationBelonging.ToastCoreConfig.DeclineLabel"

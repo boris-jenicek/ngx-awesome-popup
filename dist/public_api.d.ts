@@ -247,7 +247,12 @@ export { ConfirmBoxInitializer };
  *      // FullScreen: true, // optional, default is false
  *      // EscapeKeyClose: true, // optional, default is false
  *      // ButtonPosition: "left", // optional, default is "right"
- *      // LoaderComponent: Any Angular component
+ *      // LoaderComponent: Any Angular component,
+ *      // CustomStyles: {
+ *      //     ButtonSectionCSS: 'background: #333',
+ *      //     ButtonCSS: 'font-size: 30px;',
+ *      //     WrapperCSS: 'background: #333;'
+ *      //   }
  *   });
  *
  *  // Custom buttons, listener is available in child component in dialogBelonging object.
@@ -326,6 +331,11 @@ export { NgxAwesomePopupModule } from './ngx-awesome-popup/ngx-awesome-popup.mod
  *        DisplayLoader: false // This will override LoaderComponent.
  *        AnimationIn: AppearanceAnimation.BOUNCE_IN, // BOUNCE_IN | SWING | ZOOM_IN | ZOOM_IN_ROTATE | ELASTIC | JELLO | FADE_IN | SLIDE_IN_UP | SLIDE_IN_DOWN | SLIDE_IN_LEFT | SLIDE_IN_RIGHT | NONE
  *        AnimationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
+ *        CustomStyles: {
+ *          ButtonSectionCSS: 'background: #333',
+ *          ButtonCSS: 'font-size: 30px;',
+ *          WrapperCSS: 'background: #333;'
+ *        }
  *    },
  *    // optional predefined custom default buttons
  *     Buttons: [
@@ -364,6 +374,13 @@ export { DialogConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.module
  *       AnimationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
  *       AllowHTMLMessage: true, // default false
  *       DisableIcon: true, // default false
+ *       CustomStyles: {
+ *           TitleCSS: 'color: #ddd; background: #333; font-size: 20px; padding: 20px',
+ *           ButtonSectionCSS: 'background: #333',
+ *           ButtonCSS: 'font-size: 14px;',
+ *           TextCSS: 'color: #ddd; font-size: 16px; background: #333;',
+ *           WrapperCSS: 'background: #333;'
+ *       }
  *    },
  *    Dispatch: {  // Optional default dispatch object.
  *       Title: 'Default title',
@@ -411,6 +428,12 @@ export { ConfirmBoxConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.mo
  *       AllowHTMLMessage: true,  // default false
  *       DisableIcon: true, // default false
  *       ButtonPosition: 'right', / / optional ' center', 'left', 'right'
+ *       CustomStyles: {
+ *           TitleCSS: 'background: rgba(0,0,0 .7); font-size: 20px; padding: 20px',
+ *           ButtonSectionCSS: 'background: #333',
+ *           ButtonCSS: 'font-size: 14px;',
+ *           TextCSS: 'color: #ddd; font-size: 16px; background: #333;'
+ *         }
  *    },
  *    GlobalSettings: {
  *       // The number of toast notifications that can be shown at once.

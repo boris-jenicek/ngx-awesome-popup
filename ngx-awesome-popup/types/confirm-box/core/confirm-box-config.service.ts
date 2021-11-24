@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation } from '../../../core/enums';
 import { DataControl } from '../../../core/global-classes';
-import { ConfirmBoxSettings } from './classes';
+import { ToastCustomStyles } from '../../toast-notification/core/classes';
+import { ConfirmBoxCustomStyles, ConfirmBoxSettings } from './classes';
 import { IConfirmBoxUserConfig } from './interfaces';
 
 @Injectable({
@@ -33,6 +34,7 @@ export class ConfirmBoxConfigService {
     this.authorConfig.ConfirmBoxCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
     this.authorConfig.ConfirmBoxCoreConfig.AnimationIn = AppearanceAnimation.ZOOM_IN;
     this.authorConfig.ConfirmBoxCoreConfig.AnimationOut = DisappearanceAnimation.ZOOM_OUT;
+    this.authorConfig.ConfirmBoxCoreConfig.CustomStyles = new ConfirmBoxCustomStyles();
 
     // endregion
 

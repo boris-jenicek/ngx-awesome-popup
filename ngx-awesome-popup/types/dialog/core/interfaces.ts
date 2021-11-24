@@ -16,6 +16,12 @@ export interface IDialogUserConfig {
   DialogCoreConfig?: IDialogCoreConfig;
 }
 
+export interface IDialogCustomStyles {
+  ButtonSectionCSS?: string;
+  ButtonCSS?: string;
+  WrapperCSS?: string;
+}
+
 /**
  * Optional user configuration.
  *
@@ -36,7 +42,12 @@ export interface IDialogUserConfig {
  *        ButtonPosition : 'right',
  *        LayoutType: DialogLayoutDisplay.INFO,
  *        // LoaderComponent: // Any Angular component class name can be included as a loader.
- *        DisplayLoader: false // This will override LoaderComponent.
+ *        DisplayLoader: false, // This will override LoaderComponent.
+ *        CustomStyles: {
+ *           ButtonSectionCSS: 'background: #333',
+ *           ButtonCSS: 'font-size: 30px;',
+ *           WrapperCSS: 'background: #333;'
+ *         }
  *     }
  *  }
  * ```
@@ -50,6 +61,7 @@ export interface IDialogCoreConfig extends ISizes {
   LoaderComponent?: Type<any>;
   AnimationIn?: AppearanceAnimation;
   AnimationOut?: DisappearanceAnimation;
+  CustomStyles?: IDialogCustomStyles;
 }
 
 export interface IDialogBelonging {

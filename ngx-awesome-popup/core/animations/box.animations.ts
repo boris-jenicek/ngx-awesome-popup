@@ -3,6 +3,7 @@ import * as kf from './keyframes';
 
 export function boxAnimations() {
   return trigger('boxAnimations', [
+    state('reset', style({ opacity: 1 })),
     // in
     state('bounceIn', style({ opacity: 1 })),
     state('swing', style({ opacity: 1 })),
@@ -27,6 +28,7 @@ export function boxAnimations() {
     transition('* => slideInDown', animate('400ms ease-out', keyframes(kf.slideInDown))),
     transition('* => slideInLeft', animate('400ms ease-out', keyframes(kf.slideInLeft))),
     transition('* => slideInRight', animate('400ms ease-out', keyframes(kf.slideInRight))),
+    transition('* => reset', style({ opacity: 1 })),
 
     // out
     state('zoomOutWind', style({ opacity: 0 })),

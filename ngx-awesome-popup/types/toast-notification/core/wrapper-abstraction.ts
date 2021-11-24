@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { ElementRef, Injectable, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
@@ -9,6 +9,10 @@ import { ToastNotificationBelonging, ToastNotificationDefaultResponse } from './
 
 @Injectable()
 export abstract class WrapperAbstraction implements OnDestroy {
+  @ViewChild('elTextWrapper') elTextWrapper: ElementRef;
+  @ViewChild('elTitleWrapper') elTitleWrapper: ElementRef;
+  @ViewChild('elButtonWrapper') elButtonWrapper: ElementRef;
+  @ViewChildren('elButton') elButton: QueryList<ElementRef>;
   fadeInOutAnimation: string = 'open';
   timerStarted$ = new BehaviorSubject('start-counter');
   subsToClosingDelay: Subscription;
@@ -16,7 +20,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
   isTimerStarted = false;
   timeout;
   timer: Timer = new Timer();
-  boxAnimation: AppearanceAnimation | DisappearanceAnimation;
+  boxAnimation: AppearanceAnimation | DisappearanceAnimation | 'reset';
   private closeIsClicked: boolean = false;
   private autoClosingHasStarted: boolean = false;
 
@@ -45,12 +49,29 @@ export abstract class WrapperAbstraction implements OnDestroy {
     );
   }
 
-  mouseOver() {
+  setCustomStyles(): void {
+    if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TextCSS && this.elTextWrapper) {
+      this.elTextWrapper.nativeElement.style.cssText += this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TextCSS;
+    }
+    if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TitleCSS && this.elTitleWrapper) {
+      this.elTitleWrapper.nativeElement.style.cssText += this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TitleCSS;
+    }
+    if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
+      this.elButtonWrapper.nativeElement.style.cssText += this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonSectionCSS;
+    }
+    if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
+      this.elButton.forEach(el => {
+        el.nativeElement.style.cssText += this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonCSS;
+      });
+    }
+  }
+
+  mouseOver(): void {
     if (!this.buttonsExist && !this.closeIsClicked && !this.autoClosingHasStarted) {
       this.timerStarted$.next('stop-counter');
       this.fadeInOutAnimation = 'open';
       this.subsToClosingDelay?.unsubscribe();
-      this.boxAnimation = null;
+      this.boxAnimation = 'reset';
     }
   }
 

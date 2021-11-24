@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { DataControl } from '../../../core/global-classes';
 import { IButton, IDispatch } from '../../../core/global-interfaces';
-import { IConfirmBoxBelonging, IConfirmBoxCoreConfig, IConfirmBoxPublicResponse, IConfirmBoxResponse, IPrivateResponseMerged } from './interfaces';
+import { IConfirmBoxBelonging, IConfirmBoxCoreConfig, IConfirmBoxCustomStyles, IConfirmBoxPublicResponse, IConfirmBoxResponse, IPrivateResponseMerged } from './interfaces';
 export declare class ConfirmBoxInitializer {
     /** @internal */
     private confirmBoxCarrier;
@@ -57,6 +57,13 @@ export declare class ConfirmBoxSettings {
     ConfirmBoxCoreConfig: IConfirmBoxCoreConfig;
     Dispatch: IDispatch;
 }
+export declare class ConfirmBoxCustomStyles implements IConfirmBoxCustomStyles {
+    TitleCSS: string;
+    TextCSS: string;
+    ButtonSectionCSS: string;
+    ButtonCSS: string;
+    WrapperCSS: string;
+}
 export declare class ConfirmBoxCoreConfig implements IConfirmBoxCoreConfig {
     Width: string;
     Height: string;
@@ -69,6 +76,7 @@ export declare class ConfirmBoxCoreConfig implements IConfirmBoxCoreConfig {
     AllowHTMLMessage: boolean;
     AnimationIn: AppearanceAnimation;
     AnimationOut: DisappearanceAnimation;
+    CustomStyles: ConfirmBoxCustomStyles;
 }
 export declare class ConfirmBoxBelonging extends ConfirmBoxSettings implements IConfirmBoxBelonging {
     EntityUniqueID: string;

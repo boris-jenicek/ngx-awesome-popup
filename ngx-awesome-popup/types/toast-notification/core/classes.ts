@@ -14,6 +14,7 @@ import {
   IGlobalToastSettings,
   IPrivateResponseMerged,
   IToastCoreConfig,
+  IToastCustomStyles,
   IToastNotificationBelonging,
   IToastNotificationPublicResponse,
   IToastNotificationResponse
@@ -195,6 +196,13 @@ export class ToastSettings {
   GlobalSettings: GlobalToastSettings = new GlobalToastSettings();
 }
 
+export class ToastCustomStyles implements IToastCustomStyles {
+  TitleCSS: string = null;
+  TextCSS: string = null;
+  ButtonSectionCSS: string = null;
+  ButtonCSS: string = null;
+}
+
 export class ToastCoreConfig implements IToastCoreConfig {
   ToastPosition: ToastPositionEnum = null;
   ProgressBar: ToastProgressBarEnum = null;
@@ -211,6 +219,7 @@ export class ToastCoreConfig implements IToastCoreConfig {
   AllowHTMLMessage: boolean = null;
   AnimationIn: AppearanceAnimation = null;
   AnimationOut: DisappearanceAnimation = null;
+  CustomStyles: IToastCustomStyles = new ToastCustomStyles();
 }
 
 export class ToastNotificationBelonging extends ToastSettings implements IToastNotificationBelonging {

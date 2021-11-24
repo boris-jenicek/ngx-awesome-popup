@@ -14,6 +14,7 @@ import { ConfirmBoxService } from './confirm-box-service';
 import {
   IConfirmBoxBelonging,
   IConfirmBoxCoreConfig,
+  IConfirmBoxCustomStyles,
   IConfirmBoxPublicResponse,
   IConfirmBoxResponse,
   IPrivateResponseMerged
@@ -63,9 +64,7 @@ export class ConfirmBoxInitializer {
   }
 }
 
-export class ConfirmBoxResponse
-  extends DataControl
-  implements IConfirmBoxResponse, IConfirmBoxPublicResponse {
+export class ConfirmBoxResponse extends DataControl implements IConfirmBoxResponse, IConfirmBoxPublicResponse {
   // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
 
   Success: boolean = null;
@@ -118,9 +117,7 @@ export class ConfirmBoxEventsController {
 
 // endregion
 
-export class ConfirmBoxDefaultResponse
-  extends ConfirmBoxResponse
-  implements IPrivateResponseMerged {
+export class ConfirmBoxDefaultResponse extends ConfirmBoxResponse implements IPrivateResponseMerged {
   confirmBoxBelonging: ConfirmBoxBelonging = null;
 
   constructor() {
@@ -159,17 +156,12 @@ export class ConfirmBoxCarrier {
   setConfig(_ConfirmBoxBelonging: IConfirmBoxCoreConfig) {
     // region *** local UserConfig (defined on place where dialog is called) ***
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(
-      _ConfirmBoxBelonging,
-      this.confirmBoxBelonging.ConfirmBoxCoreConfig
-    );
+    dataControl.copyValuesFrom(_ConfirmBoxBelonging, this.confirmBoxBelonging.ConfirmBoxCoreConfig);
     // endregion
   }
 
   openConfirmBox$(): Observable<IPrivateResponseMerged> {
-    const service: ConfirmBoxService = ServiceLocator.injector.get(
-      ConfirmBoxService
-    );
+    const service: ConfirmBoxService = ServiceLocator.injector.get(ConfirmBoxService);
     const confirmBoxController = service.open(this.confirmBoxBelonging);
     return confirmBoxController.afterClosed$;
   }
@@ -179,6 +171,14 @@ export class ConfirmBoxSettings {
   Buttons: IButton[] = [];
   ConfirmBoxCoreConfig: IConfirmBoxCoreConfig = new ConfirmBoxCoreConfig();
   Dispatch: IDispatch = new Dispatch();
+}
+
+export class ConfirmBoxCustomStyles implements IConfirmBoxCustomStyles {
+  TitleCSS: string = null;
+  TextCSS: string = null;
+  ButtonSectionCSS: string = null;
+  ButtonCSS: string = null;
+  WrapperCSS: string = null;
 }
 
 export class ConfirmBoxCoreConfig implements IConfirmBoxCoreConfig {
@@ -193,20 +193,17 @@ export class ConfirmBoxCoreConfig implements IConfirmBoxCoreConfig {
   AllowHTMLMessage: boolean = null;
   AnimationIn: AppearanceAnimation = null;
   AnimationOut: DisappearanceAnimation = null;
+  CustomStyles: ConfirmBoxCustomStyles = new ConfirmBoxCustomStyles();
 }
 
-export class ConfirmBoxBelonging
-  extends ConfirmBoxSettings
-  implements IConfirmBoxBelonging {
+export class ConfirmBoxBelonging extends ConfirmBoxSettings implements IConfirmBoxBelonging {
   EntityUniqueID: string = 'C' + Math.random().toString(36).substr(2, 9);
   EventsController: ConfirmBoxEventsController;
 
   constructor() {
     super();
     this.EventsController = new ConfirmBoxEventsController(this.EntityUniqueID);
-    const ConfirmBoxCoreConfigurator: ConfirmBoxConfigService = ServiceLocator.injector.get(
-      ConfirmBoxConfigService
-    );
+    const ConfirmBoxCoreConfigurator: ConfirmBoxConfigService = ServiceLocator.injector.get(ConfirmBoxConfigService);
     const baseSettings = new ConfirmBoxSettings();
     const dataControl = new DataControl();
     dataControl.copyValuesFrom(

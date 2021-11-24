@@ -12,6 +12,12 @@ export interface IGlobalToastSettings {
     /** Number of popups allowed on screen, recommend 3-5 */
     AllowedNotificationsAtOnce: number;
 }
+export interface IToastCustomStyles {
+    TitleCSS?: string;
+    TextCSS?: string;
+    ButtonSectionCSS?: string;
+    ButtonCSS?: string;
+}
 export interface IToastCoreConfig {
     ToastPosition?: ToastPositionEnum;
     ProgressBar?: ToastProgressBarEnum;
@@ -31,6 +37,7 @@ export interface IToastCoreConfig {
     AllowHTMLMessage?: boolean;
     AnimationIn?: AppearanceAnimation;
     AnimationOut?: DisappearanceAnimation;
+    CustomStyles?: IToastCustomStyles;
 }
 export interface IToastNotificationBelonging {
     Buttons: IButton[];

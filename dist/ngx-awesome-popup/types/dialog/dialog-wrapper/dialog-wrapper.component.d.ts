@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, OnDestroy, Type } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ComponentRef, ElementRef, OnDestroy, QueryList, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
 import { InsertionLoaderDirective } from '../../../core/insertion-loader.directive';
@@ -8,6 +8,9 @@ export declare class DialogWrapperComponent implements AfterViewInit, OnDestroy 
     dialogBelonging: DialogBelonging;
     private componentFactoryResolver;
     private cd;
+    elDialogWrapper: ElementRef;
+    elButtonWrapper: ElementRef;
+    elButton: QueryList<ElementRef>;
     fadeInOutAnimation: string;
     showLoader: boolean;
     bodyOverflow: string;
@@ -31,5 +34,6 @@ export declare class DialogWrapperComponent implements AfterViewInit, OnDestroy 
     onOverlayClicked(evt: MouseEvent): void;
     onCustomButton(_Button: any): void;
     closeLoader(): void;
+    setCustomStyles(): void;
     keyEvent(event: KeyboardEvent): void;
 }

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { DataControl, Sizes } from '../../../core/global-classes';
 import { IButton } from '../../../core/global-interfaces';
-import { IDialogBelonging, IDialogCoreConfig, IDialogEventsController, IDialogPublicResponse, IDialogResponse, IPrivateResponseMerged } from './interfaces';
+import { IDialogBelonging, IDialogCoreConfig, IDialogCustomStyles, IDialogEventsController, IDialogPublicResponse, IDialogResponse, IPrivateResponseMerged } from './interfaces';
 export declare class DialogInitializer {
     private component;
     private dialogCarrier;
@@ -62,6 +62,11 @@ export declare class DialogCarrier {
     setConfig(_DialogConfig: IDialogCoreConfig): void;
     openDialog$(): Observable<IPrivateResponseMerged>;
 }
+export declare class DialogCustomStyles implements IDialogCustomStyles {
+    ButtonSectionCSS: string;
+    ButtonCSS: string;
+    WrapperCSS: string;
+}
 export declare class DialogCoreConfig extends Sizes implements IDialogCoreConfig {
     EscapeKeyClose: boolean;
     HideScrollbar: boolean;
@@ -71,6 +76,7 @@ export declare class DialogCoreConfig extends Sizes implements IDialogCoreConfig
     LoaderComponent: Type<any>;
     AnimationIn: AppearanceAnimation;
     AnimationOut: DisappearanceAnimation;
+    CustomStyles: IDialogCustomStyles;
 }
 export declare class DialogSettings {
     Buttons: IButton[];

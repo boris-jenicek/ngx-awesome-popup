@@ -11,6 +11,13 @@ export interface IConfirmBoxUserConfig {
     ConfirmBoxCoreConfig?: IConfirmBoxCoreConfig;
     Dispatch?: IDispatch;
 }
+export interface IConfirmBoxCustomStyles {
+    TitleCSS?: string;
+    TextCSS?: string;
+    ButtonSectionCSS?: string;
+    ButtonCSS?: string;
+    WrapperCSS?: string;
+}
 export interface IConfirmBoxCoreConfig {
     /** Fixed popup width */
     Width?: string;
@@ -25,6 +32,7 @@ export interface IConfirmBoxCoreConfig {
     AllowHTMLMessage?: boolean;
     AnimationIn?: AppearanceAnimation;
     AnimationOut?: DisappearanceAnimation;
+    CustomStyles?: IConfirmBoxCustomStyles;
 }
 export interface IConfirmBoxBelonging {
     Buttons: IButton[];

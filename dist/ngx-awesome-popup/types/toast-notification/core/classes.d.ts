@@ -3,7 +3,7 @@ import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, Verti
 import { DataControl } from '../../../core/global-classes';
 import { IButton, IDispatch } from '../../../core/global-interfaces';
 import { ToastPositionEnum, ToastProgressBarEnum, ToastUserViewTypeEnum } from './enums';
-import { IGlobalToastSettings, IPrivateResponseMerged, IToastCoreConfig, IToastNotificationBelonging, IToastNotificationPublicResponse, IToastNotificationResponse } from './interfaces';
+import { IGlobalToastSettings, IPrivateResponseMerged, IToastCoreConfig, IToastCustomStyles, IToastNotificationBelonging, IToastNotificationPublicResponse, IToastNotificationResponse } from './interfaces';
 export declare class ToastNotificationInitializer {
     private toastNotificationCarrier;
     constructor();
@@ -64,6 +64,12 @@ export declare class ToastSettings {
     Dispatch: IDispatch;
     GlobalSettings: GlobalToastSettings;
 }
+export declare class ToastCustomStyles implements IToastCustomStyles {
+    TitleCSS: string;
+    TextCSS: string;
+    ButtonSectionCSS: string;
+    ButtonCSS: string;
+}
 export declare class ToastCoreConfig implements IToastCoreConfig {
     ToastPosition: ToastPositionEnum;
     ProgressBar: ToastProgressBarEnum;
@@ -80,6 +86,7 @@ export declare class ToastCoreConfig implements IToastCoreConfig {
     AllowHTMLMessage: boolean;
     AnimationIn: AppearanceAnimation;
     AnimationOut: DisappearanceAnimation;
+    CustomStyles: IToastCustomStyles;
 }
 export declare class ToastNotificationBelonging extends ToastSettings implements IToastNotificationBelonging {
     EntityUniqueID: string;

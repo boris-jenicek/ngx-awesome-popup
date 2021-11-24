@@ -1,4 +1,13 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Inject,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { boxAnimations } from '../../../core/animations/box.animations';
@@ -14,6 +23,11 @@ import { ConfirmBoxBelonging, ConfirmBoxDefaultResponse } from '../core/classes'
   animations: [fadeInOut(), boxAnimations()]
 })
 export class ConfirmBoxWrapperComponent implements AfterViewInit {
+  @ViewChild('elConfirmBoxWrapper') elConfirmBoxWrapper: ElementRef;
+  @ViewChild('elTextWrapper') elTextWrapper: ElementRef;
+  @ViewChild('elTitleWrapper') elTitleWrapper: ElementRef;
+  @ViewChild('elButtonWrapper') elButtonWrapper: ElementRef;
+  @ViewChildren('elButton') elButton: QueryList<ElementRef>;
   fadeInOutAnimation: string = 'open';
   animationFlyDirection = 'none';
   boxAnimation: AppearanceAnimation | DisappearanceAnimation;
@@ -31,6 +45,7 @@ export class ConfirmBoxWrapperComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.setResponse(false);
     this.cd.detectChanges();
+    this.setCustomStyles();
   }
 
   setResponse(_IsSuccess: boolean, _ClickedButtonID?: string): void {
@@ -75,5 +90,25 @@ export class ConfirmBoxWrapperComponent implements AfterViewInit {
       observer.next('');
       observer.complete();
     }).pipe(delay(closeDuration));
+  }
+
+  setCustomStyles(): void {
+    if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.WrapperCSS && this.elConfirmBoxWrapper) {
+      this.elConfirmBoxWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.WrapperCSS;
+    }
+    if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TextCSS && this.elTextWrapper) {
+      this.elTextWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TextCSS;
+    }
+    if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TitleCSS && this.elTitleWrapper) {
+      this.elTitleWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TitleCSS;
+    }
+    if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
+      this.elButtonWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonSectionCSS;
+    }
+    if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
+      this.elButton.forEach(el => {
+        el.nativeElement.style.cssText += this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonCSS;
+      });
+    }
   }
 }

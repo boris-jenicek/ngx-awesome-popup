@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation } from '../../../core/enums';
 import { DataControl } from '../../../core/global-classes';
-import { ToastSettings } from './classes';
+import { ToastCustomStyles, ToastSettings } from './classes';
 import { ToastPositionEnum, ToastProgressBarEnum, ToastUserViewTypeEnum } from './enums';
 import { IGlobalToastSettings, IToastNotificationUserConfig } from './interfaces';
 
@@ -38,6 +38,7 @@ export class ToastNotificationConfigService {
     this.authorConfig.GlobalSettings.AllowedNotificationsAtOnce = 5;
     this.authorConfig.ToastCoreConfig.AnimationIn = AppearanceAnimation.ZOOM_IN;
     this.authorConfig.ToastCoreConfig.AnimationOut = DisappearanceAnimation.ZOOM_OUT;
+    this.authorConfig.ToastCoreConfig.CustomStyles = new ToastCustomStyles();
 
     // endregion
 

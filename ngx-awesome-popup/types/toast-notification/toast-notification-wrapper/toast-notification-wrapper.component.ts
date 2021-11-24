@@ -1,4 +1,13 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Inject,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import { boxAnimations } from '../../../core/animations/box.animations';
 import { fadeInOut } from '../../../core/animations/fade-in-out.animation';
 import { GlobalConfigService } from '../../../core/global-config.service';
@@ -12,6 +21,10 @@ import { WrapperAbstraction } from '../core/wrapper-abstraction';
   animations: [fadeInOut(), boxAnimations()]
 })
 export class ToastNotificationWrapperComponent extends WrapperAbstraction implements AfterViewInit {
+  @ViewChild('elTextWrapper') elTextWrapper: ElementRef;
+  @ViewChild('elTitleWrapper') elTitleWrapper: ElementRef;
+  @ViewChild('elButtonWrapper') elButtonWrapper: ElementRef;
+  @ViewChildren('elButton') elButton: QueryList<ElementRef>;
   constructor(
     @Inject('toastNotificationBelonging')
     public toastNotificationBelonging: ToastNotificationBelonging,
@@ -25,5 +38,6 @@ export class ToastNotificationWrapperComponent extends WrapperAbstraction implem
     this.setResponse(false);
     this.cd.detectChanges();
     this.autoClose();
+    this.setCustomStyles();
   }
 }

@@ -15,6 +15,7 @@ import { DialogService } from './dialog.service';
 import {
   IDialogBelonging,
   IDialogCoreConfig,
+  IDialogCustomStyles,
   IDialogEventsController,
   IDialogPublicResponse,
   IDialogResponse,
@@ -99,7 +100,6 @@ export class DialogEventsController implements IDialogEventsController {
   constructor(private EntityUniqueID: string) {}
 
   close(_Payload: any = null): void {
-    console.log(this.defaultResponse);
     this.defaultResponse.setPayload(_Payload);
     this._afterClosed.next(this.defaultResponse);
   }
@@ -175,6 +175,12 @@ export class DialogCarrier {
   }
 }
 
+export class DialogCustomStyles implements IDialogCustomStyles {
+  ButtonSectionCSS: string = null;
+  ButtonCSS: string = null;
+  WrapperCSS: string = null;
+}
+
 export class DialogCoreConfig extends Sizes implements IDialogCoreConfig {
   EscapeKeyClose: boolean = null;
   HideScrollbar: boolean = null;
@@ -184,6 +190,7 @@ export class DialogCoreConfig extends Sizes implements IDialogCoreConfig {
   LoaderComponent: Type<any> = null;
   AnimationIn: AppearanceAnimation = null;
   AnimationOut: DisappearanceAnimation = null;
+  CustomStyles: IDialogCustomStyles = new DialogCustomStyles();
 }
 
 export class DialogSettings {

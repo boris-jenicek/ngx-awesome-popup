@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  opacity: 0;
+  opacity: 1;
   padding: 0;
   pointer-events: auto;
   position: relative;
@@ -92,7 +92,7 @@
       align-content: space-around;
       align-items: center;
       background-clip: padding-box;
-      border-radius: 2px 2px 0 0;
+      border-radius: 1px 1px 0 0;
       color: #6c757d;
       display: flex;
       flex-direction: row;
@@ -101,6 +101,7 @@
       justify-content: flex-start;
       padding: 5px 10px 5px;
       width: auto;
+      font-size: 0.87rem;
 
       .icon-section {
         .icon-type-toast {
@@ -108,10 +109,6 @@
           opacity: 0.8;
           padding: 0 6px 0 0;
         }
-      }
-
-      .toast-title-text {
-        font-size: 0.87rem;
       }
     }
 
@@ -133,8 +130,10 @@
         padding: 6px 27px 6px 10px;
       }
 
-      .text-wrapper {
+      .text-text {
         font-size: 0.97rem;
+      }
+      .text-wrapper {
         margin: 0;
       }
     }
