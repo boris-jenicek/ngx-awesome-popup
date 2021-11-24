@@ -33,7 +33,12 @@ Example:
      // FullScreen: true, // optional, default is false
      // EscapeKeyClose: true, // optional, default is false
      // ButtonPosition: "left", // optional, default is "right"
-     // LoaderComponent: Any Angular component
+     // LoaderComponent: Any Angular component,
+     // CustomStyles: {
+     //     ButtonSectionCSS: 'background: #333',
+     //     ButtonCSS: 'font-size: 30px;',
+     //     WrapperCSS: 'background: #333;'
+     //   }
   });
 
  // Custom buttons, listener is available in child component in dialogBelonging object.

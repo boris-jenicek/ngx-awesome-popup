@@ -27,6 +27,12 @@ ToastNotificationConfigModule.forRoot({
       AllowHTMLMessage: true,  // default false
       DisableIcon: true, // default false
       ButtonPosition: 'right', / / optional ' center', 'left', 'right'
+      CustomStyles: {
+          TitleCSS: 'background: rgba(0,0,0 .7); font-size: 20px; padding: 20px',
+          ButtonSectionCSS: 'background: #333',
+          ButtonCSS: 'font-size: 14px;',
+          TextCSS: 'color: #ddd; font-size: 16px; background: #333;'
+        }
    },
    GlobalSettings: {
       // The number of toast notifications that can be shown at once.

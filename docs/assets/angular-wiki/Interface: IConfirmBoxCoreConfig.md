@@ -32,6 +32,12 @@ ___
 
 ___
 
+### CustomStyles
+
+• `Optional` **CustomStyles**: IConfirmBoxCustomStyles
+
+___
+
 ### DeclineLabel
 
 • `Optional` **DeclineLabel**: *string*

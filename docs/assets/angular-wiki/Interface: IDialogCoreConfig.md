@@ -19,7 +19,12 @@ const dialogCoreConfig = {
        ButtonPosition : 'right',
        LayoutType: DialogLayoutDisplay.INFO,
        // LoaderComponent: // Any Angular component class name can be included as a loader.
-       DisplayLoader: false // This will override LoaderComponent.
+       DisplayLoader: false, // This will override LoaderComponent.
+       CustomStyles: {
+          ButtonSectionCSS: 'background: #333',
+          ButtonCSS: 'font-size: 30px;',
+          WrapperCSS: 'background: #333;'
+        }
     }
  }
 ```
@@ -47,6 +52,12 @@ ___
 ### ButtonPosition
 
 • `Optional` **ButtonPosition**: [*VerticalPosition*](#/documentation/Home#verticalposition)
+
+___
+
+### CustomStyles
+
+• `Optional` **CustomStyles**: IDialogCustomStyles
 
 ___
 

@@ -33,6 +33,11 @@ DialogConfigModule.forRoot({
        DisplayLoader: false // This will override LoaderComponent.
        AnimationIn: AppearanceAnimation.BOUNCE_IN, // BOUNCE_IN | SWING | ZOOM_IN | ZOOM_IN_ROTATE | ELASTIC | JELLO | FADE_IN | SLIDE_IN_UP | SLIDE_IN_DOWN | SLIDE_IN_LEFT | SLIDE_IN_RIGHT | NONE
        AnimationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
+       CustomStyles: {
+         ButtonSectionCSS: 'background: #333',
+         ButtonCSS: 'font-size: 30px;',
+         WrapperCSS: 'background: #333;'
+       }
    },
    // optional predefined custom default buttons
     Buttons: [

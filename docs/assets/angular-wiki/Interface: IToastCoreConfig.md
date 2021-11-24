@@ -42,6 +42,12 @@ Default confirm button Label
 
 ___
 
+### CustomStyles
+
+• `Optional` **CustomStyles**: IToastCustomStyles
+
+___
+
 ### DeclineLabel
 
 • `Optional` **DeclineLabel**: *string*

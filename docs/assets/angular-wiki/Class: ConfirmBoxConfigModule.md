@@ -23,6 +23,13 @@ ConfirmBoxConfigModule.forRoot({
       AnimationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
       AllowHTMLMessage: true, // default false
       DisableIcon: true, // default false
+      CustomStyles: {
+          TitleCSS: 'color: #ddd; background: #333; font-size: 20px; padding: 20px',
+          ButtonSectionCSS: 'background: #333',
+          ButtonCSS: 'font-size: 14px;',
+          TextCSS: 'color: #ddd; font-size: 16px; background: #333;',
+          WrapperCSS: 'background: #333;'
+      }
    },
    Dispatch: {  // Optional default dispatch object.
       Title: 'Default title',
