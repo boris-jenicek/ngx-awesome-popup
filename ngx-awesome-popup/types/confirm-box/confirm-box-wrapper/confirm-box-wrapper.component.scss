@@ -1,4 +1,4 @@
-@import '../../../styles/style';
+@use '../../../styles/style';
 
 .ngx-awesome-popup-overlay {
   .evolve-confirm-box {
@@ -8,8 +8,8 @@
     .confirm-box-title-content {
       align-items: center;
       background-clip: padding-box;
-      border-bottom: 1px solid transparentize($black, 0.95);
-      color: $gr-600;
+      border-bottom: 1px solid transparentize(style.$black, 0.95);
+      color: style.$gr-600;
       display: flex;
       flex-direction: column;
       height: auto;
@@ -26,7 +26,7 @@
 
     .content-holder {
       align-items: center;
-      color: $gr-700;
+      color: style.$gr-700;
       display: flex;
       flex-direction: row;
       height: 100%;

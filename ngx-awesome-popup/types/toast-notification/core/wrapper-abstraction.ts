@@ -1,6 +1,6 @@
 import { Directive, ElementRef, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
+import { delay, take, tap } from 'rxjs/operators';
 import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
 import { Timer } from '../../../core/global-classes';
 import { IButton } from '../../../core/global-interfaces';
@@ -163,9 +163,11 @@ export abstract class WrapperAbstraction implements OnDestroy {
   closeIcon(): void {
     this.closeIsClicked = true;
     this.subsToClosingDelay?.unsubscribe();
-    this.closeParent$().subscribe(resp => {
-      this.toastNotificationBelonging.EventsController.close();
-    });
+    this.closeParent$()
+      .pipe(take(1))
+      .subscribe(resp => {
+        this.toastNotificationBelonging.EventsController.close();
+      });
   }
 
   ngOnDestroy(): void {

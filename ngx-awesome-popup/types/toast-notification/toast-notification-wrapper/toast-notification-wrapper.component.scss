@@ -1,4 +1,4 @@
-@import '../../../styles/style';
+@use '../../../styles/style';
 
 .toast-wrapper {
   background: transparent;
@@ -24,7 +24,7 @@
   }
 
   .evolve-toast {
-    background: $gr-100;
+    background: style.$gr-100;
     border-radius: 5px;
     border-right: 4px solid;
     box-shadow: 0 0 4px 1px transparentize(black, 0.75);
@@ -50,43 +50,43 @@
     }
 
     &.success-dialog {
-      background-color: lighten($success, 45%);
-      border-color: $success;
+      background-color: lighten(style.$success, 45%);
+      border-color: style.$success;
 
       .progress-bar {
-        background-color: lighten($success, 25%);
+        background-color: lighten(style.$success, 25%);
       }
     }
 
     &.info-dialog {
-      background-color: lighten($info, 40%);
-      border-color: $info;
+      background-color: lighten(style.$info, 40%);
+      border-color: style.$info;
 
       .progress-bar {
-        background-color: lighten($info, 25%);
+        background-color: lighten(style.$info, 25%);
       }
     }
 
     &.warning-dialog {
-      background-color: lighten($warning, 40%);
-      border-color: $warning;
+      background-color: lighten(style.$warning, 40%);
+      border-color: style.$warning;
 
       .progress-bar {
-        background-color: lighten($warning, 25%);
+        background-color: lighten(style.$warning, 25%);
       }
     }
 
     &.danger-dialog {
-      background-color: lighten($danger, 25%);
-      border-color: $danger;
+      background-color: lighten(style.$danger, 25%);
+      border-color: style.$danger;
 
       .progress-bar {
-        background-color: lighten($danger, 10%);
+        background-color: lighten(style.$danger, 10%);
       }
     }
 
     .close-ico {
-      color: transparentize($black, 0.8);
+      color: transparentize(style.$black, 0.8);
       cursor: pointer;
       font-size: 20px;
       position: absolute;
@@ -97,10 +97,10 @@
     .toast-title-content {
       align-items: flex-start;
       background-clip: padding-box;
-      background-color: transparentize($white, 0.45);
-      border-bottom: 1px solid transparentize($black, 0.95);
+      background-color: transparentize(style.$white, 0.45);
+      border-bottom: 1px solid transparentize(style.$black, 0.95);
       border-radius: 4px 0 0 0;
-      color: $gr-600;
+      color: style.$gr-600;
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
@@ -113,7 +113,7 @@
 
     .content-holder {
       align-items: center;
-      color: $gr-600;
+      color: style.$gr-600;
       display: flex;
       flex-wrap: nowrap;
       height: 100%;
