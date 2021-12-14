@@ -25,6 +25,17 @@ $green: #2a9187;
 $teal: #20c997;
 $cyan: #3caea3;
 
+::ng-deep :root {
+  --ngx-awp-btn-radius: 3px;
+  --ngx-awp-btn-line-h: 1.5;
+  --ngx-awp-btn-sm-font: 12px;
+  --ngx-awp-btn-md-font: 14px;
+  --ngx-awp-btn-lg-font: 16px;
+
+  --ngx-awp-overlay-color: rgba(51, 32, 0, 0.4);
+  --ngx-awp-overlay-backdrop-filter: blur(1px);
+}
+
 $primary: $primary-color;
 $secondary: $gr-500;
 $success: $cyan;

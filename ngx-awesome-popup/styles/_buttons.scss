@@ -2,7 +2,7 @@
 // Base styles
 //
 .ed-btn-sm {
-  font-size: 12px;
+  font-size: var(--ngx-awp-btn-sm-font);
   font-weight: normal;
   margin-right: 3px;
   min-width: 40px;
@@ -10,14 +10,14 @@
 }
 
 .ed-btn-md {
-  font-size: 14px;
+  font-size: var(--ngx-awp-btn-md-font);
   margin-right: 5px;
   min-width: 60px;
   padding: 3px 10px;
 }
 
 .ed-btn-lg {
-  font-size: 16px;
+  font-size: var(--ngx-awp-btn-lg-font);
   margin-right: 5px;
   min-width: 70px;
   padding: 4px 10px;
@@ -26,10 +26,10 @@
 .ed-btn {
   background-color: transparent;
   border: none;
-  border-radius: 3px;
+  border-radius: var(--ngx-awp-button-radius);
   cursor: pointer;
   display: inline-block;
-  line-height: 1.5;
+  line-height: var(--ngx-awp-btn-line-h);
   text-align: center;
   text-decoration: none;
 
