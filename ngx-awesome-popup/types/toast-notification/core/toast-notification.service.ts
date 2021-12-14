@@ -8,7 +8,7 @@ import {
   Type
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { DialogInjector } from '../../../core/dialog-injector';
 import { GlobalConfigService } from '../../../core/global-config.service';
 import { ToastNotificationSimpleWrapperComponent } from '../toast-notification-simple-wrapper/toast-notification-simple-wrapper.component';
@@ -161,7 +161,7 @@ export class ToastNotificationService {
       this.toastComponentRefList[modalIndex].instance
         .closeParent$()
         .pipe(
-          map(item => {
+          tap(item => {
             const modalIndex = this.findDialogIndex(_EntityUniqueID);
             if (this.toastComponentRefList[modalIndex]) {
               const toastEntity = document.getElementById(
@@ -173,7 +173,8 @@ export class ToastNotificationService {
               this.toastComponentRefList[modalIndex].destroy();
               this.toastComponentRefList.splice(modalIndex, 1);
             }
-          })
+          }),
+          take(1)
         )
         .subscribe();
     }

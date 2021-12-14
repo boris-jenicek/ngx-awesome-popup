@@ -7,7 +7,7 @@ import {
   Injector,
   Type
 } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { DialogInjector } from '../../../core/dialog-injector';
 import { DialogWrapperComponent } from '../dialog-wrapper/dialog-wrapper.component';
 import { DialogBelonging, DialogEventsController } from './classes';
@@ -100,11 +100,12 @@ export class DialogService {
       this.dialogParentComponentRefList[_DialogIndex].instance
         .closeParent$()
         .pipe(
-          map(item => {
+          tap(item => {
             this.appRef.detachView(this.dialogParentComponentRefList[_DialogIndex].hostView);
             this.dialogParentComponentRefList[_DialogIndex].destroy();
             this.dialogParentComponentRefList.splice(_DialogIndex, 1);
-          })
+          }),
+          take(1)
         )
         .subscribe();
     }

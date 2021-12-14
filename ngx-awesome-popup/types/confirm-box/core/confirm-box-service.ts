@@ -6,7 +6,7 @@ import {
   Injectable,
   Injector
 } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { DialogInjector } from '../../../core/dialog-injector';
 import { ConfirmBoxWrapperComponent } from '../confirm-box-wrapper/confirm-box-wrapper.component';
 import { ConfirmBoxBelonging, ConfirmBoxEventsController } from './classes';
@@ -83,11 +83,12 @@ export class ConfirmBoxService {
       this.confirmBoxComponentRefList[_DialogIndex].instance
         .closeParent$()
         .pipe(
-          map(item => {
+          tap(item => {
             this.appRef.detachView(this.confirmBoxComponentRefList[_DialogIndex].hostView);
             this.confirmBoxComponentRefList[_DialogIndex].destroy();
             this.confirmBoxComponentRefList.splice(_DialogIndex, 1);
-          })
+          }),
+          take(1)
         )
         .subscribe();
     }
