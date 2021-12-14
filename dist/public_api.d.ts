@@ -1,10 +1,27 @@
 import { IButton, IColorTypes, IDispatch, IGlobalUserConfig } from './ngx-awesome-popup/core/global-interfaces';
 import { ConfirmBoxInitializer } from './ngx-awesome-popup/types/confirm-box/core/classes';
-import { IConfirmBoxCoreConfig, IConfirmBoxPublicResponse, IConfirmBoxUserConfig } from './ngx-awesome-popup/types/confirm-box/core/interfaces';
+import {
+  IConfirmBoxCoreConfig,
+  IConfirmBoxPublicResponse,
+  IConfirmBoxUserConfig
+} from './ngx-awesome-popup/types/confirm-box/core/interfaces';
 import { DialogBelonging, DialogInitializer } from './ngx-awesome-popup/types/dialog/core/classes';
-import { IDialogCoreConfig, IDialogEventsController, IDialogPublicResponse, IDialogUserConfig } from './ngx-awesome-popup/types/dialog/core/interfaces';
-import { ResetToastGlobalSettings, ToastNotificationInitializer } from './ngx-awesome-popup/types/toast-notification/core/classes';
-import { IGlobalToastSettings, IToastCoreConfig, IToastNotificationPublicResponse, IToastNotificationUserConfig } from './ngx-awesome-popup/types/toast-notification/core/interfaces';
+import {
+  IDialogCoreConfig,
+  IDialogEventsController,
+  IDialogPublicResponse,
+  IDialogUserConfig
+} from './ngx-awesome-popup/types/dialog/core/interfaces';
+import {
+  ResetToastGlobalSettings,
+  ToastNotificationInitializer
+} from './ngx-awesome-popup/types/toast-notification/core/classes';
+import {
+  IGlobalToastSettings,
+  IToastCoreConfig,
+  IToastNotificationPublicResponse,
+  IToastNotificationUserConfig
+} from './ngx-awesome-popup/types/toast-notification/core/interfaces';
 export { IGlobalUserConfig };
 export { IButton };
 export { IDispatch };
@@ -417,7 +434,7 @@ export { ConfirmBoxConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.mo
  *ToastNotificationConfigModule.forRoot({
  *    ToastCoreConfig: {
  *       // AutoClose it will be ignored if buttons are included.
- *       AutoCloseDelay: 3000 // milliseconds, optional set 0 to never expires
+ *       AutoCloseDelay: 3000, // milliseconds, optional set 0 to never expires
  *       TextPosition: 'right', // optional ' center', 'left', 'right'
  *       LayoutType: DialogLayoutDisplay.SUCCESS, // SUCCESS | INFO | NONE | DANGER | WARNING
  *       ProgressBar: ToastProgressBarEnum.INCREASE, // INCREASE | DECREASE | NONE
@@ -427,9 +444,9 @@ export { ConfirmBoxConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.mo
  *       ToastPosition: ToastPositionEnum.TOP_RIGHT,  // TOP_LEFT | TOP_CENTER | TOP_RIGHT | TOP_FULL_WIDTH | BOTTOM_LEFT | BOTTOM_CENTER | BOTTOM_RIGHT | BOTTOM_FULL_WIDTH
  *       AllowHTMLMessage: true,  // default false
  *       DisableIcon: true, // default false
- *       ButtonPosition: 'right', / / optional ' center', 'left', 'right'
+ *       ButtonPosition: 'right', // optional ' center', 'left', 'right'
  *       CustomStyles: {
- *           TitleCSS: 'background: rgba(0,0,0 .7); font-size: 20px; padding: 20px',
+ *           TitleCSS: 'background: rgba(0,0,0, .7); font-size: 20px; padding: 20px',
  *           ButtonSectionCSS: 'background: #333',
  *           ButtonCSS: 'font-size: 14px;',
  *           TextCSS: 'color: #ddd; font-size: 16px; background: #333;'

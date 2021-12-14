@@ -1,11 +1,11 @@
 @import '../../../styles/style';
 
 .evolve-parent-dialog {
-  padding: 20px 20px 10px 20px;
-  opacity: 0;
   background: $gr-100;
   box-shadow: 0 0 4px 1px transparentize(black, 0.75);
   box-sizing: border-box;
+  opacity: 0;
+  padding: 20px 20px 10px 20px;
 
   .component-content {
     height: 100%;

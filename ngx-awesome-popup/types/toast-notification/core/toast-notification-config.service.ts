@@ -9,9 +9,9 @@ import { IGlobalToastSettings, IToastNotificationUserConfig } from './interfaces
   providedIn: 'root'
 })
 export class ToastNotificationConfigService {
+  private dataControl = new DataControl();
   authorConfig: IToastNotificationUserConfig = new ToastSettings();
   productionConfig: IToastNotificationUserConfig = new ToastSettings();
-  private dataControl = new DataControl();
 
   constructor(
     @Inject('toastNotificationConfig')

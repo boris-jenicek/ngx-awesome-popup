@@ -9,11 +9,11 @@
   }"
 >
   <div
+    class="evolve-parent-dialog"
     [@.disabled]="
       dialogBelonging.DialogCoreConfig.AnimationIn === 0 && dialogBelonging.DialogCoreConfig.AnimationOut === 0
     "
     [@boxAnimations]="boxAnimation"
-    class="evolve-parent-dialog"
     #elDialogWrapper
     [ngStyle]="
       dialogBelonging.DialogCoreConfig.FullScreen && {
@@ -109,8 +109,8 @@
         }"
       >
         <button
-          #elButton
           class="ed-btn ed-btn-lg"
+          #elButton
           *ngFor="let button of dialogBelonging.Buttons"
           (click)="onCustomButton(button)"
           [ngClass]="{

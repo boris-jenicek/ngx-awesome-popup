@@ -1,4 +1,4 @@
-import { ElementRef, Injectable, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Directive, ElementRef, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
@@ -7,13 +7,15 @@ import { IButton } from '../../../core/global-interfaces';
 
 import { ToastNotificationBelonging, ToastNotificationDefaultResponse } from './classes';
 
-@Injectable()
+@Directive()
 export abstract class WrapperAbstraction implements OnDestroy {
+  private closeIsClicked = false;
+  private autoClosingHasStarted = false;
   @ViewChild('elTextWrapper') elTextWrapper: ElementRef;
   @ViewChild('elTitleWrapper') elTitleWrapper: ElementRef;
   @ViewChild('elButtonWrapper') elButtonWrapper: ElementRef;
   @ViewChildren('elButton') elButton: QueryList<ElementRef>;
-  fadeInOutAnimation: string = 'open';
+  fadeInOutAnimation = 'open';
   timerStarted$ = new BehaviorSubject('start-counter');
   subsToClosingDelay: Subscription;
   subTimer: Subscription;
@@ -21,8 +23,6 @@ export abstract class WrapperAbstraction implements OnDestroy {
   timeout;
   timer: Timer = new Timer();
   boxAnimation: AppearanceAnimation | DisappearanceAnimation | 'reset';
-  private closeIsClicked: boolean = false;
-  private autoClosingHasStarted: boolean = false;
 
   protected constructor(public toastNotificationBelonging: ToastNotificationBelonging) {
     setTimeout(() => {
@@ -51,13 +51,16 @@ export abstract class WrapperAbstraction implements OnDestroy {
 
   setCustomStyles(): void {
     if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TextCSS && this.elTextWrapper) {
-      this.elTextWrapper.nativeElement.style.cssText += this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TextCSS;
+      this.elTextWrapper.nativeElement.style.cssText +=
+        this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TextCSS;
     }
     if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TitleCSS && this.elTitleWrapper) {
-      this.elTitleWrapper.nativeElement.style.cssText += this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TitleCSS;
+      this.elTitleWrapper.nativeElement.style.cssText +=
+        this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TitleCSS;
     }
     if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
-      this.elButtonWrapper.nativeElement.style.cssText += this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonSectionCSS;
+      this.elButtonWrapper.nativeElement.style.cssText +=
+        this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonSectionCSS;
     }
     if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
       this.elButton.forEach(el => {
@@ -75,7 +78,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
     }
   }
 
-  mouseOut() {
+  mouseOut(): void {
     if (!this.buttonsExist && !this.closeIsClicked && !this.autoClosingHasStarted) {
       this.timerStarted$.next('start-counter');
     }
@@ -106,7 +109,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
     this.toastNotificationBelonging.EventsController.close();
   }
 
-  onButtonClick(_Type: 'confirm' | 'decline') {
+  onButtonClick(_Type: 'confirm' | 'decline'): void {
     let buttonID;
     if (_Type === 'confirm') {
       buttonID = this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel.toLowerCase();
@@ -118,7 +121,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
     this.toastNotificationBelonging.EventsController.close();
   }
 
-  autoClose() {
+  autoClose(): void {
     if (this.autoCloseCondition) {
       this.timer.setMilliseconds(this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
       this.subTimer = this.timerStarted$
@@ -153,7 +156,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
     return of('').pipe(delay(closeDuration));
   }
 
-  close() {
+  close(): void {
     this.toastNotificationBelonging.EventsController.close();
   }
 
@@ -165,7 +168,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subsToClosingDelay?.unsubscribe();
     this.subTimer?.unsubscribe();
   }

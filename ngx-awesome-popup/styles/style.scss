@@ -52,11 +52,11 @@
   border-radius: 5px;
   border-top: 7px solid;
   box-shadow: 0 0 4px 1px transparentize(black, 0.75);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   max-height: calc(100vh - 100px);
   max-width: calc(100vw - 100px);
-  box-sizing: border-box;
 
   position: relative;
   vertical-align: bottom;

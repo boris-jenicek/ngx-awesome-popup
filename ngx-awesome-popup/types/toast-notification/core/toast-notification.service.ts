@@ -25,7 +25,7 @@ import { ToastNotificationConfigService } from './toast-notification-config.serv
 export class ToastNotificationService {
   toastComponentRefList: ComponentRef<any>[] = [];
   bufferToastRawList: IToastNotificationRawState[] = [];
-  bufferCheckingIntervalIsReady: boolean = true;
+  bufferCheckingIntervalIsReady = true;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -36,7 +36,7 @@ export class ToastNotificationService {
   ) {}
 
   openToast$(_ToastNotificationBelonging: ToastNotificationBelonging): Observable<IPrivateResponseMerged> {
-    let eventController = _ToastNotificationBelonging.EventsController;
+    const eventController = _ToastNotificationBelonging.EventsController;
     // console.log(`%c ${_ToastNotificationBelonging.EntityUniqueID} `, `background: #339933; color: #fff`);
 
     const toastRawInstance = this.prepareRawToast(eventController, _ToastNotificationBelonging);
@@ -55,7 +55,7 @@ export class ToastNotificationService {
     }
   }
 
-  sendToBuffer(_ToastRawInstance: IToastNotificationRawState) {
+  sendToBuffer(_ToastRawInstance: IToastNotificationRawState): void {
     this.bufferToastRawList.push(_ToastRawInstance);
   }
 
@@ -102,7 +102,7 @@ export class ToastNotificationService {
     return null;
   }
 
-  listeners(_EventsController: ToastNotificationEventsController) {
+  listeners(_EventsController: ToastNotificationEventsController): void {
     // Listener for closing dialog
     const closeDialogSubscription = _EventsController.afterClosed$.subscribe(response => {
       // this.removeFromBodyParentComponent(modalIndex);
@@ -191,10 +191,10 @@ export class ToastNotificationService {
       return;
     }
     // check the overlay
-    let toastOverlayNode = document.getElementById('toast-overlay-container') as HTMLStyleElement;
+    const toastOverlayNode = document.getElementById('toast-overlay-container') as HTMLStyleElement;
 
     if (!toastOverlayNode) {
-      let toastOverlayNode = document.createElement('div');
+      const toastOverlayNode = document.createElement('div');
       toastOverlayNode.setAttribute('id', 'toast-overlay-container');
       toastOverlayNode.appendChild(document.createTextNode(''));
       toastOverlayNode.style.position = 'fixed';
@@ -208,8 +208,8 @@ export class ToastNotificationService {
     return toastOverlayNode;
   }
 
-  private setToastWrapperNode(_Position: ToastPositionEnum, _ToastOverlayNode: HTMLElement) {
-    let toastWrapperNode = document.getElementById(`toast-wrapper-${_Position}`) as HTMLStyleElement;
+  private setToastWrapperNode(_Position: ToastPositionEnum, _ToastOverlayNode: HTMLElement): void {
+    const toastWrapperNode = document.getElementById(`toast-wrapper-${_Position}`) as HTMLStyleElement;
     if (!toastWrapperNode) {
       const toastWrapper = document.createElement('div');
       toastWrapper.setAttribute('id', 'toast-wrapper-' + _Position);

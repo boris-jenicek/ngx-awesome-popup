@@ -19,6 +19,7 @@ export interface IGlobalToastSettings {
   /** Number of popups allowed on screen, recommend 3-5 */
   AllowedNotificationsAtOnce: number;
 }
+
 export interface IToastCustomStyles {
   TitleCSS?: string;
   TextCSS?: string;

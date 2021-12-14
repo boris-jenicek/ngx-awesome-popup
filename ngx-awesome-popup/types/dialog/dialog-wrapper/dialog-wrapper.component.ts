@@ -32,8 +32,8 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   @ViewChild('elDialogWrapper') elDialogWrapper: ElementRef;
   @ViewChild('elButtonWrapper') elButtonWrapper: ElementRef;
   @ViewChildren('elButton') elButton: QueryList<ElementRef>;
-  fadeInOutAnimation: string = 'open';
-  showLoader: boolean = true;
+  fadeInOutAnimation = 'open';
+  showLoader = true;
   bodyOverflow: string;
 
   childComponentRef: ComponentRef<any>;
@@ -68,14 +68,14 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     this.setCustomStyles();
   }
 
-  hideScrollbar() {
+  hideScrollbar(): void {
     if (this.dialogBelonging.DialogCoreConfig.HideScrollbar) {
       this.bodyOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
     }
   }
 
-  revertScrollbarSettings() {
+  revertScrollbarSettings(): void {
     if (this.dialogBelonging.DialogCoreConfig.HideScrollbar) {
       document.body.style.overflow = this.bodyOverflow;
     }
@@ -98,7 +98,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  hideScroller() {}
+  hideScroller(): void {}
 
   loadChildComponent(_ComponentType: Type<any>): void {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(_ComponentType);
@@ -118,7 +118,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     this.loaderComponentRef = viewContainerRef.createComponent(componentFactory);
   }
 
-  close() {
+  close(): void {
     this.dialogBelonging.EventsController.close();
   }
 
@@ -149,7 +149,8 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
       this.elDialogWrapper.nativeElement.style.cssText += this.dialogBelonging.DialogCoreConfig.CustomStyles.WrapperCSS;
     }
     if (this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
-      this.elButtonWrapper.nativeElement.style.cssText += this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonSectionCSS;
+      this.elButtonWrapper.nativeElement.style.cssText +=
+        this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonSectionCSS;
     }
     if (this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
       this.elButton.forEach(el => {
@@ -159,7 +160,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   }
 
   @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent) {
+  keyEvent(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
       this.close();
     }

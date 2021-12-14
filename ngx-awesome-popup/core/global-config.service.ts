@@ -1,25 +1,15 @@
 import { Inject, Injectable } from '@angular/core';
 import { ColorVariance } from './enums';
-import {
-  ColorProvider,
-  GlobalConfig,
-  GlobalUserConfig
-} from './global-classes';
-import {
-  IColorObject,
-  IColorProvider,
-  IColorTypes,
-  IGlobalConfig,
-  IGlobalUserConfig
-} from './global-interfaces';
+import { ColorProvider, GlobalConfig, GlobalUserConfig } from './global-classes';
+import { IColorObject, IColorProvider, IColorTypes, IGlobalConfig, IGlobalUserConfig } from './global-interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalConfigService {
-  productionGlobalConfig: IGlobalConfig = new GlobalConfig();
   private authorGlobalConfig: IGlobalConfig = new GlobalConfig();
   private userGeneratedConfig: IGlobalUserConfig;
+  productionGlobalConfig: IGlobalConfig = new GlobalConfig();
 
   constructor(
     @Inject('cdGlobalConfig')
@@ -53,11 +43,9 @@ export class GlobalConfigService {
     this.setNodeStyles(this.productionGlobalConfig.DisplayColor, true);
   }
 
-  setNodeStyles(_ProductionColorTypes: IColorObject, _Reset: boolean = false) {
+  setNodeStyles(_ProductionColorTypes: IColorObject, _Reset: boolean = false): void {
     if (_Reset) {
-      let evolveDialogStyleNode = document.getElementById(
-        'ngx-awesome-popup-glob-styles'
-      ) as HTMLStyleElement;
+      const evolveDialogStyleNode = document.getElementById('ngx-awesome-popup-glob-styles') as HTMLStyleElement;
       if (evolveDialogStyleNode) {
         evolveDialogStyleNode.remove();
       }
@@ -87,9 +75,7 @@ export class GlobalConfigService {
     }
 
     const userKeys = Object.keys(_UserColorTypes);
-    const productionObjectKeys = Object.keys(
-      this.productionGlobalConfig.DisplayColor
-    );
+    const productionObjectKeys = Object.keys(this.productionGlobalConfig.DisplayColor);
 
     userKeys.forEach(key => {
       if (productionObjectKeys.find(tKey => tKey === key)) {
@@ -105,14 +91,11 @@ export class GlobalConfigService {
     });
   }
 
-  public getSheet(_StyleID: string) {
+  public getSheet(_StyleID: string): undefined | CSSStyleSheet {
     // Create the <style> tag
-    let evolveDialogStyleNode = document.getElementById(
-      _StyleID
-    ) as HTMLStyleElement;
+    let evolveDialogStyleNode = document.getElementById(_StyleID) as HTMLStyleElement;
     if (!evolveDialogStyleNode) {
-      const headNode =
-        document.head || document.getElementsByTagName('head')[0];
+      const headNode = document.head || document.getElementsByTagName('head')[0];
       if (!headNode) {
         return;
       }
@@ -126,7 +109,7 @@ export class GlobalConfigService {
     return evolveDialogStyleNode ? evolveDialogStyleNode.sheet : null;
   }
 
-  private setToastStyling(_Key: string, _ColorProvider: IColorProvider) {
+  private setToastStyling(_Key: string, _ColorProvider: IColorProvider): void {
     const standardToast = `.toast-wrapper.standard-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
     const standardToastStyle = `
         background:  ${_ColorProvider.BrightShade}!important;
@@ -144,21 +127,12 @@ export class GlobalConfigService {
         background-color:  ${_ColorProvider.Brighten}!important;
         `;
 
-    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
-      baseProgress,
-      baseProgressStyle
-    );
-    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
-      standardToast,
-      standardToastStyle
-    );
-    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
-      simpleToast,
-      simpleToastStyle
-    );
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseProgress, baseProgressStyle);
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(standardToast, standardToastStyle);
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(simpleToast, simpleToastStyle);
   }
 
-  private setButtonStyling(_Key: string, _ColorProvider: IColorProvider) {
+  private setButtonStyling(_Key: string, _ColorProvider: IColorProvider): void {
     const baseButtonClass = `.ed-btn-${_Key.toLowerCase()}`;
     const baseStyle = `
         color: ${_ColorProvider.ContrastColor}!important;
@@ -169,71 +143,42 @@ export class GlobalConfigService {
     const hoverButtonClass = `.ed-btn-${_Key.toLowerCase()}:hover`;
     const hoverStyle = `
         background:  ${
-          _ColorProvider.IsBaseBright
-            ? _ColorProvider.DarkenForShade
-            : _ColorProvider.BrightenForShade
+          _ColorProvider.IsBaseBright ? _ColorProvider.DarkenForShade : _ColorProvider.BrightenForShade
         }!important;
-        border-color: ${
-          _ColorProvider.IsBaseBright
-            ? _ColorProvider.Darken
-            : _ColorProvider.Brighten
-        }!important;
+        border-color: ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
         `;
 
     const focusActiveButtonClass = `.ed-btn-${_Key.toLowerCase()}:focus, .ed-btn-${_Key.toLowerCase()}:active`;
     const focusActiveStyle = `
         box-shadow: 0 0 1px 2px ${
-          _ColorProvider.IsBaseBright
-            ? _ColorProvider.Darken
-            : _ColorProvider.Brighten
+          _ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten
         }!important;
         `;
 
-    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
-      baseButtonClass,
-      baseStyle
-    );
-    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
-      hoverButtonClass,
-      hoverStyle
-    );
-    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
-      focusActiveButtonClass,
-      focusActiveStyle
-    );
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseButtonClass, baseStyle);
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(hoverButtonClass, hoverStyle);
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(focusActiveButtonClass, focusActiveStyle);
   }
 
-  private setIconStyling(_Key: string, _ColorProvider: IColorProvider) {
+  private setIconStyling(_Key: string, _ColorProvider: IColorProvider): void {
     const baseIconClass = `.ap-icon-${_Key.toLowerCase()}`;
     const baseStyle = `color: ${_ColorProvider.BrightenForShade}!important;`;
 
-    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
-      baseIconClass,
-      baseStyle
-    );
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseIconClass, baseStyle);
   }
 
-  private setDialogFrame(_Key: string, _ColorProvider: IColorProvider) {
+  private setDialogFrame(_Key: string, _ColorProvider: IColorProvider): void {
     const baseDialogFrameClass = `.ngx-awesome-popup-overlay .${_Key.toLowerCase()}-dialog`;
     const baseStyle = `
         border-color: ${_ColorProvider.Brighten}!important;
         `;
 
-    this.getSheet('ngx-awesome-popup-glob-styles').addRule(
-      baseDialogFrameClass,
-      baseStyle
-    );
+    this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseDialogFrameClass, baseStyle);
   }
 
-  private setToastStyles() {
-    this.getSheet('ngx-awesome-popup-styles').addRule(
-      `.toast-entity`,
-      `all 0.5s ease;`
-    );
-    this.getSheet('ngx-awesome-popup-styles').addRule(
-      `.toast-entity:first-child`,
-      `animation: move 0.7s ease-out;`
-    );
+  private setToastStyles(): void {
+    this.getSheet('ngx-awesome-popup-styles').addRule(`.toast-entity`, `all 0.5s ease;`);
+    this.getSheet('ngx-awesome-popup-styles').addRule(`.toast-entity:first-child`, `animation: move 0.7s ease-out;`);
 
     const isIEOrEdge = /msie\s|trident\//i.test(window.navigator.userAgent);
     if (!isIEOrEdge) {

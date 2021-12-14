@@ -9,12 +9,12 @@
   }"
 >
   <div
+    class="evolve-confirm-box"
     [@.disabled]="
       confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationIn === 0 &&
       confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationOut === 0
     "
     [@boxAnimations]="boxAnimation"
-    class="evolve-confirm-box"
     #elConfirmBoxWrapper
     [ngClass]="{
       'standard-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
@@ -80,8 +80,8 @@
         }"
       >
         <button
-          #elButton
           class="ed-btn ed-btn-md"
+          #elButton
           *ngFor="let button of confirmBoxBelonging.Buttons"
           (click)="onCustomButton(button)"
           [ngClass]="{
@@ -108,8 +108,8 @@
         }"
       >
         <button
-          #elButton
           class="ed-btn ed-btn-md"
+          #elButton
           (click)="onButtonClick('confirm')"
           [ngClass]="{
             'ed-btn-primary': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
@@ -122,8 +122,8 @@
           {{ confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel }}
         </button>
         <button
-          #elButton
           class="ed-btn ed-btn-md ed-btn-secondary"
+          #elButton
           (click)="onButtonClick('decline')"
           *ngIf="confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel"
         >

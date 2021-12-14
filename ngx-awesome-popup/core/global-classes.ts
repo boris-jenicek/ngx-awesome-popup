@@ -1,14 +1,7 @@
 import { ServiceLocator } from '../locator.service';
 import { ButtonLayoutDisplay } from './enums';
 import { GlobalConfigService } from './global-config.service';
-import {
-  IButton,
-  IColorObject,
-  IColorTypes,
-  IGlobalConfig,
-  IGlobalUserConfig,
-  ISizes
-} from './global-interfaces';
+import { IButton, IColorObject, IColorTypes, IGlobalConfig, IGlobalUserConfig, ISizes } from './global-interfaces';
 
 export class Sizes implements ISizes {
   Width: string = null;
@@ -59,15 +52,10 @@ export class ColorTypes implements IColorTypes {
 
 export class ResetGlobalConfig {
   constructor(globalConfig?: IGlobalUserConfig) {
-    const globalConfigService: GlobalConfigService = ServiceLocator.injector.get(
-      GlobalConfigService
-    );
+    const globalConfigService: GlobalConfigService = ServiceLocator.injector.get(GlobalConfigService);
     if (globalConfig) {
       globalConfigService.setUserColors(globalConfig.ColorList);
-      globalConfigService.setNodeStyles(
-        globalConfigService.productionGlobalConfig.DisplayColor,
-        true
-      );
+      globalConfigService.setNodeStyles(globalConfigService.productionGlobalConfig.DisplayColor, true);
     } else {
       globalConfigService.resetStyles();
     }
@@ -108,39 +96,15 @@ export class ColorProvider {
       this.Darken = this.brightness(this.Base, 'darken', 20);
       this.DarkenForShade = this.brightness(this.Base, 'darken', 10);
       const luminance = Math.floor(this.luminance(this.Base) * 100);
-      const darken =
-        luminance > 50
-          ? 5
-          : luminance > 40
-          ? 10
-          : luminance > 20
-          ? 15
-          : luminance;
-      const brighten =
-        luminance > 55
-          ? 65
-          : luminance > 45
-          ? 60
-          : luminance > 20
-          ? 55
-          : luminance > 10
-          ? 45
-          : 80;
-      this.BrightShade = this.brightness(
-        this.brightness(this.Base, 'darken', darken),
-        'brighten',
-        brighten
-      );
+      const darken = luminance > 50 ? 5 : luminance > 40 ? 10 : luminance > 20 ? 15 : luminance;
+      const brighten = luminance > 55 ? 65 : luminance > 45 ? 60 : luminance > 20 ? 55 : luminance > 10 ? 45 : 80;
+      this.BrightShade = this.brightness(this.brightness(this.Base, 'darken', darken), 'brighten', brighten);
       this.BrightWarmly = this.brightness(
         this.brightness(this.saturate(this.Base), 'darken', darken - 10),
         'brighten',
         brighten - 5
       );
-      this.TransparentDarkenVariance = this.brightness(
-        this.transparentize(this.Base, 80),
-        'darken',
-        40
-      );
+      this.TransparentDarkenVariance = this.brightness(this.transparentize(this.Base, 80), 'darken', 40);
       if (this.isBright(this.Base)) {
         this.ContrastColor = 'rgba(58,65,71,0.5)';
         this.IsBaseBright = true;
@@ -161,7 +125,7 @@ export class ColorProvider {
     }
   }
 
-  saturate(_Rgb: string) {
+  saturate(_Rgb: string): string {
     const rgbIntArray = this.getRGBArray(_Rgb);
     const greyVal = this.getLightnessOfRGB(_Rgb) * 55;
     const [lowest, middle, highest] = this.getLowMidHi(rgbIntArray);
@@ -173,23 +137,16 @@ export class ColorProvider {
     const saturationRange = Math.round(Math.min(255 - greyVal, greyVal));
     const maxChange = Math.min(255 - highest.val, lowest.val);
     const changeAmount = Math.min(saturationRange / 10, maxChange);
-    const middleValueRatio =
-      (greyVal - middle.val) / (greyVal - highest.val) + 0.07;
+    const middleValueRatio = (greyVal - middle.val) / (greyVal - highest.val) + 0.07;
 
     const returnArray = [];
     returnArray[highest.index] = Math.round(highest.val + changeAmount);
     returnArray[lowest.index] = Math.round(lowest.val - changeAmount);
-    returnArray[middle.index] = Math.round(
-      greyVal + (returnArray[highest.index] - greyVal) * middleValueRatio + 5
-    );
+    returnArray[middle.index] = Math.round(greyVal + (returnArray[highest.index] - greyVal) * middleValueRatio + 5);
     return `rgb(${[returnArray].join()})`;
   }
 
-  public brightness(
-    _Rgb: string,
-    _Action: 'brighten' | 'darken',
-    _Percentage: number
-  ): string {
+  public brightness(_Rgb: string, _Action: 'brighten' | 'darken', _Percentage: number): string {
     const rgbIntArray = this.getRGBArray(_Rgb);
     const [lowest, middle, highest] = this.getLowMidHi(rgbIntArray);
 
@@ -206,20 +163,14 @@ export class ColorProvider {
     let returnList = [];
 
     if (_Action === 'brighten') {
-      returnList[lowest.index] = Math.round(
-        lowest.val + Math.min(255 - lowest.val, amount)
-      );
-      const increaseFraction =
-        (returnList[lowest.index] - lowest.val) / (255 - lowest.val);
-      returnList[middle.index] =
-        middle.val + (255 - middle.val) * increaseFraction;
-      returnList[highest.index] =
-        highest.val + (255 - highest.val) * increaseFraction;
+      returnList[lowest.index] = Math.round(lowest.val + Math.min(255 - lowest.val, amount));
+      const increaseFraction = (returnList[lowest.index] - lowest.val) / (255 - lowest.val);
+      returnList[middle.index] = middle.val + (255 - middle.val) * increaseFraction;
+      returnList[highest.index] = highest.val + (255 - highest.val) * increaseFraction;
     }
     if (_Action === 'darken') {
       returnList[highest.index] = highest.val - Math.min(highest.val, amount);
-      const decreaseFraction =
-        (highest.val - returnList[highest.index]) / highest.val;
+      const decreaseFraction = (highest.val - returnList[highest.index]) / highest.val;
       returnList[middle.index] = middle.val - middle.val * decreaseFraction;
       returnList[lowest.index] = lowest.val - lowest.val * decreaseFraction;
     }
@@ -232,7 +183,7 @@ export class ColorProvider {
     return `rgb(${returnList.join()})`;
   }
 
-  getLightnessOfRGB(_Rgb: string) {
+  getLightnessOfRGB(_Rgb: string): number {
     const rgbIntArray = this.getRGBArray(_Rgb);
 
     const highest = Math.max(...rgbIntArray);
@@ -240,16 +191,14 @@ export class ColorProvider {
     return (highest + lowest) / 2 / 255;
   }
 
-  private isBright(_Rgb: string) {
+  private isBright(_Rgb: string): boolean {
     return this.contrast(this.luminance(_Rgb));
   }
 
-  private getLowMidHi(_RgbArray: number[]) {
+  //
+  private getLowMidHi(_RgbArray: number[]): { index: number; val: number }[] {
     const rgbArrayCopy = _RgbArray.slice();
-    const rgbArrayWithoutAlpha =
-      _RgbArray.length > 3
-        ? rgbArrayCopy.reverse().slice(1).reverse()
-        : _RgbArray;
+    const rgbArrayWithoutAlpha = _RgbArray.length > 3 ? rgbArrayCopy.reverse().slice(1).reverse() : _RgbArray;
     let highest = { val: -1, index: -1 };
     let lowest = { val: Infinity, index: -1 };
 
@@ -267,24 +216,24 @@ export class ColorProvider {
     }
 
     const middleIndex = 3 - highest.index - lowest.index;
-    let middle = {
+    const middle = {
       val: rgbArrayWithoutAlpha[middleIndex],
       index: middleIndex
     };
     return [lowest, middle, highest];
   }
 
-  private contrast(_Luminance) {
+  private contrast(_Luminance): boolean {
     const brightest = Math.max(1.05, _Luminance + 0.05);
     const darkest = Math.min(1.05, _Luminance + 0.05);
     const contrast = brightest / darkest;
     return contrast < 2.7;
   }
 
-  private isColor(_StrColor) {
+  private isColor(_StrColor): string {
     const CSSDeclaration = new Option().style;
     CSSDeclaration.color = _StrColor;
-    return !!CSSDeclaration.color ? CSSDeclaration.color : null;
+    return CSSDeclaration.color ? CSSDeclaration.color : null;
   }
 
   private getRGBArray(_Rgb: string): number[] {
@@ -296,22 +245,16 @@ export class ColorProvider {
       .map(x => +x);
   }
 
-  private luminance(_Rgb: string) {
+  private luminance(_Rgb: string): number {
     const rgbIntArray = this.getRGBArray(_Rgb);
     const W3algorithm = rgbIntArray.map(item => {
       item /= 255;
-      return item <= 0.03928
-        ? item / 12.92
-        : Math.pow((item + 0.055) / 1.055, 2.4);
+      return item <= 0.03928 ? item / 12.92 : Math.pow((item + 0.055) / 1.055, 2.4);
     });
-    return (
-      W3algorithm[0] * 0.2126 +
-      W3algorithm[1] * 0.7152 +
-      W3algorithm[2] * 0.0722
-    );
+    return W3algorithm[0] * 0.2126 + W3algorithm[1] * 0.7152 + W3algorithm[2] * 0.0722;
   }
 
-  private transparentize(_Rgb: string, _Percentage: number) {
+  private transparentize(_Rgb: string, _Percentage: number): string {
     const baseArray = this.Base.replace(/^(rgb|rgba)\(/, '')
       .replace(/\)$/, '')
       .replace(/\s/g, '')
@@ -339,9 +282,7 @@ export class DataControl {
     const destinationObjectKeys = Object.keys(_DestinationObject);
 
     dataKeys.forEach(key => {
-      if (
-        destinationObjectKeys.find(tKey => tKey === key || tKey === '_' + key)
-      ) {
+      if (destinationObjectKeys.find(tKey => tKey === key || tKey === '_' + key)) {
         if (key.includes('Date')) {
           const date = Date.parse(_Data[key]);
           if (date) {
@@ -364,15 +305,15 @@ export class DataControl {
 }
 
 export class Timer {
-  TimePassed: number = 0;
+  TimePassed = 0;
   Timer: any;
-  Progress: number = 0;
-  Remaining: number = 100;
+  Progress = 0;
+  Remaining = 100;
   Milliseconds: number;
 
   constructor() {}
 
-  setMilliseconds(_Milliseconds: number) {
+  setMilliseconds(_Milliseconds: number): void {
     this.Milliseconds = _Milliseconds;
   }
 

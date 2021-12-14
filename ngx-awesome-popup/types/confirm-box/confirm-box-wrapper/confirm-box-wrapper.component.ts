@@ -28,7 +28,7 @@ export class ConfirmBoxWrapperComponent implements AfterViewInit {
   @ViewChild('elTitleWrapper') elTitleWrapper: ElementRef;
   @ViewChild('elButtonWrapper') elButtonWrapper: ElementRef;
   @ViewChildren('elButton') elButton: QueryList<ElementRef>;
-  fadeInOutAnimation: string = 'open';
+  fadeInOutAnimation = 'open';
   animationFlyDirection = 'none';
   boxAnimation: AppearanceAnimation | DisappearanceAnimation;
 
@@ -69,7 +69,7 @@ export class ConfirmBoxWrapperComponent implements AfterViewInit {
     this.confirmBoxBelonging.EventsController.close();
   }
 
-  onButtonClick(_Type: 'confirm' | 'decline') {
+  onButtonClick(_Type: 'confirm' | 'decline'): void {
     let buttonID;
     if (_Type === 'confirm') {
       buttonID = this.confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel.toLowerCase();
@@ -94,16 +94,20 @@ export class ConfirmBoxWrapperComponent implements AfterViewInit {
 
   setCustomStyles(): void {
     if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.WrapperCSS && this.elConfirmBoxWrapper) {
-      this.elConfirmBoxWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.WrapperCSS;
+      this.elConfirmBoxWrapper.nativeElement.style.cssText +=
+        this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.WrapperCSS;
     }
     if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TextCSS && this.elTextWrapper) {
-      this.elTextWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TextCSS;
+      this.elTextWrapper.nativeElement.style.cssText +=
+        this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TextCSS;
     }
     if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TitleCSS && this.elTitleWrapper) {
-      this.elTitleWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TitleCSS;
+      this.elTitleWrapper.nativeElement.style.cssText +=
+        this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TitleCSS;
     }
     if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
-      this.elButtonWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonSectionCSS;
+      this.elButtonWrapper.nativeElement.style.cssText +=
+        this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonSectionCSS;
     }
     if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
       this.elButton.forEach(el => {

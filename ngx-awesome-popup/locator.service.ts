@@ -1,4 +1,4 @@
-import {Injector} from '@angular/core'; // @dynamic
+import { Injector } from '@angular/core'; // @dynamic
 
 // @dynamic
 export class ServiceLocator {

@@ -32,10 +32,10 @@
     flex-direction: column;
     margin-top: 10px;
     max-height: 350px;
+    opacity: 0;
     position: relative;
     transition: box-shadow 0.3s ease-in-out;
     vertical-align: bottom;
-    opacity: 0;
 
     &:hover {
       box-shadow: 0 0 4px 3px transparentize(black, 0.75);
@@ -103,12 +103,12 @@
       color: $gr-600;
       display: flex;
       flex-direction: column;
+      flex-wrap: nowrap;
+      font-size: 0.87rem;
       height: auto;
       justify-content: flex-start;
       padding: 5px 10px 5px;
       width: auto;
-      flex-wrap: nowrap;
-      font-size: 0.87rem;
     }
 
     .content-holder {
@@ -139,6 +139,7 @@
       .text-text {
         font-size: 0.97rem;
       }
+
       .text-wrapper {
         margin: 0;
       }

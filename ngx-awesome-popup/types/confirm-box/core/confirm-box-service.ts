@@ -55,7 +55,7 @@ export class ConfirmBoxService {
     return null;
   }
 
-  listeners(_EventsController: ConfirmBoxEventsController) {
+  listeners(_EventsController: ConfirmBoxEventsController): void {
     // Listener for closing dialog
     const closeDialogSubscription = _EventsController.afterClosed$.subscribe(response => {
       const modalIndex = this.findDialogIndex(response.confirmBoxBelonging.EntityUniqueID);
@@ -73,7 +73,7 @@ export class ConfirmBoxService {
     document.body.appendChild(domElem);
   }
 
-  closeDialogWrapperComponent(_DialogUniqueID: string) {
+  closeDialogWrapperComponent(_DialogUniqueID: string): void {
     const modalIndex = this.findDialogIndex(_DialogUniqueID);
     this.removeFromBodyParentComponent(modalIndex);
   }

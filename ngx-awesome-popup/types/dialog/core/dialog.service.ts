@@ -58,7 +58,7 @@ export class DialogService {
     return null;
   }
 
-  listeners(_EventsController: IDialogEventsController) {
+  listeners(_EventsController: IDialogEventsController): void {
     // Listener for closing dialog
     const closeDialogSubscription = _EventsController.afterClosed$.subscribe(response => {
       const modalIndex = this.findDialogIndex(response.DialogBelonging.EntityUniqueID);
@@ -79,7 +79,7 @@ export class DialogService {
     });
   }
 
-  childComponentResolver() {}
+  childComponentResolver(): void {}
 
   appendToBodyParentComponent(_ComponentRef: ComponentRef<any>): void {
     // attach view to ignite lifecycle hooks
@@ -90,7 +90,7 @@ export class DialogService {
     document.body.appendChild(domElem);
   }
 
-  closeDialogWrapperComponent(_DialogUniqueID: string) {
+  closeDialogWrapperComponent(_DialogUniqueID: string): void {
     const modalIndex = this.findDialogIndex(_DialogUniqueID);
     this.removeFromBodyDialogWrapperComponent(modalIndex);
   }

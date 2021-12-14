@@ -9,12 +9,12 @@
   }"
 >
   <div
+    class="evolve-toast"
     [@.disabled]="
       toastNotificationBelonging.ToastCoreConfig.AnimationIn === 0 &&
       toastNotificationBelonging.ToastCoreConfig.AnimationOut === 0
     "
     [@boxAnimations]="boxAnimation"
-    class="evolve-toast"
     (mouseover)="mouseOver()"
     (mouseout)="mouseOut()"
     (click)="onToastClicked($event)"
@@ -84,8 +84,8 @@
         }"
       >
         <button
-          #elButton
           class="ed-btn ed-btn-sm"
+          #elButton
           *ngFor="let button of toastNotificationBelonging.Buttons"
           (click)="onCustomButton(button)"
           [ngClass]="{

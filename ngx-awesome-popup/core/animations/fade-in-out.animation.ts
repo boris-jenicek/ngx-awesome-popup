@@ -1,6 +1,15 @@
-import { animate, animateChild, query, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  animateChild,
+  AnimationTriggerMetadata,
+  query,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 
-export function fadeInOut() {
+export function fadeInOut(): AnimationTriggerMetadata {
   return trigger('fadeInOut', [
     state(
       'open',

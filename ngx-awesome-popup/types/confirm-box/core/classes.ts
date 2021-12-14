@@ -42,7 +42,7 @@ export class ConfirmBoxInitializer {
     this.confirmBoxCarrier.setButtons(_Buttons);
   }
 
-  setConfig(_ConfirmBoxCoreConfig: IConfirmBoxCoreConfig) {
+  setConfig(_ConfirmBoxCoreConfig: IConfirmBoxCoreConfig): void {
     this.confirmBoxCarrier.setConfig(_ConfirmBoxCoreConfig);
   }
 
@@ -84,14 +84,12 @@ export class ConfirmBoxResponse extends DataControl implements IConfirmBoxRespon
 }
 
 export class ConfirmBoxEventsController {
-  defaultResponse: IPrivateResponseMerged;
-
   private readonly _afterClosed: Subject<IPrivateResponseMerged> = new Subject<IPrivateResponseMerged>();
-  afterClosed$: Observable<IPrivateResponseMerged> = this._afterClosed.asObservable();
-
   private readonly _onButtonClick: Subject<IButton> = new Subject<IButton>();
-  onButtonClick$: Observable<IButton> = this._onButtonClick.asObservable();
   private readonly _buttonList: Subject<IButton[]> = new Subject<IButton[]>();
+  defaultResponse: IPrivateResponseMerged;
+  afterClosed$: Observable<IPrivateResponseMerged> = this._afterClosed.asObservable();
+  onButtonClick$: Observable<IButton> = this._onButtonClick.asObservable();
   buttonList$: Observable<IButton[]> = this._buttonList.asObservable();
 
   constructor(private EntityUniqueID: string) {}
@@ -134,7 +132,7 @@ export class ConfirmBoxCarrier {
 
   constructor() {}
 
-  setButtons(_Buttons: IButton[]) {
+  setButtons(_Buttons: IButton[]): void {
     if (_Buttons.length) {
       this.confirmBoxBelonging.Buttons = _Buttons;
     }
@@ -153,7 +151,7 @@ export class ConfirmBoxCarrier {
     this.confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel = _Decline;
   }
 
-  setConfig(_ConfirmBoxBelonging: IConfirmBoxCoreConfig) {
+  setConfig(_ConfirmBoxBelonging: IConfirmBoxCoreConfig): void {
     // region *** local UserConfig (defined on place where dialog is called) ***
     const dataControl = new DataControl();
     dataControl.copyValuesFrom(_ConfirmBoxBelonging, this.confirmBoxBelonging.ConfirmBoxCoreConfig);

@@ -34,9 +34,7 @@ export class NgxAwesomePopupModule {
     ServiceLocator.injector = injector;
   }
 
-  static forRoot(
-    globalConfig?: IGlobalUserConfig
-  ): ModuleWithProviders<NgxAwesomePopupModule> {
+  static forRoot(globalConfig?: IGlobalUserConfig): ModuleWithProviders<NgxAwesomePopupModule> {
     return {
       ngModule: NgxAwesomePopupModule,
       providers: [{ provide: 'cdGlobalConfig', useValue: globalConfig }]
@@ -45,20 +43,13 @@ export class NgxAwesomePopupModule {
 }
 
 @NgModule({
-  declarations: [
-    DialogWrapperComponent,
-    DefaultLoaderComponent,
-    InsertionDirective,
-    InsertionLoaderDirective
-  ],
+  declarations: [DialogWrapperComponent, DefaultLoaderComponent, InsertionDirective, InsertionLoaderDirective],
   imports: [CommonModule],
   providers: [DialogService, DialogConfigService],
   entryComponents: [DialogWrapperComponent, DefaultLoaderComponent]
 })
 export class DialogConfigModule {
-  static forRoot(
-    dialogConfig?: IDialogUserConfig
-  ): ModuleWithProviders<DialogConfigModule> {
+  static forRoot(dialogConfig?: IDialogUserConfig): ModuleWithProviders<DialogConfigModule> {
     return {
       ngModule: DialogConfigModule,
       providers: [
@@ -76,9 +67,7 @@ export class DialogConfigModule {
   entryComponents: [ConfirmBoxWrapperComponent]
 })
 export class ConfirmBoxConfigModule {
-  static forRoot(
-    confirmBoxConfig?: IConfirmBoxUserConfig
-  ): ModuleWithProviders<ConfirmBoxConfigModule> {
+  static forRoot(confirmBoxConfig?: IConfirmBoxUserConfig): ModuleWithProviders<ConfirmBoxConfigModule> {
     return {
       ngModule: ConfirmBoxConfigModule,
       providers: [
@@ -90,16 +79,10 @@ export class ConfirmBoxConfigModule {
 }
 
 @NgModule({
-  declarations: [
-    ToastNotificationWrapperComponent,
-    ToastNotificationSimpleWrapperComponent
-  ],
+  declarations: [ToastNotificationWrapperComponent, ToastNotificationSimpleWrapperComponent],
   imports: [CommonModule],
   providers: [ToastNotificationService, ToastNotificationConfigService],
-  entryComponents: [
-    ToastNotificationWrapperComponent,
-    ToastNotificationSimpleWrapperComponent
-  ]
+  entryComponents: [ToastNotificationWrapperComponent, ToastNotificationSimpleWrapperComponent]
 })
 export class ToastNotificationConfigModule {
   static forRoot(

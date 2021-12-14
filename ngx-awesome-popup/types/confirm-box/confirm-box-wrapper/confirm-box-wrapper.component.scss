@@ -2,8 +2,8 @@
 
 .ngx-awesome-popup-overlay {
   .evolve-confirm-box {
-    padding: 0 20px;
     opacity: 0;
+    padding: 0 20px;
 
     .confirm-box-title-content {
       align-items: center;
@@ -33,6 +33,7 @@
       justify-content: space-between;
       overflow: auto;
       width: 100%;
+
       &.without-title {
         margin-top: 10px;
       }

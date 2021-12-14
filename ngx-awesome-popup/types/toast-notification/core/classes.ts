@@ -44,7 +44,7 @@ export class ToastNotificationInitializer {
     this.toastNotificationCarrier.setButtons(_Buttons);
   }
 
-  setConfig(_ToastNotificationConfig: IToastCoreConfig) {
+  setConfig(_ToastNotificationConfig: IToastCoreConfig): void {
     this.toastNotificationCarrier.setConfig(_ToastNotificationConfig);
   }
 
@@ -68,7 +68,8 @@ export class ToastNotificationInitializer {
 
 export class ToastNotificationResponse
   extends DataControl
-  implements IToastNotificationResponse, IToastNotificationPublicResponse {
+  implements IToastNotificationResponse, IToastNotificationPublicResponse
+{
   // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
 
   Success: boolean = null;
@@ -88,13 +89,12 @@ export class ToastNotificationResponse
 }
 
 export class ToastNotificationEventsController {
-  defaultResponse: IPrivateResponseMerged;
-
-  private readonly _afterClosed: Subject<IPrivateResponseMerged> = new Subject<IPrivateResponseMerged>();
-  afterClosed$: Observable<IPrivateResponseMerged> = this._afterClosed.asObservable();
   private readonly _onButtonClick: Subject<IButton> = new Subject<IButton>();
-  onButtonClick$: Observable<IButton> = this._onButtonClick.asObservable();
+  private readonly _afterClosed: Subject<IPrivateResponseMerged> = new Subject<IPrivateResponseMerged>();
   private readonly _buttonList: Subject<IButton[]> = new Subject<IButton[]>();
+  defaultResponse: IPrivateResponseMerged;
+  afterClosed$: Observable<IPrivateResponseMerged> = this._afterClosed.asObservable();
+  onButtonClick$: Observable<IButton> = this._onButtonClick.asObservable();
   buttonList$: Observable<IButton[]> = this._buttonList.asObservable();
 
   constructor(private EntityUniqueID: string) {}
@@ -137,7 +137,7 @@ export class ToastNotificationCarrier {
 
   constructor() {}
 
-  setButtons(_Buttons: IButton[]) {
+  setButtons(_Buttons: IButton[]): void {
     if (_Buttons.length) {
       this.toastNotificationBelonging.Buttons = _Buttons;
     }
@@ -156,7 +156,7 @@ export class ToastNotificationCarrier {
     this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel = _Decline;
   }
 
-  setConfig(_ToastNotificationBelonging: IToastCoreConfig) {
+  setConfig(_ToastNotificationBelonging: IToastCoreConfig): void {
     // region *** local UserConfig (defined on place where dialog is called) ***
     const dataControl = new DataControl();
     dataControl.copyValuesFrom(_ToastNotificationBelonging, this.toastNotificationBelonging.ToastCoreConfig);
@@ -178,9 +178,8 @@ export class GlobalToastSettings implements IGlobalToastSettings {
 
 export class ResetToastGlobalSettings {
   constructor(globalToastConfig?: IGlobalToastSettings) {
-    const globalToastConfigService: ToastNotificationConfigService = ServiceLocator.injector.get(
-      ToastNotificationConfigService
-    );
+    const globalToastConfigService: ToastNotificationConfigService =
+      ServiceLocator.injector.get(ToastNotificationConfigService);
     if (globalToastConfigService) {
       globalToastConfigService.setResetGlobalToastConfig(globalToastConfig);
     } else {
@@ -229,9 +228,8 @@ export class ToastNotificationBelonging extends ToastSettings implements IToastN
   constructor() {
     super();
     this.EventsController = new ToastNotificationEventsController(this.EntityUniqueID);
-    const toastNotificationConfigurator: ToastNotificationConfigService = ServiceLocator.injector.get(
-      ToastNotificationConfigService
-    );
+    const toastNotificationConfigurator: ToastNotificationConfigService =
+      ServiceLocator.injector.get(ToastNotificationConfigService);
     const baseSettings = new ToastSettings();
     const dataControl = new DataControl();
     dataControl.copyValuesFrom(

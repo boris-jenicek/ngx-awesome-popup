@@ -49,11 +49,11 @@ export class DialogInitializer {
     this.dialogCarrier.setButtons(_Buttons);
   }
 
-  setCustomData(_CustomData: any) {
+  setCustomData(_CustomData: any): void {
     this.dialogCarrier.setCustomData(_CustomData);
   }
 
-  setConfig(_DialogConfig: IDialogCoreConfig) {
+  setConfig(_DialogConfig: IDialogCoreConfig): void {
     this.dialogCarrier.setConfig(_DialogConfig);
   }
 }
@@ -85,16 +85,14 @@ export class DialogResponse extends DataControl implements IDialogResponse, IDia
 }
 
 export class DialogEventsController implements IDialogEventsController {
-  defaultResponse: IPrivateResponseMerged;
-
   private readonly _afterClosed: Subject<IPrivateResponseMerged> = new Subject<IPrivateResponseMerged>();
-  afterClosed$: Observable<IPrivateResponseMerged> = this._afterClosed.asObservable();
-
   private readonly _afterLoader: any = new Subject<string>();
-  afterLoader$: Observable<string> = this._afterLoader.asObservable();
   private readonly _onButtonClick: Subject<IButton> = new Subject<IButton>();
-  onButtonClick$: Observable<IButton> = this._onButtonClick.asObservable();
   private readonly _buttonList: Subject<IButton[]> = new Subject<IButton[]>();
+  defaultResponse: IPrivateResponseMerged;
+  onButtonClick$: Observable<IButton> = this._onButtonClick.asObservable();
+  afterClosed$: Observable<IPrivateResponseMerged> = this._afterClosed.asObservable();
+  afterLoader$: Observable<string> = this._afterLoader.asObservable();
   buttonList$: Observable<IButton[]> = this._buttonList.asObservable();
 
   constructor(private EntityUniqueID: string) {}
@@ -139,8 +137,8 @@ export class DialogDefaultResponse extends DialogResponse implements IPrivateRes
 }
 
 export class DialogCarrier {
-  dialogBelonging: DialogBelonging = new DialogBelonging();
   private component: Type<any>;
+  dialogBelonging: DialogBelonging = new DialogBelonging();
 
   constructor() {}
 
@@ -148,17 +146,17 @@ export class DialogCarrier {
     this.component = _Component;
   }
 
-  setButtons(_Buttons: IButton[]) {
+  setButtons(_Buttons: IButton[]): void {
     if (_Buttons.length) {
       this.dialogBelonging.Buttons = _Buttons;
     }
   }
 
-  setCustomData(_CustomData: any) {
+  setCustomData(_CustomData: any): void {
     this.dialogBelonging.CustomData = _CustomData;
   }
 
-  setConfig(_DialogConfig: IDialogCoreConfig) {
+  setConfig(_DialogConfig: IDialogCoreConfig): void {
     // region *** local UserConfig (defined on place where dialog is called) ***
     const dataControl = new DataControl();
     dataControl.copyValuesFrom(_DialogConfig, this.dialogBelonging.DialogCoreConfig);

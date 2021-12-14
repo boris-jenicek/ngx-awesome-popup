@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation } from '../../../core/enums';
 import { DataControl } from '../../../core/global-classes';
-import { ToastCustomStyles } from '../../toast-notification/core/classes';
 import { ConfirmBoxCustomStyles, ConfirmBoxSettings } from './classes';
 import { IConfirmBoxUserConfig } from './interfaces';
 

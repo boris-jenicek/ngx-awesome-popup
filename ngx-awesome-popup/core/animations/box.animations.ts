@@ -1,7 +1,7 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
+import { animate, AnimationTriggerMetadata, keyframes, state, style, transition, trigger } from '@angular/animations';
 import * as kf from './keyframes';
 
-export function boxAnimations() {
+export function boxAnimations(): AnimationTriggerMetadata {
   return trigger('boxAnimations', [
     state('reset', style({ opacity: 1 })),
     // in
