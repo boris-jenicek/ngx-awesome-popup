@@ -5,6 +5,7 @@ export function boxAnimations(): AnimationTriggerMetadata {
   return trigger('boxAnimations', [
     state('reset', style({ opacity: 1 })),
     // in
+    state('0', style({ opacity: 1 })),
     state('bounceIn', style({ opacity: 1 })),
     state('swing', style({ opacity: 1 })),
     state('zoomIn', style({ opacity: 1 })),
@@ -17,6 +18,7 @@ export function boxAnimations(): AnimationTriggerMetadata {
     state('slideInLeft', style({ opacity: 1 })),
     state('slideInRight', style({ opacity: 1 })),
 
+    transition('* => 0', animate('10ms', keyframes(kf.fadeIn))),
     transition('* => bounceIn', animate('1000ms cubic-bezier(0.215, 0.61, 0.355, 1)', keyframes(kf.bounceIn))),
     transition('* => swing', animate('800ms', keyframes(kf.swing))),
     transition('* => zoomIn', animate('400ms', keyframes(kf.zoomIn))),
