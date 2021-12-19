@@ -58,7 +58,8 @@
       "entryFile": "public_api.ts"
     },
     "assets": [
-      "assets/**"
+      "assets/**",
+      "styles/**"
     ],
     "dest": "dist"
   }

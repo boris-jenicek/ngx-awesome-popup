@@ -25,7 +25,7 @@ import { DialogBelonging, DialogDefaultResponse } from '../core/classes';
 @Component({
   selector: 'dialog-popup-wrapper',
   templateUrl: './dialog-wrapper.component.html',
-  styleUrls: ['./dialog-wrapper.component.scss'],
+  // styleUrls: ['../../../styles/types/dialog-modal.scss'],
   animations: [fadeInOut(), boxAnimations()]
 })
 export class DialogWrapperComponent implements AfterViewInit, OnDestroy {

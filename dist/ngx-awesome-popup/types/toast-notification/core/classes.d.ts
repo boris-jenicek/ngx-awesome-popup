@@ -24,12 +24,12 @@ export declare class ToastNotificationResponse extends DataControl implements IT
 }
 export declare class ToastNotificationEventsController {
     private EntityUniqueID;
-    defaultResponse: IPrivateResponseMerged;
-    private readonly _afterClosed;
-    afterClosed$: Observable<IPrivateResponseMerged>;
     private readonly _onButtonClick;
-    onButtonClick$: Observable<IButton>;
+    private readonly _afterClosed;
     private readonly _buttonList;
+    defaultResponse: IPrivateResponseMerged;
+    afterClosed$: Observable<IPrivateResponseMerged>;
+    onButtonClick$: Observable<IButton>;
     buttonList$: Observable<IButton[]>;
     constructor(EntityUniqueID: string);
     close(_Response?: IPrivateResponseMerged): void;

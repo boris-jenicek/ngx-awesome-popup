@@ -6,6 +6,8 @@ import { IButton } from '../../../core/global-interfaces';
 import { ToastNotificationBelonging } from './classes';
 export declare abstract class WrapperAbstraction implements OnDestroy {
     toastNotificationBelonging: ToastNotificationBelonging;
+    private closeIsClicked;
+    private autoClosingHasStarted;
     elTextWrapper: ElementRef;
     elTitleWrapper: ElementRef;
     elButtonWrapper: ElementRef;
@@ -18,8 +20,6 @@ export declare abstract class WrapperAbstraction implements OnDestroy {
     timeout: any;
     timer: Timer;
     boxAnimation: AppearanceAnimation | DisappearanceAnimation | 'reset';
-    private closeIsClicked;
-    private autoClosingHasStarted;
     protected constructor(toastNotificationBelonging: ToastNotificationBelonging);
     get autoCloseCondition(): boolean;
     get buttonsExist(): boolean;

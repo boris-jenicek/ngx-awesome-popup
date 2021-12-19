@@ -1,1 +1,2 @@
-export declare function boxAnimations(): import("@angular/animations").AnimationTriggerMetadata;
+import { AnimationTriggerMetadata } from '@angular/animations';
+export declare function boxAnimations(): AnimationTriggerMetadata;

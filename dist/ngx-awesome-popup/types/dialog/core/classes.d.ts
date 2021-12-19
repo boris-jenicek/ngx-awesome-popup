@@ -31,14 +31,14 @@ export declare class DialogResponse extends DataControl implements IDialogRespon
 }
 export declare class DialogEventsController implements IDialogEventsController {
     private EntityUniqueID;
-    defaultResponse: IPrivateResponseMerged;
     private readonly _afterClosed;
-    afterClosed$: Observable<IPrivateResponseMerged>;
     private readonly _afterLoader;
-    afterLoader$: Observable<string>;
     private readonly _onButtonClick;
-    onButtonClick$: Observable<IButton>;
     private readonly _buttonList;
+    defaultResponse: IPrivateResponseMerged;
+    onButtonClick$: Observable<IButton>;
+    afterClosed$: Observable<IPrivateResponseMerged>;
+    afterLoader$: Observable<string>;
     buttonList$: Observable<IButton[]>;
     constructor(EntityUniqueID: string);
     close(_Payload?: any): void;
@@ -53,8 +53,8 @@ export declare class DialogDefaultResponse extends DialogResponse implements IPr
     setBelonging(_DialogBelonging: any): void;
 }
 export declare class DialogCarrier {
-    dialogBelonging: DialogBelonging;
     private component;
+    dialogBelonging: DialogBelonging;
     constructor();
     setComponent(_Component: Type<any>): void;
     setButtons(_Buttons: IButton[]): void;

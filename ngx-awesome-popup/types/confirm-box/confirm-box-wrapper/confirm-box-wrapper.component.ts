@@ -19,7 +19,7 @@ import { ConfirmBoxBelonging, ConfirmBoxDefaultResponse } from '../core/classes'
 @Component({
   selector: 'app-confirm-box-wrapper',
   templateUrl: './confirm-box-wrapper.component.html',
-  styleUrls: ['./confirm-box-wrapper.component.scss'],
+  // styleUrls: ['../../../styles/types/confirm-box.scss'],
   animations: [fadeInOut(), boxAnimations()]
 })
 export class ConfirmBoxWrapperComponent implements AfterViewInit {

@@ -1,6 +1,14 @@
-@import '../../../styles/style';
+@use '../auxiliary/variables' as var;
+@use '../auxiliary/buttons';
+@use '../auxiliary/icons';
 
-.toast-wrapper {
+$nap-toast-background: #fbfbfb;
+$nap-toast-box-shadow: 0 0 4px 1px transparentize(black, 0.75);
+$nap-toast-box-shadow-hover: 0 0 4px 3px transparentize(black, 0.75);
+$nap-toast-title-color: #6c757d;
+$nap-toast-text-color: #6c757d;
+
+.toast-wrapper.simple-toast {
   background: transparent;
   display: flex;
   flex-direction: column;
@@ -24,9 +32,9 @@
   }
 
   .evolve-toast {
-    background: $gr-100;
+    background: $nap-toast-background;
     border-radius: 2px;
-    box-shadow: 0 0 2px 1px transparentize(black, 0.75);
+    box-shadow: $nap-toast-box-shadow;
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -36,7 +44,7 @@
     vertical-align: bottom;
 
     &:hover {
-      box-shadow: 0 0 4px 2px transparentize(black, 0.75);
+      box-shadow: $nap-toast-box-shadow-hover;
     }
 
     &.standard-dialog {
@@ -48,39 +56,39 @@
     }
 
     &.success-dialog {
-      background-color: lighten($success, 25%);
+      background-color: lighten(var.$nap-success, 25%);
 
       .progress-bar {
-        background-color: lighten($success, 15%);
+        background-color: lighten(var.$nap-success, 15%);
       }
     }
 
     &.info-dialog {
-      background-color: lighten($info, 30%);
+      background-color: lighten(var.$nap-info, 30%);
 
       .progress-bar {
-        background-color: lighten($info, 15%);
+        background-color: lighten(var.$nap-info, 15%);
       }
     }
 
     &.warning-dialog {
-      background-color: lighten($warning, 30%);
+      background-color: lighten(var.$nap-warning, 30%);
 
       .progress-bar {
-        background-color: lighten($warning, 20%);
+        background-color: lighten(var.$nap-warning, 20%);
       }
     }
 
     &.danger-dialog {
-      background-color: lighten($danger, 20%);
+      background-color: lighten(var.$nap-danger, 20%);
 
       .progress-bar {
-        background-color: lighten($danger, 10%);
+        background-color: lighten(var.$nap-danger, 10%);
       }
     }
 
     .close-ico {
-      color: transparentize($black, 0.8);
+      color: transparentize(black, 0.8);
       cursor: pointer;
       font-size: 18px;
       position: absolute;
@@ -93,7 +101,7 @@
       align-items: center;
       background-clip: padding-box;
       border-radius: 1px 1px 0 0;
-      color: #6c757d;
+      color: $nap-toast-title-color;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -114,7 +122,7 @@
 
     .content-holder {
       align-items: center;
-      color: $gr-600;
+      color: $nap-toast-text-color;
       display: flex;
       flex-wrap: nowrap;
       height: 100%;
@@ -150,5 +158,37 @@
         padding: 4px 10px;
       }
     }
+
+    .text-wrapper-section {
+      width: 100%;
+
+      .text-wrapper {
+        display: block;
+        width: 100%;
+      }
+
+      .dont-break-out {
+        hyphens: auto;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    }
+  }
+
+  .ap-icon-success {
+    color: lighten(var.$nap-success, 10%);
+  }
+
+  .ap-icon-info {
+    color: lighten(var.$nap-info, 10%);
+  }
+
+  .ap-icon-warning {
+    color: lighten(var.$nap-warning, 10%);
+  }
+
+  .ap-icon-danger {
+    color: lighten(var.$nap-danger, 10%);
   }
 }

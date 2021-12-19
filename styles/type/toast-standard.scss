@@ -1,6 +1,16 @@
-@use '../../../styles/style';
+@use '../auxiliary/variables' as var;
+@use '../auxiliary/buttons';
+@use '../auxiliary/icons';
 
-.toast-wrapper {
+$nap-toast-background: #fbfbfb;
+$nap-toast-box-shadow: 0 0 4px 1px transparentize(black, 0.75);
+$nap-toast-box-shadow-hover: 0 0 4px 3px transparentize(black, 0.75);
+$nap-toast-title-background: transparentize(white, 0.45);
+$nap-toast-title-border: 1px solid transparentize(black, 0.95);
+$nap-toast-title-color: #6c757d;
+$nap-toast-text-color: #6c757d;
+
+.toast-wrapper.standard-toast {
   background: transparent;
   display: flex;
   flex-direction: column;
@@ -24,10 +34,10 @@
   }
 
   .evolve-toast {
-    background: style.$gr-100;
+    background: $nap-toast-background;
     border-radius: 5px;
     border-right: 4px solid;
-    box-shadow: 0 0 4px 1px transparentize(black, 0.75);
+    box-shadow: $nap-toast-box-shadow;
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -38,7 +48,7 @@
     vertical-align: bottom;
 
     &:hover {
-      box-shadow: 0 0 4px 3px transparentize(black, 0.75);
+      box-shadow: $nap-toast-box-shadow-hover;
     }
 
     &.standard-dialog {
@@ -50,43 +60,43 @@
     }
 
     &.success-dialog {
-      background-color: lighten(style.$success, 45%);
-      border-color: style.$success;
+      background-color: lighten(var.$nap-success, 45%);
+      border-color: var.$nap-success;
 
       .progress-bar {
-        background-color: lighten(style.$success, 25%);
+        background-color: lighten(var.$nap-success, 25%);
       }
     }
 
     &.info-dialog {
-      background-color: lighten(style.$info, 40%);
-      border-color: style.$info;
+      background-color: lighten(var.$nap-info, 40%);
+      border-color: var.$nap-info;
 
       .progress-bar {
-        background-color: lighten(style.$info, 25%);
+        background-color: lighten(var.$nap-info, 25%);
       }
     }
 
     &.warning-dialog {
-      background-color: lighten(style.$warning, 40%);
-      border-color: style.$warning;
+      background-color: lighten(var.$nap-warning, 40%);
+      border-color: var.$nap-warning;
 
       .progress-bar {
-        background-color: lighten(style.$warning, 25%);
+        background-color: lighten(var.$nap-warning, 25%);
       }
     }
 
     &.danger-dialog {
-      background-color: lighten(style.$danger, 25%);
-      border-color: style.$danger;
+      background-color: lighten(var.$nap-danger, 25%);
+      border-color: var.$nap-danger;
 
       .progress-bar {
-        background-color: lighten(style.$danger, 10%);
+        background-color: lighten(var.$nap-danger, 10%);
       }
     }
 
     .close-ico {
-      color: transparentize(style.$black, 0.8);
+      color: transparentize(black, 0.8);
       cursor: pointer;
       font-size: 20px;
       position: absolute;
@@ -97,10 +107,10 @@
     .toast-title-content {
       align-items: flex-start;
       background-clip: padding-box;
-      background-color: transparentize(style.$white, 0.45);
-      border-bottom: 1px solid transparentize(style.$black, 0.95);
+      background-color: $nap-toast-title-background;
+      border-bottom: $nap-toast-title-border;
       border-radius: 4px 0 0 0;
-      color: style.$gr-600;
+      color: $nap-toast-title-color;
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
@@ -113,7 +123,7 @@
 
     .content-holder {
       align-items: center;
-      color: style.$gr-600;
+      color: $nap-toast-text-color;
       display: flex;
       flex-wrap: nowrap;
       height: 100%;
@@ -156,5 +166,38 @@
         padding: 4px 10px;
       }
     }
+
+    .text-wrapper-section {
+      width: 100%;
+
+      .text-wrapper {
+        display: block;
+        width: 100%;
+      }
+
+      .dont-break-out {
+        hyphens: auto;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        // word-break: break-all;
+        word-wrap: break-word;
+      }
+    }
+  }
+
+  .ap-icon-success {
+    color: lighten(var.$nap-success, 10%);
+  }
+
+  .ap-icon-info {
+    color: lighten(var.$nap-info, 10%);
+  }
+
+  .ap-icon-warning {
+    color: lighten(var.$nap-warning, 10%);
+  }
+
+  .ap-icon-danger {
+    color: lighten(var.$nap-danger, 10%);
   }
 }

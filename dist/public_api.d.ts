@@ -1,27 +1,10 @@
 import { IButton, IColorTypes, IDispatch, IGlobalUserConfig } from './ngx-awesome-popup/core/global-interfaces';
 import { ConfirmBoxInitializer } from './ngx-awesome-popup/types/confirm-box/core/classes';
-import {
-  IConfirmBoxCoreConfig,
-  IConfirmBoxPublicResponse,
-  IConfirmBoxUserConfig
-} from './ngx-awesome-popup/types/confirm-box/core/interfaces';
+import { IConfirmBoxCoreConfig, IConfirmBoxPublicResponse, IConfirmBoxUserConfig } from './ngx-awesome-popup/types/confirm-box/core/interfaces';
 import { DialogBelonging, DialogInitializer } from './ngx-awesome-popup/types/dialog/core/classes';
-import {
-  IDialogCoreConfig,
-  IDialogEventsController,
-  IDialogPublicResponse,
-  IDialogUserConfig
-} from './ngx-awesome-popup/types/dialog/core/interfaces';
-import {
-  ResetToastGlobalSettings,
-  ToastNotificationInitializer
-} from './ngx-awesome-popup/types/toast-notification/core/classes';
-import {
-  IGlobalToastSettings,
-  IToastCoreConfig,
-  IToastNotificationPublicResponse,
-  IToastNotificationUserConfig
-} from './ngx-awesome-popup/types/toast-notification/core/interfaces';
+import { IDialogCoreConfig, IDialogEventsController, IDialogPublicResponse, IDialogUserConfig } from './ngx-awesome-popup/types/dialog/core/interfaces';
+import { ResetToastGlobalSettings, ToastNotificationInitializer } from './ngx-awesome-popup/types/toast-notification/core/classes';
+import { IGlobalToastSettings, IToastCoreConfig, IToastNotificationPublicResponse, IToastNotificationUserConfig } from './ngx-awesome-popup/types/toast-notification/core/interfaces';
 export { IGlobalUserConfig };
 export { IButton };
 export { IDispatch };

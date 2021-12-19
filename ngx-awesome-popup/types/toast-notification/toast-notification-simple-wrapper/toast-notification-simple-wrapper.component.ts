@@ -8,7 +8,7 @@ import { WrapperAbstraction } from '../core/wrapper-abstraction';
 @Component({
   selector: 'app-toast-notification-simple-wrapper',
   templateUrl: './toast-notification-simple-wrapper.component.html',
-  styleUrls: ['./toast-notification-simple-wrapper.component.scss'],
+  // styleUrls: ['../../../styles/types/toast-simple.scss'],
   animations: [fadeInOut(), boxAnimations()]
 })
 export class ToastNotificationSimpleWrapperComponent extends WrapperAbstraction implements AfterViewInit {
