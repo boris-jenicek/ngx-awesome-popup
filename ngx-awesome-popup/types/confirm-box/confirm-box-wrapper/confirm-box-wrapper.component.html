@@ -4,36 +4,36 @@
   [@fadeInOut]="{
     value: fadeInOutAnimation,
     params: {
-      closeDelay: confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationOut === 0 ? '200ms' : '300ms'
+      closeDelay: confirmBoxBelonging.confirmBoxCoreConfig.animationOut === 0 ? '200ms' : '300ms'
     }
   }"
 >
   <div
     class="evolve-confirm-box"
     [@.disabled]="
-      confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationIn === 0 &&
-      confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationOut === 0
+      confirmBoxBelonging.confirmBoxCoreConfig.animationIn === 0 &&
+      confirmBoxBelonging.confirmBoxCoreConfig.animationOut === 0
     "
     [@boxAnimations]="boxAnimation"
     #elConfirmBoxWrapper
     [ngClass]="{
-      'standard-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
-      'success-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,
-      'info-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,
-      'warning-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,
-      'danger-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4
+      'standard-dialog': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 0,
+      'success-dialog': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 1,
+      'info-dialog': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 2,
+      'warning-dialog': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 3,
+      'danger-dialog': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 4
     }"
     [ngStyle]="{
-      width: confirmBoxBelonging.ConfirmBoxCoreConfig.Width,
-      height: confirmBoxBelonging.ConfirmBoxCoreConfig.Height,
-      opacity: confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationIn === 0 ? 1 : 0
+      width: confirmBoxBelonging.confirmBoxCoreConfig.width,
+      height: confirmBoxBelonging.confirmBoxCoreConfig.height,
+      opacity: confirmBoxBelonging.confirmBoxCoreConfig.animationIn === 0 ? 1 : 0
     }"
   >
-    <div class="confirm-box-title-content" #elTitleWrapper *ngIf="confirmBoxBelonging.Dispatch.Title">
+    <div class="confirm-box-title-content" #elTitleWrapper *ngIf="confirmBoxBelonging.dispatch.title">
       <div class="dont-break-out">
         <div class="text-wrapper dont-break-out">
           <div class="confirm-box-title-text">
-            {{ confirmBoxBelonging.Dispatch.Title }}
+            {{ confirmBoxBelonging.dispatch.title }}
           </div>
         </div>
       </div>
@@ -42,31 +42,30 @@
     <div
       class="content-holder"
       #elTextWrapper
-      [ngClass]="confirmBoxBelonging.Dispatch.Title ? '' : 'without-title'"
-      *ngIf="confirmBoxBelonging.Dispatch.Message"
+      [ngClass]="confirmBoxBelonging.dispatch.title ? '' : 'without-title'"
+      *ngIf="confirmBoxBelonging.dispatch.message"
     >
-      <div class="icon-section" *ngIf="!confirmBoxBelonging.ConfirmBoxCoreConfig.DisableIcon">
+      <div class="icon-section" *ngIf="!confirmBoxBelonging.confirmBoxCoreConfig.disableIcon">
         <span
           class="icon-type-confirm-box"
           [ngClass]="{
-            '': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
-            'ap-icon-success icon-check-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,
-            'ap-icon-info icon-info-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,
-            'ap-icon-warning icon-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,
-            'ap-icon-danger icon-times-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4
+            '': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 0,
+            'ap-icon-success icon-check-circle': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 1,
+            'ap-icon-info icon-info-circle': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 2,
+            'ap-icon-warning icon-warning': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 3,
+            'ap-icon-danger icon-times-circle': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 4
           }"
         ></span>
       </div>
       <div class="text-wrapper-section confirm-box-inner-content">
-        <!--<div class="dont-break-out" [ngClass]="{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}">-->
         <div class="dont-break-out">
-          <div class="text-wrapper dont-break-out" *ngIf="!confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage">
-            {{ confirmBoxBelonging.Dispatch.Message }}
+          <div class="text-wrapper dont-break-out" *ngIf="!confirmBoxBelonging.confirmBoxCoreConfig.allowHtmlMessage">
+            {{ confirmBoxBelonging.dispatch.message }}
           </div>
           <div
             class="text-wrapper"
-            *ngIf="confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage"
-            [innerHTML]="confirmBoxBelonging.Dispatch.Message"
+            *ngIf="confirmBoxBelonging.confirmBoxCoreConfig.allowHtmlMessage"
+            [innerHTML]="confirmBoxBelonging.dispatch.message"
           ></div>
         </div>
       </div>
@@ -74,37 +73,37 @@
     <div class="button-holder" #elButtonWrapper>
       <div
         class="button-section"
-        *ngIf="confirmBoxBelonging.Buttons.length"
+        *ngIf="confirmBoxBelonging.buttons.length"
         [ngStyle]="{
-          'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition
+          'text-align': confirmBoxBelonging.confirmBoxCoreConfig.buttonPosition
         }"
       >
         <button
           class="ed-btn ed-btn-md"
           #elButton
-          *ngFor="let button of confirmBoxBelonging.Buttons"
+          *ngFor="let button of confirmBoxBelonging.buttons"
           (click)="onCustomButton(button)"
           [ngClass]="{
-            '': button.LayoutType ? button.LayoutType === 0 : false,
-            'ed-btn-success': button.LayoutType ? button.LayoutType === 1 : false,
-            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,
-            'ed-btn-warning': button.LayoutType ? button.LayoutType === 3 : false,
-            'ed-btn-danger': button.LayoutType ? button.LayoutType === 4 : false,
-            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,
-            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,
-            'ed-btn-primary': button.LayoutType ? button.LayoutType === 7 : false,
-            'ed-btn-secondary': button.LayoutType ? button.LayoutType === 8 : false,
-            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false
+            '': button.layoutType ? button.layoutType === 0 : false,
+            'ed-btn-success': button.layoutType ? button.layoutType === 1 : false,
+            'ed-btn-info': button.layoutType ? button.layoutType === 2 : false,
+            'ed-btn-warning': button.layoutType ? button.layoutType === 3 : false,
+            'ed-btn-danger': button.layoutType ? button.layoutType === 4 : false,
+            'ed-btn-dark': button.layoutType ? button.layoutType === 5 : false,
+            'ed-btn-light': button.layoutType ? button.layoutType === 6 : false,
+            'ed-btn-primary': button.layoutType ? button.layoutType === 7 : false,
+            'ed-btn-secondary': button.layoutType ? button.layoutType === 8 : false,
+            'ed-btn-link': button.layoutType ? button.layoutType === 9 : false
           }"
         >
-          {{ button.Label }}
+          {{ button.label }}
         </button>
       </div>
       <div
         class="button-section"
-        *ngIf="!confirmBoxBelonging.Buttons.length"
+        *ngIf="!confirmBoxBelonging.buttons.length"
         [ngStyle]="{
-          'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition
+          'text-align': confirmBoxBelonging.confirmBoxCoreConfig.buttonPosition
         }"
       >
         <button
@@ -112,22 +111,22 @@
           #elButton
           (click)="onButtonClick('confirm')"
           [ngClass]="{
-            'ed-btn-primary': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,
-            'ed-btn-success': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,
-            'ed-btn-info': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,
-            'ed-btn-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,
-            'ed-btn-danger': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4
+            'ed-btn-primary': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 0,
+            'ed-btn-success': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 1,
+            'ed-btn-info': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 2,
+            'ed-btn-warning': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 3,
+            'ed-btn-danger': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 4
           }"
         >
-          {{ confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel }}
+          {{ confirmBoxBelonging.confirmBoxCoreConfig.confirmLabel }}
         </button>
         <button
           class="ed-btn ed-btn-md ed-btn-secondary"
           #elButton
           (click)="onButtonClick('decline')"
-          *ngIf="confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel"
+          *ngIf="confirmBoxBelonging.confirmBoxCoreConfig.declineLabel"
         >
-          {{ confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel }}
+          {{ confirmBoxBelonging.confirmBoxCoreConfig.declineLabel }}
         </button>
       </div>
     </div>

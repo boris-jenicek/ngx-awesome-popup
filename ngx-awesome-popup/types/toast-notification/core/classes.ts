@@ -6,7 +6,7 @@ import {
   DisappearanceAnimation,
   VerticalPosition
 } from '../../../core/enums';
-import { DataControl, Dispatch } from '../../../core/global-classes';
+import { DataControl, dispatch } from '../../../core/global-classes';
 import { IButton, IDispatch } from '../../../core/global-interfaces';
 import { ServiceLocator } from '../../../locator.service';
 import { ToastPositionEnum, ToastProgressBarEnum, ToastUserViewTypeEnum } from './enums';
@@ -72,23 +72,23 @@ export class ToastNotificationResponse
 {
   // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
 
-  Success: boolean = null;
-  ClickedButtonID: string = null;
+  success: boolean = null;
+  clickedButtonID: string = null;
 
   constructor() {
     super();
   }
 
   setSuccess(_IsSuccess: boolean): void {
-    this.Success = _IsSuccess;
+    this.success = _IsSuccess;
   }
 
   setClickedButtonID(_ClickedButtonID): void {
-    this.ClickedButtonID = _ClickedButtonID;
+    this.clickedButtonID = _ClickedButtonID;
   }
 }
 
-export class ToastNotificationEventsController {
+export class ToastNotificationeventsController {
   private readonly _onButtonClick: Subject<IButton> = new Subject<IButton>();
   private readonly _afterClosed: Subject<IPrivateResponseMerged> = new Subject<IPrivateResponseMerged>();
   private readonly _buttonList: Subject<IButton[]> = new Subject<IButton[]>();
@@ -97,7 +97,7 @@ export class ToastNotificationEventsController {
   onButtonClick$: Observable<IButton> = this._onButtonClick.asObservable();
   buttonList$: Observable<IButton[]> = this._buttonList.asObservable();
 
-  constructor(private EntityUniqueID: string) {}
+  constructor(private entityUniqueID: string) {}
 
   close(_Response?: IPrivateResponseMerged): void {
     const response = _Response ? _Response : this.defaultResponse;
@@ -139,32 +139,32 @@ export class ToastNotificationCarrier {
 
   setButtons(_Buttons: IButton[]): void {
     if (_Buttons.length) {
-      this.toastNotificationBelonging.Buttons = _Buttons;
+      this.toastNotificationBelonging.buttons = _Buttons;
     }
   }
 
   setTitle(_Title: string): void {
-    this.toastNotificationBelonging.Dispatch.Title = _Title;
+    this.toastNotificationBelonging.dispatch.title = _Title;
   }
 
   setMessage(_Message: string): void {
-    this.toastNotificationBelonging.Dispatch.Message = _Message;
+    this.toastNotificationBelonging.dispatch.message = _Message;
   }
 
   setButtonLabels(_Confirm: string, _Decline: string): void {
-    this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel = _Confirm;
-    this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel = _Decline;
+    this.toastNotificationBelonging.toastCoreConfig.confirmLabel = _Confirm;
+    this.toastNotificationBelonging.toastCoreConfig.declineLabel = _Decline;
   }
 
   setConfig(_ToastNotificationBelonging: IToastCoreConfig): void {
     // region *** local UserConfig (defined on place where dialog is called) ***
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(_ToastNotificationBelonging, this.toastNotificationBelonging.ToastCoreConfig);
+    dataControl.copyValuesFrom(_ToastNotificationBelonging, this.toastNotificationBelonging.toastCoreConfig);
     // endregion
   }
 
   openToastNotification$(): Observable<IPrivateResponseMerged> {
-    if (!this.toastNotificationBelonging.Dispatch.Title && !this.toastNotificationBelonging.Dispatch.Message) {
+    if (!this.toastNotificationBelonging.dispatch.title && !this.toastNotificationBelonging.dispatch.message) {
       throw Error('Toast notification can not be without both message and title.');
     }
     const service: ToastNotificationService = ServiceLocator.injector.get(ToastNotificationService);
@@ -173,7 +173,7 @@ export class ToastNotificationCarrier {
 }
 
 export class GlobalToastSettings implements IGlobalToastSettings {
-  AllowedNotificationsAtOnce: number = null;
+  allowedNotificationsAtOnce: number = null;
 }
 
 export class ResetToastGlobalSettings {
@@ -189,54 +189,54 @@ export class ResetToastGlobalSettings {
 }
 
 export class ToastSettings {
-  Buttons: IButton[] = [];
-  ToastCoreConfig: IToastCoreConfig = new ToastCoreConfig();
-  Dispatch: IDispatch = new Dispatch();
-  GlobalSettings: GlobalToastSettings = new GlobalToastSettings();
+  buttons: IButton[] = [];
+  toastCoreConfig: IToastCoreConfig = new toastCoreConfig();
+  dispatch: IDispatch = new dispatch();
+  globalSettings: GlobalToastSettings = new GlobalToastSettings();
 }
 
 export class ToastCustomStyles implements IToastCustomStyles {
-  TitleCSS: string = null;
-  TextCSS: string = null;
-  ButtonSectionCSS: string = null;
-  ButtonCSS: string = null;
+  titleCSS: string = null;
+  textCSS: string = null;
+  buttonSectionCSS: string = null;
+  buttonCSS: string = null;
 }
 
-export class ToastCoreConfig implements IToastCoreConfig {
-  ToastPosition: ToastPositionEnum = null;
-  ProgressBar: ToastProgressBarEnum = null;
-  ToastUserViewType: ToastUserViewTypeEnum = null;
-  OpenInElementID: string = null;
-  ButtonPosition: VerticalPosition = null;
-  TextPosition: VerticalPosition = null;
-  LayoutType: DialogLayoutDisplay = null;
-  Dispatch: IDispatch = null;
-  ConfirmLabel: string = null;
-  DeclineLabel: string = null;
-  AutoCloseDelay: number = null;
-  DisableIcon: boolean = null;
-  AllowHTMLMessage: boolean = null;
-  AnimationIn: AppearanceAnimation = null;
-  AnimationOut: DisappearanceAnimation = null;
-  CustomStyles: IToastCustomStyles = new ToastCustomStyles();
+export class toastCoreConfig implements IToastCoreConfig {
+  toastPosition: ToastPositionEnum = null;
+  progressBar: ToastProgressBarEnum = null;
+  toastUserViewType: ToastUserViewTypeEnum = null;
+  openInElementID: string = null;
+  buttonPosition: VerticalPosition = null;
+  textPosition: VerticalPosition = null;
+  layoutType: DialogLayoutDisplay = null;
+  dispatch: IDispatch = null;
+  confirmLabel: string = null;
+  declineLabel: string = null;
+  autoCloseDelay: number = null;
+  disableIcon: boolean = null;
+  allowHtmlMessage: boolean = null;
+  animationIn: AppearanceAnimation = null;
+  animationOut: DisappearanceAnimation = null;
+  customStyles: IToastCustomStyles = new ToastCustomStyles();
 }
 
 export class ToastNotificationBelonging extends ToastSettings implements IToastNotificationBelonging {
-  EntityUniqueID: string = 'T' + Math.random().toString(36).substr(2, 9);
-  EventsController: ToastNotificationEventsController;
+  entityUniqueID: string = 'T' + Math.random().toString(36).substr(2, 9);
+  eventsController: ToastNotificationeventsController;
 
   constructor() {
     super();
-    this.EventsController = new ToastNotificationEventsController(this.EntityUniqueID);
+    this.eventsController = new ToastNotificationeventsController(this.entityUniqueID);
     const toastNotificationConfigurator: ToastNotificationConfigService =
       ServiceLocator.injector.get(ToastNotificationConfigService);
     const baseSettings = new ToastSettings();
     const dataControl = new DataControl();
     dataControl.copyValuesFrom(
-      toastNotificationConfigurator.productionConfig.ToastCoreConfig,
-      baseSettings.ToastCoreConfig
+      toastNotificationConfigurator.productionConfig.toastCoreConfig,
+      baseSettings.toastCoreConfig
     );
-    this.ToastCoreConfig = baseSettings.ToastCoreConfig;
-    this.Buttons = toastNotificationConfigurator.productionConfig.Buttons.slice();
+    this.toastCoreConfig = baseSettings.toastCoreConfig;
+    this.buttons = toastNotificationConfigurator.productionConfig.buttons.slice();
   }
 }

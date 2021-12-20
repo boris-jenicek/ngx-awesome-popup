@@ -13,7 +13,7 @@ import { DialogInjector } from '../../../core/dialog-injector';
 import { GlobalConfigService } from '../../../core/global-config.service';
 import { ToastNotificationSimpleWrapperComponent } from '../toast-notification-simple-wrapper/toast-notification-simple-wrapper.component';
 import { ToastNotificationWrapperComponent } from '../toast-notification-wrapper/toast-notification-wrapper.component';
-import { ToastNotificationBelonging, ToastNotificationEventsController } from './classes';
+import { ToastNotificationBelonging, ToastNotificationeventsController } from './classes';
 import { ToastPositionEnum, ToastUserViewTypeEnum } from './enums';
 import { IPrivateResponseMerged, IToastNotificationRawState } from './interfaces';
 
@@ -36,8 +36,8 @@ export class ToastNotificationService {
   ) {}
 
   openToast$(_ToastNotificationBelonging: ToastNotificationBelonging): Observable<IPrivateResponseMerged> {
-    const eventController = _ToastNotificationBelonging.EventsController;
-    // console.log(`%c ${_ToastNotificationBelonging.EntityUniqueID} `, `background: #339933; color: #fff`);
+    const eventController = _ToastNotificationBelonging.eventsController;
+    // console.log(`%c ${_ToastNotificationBelonging.entityUniqueID} `, `background: #339933; color: #fff`);
 
     const toastRawInstance = this.prepareRawToast(eventController, _ToastNotificationBelonging);
     this.listeners(eventController);
@@ -63,50 +63,50 @@ export class ToastNotificationService {
     const componentRef = this.getComponentRef(_ToastRawInstance);
     if (componentRef) {
       this.toastComponentRefList.push(componentRef);
-      componentRef.instance.toastNotificationBelonging = _ToastRawInstance.ToastBelonging;
+      componentRef.instance.toastNotificationBelonging = _ToastRawInstance.toastBelonging;
       this.appendToBodyParentComponent(componentRef);
     }
   }
 
   isRefListAvailable(): boolean {
     return (
-      this.toastComponentRefList.length < this.toastConfig.productionConfig.GlobalSettings.AllowedNotificationsAtOnce
+      this.toastComponentRefList.length < this.toastConfig.productionConfig.globalSettings.allowedNotificationsAtOnce
     );
   }
 
   prepareRawToast(
-    _EventsController: ToastNotificationEventsController,
+    _eventsController: ToastNotificationeventsController,
     _ToastNotificationBelonging: ToastNotificationBelonging
   ): IToastNotificationRawState {
     const weakMap = new WeakMap();
-    weakMap.set(ToastNotificationEventsController, _EventsController);
+    weakMap.set(ToastNotificationeventsController, _eventsController);
 
     return {
-      WeakMap: weakMap,
-      ToastBelonging: _ToastNotificationBelonging
+      weakMap: weakMap,
+      toastBelonging: _ToastNotificationBelonging
     };
   }
 
   getComponentRef(_ToastNotificationRawState: IToastNotificationRawState): ComponentRef<any> | null {
-    const dialogIndex = this.findDialogIndex(_ToastNotificationRawState.ToastBelonging.EntityUniqueID);
+    const dialogIndex = this.findDialogIndex(_ToastNotificationRawState.toastBelonging.entityUniqueID);
     if (dialogIndex === -1) {
       let toastUserViewComponent: Type<any> = ToastNotificationWrapperComponent;
       if (
-        _ToastNotificationRawState.ToastBelonging.ToastCoreConfig.ToastUserViewType === ToastUserViewTypeEnum.SIMPLE
+        _ToastNotificationRawState.toastBelonging.toastCoreConfig.toastUserViewType === ToastUserViewTypeEnum.SIMPLE
       ) {
         toastUserViewComponent = ToastNotificationSimpleWrapperComponent;
       }
       const componentFactory = this.componentFactoryResolver.resolveComponentFactory(toastUserViewComponent);
-      return componentFactory.create(new DialogInjector(this.injector, _ToastNotificationRawState.WeakMap));
+      return componentFactory.create(new DialogInjector(this.injector, _ToastNotificationRawState.weakMap));
     }
     return null;
   }
 
-  listeners(_EventsController: ToastNotificationEventsController): void {
+  listeners(_eventsController: ToastNotificationeventsController): void {
     // Listener for closing dialog
-    const closeDialogSubscription = _EventsController.afterClosed$.subscribe(response => {
+    const closeDialogSubscription = _eventsController.afterClosed$.subscribe(response => {
       // this.removeFromBodyParentComponent(modalIndex);
-      this.removeFromBody(response.toastNotificationBelonging.EntityUniqueID);
+      this.removeFromBody(response.toastNotificationBelonging.entityUniqueID);
       closeDialogSubscription.unsubscribe();
     });
   }
@@ -116,12 +116,12 @@ export class ToastNotificationService {
     this.appRef.attachView(_ComponentRef.hostView);
 
     const toastPosition: ToastPositionEnum =
-      _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.ToastPosition;
-    const openInElementID = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.OpenInElementID;
+      _ComponentRef.instance.toastNotificationBelonging.toastCoreConfig.toastPosition;
+    const openInElementID = _ComponentRef.instance.toastNotificationBelonging.toastCoreConfig.openInElementID;
     let targetNode: HTMLElement;
     if (!openInElementID) {
       this.setToastWrapperNode(
-        _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.ToastPosition,
+        _ComponentRef.instance.toastNotificationBelonging.toastCoreConfig.toastPosition,
         this.setToastOverlayNode()
       );
       targetNode = document.getElementById(`toast-wrapper-${toastPosition}`);
@@ -132,7 +132,7 @@ export class ToastNotificationService {
     const domElem = (_ComponentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
 
     const toastEntity = document.createElement('div');
-    toastEntity.setAttribute('id', _ComponentRef.instance.toastNotificationBelonging.EntityUniqueID);
+    toastEntity.setAttribute('id', _ComponentRef.instance.toastNotificationBelonging.entityUniqueID);
     toastEntity.className = 'toast-entity';
     const split = toastPosition.split('-');
     if (split[1] === 'fullwidth') {
@@ -150,8 +150,8 @@ export class ToastNotificationService {
     }, 200);*/
   }
 
-  removeFromBody(_EntityUniqueID: string): void {
-    const modalIndex = this.findDialogIndex(_EntityUniqueID);
+  removeFromBody(_entityUniqueID: string): void {
+    const modalIndex = this.findDialogIndex(_entityUniqueID);
     if (modalIndex > -1) {
       if (this.bufferToastRawList.length) {
         this.sendToProduction(this.bufferToastRawList[0]);
@@ -162,13 +162,13 @@ export class ToastNotificationService {
         .closeParent$()
         .pipe(
           tap(item => {
-            const modalIndex = this.findDialogIndex(_EntityUniqueID);
+            const modalIndex = this.findDialogIndex(_entityUniqueID);
             if (this.toastComponentRefList[modalIndex]) {
               const toastEntity = document.getElementById(
-                this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.EntityUniqueID
+                this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.entityUniqueID
               );
               toastEntity.remove();
-              // console.log(`%c ${this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.EntityUniqueID} `, `background: #cc3333; color: #fff`);
+              // console.log(`%c ${this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.entityUniqueID} `, `background: #cc3333; color: #fff`);
               this.appRef.detachView(this.toastComponentRefList[modalIndex].hostView);
               this.toastComponentRefList[modalIndex].destroy();
               this.toastComponentRefList.splice(modalIndex, 1);
@@ -182,7 +182,7 @@ export class ToastNotificationService {
 
   findDialogIndex(_DialogUniqueID: string): number {
     return this.toastComponentRefList.findIndex(item => {
-      return _DialogUniqueID === item.instance.toastNotificationBelonging.EntityUniqueID;
+      return _DialogUniqueID === item.instance.toastNotificationBelonging.entityUniqueID;
     });
   }
 

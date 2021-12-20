@@ -18,29 +18,29 @@ export class GlobalConfigService {
     this.userGeneratedConfig = new GlobalUserConfig(userGlobalConfig);
 
     // region *** author global config values (if there is no user input) ***
-    this.authorGlobalConfig.DisplayColor.Primary = null; // new ColorProvider('#ff9e00');
-    this.authorGlobalConfig.DisplayColor.Secondary = null; // new ColorProvider('#989ea5');
-    this.authorGlobalConfig.DisplayColor.Success = null; // new ColorProvider('#3caea3');
-    this.authorGlobalConfig.DisplayColor.Info = null; // new ColorProvider('#2f8ee5');
-    this.authorGlobalConfig.DisplayColor.Warning = null; // new ColorProvider('#ffc107');
-    this.authorGlobalConfig.DisplayColor.Danger = null; // new ColorProvider('#e46464');
-    this.authorGlobalConfig.DisplayColor.Light = null; // new ColorProvider('#f8f9fa');
-    this.authorGlobalConfig.DisplayColor.Dark = null; // new ColorProvider('#343a40');
+    this.authorGlobalConfig.displayColor.primary = null; // new ColorProvider('#ff9e00');
+    this.authorGlobalConfig.displayColor.secondary = null; // new ColorProvider('#989ea5');
+    this.authorGlobalConfig.displayColor.success = null; // new ColorProvider('#3caea3');
+    this.authorGlobalConfig.displayColor.info = null; // new ColorProvider('#2f8ee5');
+    this.authorGlobalConfig.displayColor.warning = null; // new ColorProvider('#ffc107');
+    this.authorGlobalConfig.displayColor.danger = null; // new ColorProvider('#e46464');
+    this.authorGlobalConfig.displayColor.light = null; // new ColorProvider('#f8f9fa');
+    this.authorGlobalConfig.displayColor.dark = null; // new ColorProvider('#343a40');
     // endregion
 
-    this.productionGlobalConfig.DisplayColor = this.authorGlobalConfig.DisplayColor;
+    this.productionGlobalConfig.displayColor = this.authorGlobalConfig.displayColor;
 
     // region *** global userConfig (user input app-module) ***
-    this.setUserColors(this.userGeneratedConfig.ColorList);
+    this.setUserColors(this.userGeneratedConfig.colorList);
 
     // endregion
 
-    this.setNodeStyles(this.productionGlobalConfig.DisplayColor);
+    this.setNodeStyles(this.productionGlobalConfig.displayColor);
   }
 
   resetStyles(): void {
-    this.setUserColors(this.userGeneratedConfig.ColorList);
-    this.setNodeStyles(this.productionGlobalConfig.DisplayColor, true);
+    this.setUserColors(this.userGeneratedConfig.colorList);
+    this.setNodeStyles(this.productionGlobalConfig.displayColor, true);
   }
 
   setNodeStyles(_ProductionColorTypes: IColorObject, _Reset: boolean = false): void {
@@ -75,17 +75,17 @@ export class GlobalConfigService {
     }
 
     const userKeys = Object.keys(_UserColorTypes);
-    const productionObjectKeys = Object.keys(this.productionGlobalConfig.DisplayColor);
+    const productionObjectKeys = Object.keys(this.productionGlobalConfig.displayColor);
 
     userKeys.forEach(key => {
       if (productionObjectKeys.find(tKey => tKey === key)) {
         if (_UserColorTypes[key]) {
           const baseColorProvider = new ColorProvider(_UserColorTypes[key]);
           if (baseColorProvider.Base) {
-            this.productionGlobalConfig.DisplayColor[key] = baseColorProvider;
+            this.productionGlobalConfig.displayColor[key] = baseColorProvider;
           }
         } else {
-          this.productionGlobalConfig.DisplayColor[key] = null;
+          this.productionGlobalConfig.displayColor[key] = null;
         }
       }
     });

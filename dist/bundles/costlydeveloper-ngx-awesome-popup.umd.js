@@ -416,24 +416,24 @@
             this.productionGlobalConfig = new GlobalConfig();
             this.userGeneratedConfig = new GlobalUserConfig(userGlobalConfig);
             // region *** author global config values (if there is no user input) ***
-            this.authorGlobalConfig.DisplayColor.Primary = null; // new ColorProvider('#ff9e00');
-            this.authorGlobalConfig.DisplayColor.Secondary = null; // new ColorProvider('#989ea5');
-            this.authorGlobalConfig.DisplayColor.Success = null; // new ColorProvider('#3caea3');
-            this.authorGlobalConfig.DisplayColor.Info = null; // new ColorProvider('#2f8ee5');
-            this.authorGlobalConfig.DisplayColor.Warning = null; // new ColorProvider('#ffc107');
-            this.authorGlobalConfig.DisplayColor.Danger = null; // new ColorProvider('#e46464');
-            this.authorGlobalConfig.DisplayColor.Light = null; // new ColorProvider('#f8f9fa');
-            this.authorGlobalConfig.DisplayColor.Dark = null; // new ColorProvider('#343a40');
+            this.authorGlobalConfig.displayColor.primary = null; // new ColorProvider('#ff9e00');
+            this.authorGlobalConfig.displayColor.secondary = null; // new ColorProvider('#989ea5');
+            this.authorGlobalConfig.displayColor.success = null; // new ColorProvider('#3caea3');
+            this.authorGlobalConfig.displayColor.info = null; // new ColorProvider('#2f8ee5');
+            this.authorGlobalConfig.displayColor.warning = null; // new ColorProvider('#ffc107');
+            this.authorGlobalConfig.displayColor.danger = null; // new ColorProvider('#e46464');
+            this.authorGlobalConfig.displayColor.light = null; // new ColorProvider('#f8f9fa');
+            this.authorGlobalConfig.displayColor.dark = null; // new ColorProvider('#343a40');
             // endregion
-            this.productionGlobalConfig.DisplayColor = this.authorGlobalConfig.DisplayColor;
+            this.productionGlobalConfig.displayColor = this.authorGlobalConfig.displayColor;
             // region *** global userConfig (user input app-module) ***
-            this.setUserColors(this.userGeneratedConfig.ColorList);
+            this.setUserColors(this.userGeneratedConfig.colorList);
             // endregion
-            this.setNodeStyles(this.productionGlobalConfig.DisplayColor);
+            this.setNodeStyles(this.productionGlobalConfig.displayColor);
         }
         GlobalConfigService.prototype.resetStyles = function () {
-            this.setUserColors(this.userGeneratedConfig.ColorList);
-            this.setNodeStyles(this.productionGlobalConfig.DisplayColor, true);
+            this.setUserColors(this.userGeneratedConfig.colorList);
+            this.setNodeStyles(this.productionGlobalConfig.displayColor, true);
         };
         GlobalConfigService.prototype.setNodeStyles = function (_ProductionColorTypes, _Reset) {
             var _this = this;
@@ -463,17 +463,17 @@
                 return;
             }
             var userKeys = Object.keys(_UserColorTypes);
-            var productionObjectKeys = Object.keys(this.productionGlobalConfig.DisplayColor);
+            var productionObjectKeys = Object.keys(this.productionGlobalConfig.displayColor);
             userKeys.forEach(function (key) {
                 if (productionObjectKeys.find(function (tKey) { return tKey === key; })) {
                     if (_UserColorTypes[key]) {
                         var baseColorProvider = new ColorProvider(_UserColorTypes[key]);
                         if (baseColorProvider.Base) {
-                            _this.productionGlobalConfig.DisplayColor[key] = baseColorProvider;
+                            _this.productionGlobalConfig.displayColor[key] = baseColorProvider;
                         }
                     }
                     else {
-                        _this.productionGlobalConfig.DisplayColor[key] = null;
+                        _this.productionGlobalConfig.displayColor[key] = null;
                     }
                 }
             });
@@ -548,54 +548,54 @@
 
     var Sizes = /** @class */ (function () {
         function Sizes() {
-            this.Width = null;
-            this.MinWidth = null;
-            this.MaxWidth = null;
-            this.Height = null;
-            this.MinHeight = null;
-            this.MaxHeight = null;
-            this.FullScreen = null;
+            this.width = null;
+            this.minWidth = null;
+            this.maxWidth = null;
+            this.height = null;
+            this.minHeight = null;
+            this.maxHeight = null;
+            this.fullScreen = null;
         }
         return Sizes;
     }());
-    var Dispatch = /** @class */ (function () {
-        function Dispatch() {
-            this.Title = null;
-            this.Message = null;
+    var dispatch = /** @class */ (function () {
+        function dispatch() {
+            this.title = null;
+            this.message = null;
         }
-        return Dispatch;
+        return dispatch;
     }());
     var ButtonMaker = /** @class */ (function () {
-        function ButtonMaker(Label, ID, LayoutType) {
-            if (LayoutType === void 0) { LayoutType = exports.ButtonLayoutDisplay.PRIMARY; }
-            this.Label = Label;
+        function ButtonMaker(label, ID, layoutType) {
+            if (layoutType === void 0) { layoutType = exports.ButtonLayoutDisplay.PRIMARY; }
+            this.label = label;
             this.ID = ID;
-            this.LayoutType = LayoutType;
+            this.layoutType = layoutType;
         }
         return ButtonMaker;
     }());
     var GlobalUserConfig = /** @class */ (function () {
         function GlobalUserConfig(_GlobalUserConfig) {
-            this.ColorList = new ColorTypes();
+            this.colorList = new ColorTypes();
             if (_GlobalUserConfig) {
                 var dataControl = new DataControl();
                 dataControl.copyValuesFrom(_GlobalUserConfig, this);
                 var colorList = new ColorTypes();
-                this.ColorList = dataControl.copyValuesFrom(this.ColorList, colorList);
+                this.colorList = dataControl.copyValuesFrom(this.colorList, colorList);
             }
         }
         return GlobalUserConfig;
     }());
     var ColorTypes = /** @class */ (function () {
         function ColorTypes() {
-            this.Primary = null;
-            this.Secondary = null;
-            this.Success = null;
-            this.Info = null;
-            this.Warning = null;
-            this.Danger = null;
-            this.Light = null;
-            this.Dark = null;
+            this.primary = null;
+            this.secondary = null;
+            this.success = null;
+            this.info = null;
+            this.warning = null;
+            this.danger = null;
+            this.light = null;
+            this.dark = null;
         }
         return ColorTypes;
     }());
@@ -603,8 +603,8 @@
         function ResetGlobalConfig(globalConfig) {
             var globalConfigService = ServiceLocator.injector.get(GlobalConfigService);
             if (globalConfig) {
-                globalConfigService.setUserColors(globalConfig.ColorList);
-                globalConfigService.setNodeStyles(globalConfigService.productionGlobalConfig.DisplayColor, true);
+                globalConfigService.setUserColors(globalConfig.colorList);
+                globalConfigService.setNodeStyles(globalConfigService.productionGlobalConfig.displayColor, true);
             }
             else {
                 globalConfigService.resetStyles();
@@ -614,20 +614,20 @@
     }());
     var GlobalConfig = /** @class */ (function () {
         function GlobalConfig() {
-            this.DisplayColor = new DisplayColor();
+            this.displayColor = new DisplayColor();
         }
         return GlobalConfig;
     }());
     var DisplayColor = /** @class */ (function () {
         function DisplayColor() {
-            this.Primary = null;
-            this.Secondary = null;
-            this.Success = null;
-            this.Info = null;
-            this.Warning = null;
-            this.Danger = null;
-            this.Light = null;
-            this.Dark = null;
+            this.primary = null;
+            this.secondary = null;
+            this.success = null;
+            this.info = null;
+            this.warning = null;
+            this.danger = null;
+            this.light = null;
+            this.dark = null;
         }
         return DisplayColor;
     }());
@@ -876,25 +876,25 @@
             // region *** confirmBox userConfig (user input app-module) ***
             var userConfigBase = new ConfirmBoxSettings();
             var dataControl = new DataControl();
-            dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, userConfigBase.ConfirmBoxCoreConfig); // this will make sure that object has right properties
-            userConfig.ConfirmBoxCoreConfig = userConfigBase.ConfirmBoxCoreConfig;
+            dataControl.copyValuesFrom(userConfig.confirmBoxCoreConfig, userConfigBase.confirmBoxCoreConfig); // this will make sure that object has right properties
+            userConfig.confirmBoxCoreConfig = userConfigBase.confirmBoxCoreConfig;
             // endregion
             // region *** author default config values (if there is no user input) ***
-            this.authorConfig.ConfirmBoxCoreConfig.Width = 'auto';
-            this.authorConfig.ConfirmBoxCoreConfig.Height = 'auto';
-            this.authorConfig.ConfirmBoxCoreConfig.ButtonPosition = 'center';
-            this.authorConfig.ConfirmBoxCoreConfig.ConfirmLabel = 'Confirm';
-            this.authorConfig.ConfirmBoxCoreConfig.DeclineLabel = 'Decline';
-            this.authorConfig.ConfirmBoxCoreConfig.DisableIcon = false;
-            this.authorConfig.ConfirmBoxCoreConfig.AllowHTMLMessage = false;
-            this.authorConfig.ConfirmBoxCoreConfig.LayoutType = exports.DialogLayoutDisplay.NONE;
-            this.authorConfig.ConfirmBoxCoreConfig.AnimationIn = exports.AppearanceAnimation.ZOOM_IN;
-            this.authorConfig.ConfirmBoxCoreConfig.AnimationOut = exports.DisappearanceAnimation.ZOOM_OUT;
-            this.authorConfig.ConfirmBoxCoreConfig.CustomStyles = new ConfirmBoxCustomStyles();
+            this.authorConfig.confirmBoxCoreConfig.width = 'auto';
+            this.authorConfig.confirmBoxCoreConfig.height = 'auto';
+            this.authorConfig.confirmBoxCoreConfig.buttonPosition = 'center';
+            this.authorConfig.confirmBoxCoreConfig.confirmLabel = 'Confirm';
+            this.authorConfig.confirmBoxCoreConfig.declineLabel = 'Decline';
+            this.authorConfig.confirmBoxCoreConfig.disableIcon = false;
+            this.authorConfig.confirmBoxCoreConfig.allowHtmlMessage = false;
+            this.authorConfig.confirmBoxCoreConfig.layoutType = exports.DialogLayoutDisplay.NONE;
+            this.authorConfig.confirmBoxCoreConfig.animationIn = exports.AppearanceAnimation.ZOOM_IN;
+            this.authorConfig.confirmBoxCoreConfig.animationOut = exports.DisappearanceAnimation.ZOOM_OUT;
+            this.authorConfig.confirmBoxCoreConfig.customStyles = new ConfirmBoxCustomStyles();
             // endregion
             // region *** Production setup ***
-            dataControl.copyValuesFrom(this.authorConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
-            dataControl.copyValuesFrom(userConfig.ConfirmBoxCoreConfig, this.productionConfig.ConfirmBoxCoreConfig);
+            dataControl.copyValuesFrom(this.authorConfig.confirmBoxCoreConfig, this.productionConfig.confirmBoxCoreConfig);
+            dataControl.copyValuesFrom(userConfig.confirmBoxCoreConfig, this.productionConfig.confirmBoxCoreConfig);
             // endregion
         }
         return ConfirmBoxConfigService;
@@ -1225,7 +1225,7 @@
             this.fadeInOutAnimation = 'open';
             this.animationFlyDirection = 'none';
             setTimeout(function () {
-                _this.boxAnimation = _this.confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationIn;
+                _this.boxAnimation = _this.confirmBoxBelonging.confirmBoxCoreConfig.animationIn;
             }, 1);
         }
         ConfirmBoxWrapperComponent.prototype.ngAfterViewInit = function () {
@@ -1236,34 +1236,34 @@
         ConfirmBoxWrapperComponent.prototype.setResponse = function (_IsSuccess, _ClickedButtonID) {
             var response = new ConfirmBoxDefaultResponse();
             if (_ClickedButtonID) {
-                response.ClickedButtonID = _ClickedButtonID;
+                response.clickedButtonID = _ClickedButtonID;
             }
             response.setSuccess(_IsSuccess);
             response.setBelonging(this.confirmBoxBelonging);
-            this.confirmBoxBelonging.EventsController.setDefaultResponse(response);
+            this.confirmBoxBelonging.eventsController.setDefaultResponse(response);
         };
         ConfirmBoxWrapperComponent.prototype.onOverlayClicked = function (evt) {
             // console.log('onOverlayClicked');
         };
         ConfirmBoxWrapperComponent.prototype.onCustomButton = function (_Button) {
-            this.confirmBoxBelonging.EventsController.onButtonClick(_Button);
+            this.confirmBoxBelonging.eventsController.onButtonClick(_Button);
             this.setResponse(true, _Button.ID);
-            this.confirmBoxBelonging.EventsController.close();
+            this.confirmBoxBelonging.eventsController.close();
         };
         ConfirmBoxWrapperComponent.prototype.onButtonClick = function (_Type) {
             var buttonID;
             if (_Type === 'confirm') {
-                buttonID = this.confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel.toLowerCase();
+                buttonID = this.confirmBoxBelonging.confirmBoxCoreConfig.confirmLabel.toLowerCase();
             }
             else if (_Type === 'decline') {
-                buttonID = this.confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel.toLowerCase();
+                buttonID = this.confirmBoxBelonging.confirmBoxCoreConfig.declineLabel.toLowerCase();
             }
             this.setResponse(_Type === 'confirm', buttonID);
-            this.confirmBoxBelonging.EventsController.close();
+            this.confirmBoxBelonging.eventsController.close();
         };
         ConfirmBoxWrapperComponent.prototype.closeParent$ = function () {
-            this.boxAnimation = this.confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationOut;
-            var closeDuration = this.confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationOut ? 800 : 200;
+            this.boxAnimation = this.confirmBoxBelonging.confirmBoxCoreConfig.animationOut;
+            var closeDuration = this.confirmBoxBelonging.confirmBoxCoreConfig.animationOut ? 800 : 200;
             this.fadeInOutAnimation = 'close-fast';
             return new rxjs.Observable(function (observer) {
                 observer.next('');
@@ -1272,25 +1272,25 @@
         };
         ConfirmBoxWrapperComponent.prototype.setCustomStyles = function () {
             var _this = this;
-            if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.WrapperCSS && this.elConfirmBoxWrapper) {
+            if (this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.wrapperCSS && this.elConfirmBoxWrapper) {
                 this.elConfirmBoxWrapper.nativeElement.style.cssText +=
-                    this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.WrapperCSS;
+                    this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.wrapperCSS;
             }
-            if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TextCSS && this.elTextWrapper) {
+            if (this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.textCSS && this.elTextWrapper) {
                 this.elTextWrapper.nativeElement.style.cssText +=
-                    this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TextCSS;
+                    this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.textCSS;
             }
-            if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TitleCSS && this.elTitleWrapper) {
+            if (this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.titleCSS && this.elTitleWrapper) {
                 this.elTitleWrapper.nativeElement.style.cssText +=
-                    this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.TitleCSS;
+                    this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.titleCSS;
             }
-            if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
+            if (this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.buttonSectionCSS && this.elButtonWrapper) {
                 this.elButtonWrapper.nativeElement.style.cssText +=
-                    this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonSectionCSS;
+                    this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.buttonSectionCSS;
             }
-            if (this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
+            if (this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.buttonCSS && this.elButton) {
                 this.elButton.forEach(function (el) {
-                    el.nativeElement.style.cssText += _this.confirmBoxBelonging.ConfirmBoxCoreConfig.CustomStyles.ButtonCSS;
+                    el.nativeElement.style.cssText += _this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.buttonCSS;
                 });
             }
         };
@@ -1299,7 +1299,7 @@
     ConfirmBoxWrapperComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'app-confirm-box-wrapper',
-                    template: "<div\n  class=\"ngx-awesome-popup-overlay confirm-box-overlay\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationOut === 0 ? '200ms' : '300ms'\n    }\n  }\"\n>\n  <div\n    class=\"evolve-confirm-box\"\n    [@.disabled]=\"\n      confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationIn === 0 &&\n      confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationOut === 0\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    #elConfirmBoxWrapper\n    [ngClass]=\"{\n      'standard-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n      'success-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n      'info-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n      'warning-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n      'danger-dialog': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n    }\"\n    [ngStyle]=\"{\n      width: confirmBoxBelonging.ConfirmBoxCoreConfig.Width,\n      height: confirmBoxBelonging.ConfirmBoxCoreConfig.Height,\n      opacity: confirmBoxBelonging.ConfirmBoxCoreConfig.AnimationIn === 0 ? 1 : 0\n    }\"\n  >\n    <div class=\"confirm-box-title-content\" #elTitleWrapper *ngIf=\"confirmBoxBelonging.Dispatch.Title\">\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          <div class=\"confirm-box-title-text\">\n            {{ confirmBoxBelonging.Dispatch.Title }}\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div\n      class=\"content-holder\"\n      #elTextWrapper\n      [ngClass]=\"confirmBoxBelonging.Dispatch.Title ? '' : 'without-title'\"\n      *ngIf=\"confirmBoxBelonging.Dispatch.Message\"\n    >\n      <div class=\"icon-section\" *ngIf=\"!confirmBoxBelonging.ConfirmBoxCoreConfig.DisableIcon\">\n        <span\n          class=\"icon-type-confirm-box\"\n          [ngClass]=\"{\n            '': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n            'ap-icon-success icon-check-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n            'ap-icon-info icon-info-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n            'ap-icon-warning icon-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n            'ap-icon-danger icon-times-circle': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n          }\"\n        ></span>\n      </div>\n      <div class=\"text-wrapper-section confirm-box-inner-content\">\n        <!--<div class=\"dont-break-out\" [ngClass]=\"{'text-wrapper-section-with-icon': showIcon, 'text-wrapper-section': !showIcon}\">-->\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper dont-break-out\" *ngIf=\"!confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage\">\n            {{ confirmBoxBelonging.Dispatch.Message }}\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"confirmBoxBelonging.ConfirmBoxCoreConfig.AllowHTMLMessage\"\n            [innerHTML]=\"confirmBoxBelonging.Dispatch.Message\"\n          ></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"confirmBoxBelonging.Buttons.length\"\n        [ngStyle]=\"{\n          'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-md\"\n          #elButton\n          *ngFor=\"let button of confirmBoxBelonging.Buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.LayoutType ? button.LayoutType === 0 : false,\n            'ed-btn-success': button.LayoutType ? button.LayoutType === 1 : false,\n            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,\n            'ed-btn-warning': button.LayoutType ? button.LayoutType === 3 : false,\n            'ed-btn-danger': button.LayoutType ? button.LayoutType === 4 : false,\n            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,\n            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,\n            'ed-btn-primary': button.LayoutType ? button.LayoutType === 7 : false,\n            'ed-btn-secondary': button.LayoutType ? button.LayoutType === 8 : false,\n            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false\n          }\"\n        >\n          {{ button.Label }}\n        </button>\n      </div>\n      <div\n        class=\"button-section\"\n        *ngIf=\"!confirmBoxBelonging.Buttons.length\"\n        [ngStyle]=\"{\n          'text-align': confirmBoxBelonging.ConfirmBoxCoreConfig.ButtonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-md\"\n          #elButton\n          (click)=\"onButtonClick('confirm')\"\n          [ngClass]=\"{\n            'ed-btn-primary': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 0,\n            'ed-btn-success': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 1,\n            'ed-btn-info': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 2,\n            'ed-btn-warning': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 3,\n            'ed-btn-danger': confirmBoxBelonging.ConfirmBoxCoreConfig.LayoutType === 4\n          }\"\n        >\n          {{ confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-md ed-btn-secondary\"\n          #elButton\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel\"\n        >\n          {{ confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel }}\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n",
+                    template: "<div\n  class=\"ngx-awesome-popup-overlay confirm-box-overlay\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: confirmBoxBelonging.confirmBoxCoreConfig.animationOut === 0 ? '200ms' : '300ms'\n    }\n  }\"\n>\n  <div\n    class=\"evolve-confirm-box\"\n    [@.disabled]=\"\n      confirmBoxBelonging.confirmBoxCoreConfig.animationIn === 0 &&\n      confirmBoxBelonging.confirmBoxCoreConfig.animationOut === 0\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    #elConfirmBoxWrapper\n    [ngClass]=\"{\n      'standard-dialog': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 0,\n      'success-dialog': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 1,\n      'info-dialog': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 2,\n      'warning-dialog': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 3,\n      'danger-dialog': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 4\n    }\"\n    [ngStyle]=\"{\n      width: confirmBoxBelonging.confirmBoxCoreConfig.width,\n      height: confirmBoxBelonging.confirmBoxCoreConfig.height,\n      opacity: confirmBoxBelonging.confirmBoxCoreConfig.animationIn === 0 ? 1 : 0\n    }\"\n  >\n    <div class=\"confirm-box-title-content\" #elTitleWrapper *ngIf=\"confirmBoxBelonging.dispatch.title\">\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          <div class=\"confirm-box-title-text\">\n            {{ confirmBoxBelonging.dispatch.title }}\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div\n      class=\"content-holder\"\n      #elTextWrapper\n      [ngClass]=\"confirmBoxBelonging.dispatch.title ? '' : 'without-title'\"\n      *ngIf=\"confirmBoxBelonging.dispatch.message\"\n    >\n      <div class=\"icon-section\" *ngIf=\"!confirmBoxBelonging.confirmBoxCoreConfig.disableIcon\">\n        <span\n          class=\"icon-type-confirm-box\"\n          [ngClass]=\"{\n            '': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 0,\n            'ap-icon-success icon-check-circle': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 1,\n            'ap-icon-info icon-info-circle': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 2,\n            'ap-icon-warning icon-warning': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 3,\n            'ap-icon-danger icon-times-circle': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 4\n          }\"\n        ></span>\n      </div>\n      <div class=\"text-wrapper-section confirm-box-inner-content\">\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper dont-break-out\" *ngIf=\"!confirmBoxBelonging.confirmBoxCoreConfig.allowHtmlMessage\">\n            {{ confirmBoxBelonging.dispatch.message }}\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"confirmBoxBelonging.confirmBoxCoreConfig.allowHtmlMessage\"\n            [innerHTML]=\"confirmBoxBelonging.dispatch.message\"\n          ></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"confirmBoxBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': confirmBoxBelonging.confirmBoxCoreConfig.buttonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-md\"\n          #elButton\n          *ngFor=\"let button of confirmBoxBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.layoutType ? button.layoutType === 0 : false,\n            'ed-btn-success': button.layoutType ? button.layoutType === 1 : false,\n            'ed-btn-info': button.layoutType ? button.layoutType === 2 : false,\n            'ed-btn-warning': button.layoutType ? button.layoutType === 3 : false,\n            'ed-btn-danger': button.layoutType ? button.layoutType === 4 : false,\n            'ed-btn-dark': button.layoutType ? button.layoutType === 5 : false,\n            'ed-btn-light': button.layoutType ? button.layoutType === 6 : false,\n            'ed-btn-primary': button.layoutType ? button.layoutType === 7 : false,\n            'ed-btn-secondary': button.layoutType ? button.layoutType === 8 : false,\n            'ed-btn-link': button.layoutType ? button.layoutType === 9 : false\n          }\"\n        >\n          {{ button.label }}\n        </button>\n      </div>\n      <div\n        class=\"button-section\"\n        *ngIf=\"!confirmBoxBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': confirmBoxBelonging.confirmBoxCoreConfig.buttonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-md\"\n          #elButton\n          (click)=\"onButtonClick('confirm')\"\n          [ngClass]=\"{\n            'ed-btn-primary': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 0,\n            'ed-btn-success': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 1,\n            'ed-btn-info': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 2,\n            'ed-btn-warning': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 3,\n            'ed-btn-danger': confirmBoxBelonging.confirmBoxCoreConfig.layoutType === 4\n          }\"\n        >\n          {{ confirmBoxBelonging.confirmBoxCoreConfig.confirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-md ed-btn-secondary\"\n          #elButton\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"confirmBoxBelonging.confirmBoxCoreConfig.declineLabel\"\n        >\n          {{ confirmBoxBelonging.confirmBoxCoreConfig.declineLabel }}\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n",
                     // styleUrls: ['../../../styles/types/confirm-box.scss'],
                     animations: [fadeInOut(), boxAnimations()]
                 },] }
@@ -1324,7 +1324,7 @@
             this.confirmBoxComponentRefList = [];
         }
         ConfirmBoxService.prototype.open = function (_ConfirmBoxBelonging) {
-            var dialogController = _ConfirmBoxBelonging.EventsController;
+            var dialogController = _ConfirmBoxBelonging.eventsController;
             var componentRef = this.getComponentRef(dialogController, _ConfirmBoxBelonging);
             this.confirmBoxComponentRefList.push(componentRef);
             componentRef.instance.confirmBoxBelonging = _ConfirmBoxBelonging;
@@ -1332,22 +1332,22 @@
             this.listeners(dialogController);
             return dialogController;
         };
-        ConfirmBoxService.prototype.getComponentRef = function (_EventsController, _ConfirmBoxBelonging) {
+        ConfirmBoxService.prototype.getComponentRef = function (_eventsController, _ConfirmBoxBelonging) {
             var componentFactory;
-            var dialogIndex = this.findDialogIndex(_ConfirmBoxBelonging.EntityUniqueID);
+            var dialogIndex = this.findDialogIndex(_ConfirmBoxBelonging.entityUniqueID);
             if (dialogIndex === -1) {
                 var weakMap = new WeakMap();
-                weakMap.set(ConfirmBoxEventsController, _EventsController);
+                weakMap.set(ConfirmBoxeventsController, _eventsController);
                 componentFactory = this.componentFactoryResolver.resolveComponentFactory(ConfirmBoxWrapperComponent);
                 return componentFactory.create(new DialogInjector(this.injector, weakMap));
             }
             return null;
         };
-        ConfirmBoxService.prototype.listeners = function (_EventsController) {
+        ConfirmBoxService.prototype.listeners = function (_eventsController) {
             var _this = this;
             // Listener for closing dialog
-            var closeDialogSubscription = _EventsController.afterClosed$.subscribe(function (response) {
-                var modalIndex = _this.findDialogIndex(response.confirmBoxBelonging.EntityUniqueID);
+            var closeDialogSubscription = _eventsController.afterClosed$.subscribe(function (response) {
+                var modalIndex = _this.findDialogIndex(response.confirmBoxBelonging.entityUniqueID);
                 _this.removeFromBodyParentComponent(modalIndex);
                 closeDialogSubscription.unsubscribe();
             });
@@ -1378,7 +1378,7 @@
         };
         ConfirmBoxService.prototype.findDialogIndex = function (_DialogUniqueID) {
             return this.confirmBoxComponentRefList.findIndex(function (item) {
-                return _DialogUniqueID === item.instance.confirmBoxBelonging.EntityUniqueID;
+                return _DialogUniqueID === item.instance.confirmBoxBelonging.entityUniqueID;
             });
         };
         return ConfirmBoxService;
@@ -1435,21 +1435,21 @@
         function ConfirmBoxResponse() {
             var _this = _super.call(this) || this;
             // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
-            _this.Success = null;
-            _this.ClickedButtonID = null;
+            _this.success = null;
+            _this.clickedButtonID = null;
             return _this;
         }
         ConfirmBoxResponse.prototype.setSuccess = function (_IsSuccess) {
-            this.Success = _IsSuccess;
+            this.success = _IsSuccess;
         };
         ConfirmBoxResponse.prototype.setClickedButtonID = function (_ClickedButtonID) {
-            this.ClickedButtonID = _ClickedButtonID;
+            this.clickedButtonID = _ClickedButtonID;
         };
         return ConfirmBoxResponse;
     }(DataControl));
-    var ConfirmBoxEventsController = /** @class */ (function () {
-        function ConfirmBoxEventsController(EntityUniqueID) {
-            this.EntityUniqueID = EntityUniqueID;
+    var ConfirmBoxeventsController = /** @class */ (function () {
+        function ConfirmBoxeventsController(entityUniqueID) {
+            this.entityUniqueID = entityUniqueID;
             this._afterClosed = new rxjs.Subject();
             this._onButtonClick = new rxjs.Subject();
             this._buttonList = new rxjs.Subject();
@@ -1457,21 +1457,21 @@
             this.onButtonClick$ = this._onButtonClick.asObservable();
             this.buttonList$ = this._buttonList.asObservable();
         }
-        ConfirmBoxEventsController.prototype.close = function (_Response) {
+        ConfirmBoxeventsController.prototype.close = function (_Response) {
             var response = _Response ? _Response : this.defaultResponse;
             this._afterClosed.next(response);
         };
-        ConfirmBoxEventsController.prototype.onButtonClick = function (_Button) {
+        ConfirmBoxeventsController.prototype.onButtonClick = function (_Button) {
             this.defaultResponse.setClickedButtonID(_Button.ID);
             this._onButtonClick.next(_Button);
         };
-        ConfirmBoxEventsController.prototype.setButtonList = function (_ButtonList) {
+        ConfirmBoxeventsController.prototype.setButtonList = function (_ButtonList) {
             this._buttonList.next(_ButtonList);
         };
-        ConfirmBoxEventsController.prototype.setDefaultResponse = function (_Response) {
+        ConfirmBoxeventsController.prototype.setDefaultResponse = function (_Response) {
             this.defaultResponse = _Response;
         };
-        return ConfirmBoxEventsController;
+        return ConfirmBoxeventsController;
     }());
     // endregion
     var ConfirmBoxDefaultResponse = /** @class */ (function (_super) {
@@ -1492,23 +1492,23 @@
         }
         ConfirmBoxCarrier.prototype.setButtons = function (_Buttons) {
             if (_Buttons.length) {
-                this.confirmBoxBelonging.Buttons = _Buttons;
+                this.confirmBoxBelonging.buttons = _Buttons;
             }
         };
         ConfirmBoxCarrier.prototype.setTitle = function (_Title) {
-            this.confirmBoxBelonging.Dispatch.Title = _Title;
+            this.confirmBoxBelonging.dispatch.title = _Title;
         };
         ConfirmBoxCarrier.prototype.setMessage = function (_Message) {
-            this.confirmBoxBelonging.Dispatch.Message = _Message;
+            this.confirmBoxBelonging.dispatch.message = _Message;
         };
         ConfirmBoxCarrier.prototype.setButtonLabels = function (_Confirm, _Decline) {
-            this.confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel = _Confirm;
-            this.confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel = _Decline;
+            this.confirmBoxBelonging.confirmBoxCoreConfig.confirmLabel = _Confirm;
+            this.confirmBoxBelonging.confirmBoxCoreConfig.declineLabel = _Decline;
         };
         ConfirmBoxCarrier.prototype.setConfig = function (_ConfirmBoxBelonging) {
             // region *** local UserConfig (defined on place where dialog is called) ***
             var dataControl = new DataControl();
-            dataControl.copyValuesFrom(_ConfirmBoxBelonging, this.confirmBoxBelonging.ConfirmBoxCoreConfig);
+            dataControl.copyValuesFrom(_ConfirmBoxBelonging, this.confirmBoxBelonging.confirmBoxCoreConfig);
             // endregion
         };
         ConfirmBoxCarrier.prototype.openConfirmBox$ = function () {
@@ -1520,51 +1520,51 @@
     }());
     var ConfirmBoxSettings = /** @class */ (function () {
         function ConfirmBoxSettings() {
-            this.Buttons = [];
-            this.ConfirmBoxCoreConfig = new ConfirmBoxCoreConfig();
-            this.Dispatch = new Dispatch();
+            this.buttons = [];
+            this.confirmBoxCoreConfig = new confirmBoxCoreConfig();
+            this.dispatch = new dispatch();
         }
         return ConfirmBoxSettings;
     }());
     var ConfirmBoxCustomStyles = /** @class */ (function () {
         function ConfirmBoxCustomStyles() {
-            this.TitleCSS = null;
-            this.TextCSS = null;
-            this.ButtonSectionCSS = null;
-            this.ButtonCSS = null;
-            this.WrapperCSS = null;
+            this.titleCSS = null;
+            this.textCSS = null;
+            this.buttonSectionCSS = null;
+            this.buttonCSS = null;
+            this.wrapperCSS = null;
         }
         return ConfirmBoxCustomStyles;
     }());
-    var ConfirmBoxCoreConfig = /** @class */ (function () {
-        function ConfirmBoxCoreConfig() {
-            this.Width = null;
-            this.Height = null;
-            this.ButtonPosition = null;
-            this.LayoutType = null;
-            this.Dispatch = null;
-            this.ConfirmLabel = null;
-            this.DeclineLabel = null;
-            this.DisableIcon = null;
-            this.AllowHTMLMessage = null;
-            this.AnimationIn = null;
-            this.AnimationOut = null;
-            this.CustomStyles = new ConfirmBoxCustomStyles();
+    var confirmBoxCoreConfig = /** @class */ (function () {
+        function confirmBoxCoreConfig() {
+            this.width = null;
+            this.height = null;
+            this.buttonPosition = null;
+            this.layoutType = null;
+            this.dispatch = null;
+            this.confirmLabel = null;
+            this.declineLabel = null;
+            this.disableIcon = null;
+            this.allowHtmlMessage = null;
+            this.animationIn = null;
+            this.animationOut = null;
+            this.customStyles = new ConfirmBoxCustomStyles();
         }
-        return ConfirmBoxCoreConfig;
+        return confirmBoxCoreConfig;
     }());
     var ConfirmBoxBelonging = /** @class */ (function (_super) {
         __extends(ConfirmBoxBelonging, _super);
         function ConfirmBoxBelonging() {
             var _this = _super.call(this) || this;
-            _this.EntityUniqueID = 'C' + Math.random().toString(36).substr(2, 9);
-            _this.EventsController = new ConfirmBoxEventsController(_this.EntityUniqueID);
+            _this.entityUniqueID = 'C' + Math.random().toString(36).substr(2, 9);
+            _this.eventsController = new ConfirmBoxeventsController(_this.entityUniqueID);
             var ConfirmBoxCoreConfigurator = ServiceLocator.injector.get(ConfirmBoxConfigService);
             var baseSettings = new ConfirmBoxSettings();
             var dataControl = new DataControl();
-            dataControl.copyValuesFrom(ConfirmBoxCoreConfigurator.productionConfig.ConfirmBoxCoreConfig, baseSettings.ConfirmBoxCoreConfig);
-            _this.ConfirmBoxCoreConfig = baseSettings.ConfirmBoxCoreConfig;
-            _this.Buttons = ConfirmBoxCoreConfigurator.productionConfig.Buttons.slice();
+            dataControl.copyValuesFrom(ConfirmBoxCoreConfigurator.productionConfig.confirmBoxCoreConfig, baseSettings.confirmBoxCoreConfig);
+            _this.confirmBoxCoreConfig = baseSettings.confirmBoxCoreConfig;
+            _this.buttons = ConfirmBoxCoreConfigurator.productionConfig.buttons.slice();
             return _this;
         }
         return ConfirmBoxBelonging;
@@ -1591,31 +1591,31 @@
             // region *** dialog userConfig (user input app-module) ***
             var userConfigBase = new DialogSettings();
             var dataControl = new DataControl();
-            dataControl.copyValuesFrom(userConfig.DialogCoreConfig, userConfigBase.DialogCoreConfig); // this will make sure that object has right properties
-            userConfig.DialogCoreConfig = userConfigBase.DialogCoreConfig;
-            if (userConfig.DialogCoreConfig.LoaderComponent !== null) {
-                userConfig.DialogCoreConfig.DisplayLoader = userConfig.DialogCoreConfig.DisplayLoader === null;
+            dataControl.copyValuesFrom(userConfig.dialogCoreConfig, userConfigBase.dialogCoreConfig); // this will make sure that object has right properties
+            userConfig.dialogCoreConfig = userConfigBase.dialogCoreConfig;
+            if (userConfig.dialogCoreConfig.loaderComponent !== null) {
+                userConfig.dialogCoreConfig.displayLoader = userConfig.dialogCoreConfig.displayLoader === null;
             }
             // endregion
             // region *** author default config values (if there is no user input) ***
-            this.authorConfig.DialogCoreConfig.Width = 'auto';
-            this.authorConfig.DialogCoreConfig.Height = 'auto';
-            this.authorConfig.DialogCoreConfig.HideScrollbar = false;
-            this.authorConfig.DialogCoreConfig.EscapeKeyClose = false;
-            this.authorConfig.DialogCoreConfig.ButtonPosition = 'right';
-            this.authorConfig.DialogCoreConfig.DisplayLoader = false;
-            this.authorConfig.DialogCoreConfig.FullScreen = false;
-            this.authorConfig.DialogCoreConfig.LayoutType = exports.DialogLayoutDisplay.NONE;
-            this.authorConfig.DialogCoreConfig.LoaderComponent = DefaultLoaderComponent;
-            this.authorConfig.DialogCoreConfig.AnimationIn = exports.AppearanceAnimation.ZOOM_IN;
-            this.authorConfig.DialogCoreConfig.AnimationOut = exports.DisappearanceAnimation.ZOOM_OUT;
-            this.authorConfig.DialogCoreConfig.CustomStyles = new DialogCustomStyles();
+            this.authorConfig.dialogCoreConfig.width = 'auto';
+            this.authorConfig.dialogCoreConfig.height = 'auto';
+            this.authorConfig.dialogCoreConfig.hideScrollbar = false;
+            this.authorConfig.dialogCoreConfig.escapeKeyClose = false;
+            this.authorConfig.dialogCoreConfig.buttonPosition = 'right';
+            this.authorConfig.dialogCoreConfig.displayLoader = false;
+            this.authorConfig.dialogCoreConfig.fullScreen = false;
+            this.authorConfig.dialogCoreConfig.layoutType = exports.DialogLayoutDisplay.NONE;
+            this.authorConfig.dialogCoreConfig.loaderComponent = DefaultLoaderComponent;
+            this.authorConfig.dialogCoreConfig.animationIn = exports.AppearanceAnimation.ZOOM_IN;
+            this.authorConfig.dialogCoreConfig.animationOut = exports.DisappearanceAnimation.ZOOM_OUT;
+            this.authorConfig.dialogCoreConfig.customStyles = new DialogCustomStyles();
             // endregion
-            dataControl.copyValuesFrom(this.authorConfig.DialogCoreConfig, this.productionConfig.DialogCoreConfig);
-            dataControl.copyValuesFrom(userConfig.DialogCoreConfig, this.productionConfig.DialogCoreConfig);
-            // Buttons
-            /*if(userConfig.Buttons){
-                    this.config.Buttons.push(
+            dataControl.copyValuesFrom(this.authorConfig.dialogCoreConfig, this.productionConfig.dialogCoreConfig);
+            dataControl.copyValuesFrom(userConfig.dialogCoreConfig, this.productionConfig.dialogCoreConfig);
+            // buttons
+            /*if(userConfig.buttons){
+                    this.config.buttons.push(
                         new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY)
                         ,new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY)
                     );
@@ -1672,32 +1672,32 @@
             this.fadeInOutAnimation = 'open';
             this.showLoader = true;
             setTimeout(function () {
-                _this.boxAnimation = _this.dialogBelonging.DialogCoreConfig.AnimationIn;
+                _this.boxAnimation = _this.dialogBelonging.dialogCoreConfig.animationIn;
             }, 1);
         }
         DialogWrapperComponent.prototype.ngAfterViewInit = function () {
             this.hideScrollbar(); // hide scrollbar if config enabled
             this.loadChildComponent(this.childComponentType);
-            this.loadLoaderComponent(this.dialogBelonging.DialogCoreConfig.LoaderComponent);
+            this.loadLoaderComponent(this.dialogBelonging.dialogCoreConfig.loaderComponent);
             this.setDefaultResponse();
             this.cd.detectChanges();
             this.setCustomStyles();
         };
         DialogWrapperComponent.prototype.hideScrollbar = function () {
-            if (this.dialogBelonging.DialogCoreConfig.HideScrollbar) {
+            if (this.dialogBelonging.dialogCoreConfig.hideScrollbar) {
                 this.bodyOverflow = document.body.style.overflow;
                 document.body.style.overflow = 'hidden';
             }
         };
         DialogWrapperComponent.prototype.revertScrollbarSettings = function () {
-            if (this.dialogBelonging.DialogCoreConfig.HideScrollbar) {
+            if (this.dialogBelonging.dialogCoreConfig.hideScrollbar) {
                 document.body.style.overflow = this.bodyOverflow;
             }
         };
         DialogWrapperComponent.prototype.setDefaultResponse = function () {
             var dialogResponse = new DialogDefaultResponse();
             dialogResponse.setBelonging(this.dialogBelonging);
-            this.dialogBelonging.EventsController.setDefaultResponse(dialogResponse);
+            this.dialogBelonging.eventsController.setDefaultResponse(dialogResponse);
         };
         DialogWrapperComponent.prototype.ngOnDestroy = function () {
             this.revertScrollbarSettings();
@@ -1723,11 +1723,11 @@
             this.loaderComponentRef = viewContainerRef.createComponent(componentFactory);
         };
         DialogWrapperComponent.prototype.close = function () {
-            this.dialogBelonging.EventsController.close();
+            this.dialogBelonging.eventsController.close();
         };
         DialogWrapperComponent.prototype.closeParent$ = function () {
-            this.boxAnimation = this.dialogBelonging.DialogCoreConfig.AnimationOut;
-            var closeDuration = this.dialogBelonging.DialogCoreConfig.AnimationOut ? 800 : 200;
+            this.boxAnimation = this.dialogBelonging.dialogCoreConfig.animationOut;
+            var closeDuration = this.dialogBelonging.dialogCoreConfig.animationOut ? 800 : 200;
             this.fadeInOutAnimation = 'close-fast';
             return new rxjs.Observable(function (observer) {
                 observer.next('');
@@ -1738,23 +1738,23 @@
             // console.log('onOverlayClicked');
         };
         DialogWrapperComponent.prototype.onCustomButton = function (_Button) {
-            this.dialogBelonging.EventsController.onButtonClick(_Button);
+            this.dialogBelonging.eventsController.onButtonClick(_Button);
         };
         DialogWrapperComponent.prototype.closeLoader = function () {
             this.showLoader = false;
         };
         DialogWrapperComponent.prototype.setCustomStyles = function () {
             var _this = this;
-            if (this.dialogBelonging.DialogCoreConfig.CustomStyles.WrapperCSS && this.elDialogWrapper) {
-                this.elDialogWrapper.nativeElement.style.cssText += this.dialogBelonging.DialogCoreConfig.CustomStyles.WrapperCSS;
+            if (this.dialogBelonging.dialogCoreConfig.customStyles.wrapperCSS && this.elDialogWrapper) {
+                this.elDialogWrapper.nativeElement.style.cssText += this.dialogBelonging.dialogCoreConfig.customStyles.wrapperCSS;
             }
-            if (this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
+            if (this.dialogBelonging.dialogCoreConfig.customStyles.buttonSectionCSS && this.elButtonWrapper) {
                 this.elButtonWrapper.nativeElement.style.cssText +=
-                    this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonSectionCSS;
+                    this.dialogBelonging.dialogCoreConfig.customStyles.buttonSectionCSS;
             }
-            if (this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
+            if (this.dialogBelonging.dialogCoreConfig.customStyles.buttonCSS && this.elButton) {
                 this.elButton.forEach(function (el) {
-                    el.nativeElement.style.cssText += _this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonCSS;
+                    el.nativeElement.style.cssText += _this.dialogBelonging.dialogCoreConfig.customStyles.buttonCSS;
                 });
             }
         };
@@ -1768,7 +1768,7 @@
     DialogWrapperComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'dialog-popup-wrapper',
-                    template: "<div\n  class=\"ngx-awesome-popup-overlay aw-dialog-modal\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: dialogBelonging.DialogCoreConfig.AnimationOut === 0 ? '200ms' : '300ms'\n    }\n  }\"\n>\n  <div\n    class=\"evolve-parent-dialog\"\n    [@.disabled]=\"\n      dialogBelonging.DialogCoreConfig.AnimationIn === 0 && dialogBelonging.DialogCoreConfig.AnimationOut === 0\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    #elDialogWrapper\n    [ngStyle]=\"\n      dialogBelonging.DialogCoreConfig.FullScreen && {\n        maxWidth: '100%',\n        maxHeight: '100%',\n        height: '100%',\n        width: '100%',\n        borderRadius: '0'\n      }\n    \"\n    [ngClass]=\"{\n      'standard-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 0,\n      'success-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 1,\n      'info-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 2,\n      'warning-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 3,\n      'danger-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 4\n    }\"\n  >\n    <div\n      class=\"loader-holder\"\n      [ngClass]=\"\n        !dialogBelonging.DialogCoreConfig.DisplayLoader\n          ? 'dialog-loader-off'\n          : showLoader\n          ? 'dialog-loader-active'\n          : 'dialog-loader-gone'\n      \"\n    >\n      <!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->\n      <div class=\"dialog-loader\">\n        <ng-template appInsertionLoader></ng-template>\n      </div>\n    </div>\n    <ng-container *ngIf=\"!dialogBelonging.DialogCoreConfig.FullScreen; else fullScreen\"></ng-container>\n    <ng-template #fullScreen></ng-template>\n    <div\n      class=\"content-holder\"\n      [ngStyle]=\"\n        dialogBelonging.DialogCoreConfig.FullScreen\n          ? {\n              width: '100%',\n              height: '100%'\n            }\n          : {\n              width: dialogBelonging.DialogCoreConfig.Width,\n              minWidth: dialogBelonging.DialogCoreConfig.MinWidth,\n              maxWidth: dialogBelonging.DialogCoreConfig.MaxWidth,\n              height: dialogBelonging.DialogCoreConfig.Height,\n              minHeight: dialogBelonging.DialogCoreConfig.MinHeight,\n              maxHeight: dialogBelonging.DialogCoreConfig.MaxHeight\n            }\n      \"\n    >\n      <!--      <div\n      class=\"content-holder\"\n      [ngStyle]=\"\n        dialogBelonging.DialogCoreConfig.FullScreen\n          ? {\n              width: dialogBelonging.DialogCoreConfig.Width,\n              minWidth: dialogBelonging.DialogCoreConfig.MinWidth,\n              maxWidth: dialogBelonging.DialogCoreConfig.MaxWidth,\n              height: dialogBelonging.DialogCoreConfig.Height,\n              minHeight: dialogBelonging.DialogCoreConfig.MinHeight,\n              maxHeight: dialogBelonging.DialogCoreConfig.MaxHeight\n            }\n          : {\n              width: '100vw',\n              height: '100vh'\n            }\n      \"\n    >-->\n      <!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->\n      <div\n        class=\"component-content\"\n        [ngClass]=\"\n          !dialogBelonging.DialogCoreConfig.DisplayLoader\n            ? 'component-content-loader-off'\n            : showLoader\n            ? 'component-content-preparing'\n            : 'component-content-ready'\n        \"\n      >\n        <ng-template appInsertion></ng-template>\n      </div>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"dialogBelonging.Buttons.length > 0\"\n        [ngStyle]=\"{\n          'text-align': dialogBelonging.DialogCoreConfig.ButtonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-lg\"\n          #elButton\n          *ngFor=\"let button of dialogBelonging.Buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.LayoutType ? button.LayoutType === 0 : false,\n            'ed-btn-success': button.LayoutType ? button.LayoutType === 1 : false,\n            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,\n            'ed-btn-warning': button.LayoutType ? button.LayoutType === 3 : false,\n            'ed-btn-danger': button.LayoutType ? button.LayoutType === 4 : false,\n            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,\n            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,\n            'ed-btn-primary': button.LayoutType ? button.LayoutType === 7 : false,\n            'ed-btn-secondary': button.LayoutType ? button.LayoutType === 8 : false,\n            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false\n          }\"\n        >\n          {{ button.Label }}\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n",
+                    template: "<div\n  class=\"ngx-awesome-popup-overlay aw-dialog-modal\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: dialogBelonging.dialogCoreConfig.animationOut === 0 ? '200ms' : '300ms'\n    }\n  }\"\n>\n  <div\n    class=\"evolve-parent-dialog\"\n    [@.disabled]=\"\n      dialogBelonging.dialogCoreConfig.animationIn === 0 && dialogBelonging.dialogCoreConfig.animationOut === 0\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    #elDialogWrapper\n    [ngStyle]=\"\n      dialogBelonging.dialogCoreConfig.fullScreen && {\n        maxWidth: '100%',\n        maxHeight: '100%',\n        height: '100%',\n        width: '100%',\n        borderRadius: '0'\n      }\n    \"\n    [ngClass]=\"{\n      'standard-dialog': dialogBelonging.dialogCoreConfig.layoutType === 0,\n      'success-dialog': dialogBelonging.dialogCoreConfig.layoutType === 1,\n      'info-dialog': dialogBelonging.dialogCoreConfig.layoutType === 2,\n      'warning-dialog': dialogBelonging.dialogCoreConfig.layoutType === 3,\n      'danger-dialog': dialogBelonging.dialogCoreConfig.layoutType === 4\n    }\"\n  >\n    <div\n      class=\"loader-holder\"\n      [ngClass]=\"\n        !dialogBelonging.dialogCoreConfig.displayLoader\n          ? 'dialog-loader-off'\n          : showLoader\n          ? 'dialog-loader-active'\n          : 'dialog-loader-gone'\n      \"\n    >\n      <!--dialogBelonging.dialogCoreConfig.DisplayLoader => initial config-->\n      <div class=\"dialog-loader\">\n        <ng-template appInsertionLoader></ng-template>\n      </div>\n    </div>\n    <ng-container *ngIf=\"!dialogBelonging.dialogCoreConfig.fullScreen; else fullScreen\"></ng-container>\n    <ng-template #fullScreen></ng-template>\n    <div\n      class=\"content-holder\"\n      [ngStyle]=\"\n        dialogBelonging.dialogCoreConfig.fullScreen\n          ? {\n              width: '100%',\n              height: '100%'\n            }\n          : {\n              width: dialogBelonging.dialogCoreConfig.width,\n              minWidth: dialogBelonging.dialogCoreConfig.minWidth,\n              maxWidth: dialogBelonging.dialogCoreConfig.maxWidth,\n              height: dialogBelonging.dialogCoreConfig.height,\n              minHeight: dialogBelonging.dialogCoreConfig.minHeight,\n              maxHeight: dialogBelonging.dialogCoreConfig.maxHeight\n            }\n      \"\n    >\n      <!--      <div\n      class=\"content-holder\"\n      [ngStyle]=\"\n        dialogBelonging.dialogCoreConfig.FullScreen\n          ? {\n              width: dialogBelonging.dialogCoreConfig.Width,\n              minWidth: dialogBelonging.dialogCoreConfig.MinWidth,\n              maxWidth: dialogBelonging.dialogCoreConfig.MaxWidth,\n              height: dialogBelonging.dialogCoreConfig.Height,\n              minHeight: dialogBelonging.dialogCoreConfig.MinHeight,\n              maxHeight: dialogBelonging.dialogCoreConfig.MaxHeight\n            }\n          : {\n              width: '100vw',\n              height: '100vh'\n            }\n      \"\n    >-->\n      <!--dialogBelonging.dialogCoreConfig.DisplayLoader => initial config-->\n      <div\n        class=\"component-content\"\n        [ngClass]=\"\n          !dialogBelonging.dialogCoreConfig.displayLoader\n            ? 'component-content-loader-off'\n            : showLoader\n            ? 'component-content-preparing'\n            : 'component-content-ready'\n        \"\n      >\n        <ng-template appInsertion></ng-template>\n      </div>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"dialogBelonging.buttons.length > 0\"\n        [ngStyle]=\"{\n          'text-align': dialogBelonging.dialogCoreConfig.buttonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-lg\"\n          #elButton\n          *ngFor=\"let button of dialogBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.layoutType ? button.layoutType === 0 : false,\n            'ed-btn-success': button.layoutType ? button.layoutType === 1 : false,\n            'ed-btn-info': button.layoutType ? button.layoutType === 2 : false,\n            'ed-btn-warning': button.layoutType ? button.layoutType === 3 : false,\n            'ed-btn-danger': button.layoutType ? button.layoutType === 4 : false,\n            'ed-btn-dark': button.layoutType ? button.layoutType === 5 : false,\n            'ed-btn-light': button.layoutType ? button.layoutType === 6 : false,\n            'ed-btn-primary': button.layoutType ? button.layoutType === 7 : false,\n            'ed-btn-secondary': button.layoutType ? button.layoutType === 8 : false,\n            'ed-btn-link': button.layoutType ? button.layoutType === 9 : false\n          }\"\n        >\n          {{ button.label }}\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n",
                     // styleUrls: ['../../../styles/types/dialog-modal.scss'],
                     animations: [fadeInOut(), boxAnimations()]
                 },] }
@@ -1795,7 +1795,7 @@
             this.dialogParentComponentRefList = [];
         }
         DialogService.prototype.open = function (_ComponentType, _DialogBelonging) {
-            var dialogController = _DialogBelonging.EventsController;
+            var dialogController = _DialogBelonging.eventsController;
             var componentRef = this.getComponentRef(dialogController, _DialogBelonging);
             this.dialogParentComponentRefList.push(componentRef);
             componentRef.instance.dialogBelonging = _DialogBelonging;
@@ -1804,27 +1804,27 @@
             this.listeners(dialogController);
             return dialogController;
         };
-        DialogService.prototype.getComponentRef = function (_EventsController, _DialogBelonging) {
+        DialogService.prototype.getComponentRef = function (_eventsController, _DialogBelonging) {
             var componentFactory;
-            var dialogIndex = this.findDialogIndex(_DialogBelonging.EntityUniqueID);
+            var dialogIndex = this.findDialogIndex(_DialogBelonging.entityUniqueID);
             if (dialogIndex === -1) {
                 var weakMap = new WeakMap();
-                weakMap.set(DialogEventsController, _EventsController);
+                weakMap.set(DialogeventsController, _eventsController);
                 componentFactory = this.componentFactoryResolver.resolveComponentFactory(DialogWrapperComponent);
                 return componentFactory.create(new DialogInjector(this.injector, weakMap));
             }
             return null;
         };
-        DialogService.prototype.listeners = function (_EventsController) {
+        DialogService.prototype.listeners = function (_eventsController) {
             var _this = this;
             // Listener for closing dialog
-            var closeDialogSubscription = _EventsController.afterClosed$.subscribe(function (response) {
-                var modalIndex = _this.findDialogIndex(response.DialogBelonging.EntityUniqueID);
+            var closeDialogSubscription = _eventsController.afterClosed$.subscribe(function (response) {
+                var modalIndex = _this.findDialogIndex(response.DialogBelonging.entityUniqueID);
                 _this.removeFromBodyDialogWrapperComponent(modalIndex);
                 closeDialogSubscription.unsubscribe();
             });
             // Listener for turning off loader
-            var closeLoaderSubscription = _EventsController.afterLoader$.subscribe(function (_DialogUniqueID) {
+            var closeLoaderSubscription = _eventsController.afterLoader$.subscribe(function (_DialogUniqueID) {
                 if (_DialogUniqueID) {
                     var modalIndex = _this.findDialogIndex(_DialogUniqueID);
                     if (modalIndex !== -1) {
@@ -1861,7 +1861,7 @@
         };
         DialogService.prototype.findDialogIndex = function (_DialogUniqueID) {
             return this.dialogParentComponentRefList.findIndex(function (item) {
-                return _DialogUniqueID === item.instance.dialogBelonging.EntityUniqueID;
+                return _DialogUniqueID === item.instance.dialogBelonging.entityUniqueID;
             });
         };
         return DialogService;
@@ -1911,28 +1911,28 @@
         function DialogResponse() {
             var _this = _super.call(this) || this;
             // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
-            _this.Payload = null;
-            _this.Success = null;
-            _this.ClickedButtonID = null;
+            _this.payload = null;
+            _this.success = null;
+            _this.clickedButtonID = null;
             return _this;
         }
         /**
          * @ignore
          */
         DialogResponse.prototype.setPayload = function (_Payload) {
-            this.Payload = _Payload;
+            this.payload = _Payload;
         };
         /**
          * @ignore
          */
         DialogResponse.prototype.setClickedButtonID = function (_ClickedButtonID) {
-            this.ClickedButtonID = _ClickedButtonID;
+            this.clickedButtonID = _ClickedButtonID;
         };
         return DialogResponse;
     }(DataControl));
-    var DialogEventsController = /** @class */ (function () {
-        function DialogEventsController(EntityUniqueID) {
-            this.EntityUniqueID = EntityUniqueID;
+    var DialogeventsController = /** @class */ (function () {
+        function DialogeventsController(entityUniqueID) {
+            this.entityUniqueID = entityUniqueID;
             this._afterClosed = new rxjs.Subject();
             this._afterLoader = new rxjs.Subject();
             this._onButtonClick = new rxjs.Subject();
@@ -1942,28 +1942,28 @@
             this.afterLoader$ = this._afterLoader.asObservable();
             this.buttonList$ = this._buttonList.asObservable();
         }
-        DialogEventsController.prototype.close = function (_Payload) {
+        DialogeventsController.prototype.close = function (_Payload) {
             if (_Payload === void 0) { _Payload = null; }
             this.defaultResponse.setPayload(_Payload);
             this._afterClosed.next(this.defaultResponse);
         };
-        DialogEventsController.prototype.onButtonClick = function (_Button) {
+        DialogeventsController.prototype.onButtonClick = function (_Button) {
             this.defaultResponse.setClickedButtonID(_Button.ID);
             this._onButtonClick.next(_Button);
         };
-        DialogEventsController.prototype.setButtonList = function (_ButtonList) {
+        DialogeventsController.prototype.setButtonList = function (_ButtonList) {
             this._buttonList.next(_ButtonList);
         };
-        DialogEventsController.prototype.closeLoader = function () {
+        DialogeventsController.prototype.closeLoader = function () {
             var _this = this;
             setTimeout(function () {
-                _this._afterLoader.next(_this.EntityUniqueID);
+                _this._afterLoader.next(_this.entityUniqueID);
             }, 0);
         };
-        DialogEventsController.prototype.setDefaultResponse = function (_Response) {
+        DialogeventsController.prototype.setDefaultResponse = function (_Response) {
             this.defaultResponse = _Response;
         };
-        return DialogEventsController;
+        return DialogeventsController;
     }());
     // endregion
     var DialogDefaultResponse = /** @class */ (function (_super) {
@@ -1987,18 +1987,18 @@
         };
         DialogCarrier.prototype.setButtons = function (_Buttons) {
             if (_Buttons.length) {
-                this.dialogBelonging.Buttons = _Buttons;
+                this.dialogBelonging.buttons = _Buttons;
             }
         };
         DialogCarrier.prototype.setCustomData = function (_CustomData) {
-            this.dialogBelonging.CustomData = _CustomData;
+            this.dialogBelonging.customData = _CustomData;
         };
         DialogCarrier.prototype.setConfig = function (_DialogConfig) {
             // region *** local UserConfig (defined on place where dialog is called) ***
             var dataControl = new DataControl();
-            dataControl.copyValuesFrom(_DialogConfig, this.dialogBelonging.DialogCoreConfig);
-            if (_DialogConfig === null || _DialogConfig === void 0 ? void 0 : _DialogConfig.LoaderComponent) {
-                this.dialogBelonging.DialogCoreConfig.DisplayLoader = true;
+            dataControl.copyValuesFrom(_DialogConfig, this.dialogBelonging.dialogCoreConfig);
+            if (_DialogConfig === null || _DialogConfig === void 0 ? void 0 : _DialogConfig.loaderComponent) {
+                this.dialogBelonging.dialogCoreConfig.displayLoader = true;
             }
             // endregion
         };
@@ -2011,33 +2011,33 @@
     }());
     var DialogCustomStyles = /** @class */ (function () {
         function DialogCustomStyles() {
-            this.ButtonSectionCSS = null;
-            this.ButtonCSS = null;
-            this.WrapperCSS = null;
+            this.buttonSectionCSS = null;
+            this.buttonCSS = null;
+            this.wrapperCSS = null;
         }
         return DialogCustomStyles;
     }());
-    var DialogCoreConfig = /** @class */ (function (_super) {
-        __extends(DialogCoreConfig, _super);
-        function DialogCoreConfig() {
+    var dialogCoreConfig = /** @class */ (function (_super) {
+        __extends(dialogCoreConfig, _super);
+        function dialogCoreConfig() {
             var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
-            _this.EscapeKeyClose = null;
-            _this.HideScrollbar = null;
-            _this.ButtonPosition = null;
-            _this.LayoutType = null;
-            _this.DisplayLoader = null;
-            _this.LoaderComponent = null;
-            _this.AnimationIn = null;
-            _this.AnimationOut = null;
-            _this.CustomStyles = new DialogCustomStyles();
+            _this.escapeKeyClose = null;
+            _this.hideScrollbar = null;
+            _this.buttonPosition = null;
+            _this.layoutType = null;
+            _this.displayLoader = null;
+            _this.loaderComponent = null;
+            _this.animationIn = null;
+            _this.animationOut = null;
+            _this.customStyles = new DialogCustomStyles();
             return _this;
         }
-        return DialogCoreConfig;
+        return dialogCoreConfig;
     }(Sizes));
     var DialogSettings = /** @class */ (function () {
         function DialogSettings() {
-            this.Buttons = [];
-            this.DialogCoreConfig = new DialogCoreConfig();
+            this.buttons = [];
+            this.dialogCoreConfig = new dialogCoreConfig();
         }
         return DialogSettings;
     }());
@@ -2046,15 +2046,15 @@
         function DialogBelonging() {
             var _this = _super.call(this) || this;
             /** @internal */
-            _this.EntityUniqueID = 'D' + Math.random().toString(36).substr(2, 9);
-            _this.CustomData = null;
-            _this.EventsController = new DialogEventsController(_this.EntityUniqueID);
+            _this.entityUniqueID = 'D' + Math.random().toString(36).substr(2, 9);
+            _this.customData = null;
+            _this.eventsController = new DialogeventsController(_this.entityUniqueID);
             var dialogConfigurator = ServiceLocator.injector.get(DialogConfigService);
             var baseSettings = new DialogSettings();
             var dataControl = new DataControl();
-            dataControl.copyValuesFrom(dialogConfigurator.productionConfig.DialogCoreConfig, baseSettings.DialogCoreConfig);
-            _this.DialogCoreConfig = baseSettings.DialogCoreConfig;
-            _this.Buttons = dialogConfigurator.productionConfig.Buttons.slice();
+            dataControl.copyValuesFrom(dialogConfigurator.productionConfig.dialogCoreConfig, baseSettings.dialogCoreConfig);
+            _this.dialogCoreConfig = baseSettings.dialogCoreConfig;
+            _this.buttons = dialogConfigurator.productionConfig.buttons.slice();
             return _this;
         }
         return DialogBelonging;
@@ -2092,33 +2092,33 @@
             this.productionConfig = new ToastSettings();
             // region *** toastNotification userConfig (user input app-module) ***
             var userConfigBase = new ToastSettings();
-            this.dataControl.copyValuesFrom(userConfig.ToastCoreConfig, userConfigBase.ToastCoreConfig); // this will make sure that object has right properties
-            userConfig.ToastCoreConfig = userConfigBase.ToastCoreConfig;
+            this.dataControl.copyValuesFrom(userConfig.toastCoreConfig, userConfigBase.toastCoreConfig); // this will make sure that object has right properties
+            userConfig.toastCoreConfig = userConfigBase.toastCoreConfig;
             // endregion
             // region *** author default config values (if there is no user input) ***
-            this.authorConfig.ToastCoreConfig.ButtonPosition = 'right';
-            this.authorConfig.ToastCoreConfig.TextPosition = 'left';
-            this.authorConfig.ToastCoreConfig.ToastPosition = exports.ToastPositionEnum.TOP_RIGHT;
-            this.authorConfig.ToastCoreConfig.ProgressBar = exports.ToastProgressBarEnum.INCREASE;
-            this.authorConfig.ToastCoreConfig.ToastUserViewType = exports.ToastUserViewTypeEnum.SIMPLE;
-            this.authorConfig.ToastCoreConfig.AutoCloseDelay = 2500;
-            this.authorConfig.ToastCoreConfig.DisableIcon = false;
-            this.authorConfig.ToastCoreConfig.AllowHTMLMessage = true;
-            this.authorConfig.ToastCoreConfig.LayoutType = exports.DialogLayoutDisplay.NONE;
-            this.authorConfig.GlobalSettings.AllowedNotificationsAtOnce = 5;
-            this.authorConfig.ToastCoreConfig.AnimationIn = exports.AppearanceAnimation.ZOOM_IN;
-            this.authorConfig.ToastCoreConfig.AnimationOut = exports.DisappearanceAnimation.ZOOM_OUT;
-            this.authorConfig.ToastCoreConfig.CustomStyles = new ToastCustomStyles();
+            this.authorConfig.toastCoreConfig.buttonPosition = 'right';
+            this.authorConfig.toastCoreConfig.textPosition = 'left';
+            this.authorConfig.toastCoreConfig.toastPosition = exports.ToastPositionEnum.TOP_RIGHT;
+            this.authorConfig.toastCoreConfig.progressBar = exports.ToastProgressBarEnum.INCREASE;
+            this.authorConfig.toastCoreConfig.toastUserViewType = exports.ToastUserViewTypeEnum.SIMPLE;
+            this.authorConfig.toastCoreConfig.autoCloseDelay = 2500;
+            this.authorConfig.toastCoreConfig.disableIcon = false;
+            this.authorConfig.toastCoreConfig.allowHtmlMessage = true;
+            this.authorConfig.toastCoreConfig.layoutType = exports.DialogLayoutDisplay.NONE;
+            this.authorConfig.globalSettings.allowedNotificationsAtOnce = 5;
+            this.authorConfig.toastCoreConfig.animationIn = exports.AppearanceAnimation.ZOOM_IN;
+            this.authorConfig.toastCoreConfig.animationOut = exports.DisappearanceAnimation.ZOOM_OUT;
+            this.authorConfig.toastCoreConfig.customStyles = new ToastCustomStyles();
             // endregion
             // region *** Production setup ***
             this.setResetGlobalToastConfig();
-            this.dataControl.copyValuesFrom(this.authorConfig.ToastCoreConfig, this.productionConfig.ToastCoreConfig);
-            this.dataControl.copyValuesFrom(this.userConfig.ToastCoreConfig, this.productionConfig.ToastCoreConfig);
+            this.dataControl.copyValuesFrom(this.authorConfig.toastCoreConfig, this.productionConfig.toastCoreConfig);
+            this.dataControl.copyValuesFrom(this.userConfig.toastCoreConfig, this.productionConfig.toastCoreConfig);
             // endregion
         }
         ToastNotificationConfigService.prototype.setResetGlobalToastConfig = function (globalToastConfig) {
-            this.dataControl.copyValuesFrom(this.authorConfig.GlobalSettings, this.productionConfig.GlobalSettings);
-            this.dataControl.copyValuesFrom(globalToastConfig ? globalToastConfig : this.userConfig.GlobalSettings, this.productionConfig.GlobalSettings);
+            this.dataControl.copyValuesFrom(this.authorConfig.globalSettings, this.productionConfig.globalSettings);
+            this.dataControl.copyValuesFrom(globalToastConfig ? globalToastConfig : this.userConfig.globalSettings, this.productionConfig.globalSettings);
         };
         return ToastNotificationConfigService;
     }());
@@ -2143,45 +2143,45 @@
             this.isTimerStarted = false;
             this.timer = new Timer();
             setTimeout(function () {
-                _this.boxAnimation = _this.toastNotificationBelonging.ToastCoreConfig.AnimationIn;
+                _this.boxAnimation = _this.toastNotificationBelonging.toastCoreConfig.animationIn;
             }, 1);
         }
         Object.defineProperty(WrapperAbstraction.prototype, "autoCloseCondition", {
             get: function () {
-                return (this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay &&
-                    !(this.toastNotificationBelonging.Buttons.length ||
-                        this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||
-                        this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel));
+                return (this.toastNotificationBelonging.toastCoreConfig.autoCloseDelay &&
+                    !(this.toastNotificationBelonging.buttons.length ||
+                        this.toastNotificationBelonging.toastCoreConfig.declineLabel ||
+                        this.toastNotificationBelonging.toastCoreConfig.confirmLabel));
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(WrapperAbstraction.prototype, "buttonsExist", {
             get: function () {
-                return (!!this.toastNotificationBelonging.Buttons.length ||
-                    !!this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||
-                    !!this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel);
+                return (!!this.toastNotificationBelonging.buttons.length ||
+                    !!this.toastNotificationBelonging.toastCoreConfig.declineLabel ||
+                    !!this.toastNotificationBelonging.toastCoreConfig.confirmLabel);
             },
             enumerable: false,
             configurable: true
         });
         WrapperAbstraction.prototype.setCustomStyles = function () {
             var _this = this;
-            if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TextCSS && this.elTextWrapper) {
+            if (this.toastNotificationBelonging.toastCoreConfig.customStyles.textCSS && this.elTextWrapper) {
                 this.elTextWrapper.nativeElement.style.cssText +=
-                    this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TextCSS;
+                    this.toastNotificationBelonging.toastCoreConfig.customStyles.textCSS;
             }
-            if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TitleCSS && this.elTitleWrapper) {
+            if (this.toastNotificationBelonging.toastCoreConfig.customStyles.titleCSS && this.elTitleWrapper) {
                 this.elTitleWrapper.nativeElement.style.cssText +=
-                    this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TitleCSS;
+                    this.toastNotificationBelonging.toastCoreConfig.customStyles.titleCSS;
             }
-            if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
+            if (this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonSectionCSS && this.elButtonWrapper) {
                 this.elButtonWrapper.nativeElement.style.cssText +=
-                    this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonSectionCSS;
+                    this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonSectionCSS;
             }
-            if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
+            if (this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonCSS && this.elButton) {
                 this.elButton.forEach(function (el) {
-                    el.nativeElement.style.cssText += _this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonCSS;
+                    el.nativeElement.style.cssText += _this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonCSS;
                 });
             }
         };
@@ -2208,32 +2208,32 @@
         WrapperAbstraction.prototype.setResponse = function (_IsSuccess, _ClickedButtonID) {
             var response = new ToastNotificationDefaultResponse();
             if (_ClickedButtonID) {
-                response.ClickedButtonID = _ClickedButtonID;
+                response.clickedButtonID = _ClickedButtonID;
             }
             response.setSuccess(_IsSuccess);
             response.setBelonging(this.toastNotificationBelonging);
-            this.toastNotificationBelonging.EventsController.setDefaultResponse(response);
+            this.toastNotificationBelonging.eventsController.setDefaultResponse(response);
         };
         WrapperAbstraction.prototype.onCustomButton = function (_Button) {
-            this.toastNotificationBelonging.EventsController.onButtonClick(_Button);
+            this.toastNotificationBelonging.eventsController.onButtonClick(_Button);
             this.setResponse(true, _Button.ID);
-            this.toastNotificationBelonging.EventsController.close();
+            this.toastNotificationBelonging.eventsController.close();
         };
         WrapperAbstraction.prototype.onButtonClick = function (_Type) {
             var buttonID;
             if (_Type === 'confirm') {
-                buttonID = this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel.toLowerCase();
+                buttonID = this.toastNotificationBelonging.toastCoreConfig.confirmLabel.toLowerCase();
             }
             else if (_Type === 'decline') {
-                buttonID = this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel.toLowerCase();
+                buttonID = this.toastNotificationBelonging.toastCoreConfig.declineLabel.toLowerCase();
             }
             this.setResponse(_Type === 'confirm', buttonID);
-            this.toastNotificationBelonging.EventsController.close();
+            this.toastNotificationBelonging.eventsController.close();
         };
         WrapperAbstraction.prototype.autoClose = function () {
             var _this = this;
             if (this.autoCloseCondition) {
-                this.timer.setMilliseconds(this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
+                this.timer.setMilliseconds(this.toastNotificationBelonging.toastCoreConfig.autoCloseDelay);
                 this.subTimer = this.timerStarted$
                     .pipe(operators.tap(function (next) {
                     if ('start-counter' === next) {
@@ -2241,9 +2241,9 @@
                         _this.isTimerStarted = true;
                         _this.timeout = setTimeout(function () {
                             _this.subsToClosingDelay = _this.closeParent$().subscribe(function (resp) {
-                                _this.toastNotificationBelonging.EventsController.close();
+                                _this.toastNotificationBelonging.eventsController.close();
                             });
-                        }, _this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
+                        }, _this.toastNotificationBelonging.toastCoreConfig.autoCloseDelay);
                     }
                     else if ('stop-counter' === next) {
                         if (_this.isTimerStarted) {
@@ -2258,13 +2258,13 @@
         };
         WrapperAbstraction.prototype.closeParent$ = function () {
             this.autoClosingHasStarted = true;
-            this.boxAnimation = this.toastNotificationBelonging.ToastCoreConfig.AnimationOut;
-            var closeDuration = this.toastNotificationBelonging.ToastCoreConfig.AnimationOut ? 400 : 200;
+            this.boxAnimation = this.toastNotificationBelonging.toastCoreConfig.animationOut;
+            var closeDuration = this.toastNotificationBelonging.toastCoreConfig.animationOut ? 400 : 200;
             this.fadeInOutAnimation = 'close-fast';
             return rxjs.of('').pipe(operators.delay(closeDuration));
         };
         WrapperAbstraction.prototype.close = function () {
-            this.toastNotificationBelonging.EventsController.close();
+            this.toastNotificationBelonging.eventsController.close();
         };
         WrapperAbstraction.prototype.closeIcon = function () {
             var _this = this;
@@ -2274,7 +2274,7 @@
             this.closeParent$()
                 .pipe(operators.take(1))
                 .subscribe(function (resp) {
-                _this.toastNotificationBelonging.EventsController.close();
+                _this.toastNotificationBelonging.eventsController.close();
             });
         };
         WrapperAbstraction.prototype.ngOnDestroy = function () {
@@ -2317,7 +2317,7 @@
     ToastNotificationSimpleWrapperComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'app-toast-notification-simple-wrapper',
-                    template: "<div\n  class=\"toast-wrapper simple-toast\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: toastNotificationBelonging.ToastCoreConfig.AnimationOut === 0 ? '200ms' : '300ms'\n    }\n  }\"\n>\n  <div\n    class=\"evolve-toast\"\n    [@.disabled]=\"\n      toastNotificationBelonging.ToastCoreConfig.AnimationIn === 0 &&\n      toastNotificationBelonging.ToastCoreConfig.AnimationOut === 0\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    (mouseover)=\"mouseOver()\"\n    (mouseout)=\"mouseOut()\"\n    (click)=\"onToastClicked($event)\"\n    [ngClass]=\"{\n      'standard-dialog': 0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'success-dialog': 1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'info-dialog': 2 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'warning-dialog': 3 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'danger-dialog': 4 === toastNotificationBelonging.ToastCoreConfig.LayoutType\n    }\"\n  >\n    <div class=\"toast-title-content\" #elTitleWrapper *ngIf=\"toastNotificationBelonging.Dispatch.Title\">\n      <div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.DisableIcon\">\n        <span\n          class=\"icon-type-toast\"\n          [ngClass]=\"{\n            '': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n            'ap-icon-success icon-check-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n            'ap-icon-info icon-info-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n            'ap-icon-warning icon-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n            'ap-icon-danger icon-times-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n          }\"\n        ></span>\n      </div>\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          {{ toastNotificationBelonging.Dispatch.Title }}\n          <span class=\"close-ico icon-times-circle\" (click)=\"closeIcon()\" *ngIf=\"!buttonsExist\"></span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"content-holder toast-text\" #elTextWrapper *ngIf=\"toastNotificationBelonging.Dispatch.Message\">\n      <div\n        class=\"text-wrapper-section toast-inner-content\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.ToastCoreConfig.TextPosition\n        }\"\n        [ngClass]=\"{\n          'only-message': !toastNotificationBelonging.Dispatch.Title\n        }\"\n      >\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper dont-break-out\" *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\">\n            <p>{{ toastNotificationBelonging.Dispatch.Message }}</p>\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\"\n            [innerHTML]=\"toastNotificationBelonging.Dispatch.Message\"\n          ></div>\n        </div>\n      </div>\n      <span\n        class=\"close-ico icon-times-circle\"\n        (click)=\"closeIcon()\"\n        *ngIf=\"buttonsExist && !toastNotificationBelonging.Dispatch.Title\"\n      ></span>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"toastNotificationBelonging.Buttons.length\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          #elButton\n          *ngFor=\"let button of toastNotificationBelonging.Buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.LayoutType ? button.LayoutType === 0 : false,\n            'ed-btn-success': button.LayoutType ? button.LayoutType === 1 : false,\n            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,\n            'ed-btn-warning': button.LayoutType ? button.LayoutType === 3 : false,\n            'ed-btn-danger': button.LayoutType ? button.LayoutType === 4 : false,\n            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,\n            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,\n            'ed-btn-primary': button.LayoutType ? button.LayoutType === 7 : false,\n            'ed-btn-secondary': button.LayoutType ? button.LayoutType === 8 : false,\n            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false\n          }\"\n        >\n          {{ button.Label }}\n        </button>\n      </div>\n\n      <div\n        class=\"button-section\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition\n        }\"\n        *ngIf=\"\n          !toastNotificationBelonging.Buttons.length &&\n          (toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||\n            toastNotificationBelonging.ToastCoreConfig.ConfirmLabel)\n        \"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          *ngIf=\"toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\"\n          (click)=\"onButtonClick('confirm')\"\n          [ngClass]=\"{\n            'ed-btn-primary': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n            'ed-btn-success': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n            'ed-btn-info': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n            'ed-btn-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n            'ed-btn-danger': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n          }\"\n        >\n          {{ toastNotificationBelonging.ToastCoreConfig.ConfirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-sm ed-btn-secondary\"\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"toastNotificationBelonging.ToastCoreConfig.DeclineLabel\"\n        >\n          {{ toastNotificationBelonging.ToastCoreConfig.DeclineLabel }}\n        </button>\n      </div>\n    </div>\n\n    <div\n      class=\"progress-bar-container\"\n      *ngIf=\"!buttonsExist && toastNotificationBelonging.ToastCoreConfig.ProgressBar !== 0\"\n    >\n      <div\n        class=\"progress-bar\"\n        [ngStyle]=\"{\n          width: (toastNotificationBelonging.ToastCoreConfig.ProgressBar === 1 ? timer.Progress : timer.Remaining) + '%'\n        }\"\n      ></div>\n    </div>\n  </div>\n</div>\n",
+                    template: "<div\n  class=\"toast-wrapper simple-toast\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: toastNotificationBelonging.toastCoreConfig.animationOut === 0 ? '200ms' : '300ms'\n    }\n  }\"\n>\n  <div\n    class=\"evolve-toast\"\n    [@.disabled]=\"\n      toastNotificationBelonging.toastCoreConfig.animationIn === 0 &&\n      toastNotificationBelonging.toastCoreConfig.animationOut === 0\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    (mouseover)=\"mouseOver()\"\n    (mouseout)=\"mouseOut()\"\n    (click)=\"onToastClicked($event)\"\n    [ngClass]=\"{\n      'standard-dialog': 0 === toastNotificationBelonging.toastCoreConfig.layoutType,\n      'success-dialog': 1 === toastNotificationBelonging.toastCoreConfig.layoutType,\n      'info-dialog': 2 === toastNotificationBelonging.toastCoreConfig.layoutType,\n      'warning-dialog': 3 === toastNotificationBelonging.toastCoreConfig.layoutType,\n      'danger-dialog': 4 === toastNotificationBelonging.toastCoreConfig.layoutType\n    }\"\n  >\n    <div class=\"toast-title-content\" #elTitleWrapper *ngIf=\"toastNotificationBelonging.dispatch.title\">\n      <div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.disableIcon\">\n        <span\n          class=\"icon-type-toast\"\n          [ngClass]=\"{\n            '': toastNotificationBelonging.toastCoreConfig.layoutType === 0,\n            'ap-icon-success icon-check-circle': toastNotificationBelonging.toastCoreConfig.layoutType === 1,\n            'ap-icon-info icon-info-circle': toastNotificationBelonging.toastCoreConfig.layoutType === 2,\n            'ap-icon-warning icon-warning': toastNotificationBelonging.toastCoreConfig.layoutType === 3,\n            'ap-icon-danger icon-times-circle': toastNotificationBelonging.toastCoreConfig.layoutType === 4\n          }\"\n        ></span>\n      </div>\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          {{ toastNotificationBelonging.dispatch.title }}\n          <span class=\"close-ico icon-times-circle\" (click)=\"closeIcon()\" *ngIf=\"!buttonsExist\"></span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"content-holder toast-text\" #elTextWrapper *ngIf=\"toastNotificationBelonging.dispatch.message\">\n      <div\n        class=\"text-wrapper-section toast-inner-content\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.textPosition\n        }\"\n        [ngClass]=\"{\n          'only-message': !toastNotificationBelonging.dispatch.title\n        }\"\n      >\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper dont-break-out\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\">\n            <p>{{ toastNotificationBelonging.dispatch.message }}</p>\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\"\n            [innerHTML]=\"toastNotificationBelonging.dispatch.message\"\n          ></div>\n        </div>\n      </div>\n      <span\n        class=\"close-ico icon-times-circle\"\n        (click)=\"closeIcon()\"\n        *ngIf=\"buttonsExist && !toastNotificationBelonging.dispatch.title\"\n      ></span>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"toastNotificationBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          #elButton\n          *ngFor=\"let button of toastNotificationBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.layoutType ? button.layoutType === 0 : false,\n            'ed-btn-success': button.layoutType ? button.layoutType === 1 : false,\n            'ed-btn-info': button.layoutType ? button.layoutType === 2 : false,\n            'ed-btn-warning': button.layoutType ? button.layoutType === 3 : false,\n            'ed-btn-danger': button.layoutType ? button.layoutType === 4 : false,\n            'ed-btn-dark': button.layoutType ? button.layoutType === 5 : false,\n            'ed-btn-light': button.layoutType ? button.layoutType === 6 : false,\n            'ed-btn-primary': button.layoutType ? button.layoutType === 7 : false,\n            'ed-btn-secondary': button.layoutType ? button.layoutType === 8 : false,\n            'ed-btn-link': button.layoutType ? button.layoutType === 9 : false\n          }\"\n        >\n          {{ button.Label }}\n        </button>\n      </div>\n\n      <div\n        class=\"button-section\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\"\n        *ngIf=\"\n          !toastNotificationBelonging.buttons.length &&\n          (toastNotificationBelonging.toastCoreConfig.declineLabel ||\n            toastNotificationBelonging.toastCoreConfig.confirmLabel)\n        \"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.confirmLabel\"\n          (click)=\"onButtonClick('confirm')\"\n          [ngClass]=\"{\n            'ed-btn-primary': toastNotificationBelonging.toastCoreConfig.layoutType === 0,\n            'ed-btn-success': toastNotificationBelonging.toastCoreConfig.layoutType === 1,\n            'ed-btn-info': toastNotificationBelonging.toastCoreConfig.layoutType === 2,\n            'ed-btn-warning': toastNotificationBelonging.toastCoreConfig.layoutType === 3,\n            'ed-btn-danger': toastNotificationBelonging.toastCoreConfig.layoutType === 4\n          }\"\n        >\n          {{ toastNotificationBelonging.toastCoreConfig.confirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-sm ed-btn-secondary\"\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.declineLabel\"\n        >\n          {{ toastNotificationBelonging.toastCoreConfig.declineLabel }}\n        </button>\n      </div>\n    </div>\n\n    <div\n      class=\"progress-bar-container\"\n      *ngIf=\"!buttonsExist && toastNotificationBelonging.toastCoreConfig.progressBar !== 0\"\n    >\n      <div\n        class=\"progress-bar\"\n        [ngStyle]=\"{\n          width: (toastNotificationBelonging.toastCoreConfig.progressBar === 1 ? timer.Progress : timer.Remaining) + '%'\n        }\"\n      ></div>\n    </div>\n  </div>\n</div>\n",
                     // styleUrls: ['../../../styles/types/toast-simple.scss'],
                     animations: [fadeInOut(), boxAnimations()]
                 },] }
@@ -2348,7 +2348,7 @@
     ToastNotificationWrapperComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'app-toast-notification-wrapper',
-                    template: "<div\n  class=\"toast-wrapper standard-toast\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: toastNotificationBelonging.ToastCoreConfig.AnimationOut === 0 ? '200ms' : '300ms'\n    }\n  }\"\n>\n  <div\n    class=\"evolve-toast\"\n    [@.disabled]=\"\n      toastNotificationBelonging.ToastCoreConfig.AnimationIn === 0 &&\n      toastNotificationBelonging.ToastCoreConfig.AnimationOut === 0\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    (mouseover)=\"mouseOver()\"\n    (mouseout)=\"mouseOut()\"\n    (click)=\"onToastClicked($event)\"\n    [ngClass]=\"{\n      'standard-dialog': 0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'success-dialog': 1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'info-dialog': 2 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'warning-dialog': 3 === toastNotificationBelonging.ToastCoreConfig.LayoutType,\n      'danger-dialog': 4 === toastNotificationBelonging.ToastCoreConfig.LayoutType\n    }\"\n  >\n    <div class=\"toast-title-content\" #elTitleWrapper *ngIf=\"toastNotificationBelonging.Dispatch.Title\">\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          {{ toastNotificationBelonging.Dispatch.Title }}\n          <span class=\"close-ico icon-times-circle\" (click)=\"closeIcon()\" *ngIf=\"!buttonsExist\"></span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"content-holder toast-text\" #elTextWrapper *ngIf=\"toastNotificationBelonging.Dispatch.Message\">\n      <div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.DisableIcon\">\n        <span\n          class=\"icon-type-toast\"\n          [ngClass]=\"{\n            '': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n            'ap-icon-success icon-check-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n            'ap-icon-info icon-info-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n            'ap-icon-warning icon-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n            'ap-icon-danger icon-times-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n          }\"\n        ></span>\n      </div>\n      <div\n        class=\"text-wrapper-section toast-inner-content\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.ToastCoreConfig.TextPosition\n        }\"\n        [ngClass]=\"{\n          'only-message': !toastNotificationBelonging.Dispatch.Title\n        }\"\n      >\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper dont-break-out\" *ngIf=\"!toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\">\n            <p>{{ toastNotificationBelonging.Dispatch.Message }}</p>\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage\"\n            [innerHTML]=\"toastNotificationBelonging.Dispatch.Message\"\n          ></div>\n        </div>\n      </div>\n      <span\n        class=\"close-ico icon-times-circle\"\n        (click)=\"closeIcon()\"\n        *ngIf=\"buttonsExist && !toastNotificationBelonging.Dispatch.Title\"\n      ></span>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"toastNotificationBelonging.Buttons.length\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          #elButton\n          *ngFor=\"let button of toastNotificationBelonging.Buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.LayoutType ? button.LayoutType === 0 : false,\n            'ed-btn-success': button.LayoutType ? button.LayoutType === 1 : false,\n            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,\n            'ed-btn-warning': button.LayoutType ? button.LayoutType === 3 : false,\n            'ed-btn-danger': button.LayoutType ? button.LayoutType === 4 : false,\n            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,\n            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,\n            'ed-btn-primary': button.LayoutType ? button.LayoutType === 7 : false,\n            'ed-btn-secondary': button.LayoutType ? button.LayoutType === 8 : false,\n            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false\n          }\"\n        >\n          {{ button.Label }}\n        </button>\n      </div>\n\n      <div\n        class=\"button-section\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition\n        }\"\n        *ngIf=\"\n          !toastNotificationBelonging.Buttons.length &&\n          (toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||\n            toastNotificationBelonging.ToastCoreConfig.ConfirmLabel)\n        \"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          #elButton\n          *ngIf=\"toastNotificationBelonging.ToastCoreConfig.ConfirmLabel\"\n          (click)=\"onButtonClick('confirm')\"\n          [ngClass]=\"{\n            'ed-btn-primary': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,\n            'ed-btn-success': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,\n            'ed-btn-info': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,\n            'ed-btn-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,\n            'ed-btn-danger': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4\n          }\"\n        >\n          {{ toastNotificationBelonging.ToastCoreConfig.ConfirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-sm ed-btn-secondary\"\n          #elButton\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"toastNotificationBelonging.ToastCoreConfig.DeclineLabel\"\n        >\n          {{ toastNotificationBelonging.ToastCoreConfig.DeclineLabel }}\n        </button>\n      </div>\n    </div>\n\n    <div\n      class=\"progress-bar-container\"\n      *ngIf=\"!buttonsExist && toastNotificationBelonging.ToastCoreConfig.ProgressBar !== 0\"\n    >\n      <div\n        class=\"progress-bar\"\n        [ngStyle]=\"{\n          width: (toastNotificationBelonging.ToastCoreConfig.ProgressBar === 1 ? timer.Progress : timer.Remaining) + '%'\n        }\"\n      ></div>\n    </div>\n  </div>\n</div>\n",
+                    template: "<div\n  class=\"toast-wrapper standard-toast\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: toastNotificationBelonging.toastCoreConfig.animationOut === 0 ? '200ms' : '300ms'\n    }\n  }\"\n>\n  <div\n    class=\"evolve-toast\"\n    [@.disabled]=\"\n      toastNotificationBelonging.toastCoreConfig.animationIn === 0 &&\n      toastNotificationBelonging.toastCoreConfig.animationOut === 0\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    (mouseover)=\"mouseOver()\"\n    (mouseout)=\"mouseOut()\"\n    (click)=\"onToastClicked($event)\"\n    [ngClass]=\"{\n      'standard-dialog': 0 === toastNotificationBelonging.toastCoreConfig.layoutType,\n      'success-dialog': 1 === toastNotificationBelonging.toastCoreConfig.layoutType,\n      'info-dialog': 2 === toastNotificationBelonging.toastCoreConfig.layoutType,\n      'warning-dialog': 3 === toastNotificationBelonging.toastCoreConfig.layoutType,\n      'danger-dialog': 4 === toastNotificationBelonging.toastCoreConfig.layoutType\n    }\"\n  >\n    <div class=\"toast-title-content\" #elTitleWrapper *ngIf=\"toastNotificationBelonging.dispatch.title\">\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          {{ toastNotificationBelonging.dispatch.title }}\n          <span class=\"close-ico icon-times-circle\" (click)=\"closeIcon()\" *ngIf=\"!buttonsExist\"></span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"content-holder toast-text\" #elTextWrapper *ngIf=\"toastNotificationBelonging.dispatch.message\">\n      <div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.disableIcon\">\n        <span\n          class=\"icon-type-toast\"\n          [ngClass]=\"{\n            '': toastNotificationBelonging.toastCoreConfig.layoutType === 0,\n            'ap-icon-success icon-check-circle': toastNotificationBelonging.toastCoreConfig.layoutType === 1,\n            'ap-icon-info icon-info-circle': toastNotificationBelonging.toastCoreConfig.layoutType === 2,\n            'ap-icon-warning icon-warning': toastNotificationBelonging.toastCoreConfig.layoutType === 3,\n            'ap-icon-danger icon-times-circle': toastNotificationBelonging.toastCoreConfig.layoutType === 4\n          }\"\n        ></span>\n      </div>\n      <div\n        class=\"text-wrapper-section toast-inner-content\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.textPosition\n        }\"\n        [ngClass]=\"{\n          'only-message': !toastNotificationBelonging.dispatch.title\n        }\"\n      >\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper dont-break-out\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\">\n            <p>{{ toastNotificationBelonging.dispatch.message }}</p>\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\"\n            [innerHTML]=\"toastNotificationBelonging.dispatch.message\"\n          ></div>\n        </div>\n      </div>\n      <span\n        class=\"close-ico icon-times-circle\"\n        (click)=\"closeIcon()\"\n        *ngIf=\"buttonsExist && !toastNotificationBelonging.dispatch.title\"\n      ></span>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"toastNotificationBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          #elButton\n          *ngFor=\"let button of toastNotificationBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [ngClass]=\"{\n            '': button.layoutType ? button.layoutType === 0 : false,\n            'ed-btn-success': button.layoutType ? button.layoutType === 1 : false,\n            'ed-btn-info': button.layoutType ? button.layoutType === 2 : false,\n            'ed-btn-warning': button.layoutType ? button.layoutType === 3 : false,\n            'ed-btn-danger': button.layoutType ? button.layoutType === 4 : false,\n            'ed-btn-dark': button.layoutType ? button.layoutType === 5 : false,\n            'ed-btn-light': button.layoutType ? button.layoutType === 6 : false,\n            'ed-btn-primary': button.layoutType ? button.layoutType === 7 : false,\n            'ed-btn-secondary': button.layoutType ? button.layoutType === 8 : false,\n            'ed-btn-link': button.layoutType ? button.layoutType === 9 : false\n          }\"\n        >\n          {{ button.Label }}\n        </button>\n      </div>\n\n      <div\n        class=\"button-section\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\"\n        *ngIf=\"\n          !toastNotificationBelonging.buttons.length &&\n          (toastNotificationBelonging.toastCoreConfig.declineLabel ||\n            toastNotificationBelonging.toastCoreConfig.confirmLabel)\n        \"\n      >\n        <button\n          class=\"ed-btn ed-btn-sm\"\n          #elButton\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.confirmLabel\"\n          (click)=\"onButtonClick('confirm')\"\n          [ngClass]=\"{\n            'ed-btn-primary': toastNotificationBelonging.toastCoreConfig.layoutType === 0,\n            'ed-btn-success': toastNotificationBelonging.toastCoreConfig.layoutType === 1,\n            'ed-btn-info': toastNotificationBelonging.toastCoreConfig.layoutType === 2,\n            'ed-btn-warning': toastNotificationBelonging.toastCoreConfig.layoutType === 3,\n            'ed-btn-danger': toastNotificationBelonging.toastCoreConfig.layoutType === 4\n          }\"\n        >\n          {{ toastNotificationBelonging.toastCoreConfig.confirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-sm ed-btn-secondary\"\n          #elButton\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.declineLabel\"\n        >\n          {{ toastNotificationBelonging.toastCoreConfig.declineLabel }}\n        </button>\n      </div>\n    </div>\n\n    <div\n      class=\"progress-bar-container\"\n      *ngIf=\"!buttonsExist && toastNotificationBelonging.toastCoreConfig.progressBar !== 0\"\n    >\n      <div\n        class=\"progress-bar\"\n        [ngStyle]=\"{\n          width: (toastNotificationBelonging.toastCoreConfig.progressBar === 1 ? timer.Progress : timer.Remaining) + '%'\n        }\"\n      ></div>\n    </div>\n  </div>\n</div>\n",
                     // styleUrls: ['../../../styles/types/toast-standard.scss'],
                     animations: [fadeInOut(), boxAnimations()]
                 },] }
@@ -2371,8 +2371,8 @@
             this.bufferCheckingIntervalIsReady = true;
         }
         ToastNotificationService.prototype.openToast$ = function (_ToastNotificationBelonging) {
-            var eventController = _ToastNotificationBelonging.EventsController;
-            // console.log(`%c ${_ToastNotificationBelonging.EntityUniqueID} `, `background: #339933; color: #fff`);
+            var eventController = _ToastNotificationBelonging.eventsController;
+            // console.log(`%c ${_ToastNotificationBelonging.entityUniqueID} `, `background: #339933; color: #fff`);
             var toastRawInstance = this.prepareRawToast(eventController, _ToastNotificationBelonging);
             this.listeners(eventController);
             this.internalRouting(toastRawInstance);
@@ -2395,50 +2395,50 @@
             var componentRef = this.getComponentRef(_ToastRawInstance);
             if (componentRef) {
                 this.toastComponentRefList.push(componentRef);
-                componentRef.instance.toastNotificationBelonging = _ToastRawInstance.ToastBelonging;
+                componentRef.instance.toastNotificationBelonging = _ToastRawInstance.toastBelonging;
                 this.appendToBodyParentComponent(componentRef);
             }
         };
         ToastNotificationService.prototype.isRefListAvailable = function () {
-            return (this.toastComponentRefList.length < this.toastConfig.productionConfig.GlobalSettings.AllowedNotificationsAtOnce);
+            return (this.toastComponentRefList.length < this.toastConfig.productionConfig.globalSettings.allowedNotificationsAtOnce);
         };
-        ToastNotificationService.prototype.prepareRawToast = function (_EventsController, _ToastNotificationBelonging) {
+        ToastNotificationService.prototype.prepareRawToast = function (_eventsController, _ToastNotificationBelonging) {
             var weakMap = new WeakMap();
-            weakMap.set(ToastNotificationEventsController, _EventsController);
+            weakMap.set(ToastNotificationeventsController, _eventsController);
             return {
-                WeakMap: weakMap,
-                ToastBelonging: _ToastNotificationBelonging
+                weakMap: weakMap,
+                toastBelonging: _ToastNotificationBelonging
             };
         };
         ToastNotificationService.prototype.getComponentRef = function (_ToastNotificationRawState) {
-            var dialogIndex = this.findDialogIndex(_ToastNotificationRawState.ToastBelonging.EntityUniqueID);
+            var dialogIndex = this.findDialogIndex(_ToastNotificationRawState.toastBelonging.entityUniqueID);
             if (dialogIndex === -1) {
                 var toastUserViewComponent = ToastNotificationWrapperComponent;
-                if (_ToastNotificationRawState.ToastBelonging.ToastCoreConfig.ToastUserViewType === exports.ToastUserViewTypeEnum.SIMPLE) {
+                if (_ToastNotificationRawState.toastBelonging.toastCoreConfig.toastUserViewType === exports.ToastUserViewTypeEnum.SIMPLE) {
                     toastUserViewComponent = ToastNotificationSimpleWrapperComponent;
                 }
                 var componentFactory = this.componentFactoryResolver.resolveComponentFactory(toastUserViewComponent);
-                return componentFactory.create(new DialogInjector(this.injector, _ToastNotificationRawState.WeakMap));
+                return componentFactory.create(new DialogInjector(this.injector, _ToastNotificationRawState.weakMap));
             }
             return null;
         };
-        ToastNotificationService.prototype.listeners = function (_EventsController) {
+        ToastNotificationService.prototype.listeners = function (_eventsController) {
             var _this = this;
             // Listener for closing dialog
-            var closeDialogSubscription = _EventsController.afterClosed$.subscribe(function (response) {
+            var closeDialogSubscription = _eventsController.afterClosed$.subscribe(function (response) {
                 // this.removeFromBodyParentComponent(modalIndex);
-                _this.removeFromBody(response.toastNotificationBelonging.EntityUniqueID);
+                _this.removeFromBody(response.toastNotificationBelonging.entityUniqueID);
                 closeDialogSubscription.unsubscribe();
             });
         };
         ToastNotificationService.prototype.appendToBodyParentComponent = function (_ComponentRef) {
             // attach view to ignite lifecycle hooks
             this.appRef.attachView(_ComponentRef.hostView);
-            var toastPosition = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.ToastPosition;
-            var openInElementID = _ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.OpenInElementID;
+            var toastPosition = _ComponentRef.instance.toastNotificationBelonging.toastCoreConfig.toastPosition;
+            var openInElementID = _ComponentRef.instance.toastNotificationBelonging.toastCoreConfig.openInElementID;
             var targetNode;
             if (!openInElementID) {
-                this.setToastWrapperNode(_ComponentRef.instance.toastNotificationBelonging.ToastCoreConfig.ToastPosition, this.setToastOverlayNode());
+                this.setToastWrapperNode(_ComponentRef.instance.toastNotificationBelonging.toastCoreConfig.toastPosition, this.setToastOverlayNode());
                 targetNode = document.getElementById("toast-wrapper-" + toastPosition);
             }
             else {
@@ -2446,7 +2446,7 @@
             }
             var domElem = _ComponentRef.hostView.rootNodes[0];
             var toastEntity = document.createElement('div');
-            toastEntity.setAttribute('id', _ComponentRef.instance.toastNotificationBelonging.EntityUniqueID);
+            toastEntity.setAttribute('id', _ComponentRef.instance.toastNotificationBelonging.entityUniqueID);
             toastEntity.className = 'toast-entity';
             var split = toastPosition.split('-');
             if (split[1] === 'fullwidth') {
@@ -2465,9 +2465,9 @@
               targetNode.prepend(toastEntity);
             }, 200);*/
         };
-        ToastNotificationService.prototype.removeFromBody = function (_EntityUniqueID) {
+        ToastNotificationService.prototype.removeFromBody = function (_entityUniqueID) {
             var _this = this;
-            var modalIndex = this.findDialogIndex(_EntityUniqueID);
+            var modalIndex = this.findDialogIndex(_entityUniqueID);
             if (modalIndex > -1) {
                 if (this.bufferToastRawList.length) {
                     this.sendToProduction(this.bufferToastRawList[0]);
@@ -2476,11 +2476,11 @@
                 this.toastComponentRefList[modalIndex].instance
                     .closeParent$()
                     .pipe(operators.tap(function (item) {
-                    var modalIndex = _this.findDialogIndex(_EntityUniqueID);
+                    var modalIndex = _this.findDialogIndex(_entityUniqueID);
                     if (_this.toastComponentRefList[modalIndex]) {
-                        var toastEntity = document.getElementById(_this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.EntityUniqueID);
+                        var toastEntity = document.getElementById(_this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.entityUniqueID);
                         toastEntity.remove();
-                        // console.log(`%c ${this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.EntityUniqueID} `, `background: #cc3333; color: #fff`);
+                        // console.log(`%c ${this.toastComponentRefList[modalIndex].instance.toastNotificationBelonging.entityUniqueID} `, `background: #cc3333; color: #fff`);
                         _this.appRef.detachView(_this.toastComponentRefList[modalIndex].hostView);
                         _this.toastComponentRefList[modalIndex].destroy();
                         _this.toastComponentRefList.splice(modalIndex, 1);
@@ -2491,7 +2491,7 @@
         };
         ToastNotificationService.prototype.findDialogIndex = function (_DialogUniqueID) {
             return this.toastComponentRefList.findIndex(function (item) {
-                return _DialogUniqueID === item.instance.toastNotificationBelonging.EntityUniqueID;
+                return _DialogUniqueID === item.instance.toastNotificationBelonging.entityUniqueID;
             });
         };
         ToastNotificationService.prototype.setToastOverlayNode = function () {
@@ -2595,21 +2595,21 @@
         function ToastNotificationResponse() {
             var _this = _super.call(this) || this;
             // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
-            _this.Success = null;
-            _this.ClickedButtonID = null;
+            _this.success = null;
+            _this.clickedButtonID = null;
             return _this;
         }
         ToastNotificationResponse.prototype.setSuccess = function (_IsSuccess) {
-            this.Success = _IsSuccess;
+            this.success = _IsSuccess;
         };
         ToastNotificationResponse.prototype.setClickedButtonID = function (_ClickedButtonID) {
-            this.ClickedButtonID = _ClickedButtonID;
+            this.clickedButtonID = _ClickedButtonID;
         };
         return ToastNotificationResponse;
     }(DataControl));
-    var ToastNotificationEventsController = /** @class */ (function () {
-        function ToastNotificationEventsController(EntityUniqueID) {
-            this.EntityUniqueID = EntityUniqueID;
+    var ToastNotificationeventsController = /** @class */ (function () {
+        function ToastNotificationeventsController(entityUniqueID) {
+            this.entityUniqueID = entityUniqueID;
             this._onButtonClick = new rxjs.Subject();
             this._afterClosed = new rxjs.Subject();
             this._buttonList = new rxjs.Subject();
@@ -2617,21 +2617,21 @@
             this.onButtonClick$ = this._onButtonClick.asObservable();
             this.buttonList$ = this._buttonList.asObservable();
         }
-        ToastNotificationEventsController.prototype.close = function (_Response) {
+        ToastNotificationeventsController.prototype.close = function (_Response) {
             var response = _Response ? _Response : this.defaultResponse;
             this._afterClosed.next(response);
         };
-        ToastNotificationEventsController.prototype.onButtonClick = function (_Button) {
+        ToastNotificationeventsController.prototype.onButtonClick = function (_Button) {
             this.defaultResponse.setClickedButtonID(_Button.ID);
             this._onButtonClick.next(_Button);
         };
-        ToastNotificationEventsController.prototype.setButtonList = function (_ButtonList) {
+        ToastNotificationeventsController.prototype.setButtonList = function (_ButtonList) {
             this._buttonList.next(_ButtonList);
         };
-        ToastNotificationEventsController.prototype.setDefaultResponse = function (_Response) {
+        ToastNotificationeventsController.prototype.setDefaultResponse = function (_Response) {
             this.defaultResponse = _Response;
         };
-        return ToastNotificationEventsController;
+        return ToastNotificationeventsController;
     }());
     // endregion
     var ToastNotificationDefaultResponse = /** @class */ (function (_super) {
@@ -2652,27 +2652,27 @@
         }
         ToastNotificationCarrier.prototype.setButtons = function (_Buttons) {
             if (_Buttons.length) {
-                this.toastNotificationBelonging.Buttons = _Buttons;
+                this.toastNotificationBelonging.buttons = _Buttons;
             }
         };
         ToastNotificationCarrier.prototype.setTitle = function (_Title) {
-            this.toastNotificationBelonging.Dispatch.Title = _Title;
+            this.toastNotificationBelonging.dispatch.title = _Title;
         };
         ToastNotificationCarrier.prototype.setMessage = function (_Message) {
-            this.toastNotificationBelonging.Dispatch.Message = _Message;
+            this.toastNotificationBelonging.dispatch.message = _Message;
         };
         ToastNotificationCarrier.prototype.setButtonLabels = function (_Confirm, _Decline) {
-            this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel = _Confirm;
-            this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel = _Decline;
+            this.toastNotificationBelonging.toastCoreConfig.confirmLabel = _Confirm;
+            this.toastNotificationBelonging.toastCoreConfig.declineLabel = _Decline;
         };
         ToastNotificationCarrier.prototype.setConfig = function (_ToastNotificationBelonging) {
             // region *** local UserConfig (defined on place where dialog is called) ***
             var dataControl = new DataControl();
-            dataControl.copyValuesFrom(_ToastNotificationBelonging, this.toastNotificationBelonging.ToastCoreConfig);
+            dataControl.copyValuesFrom(_ToastNotificationBelonging, this.toastNotificationBelonging.toastCoreConfig);
             // endregion
         };
         ToastNotificationCarrier.prototype.openToastNotification$ = function () {
-            if (!this.toastNotificationBelonging.Dispatch.Title && !this.toastNotificationBelonging.Dispatch.Message) {
+            if (!this.toastNotificationBelonging.dispatch.title && !this.toastNotificationBelonging.dispatch.message) {
                 throw Error('Toast notification can not be without both message and title.');
             }
             var service = ServiceLocator.injector.get(ToastNotificationService);
@@ -2682,7 +2682,7 @@
     }());
     var GlobalToastSettings = /** @class */ (function () {
         function GlobalToastSettings() {
-            this.AllowedNotificationsAtOnce = null;
+            this.allowedNotificationsAtOnce = null;
         }
         return GlobalToastSettings;
     }());
@@ -2700,55 +2700,55 @@
     }());
     var ToastSettings = /** @class */ (function () {
         function ToastSettings() {
-            this.Buttons = [];
-            this.ToastCoreConfig = new ToastCoreConfig();
-            this.Dispatch = new Dispatch();
-            this.GlobalSettings = new GlobalToastSettings();
+            this.buttons = [];
+            this.toastCoreConfig = new toastCoreConfig();
+            this.dispatch = new dispatch();
+            this.globalSettings = new GlobalToastSettings();
         }
         return ToastSettings;
     }());
     var ToastCustomStyles = /** @class */ (function () {
         function ToastCustomStyles() {
-            this.TitleCSS = null;
-            this.TextCSS = null;
-            this.ButtonSectionCSS = null;
-            this.ButtonCSS = null;
+            this.titleCSS = null;
+            this.textCSS = null;
+            this.buttonSectionCSS = null;
+            this.buttonCSS = null;
         }
         return ToastCustomStyles;
     }());
-    var ToastCoreConfig = /** @class */ (function () {
-        function ToastCoreConfig() {
-            this.ToastPosition = null;
-            this.ProgressBar = null;
-            this.ToastUserViewType = null;
-            this.OpenInElementID = null;
-            this.ButtonPosition = null;
-            this.TextPosition = null;
-            this.LayoutType = null;
-            this.Dispatch = null;
-            this.ConfirmLabel = null;
-            this.DeclineLabel = null;
-            this.AutoCloseDelay = null;
-            this.DisableIcon = null;
-            this.AllowHTMLMessage = null;
-            this.AnimationIn = null;
-            this.AnimationOut = null;
-            this.CustomStyles = new ToastCustomStyles();
+    var toastCoreConfig = /** @class */ (function () {
+        function toastCoreConfig() {
+            this.toastPosition = null;
+            this.progressBar = null;
+            this.toastUserViewType = null;
+            this.openInElementID = null;
+            this.buttonPosition = null;
+            this.textPosition = null;
+            this.layoutType = null;
+            this.dispatch = null;
+            this.confirmLabel = null;
+            this.declineLabel = null;
+            this.autoCloseDelay = null;
+            this.disableIcon = null;
+            this.allowHtmlMessage = null;
+            this.animationIn = null;
+            this.animationOut = null;
+            this.customStyles = new ToastCustomStyles();
         }
-        return ToastCoreConfig;
+        return toastCoreConfig;
     }());
     var ToastNotificationBelonging = /** @class */ (function (_super) {
         __extends(ToastNotificationBelonging, _super);
         function ToastNotificationBelonging() {
             var _this = _super.call(this) || this;
-            _this.EntityUniqueID = 'T' + Math.random().toString(36).substr(2, 9);
-            _this.EventsController = new ToastNotificationEventsController(_this.EntityUniqueID);
+            _this.entityUniqueID = 'T' + Math.random().toString(36).substr(2, 9);
+            _this.eventsController = new ToastNotificationeventsController(_this.entityUniqueID);
             var toastNotificationConfigurator = ServiceLocator.injector.get(ToastNotificationConfigService);
             var baseSettings = new ToastSettings();
             var dataControl = new DataControl();
-            dataControl.copyValuesFrom(toastNotificationConfigurator.productionConfig.ToastCoreConfig, baseSettings.ToastCoreConfig);
-            _this.ToastCoreConfig = baseSettings.ToastCoreConfig;
-            _this.Buttons = toastNotificationConfigurator.productionConfig.Buttons.slice();
+            dataControl.copyValuesFrom(toastNotificationConfigurator.productionConfig.toastCoreConfig, baseSettings.toastCoreConfig);
+            _this.toastCoreConfig = baseSettings.toastCoreConfig;
+            _this.buttons = toastNotificationConfigurator.productionConfig.buttons.slice();
             return _this;
         }
         return ToastNotificationBelonging;

@@ -16,14 +16,14 @@ export declare class ConfirmBoxInitializer {
     setButtonLabels(_Confirm: string, _Decline?: string): void;
 }
 export declare class ConfirmBoxResponse extends DataControl implements IConfirmBoxResponse, IConfirmBoxPublicResponse {
-    Success: boolean;
-    ClickedButtonID: string;
+    success: boolean;
+    clickedButtonID: string;
     constructor();
     setSuccess(_IsSuccess: boolean): void;
     setClickedButtonID(_ClickedButtonID: any): void;
 }
-export declare class ConfirmBoxEventsController {
-    private EntityUniqueID;
+export declare class ConfirmBoxeventsController {
+    private entityUniqueID;
     private readonly _afterClosed;
     private readonly _onButtonClick;
     private readonly _buttonList;
@@ -31,7 +31,7 @@ export declare class ConfirmBoxEventsController {
     afterClosed$: Observable<IPrivateResponseMerged>;
     onButtonClick$: Observable<IButton>;
     buttonList$: Observable<IButton[]>;
-    constructor(EntityUniqueID: string);
+    constructor(entityUniqueID: string);
     close(_Response?: IPrivateResponseMerged): void;
     onButtonClick(_Button: IButton): void;
     setButtonList(_ButtonList: IButton[]): void;
@@ -53,33 +53,33 @@ export declare class ConfirmBoxCarrier {
     openConfirmBox$(): Observable<IPrivateResponseMerged>;
 }
 export declare class ConfirmBoxSettings {
-    Buttons: IButton[];
-    ConfirmBoxCoreConfig: IConfirmBoxCoreConfig;
-    Dispatch: IDispatch;
+    buttons: IButton[];
+    confirmBoxCoreConfig: IConfirmBoxCoreConfig;
+    dispatch: IDispatch;
 }
 export declare class ConfirmBoxCustomStyles implements IConfirmBoxCustomStyles {
-    TitleCSS: string;
-    TextCSS: string;
-    ButtonSectionCSS: string;
-    ButtonCSS: string;
-    WrapperCSS: string;
+    titleCSS: string;
+    textCSS: string;
+    buttonSectionCSS: string;
+    buttonCSS: string;
+    wrapperCSS: string;
 }
-export declare class ConfirmBoxCoreConfig implements IConfirmBoxCoreConfig {
-    Width: string;
-    Height: string;
-    ButtonPosition: VerticalPosition;
-    LayoutType: DialogLayoutDisplay;
-    Dispatch: IDispatch;
-    ConfirmLabel: string;
-    DeclineLabel: string;
-    DisableIcon: boolean;
-    AllowHTMLMessage: boolean;
-    AnimationIn: AppearanceAnimation;
-    AnimationOut: DisappearanceAnimation;
-    CustomStyles: ConfirmBoxCustomStyles;
+export declare class confirmBoxCoreConfig implements IConfirmBoxCoreConfig {
+    width: string;
+    height: string;
+    buttonPosition: VerticalPosition;
+    layoutType: DialogLayoutDisplay;
+    dispatch: IDispatch;
+    confirmLabel: string;
+    declineLabel: string;
+    disableIcon: boolean;
+    allowHtmlMessage: boolean;
+    animationIn: AppearanceAnimation;
+    animationOut: DisappearanceAnimation;
+    customStyles: ConfirmBoxCustomStyles;
 }
 export declare class ConfirmBoxBelonging extends ConfirmBoxSettings implements IConfirmBoxBelonging {
-    EntityUniqueID: string;
-    EventsController: ConfirmBoxEventsController;
+    entityUniqueID: string;
+    eventsController: ConfirmBoxeventsController;
     constructor();
 }

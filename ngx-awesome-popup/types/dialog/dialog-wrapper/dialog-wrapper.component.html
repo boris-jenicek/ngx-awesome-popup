@@ -4,19 +4,19 @@
   [@fadeInOut]="{
     value: fadeInOutAnimation,
     params: {
-      closeDelay: dialogBelonging.DialogCoreConfig.AnimationOut === 0 ? '200ms' : '300ms'
+      closeDelay: dialogBelonging.dialogCoreConfig.animationOut === 0 ? '200ms' : '300ms'
     }
   }"
 >
   <div
     class="evolve-parent-dialog"
     [@.disabled]="
-      dialogBelonging.DialogCoreConfig.AnimationIn === 0 && dialogBelonging.DialogCoreConfig.AnimationOut === 0
+      dialogBelonging.dialogCoreConfig.animationIn === 0 && dialogBelonging.dialogCoreConfig.animationOut === 0
     "
     [@boxAnimations]="boxAnimation"
     #elDialogWrapper
     [ngStyle]="
-      dialogBelonging.DialogCoreConfig.FullScreen && {
+      dialogBelonging.dialogCoreConfig.fullScreen && {
         maxWidth: '100%',
         maxHeight: '100%',
         height: '100%',
@@ -25,59 +25,59 @@
       }
     "
     [ngClass]="{
-      'standard-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 0,
-      'success-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 1,
-      'info-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 2,
-      'warning-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 3,
-      'danger-dialog': dialogBelonging.DialogCoreConfig.LayoutType === 4
+      'standard-dialog': dialogBelonging.dialogCoreConfig.layoutType === 0,
+      'success-dialog': dialogBelonging.dialogCoreConfig.layoutType === 1,
+      'info-dialog': dialogBelonging.dialogCoreConfig.layoutType === 2,
+      'warning-dialog': dialogBelonging.dialogCoreConfig.layoutType === 3,
+      'danger-dialog': dialogBelonging.dialogCoreConfig.layoutType === 4
     }"
   >
     <div
       class="loader-holder"
       [ngClass]="
-        !dialogBelonging.DialogCoreConfig.DisplayLoader
+        !dialogBelonging.dialogCoreConfig.displayLoader
           ? 'dialog-loader-off'
           : showLoader
           ? 'dialog-loader-active'
           : 'dialog-loader-gone'
       "
     >
-      <!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->
+      <!--dialogBelonging.dialogCoreConfig.DisplayLoader => initial config-->
       <div class="dialog-loader">
         <ng-template appInsertionLoader></ng-template>
       </div>
     </div>
-    <ng-container *ngIf="!dialogBelonging.DialogCoreConfig.FullScreen; else fullScreen"></ng-container>
+    <ng-container *ngIf="!dialogBelonging.dialogCoreConfig.fullScreen; else fullScreen"></ng-container>
     <ng-template #fullScreen></ng-template>
     <div
       class="content-holder"
       [ngStyle]="
-        dialogBelonging.DialogCoreConfig.FullScreen
+        dialogBelonging.dialogCoreConfig.fullScreen
           ? {
               width: '100%',
               height: '100%'
             }
           : {
-              width: dialogBelonging.DialogCoreConfig.Width,
-              minWidth: dialogBelonging.DialogCoreConfig.MinWidth,
-              maxWidth: dialogBelonging.DialogCoreConfig.MaxWidth,
-              height: dialogBelonging.DialogCoreConfig.Height,
-              minHeight: dialogBelonging.DialogCoreConfig.MinHeight,
-              maxHeight: dialogBelonging.DialogCoreConfig.MaxHeight
+              width: dialogBelonging.dialogCoreConfig.width,
+              minWidth: dialogBelonging.dialogCoreConfig.minWidth,
+              maxWidth: dialogBelonging.dialogCoreConfig.maxWidth,
+              height: dialogBelonging.dialogCoreConfig.height,
+              minHeight: dialogBelonging.dialogCoreConfig.minHeight,
+              maxHeight: dialogBelonging.dialogCoreConfig.maxHeight
             }
       "
     >
       <!--      <div
       class="content-holder"
       [ngStyle]="
-        dialogBelonging.DialogCoreConfig.FullScreen
+        dialogBelonging.dialogCoreConfig.FullScreen
           ? {
-              width: dialogBelonging.DialogCoreConfig.Width,
-              minWidth: dialogBelonging.DialogCoreConfig.MinWidth,
-              maxWidth: dialogBelonging.DialogCoreConfig.MaxWidth,
-              height: dialogBelonging.DialogCoreConfig.Height,
-              minHeight: dialogBelonging.DialogCoreConfig.MinHeight,
-              maxHeight: dialogBelonging.DialogCoreConfig.MaxHeight
+              width: dialogBelonging.dialogCoreConfig.Width,
+              minWidth: dialogBelonging.dialogCoreConfig.MinWidth,
+              maxWidth: dialogBelonging.dialogCoreConfig.MaxWidth,
+              height: dialogBelonging.dialogCoreConfig.Height,
+              minHeight: dialogBelonging.dialogCoreConfig.MinHeight,
+              maxHeight: dialogBelonging.dialogCoreConfig.MaxHeight
             }
           : {
               width: '100vw',
@@ -85,11 +85,11 @@
             }
       "
     >-->
-      <!--dialogBelonging.DialogCoreConfig.DisplayLoader => initial config-->
+      <!--dialogBelonging.dialogCoreConfig.DisplayLoader => initial config-->
       <div
         class="component-content"
         [ngClass]="
-          !dialogBelonging.DialogCoreConfig.DisplayLoader
+          !dialogBelonging.dialogCoreConfig.displayLoader
             ? 'component-content-loader-off'
             : showLoader
             ? 'component-content-preparing'
@@ -103,30 +103,30 @@
     <div class="button-holder" #elButtonWrapper>
       <div
         class="button-section"
-        *ngIf="dialogBelonging.Buttons.length > 0"
+        *ngIf="dialogBelonging.buttons.length > 0"
         [ngStyle]="{
-          'text-align': dialogBelonging.DialogCoreConfig.ButtonPosition
+          'text-align': dialogBelonging.dialogCoreConfig.buttonPosition
         }"
       >
         <button
           class="ed-btn ed-btn-lg"
           #elButton
-          *ngFor="let button of dialogBelonging.Buttons"
+          *ngFor="let button of dialogBelonging.buttons"
           (click)="onCustomButton(button)"
           [ngClass]="{
-            '': button.LayoutType ? button.LayoutType === 0 : false,
-            'ed-btn-success': button.LayoutType ? button.LayoutType === 1 : false,
-            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,
-            'ed-btn-warning': button.LayoutType ? button.LayoutType === 3 : false,
-            'ed-btn-danger': button.LayoutType ? button.LayoutType === 4 : false,
-            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,
-            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,
-            'ed-btn-primary': button.LayoutType ? button.LayoutType === 7 : false,
-            'ed-btn-secondary': button.LayoutType ? button.LayoutType === 8 : false,
-            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false
+            '': button.layoutType ? button.layoutType === 0 : false,
+            'ed-btn-success': button.layoutType ? button.layoutType === 1 : false,
+            'ed-btn-info': button.layoutType ? button.layoutType === 2 : false,
+            'ed-btn-warning': button.layoutType ? button.layoutType === 3 : false,
+            'ed-btn-danger': button.layoutType ? button.layoutType === 4 : false,
+            'ed-btn-dark': button.layoutType ? button.layoutType === 5 : false,
+            'ed-btn-light': button.layoutType ? button.layoutType === 6 : false,
+            'ed-btn-primary': button.layoutType ? button.layoutType === 7 : false,
+            'ed-btn-secondary': button.layoutType ? button.layoutType === 8 : false,
+            'ed-btn-link': button.layoutType ? button.layoutType === 9 : false
           }"
         >
-          {{ button.Label }}
+          {{ button.label }}
         </button>
       </div>
     </div>

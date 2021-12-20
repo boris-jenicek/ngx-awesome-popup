@@ -1,53 +1,53 @@
 import { ButtonLayoutDisplay } from './enums';
 import { IButton, IColorObject, IColorTypes, IGlobalConfig, IGlobalUserConfig, ISizes } from './global-interfaces';
 export declare class Sizes implements ISizes {
-    Width: string;
-    MinWidth: string;
-    MaxWidth: string;
-    Height: string;
-    MinHeight: string;
-    MaxHeight: string;
-    FullScreen: boolean;
+    width: string;
+    minWidth: string;
+    maxWidth: string;
+    height: string;
+    minHeight: string;
+    maxHeight: string;
+    fullScreen: boolean;
 }
-export declare class Dispatch {
-    Title: string;
-    Message: string;
+export declare class dispatch {
+    title: string;
+    message: string;
 }
 export declare class ButtonMaker implements IButton {
-    Label: string;
+    label: string;
     ID: string;
-    LayoutType: ButtonLayoutDisplay;
-    constructor(Label: string, ID: string, LayoutType?: ButtonLayoutDisplay);
+    layoutType: ButtonLayoutDisplay;
+    constructor(label: string, ID: string, layoutType?: ButtonLayoutDisplay);
 }
 export declare class GlobalUserConfig implements IGlobalUserConfig {
-    ColorList: IColorTypes;
+    colorList: IColorTypes;
     constructor(_GlobalUserConfig: IGlobalUserConfig);
 }
 export declare class ColorTypes implements IColorTypes {
-    Primary: string;
-    Secondary: string;
-    Success: string;
-    Info: string;
-    Warning: string;
-    Danger: string;
-    Light: string;
-    Dark: string;
+    primary: string;
+    secondary: string;
+    success: string;
+    info: string;
+    warning: string;
+    danger: string;
+    light: string;
+    dark: string;
 }
 export declare class ResetGlobalConfig {
     constructor(globalConfig?: IGlobalUserConfig);
 }
 export declare class GlobalConfig implements IGlobalConfig {
-    DisplayColor: IColorObject;
+    displayColor: IColorObject;
 }
 export declare class DisplayColor implements IColorObject {
-    Primary: ColorProvider;
-    Secondary: ColorProvider;
-    Success: ColorProvider;
-    Info: ColorProvider;
-    Warning: ColorProvider;
-    Danger: ColorProvider;
-    Light: ColorProvider;
-    Dark: ColorProvider;
+    primary: ColorProvider;
+    secondary: ColorProvider;
+    success: ColorProvider;
+    info: ColorProvider;
+    warning: ColorProvider;
+    danger: ColorProvider;
+    light: ColorProvider;
+    dark: ColorProvider;
 }
 export declare class ColorProvider {
     Base: string;

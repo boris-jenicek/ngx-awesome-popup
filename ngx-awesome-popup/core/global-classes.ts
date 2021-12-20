@@ -4,58 +4,58 @@ import { GlobalConfigService } from './global-config.service';
 import { IButton, IColorObject, IColorTypes, IGlobalConfig, IGlobalUserConfig, ISizes } from './global-interfaces';
 
 export class Sizes implements ISizes {
-  Width: string = null;
-  MinWidth: string = null;
-  MaxWidth: string = null;
-  Height: string = null;
-  MinHeight: string = null;
-  MaxHeight: string = null;
-  FullScreen: boolean = null;
+  width: string = null;
+  minWidth: string = null;
+  maxWidth: string = null;
+  height: string = null;
+  minHeight: string = null;
+  maxHeight: string = null;
+  fullScreen: boolean = null;
 }
 
-export class Dispatch {
-  Title: string = null;
-  Message: string = null;
+export class dispatch {
+  title: string = null;
+  message: string = null;
 }
 
 export class ButtonMaker implements IButton {
   constructor(
-    public Label: string,
+    public label: string,
     public ID: string,
-    public LayoutType: ButtonLayoutDisplay = ButtonLayoutDisplay.PRIMARY
+    public layoutType: ButtonLayoutDisplay = ButtonLayoutDisplay.PRIMARY
   ) {}
 }
 
 export class GlobalUserConfig implements IGlobalUserConfig {
-  ColorList: IColorTypes = new ColorTypes();
+  colorList: IColorTypes = new ColorTypes();
 
   constructor(_GlobalUserConfig: IGlobalUserConfig) {
     if (_GlobalUserConfig) {
       const dataControl = new DataControl();
       dataControl.copyValuesFrom(_GlobalUserConfig, this);
       const colorList = new ColorTypes();
-      this.ColorList = dataControl.copyValuesFrom(this.ColorList, colorList);
+      this.colorList = dataControl.copyValuesFrom(this.colorList, colorList);
     }
   }
 }
 
 export class ColorTypes implements IColorTypes {
-  Primary: string = null;
-  Secondary: string = null;
-  Success: string = null;
-  Info: string = null;
-  Warning: string = null;
-  Danger: string = null;
-  Light: string = null;
-  Dark: string = null;
+  primary: string = null;
+  secondary: string = null;
+  success: string = null;
+  info: string = null;
+  warning: string = null;
+  danger: string = null;
+  light: string = null;
+  dark: string = null;
 }
 
 export class ResetGlobalConfig {
   constructor(globalConfig?: IGlobalUserConfig) {
     const globalConfigService: GlobalConfigService = ServiceLocator.injector.get(GlobalConfigService);
     if (globalConfig) {
-      globalConfigService.setUserColors(globalConfig.ColorList);
-      globalConfigService.setNodeStyles(globalConfigService.productionGlobalConfig.DisplayColor, true);
+      globalConfigService.setUserColors(globalConfig.colorList);
+      globalConfigService.setNodeStyles(globalConfigService.productionGlobalConfig.displayColor, true);
     } else {
       globalConfigService.resetStyles();
     }
@@ -63,18 +63,18 @@ export class ResetGlobalConfig {
 }
 
 export class GlobalConfig implements IGlobalConfig {
-  DisplayColor: IColorObject = new DisplayColor();
+  displayColor: IColorObject = new DisplayColor();
 }
 
 export class DisplayColor implements IColorObject {
-  Primary: ColorProvider = null;
-  Secondary: ColorProvider = null;
-  Success: ColorProvider = null;
-  Info: ColorProvider = null;
-  Warning: ColorProvider = null;
-  Danger: ColorProvider = null;
-  Light: ColorProvider = null;
-  Dark: ColorProvider = null;
+  primary: ColorProvider = null;
+  secondary: ColorProvider = null;
+  success: ColorProvider = null;
+  info: ColorProvider = null;
+  warning: ColorProvider = null;
+  danger: ColorProvider = null;
+  light: ColorProvider = null;
+  dark: ColorProvider = null;
 }
 
 export class ColorProvider {

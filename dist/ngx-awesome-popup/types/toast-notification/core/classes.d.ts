@@ -16,14 +16,14 @@ export declare class ToastNotificationInitializer {
     setButtonLabels(_Confirm: string, _Decline?: string): void;
 }
 export declare class ToastNotificationResponse extends DataControl implements IToastNotificationResponse, IToastNotificationPublicResponse {
-    Success: boolean;
-    ClickedButtonID: string;
+    success: boolean;
+    clickedButtonID: string;
     constructor();
     setSuccess(_IsSuccess: boolean): void;
     setClickedButtonID(_ClickedButtonID: any): void;
 }
-export declare class ToastNotificationEventsController {
-    private EntityUniqueID;
+export declare class ToastNotificationeventsController {
+    private entityUniqueID;
     private readonly _onButtonClick;
     private readonly _afterClosed;
     private readonly _buttonList;
@@ -31,7 +31,7 @@ export declare class ToastNotificationEventsController {
     afterClosed$: Observable<IPrivateResponseMerged>;
     onButtonClick$: Observable<IButton>;
     buttonList$: Observable<IButton[]>;
-    constructor(EntityUniqueID: string);
+    constructor(entityUniqueID: string);
     close(_Response?: IPrivateResponseMerged): void;
     onButtonClick(_Button: IButton): void;
     setButtonList(_ButtonList: IButton[]): void;
@@ -53,43 +53,43 @@ export declare class ToastNotificationCarrier {
     openToastNotification$(): Observable<IPrivateResponseMerged>;
 }
 export declare class GlobalToastSettings implements IGlobalToastSettings {
-    AllowedNotificationsAtOnce: number;
+    allowedNotificationsAtOnce: number;
 }
 export declare class ResetToastGlobalSettings {
     constructor(globalToastConfig?: IGlobalToastSettings);
 }
 export declare class ToastSettings {
-    Buttons: IButton[];
-    ToastCoreConfig: IToastCoreConfig;
-    Dispatch: IDispatch;
-    GlobalSettings: GlobalToastSettings;
+    buttons: IButton[];
+    toastCoreConfig: IToastCoreConfig;
+    dispatch: IDispatch;
+    globalSettings: GlobalToastSettings;
 }
 export declare class ToastCustomStyles implements IToastCustomStyles {
-    TitleCSS: string;
-    TextCSS: string;
-    ButtonSectionCSS: string;
-    ButtonCSS: string;
+    titleCSS: string;
+    textCSS: string;
+    buttonSectionCSS: string;
+    buttonCSS: string;
 }
-export declare class ToastCoreConfig implements IToastCoreConfig {
-    ToastPosition: ToastPositionEnum;
-    ProgressBar: ToastProgressBarEnum;
-    ToastUserViewType: ToastUserViewTypeEnum;
-    OpenInElementID: string;
-    ButtonPosition: VerticalPosition;
-    TextPosition: VerticalPosition;
-    LayoutType: DialogLayoutDisplay;
-    Dispatch: IDispatch;
-    ConfirmLabel: string;
-    DeclineLabel: string;
-    AutoCloseDelay: number;
-    DisableIcon: boolean;
-    AllowHTMLMessage: boolean;
-    AnimationIn: AppearanceAnimation;
-    AnimationOut: DisappearanceAnimation;
-    CustomStyles: IToastCustomStyles;
+export declare class toastCoreConfig implements IToastCoreConfig {
+    toastPosition: ToastPositionEnum;
+    progressBar: ToastProgressBarEnum;
+    toastUserViewType: ToastUserViewTypeEnum;
+    openInElementID: string;
+    buttonPosition: VerticalPosition;
+    textPosition: VerticalPosition;
+    layoutType: DialogLayoutDisplay;
+    dispatch: IDispatch;
+    confirmLabel: string;
+    declineLabel: string;
+    autoCloseDelay: number;
+    disableIcon: boolean;
+    allowHtmlMessage: boolean;
+    animationIn: AppearanceAnimation;
+    animationOut: DisappearanceAnimation;
+    customStyles: IToastCustomStyles;
 }
 export declare class ToastNotificationBelonging extends ToastSettings implements IToastNotificationBelonging {
-    EntityUniqueID: string;
-    EventsController: ToastNotificationEventsController;
+    entityUniqueID: string;
+    eventsController: ToastNotificationeventsController;
     constructor();
 }

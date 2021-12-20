@@ -54,7 +54,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     private cd: ChangeDetectorRef
   ) {
     setTimeout(() => {
-      this.boxAnimation = this.dialogBelonging.DialogCoreConfig.AnimationIn;
+      this.boxAnimation = this.dialogBelonging.dialogCoreConfig.animationIn;
     }, 1);
   }
 
@@ -62,21 +62,21 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     this.hideScrollbar(); // hide scrollbar if config enabled
 
     this.loadChildComponent(this.childComponentType);
-    this.loadLoaderComponent(this.dialogBelonging.DialogCoreConfig.LoaderComponent);
+    this.loadLoaderComponent(this.dialogBelonging.dialogCoreConfig.loaderComponent);
     this.setDefaultResponse();
     this.cd.detectChanges();
     this.setCustomStyles();
   }
 
   hideScrollbar(): void {
-    if (this.dialogBelonging.DialogCoreConfig.HideScrollbar) {
+    if (this.dialogBelonging.dialogCoreConfig.hideScrollbar) {
       this.bodyOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
     }
   }
 
   revertScrollbarSettings(): void {
-    if (this.dialogBelonging.DialogCoreConfig.HideScrollbar) {
+    if (this.dialogBelonging.dialogCoreConfig.hideScrollbar) {
       document.body.style.overflow = this.bodyOverflow;
     }
   }
@@ -84,7 +84,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   setDefaultResponse(): void {
     const dialogResponse = new DialogDefaultResponse();
     dialogResponse.setBelonging(this.dialogBelonging);
-    this.dialogBelonging.EventsController.setDefaultResponse(dialogResponse);
+    this.dialogBelonging.eventsController.setDefaultResponse(dialogResponse);
   }
 
   ngOnDestroy(): void {
@@ -119,12 +119,12 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   }
 
   close(): void {
-    this.dialogBelonging.EventsController.close();
+    this.dialogBelonging.eventsController.close();
   }
 
   closeParent$(): Observable<any> {
-    this.boxAnimation = this.dialogBelonging.DialogCoreConfig.AnimationOut;
-    const closeDuration = this.dialogBelonging.DialogCoreConfig.AnimationOut ? 800 : 200;
+    this.boxAnimation = this.dialogBelonging.dialogCoreConfig.animationOut;
+    const closeDuration = this.dialogBelonging.dialogCoreConfig.animationOut ? 800 : 200;
     this.fadeInOutAnimation = 'close-fast';
     return new Observable((observer: Observer<any>) => {
       observer.next('');
@@ -137,7 +137,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   }
 
   onCustomButton(_Button: any): void {
-    this.dialogBelonging.EventsController.onButtonClick(_Button);
+    this.dialogBelonging.eventsController.onButtonClick(_Button);
   }
 
   closeLoader(): void {
@@ -145,16 +145,16 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   }
 
   setCustomStyles(): void {
-    if (this.dialogBelonging.DialogCoreConfig.CustomStyles.WrapperCSS && this.elDialogWrapper) {
-      this.elDialogWrapper.nativeElement.style.cssText += this.dialogBelonging.DialogCoreConfig.CustomStyles.WrapperCSS;
+    if (this.dialogBelonging.dialogCoreConfig.customStyles.wrapperCSS && this.elDialogWrapper) {
+      this.elDialogWrapper.nativeElement.style.cssText += this.dialogBelonging.dialogCoreConfig.customStyles.wrapperCSS;
     }
-    if (this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
+    if (this.dialogBelonging.dialogCoreConfig.customStyles.buttonSectionCSS && this.elButtonWrapper) {
       this.elButtonWrapper.nativeElement.style.cssText +=
-        this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonSectionCSS;
+        this.dialogBelonging.dialogCoreConfig.customStyles.buttonSectionCSS;
     }
-    if (this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
+    if (this.dialogBelonging.dialogCoreConfig.customStyles.buttonCSS && this.elButton) {
       this.elButton.forEach(el => {
-        el.nativeElement.style.cssText += this.dialogBelonging.DialogCoreConfig.CustomStyles.ButtonCSS;
+        el.nativeElement.style.cssText += this.dialogBelonging.dialogCoreConfig.customStyles.buttonCSS;
       });
     }
   }

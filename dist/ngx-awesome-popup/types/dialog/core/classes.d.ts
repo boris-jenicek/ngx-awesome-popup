@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { DataControl, Sizes } from '../../../core/global-classes';
 import { IButton } from '../../../core/global-interfaces';
-import { IDialogBelonging, IDialogCoreConfig, IDialogCustomStyles, IDialogEventsController, IDialogPublicResponse, IDialogResponse, IPrivateResponseMerged } from './interfaces';
+import { IDialogBelonging, IDialogCoreConfig, IDialogCustomStyles, IDialogeventsController, IDialogPublicResponse, IDialogResponse, IPrivateResponseMerged } from './interfaces';
 export declare class DialogInitializer {
     private component;
     private dialogCarrier;
@@ -16,9 +16,9 @@ export declare class DialogInitializer {
     setConfig(_DialogConfig: IDialogCoreConfig): void;
 }
 export declare class DialogResponse extends DataControl implements IDialogResponse, IDialogPublicResponse<any> {
-    Payload: any;
-    Success: boolean;
-    ClickedButtonID: string;
+    payload: any;
+    success: boolean;
+    clickedButtonID: string;
     constructor();
     /**
      * @ignore
@@ -29,8 +29,8 @@ export declare class DialogResponse extends DataControl implements IDialogRespon
      */
     setClickedButtonID(_ClickedButtonID: any): void;
 }
-export declare class DialogEventsController implements IDialogEventsController {
-    private EntityUniqueID;
+export declare class DialogeventsController implements IDialogeventsController {
+    private entityUniqueID;
     private readonly _afterClosed;
     private readonly _afterLoader;
     private readonly _onButtonClick;
@@ -40,7 +40,7 @@ export declare class DialogEventsController implements IDialogEventsController {
     afterClosed$: Observable<IPrivateResponseMerged>;
     afterLoader$: Observable<string>;
     buttonList$: Observable<IButton[]>;
-    constructor(EntityUniqueID: string);
+    constructor(entityUniqueID: string);
     close(_Payload?: any): void;
     onButtonClick(_Button: IButton): void;
     setButtonList(_ButtonList: IButton[]): void;
@@ -63,29 +63,29 @@ export declare class DialogCarrier {
     openDialog$(): Observable<IPrivateResponseMerged>;
 }
 export declare class DialogCustomStyles implements IDialogCustomStyles {
-    ButtonSectionCSS: string;
-    ButtonCSS: string;
-    WrapperCSS: string;
+    buttonSectionCSS: string;
+    buttonCSS: string;
+    wrapperCSS: string;
 }
-export declare class DialogCoreConfig extends Sizes implements IDialogCoreConfig {
-    EscapeKeyClose: boolean;
-    HideScrollbar: boolean;
-    ButtonPosition: VerticalPosition;
-    LayoutType: DialogLayoutDisplay;
-    DisplayLoader: boolean;
-    LoaderComponent: Type<any>;
-    AnimationIn: AppearanceAnimation;
-    AnimationOut: DisappearanceAnimation;
-    CustomStyles: IDialogCustomStyles;
+export declare class dialogCoreConfig extends Sizes implements IDialogCoreConfig {
+    escapeKeyClose: boolean;
+    hideScrollbar: boolean;
+    buttonPosition: VerticalPosition;
+    layoutType: DialogLayoutDisplay;
+    displayLoader: boolean;
+    loaderComponent: Type<any>;
+    animationIn: AppearanceAnimation;
+    animationOut: DisappearanceAnimation;
+    customStyles: IDialogCustomStyles;
 }
 export declare class DialogSettings {
-    Buttons: IButton[];
-    DialogCoreConfig: IDialogCoreConfig;
+    buttons: IButton[];
+    dialogCoreConfig: IDialogCoreConfig;
 }
 export declare class DialogBelonging<CustomData = any> extends DialogSettings implements IDialogBelonging {
     /** @internal */
-    EntityUniqueID: string;
-    CustomData: CustomData;
-    EventsController: IDialogEventsController;
+    entityUniqueID: string;
+    customData: CustomData;
+    eventsController: IDialogeventsController;
     constructor();
 }

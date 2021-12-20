@@ -20,41 +20,41 @@ export class ToastNotificationConfigService {
     // region *** toastNotification userConfig (user input app-module) ***
     const userConfigBase = new ToastSettings();
 
-    this.dataControl.copyValuesFrom(userConfig.ToastCoreConfig, userConfigBase.ToastCoreConfig); // this will make sure that object has right properties
+    this.dataControl.copyValuesFrom(userConfig.toastCoreConfig, userConfigBase.toastCoreConfig); // this will make sure that object has right properties
 
-    userConfig.ToastCoreConfig = userConfigBase.ToastCoreConfig;
+    userConfig.toastCoreConfig = userConfigBase.toastCoreConfig;
     // endregion
 
     // region *** author default config values (if there is no user input) ***
-    this.authorConfig.ToastCoreConfig.ButtonPosition = 'right';
-    this.authorConfig.ToastCoreConfig.TextPosition = 'left';
-    this.authorConfig.ToastCoreConfig.ToastPosition = ToastPositionEnum.TOP_RIGHT;
-    this.authorConfig.ToastCoreConfig.ProgressBar = ToastProgressBarEnum.INCREASE;
-    this.authorConfig.ToastCoreConfig.ToastUserViewType = ToastUserViewTypeEnum.SIMPLE;
-    this.authorConfig.ToastCoreConfig.AutoCloseDelay = 2500;
-    this.authorConfig.ToastCoreConfig.DisableIcon = false;
-    this.authorConfig.ToastCoreConfig.AllowHTMLMessage = true;
-    this.authorConfig.ToastCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
-    this.authorConfig.GlobalSettings.AllowedNotificationsAtOnce = 5;
-    this.authorConfig.ToastCoreConfig.AnimationIn = AppearanceAnimation.ZOOM_IN;
-    this.authorConfig.ToastCoreConfig.AnimationOut = DisappearanceAnimation.ZOOM_OUT;
-    this.authorConfig.ToastCoreConfig.CustomStyles = new ToastCustomStyles();
+    this.authorConfig.toastCoreConfig.buttonPosition = 'right';
+    this.authorConfig.toastCoreConfig.textPosition = 'left';
+    this.authorConfig.toastCoreConfig.toastPosition = ToastPositionEnum.TOP_RIGHT;
+    this.authorConfig.toastCoreConfig.progressBar = ToastProgressBarEnum.INCREASE;
+    this.authorConfig.toastCoreConfig.toastUserViewType = ToastUserViewTypeEnum.SIMPLE;
+    this.authorConfig.toastCoreConfig.autoCloseDelay = 2500;
+    this.authorConfig.toastCoreConfig.disableIcon = false;
+    this.authorConfig.toastCoreConfig.allowHtmlMessage = true;
+    this.authorConfig.toastCoreConfig.layoutType = DialogLayoutDisplay.NONE;
+    this.authorConfig.globalSettings.allowedNotificationsAtOnce = 5;
+    this.authorConfig.toastCoreConfig.animationIn = AppearanceAnimation.ZOOM_IN;
+    this.authorConfig.toastCoreConfig.animationOut = DisappearanceAnimation.ZOOM_OUT;
+    this.authorConfig.toastCoreConfig.customStyles = new ToastCustomStyles();
 
     // endregion
 
     // region *** Production setup ***
 
     this.setResetGlobalToastConfig();
-    this.dataControl.copyValuesFrom(this.authorConfig.ToastCoreConfig, this.productionConfig.ToastCoreConfig);
-    this.dataControl.copyValuesFrom(this.userConfig.ToastCoreConfig, this.productionConfig.ToastCoreConfig);
+    this.dataControl.copyValuesFrom(this.authorConfig.toastCoreConfig, this.productionConfig.toastCoreConfig);
+    this.dataControl.copyValuesFrom(this.userConfig.toastCoreConfig, this.productionConfig.toastCoreConfig);
     // endregion
   }
 
   setResetGlobalToastConfig(globalToastConfig?: IGlobalToastSettings): void {
-    this.dataControl.copyValuesFrom(this.authorConfig.GlobalSettings, this.productionConfig.GlobalSettings);
+    this.dataControl.copyValuesFrom(this.authorConfig.globalSettings, this.productionConfig.globalSettings);
     this.dataControl.copyValuesFrom(
-      globalToastConfig ? globalToastConfig : this.userConfig.GlobalSettings,
-      this.productionConfig.GlobalSettings
+      globalToastConfig ? globalToastConfig : this.userConfig.globalSettings,
+      this.productionConfig.globalSettings
     );
   }
 }

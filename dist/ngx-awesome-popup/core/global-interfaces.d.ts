@@ -1,48 +1,48 @@
 import { ButtonLayoutDisplay } from './enums';
 export interface ISizes {
-    Width?: string;
-    MinWidth?: string;
-    MaxWidth?: string;
-    Height?: string;
-    MinHeight?: string;
-    MaxHeight?: string;
-    FullScreen?: boolean;
+    width?: string;
+    minWidth?: string;
+    maxWidth?: string;
+    height?: string;
+    minHeight?: string;
+    maxHeight?: string;
+    fullScreen?: boolean;
 }
 /**
  * Each property of {@link ColorList} represent a string which represent a color in hex or rgb/rgba format.
  * For available color types(properties) check {@link IColorTypes} interface.
  * Every color is optional, and it will reflect on dialog or button color types and its color contrast or variance.
  *  * ```typescript
- * // ColorList object example.
+ * // colorList object example.
  * const colorList = {
- *         ColorList: {
- *            Primary  : '#ff9e00',
- *            Secondary: '#989ea5',
- *            Info     : '#2f8ee5',
- *            Success  : '#3caea3',
- *            Warning  : '#ffc107',
- *            Danger   : '#e46464',
- *            Light    : '#fbfbfb',
- *            Dark     : '#343a40'
+ *         colorList: {
+ *            primary  : '#ff9e00',
+ *            secondary: '#989ea5',
+ *            info     : '#2f8ee5',
+ *            success  : '#3caea3',
+ *            warning  : '#ffc107',
+ *            danger   : '#e46464',
+ *            light    : '#fbfbfb',
+ *            dark     : '#343a40'
  *           }
  *        }
  * ```
  */
 export interface IGlobalUserConfig {
-    ColorList?: IColorTypes;
+    colorList?: IColorTypes;
 }
 export interface IGlobalConfig {
-    DisplayColor?: IColorObject;
+    displayColor?: IColorObject;
 }
 export interface IColorTypes {
-    Primary?: string;
-    Secondary?: string;
-    Success?: string;
-    Info?: string;
-    Warning?: string;
-    Danger?: string;
-    Light?: string;
-    Dark?: string;
+    primary?: string;
+    secondary?: string;
+    success?: string;
+    info?: string;
+    warning?: string;
+    danger?: string;
+    light?: string;
+    dark?: string;
 }
 export interface IPrivateResponse {
     setBelonging(_DialogBelonging: any): void;
@@ -55,8 +55,8 @@ export interface IPrivateResponse {
  * // Custom button object.
  * const button = {
  *        ID         : 'confirm_btn',
- *        Label:     : 'Confirm'
- *        LayoutType : ButtonLayoutDisplay.SUCCESS
+ *        label:     : 'Confirm'
+ *        layoutType : ButtonLayoutDisplay.SUCCESS
  *  }
  * // Or instantiated with ButtonMaker class
  * const button2 = new ButtonMaker('Confirm', 'confirm_btn', ButtonLayoutDisplay.SUCCESS)
@@ -64,19 +64,19 @@ export interface IPrivateResponse {
  * * ButtonLayoutDisplay: {@link ButtonLayoutDisplay}
  */
 export interface IButton {
-    Label: string;
-    LayoutType: ButtonLayoutDisplay | null;
+    label: string;
+    layoutType: ButtonLayoutDisplay | null;
     ID?: string;
 }
 export interface IColorObject {
-    Primary?: IColorProvider;
-    Secondary?: IColorProvider;
-    Success?: IColorProvider;
-    Info?: IColorProvider;
-    Warning?: IColorProvider;
-    Danger?: IColorProvider;
-    Light?: IColorProvider;
-    Dark?: IColorProvider;
+    primary?: IColorProvider;
+    secondary?: IColorProvider;
+    success?: IColorProvider;
+    info?: IColorProvider;
+    warning?: IColorProvider;
+    danger?: IColorProvider;
+    light?: IColorProvider;
+    dark?: IColorProvider;
 }
 export interface IColorProvider {
     Base: string;
@@ -91,6 +91,6 @@ export interface IColorProvider {
     IsBaseBright: boolean;
 }
 export interface IDispatch {
-    Title: string;
-    Message: string;
+    title: string;
+    message: string;
 }

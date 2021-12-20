@@ -4,101 +4,101 @@
   [@fadeInOut]="{
     value: fadeInOutAnimation,
     params: {
-      closeDelay: toastNotificationBelonging.ToastCoreConfig.AnimationOut === 0 ? '200ms' : '300ms'
+      closeDelay: toastNotificationBelonging.toastCoreConfig.animationOut === 0 ? '200ms' : '300ms'
     }
   }"
 >
   <div
     class="evolve-toast"
     [@.disabled]="
-      toastNotificationBelonging.ToastCoreConfig.AnimationIn === 0 &&
-      toastNotificationBelonging.ToastCoreConfig.AnimationOut === 0
+      toastNotificationBelonging.toastCoreConfig.animationIn === 0 &&
+      toastNotificationBelonging.toastCoreConfig.animationOut === 0
     "
     [@boxAnimations]="boxAnimation"
     (mouseover)="mouseOver()"
     (mouseout)="mouseOut()"
     (click)="onToastClicked($event)"
     [ngClass]="{
-      'standard-dialog': 0 === toastNotificationBelonging.ToastCoreConfig.LayoutType,
-      'success-dialog': 1 === toastNotificationBelonging.ToastCoreConfig.LayoutType,
-      'info-dialog': 2 === toastNotificationBelonging.ToastCoreConfig.LayoutType,
-      'warning-dialog': 3 === toastNotificationBelonging.ToastCoreConfig.LayoutType,
-      'danger-dialog': 4 === toastNotificationBelonging.ToastCoreConfig.LayoutType
+      'standard-dialog': 0 === toastNotificationBelonging.toastCoreConfig.layoutType,
+      'success-dialog': 1 === toastNotificationBelonging.toastCoreConfig.layoutType,
+      'info-dialog': 2 === toastNotificationBelonging.toastCoreConfig.layoutType,
+      'warning-dialog': 3 === toastNotificationBelonging.toastCoreConfig.layoutType,
+      'danger-dialog': 4 === toastNotificationBelonging.toastCoreConfig.layoutType
     }"
   >
-    <div class="toast-title-content" #elTitleWrapper *ngIf="toastNotificationBelonging.Dispatch.Title">
+    <div class="toast-title-content" #elTitleWrapper *ngIf="toastNotificationBelonging.dispatch.title">
       <div class="dont-break-out">
         <div class="text-wrapper dont-break-out">
-          {{ toastNotificationBelonging.Dispatch.Title }}
+          {{ toastNotificationBelonging.dispatch.title }}
           <span class="close-ico icon-times-circle" (click)="closeIcon()" *ngIf="!buttonsExist"></span>
         </div>
       </div>
     </div>
 
-    <div class="content-holder toast-text" #elTextWrapper *ngIf="toastNotificationBelonging.Dispatch.Message">
-      <div class="icon-section" *ngIf="!toastNotificationBelonging.ToastCoreConfig.DisableIcon">
+    <div class="content-holder toast-text" #elTextWrapper *ngIf="toastNotificationBelonging.dispatch.message">
+      <div class="icon-section" *ngIf="!toastNotificationBelonging.toastCoreConfig.disableIcon">
         <span
           class="icon-type-toast"
           [ngClass]="{
-            '': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,
-            'ap-icon-success icon-check-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,
-            'ap-icon-info icon-info-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,
-            'ap-icon-warning icon-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,
-            'ap-icon-danger icon-times-circle': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4
+            '': toastNotificationBelonging.toastCoreConfig.layoutType === 0,
+            'ap-icon-success icon-check-circle': toastNotificationBelonging.toastCoreConfig.layoutType === 1,
+            'ap-icon-info icon-info-circle': toastNotificationBelonging.toastCoreConfig.layoutType === 2,
+            'ap-icon-warning icon-warning': toastNotificationBelonging.toastCoreConfig.layoutType === 3,
+            'ap-icon-danger icon-times-circle': toastNotificationBelonging.toastCoreConfig.layoutType === 4
           }"
         ></span>
       </div>
       <div
         class="text-wrapper-section toast-inner-content"
         [ngStyle]="{
-          'text-align': toastNotificationBelonging.ToastCoreConfig.TextPosition
+          'text-align': toastNotificationBelonging.toastCoreConfig.textPosition
         }"
         [ngClass]="{
-          'only-message': !toastNotificationBelonging.Dispatch.Title
+          'only-message': !toastNotificationBelonging.dispatch.title
         }"
       >
         <div class="dont-break-out">
-          <div class="text-wrapper dont-break-out" *ngIf="!toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage">
-            <p>{{ toastNotificationBelonging.Dispatch.Message }}</p>
+          <div class="text-wrapper dont-break-out" *ngIf="!toastNotificationBelonging.toastCoreConfig.allowHtmlMessage">
+            <p>{{ toastNotificationBelonging.dispatch.message }}</p>
           </div>
           <div
             class="text-wrapper"
-            *ngIf="toastNotificationBelonging.ToastCoreConfig.AllowHTMLMessage"
-            [innerHTML]="toastNotificationBelonging.Dispatch.Message"
+            *ngIf="toastNotificationBelonging.toastCoreConfig.allowHtmlMessage"
+            [innerHTML]="toastNotificationBelonging.dispatch.message"
           ></div>
         </div>
       </div>
       <span
         class="close-ico icon-times-circle"
         (click)="closeIcon()"
-        *ngIf="buttonsExist && !toastNotificationBelonging.Dispatch.Title"
+        *ngIf="buttonsExist && !toastNotificationBelonging.dispatch.title"
       ></span>
     </div>
 
     <div class="button-holder" #elButtonWrapper>
       <div
         class="button-section"
-        *ngIf="toastNotificationBelonging.Buttons.length"
+        *ngIf="toastNotificationBelonging.buttons.length"
         [ngStyle]="{
-          'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition
+          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition
         }"
       >
         <button
           class="ed-btn ed-btn-sm"
           #elButton
-          *ngFor="let button of toastNotificationBelonging.Buttons"
+          *ngFor="let button of toastNotificationBelonging.buttons"
           (click)="onCustomButton(button)"
           [ngClass]="{
-            '': button.LayoutType ? button.LayoutType === 0 : false,
-            'ed-btn-success': button.LayoutType ? button.LayoutType === 1 : false,
-            'ed-btn-info': button.LayoutType ? button.LayoutType === 2 : false,
-            'ed-btn-warning': button.LayoutType ? button.LayoutType === 3 : false,
-            'ed-btn-danger': button.LayoutType ? button.LayoutType === 4 : false,
-            'ed-btn-dark': button.LayoutType ? button.LayoutType === 5 : false,
-            'ed-btn-light': button.LayoutType ? button.LayoutType === 6 : false,
-            'ed-btn-primary': button.LayoutType ? button.LayoutType === 7 : false,
-            'ed-btn-secondary': button.LayoutType ? button.LayoutType === 8 : false,
-            'ed-btn-link': button.LayoutType ? button.LayoutType === 9 : false
+            '': button.layoutType ? button.layoutType === 0 : false,
+            'ed-btn-success': button.layoutType ? button.layoutType === 1 : false,
+            'ed-btn-info': button.layoutType ? button.layoutType === 2 : false,
+            'ed-btn-warning': button.layoutType ? button.layoutType === 3 : false,
+            'ed-btn-danger': button.layoutType ? button.layoutType === 4 : false,
+            'ed-btn-dark': button.layoutType ? button.layoutType === 5 : false,
+            'ed-btn-light': button.layoutType ? button.layoutType === 6 : false,
+            'ed-btn-primary': button.layoutType ? button.layoutType === 7 : false,
+            'ed-btn-secondary': button.layoutType ? button.layoutType === 8 : false,
+            'ed-btn-link': button.layoutType ? button.layoutType === 9 : false
           }"
         >
           {{ button.Label }}
@@ -108,48 +108,48 @@
       <div
         class="button-section"
         [ngStyle]="{
-          'text-align': toastNotificationBelonging.ToastCoreConfig.ButtonPosition
+          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition
         }"
         *ngIf="
-          !toastNotificationBelonging.Buttons.length &&
-          (toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||
-            toastNotificationBelonging.ToastCoreConfig.ConfirmLabel)
+          !toastNotificationBelonging.buttons.length &&
+          (toastNotificationBelonging.toastCoreConfig.declineLabel ||
+            toastNotificationBelonging.toastCoreConfig.confirmLabel)
         "
       >
         <button
           class="ed-btn ed-btn-sm"
           #elButton
-          *ngIf="toastNotificationBelonging.ToastCoreConfig.ConfirmLabel"
+          *ngIf="toastNotificationBelonging.toastCoreConfig.confirmLabel"
           (click)="onButtonClick('confirm')"
           [ngClass]="{
-            'ed-btn-primary': toastNotificationBelonging.ToastCoreConfig.LayoutType === 0,
-            'ed-btn-success': toastNotificationBelonging.ToastCoreConfig.LayoutType === 1,
-            'ed-btn-info': toastNotificationBelonging.ToastCoreConfig.LayoutType === 2,
-            'ed-btn-warning': toastNotificationBelonging.ToastCoreConfig.LayoutType === 3,
-            'ed-btn-danger': toastNotificationBelonging.ToastCoreConfig.LayoutType === 4
+            'ed-btn-primary': toastNotificationBelonging.toastCoreConfig.layoutType === 0,
+            'ed-btn-success': toastNotificationBelonging.toastCoreConfig.layoutType === 1,
+            'ed-btn-info': toastNotificationBelonging.toastCoreConfig.layoutType === 2,
+            'ed-btn-warning': toastNotificationBelonging.toastCoreConfig.layoutType === 3,
+            'ed-btn-danger': toastNotificationBelonging.toastCoreConfig.layoutType === 4
           }"
         >
-          {{ toastNotificationBelonging.ToastCoreConfig.ConfirmLabel }}
+          {{ toastNotificationBelonging.toastCoreConfig.confirmLabel }}
         </button>
         <button
           class="ed-btn ed-btn-sm ed-btn-secondary"
           #elButton
           (click)="onButtonClick('decline')"
-          *ngIf="toastNotificationBelonging.ToastCoreConfig.DeclineLabel"
+          *ngIf="toastNotificationBelonging.toastCoreConfig.declineLabel"
         >
-          {{ toastNotificationBelonging.ToastCoreConfig.DeclineLabel }}
+          {{ toastNotificationBelonging.toastCoreConfig.declineLabel }}
         </button>
       </div>
     </div>
 
     <div
       class="progress-bar-container"
-      *ngIf="!buttonsExist && toastNotificationBelonging.ToastCoreConfig.ProgressBar !== 0"
+      *ngIf="!buttonsExist && toastNotificationBelonging.toastCoreConfig.progressBar !== 0"
     >
       <div
         class="progress-bar"
         [ngStyle]="{
-          width: (toastNotificationBelonging.ToastCoreConfig.ProgressBar === 1 ? timer.Progress : timer.Remaining) + '%'
+          width: (toastNotificationBelonging.toastCoreConfig.progressBar === 1 ? timer.Progress : timer.Remaining) + '%'
         }"
       ></div>
     </div>

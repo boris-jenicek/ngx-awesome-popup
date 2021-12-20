@@ -12,14 +12,14 @@ import { IButton, IPrivateResponse, ISizes } from '../../../core/global-interfac
  * Check interface of properties.
  */
 export interface IDialogUserConfig {
-  Buttons?: IButton[];
-  DialogCoreConfig?: IDialogCoreConfig;
+  buttons?: IButton[];
+  dialogCoreConfig?: IDialogCoreConfig;
 }
 
 export interface IDialogCustomStyles {
-  ButtonSectionCSS?: string;
-  ButtonCSS?: string;
-  WrapperCSS?: string;
+  buttonSectionCSS?: string;
+  buttonCSS?: string;
+  wrapperCSS?: string;
 }
 
 /**
@@ -29,50 +29,50 @@ export interface IDialogCustomStyles {
  * ```typescript
  * // Dialog core config object example.
  * const dialogCoreConfig = {
- *     DialogCoreConfig: {
- *        Width          : '500px',
- *        // MinWidth       : '300px',
- *        // MaxWidth       : '700px',
- *        Height         : '500px',
- *        // MinHeight      : '100vh',
- *        // MaxHeight      : '100px',
- *        HideScrollbar  : true,
- *        EscapeKeyClose : true,
- *        // FullScreen : true,
- *        ButtonPosition : 'right',
- *        LayoutType: DialogLayoutDisplay.INFO,
- *        // LoaderComponent: // Any Angular component class name can be included as a loader.
- *        DisplayLoader: false, // This will override LoaderComponent.
- *        CustomStyles: {
- *           ButtonSectionCSS: 'background: #333',
- *           ButtonCSS: 'font-size: 30px;',
- *           WrapperCSS: 'background: #333;'
+ *     dialogCoreConfig: {
+ *        width          : '500px',
+ *        // minWidth       : '300px',
+ *        // maxWidth       : '700px',
+ *        height         : '500px',
+ *        // minHeight      : '100vh',
+ *        // maxHeight      : '100px',
+ *        hideScrollbar  : true,
+ *        escapeKeyClose : true,
+ *        // fullScreen : true,
+ *        buttonPosition : 'right',
+ *        layoutType: DialogLayoutDisplay.INFO,
+ *        // loaderComponent: // Any Angular component class name can be included as a loader.
+ *        displayLoader: false, // This will override LoaderComponent.
+ *        customStyles: {
+ *           buttonSectionCss: 'background: #333',
+ *           buttonCss: 'font-size: 30px;',
+ *           wrapperCss: 'background: #333;'
  *         }
  *     }
  *  }
  * ```
  */
 export interface IDialogCoreConfig extends ISizes {
-  EscapeKeyClose?: boolean;
-  HideScrollbar?: boolean;
-  ButtonPosition?: VerticalPosition;
-  LayoutType?: DialogLayoutDisplay;
-  DisplayLoader?: boolean;
-  LoaderComponent?: Type<any>;
-  AnimationIn?: AppearanceAnimation;
-  AnimationOut?: DisappearanceAnimation;
-  CustomStyles?: IDialogCustomStyles;
+  escapeKeyClose?: boolean;
+  hideScrollbar?: boolean;
+  buttonPosition?: VerticalPosition;
+  layoutType?: DialogLayoutDisplay;
+  displayLoader?: boolean;
+  loaderComponent?: Type<any>;
+  animationIn?: AppearanceAnimation;
+  animationOut?: DisappearanceAnimation;
+  customStyles?: IDialogCustomStyles;
 }
 
 export interface IDialogBelonging {
-  Buttons: IButton[];
-  DialogCoreConfig: IDialogCoreConfig;
-  EntityUniqueID: string;
-  CustomData: any;
-  EventsController: IDialogEventsController;
+  buttons: IButton[];
+  dialogCoreConfig: IDialogCoreConfig;
+  entityUniqueID: string;
+  customData: any;
+  eventsController: IDialogeventsController;
 }
 
-export interface IDialogEventsController {
+export interface IDialogeventsController {
   /** @internal */
   defaultResponse: IPrivateResponseMerged;
   /** @internal */
@@ -105,9 +105,9 @@ export interface IDialogResponse {
 
 export interface IDialogPublicResponse<ResponsePayload> {
   /** Generic property type, accept expected payload from dynamic child component. */
-  Payload: ResponsePayload;
-  Success: boolean;
-  ClickedButtonID: string;
+  payload: ResponsePayload;
+  success: boolean;
+  clickedButtonID: string;
 }
 
 export interface IPrivateResponseMerged extends IDialogResponse, IPrivateResponse {

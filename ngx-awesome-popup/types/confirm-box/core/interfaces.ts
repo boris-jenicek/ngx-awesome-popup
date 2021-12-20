@@ -5,50 +5,50 @@ import {
   VerticalPosition
 } from '../../../core/enums';
 import { IButton, IDispatch, IPrivateResponse } from '../../../core/global-interfaces';
-import { ConfirmBoxEventsController } from './classes';
+import { ConfirmBoxeventsController } from './classes';
 
 export interface IConfirmBoxUserConfig {
-  Buttons?: IButton[];
-  ConfirmBoxCoreConfig?: IConfirmBoxCoreConfig;
-  Dispatch?: IDispatch;
+  buttons?: IButton[];
+  confirmBoxCoreConfig?: IConfirmBoxCoreConfig;
+  dispatch?: IDispatch;
 }
 
 export interface IConfirmBoxUserConfig {
-  Buttons?: IButton[];
-  ConfirmBoxCoreConfig?: IConfirmBoxCoreConfig;
-  Dispatch?: IDispatch;
+  buttons?: IButton[];
+  confirmBoxCoreConfig?: IConfirmBoxCoreConfig;
+  dispatch?: IDispatch;
 }
 
 export interface IConfirmBoxCustomStyles {
-  TitleCSS?: string;
-  TextCSS?: string;
-  ButtonSectionCSS?: string;
-  ButtonCSS?: string;
-  WrapperCSS?: string;
+  titleCSS?: string;
+  textCSS?: string;
+  buttonSectionCSS?: string;
+  buttonCSS?: string;
+  wrapperCSS?: string;
 }
 
 export interface IConfirmBoxCoreConfig {
   /** Fixed popup width */
-  Width?: string;
+  width?: string;
   /** Fixed popup height */
-  Height?: string;
-  ButtonPosition?: VerticalPosition;
-  LayoutType?: DialogLayoutDisplay;
-  Dispatch?: IDispatch;
-  ConfirmLabel?: string;
-  DeclineLabel?: string;
-  DisableIcon?: boolean;
-  AllowHTMLMessage?: boolean;
-  AnimationIn?: AppearanceAnimation;
-  AnimationOut?: DisappearanceAnimation;
-  CustomStyles?: IConfirmBoxCustomStyles;
+  height?: string;
+  buttonPosition?: VerticalPosition;
+  layoutType?: DialogLayoutDisplay;
+  dispatch?: IDispatch;
+  confirmLabel?: string;
+  declineLabel?: string;
+  disableIcon?: boolean;
+  allowHtmlMessage?: boolean;
+  animationIn?: AppearanceAnimation;
+  animationOut?: DisappearanceAnimation;
+  customStyles?: IConfirmBoxCustomStyles;
 }
 
 export interface IConfirmBoxBelonging {
-  Buttons: IButton[];
-  ConfirmBoxCoreConfig: IConfirmBoxCoreConfig;
-  EntityUniqueID: string;
-  EventsController: ConfirmBoxEventsController;
+  buttons: IButton[];
+  confirmBoxCoreConfig: IConfirmBoxCoreConfig;
+  entityUniqueID: string;
+  eventsController: ConfirmBoxeventsController;
 }
 
 export interface IConfirmBoxResponse {
@@ -58,8 +58,8 @@ export interface IConfirmBoxResponse {
 }
 
 export interface IConfirmBoxPublicResponse {
-  Success: boolean;
-  ClickedButtonID: string;
+  success: boolean;
+  clickedButtonID: string;
 }
 
 export interface IPrivateResponseMerged extends IConfirmBoxResponse, IPrivateResponse {

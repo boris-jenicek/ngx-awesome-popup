@@ -5,55 +5,55 @@ import {
   VerticalPosition
 } from '../../../core/enums';
 import { IButton, IDispatch, IPrivateResponse } from '../../../core/global-interfaces';
-import { ToastNotificationBelonging, ToastNotificationEventsController } from './classes';
+import { ToastNotificationBelonging, ToastNotificationeventsController } from './classes';
 import { ToastPositionEnum, ToastProgressBarEnum, ToastUserViewTypeEnum } from './enums';
 
 export interface IToastNotificationUserConfig {
-  Buttons?: IButton[];
-  ToastCoreConfig?: IToastCoreConfig;
-  Dispatch?: IDispatch;
-  GlobalSettings?: IGlobalToastSettings;
+  buttons?: IButton[];
+  toastCoreConfig?: IToastCoreConfig;
+  dispatch?: IDispatch;
+  globalSettings?: IGlobalToastSettings;
 }
 
 export interface IGlobalToastSettings {
   /** Number of popups allowed on screen, recommend 3-5 */
-  AllowedNotificationsAtOnce: number;
+  allowedNotificationsAtOnce: number;
 }
 
 export interface IToastCustomStyles {
-  TitleCSS?: string;
-  TextCSS?: string;
-  ButtonSectionCSS?: string;
-  ButtonCSS?: string;
+  titleCSS?: string;
+  textCSS?: string;
+  buttonSectionCSS?: string;
+  buttonCSS?: string;
 }
 
 export interface IToastCoreConfig {
-  ToastPosition?: ToastPositionEnum;
-  ProgressBar?: ToastProgressBarEnum;
-  ToastUserViewType?: ToastUserViewTypeEnum;
-  OpenInElementID?: string;
-  ButtonPosition?: VerticalPosition;
-  TextPosition?: VerticalPosition;
-  LayoutType?: DialogLayoutDisplay;
-  Dispatch?: IDispatch;
+  toastPosition?: ToastPositionEnum;
+  progressBar?: ToastProgressBarEnum;
+  toastUserViewType?: ToastUserViewTypeEnum;
+  openInElementID?: string;
+  buttonPosition?: VerticalPosition;
+  textPosition?: VerticalPosition;
+  layoutType?: DialogLayoutDisplay;
+  dispatch?: IDispatch;
   /** Default confirm button Label */
-  ConfirmLabel?: string;
+  confirmLabel?: string;
   /** Default decline button Label */
-  DeclineLabel?: string;
+  declineLabel?: string;
   /** Expressed in milliseconds */
-  AutoCloseDelay?: number;
-  DisableIcon?: boolean;
-  AllowHTMLMessage?: boolean;
-  AnimationIn?: AppearanceAnimation;
-  AnimationOut?: DisappearanceAnimation;
-  CustomStyles?: IToastCustomStyles;
+  autoCloseDelay?: number;
+  disableIcon?: boolean;
+  allowHtmlMessage?: boolean;
+  animationIn?: AppearanceAnimation;
+  animationOut?: DisappearanceAnimation;
+  customStyles?: IToastCustomStyles;
 }
 
 export interface IToastNotificationBelonging {
-  Buttons: IButton[];
-  ToastCoreConfig: IToastCoreConfig;
-  EntityUniqueID: string;
-  EventsController: ToastNotificationEventsController;
+  buttons: IButton[];
+  toastCoreConfig: IToastCoreConfig;
+  entityUniqueID: string;
+  eventsController: ToastNotificationeventsController;
 }
 
 export interface IToastNotificationResponse {
@@ -63,8 +63,8 @@ export interface IToastNotificationResponse {
 }
 
 export interface IToastNotificationPublicResponse {
-  Success: boolean;
-  ClickedButtonID: string;
+  success: boolean;
+  clickedButtonID: string;
 }
 
 export interface IPrivateResponseMerged extends IToastNotificationResponse, IPrivateResponse {
@@ -72,6 +72,6 @@ export interface IPrivateResponseMerged extends IToastNotificationResponse, IPri
 }
 
 export interface IToastNotificationRawState {
-  WeakMap: WeakMap<any, ToastNotificationEventsController>;
-  ToastBelonging: ToastNotificationBelonging;
+  weakMap: WeakMap<any, ToastNotificationeventsController>;
+  toastBelonging: ToastNotificationBelonging;
 }

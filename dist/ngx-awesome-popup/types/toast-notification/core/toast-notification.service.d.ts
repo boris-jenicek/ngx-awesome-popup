@@ -1,7 +1,7 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalConfigService } from '../../../core/global-config.service';
-import { ToastNotificationBelonging, ToastNotificationEventsController } from './classes';
+import { ToastNotificationBelonging, ToastNotificationeventsController } from './classes';
 import { IPrivateResponseMerged, IToastNotificationRawState } from './interfaces';
 import { ToastNotificationConfigService } from './toast-notification-config.service';
 export declare class ToastNotificationService {
@@ -19,11 +19,11 @@ export declare class ToastNotificationService {
     sendToBuffer(_ToastRawInstance: IToastNotificationRawState): void;
     sendToProduction(_ToastRawInstance: IToastNotificationRawState): void;
     isRefListAvailable(): boolean;
-    prepareRawToast(_EventsController: ToastNotificationEventsController, _ToastNotificationBelonging: ToastNotificationBelonging): IToastNotificationRawState;
+    prepareRawToast(_eventsController: ToastNotificationeventsController, _ToastNotificationBelonging: ToastNotificationBelonging): IToastNotificationRawState;
     getComponentRef(_ToastNotificationRawState: IToastNotificationRawState): ComponentRef<any> | null;
-    listeners(_EventsController: ToastNotificationEventsController): void;
+    listeners(_eventsController: ToastNotificationeventsController): void;
     appendToBodyParentComponent(_ComponentRef: ComponentRef<any>): void;
-    removeFromBody(_EntityUniqueID: string): void;
+    removeFromBody(_entityUniqueID: string): void;
     findDialogIndex(_DialogUniqueID: string): number;
     private setToastOverlayNode;
     private setToastWrapperNode;

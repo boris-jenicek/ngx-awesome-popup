@@ -16,7 +16,7 @@ import {
   IDialogBelonging,
   IDialogCoreConfig,
   IDialogCustomStyles,
-  IDialogEventsController,
+  IDialogeventsController,
   IDialogPublicResponse,
   IDialogResponse,
   IPrivateResponseMerged
@@ -61,9 +61,9 @@ export class DialogInitializer {
 export class DialogResponse extends DataControl implements IDialogResponse, IDialogPublicResponse<any> {
   // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
 
-  Payload: any = null;
-  Success: boolean = null;
-  ClickedButtonID: string = null;
+  payload: any = null;
+  success: boolean = null;
+  clickedButtonID: string = null;
 
   constructor() {
     super();
@@ -73,18 +73,18 @@ export class DialogResponse extends DataControl implements IDialogResponse, IDia
    * @ignore
    */
   setPayload(_Payload: any): void {
-    this.Payload = _Payload;
+    this.payload = _Payload;
   }
 
   /**
    * @ignore
    */
   setClickedButtonID(_ClickedButtonID): void {
-    this.ClickedButtonID = _ClickedButtonID;
+    this.clickedButtonID = _ClickedButtonID;
   }
 }
 
-export class DialogEventsController implements IDialogEventsController {
+export class DialogeventsController implements IDialogeventsController {
   private readonly _afterClosed: Subject<IPrivateResponseMerged> = new Subject<IPrivateResponseMerged>();
   private readonly _afterLoader: any = new Subject<string>();
   private readonly _onButtonClick: Subject<IButton> = new Subject<IButton>();
@@ -95,7 +95,7 @@ export class DialogEventsController implements IDialogEventsController {
   afterLoader$: Observable<string> = this._afterLoader.asObservable();
   buttonList$: Observable<IButton[]> = this._buttonList.asObservable();
 
-  constructor(private EntityUniqueID: string) {}
+  constructor(private entityUniqueID: string) {}
 
   close(_Payload: any = null): void {
     this.defaultResponse.setPayload(_Payload);
@@ -113,7 +113,7 @@ export class DialogEventsController implements IDialogEventsController {
 
   closeLoader(): void {
     setTimeout(() => {
-      this._afterLoader.next(this.EntityUniqueID);
+      this._afterLoader.next(this.entityUniqueID);
     }, 0);
   }
 
@@ -148,20 +148,20 @@ export class DialogCarrier {
 
   setButtons(_Buttons: IButton[]): void {
     if (_Buttons.length) {
-      this.dialogBelonging.Buttons = _Buttons;
+      this.dialogBelonging.buttons = _Buttons;
     }
   }
 
   setCustomData(_CustomData: any): void {
-    this.dialogBelonging.CustomData = _CustomData;
+    this.dialogBelonging.customData = _CustomData;
   }
 
   setConfig(_DialogConfig: IDialogCoreConfig): void {
     // region *** local UserConfig (defined on place where dialog is called) ***
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(_DialogConfig, this.dialogBelonging.DialogCoreConfig);
-    if (_DialogConfig?.LoaderComponent) {
-      this.dialogBelonging.DialogCoreConfig.DisplayLoader = true;
+    dataControl.copyValuesFrom(_DialogConfig, this.dialogBelonging.dialogCoreConfig);
+    if (_DialogConfig?.loaderComponent) {
+      this.dialogBelonging.dialogCoreConfig.displayLoader = true;
     }
     // endregion
   }
@@ -174,43 +174,43 @@ export class DialogCarrier {
 }
 
 export class DialogCustomStyles implements IDialogCustomStyles {
-  ButtonSectionCSS: string = null;
-  ButtonCSS: string = null;
-  WrapperCSS: string = null;
+  buttonSectionCSS: string = null;
+  buttonCSS: string = null;
+  wrapperCSS: string = null;
 }
 
-export class DialogCoreConfig extends Sizes implements IDialogCoreConfig {
-  EscapeKeyClose: boolean = null;
-  HideScrollbar: boolean = null;
-  ButtonPosition: VerticalPosition = null;
-  LayoutType: DialogLayoutDisplay = null;
-  DisplayLoader: boolean = null;
-  LoaderComponent: Type<any> = null;
-  AnimationIn: AppearanceAnimation = null;
-  AnimationOut: DisappearanceAnimation = null;
-  CustomStyles: IDialogCustomStyles = new DialogCustomStyles();
+export class dialogCoreConfig extends Sizes implements IDialogCoreConfig {
+  escapeKeyClose: boolean = null;
+  hideScrollbar: boolean = null;
+  buttonPosition: VerticalPosition = null;
+  layoutType: DialogLayoutDisplay = null;
+  displayLoader: boolean = null;
+  loaderComponent: Type<any> = null;
+  animationIn: AppearanceAnimation = null;
+  animationOut: DisappearanceAnimation = null;
+  customStyles: IDialogCustomStyles = new DialogCustomStyles();
 }
 
 export class DialogSettings {
-  Buttons: IButton[] = [];
-  DialogCoreConfig: IDialogCoreConfig = new DialogCoreConfig();
+  buttons: IButton[] = [];
+  dialogCoreConfig: IDialogCoreConfig = new dialogCoreConfig();
 }
 
 export class DialogBelonging<CustomData = any> extends DialogSettings implements IDialogBelonging {
   /** @internal */
-  EntityUniqueID: string = 'D' + Math.random().toString(36).substr(2, 9);
+  entityUniqueID: string = 'D' + Math.random().toString(36).substr(2, 9);
 
-  CustomData: CustomData = null;
-  EventsController: IDialogEventsController;
+  customData: CustomData = null;
+  eventsController: IDialogeventsController;
 
   constructor() {
     super();
-    this.EventsController = new DialogEventsController(this.EntityUniqueID);
+    this.eventsController = new DialogeventsController(this.entityUniqueID);
     const dialogConfigurator: DialogConfigService = ServiceLocator.injector.get(DialogConfigService);
     const baseSettings = new DialogSettings();
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(dialogConfigurator.productionConfig.DialogCoreConfig, baseSettings.DialogCoreConfig);
-    this.DialogCoreConfig = baseSettings.DialogCoreConfig;
-    this.Buttons = dialogConfigurator.productionConfig.Buttons.slice();
+    dataControl.copyValuesFrom(dialogConfigurator.productionConfig.dialogCoreConfig, baseSettings.dialogCoreConfig);
+    this.dialogCoreConfig = baseSettings.dialogCoreConfig;
+    this.buttons = dialogConfigurator.productionConfig.buttons.slice();
   }
 }

@@ -26,45 +26,45 @@ export abstract class WrapperAbstraction implements OnDestroy {
 
   protected constructor(public toastNotificationBelonging: ToastNotificationBelonging) {
     setTimeout(() => {
-      this.boxAnimation = this.toastNotificationBelonging.ToastCoreConfig.AnimationIn;
+      this.boxAnimation = this.toastNotificationBelonging.toastCoreConfig.animationIn;
     }, 1);
   }
 
   get autoCloseCondition(): boolean {
     return (
-      this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay &&
+      this.toastNotificationBelonging.toastCoreConfig.autoCloseDelay &&
       !(
-        this.toastNotificationBelonging.Buttons.length ||
-        this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||
-        this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel
+        this.toastNotificationBelonging.buttons.length ||
+        this.toastNotificationBelonging.toastCoreConfig.declineLabel ||
+        this.toastNotificationBelonging.toastCoreConfig.confirmLabel
       )
     );
   }
 
   get buttonsExist(): boolean {
     return (
-      !!this.toastNotificationBelonging.Buttons.length ||
-      !!this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel ||
-      !!this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel
+      !!this.toastNotificationBelonging.buttons.length ||
+      !!this.toastNotificationBelonging.toastCoreConfig.declineLabel ||
+      !!this.toastNotificationBelonging.toastCoreConfig.confirmLabel
     );
   }
 
   setCustomStyles(): void {
-    if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TextCSS && this.elTextWrapper) {
+    if (this.toastNotificationBelonging.toastCoreConfig.customStyles.textCSS && this.elTextWrapper) {
       this.elTextWrapper.nativeElement.style.cssText +=
-        this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TextCSS;
+        this.toastNotificationBelonging.toastCoreConfig.customStyles.textCSS;
     }
-    if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TitleCSS && this.elTitleWrapper) {
+    if (this.toastNotificationBelonging.toastCoreConfig.customStyles.titleCSS && this.elTitleWrapper) {
       this.elTitleWrapper.nativeElement.style.cssText +=
-        this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.TitleCSS;
+        this.toastNotificationBelonging.toastCoreConfig.customStyles.titleCSS;
     }
-    if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonSectionCSS && this.elButtonWrapper) {
+    if (this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonSectionCSS && this.elButtonWrapper) {
       this.elButtonWrapper.nativeElement.style.cssText +=
-        this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonSectionCSS;
+        this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonSectionCSS;
     }
-    if (this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonCSS && this.elButton) {
+    if (this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonCSS && this.elButton) {
       this.elButton.forEach(el => {
-        el.nativeElement.style.cssText += this.toastNotificationBelonging.ToastCoreConfig.CustomStyles.ButtonCSS;
+        el.nativeElement.style.cssText += this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonCSS;
       });
     }
   }
@@ -95,35 +95,35 @@ export abstract class WrapperAbstraction implements OnDestroy {
   setResponse(_IsSuccess: boolean, _ClickedButtonID?: string): void {
     const response = new ToastNotificationDefaultResponse();
     if (_ClickedButtonID) {
-      response.ClickedButtonID = _ClickedButtonID;
+      response.clickedButtonID = _ClickedButtonID;
     }
 
     response.setSuccess(_IsSuccess);
     response.setBelonging(this.toastNotificationBelonging);
-    this.toastNotificationBelonging.EventsController.setDefaultResponse(response);
+    this.toastNotificationBelonging.eventsController.setDefaultResponse(response);
   }
 
   onCustomButton(_Button: IButton): void {
-    this.toastNotificationBelonging.EventsController.onButtonClick(_Button);
+    this.toastNotificationBelonging.eventsController.onButtonClick(_Button);
     this.setResponse(true, _Button.ID);
-    this.toastNotificationBelonging.EventsController.close();
+    this.toastNotificationBelonging.eventsController.close();
   }
 
   onButtonClick(_Type: 'confirm' | 'decline'): void {
     let buttonID;
     if (_Type === 'confirm') {
-      buttonID = this.toastNotificationBelonging.ToastCoreConfig.ConfirmLabel.toLowerCase();
+      buttonID = this.toastNotificationBelonging.toastCoreConfig.confirmLabel.toLowerCase();
     } else if (_Type === 'decline') {
-      buttonID = this.toastNotificationBelonging.ToastCoreConfig.DeclineLabel.toLowerCase();
+      buttonID = this.toastNotificationBelonging.toastCoreConfig.declineLabel.toLowerCase();
     }
 
     this.setResponse(_Type === 'confirm', buttonID);
-    this.toastNotificationBelonging.EventsController.close();
+    this.toastNotificationBelonging.eventsController.close();
   }
 
   autoClose(): void {
     if (this.autoCloseCondition) {
-      this.timer.setMilliseconds(this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
+      this.timer.setMilliseconds(this.toastNotificationBelonging.toastCoreConfig.autoCloseDelay);
       this.subTimer = this.timerStarted$
         .pipe(
           tap(next => {
@@ -132,9 +132,9 @@ export abstract class WrapperAbstraction implements OnDestroy {
               this.isTimerStarted = true;
               this.timeout = setTimeout(() => {
                 this.subsToClosingDelay = this.closeParent$().subscribe(resp => {
-                  this.toastNotificationBelonging.EventsController.close();
+                  this.toastNotificationBelonging.eventsController.close();
                 });
-              }, this.toastNotificationBelonging.ToastCoreConfig.AutoCloseDelay);
+              }, this.toastNotificationBelonging.toastCoreConfig.autoCloseDelay);
             } else if ('stop-counter' === next) {
               if (this.isTimerStarted) {
                 this.timer.stop();
@@ -150,14 +150,14 @@ export abstract class WrapperAbstraction implements OnDestroy {
 
   closeParent$(): Observable<any> {
     this.autoClosingHasStarted = true;
-    this.boxAnimation = this.toastNotificationBelonging.ToastCoreConfig.AnimationOut;
-    const closeDuration = this.toastNotificationBelonging.ToastCoreConfig.AnimationOut ? 400 : 200;
+    this.boxAnimation = this.toastNotificationBelonging.toastCoreConfig.animationOut;
+    const closeDuration = this.toastNotificationBelonging.toastCoreConfig.animationOut ? 400 : 200;
     this.fadeInOutAnimation = 'close-fast';
     return of('').pipe(delay(closeDuration));
   }
 
   close(): void {
-    this.toastNotificationBelonging.EventsController.close();
+    this.toastNotificationBelonging.eventsController.close();
   }
 
   closeIcon(): void {
@@ -166,7 +166,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
     this.closeParent$()
       .pipe(take(1))
       .subscribe(resp => {
-        this.toastNotificationBelonging.EventsController.close();
+        this.toastNotificationBelonging.eventsController.close();
       });
   }
 

@@ -19,36 +19,36 @@ export class DialogConfigService {
     // region *** dialog userConfig (user input app-module) ***
     const userConfigBase = new DialogSettings();
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(userConfig.DialogCoreConfig, userConfigBase.DialogCoreConfig); // this will make sure that object has right properties
-    userConfig.DialogCoreConfig = userConfigBase.DialogCoreConfig;
+    dataControl.copyValuesFrom(userConfig.dialogCoreConfig, userConfigBase.dialogCoreConfig); // this will make sure that object has right properties
+    userConfig.dialogCoreConfig = userConfigBase.dialogCoreConfig;
 
-    if (userConfig.DialogCoreConfig.LoaderComponent !== null) {
-      userConfig.DialogCoreConfig.DisplayLoader = userConfig.DialogCoreConfig.DisplayLoader === null;
+    if (userConfig.dialogCoreConfig.loaderComponent !== null) {
+      userConfig.dialogCoreConfig.displayLoader = userConfig.dialogCoreConfig.displayLoader === null;
     }
     // endregion
 
     // region *** author default config values (if there is no user input) ***
-    this.authorConfig.DialogCoreConfig.Width = 'auto';
-    this.authorConfig.DialogCoreConfig.Height = 'auto';
-    this.authorConfig.DialogCoreConfig.HideScrollbar = false;
-    this.authorConfig.DialogCoreConfig.EscapeKeyClose = false;
-    this.authorConfig.DialogCoreConfig.ButtonPosition = 'right';
-    this.authorConfig.DialogCoreConfig.DisplayLoader = false;
-    this.authorConfig.DialogCoreConfig.FullScreen = false;
-    this.authorConfig.DialogCoreConfig.LayoutType = DialogLayoutDisplay.NONE;
-    this.authorConfig.DialogCoreConfig.LoaderComponent = DefaultLoaderComponent;
-    this.authorConfig.DialogCoreConfig.AnimationIn = AppearanceAnimation.ZOOM_IN;
-    this.authorConfig.DialogCoreConfig.AnimationOut = DisappearanceAnimation.ZOOM_OUT;
-    this.authorConfig.DialogCoreConfig.CustomStyles = new DialogCustomStyles();
+    this.authorConfig.dialogCoreConfig.width = 'auto';
+    this.authorConfig.dialogCoreConfig.height = 'auto';
+    this.authorConfig.dialogCoreConfig.hideScrollbar = false;
+    this.authorConfig.dialogCoreConfig.escapeKeyClose = false;
+    this.authorConfig.dialogCoreConfig.buttonPosition = 'right';
+    this.authorConfig.dialogCoreConfig.displayLoader = false;
+    this.authorConfig.dialogCoreConfig.fullScreen = false;
+    this.authorConfig.dialogCoreConfig.layoutType = DialogLayoutDisplay.NONE;
+    this.authorConfig.dialogCoreConfig.loaderComponent = DefaultLoaderComponent;
+    this.authorConfig.dialogCoreConfig.animationIn = AppearanceAnimation.ZOOM_IN;
+    this.authorConfig.dialogCoreConfig.animationOut = DisappearanceAnimation.ZOOM_OUT;
+    this.authorConfig.dialogCoreConfig.customStyles = new DialogCustomStyles();
 
     // endregion
 
-    dataControl.copyValuesFrom(this.authorConfig.DialogCoreConfig, this.productionConfig.DialogCoreConfig);
-    dataControl.copyValuesFrom(userConfig.DialogCoreConfig, this.productionConfig.DialogCoreConfig);
+    dataControl.copyValuesFrom(this.authorConfig.dialogCoreConfig, this.productionConfig.dialogCoreConfig);
+    dataControl.copyValuesFrom(userConfig.dialogCoreConfig, this.productionConfig.dialogCoreConfig);
 
-    // Buttons
-    /*if(userConfig.Buttons){
-			this.config.Buttons.push(
+    // buttons
+    /*if(userConfig.buttons){
+			this.config.buttons.push(
 				new ButtonMaker('Ok', 'ok', ButtonLayoutDisplay.PRIMARY)
 				,new ButtonMaker('Cancel', 'cancel', ButtonLayoutDisplay.SECONDARY)
 			);

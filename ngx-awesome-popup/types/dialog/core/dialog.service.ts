@@ -10,8 +10,8 @@ import {
 import { take, tap } from 'rxjs/operators';
 import { DialogInjector } from '../../../core/dialog-injector';
 import { DialogWrapperComponent } from '../dialog-wrapper/dialog-wrapper.component';
-import { DialogBelonging, DialogEventsController } from './classes';
-import { IDialogEventsController } from './interfaces';
+import { DialogBelonging, DialogeventsController } from './classes';
+import { IDialogeventsController } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +25,8 @@ export class DialogService {
     private appRef: ApplicationRef
   ) {}
 
-  open(_ComponentType: Type<any>, _DialogBelonging: DialogBelonging): IDialogEventsController {
-    const dialogController = _DialogBelonging.EventsController;
+  open(_ComponentType: Type<any>, _DialogBelonging: DialogBelonging): IDialogeventsController {
+    const dialogController = _DialogBelonging.eventsController;
     const componentRef = this.getComponentRef(dialogController, _DialogBelonging);
 
     this.dialogParentComponentRefList.push(componentRef);
@@ -41,15 +41,15 @@ export class DialogService {
   }
 
   getComponentRef(
-    _EventsController: IDialogEventsController,
+    _eventsController: IDialogeventsController,
     _DialogBelonging: DialogBelonging
   ): ComponentRef<any> | null {
     let componentFactory;
 
-    const dialogIndex = this.findDialogIndex(_DialogBelonging.EntityUniqueID);
+    const dialogIndex = this.findDialogIndex(_DialogBelonging.entityUniqueID);
     if (dialogIndex === -1) {
       const weakMap = new WeakMap();
-      weakMap.set(DialogEventsController, _EventsController);
+      weakMap.set(DialogeventsController, _eventsController);
 
       componentFactory = this.componentFactoryResolver.resolveComponentFactory(DialogWrapperComponent);
       return componentFactory.create(new DialogInjector(this.injector, weakMap));
@@ -58,16 +58,16 @@ export class DialogService {
     return null;
   }
 
-  listeners(_EventsController: IDialogEventsController): void {
+  listeners(_eventsController: IDialogeventsController): void {
     // Listener for closing dialog
-    const closeDialogSubscription = _EventsController.afterClosed$.subscribe(response => {
-      const modalIndex = this.findDialogIndex(response.DialogBelonging.EntityUniqueID);
+    const closeDialogSubscription = _eventsController.afterClosed$.subscribe(response => {
+      const modalIndex = this.findDialogIndex(response.DialogBelonging.entityUniqueID);
       this.removeFromBodyDialogWrapperComponent(modalIndex);
       closeDialogSubscription.unsubscribe();
     });
 
     // Listener for turning off loader
-    const closeLoaderSubscription = _EventsController.afterLoader$.subscribe((_DialogUniqueID: string) => {
+    const closeLoaderSubscription = _eventsController.afterLoader$.subscribe((_DialogUniqueID: string) => {
       if (_DialogUniqueID) {
         const modalIndex = this.findDialogIndex(_DialogUniqueID);
         if (modalIndex !== -1) {
@@ -113,7 +113,7 @@ export class DialogService {
 
   findDialogIndex(_DialogUniqueID: string): number {
     return this.dialogParentComponentRefList.findIndex(item => {
-      return _DialogUniqueID === item.instance.dialogBelonging.EntityUniqueID;
+      return _DialogUniqueID === item.instance.dialogBelonging.entityUniqueID;
     });
   }
 }

@@ -9,7 +9,7 @@ import {
 import { take, tap } from 'rxjs/operators';
 import { DialogInjector } from '../../../core/dialog-injector';
 import { ConfirmBoxWrapperComponent } from '../confirm-box-wrapper/confirm-box-wrapper.component';
-import { ConfirmBoxBelonging, ConfirmBoxEventsController } from './classes';
+import { ConfirmBoxBelonging, ConfirmBoxeventsController } from './classes';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +23,8 @@ export class ConfirmBoxService {
     private appRef: ApplicationRef
   ) {}
 
-  open(_ConfirmBoxBelonging: ConfirmBoxBelonging): ConfirmBoxEventsController {
-    const dialogController = _ConfirmBoxBelonging.EventsController;
+  open(_ConfirmBoxBelonging: ConfirmBoxBelonging): ConfirmBoxeventsController {
+    const dialogController = _ConfirmBoxBelonging.eventsController;
     const componentRef = this.getComponentRef(dialogController, _ConfirmBoxBelonging);
 
     this.confirmBoxComponentRefList.push(componentRef);
@@ -38,15 +38,15 @@ export class ConfirmBoxService {
   }
 
   getComponentRef(
-    _EventsController: ConfirmBoxEventsController,
+    _eventsController: ConfirmBoxeventsController,
     _ConfirmBoxBelonging: ConfirmBoxBelonging
   ): ComponentRef<any> | null {
     let componentFactory;
 
-    const dialogIndex = this.findDialogIndex(_ConfirmBoxBelonging.EntityUniqueID);
+    const dialogIndex = this.findDialogIndex(_ConfirmBoxBelonging.entityUniqueID);
     if (dialogIndex === -1) {
       const weakMap = new WeakMap();
-      weakMap.set(ConfirmBoxEventsController, _EventsController);
+      weakMap.set(ConfirmBoxeventsController, _eventsController);
 
       componentFactory = this.componentFactoryResolver.resolveComponentFactory(ConfirmBoxWrapperComponent);
       return componentFactory.create(new DialogInjector(this.injector, weakMap));
@@ -55,10 +55,10 @@ export class ConfirmBoxService {
     return null;
   }
 
-  listeners(_EventsController: ConfirmBoxEventsController): void {
+  listeners(_eventsController: ConfirmBoxeventsController): void {
     // Listener for closing dialog
-    const closeDialogSubscription = _EventsController.afterClosed$.subscribe(response => {
-      const modalIndex = this.findDialogIndex(response.confirmBoxBelonging.EntityUniqueID);
+    const closeDialogSubscription = _eventsController.afterClosed$.subscribe(response => {
+      const modalIndex = this.findDialogIndex(response.confirmBoxBelonging.entityUniqueID);
       this.removeFromBodyParentComponent(modalIndex);
       closeDialogSubscription.unsubscribe();
     });
@@ -96,7 +96,7 @@ export class ConfirmBoxService {
 
   findDialogIndex(_DialogUniqueID: string): number {
     return this.confirmBoxComponentRefList.findIndex(item => {
-      return _DialogUniqueID === item.instance.confirmBoxBelonging.EntityUniqueID;
+      return _DialogUniqueID === item.instance.confirmBoxBelonging.entityUniqueID;
     });
   }
 }

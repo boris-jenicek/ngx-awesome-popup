@@ -6,7 +6,7 @@ import {
   DisappearanceAnimation,
   VerticalPosition
 } from '../../../core/enums';
-import { DataControl, Dispatch } from '../../../core/global-classes';
+import { DataControl, dispatch } from '../../../core/global-classes';
 import { IButton, IDispatch } from '../../../core/global-interfaces';
 import { ServiceLocator } from '../../../locator.service';
 import { ConfirmBoxConfigService } from './confirm-box-config.service';
@@ -67,23 +67,23 @@ export class ConfirmBoxInitializer {
 export class ConfirmBoxResponse extends DataControl implements IConfirmBoxResponse, IConfirmBoxPublicResponse {
   // private Response: DialogPrepareResponse            = new DialogPrepareResponse();
 
-  Success: boolean = null;
-  ClickedButtonID: string = null;
+  success: boolean = null;
+  clickedButtonID: string = null;
 
   constructor() {
     super();
   }
 
   setSuccess(_IsSuccess: boolean): void {
-    this.Success = _IsSuccess;
+    this.success = _IsSuccess;
   }
 
   setClickedButtonID(_ClickedButtonID): void {
-    this.ClickedButtonID = _ClickedButtonID;
+    this.clickedButtonID = _ClickedButtonID;
   }
 }
 
-export class ConfirmBoxEventsController {
+export class ConfirmBoxeventsController {
   private readonly _afterClosed: Subject<IPrivateResponseMerged> = new Subject<IPrivateResponseMerged>();
   private readonly _onButtonClick: Subject<IButton> = new Subject<IButton>();
   private readonly _buttonList: Subject<IButton[]> = new Subject<IButton[]>();
@@ -92,7 +92,7 @@ export class ConfirmBoxEventsController {
   onButtonClick$: Observable<IButton> = this._onButtonClick.asObservable();
   buttonList$: Observable<IButton[]> = this._buttonList.asObservable();
 
-  constructor(private EntityUniqueID: string) {}
+  constructor(private entityUniqueID: string) {}
 
   close(_Response?: IPrivateResponseMerged): void {
     const response = _Response ? _Response : this.defaultResponse;
@@ -134,27 +134,27 @@ export class ConfirmBoxCarrier {
 
   setButtons(_Buttons: IButton[]): void {
     if (_Buttons.length) {
-      this.confirmBoxBelonging.Buttons = _Buttons;
+      this.confirmBoxBelonging.buttons = _Buttons;
     }
   }
 
   setTitle(_Title: string): void {
-    this.confirmBoxBelonging.Dispatch.Title = _Title;
+    this.confirmBoxBelonging.dispatch.title = _Title;
   }
 
   setMessage(_Message: string): void {
-    this.confirmBoxBelonging.Dispatch.Message = _Message;
+    this.confirmBoxBelonging.dispatch.message = _Message;
   }
 
   setButtonLabels(_Confirm: string, _Decline: string): void {
-    this.confirmBoxBelonging.ConfirmBoxCoreConfig.ConfirmLabel = _Confirm;
-    this.confirmBoxBelonging.ConfirmBoxCoreConfig.DeclineLabel = _Decline;
+    this.confirmBoxBelonging.confirmBoxCoreConfig.confirmLabel = _Confirm;
+    this.confirmBoxBelonging.confirmBoxCoreConfig.declineLabel = _Decline;
   }
 
   setConfig(_ConfirmBoxBelonging: IConfirmBoxCoreConfig): void {
     // region *** local UserConfig (defined on place where dialog is called) ***
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(_ConfirmBoxBelonging, this.confirmBoxBelonging.ConfirmBoxCoreConfig);
+    dataControl.copyValuesFrom(_ConfirmBoxBelonging, this.confirmBoxBelonging.confirmBoxCoreConfig);
     // endregion
   }
 
@@ -166,49 +166,49 @@ export class ConfirmBoxCarrier {
 }
 
 export class ConfirmBoxSettings {
-  Buttons: IButton[] = [];
-  ConfirmBoxCoreConfig: IConfirmBoxCoreConfig = new ConfirmBoxCoreConfig();
-  Dispatch: IDispatch = new Dispatch();
+  buttons: IButton[] = [];
+  confirmBoxCoreConfig: IConfirmBoxCoreConfig = new confirmBoxCoreConfig();
+  dispatch: IDispatch = new dispatch();
 }
 
 export class ConfirmBoxCustomStyles implements IConfirmBoxCustomStyles {
-  TitleCSS: string = null;
-  TextCSS: string = null;
-  ButtonSectionCSS: string = null;
-  ButtonCSS: string = null;
-  WrapperCSS: string = null;
+  titleCSS: string = null;
+  textCSS: string = null;
+  buttonSectionCSS: string = null;
+  buttonCSS: string = null;
+  wrapperCSS: string = null;
 }
 
-export class ConfirmBoxCoreConfig implements IConfirmBoxCoreConfig {
-  Width: string = null;
-  Height: string = null;
-  ButtonPosition: VerticalPosition = null;
-  LayoutType: DialogLayoutDisplay = null;
-  Dispatch: IDispatch = null;
-  ConfirmLabel: string = null;
-  DeclineLabel: string = null;
-  DisableIcon: boolean = null;
-  AllowHTMLMessage: boolean = null;
-  AnimationIn: AppearanceAnimation = null;
-  AnimationOut: DisappearanceAnimation = null;
-  CustomStyles: ConfirmBoxCustomStyles = new ConfirmBoxCustomStyles();
+export class confirmBoxCoreConfig implements IConfirmBoxCoreConfig {
+  width: string = null;
+  height: string = null;
+  buttonPosition: VerticalPosition = null;
+  layoutType: DialogLayoutDisplay = null;
+  dispatch: IDispatch = null;
+  confirmLabel: string = null;
+  declineLabel: string = null;
+  disableIcon: boolean = null;
+  allowHtmlMessage: boolean = null;
+  animationIn: AppearanceAnimation = null;
+  animationOut: DisappearanceAnimation = null;
+  customStyles: ConfirmBoxCustomStyles = new ConfirmBoxCustomStyles();
 }
 
 export class ConfirmBoxBelonging extends ConfirmBoxSettings implements IConfirmBoxBelonging {
-  EntityUniqueID: string = 'C' + Math.random().toString(36).substr(2, 9);
-  EventsController: ConfirmBoxEventsController;
+  entityUniqueID: string = 'C' + Math.random().toString(36).substr(2, 9);
+  eventsController: ConfirmBoxeventsController;
 
   constructor() {
     super();
-    this.EventsController = new ConfirmBoxEventsController(this.EntityUniqueID);
+    this.eventsController = new ConfirmBoxeventsController(this.entityUniqueID);
     const ConfirmBoxCoreConfigurator: ConfirmBoxConfigService = ServiceLocator.injector.get(ConfirmBoxConfigService);
     const baseSettings = new ConfirmBoxSettings();
     const dataControl = new DataControl();
     dataControl.copyValuesFrom(
-      ConfirmBoxCoreConfigurator.productionConfig.ConfirmBoxCoreConfig,
-      baseSettings.ConfirmBoxCoreConfig
+      ConfirmBoxCoreConfigurator.productionConfig.confirmBoxCoreConfig,
+      baseSettings.confirmBoxCoreConfig
     );
-    this.ConfirmBoxCoreConfig = baseSettings.ConfirmBoxCoreConfig;
-    this.Buttons = ConfirmBoxCoreConfigurator.productionConfig.Buttons.slice();
+    this.confirmBoxCoreConfig = baseSettings.confirmBoxCoreConfig;
+    this.buttons = ConfirmBoxCoreConfigurator.productionConfig.buttons.slice();
   }
 }
