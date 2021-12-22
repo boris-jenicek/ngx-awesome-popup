@@ -34,6 +34,7 @@ export class ConfirmBoxConfigService {
     this.authorConfig.confirmBoxCoreConfig.animationIn = AppearanceAnimation.ZOOM_IN;
     this.authorConfig.confirmBoxCoreConfig.animationOut = DisappearanceAnimation.ZOOM_OUT;
     this.authorConfig.confirmBoxCoreConfig.customStyles = new ConfirmBoxCustomStyles();
+    this.authorConfig.confirmBoxCoreConfig.iconStyleClass = null;
 
     // endregion
 

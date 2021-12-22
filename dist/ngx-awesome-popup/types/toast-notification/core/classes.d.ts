@@ -87,6 +87,7 @@ export declare class toastCoreConfig implements IToastCoreConfig {
     animationIn: AppearanceAnimation;
     animationOut: DisappearanceAnimation;
     customStyles: IToastCustomStyles;
+    iconStyleClass: string;
 }
 export declare class ToastNotificationBelonging extends ToastSettings implements IToastNotificationBelonging {
     entityUniqueID: string;

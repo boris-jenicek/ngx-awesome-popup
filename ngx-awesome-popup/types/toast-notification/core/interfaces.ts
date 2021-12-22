@@ -47,6 +47,7 @@ export interface IToastCoreConfig {
   animationIn?: AppearanceAnimation;
   animationOut?: DisappearanceAnimation;
   customStyles?: IToastCustomStyles;
+  iconStyleClass?: string;
 }
 
 export interface IToastNotificationBelonging {

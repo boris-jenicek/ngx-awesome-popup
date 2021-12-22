@@ -25,7 +25,9 @@ export interface ISizes {
  *            warning  : '#ffc107',
  *            danger   : '#e46464',
  *            light    : '#fbfbfb',
- *            dark     : '#343a40'
+ *            dark     : '#343a40',
+ *            customOne  : '#34fa40',
+ *            customTwo  : '#343f40',
  *           }
  *        }
  * ```
@@ -47,6 +49,11 @@ export interface IColorTypes {
   danger?: string;
   light?: string;
   dark?: string;
+  customOne?: string;
+  customTwo?: string;
+  customThree?: string;
+  customFour?: string;
+  customFive?: string;
 }
 
 export interface IPrivateResponse {
@@ -84,6 +91,11 @@ export interface IColorObject {
   danger?: IColorProvider;
   light?: IColorProvider;
   dark?: IColorProvider;
+  customOne?: IColorProvider;
+  customTwo?: IColorProvider;
+  customThree?: IColorProvider;
+  customFour?: IColorProvider;
+  customFive?: IColorProvider;
 }
 
 export interface IColorProvider {

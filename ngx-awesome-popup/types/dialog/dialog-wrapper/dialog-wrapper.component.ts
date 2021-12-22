@@ -20,13 +20,14 @@ import { fadeInOut } from '../../../core/animations/fade-in-out.animation';
 import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
 import { InsertionLoaderDirective } from '../../../core/insertion-loader.directive';
 import { InsertionDirective } from '../../../core/insertion.directive';
+import { LayoutHelperService } from '../../../core/layout-helper.service';
 import { DialogBelonging, DialogDefaultResponse } from '../core/classes';
 
 @Component({
   selector: 'dialog-popup-wrapper',
   templateUrl: './dialog-wrapper.component.html',
-  // styleUrls: ['../../../styles/types/dialog-modal.scss'],
-  animations: [fadeInOut(), boxAnimations()]
+  animations: [fadeInOut(), boxAnimations()],
+  providers: [LayoutHelperService]
 })
 export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   @ViewChild('elDialogWrapper') elDialogWrapper: ElementRef;
@@ -51,7 +52,8 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     @Inject('dialogBelonging')
     public dialogBelonging: DialogBelonging,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    public layoutHelper: LayoutHelperService
   ) {
     setTimeout(() => {
       this.boxAnimation = this.dialogBelonging.dialogCoreConfig.animationIn;
@@ -149,8 +151,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
       this.elDialogWrapper.nativeElement.style.cssText += this.dialogBelonging.dialogCoreConfig.customStyles.wrapperCSS;
     }
     if (this.dialogBelonging.dialogCoreConfig.customStyles.buttonSectionCSS && this.elButtonWrapper) {
-      this.elButtonWrapper.nativeElement.style.cssText +=
-        this.dialogBelonging.dialogCoreConfig.customStyles.buttonSectionCSS;
+      this.elButtonWrapper.nativeElement.style.cssText += this.dialogBelonging.dialogCoreConfig.customStyles.buttonSectionCSS;
     }
     if (this.dialogBelonging.dialogCoreConfig.customStyles.buttonCSS && this.elButton) {
       this.elButton.forEach(el => {

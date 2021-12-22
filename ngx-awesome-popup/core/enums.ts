@@ -1,9 +1,46 @@
+/*
+enum None {
+  NONE = 0
+}
+
+enum CustomColors {
+  CUSTOM_ONE = 20,
+  CUSTOM_TWO = 21,
+  CUSTOM_THREE = 22,
+  CUSTOM_FOUR = 23,
+  CUSTOM_FIVE = 24
+}
+
+enum BaseColors {
+  SUCCESS = 1,
+  INFO = 2,
+  WARNING = 3,
+  DANGER = 4
+}
+
+enum ExtraColors {
+  DARK = 5,
+  LIGHT = 6,
+  PRIMARY = 7,
+  SECONDARY = 8
+}
+
+enum ButtonExpand {
+  LINK = 9
+}
+*/
+
 export enum DialogLayoutDisplay {
   NONE = 0,
   SUCCESS = 1,
   INFO = 2,
   WARNING = 3,
-  DANGER = 4
+  DANGER = 4,
+  CUSTOM_ONE = 20,
+  CUSTOM_TWO = 21,
+  CUSTOM_THREE = 22,
+  CUSTOM_FOUR = 23,
+  CUSTOM_FIVE = 24
 }
 
 export enum ButtonLayoutDisplay {
@@ -16,7 +53,12 @@ export enum ButtonLayoutDisplay {
   LIGHT = 6,
   PRIMARY = 7,
   SECONDARY = 8,
-  LINK = 9
+  LINK = 9,
+  CUSTOM_ONE = 20,
+  CUSTOM_TWO = 21,
+  CUSTOM_THREE = 22,
+  CUSTOM_FOUR = 23,
+  CUSTOM_FIVE = 24
 }
 
 export enum ColorVariance {
@@ -27,7 +69,13 @@ export enum ColorVariance {
   DARK = 5,
   LIGHT = 6,
   PRIMARY = 7,
-  SECONDARY = 8
+  SECONDARY = 8,
+  LINK = 9,
+  CUSTOM_ONE = 20,
+  CUSTOM_TWO = 21,
+  CUSTOM_THREE = 22,
+  CUSTOM_FOUR = 23,
+  CUSTOM_FIVE = 24
 }
 
 export enum AppearanceAnimation {

@@ -4,6 +4,7 @@ import { delay, take, tap } from 'rxjs/operators';
 import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
 import { Timer } from '../../../core/global-classes';
 import { IButton } from '../../../core/global-interfaces';
+import { LayoutHelperService } from '../../../core/layout-helper.service';
 
 import { ToastNotificationBelonging, ToastNotificationDefaultResponse } from './classes';
 
@@ -24,7 +25,7 @@ export abstract class WrapperAbstraction implements OnDestroy {
   timer: Timer = new Timer();
   boxAnimation: AppearanceAnimation | DisappearanceAnimation | 'reset';
 
-  protected constructor(public toastNotificationBelonging: ToastNotificationBelonging) {
+  protected constructor(public toastNotificationBelonging: ToastNotificationBelonging, public layoutHelper: LayoutHelperService) {
     setTimeout(() => {
       this.boxAnimation = this.toastNotificationBelonging.toastCoreConfig.animationIn;
     }, 1);
@@ -51,16 +52,13 @@ export abstract class WrapperAbstraction implements OnDestroy {
 
   setCustomStyles(): void {
     if (this.toastNotificationBelonging.toastCoreConfig.customStyles.textCSS && this.elTextWrapper) {
-      this.elTextWrapper.nativeElement.style.cssText +=
-        this.toastNotificationBelonging.toastCoreConfig.customStyles.textCSS;
+      this.elTextWrapper.nativeElement.style.cssText += this.toastNotificationBelonging.toastCoreConfig.customStyles.textCSS;
     }
     if (this.toastNotificationBelonging.toastCoreConfig.customStyles.titleCSS && this.elTitleWrapper) {
-      this.elTitleWrapper.nativeElement.style.cssText +=
-        this.toastNotificationBelonging.toastCoreConfig.customStyles.titleCSS;
+      this.elTitleWrapper.nativeElement.style.cssText += this.toastNotificationBelonging.toastCoreConfig.customStyles.titleCSS;
     }
     if (this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonSectionCSS && this.elButtonWrapper) {
-      this.elButtonWrapper.nativeElement.style.cssText +=
-        this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonSectionCSS;
+      this.elButtonWrapper.nativeElement.style.cssText += this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonSectionCSS;
     }
     if (this.toastNotificationBelonging.toastCoreConfig.customStyles.buttonCSS && this.elButton) {
       this.elButton.forEach(el => {
@@ -173,5 +171,15 @@ export abstract class WrapperAbstraction implements OnDestroy {
   ngOnDestroy(): void {
     this.subsToClosingDelay?.unsubscribe();
     this.subTimer?.unsubscribe();
+  }
+
+  getIconClasses(): string {
+    return (
+      'icon-type-toast ' +
+      this.layoutHelper.getIconClasses(
+        this.toastNotificationBelonging.toastCoreConfig.layoutType,
+        this.toastNotificationBelonging.toastCoreConfig.iconStyleClass
+      )
+    );
   }
 }

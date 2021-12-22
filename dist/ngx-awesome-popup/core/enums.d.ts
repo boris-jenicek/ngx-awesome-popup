@@ -3,7 +3,12 @@ export declare enum DialogLayoutDisplay {
     SUCCESS = 1,
     INFO = 2,
     WARNING = 3,
-    DANGER = 4
+    DANGER = 4,
+    CUSTOM_ONE = 20,
+    CUSTOM_TWO = 21,
+    CUSTOM_THREE = 22,
+    CUSTOM_FOUR = 23,
+    CUSTOM_FIVE = 24
 }
 export declare enum ButtonLayoutDisplay {
     NONE = 0,
@@ -15,7 +20,12 @@ export declare enum ButtonLayoutDisplay {
     LIGHT = 6,
     PRIMARY = 7,
     SECONDARY = 8,
-    LINK = 9
+    LINK = 9,
+    CUSTOM_ONE = 20,
+    CUSTOM_TWO = 21,
+    CUSTOM_THREE = 22,
+    CUSTOM_FOUR = 23,
+    CUSTOM_FIVE = 24
 }
 export declare enum ColorVariance {
     SUCCESS = 1,
@@ -25,7 +35,13 @@ export declare enum ColorVariance {
     DARK = 5,
     LIGHT = 6,
     PRIMARY = 7,
-    SECONDARY = 8
+    SECONDARY = 8,
+    LINK = 9,
+    CUSTOM_ONE = 20,
+    CUSTOM_TWO = 21,
+    CUSTOM_THREE = 22,
+    CUSTOM_FOUR = 23,
+    CUSTOM_FIVE = 24
 }
 export declare enum AppearanceAnimation {
     NONE = 0,

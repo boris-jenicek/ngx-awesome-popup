@@ -26,6 +26,11 @@ export class GlobalConfigService {
     this.authorGlobalConfig.displayColor.danger = null; // new ColorProvider('#e46464');
     this.authorGlobalConfig.displayColor.light = null; // new ColorProvider('#f8f9fa');
     this.authorGlobalConfig.displayColor.dark = null; // new ColorProvider('#343a40');
+    this.authorGlobalConfig.displayColor.customOne = null; // new ColorProvider('#343a40');
+    this.authorGlobalConfig.displayColor.customTwo = null; // new ColorProvider('#343a40');
+    this.authorGlobalConfig.displayColor.customThree = null; // new ColorProvider('#343a40');
+    this.authorGlobalConfig.displayColor.customFour = null; // new ColorProvider('#343a40');
+    this.authorGlobalConfig.displayColor.customFive = null; // new ColorProvider('#343a40');
     // endregion
 
     this.productionGlobalConfig.displayColor = this.authorGlobalConfig.displayColor;

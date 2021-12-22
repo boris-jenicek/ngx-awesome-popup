@@ -3,9 +3,11 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
 import { Timer } from '../../../core/global-classes';
 import { IButton } from '../../../core/global-interfaces';
+import { LayoutHelperService } from '../../../core/layout-helper.service';
 import { ToastNotificationBelonging } from './classes';
 export declare abstract class WrapperAbstraction implements OnDestroy {
     toastNotificationBelonging: ToastNotificationBelonging;
+    layoutHelper: LayoutHelperService;
     private closeIsClicked;
     private autoClosingHasStarted;
     elTextWrapper: ElementRef;
@@ -20,7 +22,7 @@ export declare abstract class WrapperAbstraction implements OnDestroy {
     timeout: any;
     timer: Timer;
     boxAnimation: AppearanceAnimation | DisappearanceAnimation | 'reset';
-    protected constructor(toastNotificationBelonging: ToastNotificationBelonging);
+    protected constructor(toastNotificationBelonging: ToastNotificationBelonging, layoutHelper: LayoutHelperService);
     get autoCloseCondition(): boolean;
     get buttonsExist(): boolean;
     setCustomStyles(): void;
@@ -36,4 +38,5 @@ export declare abstract class WrapperAbstraction implements OnDestroy {
     close(): void;
     closeIcon(): void;
     ngOnDestroy(): void;
+    getIconClasses(): string;
 }

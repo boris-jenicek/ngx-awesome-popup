@@ -6,13 +6,10 @@
     params: {
       closeDelay: dialogBelonging.dialogCoreConfig.animationOut === 0 ? '200ms' : '300ms'
     }
-  }"
->
+  }">
   <div
     class="evolve-parent-dialog"
-    [@.disabled]="
-      dialogBelonging.dialogCoreConfig.animationIn === 0 && dialogBelonging.dialogCoreConfig.animationOut === 0
-    "
+    [@.disabled]="dialogBelonging.dialogCoreConfig.animationIn === 0 && dialogBelonging.dialogCoreConfig.animationOut === 0"
     [@boxAnimations]="boxAnimation"
     #elDialogWrapper
     [ngStyle]="
@@ -24,25 +21,12 @@
         borderRadius: '0'
       }
     "
-    [ngClass]="{
-      'standard-dialog': dialogBelonging.dialogCoreConfig.layoutType === 0,
-      'success-dialog': dialogBelonging.dialogCoreConfig.layoutType === 1,
-      'info-dialog': dialogBelonging.dialogCoreConfig.layoutType === 2,
-      'warning-dialog': dialogBelonging.dialogCoreConfig.layoutType === 3,
-      'danger-dialog': dialogBelonging.dialogCoreConfig.layoutType === 4
-    }"
-  >
+    [className]="layoutHelper.getBoxClasses(dialogBelonging.dialogCoreConfig.layoutType, 'evolve-parent-dialog')">
     <div
       class="loader-holder"
       [ngClass]="
-        !dialogBelonging.dialogCoreConfig.displayLoader
-          ? 'dialog-loader-off'
-          : showLoader
-          ? 'dialog-loader-active'
-          : 'dialog-loader-gone'
-      "
-    >
-      <!--dialogBelonging.dialogCoreConfig.DisplayLoader => initial config-->
+        !dialogBelonging.dialogCoreConfig.displayLoader ? 'dialog-loader-off' : showLoader ? 'dialog-loader-active' : 'dialog-loader-gone'
+      ">
       <div class="dialog-loader">
         <ng-template appInsertionLoader></ng-template>
       </div>
@@ -65,27 +49,7 @@
               minHeight: dialogBelonging.dialogCoreConfig.minHeight,
               maxHeight: dialogBelonging.dialogCoreConfig.maxHeight
             }
-      "
-    >
-      <!--      <div
-      class="content-holder"
-      [ngStyle]="
-        dialogBelonging.dialogCoreConfig.FullScreen
-          ? {
-              width: dialogBelonging.dialogCoreConfig.Width,
-              minWidth: dialogBelonging.dialogCoreConfig.MinWidth,
-              maxWidth: dialogBelonging.dialogCoreConfig.MaxWidth,
-              height: dialogBelonging.dialogCoreConfig.Height,
-              minHeight: dialogBelonging.dialogCoreConfig.MinHeight,
-              maxHeight: dialogBelonging.dialogCoreConfig.MaxHeight
-            }
-          : {
-              width: '100vw',
-              height: '100vh'
-            }
-      "
-    >-->
-      <!--dialogBelonging.dialogCoreConfig.DisplayLoader => initial config-->
+      ">
       <div
         class="component-content"
         [ngClass]="
@@ -94,8 +58,7 @@
             : showLoader
             ? 'component-content-preparing'
             : 'component-content-ready'
-        "
-      >
+        ">
         <ng-template appInsertion></ng-template>
       </div>
     </div>
@@ -106,26 +69,12 @@
         *ngIf="dialogBelonging.buttons.length > 0"
         [ngStyle]="{
           'text-align': dialogBelonging.dialogCoreConfig.buttonPosition
-        }"
-      >
+        }">
         <button
-          class="ed-btn ed-btn-lg"
           #elButton
           *ngFor="let button of dialogBelonging.buttons"
           (click)="onCustomButton(button)"
-          [ngClass]="{
-            '': button.layoutType ? button.layoutType === 0 : false,
-            'ed-btn-success': button.layoutType ? button.layoutType === 1 : false,
-            'ed-btn-info': button.layoutType ? button.layoutType === 2 : false,
-            'ed-btn-warning': button.layoutType ? button.layoutType === 3 : false,
-            'ed-btn-danger': button.layoutType ? button.layoutType === 4 : false,
-            'ed-btn-dark': button.layoutType ? button.layoutType === 5 : false,
-            'ed-btn-light': button.layoutType ? button.layoutType === 6 : false,
-            'ed-btn-primary': button.layoutType ? button.layoutType === 7 : false,
-            'ed-btn-secondary': button.layoutType ? button.layoutType === 8 : false,
-            'ed-btn-link': button.layoutType ? button.layoutType === 9 : false
-          }"
-        >
+          [className]="layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-lg')">
           {{ button.label }}
         </button>
       </div>

@@ -32,6 +32,11 @@ export declare class ColorTypes implements IColorTypes {
     danger: string;
     light: string;
     dark: string;
+    customOne: string;
+    customTwo: string;
+    customThree: string;
+    customFour: string;
+    customFive: string;
 }
 export declare class ResetGlobalConfig {
     constructor(globalConfig?: IGlobalUserConfig);
@@ -48,6 +53,11 @@ export declare class DisplayColor implements IColorObject {
     danger: ColorProvider;
     light: ColorProvider;
     dark: ColorProvider;
+    customOne: ColorProvider;
+    customTwo: ColorProvider;
+    customThree: ColorProvider;
+    customFour: ColorProvider;
+    customFive: ColorProvider;
 }
 export declare class ColorProvider {
     Base: string;

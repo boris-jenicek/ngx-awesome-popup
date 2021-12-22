@@ -3,11 +3,13 @@ import { Observable } from 'rxjs';
 import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
 import { InsertionLoaderDirective } from '../../../core/insertion-loader.directive';
 import { InsertionDirective } from '../../../core/insertion.directive';
+import { LayoutHelperService } from '../../../core/layout-helper.service';
 import { DialogBelonging } from '../core/classes';
 export declare class DialogWrapperComponent implements AfterViewInit, OnDestroy {
     dialogBelonging: DialogBelonging;
     private componentFactoryResolver;
     private cd;
+    layoutHelper: LayoutHelperService;
     elDialogWrapper: ElementRef;
     elButtonWrapper: ElementRef;
     elButton: QueryList<ElementRef>;
@@ -20,7 +22,7 @@ export declare class DialogWrapperComponent implements AfterViewInit, OnDestroy 
     insertionPoint: InsertionDirective;
     loaderInsertionPoint: InsertionLoaderDirective;
     boxAnimation: AppearanceAnimation | DisappearanceAnimation;
-    constructor(dialogBelonging: DialogBelonging, componentFactoryResolver: ComponentFactoryResolver, cd: ChangeDetectorRef);
+    constructor(dialogBelonging: DialogBelonging, componentFactoryResolver: ComponentFactoryResolver, cd: ChangeDetectorRef, layoutHelper: LayoutHelperService);
     ngAfterViewInit(): void;
     hideScrollbar(): void;
     revertScrollbarSettings(): void;

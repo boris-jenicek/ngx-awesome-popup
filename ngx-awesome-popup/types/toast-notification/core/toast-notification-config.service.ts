@@ -39,6 +39,7 @@ export class ToastNotificationConfigService {
     this.authorConfig.toastCoreConfig.animationIn = AppearanceAnimation.ZOOM_IN;
     this.authorConfig.toastCoreConfig.animationOut = DisappearanceAnimation.ZOOM_OUT;
     this.authorConfig.toastCoreConfig.customStyles = new ToastCustomStyles();
+    this.authorConfig.toastCoreConfig.iconStyleClass = null;
 
     // endregion
 

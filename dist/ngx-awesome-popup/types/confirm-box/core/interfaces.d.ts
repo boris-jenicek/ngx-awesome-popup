@@ -33,6 +33,7 @@ export interface IConfirmBoxCoreConfig {
     animationIn?: AppearanceAnimation;
     animationOut?: DisappearanceAnimation;
     customStyles?: IConfirmBoxCustomStyles;
+    iconStyleClass?: string;
 }
 export interface IConfirmBoxBelonging {
     buttons: IButton[];

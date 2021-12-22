@@ -1,26 +1,18 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  Inject,
-  QueryList,
-  ViewChild,
-  ViewChildren
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { boxAnimations } from '../../../core/animations/box.animations';
 import { fadeInOut } from '../../../core/animations/fade-in-out.animation';
-import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
+import { AppearanceAnimation, ButtonLayoutDisplay, DisappearanceAnimation } from '../../../core/enums';
 import { IButton } from '../../../core/global-interfaces';
+import { LayoutHelperService } from '../../../core/layout-helper.service';
 import { ConfirmBoxBelonging, ConfirmBoxDefaultResponse } from '../core/classes';
 
 @Component({
   selector: 'app-confirm-box-wrapper',
   templateUrl: './confirm-box-wrapper.component.html',
-  // styleUrls: ['../../../styles/types/confirm-box.scss'],
-  animations: [fadeInOut(), boxAnimations()]
+  animations: [fadeInOut(), boxAnimations()],
+  providers: [LayoutHelperService]
 })
 export class ConfirmBoxWrapperComponent implements AfterViewInit {
   @ViewChild('elConfirmBoxWrapper') elConfirmBoxWrapper: ElementRef;
@@ -29,13 +21,13 @@ export class ConfirmBoxWrapperComponent implements AfterViewInit {
   @ViewChild('elButtonWrapper') elButtonWrapper: ElementRef;
   @ViewChildren('elButton') elButton: QueryList<ElementRef>;
   fadeInOutAnimation = 'open';
-  animationFlyDirection = 'none';
   boxAnimation: AppearanceAnimation | DisappearanceAnimation;
 
   constructor(
     @Inject('confirmBoxBelonging')
     public confirmBoxBelonging: ConfirmBoxBelonging,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    public layoutHelper: LayoutHelperService
   ) {
     setTimeout(() => {
       this.boxAnimation = this.confirmBoxBelonging.confirmBoxCoreConfig.animationIn;
@@ -94,25 +86,35 @@ export class ConfirmBoxWrapperComponent implements AfterViewInit {
 
   setCustomStyles(): void {
     if (this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.wrapperCSS && this.elConfirmBoxWrapper) {
-      this.elConfirmBoxWrapper.nativeElement.style.cssText +=
-        this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.wrapperCSS;
+      this.elConfirmBoxWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.wrapperCSS;
     }
     if (this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.textCSS && this.elTextWrapper) {
-      this.elTextWrapper.nativeElement.style.cssText +=
-        this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.textCSS;
+      this.elTextWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.textCSS;
     }
     if (this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.titleCSS && this.elTitleWrapper) {
-      this.elTitleWrapper.nativeElement.style.cssText +=
-        this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.titleCSS;
+      this.elTitleWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.titleCSS;
     }
     if (this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.buttonSectionCSS && this.elButtonWrapper) {
-      this.elButtonWrapper.nativeElement.style.cssText +=
-        this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.buttonSectionCSS;
+      this.elButtonWrapper.nativeElement.style.cssText += this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.buttonSectionCSS;
     }
     if (this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.buttonCSS && this.elButton) {
       this.elButton.forEach(el => {
         el.nativeElement.style.cssText += this.confirmBoxBelonging.confirmBoxCoreConfig.customStyles.buttonCSS;
       });
     }
+  }
+
+  getIconClasses(): string {
+    return (
+      'icon-type-confirm-box  ' +
+      this.layoutHelper.getIconClasses(
+        this.confirmBoxBelonging.confirmBoxCoreConfig.layoutType,
+        this.confirmBoxBelonging.confirmBoxCoreConfig.iconStyleClass
+      )
+    );
+  }
+
+  getButtonClasses(layoutType: ButtonLayoutDisplay | null): string {
+    return this.layoutHelper.getButtonClasses(layoutType);
   }
 }

@@ -192,6 +192,7 @@ export class confirmBoxCoreConfig implements IConfirmBoxCoreConfig {
   animationIn: AppearanceAnimation = null;
   animationOut: DisappearanceAnimation = null;
   customStyles: ConfirmBoxCustomStyles = new ConfirmBoxCustomStyles();
+  iconStyleClass: string = null;
 }
 
 export class ConfirmBoxBelonging extends ConfirmBoxSettings implements IConfirmBoxBelonging {

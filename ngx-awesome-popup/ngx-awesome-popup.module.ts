@@ -85,9 +85,7 @@ export class ConfirmBoxConfigModule {
   entryComponents: [ToastNotificationWrapperComponent, ToastNotificationSimpleWrapperComponent]
 })
 export class ToastNotificationConfigModule {
-  static forRoot(
-    toastNotificationConfig?: IToastNotificationUserConfig
-  ): ModuleWithProviders<ToastNotificationConfigModule> {
+  static forRoot(toastNotificationConfig?: IToastNotificationUserConfig): ModuleWithProviders<ToastNotificationConfigModule> {
     return {
       ngModule: ToastNotificationConfigModule,
       providers: [

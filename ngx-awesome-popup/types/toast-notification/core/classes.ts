@@ -219,6 +219,7 @@ export class toastCoreConfig implements IToastCoreConfig {
   animationIn: AppearanceAnimation = null;
   animationOut: DisappearanceAnimation = null;
   customStyles: IToastCustomStyles = new ToastCustomStyles();
+  iconStyleClass: string = null;
 }
 
 export class ToastNotificationBelonging extends ToastSettings implements IToastNotificationBelonging {

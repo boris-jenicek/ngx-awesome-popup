@@ -48,6 +48,11 @@ export class ColorTypes implements IColorTypes {
   danger: string = null;
   light: string = null;
   dark: string = null;
+  customOne: string = null;
+  customTwo: string = null;
+  customThree: string = null;
+  customFour: string = null;
+  customFive: string = null;
 }
 
 export class ResetGlobalConfig {
@@ -75,6 +80,11 @@ export class DisplayColor implements IColorObject {
   danger: ColorProvider = null;
   light: ColorProvider = null;
   dark: ColorProvider = null;
+  customOne: ColorProvider = null;
+  customTwo: ColorProvider = null;
+  customThree: ColorProvider = null;
+  customFour: ColorProvider = null;
+  customFive: ColorProvider = null;
 }
 
 export class ColorProvider {
@@ -115,12 +125,12 @@ export class ColorProvider {
 
       /*	       console.log('%c BrightShade ', `background: ${this.BrightShade}; color: ${this.ContrastColor}`, this.BrightShade);
 					       console.log('%c BrightWarmly ', `background: ${this.BrightWarmly}; color: ${this.ContrastColor}`, this.BrightWarmly);
-						   console.log('%c Brighten ', `background: ${this.Brighten}; color: ${this.ContrastColor}`, this.Brighten);
-						   console.log('%c BrightenForShade ', `background: ${this.BrightenForShade}; color: ${this.ContrastColor}`, this.BrightenForShade);
+						     console.log('%c Brighten ', `background: ${this.Brighten}; color: ${this.ContrastColor}`, this.Brighten);
+						     console.log('%c BrightenForShade ', `background: ${this.BrightenForShade}; color: ${this.ContrastColor}`, this.BrightenForShade);
 					       console.log('%c Base ', `background: ${this.Base}; color: ${this.ContrastColor}`, this.Base);
 					       console.log('%c DarkenForShade ', `background: ${this.DarkenForShade}; color: ${this.ContrastColor}`, this.DarkenForShade);
 					       console.log('%c Darken ', `background: ${this.Darken}; color: ${this.ContrastColor}`, this.Darken);
-						   console.log('%c TransparentDarkenVariance ', `background: ${this.TransparentDarkenVariance}; color: ${this.ContrastColor}`, this.TransparentDarkenVariance);
+						     console.log('%c TransparentDarkenVariance ', `background: ${this.TransparentDarkenVariance}; color: ${this.ContrastColor}`, this.TransparentDarkenVariance);
 			*/
     }
   }

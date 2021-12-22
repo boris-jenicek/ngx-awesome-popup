@@ -77,6 +77,7 @@ export declare class confirmBoxCoreConfig implements IConfirmBoxCoreConfig {
     animationIn: AppearanceAnimation;
     animationOut: DisappearanceAnimation;
     customStyles: ConfirmBoxCustomStyles;
+    iconStyleClass: string;
 }
 export declare class ConfirmBoxBelonging extends ConfirmBoxSettings implements IConfirmBoxBelonging {
     entityUniqueID: string;
