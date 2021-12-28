@@ -10,6 +10,12 @@
 
 ___
 
+### FADE\_OUT
+
+• **FADE\_OUT**: = "fadeOut"
+
+___
+
 ### FLIP\_OUT
 
 • **FLIP\_OUT**: = "flipOutY"
@@ -18,7 +24,7 @@ ___
 
 ### NONE
 
-• **NONE**: = 0
+• **NONE**: = "noneOut"
 
 ___
 
