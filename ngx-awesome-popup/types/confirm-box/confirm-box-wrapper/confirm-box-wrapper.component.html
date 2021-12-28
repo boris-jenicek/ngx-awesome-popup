@@ -4,18 +4,21 @@
   [@fadeInOut]="{
     value: fadeInOutAnimation,
     params: {
-      closeDelay: confirmBoxBelonging.confirmBoxCoreConfig.animationOut === 0 ? '200ms' : '300ms'
+      closeDelay: confirmBoxBelonging.confirmBoxCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'
     }
   }">
   <div
-    [@.disabled]="confirmBoxBelonging.confirmBoxCoreConfig.animationIn === 0 && confirmBoxBelonging.confirmBoxCoreConfig.animationOut === 0"
+    [@.disabled]="
+      confirmBoxBelonging.confirmBoxCoreConfig.animationIn === appearanceAnimation.NONE &&
+      confirmBoxBelonging.confirmBoxCoreConfig.animationOut === disappearanceAnimation.NONE
+    "
     [@boxAnimations]="boxAnimation"
     #elConfirmBoxWrapper
     [className]="layoutHelper.getBoxClasses(confirmBoxBelonging.confirmBoxCoreConfig.layoutType, 'evolve-confirm-box')"
     [ngStyle]="{
       width: confirmBoxBelonging.confirmBoxCoreConfig.width,
       height: confirmBoxBelonging.confirmBoxCoreConfig.height,
-      opacity: confirmBoxBelonging.confirmBoxCoreConfig.animationIn === 0 ? 1 : 0
+      opacity: confirmBoxBelonging.confirmBoxCoreConfig.animationIn === appearanceAnimation.NONE ? 1 : 0
     }">
     <div class="confirm-box-title-content" #elTitleWrapper *ngIf="confirmBoxBelonging.dispatch.title">
       <div class="dont-break-out">
@@ -37,13 +40,7 @@
       </div>
       <div class="text-wrapper-section confirm-box-inner-content">
         <div class="dont-break-out">
-          <div class="text-wrapper dont-break-out" *ngIf="!confirmBoxBelonging.confirmBoxCoreConfig.allowHtmlMessage">
-            {{ confirmBoxBelonging.dispatch.message }}
-          </div>
-          <div
-            class="text-wrapper"
-            *ngIf="confirmBoxBelonging.confirmBoxCoreConfig.allowHtmlMessage"
-            [innerHTML]="confirmBoxBelonging.dispatch.message"></div>
+          <div class="text-wrapper" [innerHTML]="confirmBoxBelonging.dispatch.message"></div>
         </div>
       </div>
     </div>

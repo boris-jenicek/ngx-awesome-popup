@@ -36,6 +36,8 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
   fadeInOutAnimation = 'open';
   showLoader = true;
   bodyOverflow: string;
+  appearanceAnimation = AppearanceAnimation;
+  disappearanceAnimation = DisappearanceAnimation;
 
   childComponentRef: ComponentRef<any>;
   childComponentType: Type<any>;
@@ -162,7 +164,7 @@ export class DialogWrapperComponent implements AfterViewInit, OnDestroy {
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent): void {
-    if (event.key === 'Escape') {
+    if (event.key === 'Escape' && this.dialogBelonging.dialogCoreConfig.escapeKeyClose) {
       this.close();
     }
   }

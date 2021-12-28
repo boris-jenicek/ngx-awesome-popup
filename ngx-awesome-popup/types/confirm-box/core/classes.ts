@@ -1,11 +1,6 @@
 import { Observable, Subject } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import {
-  AppearanceAnimation,
-  DialogLayoutDisplay,
-  DisappearanceAnimation,
-  VerticalPosition
-} from '../../../core/enums';
+import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { DataControl, dispatch } from '../../../core/global-classes';
 import { IButton, IDispatch } from '../../../core/global-interfaces';
 import { ServiceLocator } from '../../../locator.service';
@@ -205,10 +200,7 @@ export class ConfirmBoxBelonging extends ConfirmBoxSettings implements IConfirmB
     const ConfirmBoxCoreConfigurator: ConfirmBoxConfigService = ServiceLocator.injector.get(ConfirmBoxConfigService);
     const baseSettings = new ConfirmBoxSettings();
     const dataControl = new DataControl();
-    dataControl.copyValuesFrom(
-      ConfirmBoxCoreConfigurator.productionConfig.confirmBoxCoreConfig,
-      baseSettings.confirmBoxCoreConfig
-    );
+    dataControl.copyValuesFrom(ConfirmBoxCoreConfigurator.productionConfig.confirmBoxCoreConfig, baseSettings.confirmBoxCoreConfig);
     this.confirmBoxCoreConfig = baseSettings.confirmBoxCoreConfig;
     this.buttons = ConfirmBoxCoreConfigurator.productionConfig.buttons.slice();
   }

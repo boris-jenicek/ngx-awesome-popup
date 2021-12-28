@@ -22,6 +22,8 @@ export declare abstract class WrapperAbstraction implements OnDestroy {
     timeout: any;
     timer: Timer;
     boxAnimation: AppearanceAnimation | DisappearanceAnimation | 'reset';
+    appearanceAnimation: typeof AppearanceAnimation;
+    disappearanceAnimation: typeof DisappearanceAnimation;
     protected constructor(toastNotificationBelonging: ToastNotificationBelonging, layoutHelper: LayoutHelperService);
     get autoCloseCondition(): boolean;
     get buttonsExist(): boolean;

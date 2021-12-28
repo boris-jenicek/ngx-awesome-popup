@@ -22,6 +22,8 @@ export class ConfirmBoxWrapperComponent implements AfterViewInit {
   @ViewChildren('elButton') elButton: QueryList<ElementRef>;
   fadeInOutAnimation = 'open';
   boxAnimation: AppearanceAnimation | DisappearanceAnimation;
+  appearanceAnimation = AppearanceAnimation;
+  disappearanceAnimation = DisappearanceAnimation;
 
   constructor(
     @Inject('confirmBoxBelonging')

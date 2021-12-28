@@ -26,8 +26,6 @@ $nap-confirm-text-color: #495057;
   z-index: 999999999;
 
   .evolve-confirm-box {
-    opacity: 0;
-    padding: 0 20px;
     background: $nap-confirm-background;
     border-radius: 5px;
     border-top: 7px solid;
@@ -37,6 +35,8 @@ $nap-confirm-text-color: #495057;
     flex-direction: column;
     max-height: calc(100vh - 100px);
     max-width: calc(100vw - 100px);
+    opacity: 0;
+    padding: 0 20px;
 
     position: relative;
     vertical-align: bottom;
@@ -62,6 +62,26 @@ $nap-confirm-text-color: #495057;
       border-color: var.$nap-danger;
     }
 
+    &.customone-dialog {
+      border-color: var.$custom-one;
+    }
+
+    &.customtwo-dialog {
+      border-color: var.$custom-two;
+    }
+
+    &.customthree-dialog {
+      border-color: var.$custom-three;
+    }
+
+    &.customfour-dialog {
+      border-color: var.$custom-four;
+    }
+
+    &.customfivew-dialog {
+      border-color: var.$custom-five;
+    }
+
     .ap-icon-success {
       color: lighten(var.$nap-success, 10%);
     }
@@ -83,8 +103,8 @@ $nap-confirm-text-color: #495057;
 
       .text-wrapper {
         display: block;
-        width: 100%;
         text-align: center;
+        width: 100%;
       }
 
       .dont-break-out {

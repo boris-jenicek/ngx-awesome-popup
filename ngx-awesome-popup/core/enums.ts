@@ -79,7 +79,7 @@ export enum ColorVariance {
 }
 
 export enum AppearanceAnimation {
-  NONE = 0,
+  NONE = 'noneIn',
   BOUNCE_IN = 'bounceIn',
   SWING = 'swing',
   ZOOM_IN = 'zoomIn',
@@ -94,7 +94,8 @@ export enum AppearanceAnimation {
 }
 
 export enum DisappearanceAnimation {
-  NONE = 0,
+  NONE = 'noneOut',
+  FADE_OUT = 'fadeOut',
   ZOOM_OUT_WIND = 'zoomOutWind',
   BOUNCE_OUT = 'bounceOut',
   FLIP_OUT = 'flipOutY',

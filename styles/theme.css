@@ -1591,8 +1591,6 @@
   z-index: 999999999;
 }
 .ngx-awesome-popup-overlay.confirm-box-overlay .evolve-confirm-box {
-  opacity: 0;
-  padding: 0 20px;
   background: #fbfbfb;
   border-radius: 5px;
   border-top: 7px solid;
@@ -1602,6 +1600,8 @@
   flex-direction: column;
   max-height: calc(100vh - 100px);
   max-width: calc(100vw - 100px);
+  opacity: 0;
+  padding: 0 20px;
   position: relative;
   vertical-align: bottom;
 }
@@ -1621,6 +1621,21 @@
 .ngx-awesome-popup-overlay.confirm-box-overlay .evolve-confirm-box.danger-dialog {
   border-color: #e46464;
 }
+.ngx-awesome-popup-overlay.confirm-box-overlay .evolve-confirm-box.customone-dialog {
+  border-color: #80b422;
+}
+.ngx-awesome-popup-overlay.confirm-box-overlay .evolve-confirm-box.customtwo-dialog {
+  border-color: #00b7de;
+}
+.ngx-awesome-popup-overlay.confirm-box-overlay .evolve-confirm-box.customthree-dialog {
+  border-color: #eae60e;
+}
+.ngx-awesome-popup-overlay.confirm-box-overlay .evolve-confirm-box.customfour-dialog {
+  border-color: #0d30e7;
+}
+.ngx-awesome-popup-overlay.confirm-box-overlay .evolve-confirm-box.customfivew-dialog {
+  border-color: #c42497;
+}
 .ngx-awesome-popup-overlay.confirm-box-overlay .evolve-confirm-box .ap-icon-success {
   color: #58c5bb;
 }
@@ -1638,8 +1653,8 @@
 }
 .ngx-awesome-popup-overlay.confirm-box-overlay .evolve-confirm-box .text-wrapper-section .text-wrapper {
   display: block;
-  width: 100%;
   text-align: center;
+  width: 100%;
 }
 .ngx-awesome-popup-overlay.confirm-box-overlay .evolve-confirm-box .text-wrapper-section .dont-break-out {
   hyphens: auto;

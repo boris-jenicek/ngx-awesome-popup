@@ -24,6 +24,8 @@ export abstract class WrapperAbstraction implements OnDestroy {
   timeout;
   timer: Timer = new Timer();
   boxAnimation: AppearanceAnimation | DisappearanceAnimation | 'reset';
+  appearanceAnimation = AppearanceAnimation;
+  disappearanceAnimation = DisappearanceAnimation;
 
   protected constructor(public toastNotificationBelonging: ToastNotificationBelonging, public layoutHelper: LayoutHelperService) {
     setTimeout(() => {

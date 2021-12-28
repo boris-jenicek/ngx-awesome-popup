@@ -16,6 +16,8 @@ export declare class DialogWrapperComponent implements AfterViewInit, OnDestroy 
     fadeInOutAnimation: string;
     showLoader: boolean;
     bodyOverflow: string;
+    appearanceAnimation: typeof AppearanceAnimation;
+    disappearanceAnimation: typeof DisappearanceAnimation;
     childComponentRef: ComponentRef<any>;
     childComponentType: Type<any>;
     loaderComponentRef: ComponentRef<any>;

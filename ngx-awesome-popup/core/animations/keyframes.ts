@@ -23,7 +23,7 @@ export const bounceIn = [
     offset: 0.8
   }),
   style({
-    transform: 'transform: scale3d(0.97, 0.97, 0.97)',
+    transform: 'scale3d(0.97, 0.97, 0.97)',
     offset: 0.9
   }),
   style({
@@ -127,6 +127,9 @@ export const slideInRight = [
 ];
 
 // out
+
+export const fadeOut = [style({ offset: 0, opacity: 1 }), style({ offset: 1, opacity: 0 })];
+
 export const zoomOutWind = [
   style({
     transform: 'scale3d(.475, .475, .475) translate3d(-42px, 0, 0)',

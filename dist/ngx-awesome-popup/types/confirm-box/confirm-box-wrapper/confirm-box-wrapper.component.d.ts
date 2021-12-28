@@ -15,6 +15,8 @@ export declare class ConfirmBoxWrapperComponent implements AfterViewInit {
     elButton: QueryList<ElementRef>;
     fadeInOutAnimation: string;
     boxAnimation: AppearanceAnimation | DisappearanceAnimation;
+    appearanceAnimation: typeof AppearanceAnimation;
+    disappearanceAnimation: typeof DisappearanceAnimation;
     constructor(confirmBoxBelonging: ConfirmBoxBelonging, cd: ChangeDetectorRef, layoutHelper: LayoutHelperService);
     ngAfterViewInit(): void;
     setResponse(_IsSuccess: boolean, _ClickedButtonID?: string): void;

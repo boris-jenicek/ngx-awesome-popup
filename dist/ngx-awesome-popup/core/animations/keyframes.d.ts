@@ -9,6 +9,7 @@ export declare const slideInUp: import("@angular/animations").AnimationStyleMeta
 export declare const slideInDown: import("@angular/animations").AnimationStyleMetadata[];
 export declare const slideInLeft: import("@angular/animations").AnimationStyleMetadata[];
 export declare const slideInRight: import("@angular/animations").AnimationStyleMetadata[];
+export declare const fadeOut: import("@angular/animations").AnimationStyleMetadata[];
 export declare const zoomOutWind: import("@angular/animations").AnimationStyleMetadata[];
 export declare const bounceOut: import("@angular/animations").AnimationStyleMetadata[];
 export declare const flipOutY: import("@angular/animations").AnimationStyleMetadata[];

@@ -4,12 +4,15 @@
   [@fadeInOut]="{
     value: fadeInOutAnimation,
     params: {
-      closeDelay: dialogBelonging.dialogCoreConfig.animationOut === 0 ? '200ms' : '300ms'
+      closeDelay: dialogBelonging.dialogCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'
     }
   }">
   <div
     class="evolve-parent-dialog"
-    [@.disabled]="dialogBelonging.dialogCoreConfig.animationIn === 0 && dialogBelonging.dialogCoreConfig.animationOut === 0"
+    [@.disabled]="
+      dialogBelonging.dialogCoreConfig.animationIn === appearanceAnimation.NONE &&
+      dialogBelonging.dialogCoreConfig.animationOut === disappearanceAnimation.NONE
+    "
     [@boxAnimations]="boxAnimation"
     #elDialogWrapper
     [ngStyle]="

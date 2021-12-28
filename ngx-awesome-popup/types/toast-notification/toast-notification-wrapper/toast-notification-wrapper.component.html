@@ -4,12 +4,13 @@
   [@fadeInOut]="{
     value: fadeInOutAnimation,
     params: {
-      closeDelay: toastNotificationBelonging.toastCoreConfig.animationOut === 0 ? '200ms' : '300ms'
+      closeDelay: toastNotificationBelonging.toastCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'
     }
   }">
   <div
     [@.disabled]="
-      toastNotificationBelonging.toastCoreConfig.animationIn === 0 && toastNotificationBelonging.toastCoreConfig.animationOut === 0
+      toastNotificationBelonging.toastCoreConfig.animationIn === appearanceAnimation.NONE &&
+      toastNotificationBelonging.toastCoreConfig.animationOut === disappearanceAnimation.NONE
     "
     [@boxAnimations]="boxAnimation"
     (mouseover)="mouseOver()"
