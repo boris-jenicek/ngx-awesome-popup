@@ -1,9 +1,4 @@
-import {
-  AppearanceAnimation,
-  DialogLayoutDisplay,
-  DisappearanceAnimation,
-  VerticalPosition
-} from '../../../core/enums';
+import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation, VerticalPosition } from '../../../core/enums';
 import { IButton, IDispatch, IPrivateResponse } from '../../../core/global-interfaces';
 import { ToastNotificationBelonging, ToastNotificationeventsController } from './classes';
 import { ToastPositionEnum, ToastProgressBarEnum, ToastUserViewTypeEnum } from './enums';
@@ -16,7 +11,7 @@ export interface IToastNotificationUserConfig {
 }
 
 export interface IGlobalToastSettings {
-  /** Number of popups allowed on screen, recommend 3-5 */
+  /** Number of popups allowed on screen (recommend 3-5) */
   allowedNotificationsAtOnce: number;
 }
 

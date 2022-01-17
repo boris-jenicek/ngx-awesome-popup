@@ -10,72 +10,76 @@
 
 ### Enumerations
 
-- [AppearanceAnimation](#/documentation/Enum:%20AppearanceAnimation)
-- [ButtonLayoutDisplay](#/documentation/Enum:%20ButtonLayoutDisplay)
-- [DialogLayoutDisplay](#/documentation/Enum:%20DialogLayoutDisplay)
-- [DisappearanceAnimation](#/documentation/Enum:%20DisappearanceAnimation)
-- [ToastPositionEnum](#/documentation/Enum:%20ToastPositionEnum)
-- [ToastProgressBarEnum](#/documentation/Enum:%20ToastProgressBarEnum)
-- [ToastUserViewTypeEnum](#/documentation/Enum:%20ToastUserViewTypeEnum)
+- [AppearanceAnimation](#/documentation/enum-AppearanceAnimation)
+- [ButtonLayoutDisplay](#/documentation/enum-ButtonLayoutDisplay)
+- [DialogLayoutDisplay](#/documentation/enum-DialogLayoutDisplay)
+- [DisappearanceAnimation](#/documentation/enum-DisappearanceAnimation)
+- [ToastPositionEnum](#/documentation/enum-ToastPositionEnum)
+- [ToastProgressBarEnum](#/documentation/enum-ToastProgressBarEnum)
+- [ToastUserViewTypeEnum](#/documentation/enum-ToastUserViewTypeEnum)
 
 ### Popup open Classes
 
-- [ConfirmBoxInitializer](#/documentation/Class:%20ConfirmBoxInitializer)
-- [DialogInitializer](#/documentation/Class:%20DialogInitializer)
-- [ToastNotificationInitializer](#/documentation/Class:%20ToastNotificationInitializer)
+- [ConfirmBoxInitializer](#/documentation/class-ConfirmBoxInitializer)
+- [DialogInitializer](#/documentation/class-DialogInitializer)
+- [ToastNotificationInitializer](#/documentation/class-ToastNotificationInitializer)
 
 ### Imports for angular app.module Classes
 
-- [ConfirmBoxConfigModule](#/documentation/Class:%20ConfirmBoxConfigModule)
-- [DialogConfigModule](#/documentation/Class:%20DialogConfigModule)
-- [NgxAwesomePopupModule](#/documentation/Class:%20NgxAwesomePopupModule)
-- [ToastNotificationConfigModule](#/documentation/Class:%20ToastNotificationConfigModule)
+- [ConfirmBoxConfigModule](#/documentation/class-ConfirmBoxConfigModule)
+- [DialogConfigModule](#/documentation/class-DialogConfigModule)
+- [NgxAwesomePopupModule](#/documentation/class-NgxAwesomePopupModule)
+- [ToastNotificationConfigModule](#/documentation/class-ToastNotificationConfigModule)
 
 ### Other Classes
 
-- [ButtonMaker](#/documentation/Class:%20ButtonMaker)
-- [ResetGlobalConfig](#/documentation/Class:%20ResetGlobalConfig)
-- [ResetToastGlobalSettings](#/documentation/Class:%20ResetToastGlobalSettings)
+- [ButtonMaker](#/documentation/class-ButtonMaker)
+- [ResetGlobalConfig](#/documentation/class-ResetGlobalConfig)
+- [ResetToastGlobalSettings](#/documentation/class-ResetToastGlobalSettings)
 
 ### child dynamic component data &amp; event controller Classes
 
-- [DialogBelonging](#/documentation/Class:%20DialogBelonging)
+- [DialogBelonging](#/documentation/class-DialogBelonging)
 
 ### Interfaces
 
-- [IButton](#/documentation/Interface:%20IButton)
-- [IColorTypes](#/documentation/Interface:%20IColorTypes)
-- [IConfirmBoxCoreConfig](#/documentation/Interface:%20IConfirmBoxCoreConfig)
-- [IConfirmBoxPublicResponse](#/documentation/Interface:%20IConfirmBoxPublicResponse)
-- [IConfirmBoxUserConfig](#/documentation/Interface:%20IConfirmBoxUserConfig)
-- [IDialogCoreConfig](#/documentation/Interface:%20IDialogCoreConfig)
-- [IDialogPublicResponse](#/documentation/Interface:%20IDialogPublicResponse)
-- [IDialogUserConfig](#/documentation/Interface:%20IDialogUserConfig)
-- [IDialogeventsController](#/documentation/Interface:%20IDialogeventsController)
-- [IDispatch](#/documentation/Interface:%20IDispatch)
-- [IGlobalToastSettings](#/documentation/Interface:%20IGlobalToastSettings)
-- [IGlobalUserConfig](#/documentation/Interface:%20IGlobalUserConfig)
-- [IToastCoreConfig](#/documentation/Interface:%20IToastCoreConfig)
-- [IToastNotificationPublicResponse](#/documentation/Interface:%20IToastNotificationPublicResponse)
-- [IToastNotificationUserConfig](#/documentation/Interface:%20IToastNotificationUserConfig)
+- [IButton](#/documentation/interface-IButton)
+- [IColorTypes](#/documentation/interface-IColorTypes)
+- [IConfirmBoxCoreConfig](#/documentation/interface-IConfirmBoxCoreConfig)
+- [IConfirmBoxPublicResponse](#/documentation/interface-IConfirmBoxPublicResponse)
+- [IConfirmBoxUserConfig](#/documentation/interface-IConfirmBoxUserConfig)
+- [IDialogCoreConfig](#/documentation/interface-IDialogCoreConfig)
+- [IDialogPublicResponse](#/documentation/interface-IDialogPublicResponse)
+- [IDialogUserConfig](#/documentation/interface-IDialogUserConfig)
+- [IDialogeventsController](#/documentation/interface-IDialogeventsController)
+- [IDispatch](#/documentation/interface-IDispatch)
+- [IGlobalToastSettings](#/documentation/interface-IGlobalToastSettings)
+- [IGlobalUserConfig](#/documentation/interface-IGlobalUserConfig)
+- [IToastCoreConfig](#/documentation/interface-IToastCoreConfig)
+- [IToastNotificationPublicResponse](#/documentation/interface-IToastNotificationPublicResponse)
+- [IToastNotificationUserConfig](#/documentation/interface-IToastNotificationUserConfig)
+
+### Type aliases
+
+- [VerticalPosition](#/documentation/Home#verticalposition)
 
 ## Observable response after closing popup References
 
 ### IConfirmBoxResponse
 
-Renames and exports: [IConfirmBoxPublicResponse](#/documentation/Interface:%20IConfirmBoxPublicResponse)
+Renames and re-exports [IConfirmBoxPublicResponse](#/documentation/interface-IConfirmBoxPublicResponse)
 
 ___
 
 ### IDialogResponse
 
-Renames and exports: [IDialogPublicResponse](#/documentation/Interface:%20IDialogPublicResponse)
+Renames and re-exports [IDialogPublicResponse](#/documentation/interface-IDialogPublicResponse)
 
 ___
 
 ### IToastNotificationResponse
 
-Renames and exports: [IToastNotificationPublicResponse](#/documentation/Interface:%20IToastNotificationPublicResponse)
+Renames and re-exports [IToastNotificationPublicResponse](#/documentation/interface-IToastNotificationPublicResponse)
 
 ## Type aliases
 
