@@ -56,16 +56,6 @@ ToastNotificationConfigModule.forRoot({
 * buttons: [IButton](#/documentation/interface-IButton)
 * ButtonMaker: [ButtonMaker](#/documentation/class-ButtonMaker)
 
-## Table of contents
-
-### Constructors
-
-- [constructor](#/documentation/class-ToastNotificationConfigModule#constructor)
-
-### Methods
-
-- [forRoot](#/documentation/class-ToastNotificationConfigModule#forroot)
-
 ## Constructors
 
 ### constructor

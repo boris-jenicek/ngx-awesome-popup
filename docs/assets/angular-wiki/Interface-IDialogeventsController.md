@@ -1,15 +1,5 @@
 # Interface: IDialogeventsController
 
-## Table of contents
-
-### Methods
-
-- [close](#/documentation/interface-IDialogeventsController#close)
-- [closeLoader](#/documentation/interface-IDialogeventsController#closeloader)
-- [onButtonClick](#/documentation/interface-IDialogeventsController#onbuttonclick)
-- [setButtonList](#/documentation/interface-IDialogeventsController#setbuttonlist)
-- [setDefaultResponse](#/documentation/interface-IDialogeventsController#setdefaultresponse)
-
 ## Methods
 
 ### close

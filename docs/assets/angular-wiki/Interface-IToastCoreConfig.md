@@ -1,27 +1,5 @@
 # Interface: IToastCoreConfig
 
-## Table of contents
-
-### Properties
-
-- [allowHtmlMessage](#/documentation/interface-IToastCoreConfig#allowhtmlmessage)
-- [animationIn](#/documentation/interface-IToastCoreConfig#animationin)
-- [animationOut](#/documentation/interface-IToastCoreConfig#animationout)
-- [autoCloseDelay](#/documentation/interface-IToastCoreConfig#autoclosedelay)
-- [buttonPosition](#/documentation/interface-IToastCoreConfig#buttonposition)
-- [confirmLabel](#/documentation/interface-IToastCoreConfig#confirmlabel)
-- [customStyles](#/documentation/interface-IToastCoreConfig#customstyles)
-- [declineLabel](#/documentation/interface-IToastCoreConfig#declinelabel)
-- [disableIcon](#/documentation/interface-IToastCoreConfig#disableicon)
-- [dispatch](#/documentation/interface-IToastCoreConfig#dispatch)
-- [iconStyleClass](#/documentation/interface-IToastCoreConfig#iconstyleclass)
-- [layoutType](#/documentation/interface-IToastCoreConfig#layouttype)
-- [openInElementID](#/documentation/interface-IToastCoreConfig#openinelementid)
-- [progressBar](#/documentation/interface-IToastCoreConfig#progressbar)
-- [textPosition](#/documentation/interface-IToastCoreConfig#textposition)
-- [toastPosition](#/documentation/interface-IToastCoreConfig#toastposition)
-- [toastUserViewType](#/documentation/interface-IToastCoreConfig#toastuserviewtype)
-
 ## Properties
 
 ### allowHtmlMessage

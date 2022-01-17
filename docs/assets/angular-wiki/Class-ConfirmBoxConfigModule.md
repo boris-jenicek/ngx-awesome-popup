@@ -47,16 +47,6 @@ ConfirmBoxConfigModule.forRoot({
 * buttons: [IButton](#/documentation/interface-IButton)
 * ButtonMaker: [ButtonMaker](#/documentation/class-ButtonMaker)
 
-## Table of contents
-
-### Constructors
-
-- [constructor](#/documentation/class-ConfirmBoxConfigModule#constructor)
-
-### Methods
-
-- [forRoot](#/documentation/class-ConfirmBoxConfigModule#forroot)
-
 ## Constructors
 
 ### constructor

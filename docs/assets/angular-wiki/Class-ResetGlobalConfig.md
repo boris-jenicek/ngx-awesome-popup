@@ -1,8 +1,7 @@
 # Class: ResetGlobalConfig
 
 ```typescript
-// Instantiate config object as example below to change global settings on-fly it takes IGlobalUserConfig
-as the argument.
+// Instantiate config object as example below to change global settings on-fly it takes IGlobalUserConfig as the argument.
 new ResetGlobalConfig({
     colorList: {
            primary  : '#ff9e00', // optional shade of the overlay color
@@ -16,12 +15,6 @@ new ResetGlobalConfig({
           }
 })
 ```
-
-## Table of contents
-
-### Constructors
-
-- [constructor](#/documentation/class-ResetGlobalConfig#constructor)
 
 ## Constructors
 

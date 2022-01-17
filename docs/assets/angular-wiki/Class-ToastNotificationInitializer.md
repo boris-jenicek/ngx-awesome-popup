@@ -32,22 +32,6 @@ newConfirmBox.openConfirmBox$().subscribe(resp => {
 * layoutType: [DialogLayoutDisplay](#/documentation/enum-DialogLayoutDisplay)
 * IToastNotificationPublicResponse: [IToastNotificationPublicResponse](#/documentation/interface-IToastNotificationPublicResponse)
 
-## Table of contents
-
-### Constructors
-
-- [constructor](#/documentation/class-ToastNotificationInitializer#constructor)
-
-### Methods
-
-- [openToastNotification$](#/documentation/class-ToastNotificationInitializer#opentoastnotification$)
-- [setButtonLabels](#/documentation/class-ToastNotificationInitializer#setbuttonlabels)
-- [setButtons](#/documentation/class-ToastNotificationInitializer#setbuttons)
-- [setConfig](#/documentation/class-ToastNotificationInitializer#setconfig)
-- [setDispatch](#/documentation/class-ToastNotificationInitializer#setdispatch)
-- [setMessage](#/documentation/class-ToastNotificationInitializer#setmessage)
-- [setTitle](#/documentation/class-ToastNotificationInitializer#settitle)
-
 ## Constructors
 
 ### constructor

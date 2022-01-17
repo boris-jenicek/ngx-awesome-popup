@@ -1,23 +1,5 @@
 # Interface: IConfirmBoxCoreConfig
 
-## Table of contents
-
-### Properties
-
-- [allowHtmlMessage](#/documentation/interface-IConfirmBoxCoreConfig#allowhtmlmessage)
-- [animationIn](#/documentation/interface-IConfirmBoxCoreConfig#animationin)
-- [animationOut](#/documentation/interface-IConfirmBoxCoreConfig#animationout)
-- [buttonPosition](#/documentation/interface-IConfirmBoxCoreConfig#buttonposition)
-- [confirmLabel](#/documentation/interface-IConfirmBoxCoreConfig#confirmlabel)
-- [customStyles](#/documentation/interface-IConfirmBoxCoreConfig#customstyles)
-- [declineLabel](#/documentation/interface-IConfirmBoxCoreConfig#declinelabel)
-- [disableIcon](#/documentation/interface-IConfirmBoxCoreConfig#disableicon)
-- [dispatch](#/documentation/interface-IConfirmBoxCoreConfig#dispatch)
-- [height](#/documentation/interface-IConfirmBoxCoreConfig#height)
-- [iconStyleClass](#/documentation/interface-IConfirmBoxCoreConfig#iconstyleclass)
-- [layoutType](#/documentation/interface-IConfirmBoxCoreConfig#layouttype)
-- [width](#/documentation/interface-IConfirmBoxCoreConfig#width)
-
 ## Properties
 
 ### allowHtmlMessage

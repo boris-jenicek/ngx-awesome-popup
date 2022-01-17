@@ -1,14 +1,12 @@
 # API Documentation - Awesome Popup
 
-## Table of contents
-
-### Observable response after closing popup References
+## Observable response after closing popup References
 
 - [IConfirmBoxResponse](#/documentation/Home#iconfirmboxresponse)
 - [IDialogResponse](#/documentation/Home#idialogresponse)
 - [IToastNotificationResponse](#/documentation/Home#itoastnotificationresponse)
 
-### Enumerations
+## Enumerations
 
 - [AppearanceAnimation](#/documentation/enum-AppearanceAnimation)
 - [ButtonLayoutDisplay](#/documentation/enum-ButtonLayoutDisplay)
@@ -18,30 +16,32 @@
 - [ToastProgressBarEnum](#/documentation/enum-ToastProgressBarEnum)
 - [ToastUserViewTypeEnum](#/documentation/enum-ToastUserViewTypeEnum)
 
-### Popup open Classes
+## Popup open Classes
 
 - [ConfirmBoxInitializer](#/documentation/class-ConfirmBoxInitializer)
 - [DialogInitializer](#/documentation/class-DialogInitializer)
 - [ToastNotificationInitializer](#/documentation/class-ToastNotificationInitializer)
 
-### Imports for angular app.module Classes
+## Imports for angular app.module Classes
 
 - [ConfirmBoxConfigModule](#/documentation/class-ConfirmBoxConfigModule)
 - [DialogConfigModule](#/documentation/class-DialogConfigModule)
 - [NgxAwesomePopupModule](#/documentation/class-NgxAwesomePopupModule)
 - [ToastNotificationConfigModule](#/documentation/class-ToastNotificationConfigModule)
 
-### Other Classes
+## Other Classes
 
 - [ButtonMaker](#/documentation/class-ButtonMaker)
+- [ConfirmBoxEvokeService](#/documentation/class-ConfirmBoxEvokeService)
 - [ResetGlobalConfig](#/documentation/class-ResetGlobalConfig)
 - [ResetToastGlobalSettings](#/documentation/class-ResetToastGlobalSettings)
+- [ToastEvokeService](#/documentation/class-ToastEvokeService)
 
-### child dynamic component data &amp; event controller Classes
+## child dynamic component data &amp; event controller Classes
 
 - [DialogBelonging](#/documentation/class-DialogBelonging)
 
-### Interfaces
+## Interfaces
 
 - [IButton](#/documentation/interface-IButton)
 - [IColorTypes](#/documentation/interface-IColorTypes)
@@ -58,10 +58,6 @@
 - [IToastCoreConfig](#/documentation/interface-IToastCoreConfig)
 - [IToastNotificationPublicResponse](#/documentation/interface-IToastNotificationPublicResponse)
 - [IToastNotificationUserConfig](#/documentation/interface-IToastNotificationUserConfig)
-
-### Type aliases
-
-- [VerticalPosition](#/documentation/Home#verticalposition)
 
 ## Observable response after closing popup References
 

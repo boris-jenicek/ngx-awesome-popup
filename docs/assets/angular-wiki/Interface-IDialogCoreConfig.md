@@ -35,27 +35,6 @@ const dialogCoreConfig = {
 
   ↳ **`IDialogCoreConfig`**
 
-## Table of contents
-
-### Properties
-
-- [animationIn](#/documentation/interface-IDialogCoreConfig#animationin)
-- [animationOut](#/documentation/interface-IDialogCoreConfig#animationout)
-- [buttonPosition](#/documentation/interface-IDialogCoreConfig#buttonposition)
-- [customStyles](#/documentation/interface-IDialogCoreConfig#customstyles)
-- [displayLoader](#/documentation/interface-IDialogCoreConfig#displayloader)
-- [escapeKeyClose](#/documentation/interface-IDialogCoreConfig#escapekeyclose)
-- [fullScreen](#/documentation/interface-IDialogCoreConfig#fullscreen)
-- [height](#/documentation/interface-IDialogCoreConfig#height)
-- [hideScrollbar](#/documentation/interface-IDialogCoreConfig#hidescrollbar)
-- [layoutType](#/documentation/interface-IDialogCoreConfig#layouttype)
-- [loaderComponent](#/documentation/interface-IDialogCoreConfig#loadercomponent)
-- [maxHeight](#/documentation/interface-IDialogCoreConfig#maxheight)
-- [maxWidth](#/documentation/interface-IDialogCoreConfig#maxwidth)
-- [minHeight](#/documentation/interface-IDialogCoreConfig#minheight)
-- [minWidth](#/documentation/interface-IDialogCoreConfig#minwidth)
-- [width](#/documentation/interface-IDialogCoreConfig#width)
-
 ## Properties
 
 ### animationIn

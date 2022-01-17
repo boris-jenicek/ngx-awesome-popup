@@ -2,22 +2,6 @@
 
 ## Choose between many disappearing animations that are available
 
-## Table of contents
-
-### Enumeration members
-
-- [BOUNCE\_OUT](#/documentation/enum-DisappearanceAnimation#bounce_out)
-- [FADE\_OUT](#/documentation/enum-DisappearanceAnimation#fade_out)
-- [FLIP\_OUT](#/documentation/enum-DisappearanceAnimation#flip_out)
-- [NONE](#/documentation/enum-DisappearanceAnimation#none)
-- [SLIDE\_OUT\_DOWN](#/documentation/enum-DisappearanceAnimation#slide_out_down)
-- [SLIDE\_OUT\_LEFT](#/documentation/enum-DisappearanceAnimation#slide_out_left)
-- [SLIDE\_OUT\_RIGHT](#/documentation/enum-DisappearanceAnimation#slide_out_right)
-- [SLIDE\_OUT\_UP](#/documentation/enum-DisappearanceAnimation#slide_out_up)
-- [ZOOM\_OUT](#/documentation/enum-DisappearanceAnimation#zoom_out)
-- [ZOOM\_OUT\_ROTATE](#/documentation/enum-DisappearanceAnimation#zoom_out_rotate)
-- [ZOOM\_OUT\_WIND](#/documentation/enum-DisappearanceAnimation#zoom_out_wind)
-
 ## Enumeration members
 
 ### BOUNCE\_OUT

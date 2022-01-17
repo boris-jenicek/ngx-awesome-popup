@@ -1,11 +1,5 @@
 # Interface: IGlobalToastSettings
 
-## Table of contents
-
-### Properties
-
-- [allowedNotificationsAtOnce](#/documentation/interface-IGlobalToastSettings#allowednotificationsatonce)
-
 ## Properties
 
 ### allowedNotificationsAtOnce

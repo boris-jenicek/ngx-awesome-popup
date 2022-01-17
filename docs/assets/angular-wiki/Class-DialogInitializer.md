@@ -58,19 +58,6 @@ Example:
 * ButtonMaker: [ButtonMaker](#/documentation/class-ButtonMaker)
 * IDialogPublicResponse: [IDialogPublicResponse](#/documentation/interface-IDialogPublicResponse)
 
-## Table of contents
-
-### Constructors
-
-- [constructor](#/documentation/class-DialogInitializer#constructor)
-
-### Methods
-
-- [openDialog$](#/documentation/class-DialogInitializer#opendialog$)
-- [setButtons](#/documentation/class-DialogInitializer#setbuttons)
-- [setConfig](#/documentation/class-DialogInitializer#setconfig)
-- [setCustomData](#/documentation/class-DialogInitializer#setcustomdata)
-
 ## Constructors
 
 ### constructor

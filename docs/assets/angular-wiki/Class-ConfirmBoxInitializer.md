@@ -33,22 +33,6 @@ newConfirmBox.openConfirmBox$().subscribe(resp => {
 * layoutType: [DialogLayoutDisplay](#/documentation/enum-DialogLayoutDisplay)
 * IConfirmBoxPublicResponse: [IConfirmBoxPublicResponse](#/documentation/interface-IConfirmBoxPublicResponse)
 
-## Table of contents
-
-### Constructors
-
-- [constructor](#/documentation/class-ConfirmBoxInitializer#constructor)
-
-### Methods
-
-- [openConfirmBox$](#/documentation/class-ConfirmBoxInitializer#openconfirmbox$)
-- [setButtonLabels](#/documentation/class-ConfirmBoxInitializer#setbuttonlabels)
-- [setButtons](#/documentation/class-ConfirmBoxInitializer#setbuttons)
-- [setConfig](#/documentation/class-ConfirmBoxInitializer#setconfig)
-- [setDispatch](#/documentation/class-ConfirmBoxInitializer#setdispatch)
-- [setMessage](#/documentation/class-ConfirmBoxInitializer#setmessage)
-- [setTitle](#/documentation/class-ConfirmBoxInitializer#settitle)
-
 ## Constructors
 
 ### constructor

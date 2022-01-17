@@ -1,14 +1,5 @@
 # Interface: IToastNotificationUserConfig
 
-## Table of contents
-
-### Properties
-
-- [buttons](#/documentation/interface-IToastNotificationUserConfig#buttons)
-- [dispatch](#/documentation/interface-IToastNotificationUserConfig#dispatch)
-- [globalSettings](#/documentation/interface-IToastNotificationUserConfig#globalsettings)
-- [toastCoreConfig](#/documentation/interface-IToastNotificationUserConfig#toastcoreconfig)
-
 ## Properties
 
 ### buttons

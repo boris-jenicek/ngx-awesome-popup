@@ -64,19 +64,6 @@ this.subscriptions.unsubscribe();
 
 - `IDialogBelonging`
 
-## Table of contents
-
-### Constructors
-
-- [constructor](#/documentation/class-DialogBelonging#constructor)
-
-### Properties
-
-- [buttons](#/documentation/class-DialogBelonging#buttons)
-- [customData](#/documentation/class-DialogBelonging#customdata)
-- [dialogCoreConfig](#/documentation/class-DialogBelonging#dialogcoreconfig)
-- [eventsController](#/documentation/class-DialogBelonging#eventscontroller)
-
 ## Constructors
 
 ### constructor

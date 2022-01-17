@@ -1,20 +1,5 @@
 # Enumeration: DialogLayoutDisplay
 
-## Table of contents
-
-### Enumeration members
-
-- [CUSTOM\_FIVE](#/documentation/enum-DialogLayoutDisplay#custom_five)
-- [CUSTOM\_FOUR](#/documentation/enum-DialogLayoutDisplay#custom_four)
-- [CUSTOM\_ONE](#/documentation/enum-DialogLayoutDisplay#custom_one)
-- [CUSTOM\_THREE](#/documentation/enum-DialogLayoutDisplay#custom_three)
-- [CUSTOM\_TWO](#/documentation/enum-DialogLayoutDisplay#custom_two)
-- [DANGER](#/documentation/enum-DialogLayoutDisplay#danger)
-- [INFO](#/documentation/enum-DialogLayoutDisplay#info)
-- [NONE](#/documentation/enum-DialogLayoutDisplay#none)
-- [SUCCESS](#/documentation/enum-DialogLayoutDisplay#success)
-- [WARNING](#/documentation/enum-DialogLayoutDisplay#warning)
-
 ## Enumeration members
 
 ### CUSTOM\_FIVE

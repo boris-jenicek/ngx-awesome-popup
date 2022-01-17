@@ -21,12 +21,6 @@ const colorList = {
        }
 ```
 
-## Table of contents
-
-### Properties
-
-- [colorList](#/documentation/interface-IGlobalUserConfig#colorlist)
-
 ## Properties
 
 ### colorList

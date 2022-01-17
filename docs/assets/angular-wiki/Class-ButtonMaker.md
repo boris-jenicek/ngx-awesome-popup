@@ -6,18 +6,6 @@
 
 - [`IButton`](#/documentation/interface-IButton)
 
-## Table of contents
-
-### Constructors
-
-- [constructor](#/documentation/class-ButtonMaker#constructor)
-
-### Properties
-
-- [ID](#/documentation/class-ButtonMaker#id)
-- [label](#/documentation/class-ButtonMaker#label)
-- [layoutType](#/documentation/class-ButtonMaker#layouttype)
-
 ## Constructors
 
 ### constructor

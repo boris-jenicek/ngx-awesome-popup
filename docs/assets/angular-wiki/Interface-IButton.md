@@ -19,14 +19,6 @@ const button2 = new ButtonMaker('Confirm', 'confirm_btn', ButtonLayoutDisplay.SU
 
 - [`ButtonMaker`](#/documentation/class-ButtonMaker)
 
-## Table of contents
-
-### Properties
-
-- [ID](#/documentation/interface-IButton#id)
-- [label](#/documentation/interface-IButton#label)
-- [layoutType](#/documentation/interface-IButton#layouttype)
-
 ## Properties
 
 ### ID

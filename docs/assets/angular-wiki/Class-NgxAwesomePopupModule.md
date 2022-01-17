@@ -20,16 +20,6 @@ NgxAwesomePopupModule.forRoot({
 })
 ```
 
-## Table of contents
-
-### Constructors
-
-- [constructor](#/documentation/class-NgxAwesomePopupModule#constructor)
-
-### Methods
-
-- [forRoot](#/documentation/class-NgxAwesomePopupModule#forroot)
-
 ## Constructors
 
 ### constructor

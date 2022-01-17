@@ -1,13 +1,5 @@
 # Interface: IConfirmBoxUserConfig
 
-## Table of contents
-
-### Properties
-
-- [buttons](#/documentation/interface-IConfirmBoxUserConfig#buttons)
-- [confirmBoxCoreConfig](#/documentation/interface-IConfirmBoxUserConfig#confirmboxcoreconfig)
-- [dispatch](#/documentation/interface-IConfirmBoxUserConfig#dispatch)
-
 ## Properties
 
 ### buttons

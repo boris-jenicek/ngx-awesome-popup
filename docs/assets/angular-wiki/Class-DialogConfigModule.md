@@ -50,16 +50,6 @@ DialogConfigModule.forRoot({
 * ButtonLayoutDisplay: [ButtonLayoutDisplay](#/documentation/enum-ButtonLayoutDisplay)
 * ButtonMaker: [ButtonMaker](#/documentation/class-ButtonMaker)
 
-## Table of contents
-
-### Constructors
-
-- [constructor](#/documentation/class-DialogConfigModule#constructor)
-
-### Methods
-
-- [forRoot](#/documentation/class-DialogConfigModule#forroot)
-
 ## Constructors
 
 ### constructor

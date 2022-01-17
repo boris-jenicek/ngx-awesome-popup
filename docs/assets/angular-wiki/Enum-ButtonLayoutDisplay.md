@@ -1,25 +1,5 @@
 # Enumeration: ButtonLayoutDisplay
 
-## Table of contents
-
-### Enumeration members
-
-- [CUSTOM\_FIVE](#/documentation/enum-ButtonLayoutDisplay#custom_five)
-- [CUSTOM\_FOUR](#/documentation/enum-ButtonLayoutDisplay#custom_four)
-- [CUSTOM\_ONE](#/documentation/enum-ButtonLayoutDisplay#custom_one)
-- [CUSTOM\_THREE](#/documentation/enum-ButtonLayoutDisplay#custom_three)
-- [CUSTOM\_TWO](#/documentation/enum-ButtonLayoutDisplay#custom_two)
-- [DANGER](#/documentation/enum-ButtonLayoutDisplay#danger)
-- [DARK](#/documentation/enum-ButtonLayoutDisplay#dark)
-- [INFO](#/documentation/enum-ButtonLayoutDisplay#info)
-- [LIGHT](#/documentation/enum-ButtonLayoutDisplay#light)
-- [LINK](#/documentation/enum-ButtonLayoutDisplay#link)
-- [NONE](#/documentation/enum-ButtonLayoutDisplay#none)
-- [PRIMARY](#/documentation/enum-ButtonLayoutDisplay#primary)
-- [SECONDARY](#/documentation/enum-ButtonLayoutDisplay#secondary)
-- [SUCCESS](#/documentation/enum-ButtonLayoutDisplay#success)
-- [WARNING](#/documentation/enum-ButtonLayoutDisplay#warning)
-
 ## Enumeration members
 
 ### CUSTOM\_FIVE

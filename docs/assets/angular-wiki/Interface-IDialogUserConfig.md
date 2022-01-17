@@ -2,13 +2,6 @@
 
 Check interface of properties.
 
-## Table of contents
-
-### Properties
-
-- [buttons](#/documentation/interface-IDialogUserConfig#buttons)
-- [dialogCoreConfig](#/documentation/interface-IDialogUserConfig#dialogcoreconfig)
-
 ## Properties
 
 ### buttons
