@@ -1860,11 +1860,16 @@ class WrapperAbstraction {
             this.layoutHelper.getIconClasses(this.toastNotificationBelonging.toastCoreConfig.layoutType, this.toastNotificationBelonging.toastCoreConfig.iconStyleClass));
     }
 }
-WrapperAbstraction.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: WrapperAbstraction, deps: [{ token: ToastNotificationBelonging }, { token: LayoutHelperService }], target: i0.ɵɵFactoryTarget.Directive });
+WrapperAbstraction.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: WrapperAbstraction, deps: [{ token: 'toastNotificationBelonging' }, { token: LayoutHelperService }], target: i0.ɵɵFactoryTarget.Directive });
 WrapperAbstraction.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.1.2", type: WrapperAbstraction, viewQueries: [{ propertyName: "elTextWrapper", first: true, predicate: ["elTextWrapper"], descendants: true }, { propertyName: "elTitleWrapper", first: true, predicate: ["elTitleWrapper"], descendants: true }, { propertyName: "elButtonWrapper", first: true, predicate: ["elButtonWrapper"], descendants: true }, { propertyName: "elButton", predicate: ["elButton"], descendants: true }], ngImport: i0 });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: WrapperAbstraction, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: ToastNotificationBelonging }, { type: LayoutHelperService }]; }, propDecorators: { elTextWrapper: [{
+        }], ctorParameters: function () {
+        return [{ type: ToastNotificationBelonging, decorators: [{
+                        type: Inject,
+                        args: ['toastNotificationBelonging']
+                    }] }, { type: LayoutHelperService }];
+    }, propDecorators: { elTextWrapper: [{
                 type: ViewChild,
                 args: ['elTextWrapper']
             }], elTitleWrapper: [{

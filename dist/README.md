@@ -7,7 +7,6 @@
 <p align="center">
 		<a href="https://npmcharts.com/compare/@costlydeveloper/ngx-awesome-popup?minimal=true"><img alt="Downloads per month" src="https://img.shields.io/npm/dm/@costlydeveloper/ngx-awesome-popup.svg" height="20"/></a>
 <a href="https://www.npmjs.com/package/@costlydeveloper/ngx-awesome-popup"><img alt="NPM Version" src="https://img.shields.io/npm/v/@costlydeveloper/ngx-awesome-popup.svg" height="20"/></a>
-<a href="https://david-dm.org/costlydeveloper/ngx-awesome-popup"><img alt="Dependencies" src="https://img.shields.io/david/costlydeveloper/ngx-awesome-popup.svg" height="20"/></a>
 <a href="https://github.com/costlydeveloper/ngx-awesome-popup/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/costlydeveloper/ngx-awesome-popup.svg" height="20"/></a>
 <a href="https://github.com/costlydeveloper/ngx-awesome-popup/graphs/commit-activity"><img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" height="20"/></a>
 <a href="https://costlydeveloper.github.io/ngx-awesome-popup/"><img alt="undefined" src="https://awesome.re/badge.svg" height="20"/></a>
@@ -40,6 +39,3 @@ Licensed under [MIT](https://opensource.org/licenses/MIT).
 ### Support us with a GitHub star!
 
 <p align="center"><a href="https://github.com/costlydeveloper/ngx-awesome-popup#"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/gh-star.png" alt="Star the repo"/></a></p>
-
-<br/>
-<p align="center"><a href="https://github.com/costlydeveloper/ngx-awesome-popup#"><img src="https://raw.githubusercontent.com/costlydeveloper/ngx-awesome-popup/master/docs/assets/backToTop.png" alt="Back to top" height="29"/></a></p>

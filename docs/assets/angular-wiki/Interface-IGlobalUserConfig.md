@@ -1,6 +1,6 @@
 # Interface: IGlobalUserConfig
 
-Each property of {@link ColorList} represent a string which represent a color in hex or rgb/rgba format.
+Each property of the colorList represent a string which represent a color in hex or rgb/rgba format.
 For available color types(properties) check [IColorTypes](#/documentation/interface-IColorTypes) interface.
 Every color is optional, and it will reflect on dialog or button color types and its color contrast or variance.
  * ```typescript

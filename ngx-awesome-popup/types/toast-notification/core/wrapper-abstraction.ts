@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Directive, ElementRef, Inject, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { delay, take, tap } from 'rxjs/operators';
 import { AppearanceAnimation, DisappearanceAnimation } from '../../../core/enums';
@@ -27,7 +27,10 @@ export abstract class WrapperAbstraction implements OnDestroy {
   appearanceAnimation = AppearanceAnimation;
   disappearanceAnimation = DisappearanceAnimation;
 
-  protected constructor(public toastNotificationBelonging: ToastNotificationBelonging, public layoutHelper: LayoutHelperService) {
+  protected constructor(
+    @Inject('toastNotificationBelonging') public toastNotificationBelonging: ToastNotificationBelonging,
+    public layoutHelper: LayoutHelperService
+  ) {
     setTimeout(() => {
       this.boxAnimation = this.toastNotificationBelonging.toastCoreConfig.animationIn;
     }, 1);

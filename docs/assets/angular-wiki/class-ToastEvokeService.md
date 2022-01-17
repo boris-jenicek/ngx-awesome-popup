@@ -1,9 +1,9 @@
 # Class: ToastEvokeService
 
 Global styles set in app.module.ts will affect the instance. See <a href="https://costlydeveloper.github.io/ngx-awesome-popup/#/documentation/class-ToastEvokeService">Global Config</a> setup.
-
 ```typescript
-// Inject this service as Dependency Injection in a constructor like example below, and evoke the popup simply calling one of its methods.
+// Inject this service as Dependency Injection in a constructor like example below,
+// and evoke the popup simply calling one of its methods.
 
  constructor(private toastEvokeService: ToastEvokeService) {}
 
@@ -32,10 +32,10 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `title`         | `string` |
-| `message`       | `string` |
+| Name | Type |
+| :------ | :------ |
+| `title` | `string` |
+| `message` | `string` |
 | `confirmLabel?` | `string` |
 | `declineLabel?` | `string` |
 
@@ -43,7 +43,7 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
 
----
+___
 
 ### customFour
 
@@ -51,10 +51,10 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `title`         | `string` |
-| `message`       | `string` |
+| Name | Type |
+| :------ | :------ |
+| `title` | `string` |
+| `message` | `string` |
 | `confirmLabel?` | `string` |
 | `declineLabel?` | `string` |
 
@@ -62,7 +62,7 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
 
----
+___
 
 ### customOne
 
@@ -70,10 +70,10 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `title`         | `string` |
-| `message`       | `string` |
+| Name | Type |
+| :------ | :------ |
+| `title` | `string` |
+| `message` | `string` |
 | `confirmLabel?` | `string` |
 | `declineLabel?` | `string` |
 
@@ -81,7 +81,7 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
 
----
+___
 
 ### customThree
 
@@ -89,10 +89,10 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `title`         | `string` |
-| `message`       | `string` |
+| Name | Type |
+| :------ | :------ |
+| `title` | `string` |
+| `message` | `string` |
 | `confirmLabel?` | `string` |
 | `declineLabel?` | `string` |
 
@@ -100,7 +100,7 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
 
----
+___
 
 ### customTwo
 
@@ -108,10 +108,10 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `title`         | `string` |
-| `message`       | `string` |
+| Name | Type |
+| :------ | :------ |
+| `title` | `string` |
+| `message` | `string` |
 | `confirmLabel?` | `string` |
 | `declineLabel?` | `string` |
 
@@ -119,7 +119,7 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
 
----
+___
 
 ### danger
 
@@ -127,10 +127,10 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `title`         | `string` |
-| `message`       | `string` |
+| Name | Type |
+| :------ | :------ |
+| `title` | `string` |
+| `message` | `string` |
 | `confirmLabel?` | `string` |
 | `declineLabel?` | `string` |
 
@@ -138,7 +138,7 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
 
----
+___
 
 ### info
 
@@ -146,10 +146,10 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `title`         | `string` |
-| `message`       | `string` |
+| Name | Type |
+| :------ | :------ |
+| `title` | `string` |
+| `message` | `string` |
 | `confirmLabel?` | `string` |
 | `declineLabel?` | `string` |
 
@@ -157,7 +157,7 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
 
----
+___
 
 ### success
 
@@ -165,10 +165,10 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `title`         | `string` |
-| `message`       | `string` |
+| Name | Type |
+| :------ | :------ |
+| `title` | `string` |
+| `message` | `string` |
 | `confirmLabel?` | `string` |
 | `declineLabel?` | `string` |
 
@@ -176,7 +176,7 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
 
----
+___
 
 ### warning
 
@@ -184,10 +184,10 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 #### Parameters
 
-| Name            | Type     |
-| :-------------- | :------- |
-| `title`         | `string` |
-| `message`       | `string` |
+| Name | Type |
+| :------ | :------ |
+| `title` | `string` |
+| `message` | `string` |
 | `confirmLabel?` | `string` |
 | `declineLabel?` | `string` |
 
