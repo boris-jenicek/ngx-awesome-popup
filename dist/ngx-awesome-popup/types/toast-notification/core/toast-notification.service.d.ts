@@ -1,0 +1,33 @@
+import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector } from '@angular/core';
+import { Observable } from 'rxjs';
+import { GlobalConfigService } from '../../../core/global-config.service';
+import { ToastNotificationBelonging, ToastNotificationeventsController } from './classes';
+import { IPrivateResponseMerged, IToastNotificationRawState } from './interfaces';
+import { ToastNotificationConfigService } from './toast-notification-config.service';
+import * as i0 from "@angular/core";
+export declare class ToastNotificationService {
+    private componentFactoryResolver;
+    private injector;
+    private appRef;
+    private toastConfig;
+    private gConfigService;
+    toastComponentRefList: ComponentRef<any>[];
+    bufferToastRawList: IToastNotificationRawState[];
+    bufferCheckingIntervalIsReady: boolean;
+    constructor(componentFactoryResolver: ComponentFactoryResolver, injector: Injector, appRef: ApplicationRef, toastConfig: ToastNotificationConfigService, gConfigService: GlobalConfigService);
+    openToast$(_ToastNotificationBelonging: ToastNotificationBelonging): Observable<IPrivateResponseMerged>;
+    internalRouting(_ToastRawInstance: IToastNotificationRawState): boolean;
+    sendToBuffer(_ToastRawInstance: IToastNotificationRawState): void;
+    sendToProduction(_ToastRawInstance: IToastNotificationRawState): void;
+    isRefListAvailable(): boolean;
+    prepareRawToast(_eventsController: ToastNotificationeventsController, _ToastNotificationBelonging: ToastNotificationBelonging): IToastNotificationRawState;
+    getComponentRef(_ToastNotificationRawState: IToastNotificationRawState): ComponentRef<any> | null;
+    listeners(_eventsController: ToastNotificationeventsController): void;
+    appendToBodyParentComponent(_ComponentRef: ComponentRef<any>): void;
+    removeFromBody(_entityUniqueID: string): void;
+    findDialogIndex(_DialogUniqueID: string): number;
+    private setToastOverlayNode;
+    private setToastWrapperNode;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ToastNotificationService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ToastNotificationService>;
+}

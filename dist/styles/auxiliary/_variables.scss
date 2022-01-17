@@ -1,0 +1,29 @@
+$nap-primary:   #ff9e00;
+$nap-secondary: #989ea5;
+$nap-success:   #3caea3;
+$nap-info:      #2f8ee5;
+$nap-warning:   #ffc107;
+$nap-danger:    #e46464;
+$nap-light:     #fbfbfb;
+$nap-dark:      #343a40;
+$custom-one:    #80b422;
+$custom-two:    #00b7de;
+$custom-three:  #eae60e;
+$custom-four:   #0d30e7;
+$custom-five:   #c42497;
+
+$types:         (
+  "primary": $nap-primary,
+  "secondary": $nap-secondary,
+  "success": $nap-success,
+  "info": $nap-info,
+  "warning": $nap-warning,
+  "danger": $nap-danger,
+  "light": $nap-light,
+  "dark": $nap-dark,
+  "customone": $custom-one,
+  "customtwo": $custom-two,
+  "customthree": $custom-three,
+  "customfour": $custom-four,
+  "customfive": $custom-five
+);

@@ -1,0 +1,90 @@
+var _ConfirmBoxEvokeService_instances, _ConfirmBoxEvokeService_extender;
+import { __classPrivateFieldGet } from "tslib";
+import { Injectable } from '@angular/core';
+import { DialogLayoutDisplay } from '../../../core/enums';
+import { ConfirmBoxInitializer } from './classes';
+import * as i0 from "@angular/core";
+export class ConfirmBoxEvokeService {
+    constructor() {
+        _ConfirmBoxEvokeService_instances.add(this);
+    }
+    success(title, message, confirmLabel, declineLabel) {
+        const confirmBox = __classPrivateFieldGet(this, _ConfirmBoxEvokeService_instances, "m", _ConfirmBoxEvokeService_extender).call(this, title, message, confirmLabel, declineLabel);
+        confirmBox.setConfig({
+            layoutType: DialogLayoutDisplay.SUCCESS
+        });
+        return confirmBox.openConfirmBox$();
+    }
+    info(title, message, confirmLabel, declineLabel) {
+        const confirmBox = __classPrivateFieldGet(this, _ConfirmBoxEvokeService_instances, "m", _ConfirmBoxEvokeService_extender).call(this, title, message, confirmLabel, declineLabel);
+        confirmBox.setConfig({
+            layoutType: DialogLayoutDisplay.INFO
+        });
+        return confirmBox.openConfirmBox$();
+    }
+    warning(title, message, confirmLabel, declineLabel) {
+        const confirmBox = __classPrivateFieldGet(this, _ConfirmBoxEvokeService_instances, "m", _ConfirmBoxEvokeService_extender).call(this, title, message, confirmLabel, declineLabel);
+        confirmBox.setConfig({
+            layoutType: DialogLayoutDisplay.WARNING
+        });
+        return confirmBox.openConfirmBox$();
+    }
+    danger(title, message, confirmLabel, declineLabel) {
+        const confirmBox = __classPrivateFieldGet(this, _ConfirmBoxEvokeService_instances, "m", _ConfirmBoxEvokeService_extender).call(this, title, message, confirmLabel, declineLabel);
+        confirmBox.setConfig({
+            layoutType: DialogLayoutDisplay.DANGER
+        });
+        return confirmBox.openConfirmBox$();
+    }
+    customOne(title, message, confirmLabel, declineLabel) {
+        const confirmBox = __classPrivateFieldGet(this, _ConfirmBoxEvokeService_instances, "m", _ConfirmBoxEvokeService_extender).call(this, title, message, confirmLabel, declineLabel);
+        confirmBox.setConfig({
+            layoutType: DialogLayoutDisplay.CUSTOM_ONE
+        });
+        return confirmBox.openConfirmBox$();
+    }
+    customTwo(title, message, confirmLabel, declineLabel) {
+        const confirmBox = __classPrivateFieldGet(this, _ConfirmBoxEvokeService_instances, "m", _ConfirmBoxEvokeService_extender).call(this, title, message, confirmLabel, declineLabel);
+        confirmBox.setConfig({
+            layoutType: DialogLayoutDisplay.CUSTOM_TWO
+        });
+        return confirmBox.openConfirmBox$();
+    }
+    customThree(title, message, confirmLabel, declineLabel) {
+        const confirmBox = __classPrivateFieldGet(this, _ConfirmBoxEvokeService_instances, "m", _ConfirmBoxEvokeService_extender).call(this, title, message, confirmLabel, declineLabel);
+        confirmBox.setConfig({
+            layoutType: DialogLayoutDisplay.CUSTOM_THREE
+        });
+        return confirmBox.openConfirmBox$();
+    }
+    customFour(title, message, confirmLabel, declineLabel) {
+        const confirmBox = __classPrivateFieldGet(this, _ConfirmBoxEvokeService_instances, "m", _ConfirmBoxEvokeService_extender).call(this, title, message, confirmLabel, declineLabel);
+        confirmBox.setConfig({
+            layoutType: DialogLayoutDisplay.CUSTOM_FOUR
+        });
+        return confirmBox.openConfirmBox$();
+    }
+    customFive(title, message, confirmLabel, declineLabel) {
+        const confirmBox = __classPrivateFieldGet(this, _ConfirmBoxEvokeService_instances, "m", _ConfirmBoxEvokeService_extender).call(this, title, message, confirmLabel, declineLabel);
+        confirmBox.setConfig({
+            layoutType: DialogLayoutDisplay.CUSTOM_FIVE
+        });
+        return confirmBox.openConfirmBox$();
+    }
+}
+_ConfirmBoxEvokeService_instances = new WeakSet(), _ConfirmBoxEvokeService_extender = function _ConfirmBoxEvokeService_extender(title, message, confirmLabel, declineLabel) {
+    const confirmBox = new ConfirmBoxInitializer();
+    confirmBox.setTitle(title);
+    confirmBox.setMessage(message);
+    confirmBox.setButtonLabels(confirmLabel, declineLabel);
+    return confirmBox;
+};
+ConfirmBoxEvokeService.ɵfac = function ConfirmBoxEvokeService_Factory(t) { return new (t || ConfirmBoxEvokeService)(); };
+ConfirmBoxEvokeService.ɵprov = i0.ɵɵdefineInjectable({ token: ConfirmBoxEvokeService, factory: ConfirmBoxEvokeService.ɵfac, providedIn: 'root' });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ConfirmBoxEvokeService, [{
+        type: Injectable,
+        args: [{
+                providedIn: 'root'
+            }]
+    }], null, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29uZmlybS1ib3gtZXZva2Uuc2VydmljZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL25neC1hd2Vzb21lLXBvcHVwL3R5cGVzL2NvbmZpcm0tYm94L2NvcmUvY29uZmlybS1ib3gtZXZva2Uuc2VydmljZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFM0MsT0FBTyxFQUFFLG1CQUFtQixFQUFFLE1BQU0scUJBQXFCLENBQUM7QUFDMUQsT0FBTyxFQUFFLHFCQUFxQixFQUFFLE1BQU0sV0FBVyxDQUFDOztBQU1sRCxNQUFNLE9BQU8sc0JBQXNCO0lBSG5DOztLQW1GQztJQS9FQyxPQUFPLENBQUMsS0FBYSxFQUFFLE9BQWUsRUFBRSxZQUFvQixFQUFFLFlBQXFCO1FBQ2pGLE1BQU0sVUFBVSxHQUFHLHVCQUFBLElBQUksMkVBQVUsTUFBZCxJQUFJLEVBQVcsS0FBSyxFQUFFLE9BQU8sRUFBRSxZQUFZLEVBQUUsWUFBWSxDQUFDLENBQUM7UUFDOUUsVUFBVSxDQUFDLFNBQVMsQ0FBQztZQUNuQixVQUFVLEVBQUUsbUJBQW1CLENBQUMsT0FBTztTQUN4QyxDQUFDLENBQUM7UUFDSCxPQUFPLFVBQVUsQ0FBQyxlQUFlLEVBQUUsQ0FBQztJQUN0QyxDQUFDO0lBRUQsSUFBSSxDQUFDLEtBQWEsRUFBRSxPQUFlLEVBQUUsWUFBb0IsRUFBRSxZQUFxQjtRQUM5RSxNQUFNLFVBQVUsR0FBRyx1QkFBQSxJQUFJLDJFQUFVLE1BQWQsSUFBSSxFQUFXLEtBQUssRUFBRSxPQUFPLEVBQUUsWUFBWSxFQUFFLFlBQVksQ0FBQyxDQUFDO1FBQzlFLFVBQVUsQ0FBQyxTQUFTLENBQUM7WUFDbkIsVUFBVSxFQUFFLG1CQUFtQixDQUFDLElBQUk7U0FDckMsQ0FBQyxDQUFDO1FBQ0gsT0FBTyxVQUFVLENBQUMsZUFBZSxFQUFFLENBQUM7SUFDdEMsQ0FB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QUFDO1lBQ25CLFVBQVUsRUFBRSxtQkFBbUIsQ0FBQyxXQUFXO1NBQzVDLENBQUMsQ0FBQztRQUNILE9BQU8sVUFBVSxDQUFDLGVBQWUsRUFBRSxDQUFDO0lBQ3RDLENBQUM7O2dJQUVTLEtBQWEsRUFBRSxPQUFlLEVBQUUsWUFBb0IsRUFBRSxZQUFxQjtJQUNuRixNQUFNLFVBQVUsR0FBRyxJQUFJLHFCQUFxQixFQUFFLENBQUM7SUFDL0MsVUFBVSxDQUFDLFFBQVEsQ0FBQyxLQUFLLENBQUMsQ0FBQztJQUMzQixVQUFVLENBQUMsVUFBVSxDQUFDLE9BQU8sQ0FBQyxDQUFDO0lBQy9CLFVBQVUsQ0FBQyxlQUFlLENBQUMsWUFBWSxFQUFFLFlBQVksQ0FBQyxDQUFDO0lBQ3ZELE9BQU8sVUFBVSxDQUFDO0FBQ3BCLENBQUM7NEZBL0VVLHNCQUFzQjs4REFBdEIsc0JBQXNCLFdBQXRCLHNCQUFzQixtQkFGckIsTUFBTTt1RkFFUCxzQkFBc0I7Y0FIbEMsVUFBVTtlQUFDO2dCQUNWLFVBQVUsRUFBRSxNQUFNO2FBQ25CIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0YWJsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgT2JzZXJ2YWJsZSB9IGZyb20gJ3J4anMnO1xuaW1wb3J0IHsgRGlhbG9nTGF5b3V0RGlzcGxheSB9IGZyb20gJy4uLy4uLy4uL2NvcmUvZW51bXMnO1xuaW1wb3J0IHsgQ29uZmlybUJveEluaXRpYWxpemVyIH0gZnJvbSAnLi9jbGFzc2VzJztcbmltcG9ydCB7IElDb25maXJtQm94UHVibGljUmVzcG9uc2UgfSBmcm9tICcuL2ludGVyZmFjZXMnO1xuXG5ASW5qZWN0YWJsZSh7XG4gIHByb3ZpZGVkSW46ICdyb290J1xufSlcbmV4cG9ydCBjbGFzcyBDb25maXJtQm94RXZva2VTZXJ2aWNlIHtcbiAgc3VjY2Vzcyh0aXRsZTogc3RyaW5nLCBtZXNzYWdlOiBzdHJpbmcsIGNvbmZpcm1MYWJlbDogc3RyaW5nLCBkZWNsaW5lTGFiZWw/OiBzdHJpbmcpOiBPYnNlcnZhYmxlPElDb25maXJtQm94UHVibGljUmVzcG9uc2U+IHtcbiAgICBjb25zdCBjb25maXJtQm94ID0gdGhpcy4jZXh0ZW5kZXIodGl0bGUsIG1lc3NhZ2UsIGNvbmZpcm1MYWJlbCwgZGVjbGluZUxhYmVsKTtcbiAgICBjb25maXJtQm94LnNldENvbmZpZyh7XG4gICAgICBsYXlvdXRUeXBlOiBEaWFsb2dMYXlvdXREaXNwbGF5LlNVQ0NFU1NcbiAgICB9KTtcbiAgICByZXR1cm4gY29uZmlybUJveC5vcGVuQ29uZmlybUJveCQoKTtcbiAgfVxuXG4gIGluZm8odGl0bGU6IHN0cmluZywgbWVzc2FnZTogc3RyaW5nLCBjb25maXJtTGFiZWw6IHN0cmluZywgZGVjbGluZUxhYmVsPzogc3RyaW5nKTogT2JzZXJ2YWJsZTxJQ29uZmlybUJveFB1YmxpY1Jlc3BvbnNlPiB7XG4gICAgY29uc3QgY29uZmlybUJveCA9IHRoaXMuI2V4dGVuZGVyKHRpdGxlLCBtZXNzYWdlLCBjb25maXJtTGFiZWwsIGRlY2xpbmVMYWJlbCk7XG4gICAgY29uZmlybUJveC5zZXRDb25maWcoe1xuICAgICAgbGF5b3V0VHlwZTogRGlhbG9nTGF5b3V0RGlzcGxheS5JTkZPXG4gICAgfSk7XG4gICAgcmV0dXJuIGNvbmZpcm1Cb3gub3BlbkNvbmZpcm1Cb3gkKCk7XG4gIH1cblxuICB3YXJuaW5nKHRpdGxlOiBzdHJpbmcsIG1lc3NhZ2U6IHN0cmluZywgY29uZmlybUxhYmVsOiBzdHJpbmcsIGRlY2xpbmVMYWJlbD86IHN0cmluZyk6IE9ic2VydmFibGU8SUNvbmZpcm1Cb3hQdWJsaWNSZXNwb25zZT4ge1xuICAgIGNvbnN0IGNvbmZpcm1Cb3ggPSB0aGlzLiNleHRlbmRlcih0aXRsZSwgbWVzc2FnZSwgY29uZmlybUxhYmVsLCBkZWNsaW5lTGFiZWwpO1xuICAgIGNvbmZpcm1Cb3guc2V0Q29uZmlnKHtcbiAgICAgIGxheW91dFR5cGU6IERpYWxvZ0xheW91dERpc3BsYXkuV0FSTklOR1xuICAgIH0pO1xuICAgIHJldHVybiBjb25maXJtQm94Lm9wZW5Db25maXJtQm94JCgpO1xuICB9XG5cbiAgZGFuZ2VyKHRpdGxlOiBzdHJpbmcsIG1lc3NhZ2U6IHN0cmluZywgY29uZmlybUxhYmVsOiBzdHJpbmcsIGRlY2xpbmVMYWJlbD86IHN0cmluZyk6IE9ic2VydmFibGU8SUNvbmZpcm1Cb3hQdWJsaWNSZXNwb25zZT4ge1xuICAgIGNvbnN0IGNvbmZpcm1Cb3ggPSB0aGlzLiNleHRlbmRlcih0aXRsZSwgbWVzc2FnZSwgY29uZmlybUxhYmVsLCBkZWNsaW5lTGFiZWwpO1xuICAgIGNvbmZpcm1Cb3guc2V0Q29uZmlnKHtcbiAgICAgIGxheW91dFR5cGU6IERpYWxvZ0xheW91dERpc3BsYXkuREFOR0VSXG4gICAgfSk7XG4gICAgcmV0dXJuIGNvbmZpcm1Cb3gub3BlbkNvbmZpcm1Cb3gkKCk7XG4gIH1cblxuICBjdXN0b21PbmUodGl0bGU6IHN0cmluZywgbWVzc2FnZTogc3RyaW5nLCBjb25maXJtTGFiZWw6IHN0cmluZywgZGVjbGluZUxhYmVsPzogc3RyaW5nKTogT2JzZXJ2YWJsZTxJQ29uZmlybUJveFB1YmxpY1Jlc3BvbnNlPiB7XG4gICAgY29uc3QgY29uZmlybUJveCA9IHRoaXMuI2V4dGVuZGVyKHRpdGxlLCBtZXNzYWdlLCBjb25maXJtTGFiZWwsIGRlY2xpbmVMYWJlbCk7XG4gICAgY29uZmlybUJveC5zZXRDb25maWcoe1xuICAgICAgbGF5b3V0VHlwZTogRGlhbG9nTGF5b3V0RGlzcGxheS5DVVNUT01fT05FXG4gICAgfSk7XG4gICAgcmV0dXJuIGNvbmZpcm1Cb3gub3BlbkNvbmZpcm1Cb3gkKCk7XG4gIH1cblxuICBjdXN0b21Ud28odGl0bGU6IHN0cmluZywgbWVzc2FnZTogc3RyaW5nLCBjb25maXJtTGFiZWw6IHN0cmluZywgZGVjbGluZUxhYmVsPzogc3RyaW5nKTogT2JzZXJ2YWJsZTxJQ29uZmlybUJveFB1YmxpY1Jlc3BvbnNlPiB7XG4gICAgY29uc3QgY29uZmlybUJveCA9IHRoaXMuI2V4dGVuZGVyKHRpdGxlLCBtZXNzYWdlLCBjb25maXJtTGFiZWwsIGRlY2xpbmVMYWJlbCk7XG4gICAgY29uZmlybUJveC5zZXRDb25maWcoe1xuICAgICAgbGF5b3V0VHlwZTogRGlhbG9nTGF5b3V0RGlzcGxheS5DVVNUT01fVFdPXG4gICAgfSk7XG4gICAgcmV0dXJuIGNvbmZpcm1Cb3gub3BlbkNvbmZpcm1Cb3gkKCk7XG4gIH1cblxuICBjdXN0b21UaHJlZSh0aXRsZTogc3RyaW5nLCBtZXNzYWdlOiBzdHJpbmcsIGNvbmZpcm1MYWJlbDogc3RyaW5nLCBkZWNsaW5lTGFiZWw/OiBzdHJpbmcpOiBPYnNlcnZhYmxlPElDb25maXJtQm94UHVibGljUmVzcG9uc2U+IHtcbiAgICBjb25zdCBjb25maXJtQm94ID0gdGhpcy4jZXh0ZW5kZXIodGl0bGUsIG1lc3NhZ2UsIGNvbmZpcm1MYWJlbCwgZGVjbGluZUxhYmVsKTtcbiAgICBjb25maXJtQm94LnNldENvbmZpZyh7XG4gICAgICBsYXlvdXRUeXBlOiBEaWFsb2dMYXlvdXREaXNwbGF5LkNVU1RPTV9USFJFRVxuICAgIH0pO1xuICAgIHJldHVybiBjb25maXJtQm94Lm9wZW5Db25maXJtQm94JCgpO1xuICB9XG5cbiAgY3VzdG9tRm91cih0aXRsZTogc3RyaW5nLCBtZXNzYWdlOiBzdHJpbmcsIGNvbmZpcm1MYWJlbDogc3RyaW5nLCBkZWNsaW5lTGFiZWw/OiBzdHJpbmcpOiBPYnNlcnZhYmxlPElDb25maXJtQm94UHVibGljUmVzcG9uc2U+IHtcbiAgICBjb25zdCBjb25maXJtQm94ID0gdGhpcy4jZXh0ZW5kZXIodGl0bGUsIG1lc3NhZ2UsIGNvbmZpcm1MYWJlbCwgZGVjbGluZUxhYmVsKTtcbiAgICBjb25maXJtQm94LnNldENvbmZpZyh7XG4gICAgICBsYXlvdXRUeXBlOiBEaWFsb2dMYXlvdXREaXNwbGF5LkNVU1RPTV9GT1VSXG4gICAgfSk7XG4gICAgcmV0dXJuIGNvbmZpcm1Cb3gub3BlbkNvbmZpcm1Cb3gkKCk7XG4gIH1cblxuICBjdXN0b21GaXZlKHRpdGxlOiBzdHJpbmcsIG1lc3NhZ2U6IHN0cmluZywgY29uZmlybUxhYmVsOiBzdHJpbmcsIGRlY2xpbmVMYWJlbD86IHN0cmluZyk6IE9ic2VydmFibGU8SUNvbmZpcm1Cb3hQdWJsaWNSZXNwb25zZT4ge1xuICAgIGNvbnN0IGNvbmZpcm1Cb3ggPSB0aGlzLiNleHRlbmRlcih0aXRsZSwgbWVzc2FnZSwgY29uZmlybUxhYmVsLCBkZWNsaW5lTGFiZWwpO1xuICAgIGNvbmZpcm1Cb3guc2V0Q29uZmlnKHtcbiAgICAgIGxheW91dFR5cGU6IERpYWxvZ0xheW91dERpc3BsYXkuQ1VTVE9NX0ZJVkVcbiAgICB9KTtcbiAgICByZXR1cm4gY29uZmlybUJveC5vcGVuQ29uZmlybUJveCQoKTtcbiAgfVxuXG4gICNleHRlbmRlcih0aXRsZTogc3RyaW5nLCBtZXNzYWdlOiBzdHJpbmcsIGNvbmZpcm1MYWJlbDogc3RyaW5nLCBkZWNsaW5lTGFiZWw/OiBzdHJpbmcpOiBDb25maXJtQm94SW5pdGlhbGl6ZXIge1xuICAgIGNvbnN0IGNvbmZpcm1Cb3ggPSBuZXcgQ29uZmlybUJveEluaXRpYWxpemVyKCk7XG4gICAgY29uZmlybUJveC5zZXRUaXRsZSh0aXRsZSk7XG4gICAgY29uZmlybUJveC5zZXRNZXNzYWdlKG1lc3NhZ2UpO1xuICAgIGNvbmZpcm1Cb3guc2V0QnV0dG9uTGFiZWxzKGNvbmZpcm1MYWJlbCwgZGVjbGluZUxhYmVsKTtcbiAgICByZXR1cm4gY29uZmlybUJveDtcbiAgfVxufVxuIl19

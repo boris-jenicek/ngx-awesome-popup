@@ -1,0 +1,103 @@
+@use 'variables' as var;
+
+.ed-btn-sm {
+  font-size: 12px;
+  font-weight: normal;
+  margin-right: 3px;
+  min-width: 40px;
+  padding: 2px 8px;
+}
+
+.ed-btn-md {
+  font-size: 14px;
+  margin-right: 5px;
+  min-width: 60px;
+  padding: 3px 10px;
+}
+
+.ed-btn-lg {
+  font-size: 16px;
+  margin-right: 5px;
+  min-width: 70px;
+  padding: 4px 10px;
+}
+
+.ed-btn {
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+
+  user-select: none;
+  vertical-align: middle;
+
+  &:hover {
+  }
+
+  .ed-btn-check:focus + &,
+  &:focus {
+    box-shadow: 0 0 1px 2px;
+    outline: 0;
+  }
+
+  .ed-btn-check:checked + &,
+  .ed-btn-check:active + &,
+  &:active,
+  &.active {
+    box-shadow: 0 0 1px 2px;
+
+    &:focus {
+      box-shadow: 0 0 1px 2px;
+    }
+  }
+
+  &:disabled,
+  &.disabled,
+  fieldset:disabled & {
+    box-shadow: none;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+// func
+$threshold: 65%;
+
+@function contrast-color($color, $dark_, $light_) {
+  @return if(lightness($color) < $threshold, $light_, $dark_);
+}
+
+@each $type, $value in var.$types {
+  .ed-btn-#{$type} {
+    color: transparentize(contrast-color($value, var.$nap-dark, var.$nap-light), 0.2);
+    background: $value;
+    border-color: $value;
+
+    &:hover {
+      color: contrast-color($value, var.$nap-dark, var.$nap-light);
+      border-color: lighten($value, 5);
+      background: lighten($value, 10);
+    }
+
+    .ed-btn-check:focus + &,
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 1px 2px lighten($value, 5);
+    }
+
+    .ed-btn-check:checked + &,
+    .ed-btn-check:active + &,
+    &:active,
+    &.active {
+      box-shadow: 0 0 1px 2px lighten($value, 5);
+
+      &:focus {
+        box-shadow: 0 0 1px 2px lighten($value, 5);
+      }
+    }
+  }
+}

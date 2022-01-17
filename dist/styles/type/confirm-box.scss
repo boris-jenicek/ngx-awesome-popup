@@ -1,0 +1,181 @@
+@use '../auxiliary/variables' as var;
+@use '../auxiliary/buttons';
+@use '../auxiliary/icons';
+
+$nap-confirm-overlay-backdrop-filter: blur(1px);
+$nap-confirm-overlay-background: transparentize(darken(var.$nap-primary, 40), 0.6);
+$nap-confirm-background: #fbfbfb;
+$nap-confirm-box-shadow: 0 0 4px 1px transparentize(black, 0.75);
+$nap-confirm-title-border: 1px solid transparentize(black, 0.95);
+$nap-confirm-title-color: #6c757d;
+$nap-confirm-text-color: #495057;
+
+.ngx-awesome-popup-overlay.confirm-box-overlay {
+  align-items: center;
+  backdrop-filter: $nap-confirm-overlay-backdrop-filter;
+  background: $nap-confirm-overlay-background;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999999999;
+
+  .evolve-confirm-box {
+    background: $nap-confirm-background;
+    border-radius: 5px;
+    border-top: 7px solid;
+    box-shadow: $nap-confirm-box-shadow;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 100px);
+    max-width: calc(100vw - 100px);
+    opacity: 0;
+    padding: 0 20px;
+
+    position: relative;
+    vertical-align: bottom;
+
+    &.standard-dialog {
+      border-color: transparent;
+      padding: 17px 20px 10px 20px;
+    }
+
+    &.success-dialog {
+      border-color: var.$nap-success;
+    }
+
+    &.info-dialog {
+      border-color: var.$nap-info;
+    }
+
+    &.warning-dialog {
+      border-color: var.$nap-warning;
+    }
+
+    &.danger-dialog {
+      border-color: var.$nap-danger;
+    }
+
+    &.customone-dialog {
+      border-color: var.$custom-one;
+    }
+
+    &.customtwo-dialog {
+      border-color: var.$custom-two;
+    }
+
+    &.customthree-dialog {
+      border-color: var.$custom-three;
+    }
+
+    &.customfour-dialog {
+      border-color: var.$custom-four;
+    }
+
+    &.customfivew-dialog {
+      border-color: var.$custom-five;
+    }
+
+    .ap-icon-success {
+      color: lighten(var.$nap-success, 10%);
+    }
+
+    .ap-icon-info {
+      color: lighten(var.$nap-info, 10%);
+    }
+
+    .ap-icon-warning {
+      color: lighten(var.$nap-warning, 10%);
+    }
+
+    .ap-icon-danger {
+      color: lighten(var.$nap-danger, 10%);
+    }
+
+    .text-wrapper-section {
+      width: 100%;
+
+      .text-wrapper {
+        display: block;
+        text-align: center;
+        width: 100%;
+      }
+
+      .dont-break-out {
+        hyphens: auto;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        // word-break: break-all;
+        word-wrap: break-word;
+      }
+    }
+
+    .confirm-box-title-content {
+      align-items: center;
+      background-clip: padding-box;
+      border-bottom: $nap-confirm-title-border;
+      color: $nap-confirm-title-color;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      justify-content: center;
+      margin: 8px 0 10px 0;
+      padding: 2px 10px 5px 10px;
+      width: auto;
+
+      .confirm-box-title-text {
+        // font-size: 18px;
+        font-weight: bold;
+      }
+    }
+
+    .content-holder {
+      align-items: center;
+      color: $nap-confirm-text-color;
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      justify-content: space-between;
+      overflow: auto;
+      width: 100%;
+
+      &.without-title {
+        margin-top: 10px;
+      }
+
+      .icon-section {
+        .icon-type-confirm-box {
+          font-size: 34px;
+          margin: 4px;
+        }
+      }
+
+      .confirm-box-inner-content {
+        padding: 5px 10px;
+      }
+
+      .text-wrapper p {
+        margin: 0;
+      }
+    }
+
+    .button-holder {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin: 10px 0 8px 0;
+      width: 100%;
+
+      .button-section {
+        margin: 0;
+        padding: 4px 10px;
+      }
+    }
+  }
+}
