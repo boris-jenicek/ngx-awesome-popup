@@ -1,6 +1,4 @@
-import { ServiceLocator } from '../locator.service';
 import { ButtonLayoutDisplay } from './enums';
-import { GlobalConfigService } from './global-config.service';
 import { IButton, IColorObject, IColorTypes, IGlobalConfig, IGlobalUserConfig, ISizes } from './global-interfaces';
 
 export class Sizes implements ISizes {
@@ -19,11 +17,7 @@ export class dispatch {
 }
 
 export class ButtonMaker implements IButton {
-  constructor(
-    public label: string,
-    public ID: string,
-    public layoutType: ButtonLayoutDisplay = ButtonLayoutDisplay.PRIMARY
-  ) {}
+  constructor(public label: string, public ID: string, public layoutType: ButtonLayoutDisplay = ButtonLayoutDisplay.PRIMARY) {}
 }
 
 export class GlobalUserConfig implements IGlobalUserConfig {
@@ -53,18 +47,6 @@ export class ColorTypes implements IColorTypes {
   customThree: string = null;
   customFour: string = null;
   customFive: string = null;
-}
-
-export class ResetGlobalConfig {
-  constructor(globalConfig?: IGlobalUserConfig) {
-    const globalConfigService: GlobalConfigService = ServiceLocator.injector.get(GlobalConfigService);
-    if (globalConfig) {
-      globalConfigService.setUserColors(globalConfig.colorList);
-      globalConfigService.setNodeStyles(globalConfigService.productionGlobalConfig.displayColor, true);
-    } else {
-      globalConfigService.resetStyles();
-    }
-  }
 }
 
 export class GlobalConfig implements IGlobalConfig {
@@ -109,11 +91,7 @@ export class ColorProvider {
       const darken = luminance > 50 ? 5 : luminance > 40 ? 10 : luminance > 20 ? 15 : luminance;
       const brighten = luminance > 55 ? 65 : luminance > 45 ? 60 : luminance > 20 ? 55 : luminance > 10 ? 45 : 80;
       this.BrightShade = this.brightness(this.brightness(this.Base, 'darken', darken), 'brighten', brighten);
-      this.BrightWarmly = this.brightness(
-        this.brightness(this.saturate(this.Base), 'darken', darken - 10),
-        'brighten',
-        brighten - 5
-      );
+      this.BrightWarmly = this.brightness(this.brightness(this.saturate(this.Base), 'darken', darken - 10), 'brighten', brighten - 5);
       this.TransparentDarkenVariance = this.brightness(this.transparentize(this.Base, 80), 'darken', 40);
       if (this.isBright(this.Base)) {
         this.ContrastColor = 'rgba(58,65,71,0.5)';

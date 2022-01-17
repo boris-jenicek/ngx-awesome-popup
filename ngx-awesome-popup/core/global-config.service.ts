@@ -1,7 +1,20 @@
 import { Inject, Injectable } from '@angular/core';
+import { ServiceLocator } from '../locator.service';
 import { ColorVariance } from './enums';
 import { ColorProvider, GlobalConfig, GlobalUserConfig } from './global-classes';
 import { IColorObject, IColorProvider, IColorTypes, IGlobalConfig, IGlobalUserConfig } from './global-interfaces';
+
+export class ResetGlobalConfig {
+  constructor(globalConfig?: IGlobalUserConfig) {
+    const globalConfigService: GlobalConfigService = ServiceLocator.injector.get(GlobalConfigService);
+    if (globalConfig) {
+      globalConfigService.setUserColors(globalConfig.colorList);
+      globalConfigService.setNodeStyles(globalConfigService.productionGlobalConfig.displayColor, true);
+    } else {
+      globalConfigService.resetStyles();
+    }
+  }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -147,17 +160,13 @@ export class GlobalConfigService {
 
     const hoverButtonClass = `.ed-btn-${_Key.toLowerCase()}:hover`;
     const hoverStyle = `
-        background:  ${
-          _ColorProvider.IsBaseBright ? _ColorProvider.DarkenForShade : _ColorProvider.BrightenForShade
-        }!important;
+        background:  ${_ColorProvider.IsBaseBright ? _ColorProvider.DarkenForShade : _ColorProvider.BrightenForShade}!important;
         border-color: ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
         `;
 
     const focusActiveButtonClass = `.ed-btn-${_Key.toLowerCase()}:focus, .ed-btn-${_Key.toLowerCase()}:active`;
     const focusActiveStyle = `
-        box-shadow: 0 0 1px 2px ${
-          _ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten
-        }!important;
+        box-shadow: 0 0 1px 2px ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
         `;
 
     this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseButtonClass, baseStyle);

@@ -50,17 +50,5 @@
     "@angular/common": ">8.0.0",
     "@angular/core": ">8.0.0",
     "rxjs": ">6.0.0"
-  },
-  "ngPackage": {
-    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
-    "lib": {
-      "cssUrl": "inline",
-      "entryFile": "public_api.ts"
-    },
-    "assets": [
-      "assets/**",
-      "styles/**"
-    ],
-    "dest": "dist"
   }
 }

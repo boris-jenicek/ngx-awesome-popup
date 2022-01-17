@@ -12,10 +12,7 @@ import {
   IDialogPublicResponse,
   IDialogUserConfig
 } from './ngx-awesome-popup/types/dialog/core/interfaces';
-import {
-  ResetToastGlobalSettings,
-  ToastNotificationInitializer
-} from './ngx-awesome-popup/types/toast-notification/core/classes';
+import { ResetToastGlobalSettings, ToastNotificationInitializer } from './ngx-awesome-popup/types/toast-notification/core/classes';
 import {
   IGlobalToastSettings,
   IToastCoreConfig,
@@ -67,8 +64,7 @@ export { ButtonMaker } from './ngx-awesome-popup/core/global-classes';
 
 /**
  *```typescript
- * // Instantiate config object as example below to change global settings on-fly it takes IGlobalUserConfig
- * as the argument.
+ * // Instantiate config object as example below to change global settings on-fly it takes IGlobalUserConfig as the argument.
  * new ResetGlobalConfig({
  *     colorList: {
  *            primary  : '#ff9e00', // optional shade of the overlay color
@@ -83,12 +79,11 @@ export { ButtonMaker } from './ngx-awesome-popup/core/global-classes';
  * })
  * ```
  */
-export { ResetGlobalConfig } from './ngx-awesome-popup/core/global-classes';
+export { ResetGlobalConfig } from './ngx-awesome-popup/core/global-config.service';
 
 /**
  *```typescript
- * // Instantiate toast global config object as example below to change global settings on-fly it takes IGlobalToastSettings
- * as the argument.
+ * // Instantiate toast global config object as example below to change global settings on-fly it takes IGlobalToastSettings as the argument.
  * new ResetToastGlobalSettings({
  *     allowedNotificationsAtOnce: 2
  * })
@@ -496,3 +491,46 @@ export { ConfirmBoxConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.mo
  */
 export { ToastNotificationConfigModule } from './ngx-awesome-popup/ngx-awesome-popup.module';
 // endregion
+
+/**
+ * Global styles set in app.module.ts will affect the instance. See <a href="https://costlydeveloper.github.io/ngx-awesome-popup/#/documentation/class-ToastEvokeService">Global Config</a> setup.
+ *```typescript
+ * // Inject this service as Dependency Injection in a constructor like example below,
+ * // and evoke the popup simply calling one of its methods.
+ *
+ *
+ *  constructor(private confirmBoxEvokeService: ConfirmBoxEvokeService) {}
+ *
+ * // evoke it anywhere, no need to unsubscribe, it has an auto unsubscribe.
+ * // Type SUCCESS
+ * this.confirmBoxEvokeService.success('I am title!', 'I am a message!', 'Confirm', 'Decline').subscribe(resp => console.log('resp', resp));
+ * // Type INFO
+ * this.confirmBoxEvokeService.info('I am title!', 'I am a message!', 'Confirm', 'Decline').subscribe(resp => console.log('resp', resp));
+ * // Type WARNING
+ * this.confirmBoxEvokeService.warning('I am title!', 'I am a message!', 'Confirm', 'Decline').subscribe(resp => console.log('resp', resp));
+ * // Type ERROR
+ * this.confirmBoxEvokeService.danger('I am title!', 'I am a message!', 'Confirm', 'Decline').subscribe(resp => console.log('resp', resp));
+ * ```
+ */
+export { ConfirmBoxEvokeService } from './ngx-awesome-popup/types/confirm-box/core/confirm-box-evoke.service';
+/**
+ * Global styles set in app.module.ts will affect the instance. See <a href="https://costlydeveloper.github.io/ngx-awesome-popup/#/documentation/class-ToastEvokeService">Global Config</a> setup.
+ *```typescript
+ * // Inject this service as Dependency Injection in a constructor like example below,
+ * // and evoke the popup simply calling one of its methods.
+ *
+ *
+ *  constructor(private toastEvokeService: ToastEvokeService) {}
+ *
+ * // evoke it anywhere, no need to unsubscribe, it has an auto unsubscribe.
+ * // Type SUCCESS
+ * this.toastEvokeService.success('I am title!', 'I am a message!').subscribe();
+ * // Type INFO
+ * this.toastEvokeService.info('I am title!', 'I am a message!').subscribe();
+ * // Type WARNING
+ * this.toastEvokeService.warning('I am title!', 'I am a message!').subscribe();
+ * // Type ERROR
+ * this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
+ * ```
+ */
+export { ToastEvokeService } from './ngx-awesome-popup/types/toast-notification/core/toast-evoke.service';
