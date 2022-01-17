@@ -411,21 +411,19 @@ class ConfirmBoxConfigService {
         dataControl.copyValuesFrom(userConfig.confirmBoxCoreConfig, this.productionConfig.confirmBoxCoreConfig);
     }
 }
-ConfirmBoxConfigService.ɵfac = function ConfirmBoxConfigService_Factory(t) { return new (t || ConfirmBoxConfigService)(i0.ɵɵinject('confirmBoxConfig')); };
-ConfirmBoxConfigService.ɵprov = i0.ɵɵdefineInjectable({ token: ConfirmBoxConfigService, factory: ConfirmBoxConfigService.ɵfac, providedIn: 'root' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ConfirmBoxConfigService, [{
+ConfirmBoxConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxConfigService, deps: [{ token: 'confirmBoxConfig' }], target: i0.ɵɵFactoryTarget.Injectable });
+ConfirmBoxConfigService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxConfigService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxConfigService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Inject,
                         args: ['confirmBoxConfig']
                     }] }];
-    }, null);
-})();
+    } });
 
 class DialogInjector {
     constructor(ParentInjector, AdditionalTokens) {
@@ -872,141 +870,15 @@ class LayoutHelperService {
         return returnString;
     }
 }
-LayoutHelperService.ɵfac = function LayoutHelperService_Factory(t) { return new (t || LayoutHelperService)(); };
-LayoutHelperService.ɵprov = i0.ɵɵdefineInjectable({ token: LayoutHelperService, factory: LayoutHelperService.ɵfac, providedIn: 'root' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LayoutHelperService, [{
+LayoutHelperService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: LayoutHelperService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+LayoutHelperService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: LayoutHelperService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: LayoutHelperService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], null, null);
-})();
+        }] });
 
-const _c0$4 = ["elConfirmBoxWrapper"];
-const _c1$4 = ["elTextWrapper"];
-const _c2$4 = ["elTitleWrapper"];
-const _c3$4 = ["elButtonWrapper"];
-const _c4$3 = ["elButton"];
-function ConfirmBoxWrapperComponent_div_3_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 8, 9);
-        i0.ɵɵelementStart(2, "div", 10);
-        i0.ɵɵelementStart(3, "div", 11);
-        i0.ɵɵelementStart(4, "div", 12);
-        i0.ɵɵtext(5);
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r1 = i0.ɵɵnextContext();
-        i0.ɵɵadvance(5);
-        i0.ɵɵtextInterpolate1(" ", ctx_r1.confirmBoxBelonging.dispatch.title, " ");
-    }
-}
-function ConfirmBoxWrapperComponent_div_4_div_2_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 18);
-        i0.ɵɵelement(1, "span", 19);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r8 = i0.ɵɵnextContext(2);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("className", ctx_r8.getIconClasses());
-    }
-}
-function ConfirmBoxWrapperComponent_div_4_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 13, 14);
-        i0.ɵɵtemplate(2, ConfirmBoxWrapperComponent_div_4_div_2_Template, 2, 1, "div", 15);
-        i0.ɵɵelementStart(3, "div", 16);
-        i0.ɵɵelementStart(4, "div", 10);
-        i0.ɵɵelement(5, "div", 17);
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r2 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("ngClass", ctx_r2.confirmBoxBelonging.dispatch.title ? "" : "without-title");
-        i0.ɵɵadvance(2);
-        i0.ɵɵproperty("ngIf", !ctx_r2.confirmBoxBelonging.confirmBoxCoreConfig.disableIcon);
-        i0.ɵɵadvance(3);
-        i0.ɵɵproperty("innerHTML", ctx_r2.confirmBoxBelonging.dispatch.message, i0.ɵɵsanitizeHtml);
-    }
-}
-function ConfirmBoxWrapperComponent_div_7_button_1_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r13 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "button", 22, 23);
-        i0.ɵɵlistener("click", function ConfirmBoxWrapperComponent_div_7_button_1_Template_button_click_0_listener() { const restoredCtx = i0.ɵɵrestoreView(_r13); const button_r10 = restoredCtx.$implicit; const ctx_r12 = i0.ɵɵnextContext(2); return ctx_r12.onCustomButton(button_r10); });
-        i0.ɵɵtext(2);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const button_r10 = ctx.$implicit;
-        const ctx_r9 = i0.ɵɵnextContext(2);
-        i0.ɵɵproperty("className", ctx_r9.layoutHelper.getButtonClasses(button_r10.layoutType, "ed-btn ed-btn-md"));
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate1(" ", button_r10.label, " ");
-    }
-}
-const _c5$1 = function (a0) { return { "text-align": a0 }; };
-function ConfirmBoxWrapperComponent_div_7_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 20);
-        i0.ɵɵtemplate(1, ConfirmBoxWrapperComponent_div_7_button_1_Template, 3, 2, "button", 21);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r4 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(2, _c5$1, ctx_r4.confirmBoxBelonging.confirmBoxCoreConfig.buttonPosition));
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngForOf", ctx_r4.confirmBoxBelonging.buttons);
-    }
-}
-function ConfirmBoxWrapperComponent_div_8_button_4_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r18 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "button", 26, 23);
-        i0.ɵɵlistener("click", function ConfirmBoxWrapperComponent_div_8_button_4_Template_button_click_0_listener() { i0.ɵɵrestoreView(_r18); const ctx_r17 = i0.ɵɵnextContext(2); return ctx_r17.onButtonClick("decline"); });
-        i0.ɵɵtext(2);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r15 = i0.ɵɵnextContext(2);
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate1(" ", ctx_r15.confirmBoxBelonging.confirmBoxCoreConfig.declineLabel, " ");
-    }
-}
-function ConfirmBoxWrapperComponent_div_8_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r20 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "div", 20);
-        i0.ɵɵelementStart(1, "button", 24, 23);
-        i0.ɵɵlistener("click", function ConfirmBoxWrapperComponent_div_8_Template_button_click_1_listener() { i0.ɵɵrestoreView(_r20); const ctx_r19 = i0.ɵɵnextContext(); return ctx_r19.onButtonClick("confirm"); });
-        i0.ɵɵtext(3);
-        i0.ɵɵelementEnd();
-        i0.ɵɵtemplate(4, ConfirmBoxWrapperComponent_div_8_button_4_Template, 3, 1, "button", 25);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r5 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(4, _c5$1, ctx_r5.confirmBoxBelonging.confirmBoxCoreConfig.buttonPosition));
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("className", ctx_r5.layoutHelper.getButtonClasses(ctx_r5.confirmBoxBelonging.confirmBoxCoreConfig.layoutType, "ed-btn ed-btn-md", "auto-button"));
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate1(" ", ctx_r5.confirmBoxBelonging.confirmBoxCoreConfig.confirmLabel, " ");
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx_r5.confirmBoxBelonging.confirmBoxCoreConfig.declineLabel);
-    }
-}
-const _c6$1 = function (a0) { return { closeDelay: a0 }; };
-const _c7$1 = function (a0, a1) { return { value: a0, params: a1 }; };
-const _c8$1 = function (a0, a1, a2) { return { width: a0, height: a1, opacity: a2 }; };
 class ConfirmBoxWrapperComponent {
     constructor(confirmBoxBelonging, cd, layoutHelper) {
         this.confirmBoxBelonging = confirmBoxBelonging;
@@ -1087,61 +959,17 @@ class ConfirmBoxWrapperComponent {
         return this.layoutHelper.getButtonClasses(layoutType);
     }
 }
-ConfirmBoxWrapperComponent.ɵfac = function ConfirmBoxWrapperComponent_Factory(t) { return new (t || ConfirmBoxWrapperComponent)(i0.ɵɵdirectiveInject('confirmBoxBelonging'), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(LayoutHelperService)); };
-ConfirmBoxWrapperComponent.ɵcmp = i0.ɵɵdefineComponent({ type: ConfirmBoxWrapperComponent, selectors: [["app-confirm-box-wrapper"]], viewQuery: function ConfirmBoxWrapperComponent_Query(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵviewQuery(_c0$4, 5);
-            i0.ɵɵviewQuery(_c1$4, 5);
-            i0.ɵɵviewQuery(_c2$4, 5);
-            i0.ɵɵviewQuery(_c3$4, 5);
-            i0.ɵɵviewQuery(_c4$3, 5);
-        }
-        if (rf & 2) {
-            let _t;
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elConfirmBoxWrapper = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elTextWrapper = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elTitleWrapper = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elButtonWrapper = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elButton = _t);
-        }
-    }, features: [i0.ɵɵProvidersFeature([LayoutHelperService])], decls: 9, vars: 18, consts: [[1, "ngx-awesome-popup-overlay", "confirm-box-overlay", 3, "dblclick"], [3, "className", "ngStyle"], ["elConfirmBoxWrapper", ""], ["class", "confirm-box-title-content", 4, "ngIf"], ["class", "content-holder", 3, "ngClass", 4, "ngIf"], [1, "button-holder"], ["elButtonWrapper", ""], ["class", "button-section", 3, "ngStyle", 4, "ngIf"], [1, "confirm-box-title-content"], ["elTitleWrapper", ""], [1, "dont-break-out"], [1, "text-wrapper", "dont-break-out"], [1, "confirm-box-title-text"], [1, "content-holder", 3, "ngClass"], ["elTextWrapper", ""], ["class", "icon-section", 4, "ngIf"], [1, "text-wrapper-section", "confirm-box-inner-content"], [1, "text-wrapper", 3, "innerHTML"], [1, "icon-section"], [3, "className"], [1, "button-section", 3, "ngStyle"], [3, "className", "click", 4, "ngFor", "ngForOf"], [3, "className", "click"], ["elButton", ""], [1, "ed-btn", "ed-btn-md", 3, "className", "click"], ["class", "ed-btn ed-btn-md ed-btn-secondary", 3, "click", 4, "ngIf"], [1, "ed-btn", "ed-btn-md", "ed-btn-secondary", 3, "click"]], template: function ConfirmBoxWrapperComponent_Template(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵelementStart(0, "div", 0);
-            i0.ɵɵlistener("dblclick", function ConfirmBoxWrapperComponent_Template_div_dblclick_0_listener($event) { return ctx.onOverlayClicked($event); });
-            i0.ɵɵelementStart(1, "div", 1, 2);
-            i0.ɵɵtemplate(3, ConfirmBoxWrapperComponent_div_3_Template, 6, 1, "div", 3);
-            i0.ɵɵtemplate(4, ConfirmBoxWrapperComponent_div_4_Template, 6, 3, "div", 4);
-            i0.ɵɵelementStart(5, "div", 5, 6);
-            i0.ɵɵtemplate(7, ConfirmBoxWrapperComponent_div_7_Template, 2, 4, "div", 7);
-            i0.ɵɵtemplate(8, ConfirmBoxWrapperComponent_div_8_Template, 5, 6, "div", 7);
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementEnd();
-        }
-        if (rf & 2) {
-            i0.ɵɵproperty("@fadeInOut", i0.ɵɵpureFunction2(11, _c7$1, ctx.fadeInOutAnimation, i0.ɵɵpureFunction1(9, _c6$1, ctx.confirmBoxBelonging.confirmBoxCoreConfig.animationOut === ctx.disappearanceAnimation.NONE ? "200ms" : "300ms")));
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("@.disabled", ctx.confirmBoxBelonging.confirmBoxCoreConfig.animationIn === ctx.appearanceAnimation.NONE && ctx.confirmBoxBelonging.confirmBoxCoreConfig.animationOut === ctx.disappearanceAnimation.NONE)("@boxAnimations", ctx.boxAnimation)("className", ctx.layoutHelper.getBoxClasses(ctx.confirmBoxBelonging.confirmBoxCoreConfig.layoutType, "evolve-confirm-box"))("ngStyle", i0.ɵɵpureFunction3(14, _c8$1, ctx.confirmBoxBelonging.confirmBoxCoreConfig.width, ctx.confirmBoxBelonging.confirmBoxCoreConfig.height, ctx.confirmBoxBelonging.confirmBoxCoreConfig.animationIn === ctx.appearanceAnimation.NONE ? 1 : 0));
-            i0.ɵɵadvance(2);
-            i0.ɵɵproperty("ngIf", ctx.confirmBoxBelonging.dispatch.title);
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngIf", ctx.confirmBoxBelonging.dispatch.message);
-            i0.ɵɵadvance(3);
-            i0.ɵɵproperty("ngIf", ctx.confirmBoxBelonging.buttons.length);
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngIf", !ctx.confirmBoxBelonging.buttons.length);
-        }
-    }, directives: [i2.NgStyle, i2.NgIf, i2.NgClass, i2.NgForOf], encapsulation: 2, data: { animation: [fadeInOut(), boxAnimations()] } });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ConfirmBoxWrapperComponent, [{
+ConfirmBoxWrapperComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxWrapperComponent, deps: [{ token: 'confirmBoxBelonging' }, { token: i0.ChangeDetectorRef }, { token: LayoutHelperService }], target: i0.ɵɵFactoryTarget.Component });
+ConfirmBoxWrapperComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.2", type: ConfirmBoxWrapperComponent, selector: "app-confirm-box-wrapper", providers: [LayoutHelperService], viewQueries: [{ propertyName: "elConfirmBoxWrapper", first: true, predicate: ["elConfirmBoxWrapper"], descendants: true }, { propertyName: "elTextWrapper", first: true, predicate: ["elTextWrapper"], descendants: true }, { propertyName: "elTitleWrapper", first: true, predicate: ["elTitleWrapper"], descendants: true }, { propertyName: "elButtonWrapper", first: true, predicate: ["elButtonWrapper"], descendants: true }, { propertyName: "elButton", predicate: ["elButton"], descendants: true }], ngImport: i0, template: "<div\n  class=\"ngx-awesome-popup-overlay confirm-box-overlay\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: confirmBoxBelonging.confirmBoxCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'\n    }\n  }\">\n  <div\n    [@.disabled]=\"\n      confirmBoxBelonging.confirmBoxCoreConfig.animationIn === appearanceAnimation.NONE &&\n      confirmBoxBelonging.confirmBoxCoreConfig.animationOut === disappearanceAnimation.NONE\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    #elConfirmBoxWrapper\n    [className]=\"layoutHelper.getBoxClasses(confirmBoxBelonging.confirmBoxCoreConfig.layoutType, 'evolve-confirm-box')\"\n    [ngStyle]=\"{\n      width: confirmBoxBelonging.confirmBoxCoreConfig.width,\n      height: confirmBoxBelonging.confirmBoxCoreConfig.height,\n      opacity: confirmBoxBelonging.confirmBoxCoreConfig.animationIn === appearanceAnimation.NONE ? 1 : 0\n    }\">\n    <div class=\"confirm-box-title-content\" #elTitleWrapper *ngIf=\"confirmBoxBelonging.dispatch.title\">\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          <div class=\"confirm-box-title-text\">\n            {{ confirmBoxBelonging.dispatch.title }}\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div\n      class=\"content-holder\"\n      #elTextWrapper\n      [ngClass]=\"confirmBoxBelonging.dispatch.title ? '' : 'without-title'\"\n      *ngIf=\"confirmBoxBelonging.dispatch.message\">\n      <div class=\"icon-section\" *ngIf=\"!confirmBoxBelonging.confirmBoxCoreConfig.disableIcon\">\n        <span [className]=\"getIconClasses()\"></span>\n      </div>\n      <div class=\"text-wrapper-section confirm-box-inner-content\">\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper\" [innerHTML]=\"confirmBoxBelonging.dispatch.message\"></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"confirmBoxBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': confirmBoxBelonging.confirmBoxCoreConfig.buttonPosition\n        }\">\n        <button\n          #elButton\n          *ngFor=\"let button of confirmBoxBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [className]=\"layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-md')\">\n          {{ button.label }}\n        </button>\n      </div>\n      <div\n        class=\"button-section\"\n        *ngIf=\"!confirmBoxBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': confirmBoxBelonging.confirmBoxCoreConfig.buttonPosition\n        }\">\n        <button\n          class=\"ed-btn ed-btn-md\"\n          #elButton\n          (click)=\"onButtonClick('confirm')\"\n          [className]=\"\n            layoutHelper.getButtonClasses(confirmBoxBelonging.confirmBoxCoreConfig.layoutType, 'ed-btn ed-btn-md', 'auto-button')\n          \">\n          {{ confirmBoxBelonging.confirmBoxCoreConfig.confirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-md ed-btn-secondary\"\n          #elButton\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"confirmBoxBelonging.confirmBoxCoreConfig.declineLabel\">\n          {{ confirmBoxBelonging.confirmBoxCoreConfig.declineLabel }}\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n", directives: [{ type: i2.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i2.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }], animations: [fadeInOut(), boxAnimations()] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxWrapperComponent, decorators: [{
             type: Component,
             args: [{ selector: 'app-confirm-box-wrapper', animations: [fadeInOut(), boxAnimations()], providers: [LayoutHelperService], template: "<div\n  class=\"ngx-awesome-popup-overlay confirm-box-overlay\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: confirmBoxBelonging.confirmBoxCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'\n    }\n  }\">\n  <div\n    [@.disabled]=\"\n      confirmBoxBelonging.confirmBoxCoreConfig.animationIn === appearanceAnimation.NONE &&\n      confirmBoxBelonging.confirmBoxCoreConfig.animationOut === disappearanceAnimation.NONE\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    #elConfirmBoxWrapper\n    [className]=\"layoutHelper.getBoxClasses(confirmBoxBelonging.confirmBoxCoreConfig.layoutType, 'evolve-confirm-box')\"\n    [ngStyle]=\"{\n      width: confirmBoxBelonging.confirmBoxCoreConfig.width,\n      height: confirmBoxBelonging.confirmBoxCoreConfig.height,\n      opacity: confirmBoxBelonging.confirmBoxCoreConfig.animationIn === appearanceAnimation.NONE ? 1 : 0\n    }\">\n    <div class=\"confirm-box-title-content\" #elTitleWrapper *ngIf=\"confirmBoxBelonging.dispatch.title\">\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          <div class=\"confirm-box-title-text\">\n            {{ confirmBoxBelonging.dispatch.title }}\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div\n      class=\"content-holder\"\n      #elTextWrapper\n      [ngClass]=\"confirmBoxBelonging.dispatch.title ? '' : 'without-title'\"\n      *ngIf=\"confirmBoxBelonging.dispatch.message\">\n      <div class=\"icon-section\" *ngIf=\"!confirmBoxBelonging.confirmBoxCoreConfig.disableIcon\">\n        <span [className]=\"getIconClasses()\"></span>\n      </div>\n      <div class=\"text-wrapper-section confirm-box-inner-content\">\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper\" [innerHTML]=\"confirmBoxBelonging.dispatch.message\"></div>\n        </div>\n      </div>\n    </div>\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"confirmBoxBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': confirmBoxBelonging.confirmBoxCoreConfig.buttonPosition\n        }\">\n        <button\n          #elButton\n          *ngFor=\"let button of confirmBoxBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [className]=\"layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-md')\">\n          {{ button.label }}\n        </button>\n      </div>\n      <div\n        class=\"button-section\"\n        *ngIf=\"!confirmBoxBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': confirmBoxBelonging.confirmBoxCoreConfig.buttonPosition\n        }\">\n        <button\n          class=\"ed-btn ed-btn-md\"\n          #elButton\n          (click)=\"onButtonClick('confirm')\"\n          [className]=\"\n            layoutHelper.getButtonClasses(confirmBoxBelonging.confirmBoxCoreConfig.layoutType, 'ed-btn ed-btn-md', 'auto-button')\n          \">\n          {{ confirmBoxBelonging.confirmBoxCoreConfig.confirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-md ed-btn-secondary\"\n          #elButton\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"confirmBoxBelonging.confirmBoxCoreConfig.declineLabel\">\n          {{ confirmBoxBelonging.confirmBoxCoreConfig.declineLabel }}\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n" }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: ConfirmBoxBelonging, decorators: [{
                         type: Inject,
                         args: ['confirmBoxBelonging']
                     }] }, { type: i0.ChangeDetectorRef }, { type: LayoutHelperService }];
-    }, { elConfirmBoxWrapper: [{
+    }, propDecorators: { elConfirmBoxWrapper: [{
                 type: ViewChild,
                 args: ['elConfirmBoxWrapper']
             }], elTextWrapper: [{
@@ -1156,8 +984,7 @@ ConfirmBoxWrapperComponent.ɵcmp = i0.ɵɵdefineComponent({ type: ConfirmBoxWrap
             }], elButton: [{
                 type: ViewChildren,
                 args: ['elButton']
-            }] });
-})();
+            }] } });
 
 class ConfirmBoxService {
     constructor(componentFactoryResolver, injector, appRef) {
@@ -1220,16 +1047,14 @@ class ConfirmBoxService {
         });
     }
 }
-ConfirmBoxService.ɵfac = function ConfirmBoxService_Factory(t) { return new (t || ConfirmBoxService)(i0.ɵɵinject(i0.ComponentFactoryResolver), i0.ɵɵinject(i0.Injector), i0.ɵɵinject(i0.ApplicationRef)); };
-ConfirmBoxService.ɵprov = i0.ɵɵdefineInjectable({ token: ConfirmBoxService, factory: ConfirmBoxService.ɵfac, providedIn: 'root' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ConfirmBoxService, [{
+ConfirmBoxService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxService, deps: [{ token: i0.ComponentFactoryResolver }, { token: i0.Injector }, { token: i0.ApplicationRef }], target: i0.ɵɵFactoryTarget.Injectable });
+ConfirmBoxService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], function () { return [{ type: i0.ComponentFactoryResolver }, { type: i0.Injector }, { type: i0.ApplicationRef }]; }, null);
-})();
+        }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }, { type: i0.Injector }, { type: i0.ApplicationRef }]; } });
 
 class ConfirmBoxInitializer {
     constructor() {
@@ -1388,27 +1213,12 @@ class ConfirmBoxBelonging extends ConfirmBoxSettings {
 
 class DefaultLoaderComponent {
 }
-DefaultLoaderComponent.ɵfac = function DefaultLoaderComponent_Factory(t) { return new (t || DefaultLoaderComponent)(); };
-DefaultLoaderComponent.ɵcmp = i0.ɵɵdefineComponent({ type: DefaultLoaderComponent, selectors: [["ng-component"]], decls: 7, vars: 0, consts: [[1, "box-position"], [1, "loader-center"], [1, "lds-ring"]], template: function DefaultLoaderComponent_Template(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵelementStart(0, "div", 0);
-            i0.ɵɵelementStart(1, "div", 1);
-            i0.ɵɵelementStart(2, "div", 2);
-            i0.ɵɵelement(3, "div");
-            i0.ɵɵelement(4, "div");
-            i0.ɵɵelement(5, "div");
-            i0.ɵɵelement(6, "div");
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementEnd();
-        }
-    }, styles: [".box-position[_ngcontent-%COMP%]{height:auto;left:50%;margin:0 auto;position:absolute;text-align:center;top:44%;transform:translate(-50%,-40%)}.box-position[_ngcontent-%COMP%]   .loader-center[_ngcontent-%COMP%]{align-items:center;display:flex;justify-content:center}.box-position[_ngcontent-%COMP%]   .loader-center[_ngcontent-%COMP%]   .lds-ring[_ngcontent-%COMP%]{display:inline-block;height:80px;position:relative;width:80px}.box-position[_ngcontent-%COMP%]   .loader-center[_ngcontent-%COMP%]   .lds-ring[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]{animation:lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite;border:8px solid;border-color:#d4d4d4 transparent transparent transparent;border-radius:50%;box-sizing:border-box;display:block;height:64px;margin:8px;position:absolute;width:64px}.box-position[_ngcontent-%COMP%]   .loader-center[_ngcontent-%COMP%]   .lds-ring[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(1){animation-delay:-.45s}.box-position[_ngcontent-%COMP%]   .loader-center[_ngcontent-%COMP%]   .lds-ring[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(2){animation-delay:-.3s}.box-position[_ngcontent-%COMP%]   .loader-center[_ngcontent-%COMP%]   .lds-ring[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(3){animation-delay:-.15s}@keyframes lds-ring{0%{transform:rotate(0)}to{transform:rotate(360deg)}}"] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DefaultLoaderComponent, [{
+DefaultLoaderComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DefaultLoaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+DefaultLoaderComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.2", type: DefaultLoaderComponent, selector: "ng-component", ngImport: i0, template: "<div class=\"box-position\">\n  <div class=\"loader-center\">\n    <div class=\"lds-ring\">\n      <div></div>\n      <div></div>\n      <div></div>\n      <div></div>\n    </div>\n  </div>\n</div>\n", styles: [".box-position{height:auto;left:50%;margin:0 auto;position:absolute;text-align:center;top:44%;transform:translate(-50%,-40%)}.box-position .loader-center{align-items:center;display:flex;justify-content:center}.box-position .loader-center .lds-ring{display:inline-block;height:80px;position:relative;width:80px}.box-position .loader-center .lds-ring div{animation:lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite;border:8px solid;border-color:#d4d4d4 transparent transparent transparent;border-radius:50%;box-sizing:border-box;display:block;height:64px;margin:8px;position:absolute;width:64px}.box-position .loader-center .lds-ring div:nth-child(1){animation-delay:-.45s}.box-position .loader-center .lds-ring div:nth-child(2){animation-delay:-.3s}.box-position .loader-center .lds-ring div:nth-child(3){animation-delay:-.15s}@keyframes lds-ring{0%{transform:rotate(0)}to{transform:rotate(360deg)}}\n"] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DefaultLoaderComponent, decorators: [{
             type: Component,
             args: [{ template: "<div class=\"box-position\">\n  <div class=\"loader-center\">\n    <div class=\"lds-ring\">\n      <div></div>\n      <div></div>\n      <div></div>\n      <div></div>\n    </div>\n  </div>\n</div>\n", styles: [".box-position{height:auto;left:50%;margin:0 auto;position:absolute;text-align:center;top:44%;transform:translate(-50%,-40%)}.box-position .loader-center{align-items:center;display:flex;justify-content:center}.box-position .loader-center .lds-ring{display:inline-block;height:80px;position:relative;width:80px}.box-position .loader-center .lds-ring div{animation:lds-ring 1.2s cubic-bezier(.5,0,.5,1) infinite;border:8px solid;border-color:#d4d4d4 transparent transparent transparent;border-radius:50%;box-sizing:border-box;display:block;height:64px;margin:8px;position:absolute;width:64px}.box-position .loader-center .lds-ring div:nth-child(1){animation-delay:-.45s}.box-position .loader-center .lds-ring div:nth-child(2){animation-delay:-.3s}.box-position .loader-center .lds-ring div:nth-child(3){animation-delay:-.15s}@keyframes lds-ring{0%{transform:rotate(0)}to{transform:rotate(360deg)}}\n"] }]
-        }], null, null);
-})();
+        }] });
 
 class DialogConfigService {
     constructor(userConfig = {}) {
@@ -1438,100 +1248,48 @@ class DialogConfigService {
         dataControl.copyValuesFrom(userConfig.dialogCoreConfig, this.productionConfig.dialogCoreConfig);
     }
 }
-DialogConfigService.ɵfac = function DialogConfigService_Factory(t) { return new (t || DialogConfigService)(i0.ɵɵinject('dialogConfig')); };
-DialogConfigService.ɵprov = i0.ɵɵdefineInjectable({ token: DialogConfigService, factory: DialogConfigService.ɵfac, providedIn: 'root' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DialogConfigService, [{
+DialogConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigService, deps: [{ token: 'dialogConfig' }], target: i0.ɵɵFactoryTarget.Injectable });
+DialogConfigService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Inject,
                         args: ['dialogConfig']
                     }] }];
-    }, null);
-})();
+    } });
 
 class InsertionLoaderDirective {
     constructor(viewContainerRef) {
         this.viewContainerRef = viewContainerRef;
     }
 }
-InsertionLoaderDirective.ɵfac = function InsertionLoaderDirective_Factory(t) { return new (t || InsertionLoaderDirective)(i0.ɵɵdirectiveInject(i0.ViewContainerRef)); };
-InsertionLoaderDirective.ɵdir = i0.ɵɵdefineDirective({ type: InsertionLoaderDirective, selectors: [["", "appInsertionLoader", ""]] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(InsertionLoaderDirective, [{
+InsertionLoaderDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: InsertionLoaderDirective, deps: [{ token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive });
+InsertionLoaderDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.1.2", type: InsertionLoaderDirective, selector: "[appInsertionLoader]", ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: InsertionLoaderDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[appInsertionLoader]'
                 }]
-        }], function () { return [{ type: i0.ViewContainerRef }]; }, null);
-})();
+        }], ctorParameters: function () { return [{ type: i0.ViewContainerRef }]; } });
 
 class InsertionDirective {
     constructor(viewContainerRef) {
         this.viewContainerRef = viewContainerRef;
     }
 }
-InsertionDirective.ɵfac = function InsertionDirective_Factory(t) { return new (t || InsertionDirective)(i0.ɵɵdirectiveInject(i0.ViewContainerRef)); };
-InsertionDirective.ɵdir = i0.ɵɵdefineDirective({ type: InsertionDirective, selectors: [["", "appInsertion", ""]] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(InsertionDirective, [{
+InsertionDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: InsertionDirective, deps: [{ token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive });
+InsertionDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.1.2", type: InsertionDirective, selector: "[appInsertion]", ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: InsertionDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[appInsertion]'
                 }]
-        }], function () { return [{ type: i0.ViewContainerRef }]; }, null);
-})();
+        }], ctorParameters: function () { return [{ type: i0.ViewContainerRef }]; } });
 
-const _c0$3 = ["elDialogWrapper"];
-const _c1$3 = ["elButtonWrapper"];
-const _c2$3 = ["elButton"];
-function DialogWrapperComponent_ng_template_5_Template(rf, ctx) { }
-function DialogWrapperComponent_ng_container_6_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementContainer(0);
-    }
-}
-function DialogWrapperComponent_ng_template_7_Template(rf, ctx) { }
-function DialogWrapperComponent_ng_template_11_Template(rf, ctx) { }
-function DialogWrapperComponent_div_14_button_1_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r12 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "button", 16, 17);
-        i0.ɵɵlistener("click", function DialogWrapperComponent_div_14_button_1_Template_button_click_0_listener() { const restoredCtx = i0.ɵɵrestoreView(_r12); const button_r9 = restoredCtx.$implicit; const ctx_r11 = i0.ɵɵnextContext(2); return ctx_r11.onCustomButton(button_r9); });
-        i0.ɵɵtext(2);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const button_r9 = ctx.$implicit;
-        const ctx_r8 = i0.ɵɵnextContext(2);
-        i0.ɵɵproperty("className", ctx_r8.layoutHelper.getButtonClasses(button_r9.layoutType, "ed-btn ed-btn-lg"));
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate1(" ", button_r9.label, " ");
-    }
-}
-const _c3$3 = function (a0) { return { "text-align": a0 }; };
-function DialogWrapperComponent_div_14_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 14);
-        i0.ɵɵtemplate(1, DialogWrapperComponent_div_14_button_1_Template, 3, 2, "button", 15);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r7 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(2, _c3$3, ctx_r7.dialogBelonging.dialogCoreConfig.buttonPosition));
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngForOf", ctx_r7.dialogBelonging.buttons);
-    }
-}
-const _c4$2 = function (a0) { return { closeDelay: a0 }; };
-const _c5 = function (a0, a1) { return { value: a0, params: a1 }; };
-const _c6 = function () { return { maxWidth: "100%", maxHeight: "100%", height: "100%", width: "100%", borderRadius: "0" }; };
-const _c7 = function () { return { width: "100%", height: "100%" }; };
-const _c8 = function (a0, a1, a2, a3, a4, a5) { return { width: a0, minWidth: a1, maxWidth: a2, height: a3, minHeight: a4, maxHeight: a5 }; };
 class DialogWrapperComponent {
     constructor(dialogBelonging, componentFactoryResolver, cd, layoutHelper) {
         this.dialogBelonging = dialogBelonging;
@@ -1632,77 +1390,17 @@ class DialogWrapperComponent {
         }
     }
 }
-DialogWrapperComponent.ɵfac = function DialogWrapperComponent_Factory(t) { return new (t || DialogWrapperComponent)(i0.ɵɵdirectiveInject('dialogBelonging'), i0.ɵɵdirectiveInject(i0.ComponentFactoryResolver), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(LayoutHelperService)); };
-DialogWrapperComponent.ɵcmp = i0.ɵɵdefineComponent({ type: DialogWrapperComponent, selectors: [["dialog-popup-wrapper"]], viewQuery: function DialogWrapperComponent_Query(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵviewQuery(_c0$3, 5);
-            i0.ɵɵviewQuery(_c1$3, 5);
-            i0.ɵɵviewQuery(InsertionDirective, 7);
-            i0.ɵɵviewQuery(InsertionLoaderDirective, 7);
-            i0.ɵɵviewQuery(_c2$3, 5);
-        }
-        if (rf & 2) {
-            let _t;
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elDialogWrapper = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elButtonWrapper = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.insertionPoint = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.loaderInsertionPoint = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elButton = _t);
-        }
-    }, hostBindings: function DialogWrapperComponent_HostBindings(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵlistener("keyup", function DialogWrapperComponent_keyup_HostBindingHandler($event) { return ctx.keyEvent($event); }, false, i0.ɵɵresolveWindow);
-        }
-    }, features: [i0.ɵɵProvidersFeature([LayoutHelperService])], decls: 15, vars: 25, consts: [[1, "ngx-awesome-popup-overlay", "aw-dialog-modal", 3, "dblclick"], [1, "evolve-parent-dialog", 3, "ngStyle", "className"], ["elDialogWrapper", ""], [1, "loader-holder", 3, "ngClass"], [1, "dialog-loader"], ["appInsertionLoader", ""], [4, "ngIf", "ngIfElse"], ["fullScreen", ""], [1, "content-holder", 3, "ngStyle"], [1, "component-content", 3, "ngClass"], ["appInsertion", ""], [1, "button-holder"], ["elButtonWrapper", ""], ["class", "button-section", 3, "ngStyle", 4, "ngIf"], [1, "button-section", 3, "ngStyle"], [3, "className", "click", 4, "ngFor", "ngForOf"], [3, "className", "click"], ["elButton", ""]], template: function DialogWrapperComponent_Template(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵelementStart(0, "div", 0);
-            i0.ɵɵlistener("dblclick", function DialogWrapperComponent_Template_div_dblclick_0_listener($event) { return ctx.onOverlayClicked($event); });
-            i0.ɵɵelementStart(1, "div", 1, 2);
-            i0.ɵɵelementStart(3, "div", 3);
-            i0.ɵɵelementStart(4, "div", 4);
-            i0.ɵɵtemplate(5, DialogWrapperComponent_ng_template_5_Template, 0, 0, "ng-template", 5);
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementEnd();
-            i0.ɵɵtemplate(6, DialogWrapperComponent_ng_container_6_Template, 1, 0, "ng-container", 6);
-            i0.ɵɵtemplate(7, DialogWrapperComponent_ng_template_7_Template, 0, 0, "ng-template", null, 7, i0.ɵɵtemplateRefExtractor);
-            i0.ɵɵelementStart(9, "div", 8);
-            i0.ɵɵelementStart(10, "div", 9);
-            i0.ɵɵtemplate(11, DialogWrapperComponent_ng_template_11_Template, 0, 0, "ng-template", 10);
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementStart(12, "div", 11, 12);
-            i0.ɵɵtemplate(14, DialogWrapperComponent_div_14_Template, 2, 4, "div", 13);
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementEnd();
-        }
-        if (rf & 2) {
-            const _r3 = i0.ɵɵreference(8);
-            i0.ɵɵproperty("@fadeInOut", i0.ɵɵpureFunction2(13, _c5, ctx.fadeInOutAnimation, i0.ɵɵpureFunction1(11, _c4$2, ctx.dialogBelonging.dialogCoreConfig.animationOut === ctx.disappearanceAnimation.NONE ? "200ms" : "300ms")));
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("@.disabled", ctx.dialogBelonging.dialogCoreConfig.animationIn === ctx.appearanceAnimation.NONE && ctx.dialogBelonging.dialogCoreConfig.animationOut === ctx.disappearanceAnimation.NONE)("@boxAnimations", ctx.boxAnimation)("ngStyle", ctx.dialogBelonging.dialogCoreConfig.fullScreen && i0.ɵɵpureFunction0(16, _c6))("className", ctx.layoutHelper.getBoxClasses(ctx.dialogBelonging.dialogCoreConfig.layoutType, "evolve-parent-dialog"));
-            i0.ɵɵadvance(2);
-            i0.ɵɵproperty("ngClass", !ctx.dialogBelonging.dialogCoreConfig.displayLoader ? "dialog-loader-off" : ctx.showLoader ? "dialog-loader-active" : "dialog-loader-gone");
-            i0.ɵɵadvance(3);
-            i0.ɵɵproperty("ngIf", !ctx.dialogBelonging.dialogCoreConfig.fullScreen)("ngIfElse", _r3);
-            i0.ɵɵadvance(3);
-            i0.ɵɵproperty("ngStyle", ctx.dialogBelonging.dialogCoreConfig.fullScreen ? i0.ɵɵpureFunction0(17, _c7) : i0.ɵɵpureFunction6(18, _c8, ctx.dialogBelonging.dialogCoreConfig.width, ctx.dialogBelonging.dialogCoreConfig.minWidth, ctx.dialogBelonging.dialogCoreConfig.maxWidth, ctx.dialogBelonging.dialogCoreConfig.height, ctx.dialogBelonging.dialogCoreConfig.minHeight, ctx.dialogBelonging.dialogCoreConfig.maxHeight));
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngClass", !ctx.dialogBelonging.dialogCoreConfig.displayLoader ? "component-content-loader-off" : ctx.showLoader ? "component-content-preparing" : "component-content-ready");
-            i0.ɵɵadvance(4);
-            i0.ɵɵproperty("ngIf", ctx.dialogBelonging.buttons.length > 0);
-        }
-    }, directives: [i2.NgStyle, i2.NgClass, InsertionLoaderDirective, i2.NgIf, InsertionDirective, i2.NgForOf], encapsulation: 2, data: { animation: [fadeInOut(), boxAnimations()] } });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DialogWrapperComponent, [{
+DialogWrapperComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogWrapperComponent, deps: [{ token: 'dialogBelonging' }, { token: i0.ComponentFactoryResolver }, { token: i0.ChangeDetectorRef }, { token: LayoutHelperService }], target: i0.ɵɵFactoryTarget.Component });
+DialogWrapperComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.2", type: DialogWrapperComponent, selector: "dialog-popup-wrapper", host: { listeners: { "window:keyup": "keyEvent($event)" } }, providers: [LayoutHelperService], viewQueries: [{ propertyName: "elDialogWrapper", first: true, predicate: ["elDialogWrapper"], descendants: true }, { propertyName: "elButtonWrapper", first: true, predicate: ["elButtonWrapper"], descendants: true }, { propertyName: "insertionPoint", first: true, predicate: InsertionDirective, descendants: true, static: true }, { propertyName: "loaderInsertionPoint", first: true, predicate: InsertionLoaderDirective, descendants: true, static: true }, { propertyName: "elButton", predicate: ["elButton"], descendants: true }], ngImport: i0, template: "<div\n  class=\"ngx-awesome-popup-overlay aw-dialog-modal\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: dialogBelonging.dialogCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'\n    }\n  }\">\n  <div\n    class=\"evolve-parent-dialog\"\n    [@.disabled]=\"\n      dialogBelonging.dialogCoreConfig.animationIn === appearanceAnimation.NONE &&\n      dialogBelonging.dialogCoreConfig.animationOut === disappearanceAnimation.NONE\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    #elDialogWrapper\n    [ngStyle]=\"\n      dialogBelonging.dialogCoreConfig.fullScreen && {\n        maxWidth: '100%',\n        maxHeight: '100%',\n        height: '100%',\n        width: '100%',\n        borderRadius: '0'\n      }\n    \"\n    [className]=\"layoutHelper.getBoxClasses(dialogBelonging.dialogCoreConfig.layoutType, 'evolve-parent-dialog')\">\n    <div\n      class=\"loader-holder\"\n      [ngClass]=\"\n        !dialogBelonging.dialogCoreConfig.displayLoader ? 'dialog-loader-off' : showLoader ? 'dialog-loader-active' : 'dialog-loader-gone'\n      \">\n      <div class=\"dialog-loader\">\n        <ng-template appInsertionLoader></ng-template>\n      </div>\n    </div>\n    <ng-container *ngIf=\"!dialogBelonging.dialogCoreConfig.fullScreen; else fullScreen\"></ng-container>\n    <ng-template #fullScreen></ng-template>\n    <div\n      class=\"content-holder\"\n      [ngStyle]=\"\n        dialogBelonging.dialogCoreConfig.fullScreen\n          ? {\n              width: '100%',\n              height: '100%'\n            }\n          : {\n              width: dialogBelonging.dialogCoreConfig.width,\n              minWidth: dialogBelonging.dialogCoreConfig.minWidth,\n              maxWidth: dialogBelonging.dialogCoreConfig.maxWidth,\n              height: dialogBelonging.dialogCoreConfig.height,\n              minHeight: dialogBelonging.dialogCoreConfig.minHeight,\n              maxHeight: dialogBelonging.dialogCoreConfig.maxHeight\n            }\n      \">\n      <div\n        class=\"component-content\"\n        [ngClass]=\"\n          !dialogBelonging.dialogCoreConfig.displayLoader\n            ? 'component-content-loader-off'\n            : showLoader\n            ? 'component-content-preparing'\n            : 'component-content-ready'\n        \">\n        <ng-template appInsertion></ng-template>\n      </div>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"dialogBelonging.buttons.length > 0\"\n        [ngStyle]=\"{\n          'text-align': dialogBelonging.dialogCoreConfig.buttonPosition\n        }\">\n        <button\n          #elButton\n          *ngFor=\"let button of dialogBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [className]=\"layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-lg')\">\n          {{ button.label }}\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n", directives: [{ type: i2.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { type: i2.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: InsertionLoaderDirective, selector: "[appInsertionLoader]" }, { type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: InsertionDirective, selector: "[appInsertion]" }, { type: i2.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }], animations: [fadeInOut(), boxAnimations()] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogWrapperComponent, decorators: [{
             type: Component,
             args: [{ selector: 'dialog-popup-wrapper', animations: [fadeInOut(), boxAnimations()], providers: [LayoutHelperService], template: "<div\n  class=\"ngx-awesome-popup-overlay aw-dialog-modal\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: dialogBelonging.dialogCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'\n    }\n  }\">\n  <div\n    class=\"evolve-parent-dialog\"\n    [@.disabled]=\"\n      dialogBelonging.dialogCoreConfig.animationIn === appearanceAnimation.NONE &&\n      dialogBelonging.dialogCoreConfig.animationOut === disappearanceAnimation.NONE\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    #elDialogWrapper\n    [ngStyle]=\"\n      dialogBelonging.dialogCoreConfig.fullScreen && {\n        maxWidth: '100%',\n        maxHeight: '100%',\n        height: '100%',\n        width: '100%',\n        borderRadius: '0'\n      }\n    \"\n    [className]=\"layoutHelper.getBoxClasses(dialogBelonging.dialogCoreConfig.layoutType, 'evolve-parent-dialog')\">\n    <div\n      class=\"loader-holder\"\n      [ngClass]=\"\n        !dialogBelonging.dialogCoreConfig.displayLoader ? 'dialog-loader-off' : showLoader ? 'dialog-loader-active' : 'dialog-loader-gone'\n      \">\n      <div class=\"dialog-loader\">\n        <ng-template appInsertionLoader></ng-template>\n      </div>\n    </div>\n    <ng-container *ngIf=\"!dialogBelonging.dialogCoreConfig.fullScreen; else fullScreen\"></ng-container>\n    <ng-template #fullScreen></ng-template>\n    <div\n      class=\"content-holder\"\n      [ngStyle]=\"\n        dialogBelonging.dialogCoreConfig.fullScreen\n          ? {\n              width: '100%',\n              height: '100%'\n            }\n          : {\n              width: dialogBelonging.dialogCoreConfig.width,\n              minWidth: dialogBelonging.dialogCoreConfig.minWidth,\n              maxWidth: dialogBelonging.dialogCoreConfig.maxWidth,\n              height: dialogBelonging.dialogCoreConfig.height,\n              minHeight: dialogBelonging.dialogCoreConfig.minHeight,\n              maxHeight: dialogBelonging.dialogCoreConfig.maxHeight\n            }\n      \">\n      <div\n        class=\"component-content\"\n        [ngClass]=\"\n          !dialogBelonging.dialogCoreConfig.displayLoader\n            ? 'component-content-loader-off'\n            : showLoader\n            ? 'component-content-preparing'\n            : 'component-content-ready'\n        \">\n        <ng-template appInsertion></ng-template>\n      </div>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"dialogBelonging.buttons.length > 0\"\n        [ngStyle]=\"{\n          'text-align': dialogBelonging.dialogCoreConfig.buttonPosition\n        }\">\n        <button\n          #elButton\n          *ngFor=\"let button of dialogBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [className]=\"layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-lg')\">\n          {{ button.label }}\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n" }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: DialogBelonging, decorators: [{
                         type: Inject,
                         args: ['dialogBelonging']
                     }] }, { type: i0.ComponentFactoryResolver }, { type: i0.ChangeDetectorRef }, { type: LayoutHelperService }];
-    }, { elDialogWrapper: [{
+    }, propDecorators: { elDialogWrapper: [{
                 type: ViewChild,
                 args: ['elDialogWrapper']
             }], elButtonWrapper: [{
@@ -1720,8 +1418,7 @@ DialogWrapperComponent.ɵcmp = i0.ɵɵdefineComponent({ type: DialogWrapperCompo
             }], keyEvent: [{
                 type: HostListener,
                 args: ['window:keyup', ['$event']]
-            }] });
-})();
+            }] } });
 
 class DialogService {
     constructor(componentFactoryResolver, injector, appRef) {
@@ -1795,16 +1492,14 @@ class DialogService {
         });
     }
 }
-DialogService.ɵfac = function DialogService_Factory(t) { return new (t || DialogService)(i0.ɵɵinject(i0.ComponentFactoryResolver), i0.ɵɵinject(i0.Injector), i0.ɵɵinject(i0.ApplicationRef)); };
-DialogService.ɵprov = i0.ɵɵdefineInjectable({ token: DialogService, factory: DialogService.ɵfac, providedIn: 'root' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DialogService, [{
+DialogService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogService, deps: [{ token: i0.ComponentFactoryResolver }, { token: i0.Injector }, { token: i0.ApplicationRef }], target: i0.ɵɵFactoryTarget.Injectable });
+DialogService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], function () { return [{ type: i0.ComponentFactoryResolver }, { type: i0.Injector }, { type: i0.ApplicationRef }]; }, null);
-})();
+        }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }, { type: i0.Injector }, { type: i0.ApplicationRef }]; } });
 
 class DialogInitializer {
     constructor(component) {
@@ -2010,26 +1705,20 @@ class ToastNotificationConfigService {
         this.dataControl.copyValuesFrom(globalToastConfig ? globalToastConfig : this.userConfig.globalSettings, this.productionConfig.globalSettings);
     }
 }
-ToastNotificationConfigService.ɵfac = function ToastNotificationConfigService_Factory(t) { return new (t || ToastNotificationConfigService)(i0.ɵɵinject('toastNotificationConfig')); };
-ToastNotificationConfigService.ɵprov = i0.ɵɵdefineInjectable({ token: ToastNotificationConfigService, factory: ToastNotificationConfigService.ɵfac, providedIn: 'root' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ToastNotificationConfigService, [{
+ToastNotificationConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationConfigService, deps: [{ token: 'toastNotificationConfig' }], target: i0.ɵɵFactoryTarget.Injectable });
+ToastNotificationConfigService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationConfigService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationConfigService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Inject,
                         args: ['toastNotificationConfig']
                     }] }];
-    }, null);
-})();
+    } });
 
-const _c0$2 = ["elTextWrapper"];
-const _c1$2 = ["elTitleWrapper"];
-const _c2$2 = ["elButtonWrapper"];
-const _c3$2 = ["elButton"];
 class WrapperAbstraction {
     constructor(toastNotificationBelonging, layoutHelper) {
         this.toastNotificationBelonging = toastNotificationBelonging;
@@ -2171,26 +1860,11 @@ class WrapperAbstraction {
             this.layoutHelper.getIconClasses(this.toastNotificationBelonging.toastCoreConfig.layoutType, this.toastNotificationBelonging.toastCoreConfig.iconStyleClass));
     }
 }
-WrapperAbstraction.ɵfac = function WrapperAbstraction_Factory(t) { return new (t || WrapperAbstraction)(i0.ɵɵdirectiveInject(ToastNotificationBelonging), i0.ɵɵdirectiveInject(LayoutHelperService)); };
-WrapperAbstraction.ɵdir = i0.ɵɵdefineDirective({ type: WrapperAbstraction, viewQuery: function WrapperAbstraction_Query(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵviewQuery(_c0$2, 5);
-            i0.ɵɵviewQuery(_c1$2, 5);
-            i0.ɵɵviewQuery(_c2$2, 5);
-            i0.ɵɵviewQuery(_c3$2, 5);
-        }
-        if (rf & 2) {
-            let _t;
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elTextWrapper = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elTitleWrapper = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elButtonWrapper = _t.first);
-            i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.elButton = _t);
-        }
-    } });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(WrapperAbstraction, [{
+WrapperAbstraction.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: WrapperAbstraction, deps: [{ token: ToastNotificationBelonging }, { token: LayoutHelperService }], target: i0.ɵɵFactoryTarget.Directive });
+WrapperAbstraction.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.1.2", type: WrapperAbstraction, viewQueries: [{ propertyName: "elTextWrapper", first: true, predicate: ["elTextWrapper"], descendants: true }, { propertyName: "elTitleWrapper", first: true, predicate: ["elTitleWrapper"], descendants: true }, { propertyName: "elButtonWrapper", first: true, predicate: ["elButtonWrapper"], descendants: true }, { propertyName: "elButton", predicate: ["elButton"], descendants: true }], ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: WrapperAbstraction, decorators: [{
             type: Directive
-        }], function () { return [{ type: ToastNotificationBelonging }, { type: LayoutHelperService }]; }, { elTextWrapper: [{
+        }], ctorParameters: function () { return [{ type: ToastNotificationBelonging }, { type: LayoutHelperService }]; }, propDecorators: { elTextWrapper: [{
                 type: ViewChild,
                 args: ['elTextWrapper']
             }], elTitleWrapper: [{
@@ -2202,8 +1876,7 @@ WrapperAbstraction.ɵdir = i0.ɵɵdefineDirective({ type: WrapperAbstraction, vi
             }], elButton: [{
                 type: ViewChildren,
                 args: ['elButton']
-            }] });
-})();
+            }] } });
 
 class ResetGlobalConfig {
     constructor(globalConfig) {
@@ -2367,210 +2040,20 @@ class GlobalConfigService {
         }
     }
 }
-GlobalConfigService.ɵfac = function GlobalConfigService_Factory(t) { return new (t || GlobalConfigService)(i0.ɵɵinject('cdGlobalConfig')); };
-GlobalConfigService.ɵprov = i0.ɵɵdefineInjectable({ token: GlobalConfigService, factory: GlobalConfigService.ɵfac, providedIn: 'root' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GlobalConfigService, [{
+GlobalConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: GlobalConfigService, deps: [{ token: 'cdGlobalConfig' }], target: i0.ɵɵFactoryTarget.Injectable });
+GlobalConfigService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: GlobalConfigService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: GlobalConfigService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: undefined, decorators: [{
                         type: Inject,
                         args: ['cdGlobalConfig']
                     }] }];
-    }, null);
-})();
+    } });
 
-function ToastNotificationSimpleWrapperComponent_div_2_div_2_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 14);
-        i0.ɵɵelement(1, "span", 15);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r7 = i0.ɵɵnextContext(2);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("className", ctx_r7.getIconClasses());
-    }
-}
-function ToastNotificationSimpleWrapperComponent_div_2_span_6_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r10 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "span", 16);
-        i0.ɵɵlistener("click", function ToastNotificationSimpleWrapperComponent_div_2_span_6_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r10); const ctx_r9 = i0.ɵɵnextContext(2); return ctx_r9.closeIcon(); });
-        i0.ɵɵelementEnd();
-    }
-}
-function ToastNotificationSimpleWrapperComponent_div_2_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 8, 9);
-        i0.ɵɵtemplate(2, ToastNotificationSimpleWrapperComponent_div_2_div_2_Template, 2, 1, "div", 10);
-        i0.ɵɵelementStart(3, "div", 11);
-        i0.ɵɵelementStart(4, "div", 12);
-        i0.ɵɵtext(5);
-        i0.ɵɵtemplate(6, ToastNotificationSimpleWrapperComponent_div_2_span_6_Template, 1, 0, "span", 13);
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r0 = i0.ɵɵnextContext();
-        i0.ɵɵadvance(2);
-        i0.ɵɵproperty("ngIf", !ctx_r0.toastNotificationBelonging.toastCoreConfig.disableIcon);
-        i0.ɵɵadvance(3);
-        i0.ɵɵtextInterpolate1(" ", ctx_r0.toastNotificationBelonging.dispatch.title, " ");
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", !ctx_r0.buttonsExist);
-    }
-}
-function ToastNotificationSimpleWrapperComponent_div_3_div_4_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 12);
-        i0.ɵɵelementStart(1, "p");
-        i0.ɵɵtext(2);
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r12 = i0.ɵɵnextContext(2);
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate(ctx_r12.toastNotificationBelonging.dispatch.message);
-    }
-}
-function ToastNotificationSimpleWrapperComponent_div_3_div_5_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelement(0, "div", 22);
-    }
-    if (rf & 2) {
-        const ctx_r13 = i0.ɵɵnextContext(2);
-        i0.ɵɵproperty("innerHTML", ctx_r13.toastNotificationBelonging.dispatch.message, i0.ɵɵsanitizeHtml);
-    }
-}
-function ToastNotificationSimpleWrapperComponent_div_3_span_6_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r16 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "span", 16);
-        i0.ɵɵlistener("click", function ToastNotificationSimpleWrapperComponent_div_3_span_6_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r16); const ctx_r15 = i0.ɵɵnextContext(2); return ctx_r15.closeIcon(); });
-        i0.ɵɵelementEnd();
-    }
-}
-const _c0$1 = function (a0) { return { "text-align": a0 }; };
-const _c1$1 = function (a0) { return { "only-message": a0 }; };
-function ToastNotificationSimpleWrapperComponent_div_3_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 17, 18);
-        i0.ɵɵelementStart(2, "div", 19);
-        i0.ɵɵelementStart(3, "div", 11);
-        i0.ɵɵtemplate(4, ToastNotificationSimpleWrapperComponent_div_3_div_4_Template, 3, 1, "div", 20);
-        i0.ɵɵtemplate(5, ToastNotificationSimpleWrapperComponent_div_3_div_5_Template, 1, 1, "div", 21);
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-        i0.ɵɵtemplate(6, ToastNotificationSimpleWrapperComponent_div_3_span_6_Template, 1, 0, "span", 13);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r1 = i0.ɵɵnextContext();
-        i0.ɵɵadvance(2);
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(5, _c0$1, ctx_r1.toastNotificationBelonging.toastCoreConfig.textPosition))("ngClass", i0.ɵɵpureFunction1(7, _c1$1, !ctx_r1.toastNotificationBelonging.dispatch.title));
-        i0.ɵɵadvance(2);
-        i0.ɵɵproperty("ngIf", !ctx_r1.toastNotificationBelonging.toastCoreConfig.allowHtmlMessage);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx_r1.toastNotificationBelonging.toastCoreConfig.allowHtmlMessage);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx_r1.buttonsExist && !ctx_r1.toastNotificationBelonging.dispatch.title);
-    }
-}
-function ToastNotificationSimpleWrapperComponent_div_6_button_1_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r21 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "button", 25, 26);
-        i0.ɵɵlistener("click", function ToastNotificationSimpleWrapperComponent_div_6_button_1_Template_button_click_0_listener() { const restoredCtx = i0.ɵɵrestoreView(_r21); const button_r18 = restoredCtx.$implicit; const ctx_r20 = i0.ɵɵnextContext(2); return ctx_r20.onCustomButton(button_r18); });
-        i0.ɵɵtext(2);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const button_r18 = ctx.$implicit;
-        const ctx_r17 = i0.ɵɵnextContext(2);
-        i0.ɵɵproperty("className", ctx_r17.layoutHelper.getButtonClasses(button_r18.layoutType, "ed-btn ed-btn-sm"));
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate1(" ", button_r18.label, " ");
-    }
-}
-function ToastNotificationSimpleWrapperComponent_div_6_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 23);
-        i0.ɵɵtemplate(1, ToastNotificationSimpleWrapperComponent_div_6_button_1_Template, 3, 2, "button", 24);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r3 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(2, _c0$1, ctx_r3.toastNotificationBelonging.toastCoreConfig.buttonPosition));
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngForOf", ctx_r3.toastNotificationBelonging.buttons);
-    }
-}
-function ToastNotificationSimpleWrapperComponent_div_7_button_1_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r25 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "button", 25);
-        i0.ɵɵlistener("click", function ToastNotificationSimpleWrapperComponent_div_7_button_1_Template_button_click_0_listener() { i0.ɵɵrestoreView(_r25); const ctx_r24 = i0.ɵɵnextContext(2); return ctx_r24.onButtonClick("confirm"); });
-        i0.ɵɵtext(1);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r22 = i0.ɵɵnextContext(2);
-        i0.ɵɵproperty("className", ctx_r22.layoutHelper.getButtonClasses(ctx_r22.toastNotificationBelonging.toastCoreConfig.layoutType, "ed-btn ed-btn-sm", "auto-button"));
-        i0.ɵɵadvance(1);
-        i0.ɵɵtextInterpolate1(" ", ctx_r22.toastNotificationBelonging.toastCoreConfig.confirmLabel, " ");
-    }
-}
-function ToastNotificationSimpleWrapperComponent_div_7_button_2_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r27 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "button", 29);
-        i0.ɵɵlistener("click", function ToastNotificationSimpleWrapperComponent_div_7_button_2_Template_button_click_0_listener() { i0.ɵɵrestoreView(_r27); const ctx_r26 = i0.ɵɵnextContext(2); return ctx_r26.onButtonClick("decline"); });
-        i0.ɵɵtext(1);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r23 = i0.ɵɵnextContext(2);
-        i0.ɵɵadvance(1);
-        i0.ɵɵtextInterpolate1(" ", ctx_r23.toastNotificationBelonging.toastCoreConfig.declineLabel, " ");
-    }
-}
-function ToastNotificationSimpleWrapperComponent_div_7_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 23);
-        i0.ɵɵtemplate(1, ToastNotificationSimpleWrapperComponent_div_7_button_1_Template, 2, 2, "button", 27);
-        i0.ɵɵtemplate(2, ToastNotificationSimpleWrapperComponent_div_7_button_2_Template, 2, 1, "button", 28);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r4 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(3, _c0$1, ctx_r4.toastNotificationBelonging.toastCoreConfig.buttonPosition));
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx_r4.toastNotificationBelonging.toastCoreConfig.confirmLabel);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx_r4.toastNotificationBelonging.toastCoreConfig.declineLabel);
-    }
-}
-const _c2$1 = function (a0) { return { width: a0 }; };
-function ToastNotificationSimpleWrapperComponent_div_8_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 30);
-        i0.ɵɵelement(1, "div", 31);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r5 = i0.ɵɵnextContext();
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(1, _c2$1, (ctx_r5.toastNotificationBelonging.toastCoreConfig.progressBar === 1 ? ctx_r5.timer.Progress : ctx_r5.timer.Remaining) + "%"));
-    }
-}
-const _c3$1 = function (a0) { return { closeDelay: a0 }; };
-const _c4$1 = function (a0, a1) { return { value: a0, params: a1 }; };
 class ToastNotificationSimpleWrapperComponent extends WrapperAbstraction {
     constructor(toastNotificationBelonging, gConfig, cd, layoutHelper) {
         super(toastNotificationBelonging, layoutHelper);
@@ -2586,239 +2069,18 @@ class ToastNotificationSimpleWrapperComponent extends WrapperAbstraction {
         this.setCustomStyles();
     }
 }
-ToastNotificationSimpleWrapperComponent.ɵfac = function ToastNotificationSimpleWrapperComponent_Factory(t) { return new (t || ToastNotificationSimpleWrapperComponent)(i0.ɵɵdirectiveInject('toastNotificationBelonging'), i0.ɵɵdirectiveInject(GlobalConfigService), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(LayoutHelperService)); };
-ToastNotificationSimpleWrapperComponent.ɵcmp = i0.ɵɵdefineComponent({ type: ToastNotificationSimpleWrapperComponent, selectors: [["app-toast-notification-simple-wrapper"]], features: [i0.ɵɵProvidersFeature([LayoutHelperService]), i0.ɵɵInheritDefinitionFeature], decls: 9, vars: 14, consts: [[1, "toast-wrapper", "simple-toast", 3, "dblclick"], [3, "className", "mouseover", "mouseout", "click"], ["class", "toast-title-content", 4, "ngIf"], ["class", "content-holder toast-text", 4, "ngIf"], [1, "button-holder"], ["elButtonWrapper", ""], ["class", "button-section", 3, "ngStyle", 4, "ngIf"], ["class", "progress-bar-container", 4, "ngIf"], [1, "toast-title-content"], ["elTitleWrapper", ""], ["class", "icon-section", 4, "ngIf"], [1, "dont-break-out"], [1, "text-wrapper", "dont-break-out"], ["class", "close-ico icon-times-circle", 3, "click", 4, "ngIf"], [1, "icon-section"], [3, "className"], [1, "close-ico", "icon-times-circle", 3, "click"], [1, "content-holder", "toast-text"], ["elTextWrapper", ""], [1, "text-wrapper-section", "toast-inner-content", 3, "ngStyle", "ngClass"], ["class", "text-wrapper dont-break-out", 4, "ngIf"], ["class", "text-wrapper", 3, "innerHTML", 4, "ngIf"], [1, "text-wrapper", 3, "innerHTML"], [1, "button-section", 3, "ngStyle"], [3, "className", "click", 4, "ngFor", "ngForOf"], [3, "className", "click"], ["elButton", ""], [3, "className", "click", 4, "ngIf"], ["class", "ed-btn ed-btn-sm ed-btn-secondary", 3, "click", 4, "ngIf"], [1, "ed-btn", "ed-btn-sm", "ed-btn-secondary", 3, "click"], [1, "progress-bar-container"], [1, "progress-bar", 3, "ngStyle"]], template: function ToastNotificationSimpleWrapperComponent_Template(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵelementStart(0, "div", 0);
-            i0.ɵɵlistener("dblclick", function ToastNotificationSimpleWrapperComponent_Template_div_dblclick_0_listener($event) { return ctx.onOverlayClicked($event); });
-            i0.ɵɵelementStart(1, "div", 1);
-            i0.ɵɵlistener("mouseover", function ToastNotificationSimpleWrapperComponent_Template_div_mouseover_1_listener() { return ctx.mouseOver(); })("mouseout", function ToastNotificationSimpleWrapperComponent_Template_div_mouseout_1_listener() { return ctx.mouseOut(); })("click", function ToastNotificationSimpleWrapperComponent_Template_div_click_1_listener($event) { return ctx.onToastClicked($event); });
-            i0.ɵɵtemplate(2, ToastNotificationSimpleWrapperComponent_div_2_Template, 7, 3, "div", 2);
-            i0.ɵɵtemplate(3, ToastNotificationSimpleWrapperComponent_div_3_Template, 7, 9, "div", 3);
-            i0.ɵɵelementStart(4, "div", 4, 5);
-            i0.ɵɵtemplate(6, ToastNotificationSimpleWrapperComponent_div_6_Template, 2, 4, "div", 6);
-            i0.ɵɵtemplate(7, ToastNotificationSimpleWrapperComponent_div_7_Template, 3, 5, "div", 6);
-            i0.ɵɵelementEnd();
-            i0.ɵɵtemplate(8, ToastNotificationSimpleWrapperComponent_div_8_Template, 2, 3, "div", 7);
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementEnd();
-        }
-        if (rf & 2) {
-            i0.ɵɵproperty("@fadeInOut", i0.ɵɵpureFunction2(11, _c4$1, ctx.fadeInOutAnimation, i0.ɵɵpureFunction1(9, _c3$1, ctx.toastNotificationBelonging.toastCoreConfig.animationOut === ctx.disappearanceAnimation.NONE ? "200ms" : "300ms")));
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("@.disabled", ctx.toastNotificationBelonging.toastCoreConfig.animationIn === ctx.appearanceAnimation.NONE && ctx.toastNotificationBelonging.toastCoreConfig.animationOut === ctx.disappearanceAnimation.NONE)("@boxAnimations", ctx.boxAnimation)("className", ctx.layoutHelper.getBoxClasses(ctx.toastNotificationBelonging.toastCoreConfig.layoutType, "evolve-toast"));
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngIf", ctx.toastNotificationBelonging.dispatch.title);
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngIf", ctx.toastNotificationBelonging.dispatch.message);
-            i0.ɵɵadvance(3);
-            i0.ɵɵproperty("ngIf", ctx.toastNotificationBelonging.buttons.length);
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngIf", !ctx.toastNotificationBelonging.buttons.length && (ctx.toastNotificationBelonging.toastCoreConfig.declineLabel || ctx.toastNotificationBelonging.toastCoreConfig.confirmLabel));
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngIf", !ctx.buttonsExist && ctx.toastNotificationBelonging.toastCoreConfig.progressBar !== 0);
-        }
-    }, directives: [i2.NgIf, i2.NgStyle, i2.NgClass, i2.NgForOf], encapsulation: 2, data: { animation: [fadeInOut(), boxAnimations()] } });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ToastNotificationSimpleWrapperComponent, [{
+ToastNotificationSimpleWrapperComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationSimpleWrapperComponent, deps: [{ token: 'toastNotificationBelonging' }, { token: GlobalConfigService }, { token: i0.ChangeDetectorRef }, { token: LayoutHelperService }], target: i0.ɵɵFactoryTarget.Component });
+ToastNotificationSimpleWrapperComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.2", type: ToastNotificationSimpleWrapperComponent, selector: "app-toast-notification-simple-wrapper", providers: [LayoutHelperService], usesInheritance: true, ngImport: i0, template: "<div\n  class=\"toast-wrapper simple-toast\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: toastNotificationBelonging.toastCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'\n    }\n  }\">\n  <div\n    [@.disabled]=\"\n      toastNotificationBelonging.toastCoreConfig.animationIn === appearanceAnimation.NONE &&\n      toastNotificationBelonging.toastCoreConfig.animationOut === disappearanceAnimation.NONE\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    (mouseover)=\"mouseOver()\"\n    (mouseout)=\"mouseOut()\"\n    (click)=\"onToastClicked($event)\"\n    [className]=\"layoutHelper.getBoxClasses(toastNotificationBelonging.toastCoreConfig.layoutType, 'evolve-toast')\">\n    <div class=\"toast-title-content\" #elTitleWrapper *ngIf=\"toastNotificationBelonging.dispatch.title\">\n      <div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.disableIcon\">\n        <span [className]=\"getIconClasses()\"></span>\n      </div>\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          {{ toastNotificationBelonging.dispatch.title }}\n          <span class=\"close-ico icon-times-circle\" (click)=\"closeIcon()\" *ngIf=\"!buttonsExist\"></span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"content-holder toast-text\" #elTextWrapper *ngIf=\"toastNotificationBelonging.dispatch.message\">\n      <div\n        class=\"text-wrapper-section toast-inner-content\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.textPosition\n        }\"\n        [ngClass]=\"{\n          'only-message': !toastNotificationBelonging.dispatch.title\n        }\">\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper dont-break-out\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\">\n            <p>{{ toastNotificationBelonging.dispatch.message }}</p>\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\"\n            [innerHTML]=\"toastNotificationBelonging.dispatch.message\"></div>\n        </div>\n      </div>\n      <span\n        class=\"close-ico icon-times-circle\"\n        (click)=\"closeIcon()\"\n        *ngIf=\"buttonsExist && !toastNotificationBelonging.dispatch.title\"></span>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"toastNotificationBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\">\n        <button\n          #elButton\n          *ngFor=\"let button of toastNotificationBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [className]=\"layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-sm')\">\n          {{ button.label }}\n        </button>\n      </div>\n\n      <div\n        class=\"button-section\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\"\n        *ngIf=\"\n          !toastNotificationBelonging.buttons.length &&\n          (toastNotificationBelonging.toastCoreConfig.declineLabel || toastNotificationBelonging.toastCoreConfig.confirmLabel)\n        \">\n        <button\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.confirmLabel\"\n          (click)=\"onButtonClick('confirm')\"\n          [className]=\"\n            layoutHelper.getButtonClasses(toastNotificationBelonging.toastCoreConfig.layoutType, 'ed-btn ed-btn-sm', 'auto-button')\n          \">\n          {{ toastNotificationBelonging.toastCoreConfig.confirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-sm ed-btn-secondary\"\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.declineLabel\">\n          {{ toastNotificationBelonging.toastCoreConfig.declineLabel }}\n        </button>\n      </div>\n    </div>\n\n    <div class=\"progress-bar-container\" *ngIf=\"!buttonsExist && toastNotificationBelonging.toastCoreConfig.progressBar !== 0\">\n      <div\n        class=\"progress-bar\"\n        [ngStyle]=\"{\n          width: (toastNotificationBelonging.toastCoreConfig.progressBar === 1 ? timer.Progress : timer.Remaining) + '%'\n        }\"></div>\n    </div>\n  </div>\n</div>\n", directives: [{ type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { type: i2.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i2.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }], animations: [fadeInOut(), boxAnimations()] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationSimpleWrapperComponent, decorators: [{
             type: Component,
             args: [{ selector: 'app-toast-notification-simple-wrapper', animations: [fadeInOut(), boxAnimations()], providers: [LayoutHelperService], template: "<div\n  class=\"toast-wrapper simple-toast\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: toastNotificationBelonging.toastCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'\n    }\n  }\">\n  <div\n    [@.disabled]=\"\n      toastNotificationBelonging.toastCoreConfig.animationIn === appearanceAnimation.NONE &&\n      toastNotificationBelonging.toastCoreConfig.animationOut === disappearanceAnimation.NONE\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    (mouseover)=\"mouseOver()\"\n    (mouseout)=\"mouseOut()\"\n    (click)=\"onToastClicked($event)\"\n    [className]=\"layoutHelper.getBoxClasses(toastNotificationBelonging.toastCoreConfig.layoutType, 'evolve-toast')\">\n    <div class=\"toast-title-content\" #elTitleWrapper *ngIf=\"toastNotificationBelonging.dispatch.title\">\n      <div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.disableIcon\">\n        <span [className]=\"getIconClasses()\"></span>\n      </div>\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          {{ toastNotificationBelonging.dispatch.title }}\n          <span class=\"close-ico icon-times-circle\" (click)=\"closeIcon()\" *ngIf=\"!buttonsExist\"></span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"content-holder toast-text\" #elTextWrapper *ngIf=\"toastNotificationBelonging.dispatch.message\">\n      <div\n        class=\"text-wrapper-section toast-inner-content\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.textPosition\n        }\"\n        [ngClass]=\"{\n          'only-message': !toastNotificationBelonging.dispatch.title\n        }\">\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper dont-break-out\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\">\n            <p>{{ toastNotificationBelonging.dispatch.message }}</p>\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\"\n            [innerHTML]=\"toastNotificationBelonging.dispatch.message\"></div>\n        </div>\n      </div>\n      <span\n        class=\"close-ico icon-times-circle\"\n        (click)=\"closeIcon()\"\n        *ngIf=\"buttonsExist && !toastNotificationBelonging.dispatch.title\"></span>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"toastNotificationBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\">\n        <button\n          #elButton\n          *ngFor=\"let button of toastNotificationBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [className]=\"layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-sm')\">\n          {{ button.label }}\n        </button>\n      </div>\n\n      <div\n        class=\"button-section\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\"\n        *ngIf=\"\n          !toastNotificationBelonging.buttons.length &&\n          (toastNotificationBelonging.toastCoreConfig.declineLabel || toastNotificationBelonging.toastCoreConfig.confirmLabel)\n        \">\n        <button\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.confirmLabel\"\n          (click)=\"onButtonClick('confirm')\"\n          [className]=\"\n            layoutHelper.getButtonClasses(toastNotificationBelonging.toastCoreConfig.layoutType, 'ed-btn ed-btn-sm', 'auto-button')\n          \">\n          {{ toastNotificationBelonging.toastCoreConfig.confirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-sm ed-btn-secondary\"\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.declineLabel\">\n          {{ toastNotificationBelonging.toastCoreConfig.declineLabel }}\n        </button>\n      </div>\n    </div>\n\n    <div class=\"progress-bar-container\" *ngIf=\"!buttonsExist && toastNotificationBelonging.toastCoreConfig.progressBar !== 0\">\n      <div\n        class=\"progress-bar\"\n        [ngStyle]=\"{\n          width: (toastNotificationBelonging.toastCoreConfig.progressBar === 1 ? timer.Progress : timer.Remaining) + '%'\n        }\"></div>\n    </div>\n  </div>\n</div>\n" }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: ToastNotificationBelonging, decorators: [{
                         type: Inject,
                         args: ['toastNotificationBelonging']
                     }] }, { type: GlobalConfigService }, { type: i0.ChangeDetectorRef }, { type: LayoutHelperService }];
-    }, null);
-})();
+    } });
 
-function ToastNotificationWrapperComponent_div_2_span_5_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r9 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "span", 13);
-        i0.ɵɵlistener("click", function ToastNotificationWrapperComponent_div_2_span_5_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r9); const ctx_r8 = i0.ɵɵnextContext(2); return ctx_r8.closeIcon(); });
-        i0.ɵɵelementEnd();
-    }
-}
-function ToastNotificationWrapperComponent_div_2_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 8, 9);
-        i0.ɵɵelementStart(2, "div", 10);
-        i0.ɵɵelementStart(3, "div", 11);
-        i0.ɵɵtext(4);
-        i0.ɵɵtemplate(5, ToastNotificationWrapperComponent_div_2_span_5_Template, 1, 0, "span", 12);
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r0 = i0.ɵɵnextContext();
-        i0.ɵɵadvance(4);
-        i0.ɵɵtextInterpolate1(" ", ctx_r0.toastNotificationBelonging.dispatch.title, " ");
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", !ctx_r0.buttonsExist);
-    }
-}
-function ToastNotificationWrapperComponent_div_3_div_2_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 20);
-        i0.ɵɵelement(1, "span", 21);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r11 = i0.ɵɵnextContext(2);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("className", ctx_r11.getIconClasses());
-    }
-}
-function ToastNotificationWrapperComponent_div_3_div_5_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 11);
-        i0.ɵɵelementStart(1, "p");
-        i0.ɵɵtext(2);
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r12 = i0.ɵɵnextContext(2);
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate(ctx_r12.toastNotificationBelonging.dispatch.message);
-    }
-}
-function ToastNotificationWrapperComponent_div_3_div_6_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelement(0, "div", 22);
-    }
-    if (rf & 2) {
-        const ctx_r13 = i0.ɵɵnextContext(2);
-        i0.ɵɵproperty("innerHTML", ctx_r13.toastNotificationBelonging.dispatch.message, i0.ɵɵsanitizeHtml);
-    }
-}
-function ToastNotificationWrapperComponent_div_3_span_7_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r16 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "span", 13);
-        i0.ɵɵlistener("click", function ToastNotificationWrapperComponent_div_3_span_7_Template_span_click_0_listener() { i0.ɵɵrestoreView(_r16); const ctx_r15 = i0.ɵɵnextContext(2); return ctx_r15.closeIcon(); });
-        i0.ɵɵelementEnd();
-    }
-}
-const _c0 = function (a0) { return { "text-align": a0 }; };
-const _c1 = function (a0) { return { "only-message": a0 }; };
-function ToastNotificationWrapperComponent_div_3_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 14, 15);
-        i0.ɵɵtemplate(2, ToastNotificationWrapperComponent_div_3_div_2_Template, 2, 1, "div", 16);
-        i0.ɵɵelementStart(3, "div", 17);
-        i0.ɵɵelementStart(4, "div", 10);
-        i0.ɵɵtemplate(5, ToastNotificationWrapperComponent_div_3_div_5_Template, 3, 1, "div", 18);
-        i0.ɵɵtemplate(6, ToastNotificationWrapperComponent_div_3_div_6_Template, 1, 1, "div", 19);
-        i0.ɵɵelementEnd();
-        i0.ɵɵelementEnd();
-        i0.ɵɵtemplate(7, ToastNotificationWrapperComponent_div_3_span_7_Template, 1, 0, "span", 12);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r1 = i0.ɵɵnextContext();
-        i0.ɵɵadvance(2);
-        i0.ɵɵproperty("ngIf", !ctx_r1.toastNotificationBelonging.toastCoreConfig.disableIcon);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(6, _c0, ctx_r1.toastNotificationBelonging.toastCoreConfig.textPosition))("ngClass", i0.ɵɵpureFunction1(8, _c1, !ctx_r1.toastNotificationBelonging.dispatch.title));
-        i0.ɵɵadvance(2);
-        i0.ɵɵproperty("ngIf", !ctx_r1.toastNotificationBelonging.toastCoreConfig.allowHtmlMessage);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx_r1.toastNotificationBelonging.toastCoreConfig.allowHtmlMessage);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx_r1.buttonsExist && !ctx_r1.toastNotificationBelonging.dispatch.title);
-    }
-}
-function ToastNotificationWrapperComponent_div_6_button_1_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r21 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "button", 25, 26);
-        i0.ɵɵlistener("click", function ToastNotificationWrapperComponent_div_6_button_1_Template_button_click_0_listener() { const restoredCtx = i0.ɵɵrestoreView(_r21); const button_r18 = restoredCtx.$implicit; const ctx_r20 = i0.ɵɵnextContext(2); return ctx_r20.onCustomButton(button_r18); });
-        i0.ɵɵtext(2);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const button_r18 = ctx.$implicit;
-        const ctx_r17 = i0.ɵɵnextContext(2);
-        i0.ɵɵproperty("className", ctx_r17.layoutHelper.getButtonClasses(button_r18.layoutType, "ed-btn ed-btn-sm"));
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate1(" ", button_r18.label, " ");
-    }
-}
-function ToastNotificationWrapperComponent_div_6_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 23);
-        i0.ɵɵtemplate(1, ToastNotificationWrapperComponent_div_6_button_1_Template, 3, 2, "button", 24);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r3 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(2, _c0, ctx_r3.toastNotificationBelonging.toastCoreConfig.buttonPosition));
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngForOf", ctx_r3.toastNotificationBelonging.buttons);
-    }
-}
-function ToastNotificationWrapperComponent_div_7_button_1_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r26 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "button", 25, 26);
-        i0.ɵɵlistener("click", function ToastNotificationWrapperComponent_div_7_button_1_Template_button_click_0_listener() { i0.ɵɵrestoreView(_r26); const ctx_r25 = i0.ɵɵnextContext(2); return ctx_r25.onButtonClick("confirm"); });
-        i0.ɵɵtext(2);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r22 = i0.ɵɵnextContext(2);
-        i0.ɵɵproperty("className", ctx_r22.layoutHelper.getButtonClasses(ctx_r22.toastNotificationBelonging.toastCoreConfig.layoutType, "ed-btn ed-btn-sm", "auto-button"));
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate1(" ", ctx_r22.toastNotificationBelonging.toastCoreConfig.confirmLabel, " ");
-    }
-}
-function ToastNotificationWrapperComponent_div_7_button_2_Template(rf, ctx) {
-    if (rf & 1) {
-        const _r29 = i0.ɵɵgetCurrentView();
-        i0.ɵɵelementStart(0, "button", 29, 26);
-        i0.ɵɵlistener("click", function ToastNotificationWrapperComponent_div_7_button_2_Template_button_click_0_listener() { i0.ɵɵrestoreView(_r29); const ctx_r28 = i0.ɵɵnextContext(2); return ctx_r28.onButtonClick("decline"); });
-        i0.ɵɵtext(2);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r23 = i0.ɵɵnextContext(2);
-        i0.ɵɵadvance(2);
-        i0.ɵɵtextInterpolate1(" ", ctx_r23.toastNotificationBelonging.toastCoreConfig.declineLabel, " ");
-    }
-}
-function ToastNotificationWrapperComponent_div_7_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 23);
-        i0.ɵɵtemplate(1, ToastNotificationWrapperComponent_div_7_button_1_Template, 3, 2, "button", 27);
-        i0.ɵɵtemplate(2, ToastNotificationWrapperComponent_div_7_button_2_Template, 3, 1, "button", 28);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r4 = i0.ɵɵnextContext();
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(3, _c0, ctx_r4.toastNotificationBelonging.toastCoreConfig.buttonPosition));
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx_r4.toastNotificationBelonging.toastCoreConfig.confirmLabel);
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngIf", ctx_r4.toastNotificationBelonging.toastCoreConfig.declineLabel);
-    }
-}
-const _c2 = function (a0) { return { width: a0 }; };
-function ToastNotificationWrapperComponent_div_8_Template(rf, ctx) {
-    if (rf & 1) {
-        i0.ɵɵelementStart(0, "div", 30);
-        i0.ɵɵelement(1, "div", 31);
-        i0.ɵɵelementEnd();
-    }
-    if (rf & 2) {
-        const ctx_r5 = i0.ɵɵnextContext();
-        i0.ɵɵadvance(1);
-        i0.ɵɵproperty("ngStyle", i0.ɵɵpureFunction1(1, _c2, (ctx_r5.toastNotificationBelonging.toastCoreConfig.progressBar === 1 ? ctx_r5.timer.Progress : ctx_r5.timer.Remaining) + "%"));
-    }
-}
-const _c3 = function (a0) { return { closeDelay: a0 }; };
-const _c4 = function (a0, a1) { return { value: a0, params: a1 }; };
 class ToastNotificationWrapperComponent extends WrapperAbstraction {
     constructor(toastNotificationBelonging, gConfig, cd, layoutHelper) {
         super(toastNotificationBelonging, layoutHelper);
@@ -2834,50 +2096,17 @@ class ToastNotificationWrapperComponent extends WrapperAbstraction {
         this.setCustomStyles();
     }
 }
-ToastNotificationWrapperComponent.ɵfac = function ToastNotificationWrapperComponent_Factory(t) { return new (t || ToastNotificationWrapperComponent)(i0.ɵɵdirectiveInject('toastNotificationBelonging'), i0.ɵɵdirectiveInject(GlobalConfigService), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(LayoutHelperService)); };
-ToastNotificationWrapperComponent.ɵcmp = i0.ɵɵdefineComponent({ type: ToastNotificationWrapperComponent, selectors: [["app-toast-notification-wrapper"]], features: [i0.ɵɵProvidersFeature([LayoutHelperService]), i0.ɵɵInheritDefinitionFeature], decls: 9, vars: 14, consts: [[1, "toast-wrapper", "standard-toast", 3, "dblclick"], [3, "className", "mouseover", "mouseout", "click"], ["class", "toast-title-content", 4, "ngIf"], ["class", "content-holder toast-text", 4, "ngIf"], [1, "button-holder"], ["elButtonWrapper", ""], ["class", "button-section", 3, "ngStyle", 4, "ngIf"], ["class", "progress-bar-container", 4, "ngIf"], [1, "toast-title-content"], ["elTitleWrapper", ""], [1, "dont-break-out"], [1, "text-wrapper", "dont-break-out"], ["class", "close-ico icon-times-circle", 3, "click", 4, "ngIf"], [1, "close-ico", "icon-times-circle", 3, "click"], [1, "content-holder", "toast-text"], ["elTextWrapper", ""], ["class", "icon-section", 4, "ngIf"], [1, "text-wrapper-section", "toast-inner-content", 3, "ngStyle", "ngClass"], ["class", "text-wrapper dont-break-out", 4, "ngIf"], ["class", "text-wrapper", 3, "innerHTML", 4, "ngIf"], [1, "icon-section"], [3, "className"], [1, "text-wrapper", 3, "innerHTML"], [1, "button-section", 3, "ngStyle"], [3, "className", "click", 4, "ngFor", "ngForOf"], [3, "className", "click"], ["elButton", ""], [3, "className", "click", 4, "ngIf"], ["class", "ed-btn ed-btn-sm ed-btn-secondary", 3, "click", 4, "ngIf"], [1, "ed-btn", "ed-btn-sm", "ed-btn-secondary", 3, "click"], [1, "progress-bar-container"], [1, "progress-bar", 3, "ngStyle"]], template: function ToastNotificationWrapperComponent_Template(rf, ctx) {
-        if (rf & 1) {
-            i0.ɵɵelementStart(0, "div", 0);
-            i0.ɵɵlistener("dblclick", function ToastNotificationWrapperComponent_Template_div_dblclick_0_listener($event) { return ctx.onOverlayClicked($event); });
-            i0.ɵɵelementStart(1, "div", 1);
-            i0.ɵɵlistener("mouseover", function ToastNotificationWrapperComponent_Template_div_mouseover_1_listener() { return ctx.mouseOver(); })("mouseout", function ToastNotificationWrapperComponent_Template_div_mouseout_1_listener() { return ctx.mouseOut(); })("click", function ToastNotificationWrapperComponent_Template_div_click_1_listener($event) { return ctx.onToastClicked($event); });
-            i0.ɵɵtemplate(2, ToastNotificationWrapperComponent_div_2_Template, 6, 2, "div", 2);
-            i0.ɵɵtemplate(3, ToastNotificationWrapperComponent_div_3_Template, 8, 10, "div", 3);
-            i0.ɵɵelementStart(4, "div", 4, 5);
-            i0.ɵɵtemplate(6, ToastNotificationWrapperComponent_div_6_Template, 2, 4, "div", 6);
-            i0.ɵɵtemplate(7, ToastNotificationWrapperComponent_div_7_Template, 3, 5, "div", 6);
-            i0.ɵɵelementEnd();
-            i0.ɵɵtemplate(8, ToastNotificationWrapperComponent_div_8_Template, 2, 3, "div", 7);
-            i0.ɵɵelementEnd();
-            i0.ɵɵelementEnd();
-        }
-        if (rf & 2) {
-            i0.ɵɵproperty("@fadeInOut", i0.ɵɵpureFunction2(11, _c4, ctx.fadeInOutAnimation, i0.ɵɵpureFunction1(9, _c3, ctx.toastNotificationBelonging.toastCoreConfig.animationOut === ctx.disappearanceAnimation.NONE ? "200ms" : "300ms")));
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("@.disabled", ctx.toastNotificationBelonging.toastCoreConfig.animationIn === ctx.appearanceAnimation.NONE && ctx.toastNotificationBelonging.toastCoreConfig.animationOut === ctx.disappearanceAnimation.NONE)("@boxAnimations", ctx.boxAnimation)("className", ctx.layoutHelper.getBoxClasses(ctx.toastNotificationBelonging.toastCoreConfig.layoutType, "evolve-toast"));
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngIf", ctx.toastNotificationBelonging.dispatch.title);
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngIf", ctx.toastNotificationBelonging.dispatch.message);
-            i0.ɵɵadvance(3);
-            i0.ɵɵproperty("ngIf", ctx.toastNotificationBelonging.buttons.length);
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngIf", !ctx.toastNotificationBelonging.buttons.length && (ctx.toastNotificationBelonging.toastCoreConfig.declineLabel || ctx.toastNotificationBelonging.toastCoreConfig.confirmLabel));
-            i0.ɵɵadvance(1);
-            i0.ɵɵproperty("ngIf", !ctx.buttonsExist && ctx.toastNotificationBelonging.toastCoreConfig.progressBar !== 0);
-        }
-    }, directives: [i2.NgIf, i2.NgStyle, i2.NgClass, i2.NgForOf], encapsulation: 2, data: { animation: [fadeInOut(), boxAnimations()] } });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ToastNotificationWrapperComponent, [{
+ToastNotificationWrapperComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationWrapperComponent, deps: [{ token: 'toastNotificationBelonging' }, { token: GlobalConfigService }, { token: i0.ChangeDetectorRef }, { token: LayoutHelperService }], target: i0.ɵɵFactoryTarget.Component });
+ToastNotificationWrapperComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.2", type: ToastNotificationWrapperComponent, selector: "app-toast-notification-wrapper", providers: [LayoutHelperService], usesInheritance: true, ngImport: i0, template: "<div\n  class=\"toast-wrapper standard-toast\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: toastNotificationBelonging.toastCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'\n    }\n  }\">\n  <div\n    [@.disabled]=\"\n      toastNotificationBelonging.toastCoreConfig.animationIn === appearanceAnimation.NONE &&\n      toastNotificationBelonging.toastCoreConfig.animationOut === disappearanceAnimation.NONE\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    (mouseover)=\"mouseOver()\"\n    (mouseout)=\"mouseOut()\"\n    (click)=\"onToastClicked($event)\"\n    [className]=\"layoutHelper.getBoxClasses(toastNotificationBelonging.toastCoreConfig.layoutType, 'evolve-toast')\">\n    <div class=\"toast-title-content\" #elTitleWrapper *ngIf=\"toastNotificationBelonging.dispatch.title\">\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          {{ toastNotificationBelonging.dispatch.title }}\n          <span class=\"close-ico icon-times-circle\" (click)=\"closeIcon()\" *ngIf=\"!buttonsExist\"></span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"content-holder toast-text\" #elTextWrapper *ngIf=\"toastNotificationBelonging.dispatch.message\">\n      <div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.disableIcon\">\n        <span [className]=\"getIconClasses()\"></span>\n      </div>\n      <div\n        class=\"text-wrapper-section toast-inner-content\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.textPosition\n        }\"\n        [ngClass]=\"{\n          'only-message': !toastNotificationBelonging.dispatch.title\n        }\">\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper dont-break-out\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\">\n            <p>{{ toastNotificationBelonging.dispatch.message }}</p>\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\"\n            [innerHTML]=\"toastNotificationBelonging.dispatch.message\"></div>\n        </div>\n      </div>\n      <span\n        class=\"close-ico icon-times-circle\"\n        (click)=\"closeIcon()\"\n        *ngIf=\"buttonsExist && !toastNotificationBelonging.dispatch.title\"></span>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"toastNotificationBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\">\n        <button\n          #elButton\n          *ngFor=\"let button of toastNotificationBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [className]=\"layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-sm')\">\n          {{ button.label }}\n        </button>\n      </div>\n\n      <div\n        class=\"button-section\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\"\n        *ngIf=\"\n          !toastNotificationBelonging.buttons.length &&\n          (toastNotificationBelonging.toastCoreConfig.declineLabel || toastNotificationBelonging.toastCoreConfig.confirmLabel)\n        \">\n        <button\n          #elButton\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.confirmLabel\"\n          (click)=\"onButtonClick('confirm')\"\n          [className]=\"\n            layoutHelper.getButtonClasses(toastNotificationBelonging.toastCoreConfig.layoutType, 'ed-btn ed-btn-sm', 'auto-button')\n          \">\n          {{ toastNotificationBelonging.toastCoreConfig.confirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-sm ed-btn-secondary\"\n          #elButton\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.declineLabel\">\n          {{ toastNotificationBelonging.toastCoreConfig.declineLabel }}\n        </button>\n      </div>\n    </div>\n\n    <div class=\"progress-bar-container\" *ngIf=\"!buttonsExist && toastNotificationBelonging.toastCoreConfig.progressBar !== 0\">\n      <div\n        class=\"progress-bar\"\n        [ngStyle]=\"{\n          width: (toastNotificationBelonging.toastCoreConfig.progressBar === 1 ? timer.Progress : timer.Remaining) + '%'\n        }\"></div>\n    </div>\n  </div>\n</div>\n", directives: [{ type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { type: i2.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i2.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }], animations: [fadeInOut(), boxAnimations()] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationWrapperComponent, decorators: [{
             type: Component,
             args: [{ selector: 'app-toast-notification-wrapper', animations: [fadeInOut(), boxAnimations()], providers: [LayoutHelperService], template: "<div\n  class=\"toast-wrapper standard-toast\"\n  (dblclick)=\"onOverlayClicked($event)\"\n  [@fadeInOut]=\"{\n    value: fadeInOutAnimation,\n    params: {\n      closeDelay: toastNotificationBelonging.toastCoreConfig.animationOut === disappearanceAnimation.NONE ? '200ms' : '300ms'\n    }\n  }\">\n  <div\n    [@.disabled]=\"\n      toastNotificationBelonging.toastCoreConfig.animationIn === appearanceAnimation.NONE &&\n      toastNotificationBelonging.toastCoreConfig.animationOut === disappearanceAnimation.NONE\n    \"\n    [@boxAnimations]=\"boxAnimation\"\n    (mouseover)=\"mouseOver()\"\n    (mouseout)=\"mouseOut()\"\n    (click)=\"onToastClicked($event)\"\n    [className]=\"layoutHelper.getBoxClasses(toastNotificationBelonging.toastCoreConfig.layoutType, 'evolve-toast')\">\n    <div class=\"toast-title-content\" #elTitleWrapper *ngIf=\"toastNotificationBelonging.dispatch.title\">\n      <div class=\"dont-break-out\">\n        <div class=\"text-wrapper dont-break-out\">\n          {{ toastNotificationBelonging.dispatch.title }}\n          <span class=\"close-ico icon-times-circle\" (click)=\"closeIcon()\" *ngIf=\"!buttonsExist\"></span>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"content-holder toast-text\" #elTextWrapper *ngIf=\"toastNotificationBelonging.dispatch.message\">\n      <div class=\"icon-section\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.disableIcon\">\n        <span [className]=\"getIconClasses()\"></span>\n      </div>\n      <div\n        class=\"text-wrapper-section toast-inner-content\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.textPosition\n        }\"\n        [ngClass]=\"{\n          'only-message': !toastNotificationBelonging.dispatch.title\n        }\">\n        <div class=\"dont-break-out\">\n          <div class=\"text-wrapper dont-break-out\" *ngIf=\"!toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\">\n            <p>{{ toastNotificationBelonging.dispatch.message }}</p>\n          </div>\n          <div\n            class=\"text-wrapper\"\n            *ngIf=\"toastNotificationBelonging.toastCoreConfig.allowHtmlMessage\"\n            [innerHTML]=\"toastNotificationBelonging.dispatch.message\"></div>\n        </div>\n      </div>\n      <span\n        class=\"close-ico icon-times-circle\"\n        (click)=\"closeIcon()\"\n        *ngIf=\"buttonsExist && !toastNotificationBelonging.dispatch.title\"></span>\n    </div>\n\n    <div class=\"button-holder\" #elButtonWrapper>\n      <div\n        class=\"button-section\"\n        *ngIf=\"toastNotificationBelonging.buttons.length\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\">\n        <button\n          #elButton\n          *ngFor=\"let button of toastNotificationBelonging.buttons\"\n          (click)=\"onCustomButton(button)\"\n          [className]=\"layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-sm')\">\n          {{ button.label }}\n        </button>\n      </div>\n\n      <div\n        class=\"button-section\"\n        [ngStyle]=\"{\n          'text-align': toastNotificationBelonging.toastCoreConfig.buttonPosition\n        }\"\n        *ngIf=\"\n          !toastNotificationBelonging.buttons.length &&\n          (toastNotificationBelonging.toastCoreConfig.declineLabel || toastNotificationBelonging.toastCoreConfig.confirmLabel)\n        \">\n        <button\n          #elButton\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.confirmLabel\"\n          (click)=\"onButtonClick('confirm')\"\n          [className]=\"\n            layoutHelper.getButtonClasses(toastNotificationBelonging.toastCoreConfig.layoutType, 'ed-btn ed-btn-sm', 'auto-button')\n          \">\n          {{ toastNotificationBelonging.toastCoreConfig.confirmLabel }}\n        </button>\n        <button\n          class=\"ed-btn ed-btn-sm ed-btn-secondary\"\n          #elButton\n          (click)=\"onButtonClick('decline')\"\n          *ngIf=\"toastNotificationBelonging.toastCoreConfig.declineLabel\">\n          {{ toastNotificationBelonging.toastCoreConfig.declineLabel }}\n        </button>\n      </div>\n    </div>\n\n    <div class=\"progress-bar-container\" *ngIf=\"!buttonsExist && toastNotificationBelonging.toastCoreConfig.progressBar !== 0\">\n      <div\n        class=\"progress-bar\"\n        [ngStyle]=\"{\n          width: (toastNotificationBelonging.toastCoreConfig.progressBar === 1 ? timer.Progress : timer.Remaining) + '%'\n        }\"></div>\n    </div>\n  </div>\n</div>\n" }]
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: ToastNotificationBelonging, decorators: [{
                         type: Inject,
                         args: ['toastNotificationBelonging']
                     }] }, { type: GlobalConfigService }, { type: i0.ChangeDetectorRef }, { type: LayoutHelperService }];
-    }, null);
-})();
+    } });
 
 class ToastNotificationService {
     constructor(componentFactoryResolver, injector, appRef, toastConfig, gConfigService) {
@@ -3049,16 +2278,14 @@ class ToastNotificationService {
         }
     }
 }
-ToastNotificationService.ɵfac = function ToastNotificationService_Factory(t) { return new (t || ToastNotificationService)(i0.ɵɵinject(i0.ComponentFactoryResolver), i0.ɵɵinject(i0.Injector), i0.ɵɵinject(i0.ApplicationRef), i0.ɵɵinject(ToastNotificationConfigService), i0.ɵɵinject(GlobalConfigService)); };
-ToastNotificationService.ɵprov = i0.ɵɵdefineInjectable({ token: ToastNotificationService, factory: ToastNotificationService.ɵfac, providedIn: 'root' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ToastNotificationService, [{
+ToastNotificationService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationService, deps: [{ token: i0.ComponentFactoryResolver }, { token: i0.Injector }, { token: i0.ApplicationRef }, { token: ToastNotificationConfigService }, { token: GlobalConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+ToastNotificationService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], function () { return [{ type: i0.ComponentFactoryResolver }, { type: i0.Injector }, { type: i0.ApplicationRef }, { type: ToastNotificationConfigService }, { type: GlobalConfigService }]; }, null);
-})();
+        }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }, { type: i0.Injector }, { type: i0.ApplicationRef }, { type: ToastNotificationConfigService }, { type: GlobalConfigService }]; } });
 
 class ToastNotificationInitializer {
     constructor() {
@@ -3249,19 +2476,16 @@ class NgxAwesomePopupModule {
         };
     }
 }
-NgxAwesomePopupModule.ɵfac = function NgxAwesomePopupModule_Factory(t) { return new (t || NgxAwesomePopupModule)(i0.ɵɵinject(i0.Injector)); };
-NgxAwesomePopupModule.ɵmod = i0.ɵɵdefineNgModule({ type: NgxAwesomePopupModule });
-NgxAwesomePopupModule.ɵinj = i0.ɵɵdefineInjector({ providers: [GlobalConfigService], imports: [[CommonModule, BrowserModule, BrowserAnimationsModule]] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NgxAwesomePopupModule, [{
+NgxAwesomePopupModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: NgxAwesomePopupModule, deps: [{ token: i0.Injector }], target: i0.ɵɵFactoryTarget.NgModule });
+NgxAwesomePopupModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: NgxAwesomePopupModule, imports: [CommonModule, BrowserModule, BrowserAnimationsModule] });
+NgxAwesomePopupModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: NgxAwesomePopupModule, providers: [GlobalConfigService], imports: [[CommonModule, BrowserModule, BrowserAnimationsModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: NgxAwesomePopupModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, BrowserModule, BrowserAnimationsModule],
                     providers: [GlobalConfigService]
                 }]
-        }], function () { return [{ type: i0.Injector }]; }, null);
-})();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(NgxAwesomePopupModule, { imports: [CommonModule, BrowserModule, BrowserAnimationsModule] }); })();
+        }], ctorParameters: function () { return [{ type: i0.Injector }]; } });
 class DialogConfigModule {
     static forRoot(dialogConfig) {
         return {
@@ -3273,11 +2497,10 @@ class DialogConfigModule {
         };
     }
 }
-DialogConfigModule.ɵfac = function DialogConfigModule_Factory(t) { return new (t || DialogConfigModule)(); };
-DialogConfigModule.ɵmod = i0.ɵɵdefineNgModule({ type: DialogConfigModule });
-DialogConfigModule.ɵinj = i0.ɵɵdefineInjector({ providers: [DialogService, DialogConfigService], imports: [[CommonModule]] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DialogConfigModule, [{
+DialogConfigModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DialogConfigModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigModule, declarations: [DialogWrapperComponent, DefaultLoaderComponent, InsertionDirective, InsertionLoaderDirective], imports: [CommonModule] });
+DialogConfigModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigModule, providers: [DialogService, DialogConfigService], imports: [[CommonModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [DialogWrapperComponent, DefaultLoaderComponent, InsertionDirective, InsertionLoaderDirective],
@@ -3285,9 +2508,7 @@ DialogConfigModule.ɵinj = i0.ɵɵdefineInjector({ providers: [DialogService, Di
                     providers: [DialogService, DialogConfigService],
                     entryComponents: [DialogWrapperComponent, DefaultLoaderComponent]
                 }]
-        }], null, null);
-})();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(DialogConfigModule, { declarations: [DialogWrapperComponent, DefaultLoaderComponent, InsertionDirective, InsertionLoaderDirective], imports: [CommonModule] }); })();
+        }] });
 class ConfirmBoxConfigModule {
     static forRoot(confirmBoxConfig) {
         return {
@@ -3299,11 +2520,10 @@ class ConfirmBoxConfigModule {
         };
     }
 }
-ConfirmBoxConfigModule.ɵfac = function ConfirmBoxConfigModule_Factory(t) { return new (t || ConfirmBoxConfigModule)(); };
-ConfirmBoxConfigModule.ɵmod = i0.ɵɵdefineNgModule({ type: ConfirmBoxConfigModule });
-ConfirmBoxConfigModule.ɵinj = i0.ɵɵdefineInjector({ providers: [ConfirmBoxService, ConfirmBoxConfigService], imports: [[CommonModule]] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ConfirmBoxConfigModule, [{
+ConfirmBoxConfigModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxConfigModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ConfirmBoxConfigModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxConfigModule, declarations: [ConfirmBoxWrapperComponent], imports: [CommonModule] });
+ConfirmBoxConfigModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxConfigModule, providers: [ConfirmBoxService, ConfirmBoxConfigService], imports: [[CommonModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxConfigModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [ConfirmBoxWrapperComponent],
@@ -3311,9 +2531,7 @@ ConfirmBoxConfigModule.ɵinj = i0.ɵɵdefineInjector({ providers: [ConfirmBoxSer
                     providers: [ConfirmBoxService, ConfirmBoxConfigService],
                     entryComponents: [ConfirmBoxWrapperComponent]
                 }]
-        }], null, null);
-})();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(ConfirmBoxConfigModule, { declarations: [ConfirmBoxWrapperComponent], imports: [CommonModule] }); })();
+        }] });
 class ToastNotificationConfigModule {
     static forRoot(toastNotificationConfig) {
         return {
@@ -3331,11 +2549,10 @@ class ToastNotificationConfigModule {
         };
     }
 }
-ToastNotificationConfigModule.ɵfac = function ToastNotificationConfigModule_Factory(t) { return new (t || ToastNotificationConfigModule)(); };
-ToastNotificationConfigModule.ɵmod = i0.ɵɵdefineNgModule({ type: ToastNotificationConfigModule });
-ToastNotificationConfigModule.ɵinj = i0.ɵɵdefineInjector({ providers: [ToastNotificationService, ToastNotificationConfigService], imports: [[CommonModule]] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ToastNotificationConfigModule, [{
+ToastNotificationConfigModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationConfigModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ToastNotificationConfigModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationConfigModule, declarations: [ToastNotificationWrapperComponent, ToastNotificationSimpleWrapperComponent], imports: [CommonModule] });
+ToastNotificationConfigModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationConfigModule, providers: [ToastNotificationService, ToastNotificationConfigService], imports: [[CommonModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastNotificationConfigModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [ToastNotificationWrapperComponent, ToastNotificationSimpleWrapperComponent],
@@ -3343,9 +2560,7 @@ ToastNotificationConfigModule.ɵinj = i0.ɵɵdefineInjector({ providers: [ToastN
                     providers: [ToastNotificationService, ToastNotificationConfigService],
                     entryComponents: [ToastNotificationWrapperComponent, ToastNotificationSimpleWrapperComponent]
                 }]
-        }], null, null);
-})();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(ToastNotificationConfigModule, { declarations: [ToastNotificationWrapperComponent, ToastNotificationSimpleWrapperComponent], imports: [CommonModule] }); })();
+        }] });
 
 var _ConfirmBoxEvokeService_instances, _ConfirmBoxEvokeService_extender;
 class ConfirmBoxEvokeService {
@@ -3423,16 +2638,14 @@ _ConfirmBoxEvokeService_instances = new WeakSet(), _ConfirmBoxEvokeService_exten
     confirmBox.setButtonLabels(confirmLabel, declineLabel);
     return confirmBox;
 };
-ConfirmBoxEvokeService.ɵfac = function ConfirmBoxEvokeService_Factory(t) { return new (t || ConfirmBoxEvokeService)(); };
-ConfirmBoxEvokeService.ɵprov = i0.ɵɵdefineInjectable({ token: ConfirmBoxEvokeService, factory: ConfirmBoxEvokeService.ɵfac, providedIn: 'root' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ConfirmBoxEvokeService, [{
+ConfirmBoxEvokeService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxEvokeService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+ConfirmBoxEvokeService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxEvokeService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxEvokeService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], null, null);
-})();
+        }] });
 
 var _ToastEvokeService_instances, _ToastEvokeService_extender;
 class ToastEvokeService {
@@ -3510,16 +2723,14 @@ _ToastEvokeService_instances = new WeakSet(), _ToastEvokeService_extender = func
     toast.setButtonLabels(confirmLabel, declineLabel);
     return toast;
 };
-ToastEvokeService.ɵfac = function ToastEvokeService_Factory(t) { return new (t || ToastEvokeService)(); };
-ToastEvokeService.ɵprov = i0.ɵɵdefineInjectable({ token: ToastEvokeService, factory: ToastEvokeService.ɵfac, providedIn: 'root' });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ToastEvokeService, [{
+ToastEvokeService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastEvokeService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+ToastEvokeService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastEvokeService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ToastEvokeService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], null, null);
-})();
+        }] });
 
 export { AppearanceAnimation, ButtonLayoutDisplay, ButtonMaker, ConfirmBoxConfigModule, ConfirmBoxEvokeService, ConfirmBoxInitializer, DialogBelonging, DialogConfigModule, DialogInitializer, DialogLayoutDisplay, DisappearanceAnimation, NgxAwesomePopupModule, ResetGlobalConfig, ResetToastGlobalSettings, ToastEvokeService, ToastNotificationConfigModule, ToastNotificationInitializer, ToastPositionEnum, ToastProgressBarEnum, ToastUserViewTypeEnum };
 //# sourceMappingURL=costlydeveloper-ngx-awesome-popup.mjs.map
