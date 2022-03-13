@@ -28,7 +28,7 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 ### customFive
 
-▸ **customFive**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+▸ **customFive**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 #### Parameters
 
@@ -41,13 +41,13 @@ this.toastEvokeService.danger('I am title!', 'I am a message!').subscribe();
 
 #### Returns
 
-`Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+`Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 ___
 
 ### customFour
 
-▸ **customFour**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+▸ **customFour**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 #### Parameters
 
@@ -60,13 +60,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+`Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 ___
 
 ### customOne
 
-▸ **customOne**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+▸ **customOne**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 #### Parameters
 
@@ -79,13 +79,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+`Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 ___
 
 ### customThree
 
-▸ **customThree**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+▸ **customThree**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 #### Parameters
 
@@ -98,13 +98,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+`Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 ___
 
 ### customTwo
 
-▸ **customTwo**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+▸ **customTwo**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 #### Parameters
 
@@ -117,13 +117,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+`Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 ___
 
 ### danger
 
-▸ **danger**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+▸ **danger**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 #### Parameters
 
@@ -136,13 +136,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+`Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 ___
 
 ### info
 
-▸ **info**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+▸ **info**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 #### Parameters
 
@@ -155,13 +155,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+`Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 ___
 
 ### success
 
-▸ **success**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+▸ **success**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 #### Parameters
 
@@ -174,13 +174,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+`Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 ___
 
 ### warning
 
-▸ **warning**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+▸ **warning**(`title`, `message`, `confirmLabel?`, `declineLabel?`): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 #### Parameters
 
@@ -193,4 +193,4 @@ ___
 
 #### Returns
 
-`Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+`Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>

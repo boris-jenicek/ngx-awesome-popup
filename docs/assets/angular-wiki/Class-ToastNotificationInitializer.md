@@ -28,9 +28,9 @@ newConfirmBox.openConfirmBox$().subscribe(resp => {
   console.log('confirmBox response: ', resp);
  });
 ```
-* IToastCoreConfig: [IToastCoreConfig](#/documentation/interface-IToastCoreConfig)
-* layoutType: [DialogLayoutDisplay](#/documentation/enum-DialogLayoutDisplay)
-* IToastNotificationPublicResponse: [IToastNotificationPublicResponse](#/documentation/interface-IToastNotificationPublicResponse)
+* IToastCoreConfig: [IToastCoreConfig](#/documentation/Interface-IToastCoreConfig)
+* layoutType: [DialogLayoutDisplay](#/documentation/Enum-DialogLayoutDisplay)
+* IToastNotificationPublicResponse: [IToastNotificationPublicResponse](#/documentation/Interface-IToastNotificationPublicResponse)
 
 ## Constructors
 
@@ -42,11 +42,11 @@ newConfirmBox.openConfirmBox$().subscribe(resp => {
 
 ### openToastNotification$
 
-▸ **openToastNotification$**(): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+▸ **openToastNotification$**(): `Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 #### Returns
 
-`Observable`<[`IToastNotificationPublicResponse`](#/documentation/interface-IToastNotificationPublicResponse)\>
+`Observable`<[`IToastNotificationPublicResponse`](#/documentation/Interface-IToastNotificationPublicResponse)\>
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `_Buttons` | [`IButton`](#/documentation/interface-IButton)[] |
+| `_Buttons` | [`IButton`](#/documentation/Interface-IButton)[] |
 
 #### Returns
 
@@ -91,7 +91,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `_ToastNotificationConfig` | [`IToastCoreConfig`](#/documentation/interface-IToastCoreConfig) |
+| `_ToastNotificationConfig` | [`IToastCoreConfig`](#/documentation/Interface-IToastCoreConfig) |
 
 #### Returns
 

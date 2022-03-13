@@ -5,7 +5,7 @@ its purpose is to render any angular component view with specific configuration 
 Dynamic component means that user can evoke the popup from typescript and component view
 is dynamically created with the Awesome Popup engine. There is no need to call any selector in HTML to create component view.
 
-DialogInitializer can send data to child component (dynamic component) where data will be accessible with [DialogBelonging](#/documentation/class-DialogBelonging).
+DialogInitializer can send data to child component (dynamic component) where data will be accessible with [DialogBelonging](#/documentation/Class-DialogBelonging).
 
 Below is the example with (some optional) user configuration,
 it will override default configuration from app.module.
@@ -52,11 +52,11 @@ Example:
           console.log('response: ', resp.Payload);
       });
 ```
-* IDialogCoreConfig: [IDialogCoreConfig](#/documentation/interface-IDialogCoreConfig)
-* layoutType: [DialogLayoutDisplay](#/documentation/enum-DialogLayoutDisplay)
-* ButtonLayoutDisplay: [ButtonLayoutDisplay](#/documentation/enum-ButtonLayoutDisplay)
-* ButtonMaker: [ButtonMaker](#/documentation/class-ButtonMaker)
-* IDialogPublicResponse: [IDialogPublicResponse](#/documentation/interface-IDialogPublicResponse)
+* IDialogCoreConfig: [IDialogCoreConfig](#/documentation/Interface-IDialogCoreConfig)
+* layoutType: [DialogLayoutDisplay](#/documentation/Enum-DialogLayoutDisplay)
+* ButtonLayoutDisplay: [ButtonLayoutDisplay](#/documentation/Enum-ButtonLayoutDisplay)
+* ButtonMaker: [ButtonMaker](#/documentation/Class-ButtonMaker)
+* IDialogPublicResponse: [IDialogPublicResponse](#/documentation/Interface-IDialogPublicResponse)
 
 ## Constructors
 
@@ -74,7 +74,7 @@ Example:
 
 ### openDialog$
 
-▸ **openDialog$**<`ResponsePayload`\>(): `Observable`<[`IDialogPublicResponse`](#/documentation/interface-IDialogPublicResponse)<`ResponsePayload`\>\>
+▸ **openDialog$**<`ResponsePayload`\>(): `Observable`<[`IDialogPublicResponse`](#/documentation/Interface-IDialogPublicResponse)<`ResponsePayload`\>\>
 
 Generic method accept expected payload from dynamic child component.
 
@@ -86,7 +86,7 @@ Generic method accept expected payload from dynamic child component.
 
 #### Returns
 
-`Observable`<[`IDialogPublicResponse`](#/documentation/interface-IDialogPublicResponse)<`ResponsePayload`\>\>
+`Observable`<[`IDialogPublicResponse`](#/documentation/Interface-IDialogPublicResponse)<`ResponsePayload`\>\>
 
 ___
 
@@ -100,7 +100,7 @@ It accepts list of custom buttons
 
 | Name | Type |
 | :------ | :------ |
-| `_Buttons` | [`IButton`](#/documentation/interface-IButton)[] |
+| `_Buttons` | [`IButton`](#/documentation/Interface-IButton)[] |
 
 #### Returns
 
@@ -116,7 +116,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `_DialogConfig` | [`IDialogCoreConfig`](#/documentation/interface-IDialogCoreConfig) |
+| `_DialogConfig` | [`IDialogCoreConfig`](#/documentation/Interface-IDialogCoreConfig) |
 
 #### Returns
 

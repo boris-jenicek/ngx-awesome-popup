@@ -8,7 +8,7 @@ It is crucial for user to add this module in angular.app imports.
 Below is the example with (optional) default user configuration, that is what will be in setup if there is no
 local config when popup is evoked, that means it can be overridden directly when popup is called.
 That mean it's predefined config, so it doesn't need to be configured each time when dialog is evoked.
-For implementation look: [IDialogUserConfig](#/documentation/interface-IDialogUserConfig).
+For implementation look: [IDialogUserConfig](#/documentation/Interface-IDialogUserConfig).
 
 Example:
 ```typescript
@@ -46,9 +46,9 @@ DialogConfigModule.forRoot({
     ],
 })
 ```
-* dialogCoreConfig.layoutType: [DialogLayoutDisplay](#/documentation/enum-DialogLayoutDisplay)
-* ButtonLayoutDisplay: [ButtonLayoutDisplay](#/documentation/enum-ButtonLayoutDisplay)
-* ButtonMaker: [ButtonMaker](#/documentation/class-ButtonMaker)
+* dialogCoreConfig.layoutType: [DialogLayoutDisplay](#/documentation/Enum-DialogLayoutDisplay)
+* ButtonLayoutDisplay: [ButtonLayoutDisplay](#/documentation/Enum-ButtonLayoutDisplay)
+* ButtonMaker: [ButtonMaker](#/documentation/Class-ButtonMaker)
 
 ## Constructors
 
@@ -60,14 +60,14 @@ DialogConfigModule.forRoot({
 
 ### forRoot
 
-▸ `Static` **forRoot**(`dialogConfig?`): `ModuleWithProviders`<[`DialogConfigModule`](#/documentation/class-DialogConfigModule)\>
+▸ `Static` **forRoot**(`dialogConfig?`): `ModuleWithProviders`<[`DialogConfigModule`](#/documentation/Class-DialogConfigModule)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `dialogConfig?` | [`IDialogUserConfig`](#/documentation/interface-IDialogUserConfig) |
+| `dialogConfig?` | [`IDialogUserConfig`](#/documentation/Interface-IDialogUserConfig) |
 
 #### Returns
 
-`ModuleWithProviders`<[`DialogConfigModule`](#/documentation/class-DialogConfigModule)\>
+`ModuleWithProviders`<[`DialogConfigModule`](#/documentation/Class-DialogConfigModule)\>

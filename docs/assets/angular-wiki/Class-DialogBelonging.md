@@ -1,9 +1,9 @@
 # Class: DialogBelonging<CustomData\>
 
 This is the class that needs to be added as DI in the constructor of a child component that will be
-opened dynamically with [DialogInitializer](#/documentation/class-DialogInitializer). It contains various information or
+opened dynamically with [DialogInitializer](#/documentation/Class-DialogInitializer). It contains various information or
 event controllers, and listeners that can be used in a child component. Also, there is custom data
-that is sent from component where the [DialogInitializer](#/documentation/class-DialogInitializer) is. User can set specific type of
+that is sent from component where the [DialogInitializer](#/documentation/Class-DialogInitializer) is. User can set specific type of
 custom data that child component will receive by including it as generic type.
 
 Example:
@@ -84,7 +84,7 @@ DialogSettings.constructor
 
 ### buttons
 
-• **buttons**: [`IButton`](#/documentation/interface-IButton)[] = `[]`
+• **buttons**: [`IButton`](#/documentation/Interface-IButton)[] = `[]`
 
 #### Implementation of
 
@@ -108,7 +108,7 @@ ___
 
 ### dialogCoreConfig
 
-• **dialogCoreConfig**: [`IDialogCoreConfig`](#/documentation/interface-IDialogCoreConfig)
+• **dialogCoreConfig**: [`IDialogCoreConfig`](#/documentation/Interface-IDialogCoreConfig)
 
 #### Implementation of
 
@@ -122,7 +122,7 @@ ___
 
 ### eventsController
 
-• **eventsController**: [`IDialogeventsController`](#/documentation/interface-IDialogeventsController)
+• **eventsController**: [`IDialogeventsController`](#/documentation/Interface-IDialogeventsController)
 
 #### Implementation of
 

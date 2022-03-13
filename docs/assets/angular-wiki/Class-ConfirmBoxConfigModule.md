@@ -2,13 +2,13 @@
 
 This is the module that ignites Confirm box dialog, its purpose is to show popup in a
 small dialog window in the middle of the screen. User can provide title, message and include buttons.
-Confirm box is available in predefined layout types (enums): [DialogLayoutDisplay](#/documentation/enum-DialogLayoutDisplay).
+Confirm box is available in predefined layout types (enums): [DialogLayoutDisplay](#/documentation/Enum-DialogLayoutDisplay).
 
 It is crucial for user to add this module in angular.app imports.
 Below is the example with (optional) default user configuration, that's what will be used if there is no
 local config when popup is evoked, that means it can be overridden directly when popup is evoked.
 That mean it's predefined config, so it doesn't need to be configured each time when confirm box is evoked.
-For implementation look: [IConfirmBoxUserConfig](#/documentation/interface-IConfirmBoxUserConfig).
+For implementation look: [IConfirmBoxUserConfig](#/documentation/Interface-IConfirmBoxUserConfig).
 
 Example:
 ```typescript
@@ -42,10 +42,10 @@ ConfirmBoxConfigModule.forRoot({
    ]
 })
 ```
-* confirmBoxCoreConfig: [IConfirmBoxCoreConfig](#/documentation/interface-IConfirmBoxCoreConfig)
-* dispatch: [IDispatch](#/documentation/interface-IDispatch)
-* buttons: [IButton](#/documentation/interface-IButton)
-* ButtonMaker: [ButtonMaker](#/documentation/class-ButtonMaker)
+* confirmBoxCoreConfig: [IConfirmBoxCoreConfig](#/documentation/Interface-IConfirmBoxCoreConfig)
+* dispatch: [IDispatch](#/documentation/Interface-IDispatch)
+* buttons: [IButton](#/documentation/Interface-IButton)
+* ButtonMaker: [ButtonMaker](#/documentation/Class-ButtonMaker)
 
 ## Constructors
 
@@ -57,14 +57,14 @@ ConfirmBoxConfigModule.forRoot({
 
 ### forRoot
 
-▸ `Static` **forRoot**(`confirmBoxConfig?`): `ModuleWithProviders`<[`ConfirmBoxConfigModule`](#/documentation/class-ConfirmBoxConfigModule)\>
+▸ `Static` **forRoot**(`confirmBoxConfig?`): `ModuleWithProviders`<[`ConfirmBoxConfigModule`](#/documentation/Class-ConfirmBoxConfigModule)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `confirmBoxConfig?` | [`IConfirmBoxUserConfig`](#/documentation/interface-IConfirmBoxUserConfig) |
+| `confirmBoxConfig?` | [`IConfirmBoxUserConfig`](#/documentation/Interface-IConfirmBoxUserConfig) |
 
 #### Returns
 
-`ModuleWithProviders`<[`ConfirmBoxConfigModule`](#/documentation/class-ConfirmBoxConfigModule)\>
+`ModuleWithProviders`<[`ConfirmBoxConfigModule`](#/documentation/Class-ConfirmBoxConfigModule)\>

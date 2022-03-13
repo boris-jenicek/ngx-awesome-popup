@@ -28,7 +28,7 @@ this.confirmBoxEvokeService.danger('I am title!', 'I am a message!', 'Confirm', 
 
 ### customFive
 
-▸ **customFive**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+▸ **customFive**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 #### Parameters
 
@@ -41,13 +41,13 @@ this.confirmBoxEvokeService.danger('I am title!', 'I am a message!', 'Confirm', 
 
 #### Returns
 
-`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 ___
 
 ### customFour
 
-▸ **customFour**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+▸ **customFour**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 #### Parameters
 
@@ -60,13 +60,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 ___
 
 ### customOne
 
-▸ **customOne**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+▸ **customOne**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 #### Parameters
 
@@ -79,13 +79,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 ___
 
 ### customThree
 
-▸ **customThree**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+▸ **customThree**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 #### Parameters
 
@@ -98,13 +98,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 ___
 
 ### customTwo
 
-▸ **customTwo**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+▸ **customTwo**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 #### Parameters
 
@@ -117,13 +117,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 ___
 
 ### danger
 
-▸ **danger**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+▸ **danger**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 #### Parameters
 
@@ -136,13 +136,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 ___
 
 ### info
 
-▸ **info**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+▸ **info**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 #### Parameters
 
@@ -155,13 +155,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 ___
 
 ### success
 
-▸ **success**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+▸ **success**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 #### Parameters
 
@@ -174,13 +174,13 @@ ___
 
 #### Returns
 
-`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 ___
 
 ### warning
 
-▸ **warning**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+▸ **warning**(`title`, `message`, `confirmLabel`, `declineLabel?`): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 #### Parameters
 
@@ -193,4 +193,4 @@ ___
 
 #### Returns
 
-`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>

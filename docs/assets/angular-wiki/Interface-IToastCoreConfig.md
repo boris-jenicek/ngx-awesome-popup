@@ -10,13 +10,13 @@ ___
 
 ### animationIn
 
-• `Optional` **animationIn**: [`AppearanceAnimation`](#/documentation/enum-AppearanceAnimation)
+• `Optional` **animationIn**: [`AppearanceAnimation`](#/documentation/Enum-AppearanceAnimation)
 
 ___
 
 ### animationOut
 
-• `Optional` **animationOut**: [`DisappearanceAnimation`](#/documentation/enum-DisappearanceAnimation)
+• `Optional` **animationOut**: [`DisappearanceAnimation`](#/documentation/Enum-DisappearanceAnimation)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 ### dispatch
 
-• `Optional` **dispatch**: [`IDispatch`](#/documentation/interface-IDispatch)
+• `Optional` **dispatch**: [`IDispatch`](#/documentation/Interface-IDispatch)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 ### layoutType
 
-• `Optional` **layoutType**: [`DialogLayoutDisplay`](#/documentation/enum-DialogLayoutDisplay)
+• `Optional` **layoutType**: [`DialogLayoutDisplay`](#/documentation/Enum-DialogLayoutDisplay)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 ### progressBar
 
-• `Optional` **progressBar**: [`ToastProgressBarEnum`](#/documentation/enum-ToastProgressBarEnum)
+• `Optional` **progressBar**: [`ToastProgressBarEnum`](#/documentation/Enum-ToastProgressBarEnum)
 
 ___
 
@@ -100,10 +100,10 @@ ___
 
 ### toastPosition
 
-• `Optional` **toastPosition**: [`ToastPositionEnum`](#/documentation/enum-ToastPositionEnum)
+• `Optional` **toastPosition**: [`ToastPositionEnum`](#/documentation/Enum-ToastPositionEnum)
 
 ___
 
 ### toastUserViewType
 
-• `Optional` **toastUserViewType**: [`ToastUserViewTypeEnum`](#/documentation/enum-ToastUserViewTypeEnum)
+• `Optional` **toastUserViewType**: [`ToastUserViewTypeEnum`](#/documentation/Enum-ToastUserViewTypeEnum)

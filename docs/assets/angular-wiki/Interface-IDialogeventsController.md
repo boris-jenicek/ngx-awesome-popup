@@ -36,7 +36,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `_Button` | [`IButton`](#/documentation/interface-IButton) |
+| `_Button` | [`IButton`](#/documentation/Interface-IButton) |
 
 #### Returns
 
@@ -52,7 +52,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `_ButtonList` | [`IButton`](#/documentation/interface-IButton)[] |
+| `_ButtonList` | [`IButton`](#/documentation/Interface-IButton)[] |
 
 #### Returns
 

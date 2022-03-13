@@ -6,10 +6,10 @@ Check interface of properties.
 
 ### buttons
 
-• `Optional` **buttons**: [`IButton`](#/documentation/interface-IButton)[]
+• `Optional` **buttons**: [`IButton`](#/documentation/Interface-IButton)[]
 
 ___
 
 ### dialogCoreConfig
 
-• `Optional` **dialogCoreConfig**: [`IDialogCoreConfig`](#/documentation/interface-IDialogCoreConfig)
+• `Optional` **dialogCoreConfig**: [`IDialogCoreConfig`](#/documentation/Interface-IDialogCoreConfig)

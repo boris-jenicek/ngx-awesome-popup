@@ -39,13 +39,13 @@ const dialogCoreConfig = {
 
 ### animationIn
 
-• `Optional` **animationIn**: [`AppearanceAnimation`](#/documentation/enum-AppearanceAnimation)
+• `Optional` **animationIn**: [`AppearanceAnimation`](#/documentation/Enum-AppearanceAnimation)
 
 ___
 
 ### animationOut
 
-• `Optional` **animationOut**: [`DisappearanceAnimation`](#/documentation/enum-DisappearanceAnimation)
+• `Optional` **animationOut**: [`DisappearanceAnimation`](#/documentation/Enum-DisappearanceAnimation)
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 ### layoutType
 
-• `Optional` **layoutType**: [`DialogLayoutDisplay`](#/documentation/enum-DialogLayoutDisplay)
+• `Optional` **layoutType**: [`DialogLayoutDisplay`](#/documentation/Enum-DialogLayoutDisplay)
 
 ___
 

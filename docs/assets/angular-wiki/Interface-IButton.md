@@ -13,11 +13,11 @@ const button = {
 // Or instantiated with ButtonMaker class
 const button2 = new ButtonMaker('Confirm', 'confirm_btn', ButtonLayoutDisplay.SUCCESS)
 ```
-* ButtonLayoutDisplay: [ButtonLayoutDisplay](#/documentation/enum-ButtonLayoutDisplay)
+* ButtonLayoutDisplay: [ButtonLayoutDisplay](#/documentation/Enum-ButtonLayoutDisplay)
 
 ## Implemented by
 
-- [`ButtonMaker`](#/documentation/class-ButtonMaker)
+- [`ButtonMaker`](#/documentation/Class-ButtonMaker)
 
 ## Properties
 
@@ -35,4 +35,4 @@ ___
 
 ### layoutType
 
-• **layoutType**: [`ButtonLayoutDisplay`](#/documentation/enum-ButtonLayoutDisplay)
+• **layoutType**: [`ButtonLayoutDisplay`](#/documentation/Enum-ButtonLayoutDisplay)

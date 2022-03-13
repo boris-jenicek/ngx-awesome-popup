@@ -10,13 +10,13 @@ ___
 
 ### animationIn
 
-• `Optional` **animationIn**: [`AppearanceAnimation`](#/documentation/enum-AppearanceAnimation)
+• `Optional` **animationIn**: [`AppearanceAnimation`](#/documentation/Enum-AppearanceAnimation)
 
 ___
 
 ### animationOut
 
-• `Optional` **animationOut**: [`DisappearanceAnimation`](#/documentation/enum-DisappearanceAnimation)
+• `Optional` **animationOut**: [`DisappearanceAnimation`](#/documentation/Enum-DisappearanceAnimation)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 ### dispatch
 
-• `Optional` **dispatch**: [`IDispatch`](#/documentation/interface-IDispatch)
+• `Optional` **dispatch**: [`IDispatch`](#/documentation/Interface-IDispatch)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 ### layoutType
 
-• `Optional` **layoutType**: [`DialogLayoutDisplay`](#/documentation/enum-DialogLayoutDisplay)
+• `Optional` **layoutType**: [`DialogLayoutDisplay`](#/documentation/Enum-DialogLayoutDisplay)
 
 ___
 

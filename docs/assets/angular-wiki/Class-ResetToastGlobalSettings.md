@@ -17,4 +17,4 @@ new ResetToastGlobalSettings({
 
 | Name | Type |
 | :------ | :------ |
-| `globalToastConfig?` | [`IGlobalToastSettings`](#/documentation/interface-IGlobalToastSettings) |
+| `globalToastConfig?` | [`IGlobalToastSettings`](#/documentation/Interface-IGlobalToastSettings) |

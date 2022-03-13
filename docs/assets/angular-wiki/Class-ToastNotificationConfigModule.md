@@ -2,13 +2,13 @@
 
 This is the module that ignites Toast notifications dialog, its purpose is to show toast popup in a
 small dialog window in the corner of the screen. User can provide title and message and include buttons, or setup auto disappearing.
-Toast notifications are available in predefined layout types (enums): [DialogLayoutDisplay](#/documentation/enum-DialogLayoutDisplay).
+Toast notifications are available in predefined layout types (enums): [DialogLayoutDisplay](#/documentation/Enum-DialogLayoutDisplay).
 
 It is crucial for user to add this module in angular.app imports.
 Below is the example with (optional) default user configuration, that's what will be used if there is no
 local config when popup is evoked, that means it can be overridden directly when popup is evoked.
 That mean it's predefined config, so it doesn't need to be configured each time when toast is evoked.
-For implementation look: [IToastNotificationUserConfig](#/documentation/interface-IToastNotificationUserConfig).
+For implementation look: [IToastNotificationUserConfig](#/documentation/Interface-IToastNotificationUserConfig).
 
 Example:
 ```typescript
@@ -50,11 +50,11 @@ ToastNotificationConfigModule.forRoot({
   ]
 })
 ```
-* toastCoreConfig: [IToastCoreConfig](#/documentation/interface-IToastCoreConfig)
-* globalSettings: [IGlobalToastSettings](#/documentation/interface-IGlobalToastSettings)
-* dispatch: [IDispatch](#/documentation/interface-IDispatch)
-* buttons: [IButton](#/documentation/interface-IButton)
-* ButtonMaker: [ButtonMaker](#/documentation/class-ButtonMaker)
+* toastCoreConfig: [IToastCoreConfig](#/documentation/Interface-IToastCoreConfig)
+* globalSettings: [IGlobalToastSettings](#/documentation/Interface-IGlobalToastSettings)
+* dispatch: [IDispatch](#/documentation/Interface-IDispatch)
+* buttons: [IButton](#/documentation/Interface-IButton)
+* ButtonMaker: [ButtonMaker](#/documentation/Class-ButtonMaker)
 
 ## Constructors
 
@@ -66,14 +66,14 @@ ToastNotificationConfigModule.forRoot({
 
 ### forRoot
 
-▸ `Static` **forRoot**(`toastNotificationConfig?`): `ModuleWithProviders`<[`ToastNotificationConfigModule`](#/documentation/class-ToastNotificationConfigModule)\>
+▸ `Static` **forRoot**(`toastNotificationConfig?`): `ModuleWithProviders`<[`ToastNotificationConfigModule`](#/documentation/Class-ToastNotificationConfigModule)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `toastNotificationConfig?` | [`IToastNotificationUserConfig`](#/documentation/interface-IToastNotificationUserConfig) |
+| `toastNotificationConfig?` | [`IToastNotificationUserConfig`](#/documentation/Interface-IToastNotificationUserConfig) |
 
 #### Returns
 
-`ModuleWithProviders`<[`ToastNotificationConfigModule`](#/documentation/class-ToastNotificationConfigModule)\>
+`ModuleWithProviders`<[`ToastNotificationConfigModule`](#/documentation/Class-ToastNotificationConfigModule)\>

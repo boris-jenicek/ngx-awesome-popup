@@ -1,7 +1,7 @@
 # Interface: IGlobalUserConfig
 
 Each property of the colorList represent a string which represent a color in hex or rgb/rgba format.
-For available color types(properties) check [IColorTypes](#/documentation/interface-IColorTypes) interface.
+For available color types(properties) check [IColorTypes](#/documentation/Interface-IColorTypes) interface.
 Every color is optional, and it will reflect on dialog or button color types and its color contrast or variance.
  * ```typescript
 // colorList object example.
@@ -25,4 +25,4 @@ const colorList = {
 
 ### colorList
 
-• `Optional` **colorList**: [`IColorTypes`](#/documentation/interface-IColorTypes)
+• `Optional` **colorList**: [`IColorTypes`](#/documentation/Interface-IColorTypes)

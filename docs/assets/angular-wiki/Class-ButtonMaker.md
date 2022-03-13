@@ -4,7 +4,7 @@
 
 ## Implements
 
-- [`IButton`](#/documentation/interface-IButton)
+- [`IButton`](#/documentation/Interface-IButton)
 
 ## Constructors
 
@@ -18,7 +18,7 @@
 | :------ | :------ | :------ |
 | `label` | `string` | `undefined` |
 | `ID` | `string` | `undefined` |
-| `layoutType` | [`ButtonLayoutDisplay`](#/documentation/enum-ButtonLayoutDisplay) | `ButtonLayoutDisplay.PRIMARY` |
+| `layoutType` | [`ButtonLayoutDisplay`](#/documentation/Enum-ButtonLayoutDisplay) | `ButtonLayoutDisplay.PRIMARY` |
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Implementation of
 
-[IButton](#/documentation/interface-IButton).[ID](#/documentation/interface-IButton#id)
+[IButton](#/documentation/Interface-IButton).[ID](#/documentation/Interface-IButton#id)
 
 ___
 
@@ -38,14 +38,14 @@ ___
 
 #### Implementation of
 
-[IButton](#/documentation/interface-IButton).[label](#/documentation/interface-IButton#label)
+[IButton](#/documentation/Interface-IButton).[label](#/documentation/Interface-IButton#label)
 
 ___
 
 ### layoutType
 
-• **layoutType**: [`ButtonLayoutDisplay`](#/documentation/enum-ButtonLayoutDisplay) = `ButtonLayoutDisplay.PRIMARY`
+• **layoutType**: [`ButtonLayoutDisplay`](#/documentation/Enum-ButtonLayoutDisplay) = `ButtonLayoutDisplay.PRIMARY`
 
 #### Implementation of
 
-[IButton](#/documentation/interface-IButton).[layoutType](#/documentation/interface-IButton#layouttype)
+[IButton](#/documentation/Interface-IButton).[layoutType](#/documentation/Interface-IButton#layouttype)

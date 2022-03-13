@@ -29,9 +29,9 @@ newConfirmBox.openConfirmBox$().subscribe(resp => {
   console.log('confirmBox response: ', resp);
  });
 ```
-* IConfirmBoxCoreConfig: [IConfirmBoxCoreConfig](#/documentation/interface-IConfirmBoxCoreConfig)
-* layoutType: [DialogLayoutDisplay](#/documentation/enum-DialogLayoutDisplay)
-* IConfirmBoxPublicResponse: [IConfirmBoxPublicResponse](#/documentation/interface-IConfirmBoxPublicResponse)
+* IConfirmBoxCoreConfig: [IConfirmBoxCoreConfig](#/documentation/Interface-IConfirmBoxCoreConfig)
+* layoutType: [DialogLayoutDisplay](#/documentation/Enum-DialogLayoutDisplay)
+* IConfirmBoxPublicResponse: [IConfirmBoxPublicResponse](#/documentation/Interface-IConfirmBoxPublicResponse)
 
 ## Constructors
 
@@ -43,11 +43,11 @@ newConfirmBox.openConfirmBox$().subscribe(resp => {
 
 ### openConfirmBox$
 
-▸ **openConfirmBox$**(): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+▸ **openConfirmBox$**(): `Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 #### Returns
 
-`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/interface-IConfirmBoxPublicResponse)\>
+`Observable`<[`IConfirmBoxPublicResponse`](#/documentation/Interface-IConfirmBoxPublicResponse)\>
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `_Buttons` | [`IButton`](#/documentation/interface-IButton)[] |
+| `_Buttons` | [`IButton`](#/documentation/Interface-IButton)[] |
 
 #### Returns
 
@@ -92,7 +92,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `_ConfirmBoxCoreConfig` | [`IConfirmBoxCoreConfig`](#/documentation/interface-IConfirmBoxCoreConfig) |
+| `_ConfirmBoxCoreConfig` | [`IConfirmBoxCoreConfig`](#/documentation/Interface-IConfirmBoxCoreConfig) |
 
 #### Returns
 

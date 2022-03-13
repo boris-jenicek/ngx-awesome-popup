@@ -26,4 +26,4 @@ new ResetGlobalConfig({
 
 | Name | Type |
 | :------ | :------ |
-| `globalConfig?` | [`IGlobalUserConfig`](#/documentation/interface-IGlobalUserConfig) |
+| `globalConfig?` | [`IGlobalUserConfig`](#/documentation/Interface-IGlobalUserConfig) |

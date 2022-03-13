@@ -1,7 +1,7 @@
 # Class: NgxAwesomePopupModule
 
 This is the main module of the library, it is crucial to be added within angular.app
-imports as an example with optional argument, look: [IGlobalUserConfig](#/documentation/interface-IGlobalUserConfig)
+imports as an example with optional argument, look: [IGlobalUserConfig](#/documentation/Interface-IGlobalUserConfig)
 Style your application by adding a color list like in this example.
 
 ```typescript
@@ -36,14 +36,14 @@ NgxAwesomePopupModule.forRoot({
 
 ### forRoot
 
-▸ `Static` **forRoot**(`globalConfig?`): `ModuleWithProviders`<[`NgxAwesomePopupModule`](#/documentation/class-NgxAwesomePopupModule)\>
+▸ `Static` **forRoot**(`globalConfig?`): `ModuleWithProviders`<[`NgxAwesomePopupModule`](#/documentation/Class-NgxAwesomePopupModule)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `globalConfig?` | [`IGlobalUserConfig`](#/documentation/interface-IGlobalUserConfig) |
+| `globalConfig?` | [`IGlobalUserConfig`](#/documentation/Interface-IGlobalUserConfig) |
 
 #### Returns
 
-`ModuleWithProviders`<[`NgxAwesomePopupModule`](#/documentation/class-NgxAwesomePopupModule)\>
+`ModuleWithProviders`<[`NgxAwesomePopupModule`](#/documentation/Class-NgxAwesomePopupModule)\>
