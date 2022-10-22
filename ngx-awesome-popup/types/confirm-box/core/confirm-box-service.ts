@@ -1,13 +1,7 @@
-import {
-  ApplicationRef,
-  ComponentFactoryResolver,
-  ComponentRef,
-  EmbeddedViewRef,
-  Injectable,
-  Injector
-} from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector } from '@angular/core';
 import { take, tap } from 'rxjs/operators';
 import { DialogInjector } from '../../../core/dialog-injector';
+import { GlobalConfigService } from '../../../core/global-config.service';
 import { ConfirmBoxWrapperComponent } from '../confirm-box-wrapper/confirm-box-wrapper.component';
 import { ConfirmBoxBelonging, ConfirmBoxeventsController } from './classes';
 
@@ -20,7 +14,8 @@ export class ConfirmBoxService {
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector,
-    private appRef: ApplicationRef
+    private appRef: ApplicationRef,
+    private gConfigService: GlobalConfigService
   ) {}
 
   open(_ConfirmBoxBelonging: ConfirmBoxBelonging): ConfirmBoxeventsController {
@@ -37,10 +32,7 @@ export class ConfirmBoxService {
     return dialogController;
   }
 
-  getComponentRef(
-    _eventsController: ConfirmBoxeventsController,
-    _ConfirmBoxBelonging: ConfirmBoxBelonging
-  ): ComponentRef<any> | null {
+  getComponentRef(_eventsController: ConfirmBoxeventsController, _ConfirmBoxBelonging: ConfirmBoxBelonging): ComponentRef<any> | null {
     let componentFactory;
 
     const dialogIndex = this.findDialogIndex(_ConfirmBoxBelonging.entityUniqueID);

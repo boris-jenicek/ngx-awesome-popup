@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { AppearanceAnimation, DialogLayoutDisplay, DisappearanceAnimation } from '../../../core/enums';
 import { DataControl } from '../../../core/global-classes';
+import { GlobalConfigService } from '../../../core/global-config.service';
 import { DefaultLoaderComponent } from '../../../default-loader/default-loader.component';
 import { DialogCustomStyles, DialogSettings } from './classes';
 import { IDialogUserConfig } from './interfaces';
@@ -14,7 +15,8 @@ export class DialogConfigService {
 
   constructor(
     @Inject('dialogConfig')
-    private userConfig: IDialogUserConfig = {}
+    private userConfig: IDialogUserConfig = {},
+    private gConfigService: GlobalConfigService
   ) {
     // region *** dialog userConfig (user input app-module) ***
     const userConfigBase = new DialogSettings();

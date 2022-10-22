@@ -986,11 +986,188 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImpor
                 args: ['elButton']
             }] } });
 
+class ResetGlobalConfig {
+    constructor(globalConfig) {
+        const globalConfigService = ServiceLocator.injector.get(GlobalConfigService);
+        if (globalConfig) {
+            globalConfigService.setUserColors(globalConfig.colorList);
+            globalConfigService.setNodeStyles(globalConfigService.productionGlobalConfig.displayColor, true);
+        }
+        else {
+            globalConfigService.resetStyles();
+        }
+    }
+}
+class GlobalConfigService {
+    constructor(userGlobalConfig) {
+        this.userGlobalConfig = userGlobalConfig;
+        this.authorGlobalConfig = new GlobalConfig();
+        this.productionGlobalConfig = new GlobalConfig();
+        this.userGeneratedConfig = new GlobalUserConfig(userGlobalConfig);
+        this.authorGlobalConfig.displayColor.primary = null;
+        this.authorGlobalConfig.displayColor.secondary = null;
+        this.authorGlobalConfig.displayColor.success = null;
+        this.authorGlobalConfig.displayColor.info = null;
+        this.authorGlobalConfig.displayColor.warning = null;
+        this.authorGlobalConfig.displayColor.danger = null;
+        this.authorGlobalConfig.displayColor.light = null;
+        this.authorGlobalConfig.displayColor.dark = null;
+        this.authorGlobalConfig.displayColor.customOne = null;
+        this.authorGlobalConfig.displayColor.customTwo = null;
+        this.authorGlobalConfig.displayColor.customThree = null;
+        this.authorGlobalConfig.displayColor.customFour = null;
+        this.authorGlobalConfig.displayColor.customFive = null;
+        this.productionGlobalConfig.displayColor = this.authorGlobalConfig.displayColor;
+        this.setUserColors(this.userGeneratedConfig.colorList);
+        this.setNodeStyles(this.productionGlobalConfig.displayColor);
+    }
+    resetStyles() {
+        this.setUserColors(this.userGeneratedConfig.colorList);
+        this.setNodeStyles(this.productionGlobalConfig.displayColor, true);
+    }
+    setNodeStyles(_ProductionColorTypes, _Reset = false) {
+        if (_Reset) {
+            const evolveDialogStyleNode = document.getElementById('ngx-awesome-popup-glob-styles');
+            if (evolveDialogStyleNode) {
+                evolveDialogStyleNode.remove();
+            }
+        }
+        this.setToastStyles();
+        Object.keys(_ProductionColorTypes).forEach(key => {
+            if (_ProductionColorTypes[key]) {
+                this.setButtonStyling(key, _ProductionColorTypes[key]);
+                this.setIconStyling(key, _ProductionColorTypes[key]);
+                this.setToastStyling(key, _ProductionColorTypes[key]);
+                this.setDialogFrame(key, _ProductionColorTypes[key]);
+                if (ColorVariance[key.toUpperCase()] === ColorVariance.PRIMARY) {
+                    this.getSheet('ngx-awesome-popup-styles').addRule('.ngx-awesome-popup-overlay', `background:  ${_ProductionColorTypes[key].TransparentDarkenVariance}!important;`);
+                }
+            }
+        });
+    }
+    setUserColors(_UserColorTypes) {
+        if (typeof _UserColorTypes !== 'object') {
+            return;
+        }
+        const userKeys = Object.keys(_UserColorTypes);
+        const productionObjectKeys = Object.keys(this.productionGlobalConfig.displayColor);
+        userKeys.forEach(key => {
+            if (productionObjectKeys.find(tKey => tKey === key)) {
+                if (_UserColorTypes[key]) {
+                    const baseColorProvider = new ColorProvider(_UserColorTypes[key]);
+                    if (baseColorProvider.Base) {
+                        this.productionGlobalConfig.displayColor[key] = baseColorProvider;
+                    }
+                }
+                else {
+                    this.productionGlobalConfig.displayColor[key] = null;
+                }
+            }
+        });
+    }
+    getSheet(_StyleID) {
+        let evolveDialogStyleNode = document.getElementById(_StyleID);
+        if (!evolveDialogStyleNode) {
+            const headNode = document.head || document.getElementsByTagName('head')[0];
+            if (!headNode) {
+                return;
+            }
+            evolveDialogStyleNode = document.createElement('style');
+            evolveDialogStyleNode.setAttribute('id', _StyleID);
+            evolveDialogStyleNode.appendChild(document.createTextNode(''));
+            headNode.appendChild(evolveDialogStyleNode);
+        }
+        return evolveDialogStyleNode ? evolveDialogStyleNode.sheet : null;
+    }
+    setToastStyling(_Key, _ColorProvider) {
+        const standardToast = `.toast-wrapper.standard-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
+        const standardToastStyle = `
+        background:  ${_ColorProvider.BrightShade}!important;
+        border-color: ${_ColorProvider.Brighten}!important;
+        `;
+        const simpleToast = `.toast-wrapper.simple-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
+        const simpleToastStyle = `
+        background:  ${_ColorProvider.BrightWarmly}!important;
+        color:  ${_ColorProvider.Darken}!important;
+        `;
+        const baseProgress = `.toast-wrapper .evolve-toast.${_Key.toLowerCase()}-dialog .progress-bar`;
+        const baseProgressStyle = `
+        background-color:  ${_ColorProvider.Brighten}!important;
+        `;
+        this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseProgress, baseProgressStyle);
+        this.getSheet('ngx-awesome-popup-glob-styles').addRule(standardToast, standardToastStyle);
+        this.getSheet('ngx-awesome-popup-glob-styles').addRule(simpleToast, simpleToastStyle);
+    }
+    setButtonStyling(_Key, _ColorProvider) {
+        const baseButtonClass = `.ed-btn-${_Key.toLowerCase()}`;
+        const baseStyle = `
+        color: ${_ColorProvider.ContrastColor}!important;
+        background:  ${_ColorProvider.Base}!important;
+        border-color: ${_ColorProvider.BrightenForShade}!important;
+        `;
+        const hoverButtonClass = `.ed-btn-${_Key.toLowerCase()}:hover`;
+        const hoverStyle = `
+        background:  ${_ColorProvider.IsBaseBright ? _ColorProvider.DarkenForShade : _ColorProvider.BrightenForShade}!important;
+        border-color: ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
+        `;
+        const focusActiveButtonClass = `.ed-btn-${_Key.toLowerCase()}:focus, .ed-btn-${_Key.toLowerCase()}:active`;
+        const focusActiveStyle = `
+        box-shadow: 0 0 1px 2px ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
+        `;
+        this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseButtonClass, baseStyle);
+        this.getSheet('ngx-awesome-popup-glob-styles').addRule(hoverButtonClass, hoverStyle);
+        this.getSheet('ngx-awesome-popup-glob-styles').addRule(focusActiveButtonClass, focusActiveStyle);
+    }
+    setIconStyling(_Key, _ColorProvider) {
+        const baseIconClass = `.ap-icon-${_Key.toLowerCase()}`;
+        const baseStyle = `color: ${_ColorProvider.BrightenForShade}!important;`;
+        this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseIconClass, baseStyle);
+    }
+    setDialogFrame(_Key, _ColorProvider) {
+        const baseDialogFrameClass = `.ngx-awesome-popup-overlay .${_Key.toLowerCase()}-dialog`;
+        const baseStyle = `
+        border-color: ${_ColorProvider.Brighten}!important;
+        `;
+        this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseDialogFrameClass, baseStyle);
+    }
+    setToastStyles() {
+        this.getSheet('ngx-awesome-popup-styles').addRule(`.toast-entity`, `all 0.5s ease;`);
+        this.getSheet('ngx-awesome-popup-styles').addRule(`.toast-entity:first-child`, `animation: move 0.7s ease-out;`);
+        const isIEOrEdge = /msie\s|trident\//i.test(window.navigator.userAgent);
+        if (!isIEOrEdge) {
+            this.getSheet('ngx-awesome-popup-styles').addRule(`@-webkit-keyframes move`, `
+                                        0% {margin-top: -5px; opacity: 0.4;}
+                                        30% {margin-top: -4px; opacity: 0.7;}
+                                        100% {margin-top: 0px; opacity: 1;}
+                                        `);
+            this.getSheet('ngx-awesome-popup-styles').addRule(`@keyframes move`, `
+                                        0% {margin-top: -5px; opacity: 0.4;}
+                                        30% {margin-top: -4px; opacity: 0.7;}
+                                        100% {margin-top: 0px; opacity: 1;}
+                                        `);
+        }
+    }
+}
+GlobalConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: GlobalConfigService, deps: [{ token: 'cdGlobalConfig' }], target: i0.ɵɵFactoryTarget.Injectable });
+GlobalConfigService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: GlobalConfigService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: GlobalConfigService, decorators: [{
+            type: Injectable,
+            args: [{
+                    providedIn: 'root'
+                }]
+        }], ctorParameters: function () {
+        return [{ type: undefined, decorators: [{
+                        type: Inject,
+                        args: ['cdGlobalConfig']
+                    }] }];
+    } });
+
 class ConfirmBoxService {
-    constructor(componentFactoryResolver, injector, appRef) {
+    constructor(componentFactoryResolver, injector, appRef, gConfigService) {
         this.componentFactoryResolver = componentFactoryResolver;
         this.injector = injector;
         this.appRef = appRef;
+        this.gConfigService = gConfigService;
         this.confirmBoxComponentRefList = [];
     }
     open(_ConfirmBoxBelonging) {
@@ -1047,14 +1224,14 @@ class ConfirmBoxService {
         });
     }
 }
-ConfirmBoxService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxService, deps: [{ token: i0.ComponentFactoryResolver }, { token: i0.Injector }, { token: i0.ApplicationRef }], target: i0.ɵɵFactoryTarget.Injectable });
+ConfirmBoxService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxService, deps: [{ token: i0.ComponentFactoryResolver }, { token: i0.Injector }, { token: i0.ApplicationRef }, { token: GlobalConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
 ConfirmBoxService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxService, providedIn: 'root' });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: ConfirmBoxService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }, { type: i0.Injector }, { type: i0.ApplicationRef }]; } });
+        }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }, { type: i0.Injector }, { type: i0.ApplicationRef }, { type: GlobalConfigService }]; } });
 
 class ConfirmBoxInitializer {
     constructor() {
@@ -1221,8 +1398,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImpor
         }] });
 
 class DialogConfigService {
-    constructor(userConfig = {}) {
+    constructor(userConfig = {}, gConfigService) {
         this.userConfig = userConfig;
+        this.gConfigService = gConfigService;
         this.authorConfig = new DialogSettings();
         this.productionConfig = new DialogSettings();
         const userConfigBase = new DialogSettings();
@@ -1248,7 +1426,7 @@ class DialogConfigService {
         dataControl.copyValuesFrom(userConfig.dialogCoreConfig, this.productionConfig.dialogCoreConfig);
     }
 }
-DialogConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigService, deps: [{ token: 'dialogConfig' }], target: i0.ɵɵFactoryTarget.Injectable });
+DialogConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigService, deps: [{ token: 'dialogConfig' }, { token: GlobalConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
 DialogConfigService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigService, providedIn: 'root' });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: DialogConfigService, decorators: [{
             type: Injectable,
@@ -1259,7 +1437,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImpor
         return [{ type: undefined, decorators: [{
                         type: Inject,
                         args: ['dialogConfig']
-                    }] }];
+                    }] }, { type: GlobalConfigService }];
     } });
 
 class InsertionLoaderDirective {
@@ -1882,182 +2060,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImpor
                 type: ViewChildren,
                 args: ['elButton']
             }] } });
-
-class ResetGlobalConfig {
-    constructor(globalConfig) {
-        const globalConfigService = ServiceLocator.injector.get(GlobalConfigService);
-        if (globalConfig) {
-            globalConfigService.setUserColors(globalConfig.colorList);
-            globalConfigService.setNodeStyles(globalConfigService.productionGlobalConfig.displayColor, true);
-        }
-        else {
-            globalConfigService.resetStyles();
-        }
-    }
-}
-class GlobalConfigService {
-    constructor(userGlobalConfig) {
-        this.userGlobalConfig = userGlobalConfig;
-        this.authorGlobalConfig = new GlobalConfig();
-        this.productionGlobalConfig = new GlobalConfig();
-        this.userGeneratedConfig = new GlobalUserConfig(userGlobalConfig);
-        this.authorGlobalConfig.displayColor.primary = null;
-        this.authorGlobalConfig.displayColor.secondary = null;
-        this.authorGlobalConfig.displayColor.success = null;
-        this.authorGlobalConfig.displayColor.info = null;
-        this.authorGlobalConfig.displayColor.warning = null;
-        this.authorGlobalConfig.displayColor.danger = null;
-        this.authorGlobalConfig.displayColor.light = null;
-        this.authorGlobalConfig.displayColor.dark = null;
-        this.authorGlobalConfig.displayColor.customOne = null;
-        this.authorGlobalConfig.displayColor.customTwo = null;
-        this.authorGlobalConfig.displayColor.customThree = null;
-        this.authorGlobalConfig.displayColor.customFour = null;
-        this.authorGlobalConfig.displayColor.customFive = null;
-        this.productionGlobalConfig.displayColor = this.authorGlobalConfig.displayColor;
-        this.setUserColors(this.userGeneratedConfig.colorList);
-        this.setNodeStyles(this.productionGlobalConfig.displayColor);
-    }
-    resetStyles() {
-        this.setUserColors(this.userGeneratedConfig.colorList);
-        this.setNodeStyles(this.productionGlobalConfig.displayColor, true);
-    }
-    setNodeStyles(_ProductionColorTypes, _Reset = false) {
-        if (_Reset) {
-            const evolveDialogStyleNode = document.getElementById('ngx-awesome-popup-glob-styles');
-            if (evolveDialogStyleNode) {
-                evolveDialogStyleNode.remove();
-            }
-        }
-        this.setToastStyles();
-        Object.keys(_ProductionColorTypes).forEach(key => {
-            if (_ProductionColorTypes[key]) {
-                this.setButtonStyling(key, _ProductionColorTypes[key]);
-                this.setIconStyling(key, _ProductionColorTypes[key]);
-                this.setToastStyling(key, _ProductionColorTypes[key]);
-                this.setDialogFrame(key, _ProductionColorTypes[key]);
-                if (ColorVariance[key.toUpperCase()] === ColorVariance.PRIMARY) {
-                    this.getSheet('ngx-awesome-popup-styles').addRule('.ngx-awesome-popup-overlay', `background:  ${_ProductionColorTypes[key].TransparentDarkenVariance}!important;`);
-                }
-            }
-        });
-    }
-    setUserColors(_UserColorTypes) {
-        if (typeof _UserColorTypes !== 'object') {
-            return;
-        }
-        const userKeys = Object.keys(_UserColorTypes);
-        const productionObjectKeys = Object.keys(this.productionGlobalConfig.displayColor);
-        userKeys.forEach(key => {
-            if (productionObjectKeys.find(tKey => tKey === key)) {
-                if (_UserColorTypes[key]) {
-                    const baseColorProvider = new ColorProvider(_UserColorTypes[key]);
-                    if (baseColorProvider.Base) {
-                        this.productionGlobalConfig.displayColor[key] = baseColorProvider;
-                    }
-                }
-                else {
-                    this.productionGlobalConfig.displayColor[key] = null;
-                }
-            }
-        });
-    }
-    getSheet(_StyleID) {
-        let evolveDialogStyleNode = document.getElementById(_StyleID);
-        if (!evolveDialogStyleNode) {
-            const headNode = document.head || document.getElementsByTagName('head')[0];
-            if (!headNode) {
-                return;
-            }
-            evolveDialogStyleNode = document.createElement('style');
-            evolveDialogStyleNode.setAttribute('id', _StyleID);
-            evolveDialogStyleNode.appendChild(document.createTextNode(''));
-            headNode.appendChild(evolveDialogStyleNode);
-        }
-        return evolveDialogStyleNode ? evolveDialogStyleNode.sheet : null;
-    }
-    setToastStyling(_Key, _ColorProvider) {
-        const standardToast = `.toast-wrapper.standard-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
-        const standardToastStyle = `
-        background:  ${_ColorProvider.BrightShade}!important;
-        border-color: ${_ColorProvider.Brighten}!important;
-        `;
-        const simpleToast = `.toast-wrapper.simple-toast .evolve-toast.${_Key.toLowerCase()}-dialog`;
-        const simpleToastStyle = `
-        background:  ${_ColorProvider.BrightWarmly}!important;
-        color:  ${_ColorProvider.Darken}!important;
-        `;
-        const baseProgress = `.toast-wrapper .evolve-toast.${_Key.toLowerCase()}-dialog .progress-bar`;
-        const baseProgressStyle = `
-        background-color:  ${_ColorProvider.Brighten}!important;
-        `;
-        this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseProgress, baseProgressStyle);
-        this.getSheet('ngx-awesome-popup-glob-styles').addRule(standardToast, standardToastStyle);
-        this.getSheet('ngx-awesome-popup-glob-styles').addRule(simpleToast, simpleToastStyle);
-    }
-    setButtonStyling(_Key, _ColorProvider) {
-        const baseButtonClass = `.ed-btn-${_Key.toLowerCase()}`;
-        const baseStyle = `
-        color: ${_ColorProvider.ContrastColor}!important;
-        background:  ${_ColorProvider.Base}!important;
-        border-color: ${_ColorProvider.BrightenForShade}!important;
-        `;
-        const hoverButtonClass = `.ed-btn-${_Key.toLowerCase()}:hover`;
-        const hoverStyle = `
-        background:  ${_ColorProvider.IsBaseBright ? _ColorProvider.DarkenForShade : _ColorProvider.BrightenForShade}!important;
-        border-color: ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
-        `;
-        const focusActiveButtonClass = `.ed-btn-${_Key.toLowerCase()}:focus, .ed-btn-${_Key.toLowerCase()}:active`;
-        const focusActiveStyle = `
-        box-shadow: 0 0 1px 2px ${_ColorProvider.IsBaseBright ? _ColorProvider.Darken : _ColorProvider.Brighten}!important;
-        `;
-        this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseButtonClass, baseStyle);
-        this.getSheet('ngx-awesome-popup-glob-styles').addRule(hoverButtonClass, hoverStyle);
-        this.getSheet('ngx-awesome-popup-glob-styles').addRule(focusActiveButtonClass, focusActiveStyle);
-    }
-    setIconStyling(_Key, _ColorProvider) {
-        const baseIconClass = `.ap-icon-${_Key.toLowerCase()}`;
-        const baseStyle = `color: ${_ColorProvider.BrightenForShade}!important;`;
-        this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseIconClass, baseStyle);
-    }
-    setDialogFrame(_Key, _ColorProvider) {
-        const baseDialogFrameClass = `.ngx-awesome-popup-overlay .${_Key.toLowerCase()}-dialog`;
-        const baseStyle = `
-        border-color: ${_ColorProvider.Brighten}!important;
-        `;
-        this.getSheet('ngx-awesome-popup-glob-styles').addRule(baseDialogFrameClass, baseStyle);
-    }
-    setToastStyles() {
-        this.getSheet('ngx-awesome-popup-styles').addRule(`.toast-entity`, `all 0.5s ease;`);
-        this.getSheet('ngx-awesome-popup-styles').addRule(`.toast-entity:first-child`, `animation: move 0.7s ease-out;`);
-        const isIEOrEdge = /msie\s|trident\//i.test(window.navigator.userAgent);
-        if (!isIEOrEdge) {
-            this.getSheet('ngx-awesome-popup-styles').addRule(`@-webkit-keyframes move`, `
-                                        0% {margin-top: -5px; opacity: 0.4;}
-                                        30% {margin-top: -4px; opacity: 0.7;}
-                                        100% {margin-top: 0px; opacity: 1;}
-                                        `);
-            this.getSheet('ngx-awesome-popup-styles').addRule(`@keyframes move`, `
-                                        0% {margin-top: -5px; opacity: 0.4;}
-                                        30% {margin-top: -4px; opacity: 0.7;}
-                                        100% {margin-top: 0px; opacity: 1;}
-                                        `);
-        }
-    }
-}
-GlobalConfigService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: GlobalConfigService, deps: [{ token: 'cdGlobalConfig' }], target: i0.ɵɵFactoryTarget.Injectable });
-GlobalConfigService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: GlobalConfigService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: GlobalConfigService, decorators: [{
-            type: Injectable,
-            args: [{
-                    providedIn: 'root'
-                }]
-        }], ctorParameters: function () {
-        return [{ type: undefined, decorators: [{
-                        type: Inject,
-                        args: ['cdGlobalConfig']
-                    }] }];
-    } });
 
 class ToastNotificationSimpleWrapperComponent extends WrapperAbstraction {
     constructor(toastNotificationBelonging, gConfig, cd, layoutHelper) {
