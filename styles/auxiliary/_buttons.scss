@@ -35,8 +35,6 @@
   user-select: none;
   vertical-align: middle;
 
-  &:hover {
-  }
 
   .ed-btn-check:focus + &,
   &:focus {
@@ -57,10 +55,13 @@
 
   &:disabled,
   &.disabled,
-  fieldset:disabled & {
+  fieldset:disabled {
     box-shadow: none;
-    opacity: 0.6;
-    pointer-events: none;
+    opacity: 0.5;
+    &:hover {
+      opacity: 0.4;
+      cursor: not-allowed;
+      }
   }
 }
 

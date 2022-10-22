@@ -17,7 +17,26 @@ export class dispatch {
 }
 
 export class ButtonMaker implements IButton {
-  constructor(public label: string, public ID: string, public layoutType: ButtonLayoutDisplay = ButtonLayoutDisplay.PRIMARY) {}
+  hidden = false;
+  constructor(
+    public label: string,
+    public ID: string,
+    public layoutType: ButtonLayoutDisplay = ButtonLayoutDisplay.PRIMARY,
+    public disabled: boolean = false
+  ) {}
+
+  disable(): void {
+    this.disabled = true;
+  }
+  enable(): void {
+    this.disabled = false;
+  }
+  hide(): void {
+    this.hidden = true;
+  }
+  show(): void {
+    this.hidden = false;
+  }
 }
 
 export class GlobalUserConfig implements IGlobalUserConfig {

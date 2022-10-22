@@ -64,6 +64,8 @@
         <button
           #elButton
           *ngFor="let button of toastNotificationBelonging.buttons"
+          [disabled]="button.disabled"
+          [style.display]="button.hidden ? 'none' : 'inline'"
           (click)="onCustomButton(button)"
           [className]="layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-sm')">
           {{ button.label }}

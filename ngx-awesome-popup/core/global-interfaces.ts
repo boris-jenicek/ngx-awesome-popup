@@ -68,7 +68,7 @@ export interface IPrivateResponse {
  * // Custom button object.
  * const button = {
  *        ID         : 'confirm_btn',
- *        label:     : 'Confirm'
+ *        label:     : 'Confirm',
  *        layoutType : ButtonLayoutDisplay.SUCCESS
  *  }
  * // Or instantiated with ButtonMaker class
@@ -80,6 +80,13 @@ export interface IButton {
   label: string;
   layoutType: ButtonLayoutDisplay | null;
   ID?: string;
+  hidden: boolean;
+  disabled: boolean;
+
+  enable(): void;
+  disable(): void;
+  hide(): void;
+  show(): void;
 }
 
 export interface IColorObject {

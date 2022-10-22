@@ -55,6 +55,8 @@
           #elButton
           *ngFor="let button of confirmBoxBelonging.buttons"
           (click)="onCustomButton(button)"
+          [disabled]="button.disabled"
+          [style.display]="button.hidden ? 'none' : 'inline'"
           [className]="layoutHelper.getButtonClasses(button.layoutType, 'ed-btn ed-btn-md')">
           {{ button.label }}
         </button>
