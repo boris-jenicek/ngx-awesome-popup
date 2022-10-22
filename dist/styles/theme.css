@@ -46,10 +46,16 @@
   box-shadow: 0 0 1px 2px;
 }
 
-.ed-btn:disabled, .ed-btn.disabled, fieldset:disabled .ed-btn {
+.ed-btn:disabled, .ed-btn.disabled,
+.ed-btn fieldset:disabled {
   box-shadow: none;
-  opacity: 0.6;
-  pointer-events: none;
+  opacity: 0.5;
+}
+
+.ed-btn:disabled:hover, .ed-btn.disabled:hover,
+.ed-btn fieldset:disabled:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .ed-btn-primary {
@@ -620,10 +626,16 @@
   box-shadow: 0 0 1px 2px;
 }
 
-.ed-btn:disabled, .ed-btn.disabled, fieldset:disabled .ed-btn {
+.ed-btn:disabled, .ed-btn.disabled,
+.ed-btn fieldset:disabled {
   box-shadow: none;
-  opacity: 0.6;
-  pointer-events: none;
+  opacity: 0.5;
+}
+
+.ed-btn:disabled:hover, .ed-btn.disabled:hover,
+.ed-btn fieldset:disabled:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .ed-btn-primary {
@@ -1200,10 +1212,16 @@
   box-shadow: 0 0 1px 2px;
 }
 
-.ed-btn:disabled, .ed-btn.disabled, fieldset:disabled .ed-btn {
+.ed-btn:disabled, .ed-btn.disabled,
+.ed-btn fieldset:disabled {
   box-shadow: none;
-  opacity: 0.6;
-  pointer-events: none;
+  opacity: 0.5;
+}
+
+.ed-btn:disabled:hover, .ed-btn.disabled:hover,
+.ed-btn fieldset:disabled:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .ed-btn-primary {
@@ -1760,10 +1778,16 @@
   box-shadow: 0 0 1px 2px;
 }
 
-.ed-btn:disabled, .ed-btn.disabled, fieldset:disabled .ed-btn {
+.ed-btn:disabled, .ed-btn.disabled,
+.ed-btn fieldset:disabled {
   box-shadow: none;
-  opacity: 0.6;
-  pointer-events: none;
+  opacity: 0.5;
+}
+
+.ed-btn:disabled:hover, .ed-btn.disabled:hover,
+.ed-btn fieldset:disabled:hover {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .ed-btn-primary {

@@ -17,7 +17,13 @@ export declare class ButtonMaker implements IButton {
     label: string;
     ID: string;
     layoutType: ButtonLayoutDisplay;
-    constructor(label: string, ID: string, layoutType?: ButtonLayoutDisplay);
+    disabled: boolean;
+    hidden: boolean;
+    constructor(label: string, ID: string, layoutType?: ButtonLayoutDisplay, disabled?: boolean);
+    disable(): void;
+    enable(): void;
+    hide(): void;
+    show(): void;
 }
 export declare class GlobalUserConfig implements IGlobalUserConfig {
     colorList: IColorTypes;

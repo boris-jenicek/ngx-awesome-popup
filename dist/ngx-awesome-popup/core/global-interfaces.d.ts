@@ -36,6 +36,12 @@ export interface IButton {
     label: string;
     layoutType: ButtonLayoutDisplay | null;
     ID?: string;
+    hidden: boolean;
+    disabled: boolean;
+    enable(): void;
+    disable(): void;
+    hide(): void;
+    show(): void;
 }
 export interface IColorObject {
     primary?: IColorProvider;
