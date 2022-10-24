@@ -30,7 +30,7 @@ DialogConfigModule.forRoot({
        buttonPosition : 'right',
        layoutType: DialogLayoutDisplay.INFO,
        // LoaderComponent: // Any Angular component class name can be included as a loader.
-       displayLoader: false // This will override LoaderComponent.
+       displayLoader: false // This will override loaderComponent.
        animationIn: AppearanceAnimation.BOUNCE_IN, // BOUNCE_IN | SWING | ZOOM_IN | ZOOM_IN_ROTATE | ELASTIC | JELLO | FADE_IN | SLIDE_IN_UP | SLIDE_IN_DOWN | SLIDE_IN_LEFT | SLIDE_IN_RIGHT | NONE
        animationOut: DisappearanceAnimation.BOUNCE_OUT, // BOUNCE_OUT | ZOOM_OUT | ZOOM_OUT_WIND | ZOOM_OUT_ROTATE | FLIP_OUT | SLIDE_OUT_UP | SLIDE_OUT_DOWN | SLIDE_OUT_LEFT | SLIDE_OUT_RIGHT | NONE
        customStyles: {

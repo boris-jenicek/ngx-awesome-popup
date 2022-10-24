@@ -19,7 +19,7 @@ const dialogCoreConfig = {
        buttonPosition : 'right',
        layoutType: DialogLayoutDisplay.INFO,
        // loaderComponent: // Any Angular component class name can be included as a loader.
-       displayLoader: false, // This will override LoaderComponent.
+       displayLoader: false, // This will override loaderComponent.
        customStyles: {
           buttonSectionCss: 'background: #333',
           buttonCss: 'font-size: 30px;',
