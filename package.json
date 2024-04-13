@@ -1,6 +1,6 @@
 {
   "name": "@costlydeveloper/ngx-awesome-popup",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "The world's easiest, most powerful Angular dialog modal framework. It generates beautiful popups, dialogs, Confirm Boxes, Alert Boxes, Toast Notifications. Also gives the ability of opening dynamic components directly from typescript!",
   "keywords": [
     "front-end",
